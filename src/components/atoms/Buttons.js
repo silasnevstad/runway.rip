@@ -61,7 +61,7 @@ const Button = ({
         >
             {loading ?
                 (
-                    <Loader className="text-primary-100" />
+                    <Loader className="text-primary-900" />
                 ) : (
                     <>
                         {iconElement}
