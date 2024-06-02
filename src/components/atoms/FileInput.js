@@ -25,7 +25,7 @@ const FileInput = ({
     return (
         <div className={`flex items-center rounded-lg ${className}`}>
             <button
-                className="bg-gray-800 text-white p-2 cursor-pointer flex items-center rounded-l-lg px-4"
+                className="bg-gray-800 text-white p-2 cursor-pointer flex items-center rounded-l-lg px-4 whitespace-nowrap"
                 onClick={handleButtonClick}>
                 <FiFilePlus className="mr-2" />
                 {text}

@@ -4,8 +4,8 @@ import React from 'react';
 import Input from "@/components/atoms/Input";
 import { Button } from "@/components/atoms/Buttons";
 import { UserIcon, KeyIcon } from "@heroicons/react/24/solid";
-import { DividerWithText } from "@/components/atoms/Divider";
-import { useFormState, useFormStatus } from 'react-dom'
+import Divider from "@/components/atoms/Divider";
+import { useFormState, useFormStatus } from 'react-dom';
 import { signup, signin } from '@/app/actions/auth'
 
 const LoadingButton = () => {
@@ -19,7 +19,7 @@ const LoadingButton = () => {
 }
 
 export default function AuthForm({
-    type // 'sign-in' or 'sign-up'
+    type = 'sign-in' // either sign-in or sign-up
 }) {
     const [state, action] = useFormState(type === 'sign-in' ? signin : signup, undefined);
 
@@ -38,7 +38,7 @@ export default function AuthForm({
                     leftIcon={KeyIcon}
                     id="password"
                     name="password"
-                    // type="password"
+                    type="password"
                     placeholder="Password"
                     secure
                 />
@@ -58,13 +58,14 @@ export default function AuthForm({
                         leftIcon={KeyIcon}
                         id="confirmPassword"
                         name="confirmPassword"
+                        type="password"
                         placeholder="Confirm Password"
                         secure
                     />
                 )}
             </div>
             <LoadingButton />
-            <DividerWithText text="OR" />
+            <Divider text="OR" />
             <Button
                 iconSrc="/logos/google.png"
                 iconAlt="Google Icon"

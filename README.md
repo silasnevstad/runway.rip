@@ -1,3 +1,2 @@
-# NextBoost - A Next.js Boilerplate
-### Launch your ideas with a boost
+# Runway - A Next.js Boilerplate<br><sup>Take off your project in minutes with Runway</sup>
 

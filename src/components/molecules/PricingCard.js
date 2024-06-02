@@ -5,7 +5,7 @@ import { Button } from "@/components/atoms/Buttons";
 
 const PricingCard = ({ title, oldPrice, price, includedFeatures, allFeatures, isPopular }) => {
     return (
-        <div className={`relative flex flex-col gap-6 px-8 py-8 rounded-2xl w-full bg-bg-50 dark:bg-gray-900 shadow-sm ${isPopular ? "border-2 border-primary-400" : ""}`}>
+        <div className={`relative flex flex-col gap-6 px-8 py-8 rounded-2xl w-full bg-bg-100 dark:bg-gray-900 shadow-sm ${isPopular ? "border-2 border-primary-400" : ""}`}>
             {isPopular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <Badge variant="primary" shape="pill">

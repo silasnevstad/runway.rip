@@ -4,22 +4,16 @@ import TrustedBy from "@/components/molecules/TrustedBy";
 import Pricing from "@/components/organisms/Pricing";
 import FAQ from "@/components/organisms/FAQ";
 import Badge from "@/components/atoms/Badge";
-import Menu from "@/components/molecules/Menu";
-import NavHeader from "@/components/organisms/Header";
-import Footer from "@/components/organisms/Footer";
-import Tooltip from "@/components/atoms/Tooltip";
-import Card from "@/components/molecules/Card";
-import Dropdown from "@/components/atoms/Dropdown";
-import TimelineItem from "@/components/atoms/TimelineItem";
-import Timeline from "@/components/molecules/Timeline";
-import { HomeIcon, QuestionMarkCircleIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
-import moment from "moment";
+import LandingHeader from "@/components/organisms/headers/LandingHeader";
+import Header from "@/components/organisms/headers/Header";
+import Footer from "@/components/organisms/footers/Footer";
 import Examples from "@/components/organisms/Examples";
 
 export default function Landing() {
     return (
         <main className="flex items-center flex-col w-full">
-            <NavHeader />
+            {/*<LandingHeader background={"bg-transparent"} />*/}
+            <Header />
             <div className="flex items-center flex-col p-4 w-full">
                 <div className="flex flex-col justify-center h-screen -mb-60">
                     <div
