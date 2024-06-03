@@ -12,8 +12,8 @@ import Examples from "@/components/organisms/Examples";
 export default function Landing() {
     return (
         <main className="flex items-center flex-col w-full">
-            {/*<LandingHeader background={"bg-transparent"} />*/}
-            <Header />
+            <LandingHeader background={"bg-transparent"} />
+            {/*<Header />*/}
             <div className="flex items-center flex-col p-4 w-full">
                 <div className="flex flex-col justify-center h-screen -mb-60">
                     <div

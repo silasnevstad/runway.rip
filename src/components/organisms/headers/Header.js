@@ -3,11 +3,11 @@
 import config from "@/config";
 import { TextLink, Button } from "@/components/atoms/Buttons";
 import Link from "next/link";
-import { PiGearBold } from "react-icons/pi";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
+import { Avatar } from "@/components/atoms/Avatar";
 
 const Header = ({
-    background = "bg-bg-100",
+    background = "bg-bg-100 dark:bg-bg-900",
 }) => {
     const { appName } = config;
     return (
@@ -20,7 +20,10 @@ const Header = ({
                     <TextLink href="" className="text-lg" fade>Dashboard</TextLink>
                     <TextLink href="" className="text-lg" fade selected>Docs</TextLink>
                     <TextLink href="" className="text-lg" fade>Account</TextLink>
-                    <Button icon={Cog6ToothIcon} shape="rounded-full" textColor={"text-bg-900"} backgroundColor={"bg-bg-100"} hoverBackgroundColor={"bg-bg-400"} className="text-2xl !px-2 !py-2"/>
+                    <div className="pl-2 flex items-center space-x-6">
+                        <Button icon={Cog6ToothIcon} iconClassname={"!w-6 !h-6"} shape="rounded-full" textColor={"text-bg-700 dark:text-bg-300 hover:text-bg-900 dark:hover:text-bg-100"} backgroundColor={"bg-bg-100 dark:bg-bg-900"} hoverBackgroundColor={"hover:bg-bg-100 dark:hover:bg-bg-800"} className="text-2xl !px-1 !py-1"/>
+                        <Avatar src="/images/elon-avatar.png" alt="John Doe" width={35} height={35}/>
+                    </div>
                 </div>
             </div>
         </header>

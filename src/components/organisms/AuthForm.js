@@ -26,40 +26,38 @@ export default function AuthForm({
     return (
         <form className="flex flex-col w-full gap-2" action={action}>
             <div className="flex flex-col w-full gap-4 mb-4">
-                <Input
-                    leftIcon={UserIcon}
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                />
-                {state?.errors.email && <p className="text-red-500 font-semibold">{state.errors.email}</p>}
-                <Input
-                    leftIcon={KeyIcon}
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    secure
-                />
-                {state?.errors.password && (
-                    <div>
-                        <p className="text-red-500 font-semibold">Password must contain:</p>
-                        <ul>
-                            {state.errors.password.map((error) => (
-                                <li key={error}>- {error}</li>
+                <div className="flex flex-col w-full gap-4">
+                    {state?.errors.email && <p className="text-red-500 font-semibold">{state.errors.email}</p>}
+                    <Input
+                        label="Email"
+                        id="email"
+                        name="email"
+                        type="email"
+                    />
+                </div>
+                <div className="flex flex-col w-full gap-4">
+                    {state?.errors.password && (
+                        <div>
+                            <p className="text-red-500 font-semibold">Password must {state.errors.password.map((error, index) => (
+                                `${index === 0 ? error.charAt(0).toLowerCase() + error.slice(1) : error}${index === state.errors.password.length - 1 ? '' : index === state.errors.password.length - 2 ? ' and ' : ', '}`
                             ))}
-                        </ul>
-                    </div>
-                )}
-
+                            </p>
+                        </div>
+                    )}
+                    <Input
+                        label="Password"
+                        id="password"
+                        name="password"
+                        type="password"
+                        secure
+                    />
+                </div>
                 {type === 'sign-up' && (
                     <Input
-                        leftIcon={KeyIcon}
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"
-                        placeholder="Confirm Password"
+                        label="Confirm Password"
                         secure
                     />
                 )}
@@ -69,15 +67,18 @@ export default function AuthForm({
             <Button
                 iconSrc="/logos/google.png"
                 iconAlt="Google Icon"
+                iconPlacement={'center'}
                 onClick={null}
-                className="hover:shadow-md hover:-translate-y-0.5 transition-transform duration-200 ease-in-out"
-                shape="rounded-xl"
+                shape="rounded-lg"
                 backgroundColor="bg-bg-50 dark:bg-bg-800"
-                hoverBackgroundColor="hover:bg-bg-100 dark:hover:bg-bg-900"
-                textColor="text-gray-900 dark:text-gray-100"
+                hoverBackgroundColor="hover:bg-bg-200 dark:hover:bg-bg-900"
+                textColor="text-gray-900 dark:text-gray-100 text-opacity-70"
+                textPlacement="center"
+                fontSize="text-lg"
+                fontWeight="font-regular"
                 border
             >
-                {type === 'sign-in' ? 'Continue with Google' : 'Sign Up with Google'}
+                Continue with Google
             </Button>
         </form>
     );

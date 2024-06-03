@@ -1,14 +1,22 @@
 import Image from 'next/image';
 
-const Avatar = ({src, alt, className}) => {
+export const Avatar = ({src, alt, className, width = 50, height = 50}) => {
     return (
         <Image
             src={src}
             alt={alt}
-            className={`rounded-full border-2 border-gray-300 ${className}`}
-            width={50}
-            height={50}
+            className={`rounded-full border-2 border-gray-400 dark:border-gray-500 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 ${className}`}
+            width={width}
+            height={height}
         />
+    );
+}
+
+export const LetterAvatar = ({ letter, className }) => {
+    return (
+        <div className={`flex justify-center items-center rounded-full border-2 border-gray-400 dark:border-gray-500 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 ${className} w-8 h-8`}>
+            <span className="text-lg font-semibold">{letter}</span>
+        </div>
     );
 }
 
@@ -21,6 +29,4 @@ export const AvatarList = ({ avatars }) => {
         </div>
     );
 }
-
-export default AvatarList;
 

@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Card from "@/components/molecules/Card";
 import UserMenuCard from "@/components/molecules/UserMenuCard";
+import {LetterAvatar} from "@/components/atoms/Avatar";
 
 const SidebarItem = ({ href, icon: Icon, name, isOpen }) => {
     const currentPath = usePathname();
@@ -14,7 +15,7 @@ const SidebarItem = ({ href, icon: Icon, name, isOpen }) => {
 
     return (
         <Link
-            className={`flex py-1.5 rounded-xl justify-start items-end ${!isActive && 'opacity-70 hover:bg-bg-100 dark:hover:bg-bg-700'}  hover:opacity-100 transition-all duration-200 ${isActive ? 'bg-primary-100 dark:bg-primary-100' : ''}`}
+            className={`flex py-2 rounded-xl justify-start items-end ${!isActive && 'opacity-70 hover:bg-bg-200 dark:hover:bg-bg-700'}  hover:opacity-100 transition-all duration-200 ${isActive ? 'bg-primary-100 dark:bg-primary-100' : ''}`}
             href={href}
         >
             <Icon className={`h-6 w-6 ml-2.5 will-change-transform transition-none ${isActive ? 'text-primary-500 dark:text-primary-100' : ''}`} />
@@ -58,9 +59,7 @@ const Sidebar = () => {
             {/* Bottom Menu Items */}
             <div className="flex flex-col mb-2 gap-2 p-2 relative">
                 <div className="flex items-center gap-2 hover:bg-bg-100 dark:hover:bg-bg-700 rounded-xl p-2 cursor-pointer" onClick={() => setShowUserMenu(!showUserMenu)}>
-                    <div className="rounded-full h-8 font-semibold w-8 bg-bg-200 dark:bg-bg-700 flex justify-center items-center">
-                        S
-                    </div>
+                    <LetterAvatar letter={user?.name?.charAt(0).toUpperCase() || 'S'} className="w-8 h-8"/>
                     {isOpen && <span className="font-medium">Silas Nevstad</span>}
                 </div>
                 {showUserMenu && (

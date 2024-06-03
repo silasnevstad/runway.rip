@@ -25,12 +25,15 @@ const Button = ({
     type = 'button', // button type (button, submit, reset)
     variant = '', // variant like primary, soft, danger, etc.
     shape = 'rounded-lg', // shape like rounded-lg, rounded-full, etc.
+    fontSize = 'text-lg', // font size
+    fontWeight = 'font-semibold', // font weight
     textColor = 'text-white', // text color
     backgroundColor = 'bg-primary-500', // background color
-    hoverBackgroundColor = 'bg-primary-600', // hover background color
+    hoverBackgroundColor = 'hover:bg-primary-600', // hover background color
     icon: Icon = null, // optional icon component
     iconSrc = '', // optional icon image source
     iconAlt = '', // icon alt text for Image
+    iconClassname = '', // icon classname
     border = false, // border variant
     loading = false, // loading state
     ping = false, // ping state
@@ -38,10 +41,10 @@ const Button = ({
     disabled = false, // disabled state
     ...props
 }) => {
-    const baseStyles = `font-bold py-2.5 px-12 ${shape} flex items-center justify-center gap-2 transition-colors duration-200 ease-in-out `;
-    let variantStyles = `${textColor} ${backgroundColor} ${"hover:" + hoverBackgroundColor} ${border ? 'border-2 border-gray-500 dark:border-gray-600' : ''}`;
+    const baseStyles = `${fontSize} ${fontWeight} py-2.5 px-12 ${shape} flex items-center justify-center gap-2 transition-colors duration-200 ease-in-out `;
+    let variantStyles = `${textColor} ${backgroundColor} ${hoverBackgroundColor} ${border ? 'border border-bg-500 dark:border-bg-300' : ''}`;
 
-    const iconElement = Icon ? <Icon className="w-5 h-5" /> : iconSrc ? <Image src={iconSrc} alt={iconAlt} width={30} height={30} /> : null;
+    const iconElement = Icon ? <Icon className={`w-5 h-5 ${iconClassname}`} /> : iconSrc ? <Image src={iconSrc} alt={iconAlt} width={30} height={30} /> : null;
 
     const variantClasses = {
         primary: 'text-white bg-primary-500 hover:bg-primary-600',
@@ -64,7 +67,7 @@ const Button = ({
             type={type}
             onClick={onClick}
             disabled={loading || disabled}
-            className={`${baseStyles} ${variantStyles} ${className} ${loading ? 'cursor-not-allowed' : 'cursor-pointer'} ${disabled ? 'opacity-50' : ''}`}
+            className={`relative ${baseStyles} ${variantStyles} ${className} ${loading ? 'cursor-not-allowed' : 'cursor-pointer'} ${disabled ? 'opacity-50' : ''} ${ping ? 'animate-ping' : ''}`}
             {...props}
         >
             {loading ?
