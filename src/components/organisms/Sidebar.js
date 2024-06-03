@@ -15,7 +15,7 @@ const SidebarItem = ({ href, icon: Icon, name, isOpen }) => {
 
     return (
         <Link
-            className={`flex py-2 rounded-xl justify-start items-end ${!isActive && 'opacity-70 hover:bg-bg-200 dark:hover:bg-bg-700'}  hover:opacity-100 transition-all duration-200 ${isActive ? 'bg-primary-100 dark:bg-primary-100' : ''}`}
+            className={`flex py-2 rounded-xl justify-start items-end ${!isActive && 'opacity-70 hover:bg-bg-200 dark:hover:bg-bg-700'}  hover:opacity-100 transition-all duration-200 ${isActive ? 'bg-primary-100 dark:bg-primary-500 dark:bg-opacity-60' : ''}`}
             href={href}
         >
             <Icon className={`h-6 w-6 ml-2.5 will-change-transform transition-none ${isActive ? 'text-primary-500 dark:text-primary-100' : ''}`} />
