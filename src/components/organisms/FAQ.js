@@ -1,3 +1,5 @@
+'use client';
+
 import DropdownText from "@/components/atoms/DropdownText";
 
 const FAQS = [
@@ -21,10 +23,16 @@ const FAQS = [
 
 const FAQ = () => {
     return (
-        <div className="flex flex-col w-4/6">
-            {FAQS.map((faq, index) => (
-                <DropdownText key={index} title={faq.title} content={faq.description}/>
-            ))}
+        <div
+            className="flex max-sm:flex-col justify-between gap-10 pt-20 mt-20 mb-10 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-10/12"
+            id="faq"
+        >
+            <h3 className="text-3xl font-semibold text-left max-w-[20ch]">Frequently Asked Questions</h3>
+            <div className="flex flex-col w-10/12 max-sm:w-full">
+                {FAQS.map((faq, index) => (
+                    <DropdownText key={index} title={faq.title} content={faq.description}/>
+                ))}
+            </div>
         </div>
     );
 }

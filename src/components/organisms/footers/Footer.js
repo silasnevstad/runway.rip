@@ -14,7 +14,7 @@ const Footer = () => {
                     <p className="text-gray-500 mb-2">Copyright © 2024. All Rights Reserved.</p>
                     <MadeWithTag />
                 </div>
-                <div className="flex gap-20 max-xl:pr-10">
+                <div className="flex gap-20 max-xl:pr-10 max-sm:gap-10">
                     <div className="flex flex-col gap-3">
                         <TextLink href={socialMedia.instagram}><FaInstagram className="text-2xl" /></TextLink>
                         <TextLink href={socialMedia.twitter}><FaXTwitter className="text-2xl" /></TextLink>
@@ -27,7 +27,7 @@ const Footer = () => {
                         <TextLink href="/docs">Documentation</TextLink>
                         <TextLink href="#">Support</TextLink>
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 flex-nowrap whitespace-nowrap">
                         <p className="text-lg font-semibold opacity-50">Legal</p>
                         <TextLink href="#">Privacy Policy</TextLink>
                         <TextLink href="#">Terms of Service</TextLink>

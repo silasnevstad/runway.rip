@@ -14,7 +14,7 @@ const DropdownItem = ({
     selectedIcon,
 }) => (
     <div
-        className="flex items-center justify-between gap-2 bg-bg-200 hover:bg-bg-300 dark:bg-bg-900 dark:hover:bg-bg-700 pl-3 pr-1 py-2 cursor-pointer rounded-md"
+        className="flex items-center justify-between gap-2 bg-bg-100 hover:bg-bg-200 dark:bg-bg-900 dark:hover:bg-bg-700 pl-3 pr-1 py-2 cursor-pointer rounded-md"
         onClick={onClick}
     >
         {Icon && <Icon className="h-5 w-5 flex-shrink-0 text-gray-500" />}
@@ -46,7 +46,7 @@ const Dropdown = ({
         <div className={`relative select-none ${border ? 'border border-gray-300' : ''}`}>
             {label && <label className="ml-1 text-sm font-medium">{label}</label>}
             <div
-                className={`relative mt-1 w-full bg-bg-200 dark:bg-bg-900 ${isOpen ? 'rounded-t-md' : 'rounded-md'} px-3 py-2 cursor-pointer flex items-center justify-between gap-4`}
+                className={`relative mt-1 w-full bg-bg-100 dark:bg-bg-900 ${isOpen ? 'rounded-t-md' : 'rounded-md'} px-3 py-2 cursor-pointer flex items-center justify-between gap-4`}
                 onClick={toggleDropdown}
             >
                 <span className="flex items-center gap-2 truncate">
@@ -59,7 +59,7 @@ const Dropdown = ({
                 />
             </div>
             {isOpen && (
-                <div className={`absolute w-full rounded-b-md bg-bg-200 dark:bg-bg-900 shadow-lg z-10 ${border && 'border border-gray-300'}`}>
+                <div className={`absolute w-full rounded-b-md bg-bg-100 dark:bg-bg-900 shadow-lg z-10 ${border && 'border border-gray-300'}`}>
                     {items.map((item) => (
                         <DropdownItem
                             key={item.id}

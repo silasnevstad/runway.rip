@@ -42,8 +42,8 @@ const Examples = () => {
     const [selected, setSelected] = useState(1);
 
     return (
-        <div className="flex flex-col gap-10 items-center place-items-center">
-            <CodeBlock language="python" code="import pandas as pd" />
+        <div className="flex flex-col gap-10 items-center place-items-center w-full">
+            <CodeBlock language="python" code="import pandas as pd"/>
             <div className="grid grid-cols-2 gap-2 ">
                 <Button onClick={null} variant="primary" loading>
                     Buttons
@@ -163,7 +163,7 @@ const Examples = () => {
                     <Badge shape="square">
                         Squares
                     </Badge>
-                    <Badge  shape="pill" className="bg-green-100 text-green-800">
+                    <Badge shape="pill" className="bg-green-100 text-green-800">
                         Soft Pill
                     </Badge>
                     <Badge shape="square" className="bg-red-100 text-red-800">
@@ -200,8 +200,9 @@ const Examples = () => {
                     <p className="text-lg font-semibold">Hover me to see tooltip</p>
                 </Tooltip>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
                 <Card
+                    className="whitespace-normal"
                     imageSrc="/logos/google.png"
                     imageRight
                     hover
@@ -209,8 +210,8 @@ const Examples = () => {
                     <h2 className="text-2xl font-semibold">Title</h2>
                     <p className="opacity-60 text-lg">Subtitle</p>
                     <div className="flex gap-2 -ml-1 mt-1">
-                        <Badge className="text-sm">Badge 1</Badge>
-                        <Badge className="text-sm">Badge 2</Badge>
+                        <Badge className="text-sm whitespace-nowrap shrink-0">Badge 1</Badge>
+                        <Badge className="text-sm whitespace-nowrap shrink-0">Badge 2</Badge>
                     </div>
                     <p className="text-sm opacity-60 mt-5">
                         Apr 2024
@@ -222,13 +223,17 @@ const Examples = () => {
                     className={'min-w-40'}
                     title="Title"
                     menuItems={[
-                        {name: 'Home', onClick: null, submenu: [
-                            {name: 'Submenu 1', onClick: null, submenu: [
-                                {name: 'Submenu 1', onClick: null},
+                        {
+                            name: 'Home', onClick: null, submenu: [
+                                {
+                                    name: 'Submenu 1', onClick: null, submenu: [
+                                        {name: 'Submenu 1', onClick: null},
+                                        {name: 'Submenu 2', onClick: null},
+                                    ]
+                                },
                                 {name: 'Submenu 2', onClick: null},
-                            ]},
-                            {name: 'Submenu 2', onClick: null},
-                        ]},
+                            ]
+                        },
                         {name: 'About', onClick: null},
                         {name: 'Contact', onClick: null},
                     ]}
@@ -255,7 +260,9 @@ const Examples = () => {
                         type="dot"
                         date={moment('2023-04-25')}
                     >
-                        <p className="ttext-gray-500 dark:text-gray-600">Applied to <a href="#" className="font-medium text-gray-900 dark:text-gray-200">Front End Developer</a> position.</p>
+                        <p className="ttext-gray-500 dark:text-gray-600">Applied to <a href="#"
+                                                                                       className="font-medium text-gray-900 dark:text-gray-200">Front
+                            End Developer</a> position.</p>
                         <Badge variant="primary" shape="pill" className="text-sm">New</Badge>
                     </TimelineItem>
                     <TimelineItem
@@ -263,31 +270,36 @@ const Examples = () => {
                         content={<HomeIcon className="h-5 w-5 text-gray-800"/>}
                         date={moment('2024-02-25')}
                     >
-                        <p className="text-gray-500 dark:text-gray-600">Advanced to phone screening by <a href="#" className="font-medium text-gray-900 dark:text-gray-200">Bethany Blake</a></p>
+                        <p className="text-gray-500 dark:text-gray-600">Advanced to phone screening by <a href="#"
+                                                                                                          className="font-medium text-gray-900 dark:text-gray-200">Bethany
+                            Blake</a></p>
                     </TimelineItem>
                     <TimelineItem
                         type="image"
                         content={{src: "/images/elon-avatar.png", alt: "Elon Avatar"}}
                         date={moment('2024-04-14')}
                     >
-                        <p className="text-gray-500 dark:text-gray-600">Completed interview with <a href="#" className="font-medium text-gray-900 dark:text-gray-200">Katherine Snyder</a></p>
+                        <p className="text-gray-500 dark:text-gray-600">Completed interview with <a href="#"
+                                                                                                    className="font-medium text-gray-900 dark:text-gray-200">Katherine
+                            Snyder</a></p>
                     </TimelineItem>
                     <TimelineItem
                         date={moment('2024-04-25')}
                         isLast
                     >
-                        <p className="text-gray-500 dark:text-gray-600">Completed interview with <a href="#" className="font-medium text-gray-900 dark:text-gray-200">Katherine
+                        <p className="text-gray-500 dark:text-gray-600">Completed interview with <a href="#"
+                                                                                                    className="font-medium text-gray-900 dark:text-gray-200">Katherine
                             Snyder</a></p>
                     </TimelineItem>
                 </Timeline>
             </div>
             <div className="flex flex-col gap-2 items-center">
-                <FileDrop />
-                <FileInput />
+                <FileDrop/>
+                <FileInput/>
             </div>
             <div className="flex flex-row gap-2 items-center gap-8">
-                <Loader type="spinner" />
-                <Loader type="dots" />
+                <Loader type="spinner"/>
+                <Loader type="dots"/>
             </div>
         </div>
     );

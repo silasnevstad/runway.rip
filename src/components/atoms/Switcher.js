@@ -10,7 +10,7 @@ const Switcher = ({
     activeColor = ' dark:text-white',
     inactiveColor = 'text-gray-500',
     activeBgColor = 'bg-bg-200 dark:bg-bg-800',
-    inactiveBgColor = 'bg-bg-50 dark:bg-bg-900',
+    inactiveBgColor = 'bg-bg-100 dark:bg-bg-900',
     activeBorderColor = 'border-primary-100 dark:border-primary-500',
     inactiveBorderColor = 'border-gray-200',
     border,
