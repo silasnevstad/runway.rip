@@ -18,7 +18,6 @@ export default function Landing() {
                     <div
                         className="flex flex-col gap-6 max-w-[70ch] max-lg:max-w-[50ch] max-sm:max-w-[40ch] text-center place-items-center -mt-40">
                         <TextHighlight text={"Launch your ideas with a boost."} highlight={"a boost."} />
-                        {/* linear gradient text*/}
                         <p className="text-4xl max-sm:text-2xl font-semibold bg-gradient-to-r from-primary-500 from-20% to-green-500 to-80% bg-clip-text text-transparent">
                             Everything you need to launch your ideas.
                         </p>
