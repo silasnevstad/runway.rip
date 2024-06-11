@@ -12,14 +12,14 @@ const DropdownText = ({ title, content }) => {
     };
 
     return (
-        <div className="w-full  py-4 border-b border-gray-200 hover:cursor-pointer">
+        <div className="w-full py-4 border-b border-gray-200 hover:cursor-pointer group">
             <div className="flex justify-between items-center w-full" onClick={toggleDropdown}>
                 <h2 className={`text-lg font-semibold transition-colors duration-300 ${isOpen ? 'text-primary-500' : ''} hover:text-primary-500`}>{title}</h2>
                 <div className="transition ease-in-out duration-300 transform">
                     {isOpen ? (
-                        <MinusIcon className="h-5 w-5 rotate-180"/>
+                        <MinusIcon className="h-5 w-5 rotate-180 text-primary-500"/>
                     ) : (
-                        <PlusIcon className="h-5 w-5 rotate-0"/>
+                        <PlusIcon className="h-5 w-5 rotate-0 group-hover:text-primary-500"/>
                     )}
                 </div>
             </div>

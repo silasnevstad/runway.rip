@@ -7,7 +7,7 @@ import Link from "next/link";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
 
 const LandingHeader = ({
-    background = "bg-bg-200",
+    background = "bg-bg-100",
 }) => {
     const { appName } = config;
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -17,7 +17,7 @@ const LandingHeader = ({
     };
 
     return (
-        <header className={`flex justify-center p-4 w-full ${background} sticky top-0 z-20`}>
+        <header className={`flex justify-center p-4 w-full ${background} ${isDropdownOpen && 'bg-opacity-100'} max-sm:sticky top-0 z-20`}>
             <div className="flex justify-between items-center max-w-5xl w-full">
                 <div className="flex items-center">
                     <Link href="" className="text-2xl font-semibold">{appName}</Link>
@@ -42,7 +42,7 @@ const LandingHeader = ({
             </div>
             {isDropdownOpen && (
                 <div
-                    className={`absolute top-16 left-0 w-full ${background} shadow-md z-10 transition-transform transform ${
+                    className={`absolute top-16 left-0 w-full ${background} bg-opacity-100 shadow-md z-10 transition-transform transform ${
                         isDropdownOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
                     } overflow-hidden duration-300 ease-in-out`}
                 >

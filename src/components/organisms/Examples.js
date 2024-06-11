@@ -263,7 +263,7 @@ const Examples = () => {
                         <p className="ttext-gray-500 dark:text-gray-600">Applied to <a href="#"
                                                                                        className="font-medium text-gray-900 dark:text-gray-200">Front
                             End Developer</a> position.</p>
-                        <Badge variant="primary" shape="pill" className="text-sm">New</Badge>
+                        <Badge variant="primary" shape="pill" className="text-sm font-normal">New</Badge>
                     </TimelineItem>
                     <TimelineItem
                         type="icon"
