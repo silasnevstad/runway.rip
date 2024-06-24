@@ -3,7 +3,7 @@ import StarRating from "@/components/atoms/StarRating";
 
 export default function TrustBy() {
   return (
-    <section className="flex items-center space-x-4 justify-center">
+    <section className="flex items-center space-x-4 justify-center pb-10">
         <AvatarList
             avatars={[
                 {name: "Elon Musk", src: "/images/elon-avatar.png"},

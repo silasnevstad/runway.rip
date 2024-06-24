@@ -21,6 +21,8 @@ const CodeBlock = ({
                 wrapLines
                 showLineNumbers={showLineNumbers}
                 startingLineNumber={startingLineNumber}
+                codeBlockStyle={{ position: 'relative', borderRadius: '0.5rem' }}
+                buttonStyle={{ position: 'absolute', top: '0.5rem', right: '0.5rem', zIndex: 10, cursor: 'pointer' }}
             />
         );
     }

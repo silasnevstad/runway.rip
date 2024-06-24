@@ -11,7 +11,7 @@ import Examples from "@/components/organisms/Examples";
 export default function Landing() {
     return (
         <main className="flex items-center flex-col w-full">
-            <LandingHeader background={"bg-bg-50 bg-opacity-80"} />
+            <LandingHeader background={"bg-bg-50 dark:bg-bg-800 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10"} />
             {/*<Header />*/}
             <div className="flex items-center flex-col p-4 w-full z-1">
                 <div className="flex flex-col justify-center h-screen -mb-60">
@@ -26,14 +26,14 @@ export default function Landing() {
                             FastStack gives you everything you need to launch your ideas. From design to development, we've
                             got you covered.
                         </p>
-                        <div className="flex flex-col gap-2 m-8">
+                        <div className="flex flex-col gap-2 m-2">
                             <Button>Get Started</Button>
                             <p className="text-sm opacity-40">No credit card required</p>
                         </div>
                         <TrustedBy />
                     </div>
                 </div>
-                <div className="flex flex-col gap-10 pt-20 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:5/6" id="how-it-works">
+                <div className="flex flex-col gap-10 pt-28 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:5/6" id="how-it-works">
                     <h3 className="text-3xl font-semibold text-center mb-20">How it works</h3>
                     <div className="flex gap-20">
                         <div className="flex flex-col gap-12 text-left">

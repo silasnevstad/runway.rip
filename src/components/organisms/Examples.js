@@ -43,7 +43,13 @@ const Examples = () => {
 
     return (
         <div className="flex flex-col gap-10 items-center place-items-center w-full">
-            <CodeBlock language="python" code="import pandas as pd"/>
+            <CodeBlock
+                language="python"
+                code={`import pandas as pd
+
+def code:
+    print('Hello World')`}
+            />
             <div className="grid grid-cols-2 gap-2 ">
                 <Button onClick={null} variant="primary" loading>
                     Buttons

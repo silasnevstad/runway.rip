@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from "next/image";
+import {makeClassNameImportant} from "@/utils/utils";
 
 const Card = ({
     className,
@@ -15,7 +16,7 @@ const Card = ({
     const flexDirection = imageLeft ? 'flex-row' : (imageRight ? 'flex-row-reverse' : 'flex-col');
 
     return (
-        <div className={`bg-bg-200 dark:bg-gray-800 flex ${flexDirection} justify-between items-center rounded-2xl py-4 px-5 ease-in-out transition-all ${className} ${hover ? 'hover:shadow-md hover:-translate-y-0.5' : ''}`}>
+        <div className={`bg-bg-50 dark:bg-bg-700 flex ${flexDirection} justify-between items-center rounded-2xl py-4 px-5 ease-in-out transition-all ${makeClassNameImportant(className)} ${hover ? 'hover:shadow-md hover:-translate-y-0.5' : ''}`}>
             {imageSrc && (
                 <Image
                     src={imageSrc}

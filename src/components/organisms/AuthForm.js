@@ -8,12 +8,14 @@ import Divider from "@/components/atoms/Divider";
 import { useFormState, useFormStatus } from 'react-dom';
 import { signup, signin } from '@/app/actions/auth'
 
-const LoadingButton = () => {
+const LoadingButton = ({
+    'sign-up': isSignUp
+}) => {
     const { pending } = useFormStatus()
 
     return (
         <Button type="submit" className="mt-2" shape="rounded-xl" disabled={pending} loading={pending}>
-            Sign Up
+            {isSignUp ? 'Sign Up' : 'Sign In'}
         </Button>
     );
 }
@@ -62,7 +64,7 @@ export default function AuthForm({
                     />
                 )}
             </div>
-            <LoadingButton />
+            <LoadingButton sign-up={type === 'sign-up'} />
             <Divider text="OR" />
             <Button
                 iconSrc="/logos/google.png"
