@@ -11,9 +11,21 @@ const TextLink = ({
     className,
     grow = false,
     fade = false,
+    underline = false,
+    underlineHeight = 'px',
     selected = false
 }) => (
-    <Link href={href} className={`${grow && "hover:transform hover:scale-105"} ${fade && !selected && "transition-opacity opacity-50 hover:opacity-100"} ${selected && "opacity-100 font-semibold"} ease-[cubic-bezier(0.25, 0.46, 0.45, 0.94)] duration-200 cursor-pointer ${className}`}>
+    <Link
+        href={href}
+        className={`relative
+        ${grow && "hover:transform hover:scale-105"} 
+        ${fade && !selected && "transition-opacity opacity-50 hover:opacity-100"} 
+        ${selected && "opacity-100 font-semibold"} 
+        ${underline && `after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-${underlineHeight} after:bg-primary-500 after:transition-all after:duration-300 after:ease-in-out after:transform after:scale-x-0 after:origin-left hover:after:scale-x-100`}
+        ${!underline && "ease-[cubic-bezier(0.25, 0.46, 0.45, 0.94)] duration-200"} 
+        cursor-pointer 
+        ${className}`}
+    >
         {children}
     </Link>
 );
@@ -23,7 +35,7 @@ const Button = ({
     onClick,
     className = '',
     type = 'button', // button type (button, submit, reset)
-    variant = '', // variant like primary, soft, danger, etc.
+    variant = '', // variant like primary, soft, danger, underline, etc.
     shape = 'rounded-lg', // shape like rounded-lg, rounded-full, etc.
     fontSize = 'text-lg', // font size
     fontWeight = 'font-semibold', // font weight
@@ -50,6 +62,9 @@ const Button = ({
         primary: 'text-white bg-primary-500 hover:bg-primary-600',
         soft: 'text-primary-500 bg-primary-100 hover:bg-primary-200',
         danger: 'text-white bg-red-500 hover:bg-red-600',
+        underline: 'text-primary-500 bg-transparent hover:bg-transparent ' +
+            'after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary-500 after:transition-all after:duration-300 after:ease-in-out after:transform after:scale-x-0 after:origin-left ' +
+            'hover:after:scale-x-100',
         warning: 'text-white bg-yellow-500 hover:bg-yellow-600',
         success: 'text-white bg-green-500 hover:bg-green-600',
         info: 'text-white bg-blue-500 hover:bg-blue-600',
