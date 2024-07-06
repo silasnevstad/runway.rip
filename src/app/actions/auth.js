@@ -35,8 +35,6 @@ export async function signup(state, formData) {
         }
     }
 
-    console.log('signed up')
-
     revalidatePath('/', 'layout')
     redirect('/account')
 }
@@ -71,8 +69,6 @@ export async function signin(state, formData) {
             },
         }
     }
-
-    console.log('logged in')
 
     revalidatePath('/', 'layout')
     redirect('/account')
