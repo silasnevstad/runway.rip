@@ -1,8 +1,7 @@
-import { type NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
 import { createClient } from '@/utils/supabase/server'
 
-// Creating a handler to a GET request to route /auth/confirm
 export async function GET(request) {
     const { searchParams } = new URL(request.url)
     const token_hash = searchParams.get('token_hash')
