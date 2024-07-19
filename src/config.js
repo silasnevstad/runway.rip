@@ -7,15 +7,16 @@ const config = {
         apiKey: 'dev-secret-key',
     },
     production: {
-        apiBaseUrl: 'https://runway.com/api',
+        apiBaseUrl: 'https://runway.me/api',
         apiKey: 'prod-secret-key',
     },
     socialMedia: {
         twitter: 'https://twitter.com/runway',
         instagram: 'https://instagram.com/runway',
-        github: 'https://github.com',
+        github: 'https://github.com/runway-app',
     },
     contactEmail: 'support@runway.com',
+    feedbackEmail: 'feedback@runway.com',
 };
 
 module.exports = config;
