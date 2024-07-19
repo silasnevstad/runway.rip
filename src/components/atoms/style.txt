@@ -1,0 +1,6 @@
+.trail {
+  offset-path: border-box;
+  offset-anchor: 100% 50%;
+  animation: trail 6s infinite linear;
+}
+@​keyframes trail { to { offset-distance: 100%; }}
