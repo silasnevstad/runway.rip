@@ -210,7 +210,7 @@ def code:
                 <Card
                     className="whitespace-normal"
                     imageSrc="/logos/google.png"
-                    imageRight
+                    imagePosition="right"
                     hover
                 >
                     <h2 className="text-2xl font-semibold">Title</h2>

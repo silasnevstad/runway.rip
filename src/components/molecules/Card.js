@@ -2,36 +2,55 @@
 
 import React from 'react';
 import Image from "next/image";
-import {makeClassNameImportant} from "@/utils/utils";
+import { makeClassNameImportant } from "@/utils/utils";
+import { motion } from "framer-motion";
 
 const Card = ({
     className,
     imageSrc,
     imageAlt,
-    imageLeft = false,
-    imageRight = false,
+    icon, // Accept icon element
+    imagePosition = 'top', // 'top', 'left', 'right'
+    textAlign = 'bottom', // 'bottom', 'center'
     children,
-    hover,
+    hoverEffect = 'shadow', // 'shadow', 'scale'
+    animationDelay = 0 // Delay for animation
 }) => {
-    const flexDirection = imageLeft ? 'flex-row' : (imageRight ? 'flex-row-reverse' : 'flex-col');
+    const flexDirection = imagePosition === 'left' ? 'flex-row' : (imagePosition === 'right' ? 'flex-row-reverse' : 'flex-col');
+    const alignItems = textAlign === 'bottom' ? 'items-end' : 'items-center';
+    const hoverClass = hoverEffect === 'shadow' ? 'hover:shadow-md hover:-translate-y-0.5' : 'hover:scale-105';
 
     return (
-        <div className={`bg-bg-50 dark:bg-bg-700 flex ${flexDirection} justify-between items-center rounded-2xl py-4 px-5 ease-in-out transition-all ${makeClassNameImportant(className)} ${hover ? 'hover:shadow-md hover:-translate-y-0.5' : ''}`}>
-            {imageSrc && (
-                <Image
-                    src={imageSrc}
-                    alt={imageAlt || 'Card Image'}
-                    className={`${imageLeft || imageRight ? 'w-30 h-30 max-sm:w-26 max-sm:h-26' : 'w-full'}`}
-                    width={imageLeft || imageRight ? 120 : '100%'}
-                    height={imageLeft || imageRight ? 120 : 'auto'}
-                />
+        <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: animationDelay }}
+            className={`bg-bg-100 dark:bg-bg-700 flex ${flexDirection} ${alignItems} rounded-2xl py-4 px-5 ease-in-out transition-all ${makeClassNameImportant(className)} ${hoverClass}`}
+        >
+            {(imageSrc || icon) && (
+                <div className={`flex ${imagePosition === 'top' ? 'mb-4' : 'mr-4'}`}>
+                    {imageSrc && (
+                        <Image
+                            src={imageSrc}
+                            alt={imageAlt || 'Card Image'}
+                            className={`${imagePosition === 'top' ? 'w-full' : 'w-30 h-30 max-sm:w-26 max-sm:h-26'}`}
+                            width={imagePosition === 'top' ? '100%' : 120}
+                            height={imagePosition === 'top' ? 'auto' : 120}
+                        />
+                    )}
+                    {icon && (
+                        <div className={`${imagePosition === 'top' ? 'w-full' : 'w-30 h-30 max-sm:w-26 max-sm:h-26'}`}>
+                            {icon}
+                        </div>
+                    )}
+                </div>
             )}
-            <div className="flex flex-col w-full overflow-hidden">
+            <div className={`flex flex-col w-full overflow-hidden ${textAlign === 'bottom' ? 'justify-end' : 'justify-center'}`}>
                 <div className="break-words">
                     {children}
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
