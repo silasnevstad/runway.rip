@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 const hoverEffects = {
     shadow: 'hover:shadow-md hover:-translate-y-0.5',
     scale: 'hover:scale-105',
-    outline: 'hover:outline outline-1 hover:backdrop-blur-none hover:bg-bg-0'
+    outline: 'hover:border-black hover:bg-bg-0'
 }
 
 const Card = ({
@@ -31,9 +31,13 @@ const Card = ({
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: animationDelay }}
-            className={`bg-bg-50 backdrop-blur-2xl dark:bg-bg-700 flex ${flexDirection} ${alignItems} rounded-2xl py-4 px-5 ease-in-out transition-all border border-bg-300 ${makeClassNameImportant(className)} ${hoverClass}`}
+            className={`
+                bg-bg-50 dark:bg-bg-700 flex ${flexDirection} ${alignItems} rounded-2xl py-4 px-5 
+                ease-in-out transition-all border border-bg-300 ${makeClassNameImportant(className)} ${hoverClass}
+            `}
         >
-            {(imageSrc || icon) && (
+
+        {(imageSrc || icon) && (
                 <div className={`flex ${imagePosition === 'top' ? 'mb-4' : 'mr-4'}`}>
                     {imageSrc && (
                         <Image
