@@ -22,6 +22,7 @@ const config = {
 export const landingConfig = {
     header: {
         background: "bg-bg-50 dark:bg-bg-800 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",
+        sticky: true
     },
     heroSection: {
         textHighlight: {
@@ -29,7 +30,7 @@ export const landingConfig = {
             highlight: "a boost."
         },
         subText: "Everything you need to launch your ideas.",
-        description: "FastStack gives you everything you need to launch your ideas. From design to development, we've got you covered.",
+        description: "Runway gives you everything you need to launch your ideas. From design to development, we've got you covered.",
         buttonText: "Get Started",
         buttonSubText: "No credit card required",
         trustedBy: true,
@@ -68,22 +69,40 @@ export const landingConfig = {
         features: [
             {
                 title: "Fast",
-                description: "FastStack is designed to be fast and efficient. We've optimized every part of the process to make sure you can launch your ideas as quickly as possible.",
+                description: "Runway is designed to be fast and efficient. We've optimized every part of the process to make sure you can launch your ideas as quickly as possible.",
                 imageSrc: null,
                 imageAlt: null
             },
             {
                 title: "Easy",
-                description: "We've made FastStack as easy to use as possible. With a simple command line interface, you can get started with your project in minutes.",
+                description: "We've made Runway as easy to use as possible. With a simple command line interface, you can get started with your project in minutes.",
                 imageSrc: null,
                 imageAlt: null
             },
             {
                 title: "Powerful",
-                description: "FastStack is built on top of powerful technologies like Next.js and Tailwind CSS. This means you get all the benefits of these technologies without having to worry about the setup.",
+                description: "Runway is built on top of powerful technologies like Next.js and Tailwind CSS. This means you get all the benefits of these technologies without having to worry about the setup.",
                 imageSrc: null,
                 imageAlt: null
-            }
+            },
+            {
+                title: "Customizable",
+                description: "Runway is highly customizable. You can easily change the design and functionality of your project to suit your needs.",
+                imageSrc: null,
+                imageAlt: null
+            },
+            {
+                title: "Secure",
+                description: "Runway is designed with security in mind. We take every precaution to make sure your project is secure.",
+                imageSrc: null,
+                imageAlt: null
+            },
+            {
+                title: "Affordable",
+                description: "Runway is affordable. We offer a range of pricing plans to suit your needs.",
+                imageSrc: null,
+                imageAlt: null
+            },
         ]
     },
     examples: {

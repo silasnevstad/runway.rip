@@ -9,7 +9,6 @@ import Footer from "@/components/organisms/footers/Footer";
 import Examples from "@/components/organisms/Examples";
 import { landingConfig } from "@/config";
 import Card from "@/components/molecules/Card";
-import {FaCloud, FaCode, FaRocket} from "react-icons/fa";
 
 export default function Landing() {
     const {
@@ -45,33 +44,27 @@ export default function Landing() {
     );
 
     const renderCards = (items) => (
-        <div className="flex flex-col gap-10">
+        <div className="grid items-start grid-cols-3 gap-3 max-sm:grid-cols-1 max-md:grid-cols-2 max-lg:grid-cols-3">
             {items.map((item, index) => (
-
-                <div key={index} className="flex justify-between">
-                    {index % 2 === 0 && <div className="flex w-1/2"></div>}
-                    <Card
-                        key={index}
-                        imageSrc={item.imageSrc}
-                        imageAlt={item.imageAlt}
-                        icon={index % 3 === 0 ? <FaRocket /> : index % 3 === 1 ? <FaCode /> : <FaCloud />}
-                        imagePosition={index % 2 === 0 ? 'left' : 'right'}
-                        textAlign="bottom"
-                        hoverEffect="scale"
-                        animationDelay={index * 0.2}
-                    >
-                        <h3 className={`text-xl font-semibold max-w-prose ${index % 2 === 0 && 'text-right'}`}>{item.title}</h3>
-                        <p className={`text-lg opacity-50 font-semibold max-w-prose ${index % 2 === 0 && 'text-right'}`}>{item.description}</p>
-                    </Card>
-                    {index % 2 !== 0 && <div className="flex w-1/2"></div>}
-                </div>
+                <Card
+                    key={index}
+                    imageSrc={item.imageSrc}
+                    imageAlt={item.imageAlt}
+                    imagePosition={'top'}
+                    textAlign="bottom"
+                    hoverEffect="outline"
+                    className={`border border-primary-500`}
+                >
+                    <h3 className={`text-xl font-semibold max-w-prose`}>{item.title}</h3>
+                    <p className={`mt-1 opacity-50 font-semibold max-w-prose`}>{item.description}</p>
+                </Card>
             ))}
         </div>
     );
 
     return (
         <main className="flex items-center flex-col w-full">
-            <LandingHeader background={header.background} />
+            <LandingHeader background={header.background} sticky={header.sticky} />
             <div className="flex items-center flex-col p-4 w-full z-1">
                 <div className="flex flex-col justify-center h-screen -mb-60">
                     <div
@@ -95,7 +88,7 @@ export default function Landing() {
                     {howItWorks.layout === 'cards' ? renderCards(howItWorks.steps) : renderList(howItWorks.steps, true)}
                 </div>
                 {features.show && (
-                    <div className="flex flex-col gap-10 pt-20 w-3/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6" id="features">
+                    <div className="flex flex-col gap-10 pt-20 w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6" id="features">
                         <h3 className="text-3xl font-semibold text-center mb-20">{features.title}</h3>
                         {features.layout === 'cards' ? renderCards(features.features) : renderList(features.features)}
                     </div>

@@ -12,7 +12,7 @@ const Footer = () => {
                     <h1 className="text-2xl font-semibold">{appName}</h1>
                     <p className="text-gray-500">{appDescription}</p>
                     <p className="text-gray-500 mb-2">Copyright © 2024. All Rights Reserved.</p>
-                    <MadeWithTag />
+                    <MadeWithTag style="vertical" />
                 </div>
                 <div className="flex gap-20 max-xl:pr-10 max-sm:gap-10">
                     <div className="flex flex-col gap-3">
