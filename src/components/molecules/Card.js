@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 const hoverEffects = {
     shadow: 'hover:shadow-md hover:-translate-y-0.5',
     scale: 'hover:scale-105',
-    outline: 'hover:border-black hover:bg-bg-0'
+    outline: 'hover:border-black hover:bg-bg-0 dark:hover:bg-bg-800 dark:hover:border-gray-700'
 }
 
 const Card = ({
@@ -32,8 +32,8 @@ const Card = ({
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: animationDelay }}
             className={`
-                bg-bg-50 dark:bg-bg-700 flex ${flexDirection} ${alignItems} rounded-2xl py-4 px-5 
-                ease-in-out transition-all border border-bg-300 ${makeClassNameImportant(className)} ${hoverClass}
+                bg-bg-50 dark:bg-bg-900 flex ${flexDirection} ${alignItems} rounded-2xl py-4 px-5 
+                ease-in-out transition-all border border-bg-300 dark:border-gray-800 ${makeClassNameImportant(className)} ${hoverClass}
             `}
         >
 
@@ -56,7 +56,7 @@ const Card = ({
                 </div>
             )}
             <div className={`flex flex-col w-full overflow-hidden ${textAlign === 'bottom' ? 'justify-end' : 'justify-center'}`}>
-                <div className="break-words p-3">
+                <div className="break-words px-2 py-2.5">
                     {children}
                 </div>
             </div>

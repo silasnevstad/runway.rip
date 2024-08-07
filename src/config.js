@@ -21,7 +21,7 @@ const config = {
 
 export const landingConfig = {
     header: {
-        background: "bg-bg-50 dark:bg-bg-800 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",
+        background: "bg-bg-50 dark:bg-bg-900 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",
         sticky: true
     },
     heroSection: {
@@ -36,7 +36,8 @@ export const landingConfig = {
         trustedBy: true,
     },
     howItWorks: {
-        title: "How it works",
+        title: "Get started in seconds",
+        subtitle: "Launch in three simple steps.",
         layout: "list", // or "cards"
         steps: [
             {
@@ -63,43 +64,44 @@ export const landingConfig = {
         ]
     },
     features: {
-        title: "Features",
+        title: "What's in Runway?",
+        subtitle: "Everything you need to launch your ideas.",
         show: true,
         layout: "cards",
         features: [
             {
-                title: "Fast",
+                title: "Fast & Efficient",
                 description: "Runway is designed to be fast and efficient. We've optimized every part of the process to make sure you can launch your ideas as quickly as possible.",
                 imageSrc: null,
                 imageAlt: null
             },
             {
-                title: "Easy",
+                title: "Ease of Use",
                 description: "We've made Runway as easy to use as possible. With a simple command line interface, you can get started with your project in minutes.",
                 imageSrc: null,
                 imageAlt: null
             },
             {
-                title: "Powerful",
-                description: "Runway is built on top of powerful technologies like Next.js and Tailwind CSS. This means you get all the benefits of these technologies without having to worry about the setup.",
+                title: "Full Stack", // Stripe, Supabase, Next.js, Tailwind CSS, Mailgun
+                description: "Runway is fully set up with everything you need, Stripe for payments, Supabase for database, Next.js for frontend, Tailwind CSS for design, and Mailgun for emails.",
                 imageSrc: null,
                 imageAlt: null
             },
             {
                 title: "Customizable",
-                description: "Runway is highly customizable. You can easily change the design and functionality of your project to suit your needs.",
+                description: "Runway is fully customizable. You can change anything you want to make it fit your project perfectly.",
                 imageSrc: null,
                 imageAlt: null
             },
             {
-                title: "Secure",
-                description: "Runway is designed with security in mind. We take every precaution to make sure your project is secure.",
+                title: "Save Time",
+                description: "With Runway, you can save hours of coding. We've done all the hard work so you can focus on building your project.",
                 imageSrc: null,
                 imageAlt: null
             },
             {
-                title: "Affordable",
-                description: "Runway is affordable. We offer a range of pricing plans to suit your needs.",
+                title: "No Lock-In",
+                description: "Runway is designed to be open and flexible. You can take your project and run it anywhere you want.",
                 imageSrc: null,
                 imageAlt: null
             },
