@@ -29,7 +29,7 @@ const Input = ({ label, leftIcon: LeftIcon, rightIcon: RightIcon, secure, ...pro
                         onClick={() => document.getElementById(props.id).focus()}
                         className={`absolute transition-all duration-200 cursor-text ${
                             isFocused || props.value 
-                                ? '-top-3.5 left-2 px-2 bg-bg-50 dark:bg-bg-800 text-primary-500 text-opacity-80' 
+                                ? '-top-3.5 left-2 px-2 bg-bg-50 dark:bg-bg-900 text-primary-500 text-opacity-80' 
                                 : 'text-lg left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-600'
                         }`}
                     >
