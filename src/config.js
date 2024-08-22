@@ -118,4 +118,35 @@ export const landingConfig = {
     faq: true
 };
 
+const pricingConfig = {
+    plans: [
+        {
+            title: "Starter",
+            price: 100,
+            description: "Get started with the basics.",
+            features: [
+                "Unlimited projects",
+                "Unlimited users",
+                "Basic support",
+                "No credit card required"
+            ],
+            buttonText: "Get Started",
+            buttonSubText: "No credit card required"
+        },
+        {
+            title: "Pro",
+            price: 200,
+            description: "Unlock the full potential of Runway.",
+            features: [
+                "All Starter features",
+                "Priority support",
+                "Custom domain",
+                "More features coming soon"
+            ],
+            buttonText: "Upgrade to Pro",
+            buttonSubText: "No credit card required"
+        }
+    ]
+};
+
 export default config;
