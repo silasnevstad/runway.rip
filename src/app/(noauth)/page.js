@@ -125,7 +125,10 @@ export default function Landing() {
                         mode="scroll"
                         scrollSpeed={1}
                     />
-                    {howItWorks.layout === 'cards' ? renderCards(howItWorks.steps) : renderList(howItWorks.steps, true)}
+                    <div className="flex items-center justify-center gap-10 mt-10">
+                        {howItWorks.layout === 'cards' ? renderCards(howItWorks.steps) : renderList(howItWorks.steps, true)}
+                        <Image src={"/images/runway_block.png"} alt={"runway_block"} width={350} height={300} className="opacity-60" />
+                    </div>
                 </div>
                 {examples.show && (
                     <div className="flex flex-col gap-10 mt-20 pt-20 w-3/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6" id="examples">

@@ -53,8 +53,6 @@ const Badge = ({
         makeClassNameImportant(className),
     ].join(' ');
 
-    console.log(combinedStyles);
-
     return <div className={combinedStyles}>{children}</div>;
 };
 
