@@ -1,10 +1,11 @@
 import Carousel from "@/components/molecules/Carousel";
 import Badge from "@/components/atoms/Badge";
+import { getRandomColor } from "@/utils/utils";
 
-const getRandomColor = () => {
-    const colors = ['primary', 'green', 'blue', 'red', 'yellow', 'purple', 'orange', 'gray'];
-    return colors[Math.floor(Math.random() * colors.length)];
-};
+const getRandomShape = () => {
+    const shapes = ['pill', 'square'];
+    return shapes[Math.floor(Math.random() * shapes.length)];
+}
 
 const BadgeCarousel = ({
     words,
@@ -27,7 +28,7 @@ const BadgeCarousel = ({
         >
             {words.map((word, index) => (
                 <div key={index} className="flex justify-center items-center h-full px-2">
-                    <Badge color={getRandomColor()} shape={shape}>
+                    <Badge color={getRandomColor()} shape={getRandomShape()}>
                         {word}
                     </Badge>
                 </div>

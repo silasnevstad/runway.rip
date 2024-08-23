@@ -10,6 +10,8 @@ import Examples from "@/components/organisms/Examples";
 import { landingConfig } from "@/config";
 import Card from "@/components/molecules/Card";
 import BadgeCarousel from "@/components/molecules/BadgeCarousel";
+import { getRandomColor } from "@/utils/utils";
+import Image from "next/image";
 
 export default function Landing() {
     const {
@@ -23,20 +25,22 @@ export default function Landing() {
     } = landingConfig;
 
     const renderList = (items, isSteps = false) => (
-        <div className="flex flex-col gap-12 text-left">
+        <div className="flex flex-col gap-5 text-left mt-5">
             {items.map((item, index) => (
-                <div key={index} className="flex flex-col gap-3 text-left">
-                    <div className="flex gap-3">
+                <div key={index} className="flex flex-col gap-2 text-left">
+                    <div className="flex gap-2">
                         {isSteps && (
-                            <Badge variant="secondary" shape="circle">
-                                {item.badge}
+                            <Badge shape="circle" style="soft" color={getRandomColor()} className={"w-6 h-6"} border>
+                                <p className="text-sm font-semibold">
+                                    {item.badge}
+                                </p>
                             </Badge>
                         )}
-                        <p className="text-2xl font-semibold">
+                        <p className="text-xl font-semibold opacity-90">
                             {item.title}
                         </p>
                     </div>
-                    <p className="text-lg opacity-50 font-semibold">
+                    <p className="text-md opacity-50 font-normal">
                         {item.description}
                     </p>
                 </div>
@@ -68,7 +72,7 @@ export default function Landing() {
             <div className="flex items-center flex-col w-full z-1">
                 <div className="flex flex-col justify-center h-screen">
                     <div
-                        className="flex flex-col gap-6 max-w-[100ch] max-lg:max-w-[70ch] max-sm:max-w-[50ch] text-center place-items-center -mt-20">
+                        className="flex flex-col gap-6 max-w-[60ch] max-lg:max-w-[60ch] max-sm:max-w-[53ch] text-center place-items-center -mt-20">
                         <TextHighlight text={heroSection.textHighlight.text} highlight={heroSection.textHighlight.highlight} />
                         <p className="text-4xl max-sm:text-2xl font-semibold bg-gradient-to-r from-primary-500 from-20% to-red-500 to-80% bg-clip-text text-transparent">
                             {heroSection.subText}
@@ -83,34 +87,46 @@ export default function Landing() {
                         {heroSection.trustedBy && <TrustedBy />}
                     </div>
                 </div>
-                <div className="flex flex-col -mt-16 gap-5 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-5/6" id="how-it-works">
+                <div className="-mt-16 flex flex-col items-center bg-gradient-to-b from-bg-50 dark:from-bg-900 to-bg-900 dark:to-bg-800 border-b-2 border-bg-800 w-full pb-10">
+                    {features.show && (
+                        <div className="flex flex-col items-center gap-10 w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6" id="features">
+                            <h3 className="text-3xl font-semibold text-center mb-0 text-gray-800 dark:text-gray-100">
+                                {features.title}
+                                <span
+                                    className="text-lg opacity-50 font-normal ml-5 bg-gradient-to-r from-bg-800 dark:from-bg-100 from-20% to-bg-900 dark:to-bg-0 to-80% bg-clip-text text-transparent">
+                                    {features.subtitle}
+                                </span>
+                            </h3>
+                            <div className="flex gap-10 text-center text-6xl text-opacity-20">
+                                <Image src={"/logos/nextjs-white.png"} alt={"nextjs"} width={60} height={50}/>
+                                <Image src={"/logos/supabase.png"} alt={"supabase"} width={60} height={50}/>
+                                <Image src={"/logos/firebase.png"} alt={"firebase"} width={60} height={50}/>
+                                <Image src={"/logos/mailgun.png"} alt={"mailgun"} width={60} height={50}/>
+                                <Image src={"/logos/stripe.png"} alt={"stripe"} width={60} height={50}
+                                       className="rounded-lg"/>
+                            </div>
+                            {features.layout === 'cards' ? renderCards(features.features) : renderList(features.features)}
+                        </div>
+                    )}
+                </div>
+                <div className="flex flex-col pt-24 gap-5 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-5/6" id="how-it-works">
                     <h3 className="text-3xl font-semibold text-start mb-0 text-gray-800 dark:text-gray-100">
                         {howItWorks.title}
-                        <span className="text-lg opacity-50 font-normal ml-5 bg-gradient-to-r from-bg-800 dark:from-bg-100 from-20% to-bg-900 dark:to-bg-0 to-80% bg-clip-text text-transparent">
+                        <span
+                            className="text-lg opacity-50 font-normal ml-5 bg-gradient-to-r from-bg-800 dark:from-bg-100 from-20% to-bg-900 dark:to-bg-0 to-80% bg-clip-text text-transparent">
                             {howItWorks.subtitle}
                         </span>
                     </h3>
                     <BadgeCarousel
-                        words={['React', 'Vue', 'Angular', 'Svelte', 'Next.js']}
+                        words={['Supabase', 'Tailwind CSS', 'Mailgun', 'Stripe', 'Next.js']}
                         shape="pill"
                         fadeLeft={true}
                         fadeRight={true}
                         mode="scroll"
                         scrollSpeed={1}
                     />
-                    {/*{howItWorks.layout === 'cards' ? renderCards(howItWorks.steps) : renderList(howItWorks.steps, true)}*/}
+                    {howItWorks.layout === 'cards' ? renderCards(howItWorks.steps) : renderList(howItWorks.steps, true)}
                 </div>
-                {features.show && (
-                    <div className="flex flex-col gap-10 pt-20 w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6" id="features">
-                        <h3 className="text-3xl font-semibold text-center mb-5 text-gray-800 dark:text-gray-100">
-                            {features.title}
-                            <span className="text-lg opacity-50 font-normal ml-5 bg-gradient-to-r from-bg-800 dark:from-bg-100 from-20% to-bg-900 dark:to-bg-0 to-80% bg-clip-text text-transparent">
-                                {features.subtitle}
-                            </span>
-                        </h3>
-                        {features.layout === 'cards' ? renderCards(features.features) : renderList(features.features)}
-                    </div>
-                )}
                 {examples.show && (
                     <div className="flex flex-col gap-10 mt-20 pt-20 w-3/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6" id="examples">
                         <h3 className="text-3xl font-semibold text-center mb-20">{examples.title}</h3>

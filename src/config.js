@@ -43,28 +43,28 @@ export const landingConfig = {
             {
                 badge: 1,
                 title: "Git Clone",
-                description: "Download the boilerplate code using git clone.",
+                description: "Download the project to your computer.",
                 imageSrc: "/path/to/image1.png",
                 imageAlt: "Git Clone Image"
             },
             {
                 badge: 2,
-                title: "Code Away",
-                description: "Start coding your idea with everything you need already set up.",
+                title: "Customize",
+                description: "Customize the configuration to fit your project and make it your own.",
                 imageSrc: "/path/to/image2.png",
                 imageAlt: "Code Away Image"
             },
             {
                 badge: 3,
                 title: "Deploy",
-                description: "Deploy your project with a single command.",
+                description: "Deploy your project and share it with the world.",
                 imageSrc: "/path/to/image3.png",
                 imageAlt: "Deploy Image"
             }
         ]
     },
     features: {
-        title: "What's in Runway?",
+        title: "Tired of starting from scratch?",
         subtitle: "Everything you need to launch your ideas.",
         show: true,
         layout: "cards",

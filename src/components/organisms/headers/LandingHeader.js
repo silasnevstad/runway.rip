@@ -28,9 +28,9 @@ const LandingHeader = ({
                     <TextLink href="#pricing">Pricing</TextLink>
                     <TextLink href="#faq">FAQ</TextLink>
                 </div>
-                <div className="hidden md:flex items-center space-x-4">
-                    <TextLink href="/sign-up" className="text-1xl font-semibold">Sign Up</TextLink>
-                </div>
+                {/*<div className="hidden md:flex items-center space-x-4">*/}
+                {/*    <TextLink href="/sign-up" className="text-1xl font-semibold">Sign Up</TextLink>*/}
+                {/*</div>*/}
                 <div className="md:hidden flex items-center">
                     <button onClick={toggleDropdown} className="focus:outline-none">
                         {isDropdownOpen ? (
@@ -51,7 +51,7 @@ const LandingHeader = ({
                         <TextLink href="#how-it-works" onClick={toggleDropdown}>How it Works</TextLink>
                         <TextLink href="#pricing" onClick={toggleDropdown}>Pricing</TextLink>
                         <TextLink href="#faq" onClick={toggleDropdown}>FAQ</TextLink>
-                        <TextLink href="/sign-up" className="text-1xl font-semibold">Sign Up</TextLink>
+                        {/*<TextLink href="/sign-up" className="text-1xl font-semibold">Sign Up</TextLink>*/}
                     </div>
                 </div>
             )}

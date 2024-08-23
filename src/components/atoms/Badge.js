@@ -1,3 +1,5 @@
+import {makeClassNameImportant} from "@/utils/utils";
+
 const Badge = ({
     children,
     className = '',
@@ -37,8 +39,10 @@ const Badge = ({
         },
     };
 
+
+    const borderColor = style === 'soft' ? `border-${color}-800` : `border-${color}-600`;
     const borderStyles = border
-        ? `border ${style === 'soft' ? `border-${color}-800` : `border-${color}-600`}`
+        ? `border ${borderColor}`
         : '';
 
     const combinedStyles = [
@@ -46,8 +50,10 @@ const Badge = ({
         shapeStyles[shape],
         colorStyles[style][color],
         borderStyles,
-        className,
+        makeClassNameImportant(className),
     ].join(' ');
+
+    console.log(combinedStyles);
 
     return <div className={combinedStyles}>{children}</div>;
 };
