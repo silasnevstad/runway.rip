@@ -7,13 +7,15 @@ const Badge = ({
     border = false,
     style = 'soft', // 'soft', 'solid'
     color = 'primary', // 'primary', 'green'
+    hover = false,
+    onClick,
 }) => {
-    const baseStyles = 'inline-flex justify-center items-center text-center gap-1 font-medium';
+    const baseStyles = `inline-flex justify-center items-center text-center gap-1 font-medium`;
 
     const shapeStyles = {
         pill: 'rounded-full px-2.5 py-1',
         square: 'rounded-lg px-2.5 py-1',
-        circle: 'rounded-full w-8 h-8',
+        circle: 'rounded-full px-3 py-3',
     };
 
     const colorStyles = {
@@ -31,7 +33,7 @@ const Badge = ({
             primary: 'bg-primary-600 text-white',
             green: 'bg-green-600 text-white',
             red: 'bg-red-600 text-white',
-            yellow: 'bg-yellow-600 text-white',
+            yellow: 'bg-yellow-400 text-white',
             orange: 'bg-orange-600 text-white',
             blue: 'bg-blue-600 text-white',
             purple: 'bg-purple-600 text-white',
@@ -45,15 +47,17 @@ const Badge = ({
         ? `border ${borderColor}`
         : '';
 
+    const hoverStyles = hover ? `hover:scale-101 transition-all ease-in-out` : '';
+
     const combinedStyles = [
         baseStyles,
         shapeStyles[shape],
         colorStyles[style][color],
         borderStyles,
-        makeClassNameImportant(className),
+        hoverStyles,
     ].join(' ');
 
-    return <div className={combinedStyles}>{children}</div>;
+    return <div className={`${combinedStyles} ${makeClassNameImportant(className)}`} onClick={onClick}>{children}</div>;
 };
 
 export default Badge;

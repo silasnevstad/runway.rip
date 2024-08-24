@@ -1,6 +1,8 @@
 import React from 'react';
+import {makeClassNameImportant} from "@/utils/utils";
 
 const Indicator = ({
+    className = '',
     children,
     position,
     content,
@@ -24,7 +26,12 @@ const Indicator = ({
     return (
         <div className="relative">
             {children}
-            <div className={`absolute ${positionClass} p-1 bg-red-500 text-white rounded-full text-sm ${ping ? 'animate-ping' : ''}`}>
+            <div className={
+                `absolute ${positionClass} min-w-7 min-h-6 p-1 bg-primary-500 
+                text-center text-white rounded-full text-sm ${ping ? 'animate-ping' : ''}
+                ${makeClassNameImportant(className)}`
+            }
+            >
                 {content}
             </div>
         </div>

@@ -24,7 +24,7 @@ const FAQS = [
 const FAQ = () => {
     return (
         <div
-            className="flex max-sm:flex-col justify-between gap-10 pt-20 mt-20 mb-10 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-10/12"
+            className="flex max-sm:flex-col justify-between gap-10 mb-10"
             id="faq"
         >
             <h3 className="text-3xl font-semibold text-left max-w-[20ch]">Frequently Asked Questions</h3>

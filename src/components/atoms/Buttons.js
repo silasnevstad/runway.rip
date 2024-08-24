@@ -47,6 +47,7 @@ const Button = ({
     iconAlt = '', // icon alt text for Image
     iconClassname = '', // icon classname
     border = false, // border variant
+    shadow = false, // shadow variant
     loading = false, // loading state
     ping = false, // ping state
     grow = false, // grow state
@@ -54,7 +55,7 @@ const Button = ({
     ...props
 }) => {
     const baseStyles = `${fontSize} ${fontWeight} py-2.5 px-12 ${shape} flex items-center justify-center gap-2 transition-colors duration-200 ease-in-out `;
-    let variantStyles = `${textColor} ${backgroundColor} ${hoverBackgroundColor} ${border ? 'border border-bg-500 dark:border-bg-300' : ''}`;
+    let variantStyles = `${textColor} ${backgroundColor} ${hoverBackgroundColor} ${border ? 'border border-bg-500 dark:border-bg-300' : ''} ${shadow ? 'shadow-md' : ''}`;
 
     const iconElement = Icon ? <Icon className={`w-5 h-5 ${iconClassname}`} /> : iconSrc ? <Image src={iconSrc} alt={iconAlt} width={30} height={30} /> : null;
 
@@ -62,6 +63,7 @@ const Button = ({
         primary: 'text-white bg-primary-500 hover:bg-primary-600',
         soft: 'text-primary-500 bg-primary-100 hover:bg-primary-200',
         danger: 'text-white bg-red-500 hover:bg-red-600',
+        outline: 'text-gray-800 bg-transparent hover:bg-bg-100 border border-bg-500',
         underline: 'text-primary-500 bg-transparent hover:bg-transparent ' +
             'after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary-500 after:transition-all after:duration-300 after:ease-in-out after:transform after:scale-x-0 after:origin-left ' +
             'hover:after:scale-x-100',

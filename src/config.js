@@ -19,6 +19,12 @@ const config = {
     feedbackEmail: 'feedback@runway.com',
 };
 
+// Where ideas take flight
+//
+// Code less, launch faster
+//
+// The fastest way to bring your web projects to life
+
 export const landingConfig = {
     header: {
         background: "bg-bg-50 dark:bg-bg-900 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",
@@ -26,14 +32,13 @@ export const landingConfig = {
     },
     heroSection: {
         textHighlight: {
-            text: "Launch your ideas with a boost.",
-            highlight: "a boost."
+            text: "Code less, launch faster",
+            highlight: "less "
         },
-        subText: "Everything you need to launch your ideas.",
-        description: "Runway gives you everything you need to launch your ideas. From design to development, we've got you covered.",
+        description: "A fully-loaded NextJS boilerplate to build your SaaS, AI tool, or web app and start monetizing in days, not weeks.",
         buttonText: "Get Started",
         buttonSubText: "No credit card required",
-        trustedBy: true,
+        trustedBy: false,
     },
     howItWorks: {
         title: "Get started in seconds",
@@ -70,20 +75,43 @@ export const landingConfig = {
         layout: "cards",
         features: [
             {
-                title: "Fast & Efficient",
-                description: "Runway is designed to be fast and efficient. We've optimized every part of the process to make sure you can launch your ideas as quickly as possible.",
-                imageSrc: null,
-                imageAlt: null
+                title: "Payments with Stripe",
+                description: "Accept payments securely within minutes of deployment. Our Stripe integration handles everything from processing to subscription management.",
+                imageSrc: "/logos/stripe.png",
+                imageAlt: "Stripe Logo",
+                imageClassName: "rounded-lg"
+            },
+            {
+                title: "Database with Supabase",
+                description: "Leverage Supabase for real-time databases, authentication, and automatic APIs. Scale your backend effortlessly with this powerful Firebase alternative.",
+                imageSrc: "/logos/supabase.png",
+                imageAlt: "Supabase Logo",
+                imageClassName: "rounded-lg"
+            },
+            {
+                title: "Email Service with Mailgun",
+                description: "Send transactional emails, newsletters, and automated responses with ease. Keep your users engaged with high deliverability rates and detailed analytics.",
+                imageSrc: "/logos/mailgun.png",
+                imageAlt: "Mailgun Logo",
+                imageClassName: "rounded-lg"
+            },
+            {
+                title: "Sleek Design with Tailwind CSS",
+                description: "Create beautiful, responsive designs quickly using this utility-first CSS framework. Customize your look effortlessly while maintaining consistency across your project.",
+                imageSrc: "/logos/tailwindcss.png",
+                imageAlt: "Tailwind CSS Logo",
+                imageClassName: "rounded-lg"
+            },
+            {
+                title: "Next.js for Powerful Frontend",
+                description: "Build a fast, SEO-friendly frontend with server-side rendering and intuitive routing. Create modern web applications that users love.",
+                imageSrc: "/logos/nextjs.png",
+                imageAlt: "Next.js Logo",
+                imageClassName: "rounded-lg"
             },
             {
                 title: "Ease of Use",
                 description: "We've made Runway as easy to use as possible. With a simple command line interface, you can get started with your project in minutes.",
-                imageSrc: null,
-                imageAlt: null
-            },
-            {
-                title: "Full Stack", // Stripe, Supabase, Next.js, Tailwind CSS, Mailgun
-                description: "Runway is fully set up with everything you need, Stripe for payments, Supabase for database, Next.js for frontend, Tailwind CSS for design, and Mailgun for emails.",
                 imageSrc: null,
                 imageAlt: null
             },
@@ -113,38 +141,45 @@ export const landingConfig = {
     },
     pricing: {
         title: "Pricing",
+        subtitle: "Use Runway to save hours of coding and launch faster.",
         show: true
     },
     faq: true
 };
 
-const pricingConfig = {
+export const pricingConfig = {
     plans: [
         {
             title: "Starter",
-            price: 100,
+            oldPrice: 69,
+            price: 49,
             description: "Get started with the basics.",
             features: [
-                "Unlimited projects",
-                "Unlimited users",
-                "Basic support",
-                "No credit card required"
+                "NextJS boilerplate",
+                "Component library",
+                "SEO tools",
+                "Stripe",
+                "Supabase",
+                "Mailgun",
             ],
-            buttonText: "Get Started",
-            buttonSubText: "No credit card required"
         },
         {
             title: "Pro",
-            price: 200,
+            oldPrice: 149,
+            price: 99,
             description: "Unlock the full potential of Runway.",
             features: [
-                "All Starter features",
+                "NextJS boilerplate",
+                "Component library",
+                "SEO tools",
+                "Stripe",
+                "Supabase",
+                "Mailgun",
                 "Priority support",
-                "Custom domain",
-                "More features coming soon"
+                "Discord community",
+                "Lifetime updates"
             ],
-            buttonText: "Upgrade to Pro",
-            buttonSubText: "No credit card required"
+            isPopular: true
         }
     ]
 };

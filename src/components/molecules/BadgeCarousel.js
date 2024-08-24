@@ -9,7 +9,6 @@ const getRandomShape = () => {
 
 const BadgeCarousel = ({
     words,
-    shape = 'pill',
     autoPlay = false,
     interval = 3000,
     fadeLeft = false,

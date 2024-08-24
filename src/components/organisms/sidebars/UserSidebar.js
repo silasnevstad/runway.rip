@@ -24,7 +24,7 @@ const SidebarItem = ({ href, icon: Icon, name, isOpen }) => {
     );
 };
 
-const Sidebar = () => {
+const UserSidebar = () => {
     const { user } = useUser();
     const [isOpen, setIsOpen] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
@@ -99,4 +99,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default UserSidebar;

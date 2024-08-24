@@ -1,19 +1,26 @@
 import PricingCard from "@/components/molecules/PricingCard";
-
-const FEATURES = [
-    "Feature 1",
-    "Feature 2",
-    "Feature 3",
-    "Feature 4",
-    "Feature 5",
-    "Feature 6",
-];
+import { pricingConfig } from "@/config";
 
 const Pricing = () => {
+    const { plans } = pricingConfig;
+    console.log(plans[-1]);
+    // const allFeatures = plans[-1].features;
+    const allFeatures = [
+        "NextJS boilerplate",
+        "Component library",
+        "SEO tools",
+        "Stripe",
+        "Supabase",
+        "Mailgun",
+        "Priority support",
+        "Discord community",
+        "Lifetime updates"
+    ];
     return (
         <div className="flex max-md:flex-col gap-10 w-full max-sm:gap-8">
-            <PricingCard title="Basic" oldPrice="$69" price="$49" includedFeatures={["Feature 1", "Feature 2", "Feature 3"]} allFeatures={FEATURES} isPopular={false}/>
-            <PricingCard title="Pro" oldPrice="$149" price="$99" includedFeatures={FEATURES} allFeatures={FEATURES} isPopular={true}/>
+            {plans.map((plan, index) => (
+                <PricingCard key={index} title={plan.title} oldPrice={plan.oldPrice} price={plan.price} includedFeatures={plan.features} allFeatures={allFeatures} isPopular={plan.isPopular}/>
+            ))}
         </div>
     );
 }
