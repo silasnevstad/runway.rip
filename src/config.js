@@ -19,12 +19,6 @@ const config = {
     feedbackEmail: 'feedback@runway.com',
 };
 
-// Where ideas take flight
-//
-// Code less, launch faster
-//
-// The fastest way to bring your web projects to life
-
 export const landingConfig = {
     header: {
         background: "bg-bg-50 dark:bg-bg-900 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",

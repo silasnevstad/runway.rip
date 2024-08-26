@@ -1,3 +1,4 @@
+import config from "@/config";
 import { Inter } from "next/font/google";
 import './globals.css';
 
@@ -5,8 +6,8 @@ import './globals.css';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-    title: "Nextboost",
-    description: "Launch your ideas with a boost.",
+    title: config.appName,
+    description: config.appDescription,
 };
 
 export default function RootLayout({ children }) {
