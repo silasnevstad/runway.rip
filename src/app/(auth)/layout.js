@@ -1,6 +1,5 @@
-import UserSidebar from "@/components/organisms/UserSidebar";
-import {UserProvider} from "@/contexts/UserContext";
-import Header from "@/components/organisms/headers/Header";
+import UserSidebar from "@/components/organisms/Sidebars/UserSidebar";
+import { UserProvider } from "@/contexts/UserContext";
 
 export default function AuthenticatedLayout({ children }) {
     return (
