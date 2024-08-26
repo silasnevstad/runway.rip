@@ -21,7 +21,7 @@ const MadeWithTag = ({
     style = 'track', // 'vertical', 'horizontal', 'track'
 }) => {
     return (
-        <Link href="https://silasn.com" className="relative flex justify-center items-center px-2.5 py-1.5 dark:bg-bg-900 rounded-lg border border-gray-300 dark:border-gray-800
+        <Link href="https://runway.rip" className="relative flex justify-center items-center px-2.5 py-1.5 dark:bg-bg-900 rounded-lg border border-gray-300 dark:border-gray-800
             hover:scale-103 transition-transform duration-200 ease-in-out cursor-pointer">
             <span className="z-10 mr-1 opacity-50 text-sm font-medium">Built with</span>
             <p className="z-10 text-primary-500 font-semibold">Runway</p>
