@@ -26,7 +26,7 @@ function DocumentationPageLayout({ children }) {
                 <DocumentationSidebar/>
             </Sidebar>
             <main className="ml-64 w-full relative">
-                <div className="sticky top-0 pt-5 pl-10 pr-5 z-10 flex justify-between items-start">
+                <div className="sticky top-0 right-0 pt-5 pl-10 pr-5 z-10 flex justify-between items-start">
                     <p></p>
                     <div className="ml-4">
                         <SearchBar

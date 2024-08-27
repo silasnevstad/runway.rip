@@ -103,7 +103,9 @@ export default async function DocsPage({ params }) {
                 {pageDescription && (
                     <p className="text-xl text-gray-800 dark:text-gray-200 mb-8">{pageDescription}</p>
                 )}
-                <div className="max-w-prose">{content}</div>
+                <div className="max-w-prose max-md:prose-sm">
+                    {content}
+                </div>
             </div>
             <div className="max-md:hidden md:sticky md:top-28 self-start md:w-64 space-y-4">
                 {relatedContent.length > 0 && <RelatedContent items={relatedContent}/>}

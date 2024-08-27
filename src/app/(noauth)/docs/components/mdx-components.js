@@ -100,7 +100,7 @@ export function useMDXComponents(components) {
             </th>
         ),
         td: ({ children }) => (
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200 border-b border-gray-200 dark:border-gray-800">
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200 border-b border-gray-200 dark:border-gray-800">
                 {children}
             </td>
         ),
