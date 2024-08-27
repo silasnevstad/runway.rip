@@ -11,7 +11,6 @@ const Sidebar = ({
     width = 'w-64',
     collapsedWidth = 'w-16',
     bgColor = 'bg-white',
-    textColor = 'text-gray-800',
     onToggle,
 }) => {
     const [isOpen, setIsOpen] = useState(alwaysOpen || initialIsOpen);
@@ -29,7 +28,7 @@ const Sidebar = ({
     };
 
     const sidebarClasses = `
-    fixed top-0 ${position}-0 h-full ${isOpen ? width : collapsedWidth} ${bgColor} ${textColor}
+    fixed top-0 ${position}-0 h-full ${isOpen ? width : collapsedWidth} ${bgColor}
     transition-all duration-300 ease-in-out z-50
   `;
 
@@ -40,7 +39,7 @@ const Sidebar = ({
   `;
 
     const openButtonClasses = `
-    fixed top-4 ${position}-4 p-2 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300
+    fixed top-4 ${position}-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300
     transition-colors duration-200 z-50
   `;
 

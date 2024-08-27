@@ -14,7 +14,7 @@ import moment from "moment/moment";
 import RadarGraph from "@/components/atoms/RadarGraph";
 import LineGraph from "@/components/atoms/LineGraph";
 import BarGraph from "@/components/atoms/BarGraph";
-import CodeBlock from "@/components/atoms/CodeBlock";
+import SyntaxHighlighter from "@/components/atoms/SyntaxHighlighter";
 import Checkbox from "@/components/atoms/Checkbox";
 import Toggle from "@/components/atoms/Toggle";
 import Switcher from "@/components/atoms/Switcher";
@@ -43,7 +43,7 @@ const Examples = () => {
 
     return (
         <div className="flex flex-col gap-10 items-center place-items-center w-full">
-            <CodeBlock
+            <SyntaxHighlighter
                 language="python"
                 code={`import pandas as pd
 

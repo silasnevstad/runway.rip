@@ -26,10 +26,10 @@ const BreadcrumbTitle = ({ sections }) => {
     if (!pageInfo) return null;
 
     return (
-        <h1 className="text-4xl font-bold mb-6 flex items-center text-gray-600 dark:text-gray-400">
-            <span>{pageInfo.section}</span>
-            {pageInfo.page && <FaChevronRight className="mx-2 w-4 h-4 text-gray-400 dark:text-gray-600" />}
-            <span>{pageInfo.page}</span>
+        <h1 className="font-medium mb-6 flex items-center">
+            <span className="opacity-30">{pageInfo.section}</span>
+            {pageInfo.page && <FaChevronRight className="mx-1 w-3 h-3 text-gray-600 dark:text-gray-600" />}
+            <span className="opacity-50">{pageInfo.page}</span>
         </h1>
     );
 };

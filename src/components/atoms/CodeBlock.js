@@ -1,42 +1,54 @@
 'use client'
 
-import { CopyBlock, CodeBlock as ReactCodeBlock, atomOneLight, atomOneDark } from 'react-code-blocks';
+import React, { useState } from 'react';
+import { FiCopy, FiCheck } from 'react-icons/fi';
 
 const CodeBlock = ({
-    language,
-    code,
+    children,
+    language = 'plain',
     showLineNumbers = false,
     startingLineNumber = 1,
-    copy = false,
-    darkTheme = true,
 }) => {
+    const [copied, setCopied] = useState(false);
 
-    if (copy) {
-        return (
-            <CopyBlock
-                text={code}
-                language={language}
-                theme={darkTheme ? atomOneDark : atomOneLight}
-                codeBlock={true}
-                wrapLines
-                showLineNumbers={showLineNumbers}
-                startingLineNumber={startingLineNumber}
-                codeBlockStyle={{ position: 'relative', borderRadius: '0.5rem' }}
-                buttonStyle={{ position: 'absolute', top: '0.5rem', right: '0.5rem', zIndex: 10, cursor: 'pointer' }}
-            />
-        );
-    }
+    const handleCopy = () => {
+        navigator.clipboard.writeText(children);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
+    const codeLines = children.trim().split('\n');
 
     return (
-        <ReactCodeBlock
-            text={code}
-            language={language}
-            theme={darkTheme ? atomOneDark : atomOneLight}
-            codeBlock={true}
-            wrapLines
-            showLineNumbers={showLineNumbers}
-            startingLineNumber={startingLineNumber}
-        />
+        <div className={`text-sm mt-4 mb-6 bg-gray-800 text-gray-100 rounded-lg`}>
+            <div className="flex items-center justify-between bg-bg-800 dark:bg-bg-700 px-4 py-3 border-b border-gray-700 rounded-t-lg">
+                <span className="text-sm opacity-60">{language}</span>
+                <button
+                    onClick={handleCopy}
+                    className="text-sm flex items-center space-x-1 transition-colors duration-200"
+                >
+                    {copied ? (
+                        <FiCheck className="text-green-500" />
+                    ) : (
+                        <FiCopy className={`text-gray-400 hover:text-gray-200`} />
+                    )}
+                </button>
+            </div>
+            <div className="font-mono overflow-x-auto">
+                <pre className="p-4 py-5">
+                    {codeLines.map((line, index) => (
+                        <div key={index} className="table-row">
+                            {showLineNumbers && (
+                                <span className="table-cell text-right pr-4 select-none opacity-50">
+                                    {startingLineNumber + index}
+                                </span>
+                            )}
+                            <code className="table-cell">{line}</code>
+                        </div>
+                    ))}
+                </pre>
+            </div>
+        </div>
     );
 };
 

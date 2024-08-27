@@ -8,7 +8,7 @@ const Divider = ({
         ? 'w-full h-0.5'
         : 'w-0.5 h-full';
 
-    const dividerClass = `bg-gray-200 dark:bg-gray-500 opacity-70 ${baseStyle} ${className}`;
+    const dividerClass = `bg-gray-200 dark:bg-gray-800 opacity-50 ${baseStyle} ${className}`;
 
     return (
         text ? (

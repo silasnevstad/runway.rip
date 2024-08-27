@@ -4,12 +4,15 @@ import React, { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const Input = ({
+    className,
     label,
     leftIcon: LeftIcon,
     rightIcon: RightIcon,
     leftIconOnClick,
     rightIconOnClick,
+    focus,
     secure,
+    textSize = "text-lg",
     ...props
 }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +33,7 @@ const Input = ({
 
     return (
         <div className="flex flex-col w-full gap-2">
-            <div className="relative flex items-center rounded-lg border border-gray-500 p-1 dark:border-gray-700 focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500">
+            <div className={`relative flex items-center rounded-lg border border-gray-500 p-1 dark:border-gray-700 ${focus && 'focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500'} ${className}`}>
                 {LeftIcon &&
                     <LeftIcon
                         className={
@@ -55,7 +58,7 @@ const Input = ({
                 <input
                     type={secure && !showPassword ? 'password' : 'text'}
                     id={props.id}
-                    className={`border-transparent focus:border-transparent focus:ring-0 flex-grow text-lg border-none focus:outline-none bg-transparent dark:text-gray-100 ${label && "placeholder-transparent"}`}
+                    className={`border-transparent focus:border-transparent focus:ring-0 flex-grow ${textSize} border-none focus:outline-none bg-transparent dark:text-gray-100 ${label && "placeholder-transparent"}`}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     value={value}

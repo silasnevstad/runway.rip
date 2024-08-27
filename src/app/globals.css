@@ -6,7 +6,6 @@ html {
   scroll-behavior:smooth;
 }
 
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 245, 245, 245;
@@ -14,23 +13,20 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #cccccc;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background-color: #989898;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background-clip: content-box;
 }
 
 body {
@@ -46,7 +42,19 @@ body {
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #333;
+    background: #393939;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background-color: #7c7c7c;
+    border: 2px solid transparent;
+    border-radius: 9px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 }
 

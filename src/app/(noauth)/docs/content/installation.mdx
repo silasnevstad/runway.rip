@@ -1,0 +1,52 @@
+---
+title: "Installation"
+description: "Learn how to install and set up the project"
+related:
+  - title: "Project Structure"
+    href: "/docs/project-structure"
+  - title: "Configuration"
+    href: "/docs/configuration"
+sites:
+  - title: "Official Documentation"
+    url: "https://docs.example.com"
+  - title: "GitHub Repository"
+    url: "https://github.com/example/repo"
+---
+
+System Requirements:
+
+- Node.js (version 14 or higher)
+- npm (version 6 or higher) or yarn (version 1.22 or higher)
+
+<br/>
+<Divider />
+<br/>
+
+### Set up the project
+
+Follow these steps to get Runway.js up and running on your local machine:
+
+1. Clone the repository and install dependencies:
+
+    ```bash
+    `git clone git@github.com:silasnevstad/runway-js.git`
+    `cd runway-js`
+    `npm install`
+    ```
+
+    <Info>
+        If you prefer using Yarn, you can replace `npm install` with `yarn install`.
+    </Info>
+    <br />
+2. Rename `.env.example` to `.env.local`
+    ```bash
+    `mv .env.example .env.local`
+    ```
+
+    <Warning>
+        Make sure to update the values in `.env.local` with your own API keys and other sensitive information. Never commit this file to version control.
+    </Warning>
+    <br />
+3. Open `http://localhost:3000` and done!
+
+<br />

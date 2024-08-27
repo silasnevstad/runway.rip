@@ -4,11 +4,13 @@ import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import Loader from "@/components/atoms/Loader";
+import { LinkIcon } from "@heroicons/react/24/outline";
 
 const TextLink = ({
     children,
     href,
     className,
+    icon = false,
     grow = false,
     fade = false,
     underline = false,
@@ -17,7 +19,7 @@ const TextLink = ({
 }) => (
     <Link
         href={href}
-        className={`relative
+        className={`relative flex items-center gap-1
         ${grow && "hover:transform hover:scale-105"} 
         ${fade && !selected && "transition-opacity opacity-50 hover:opacity-100"} 
         ${selected && "opacity-100 font-semibold"} 
@@ -26,6 +28,7 @@ const TextLink = ({
         cursor-pointer 
         ${className}`}
     >
+        {icon && <LinkIcon className="w-4 h-4 mr-1" />}
         {children}
     </Link>
 );
