@@ -7,7 +7,6 @@ const DropdownText = ({ title, content }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
-        console.log('Toggling dropdown');
         setIsOpen(!isOpen);
     };
 

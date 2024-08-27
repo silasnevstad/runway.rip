@@ -56,14 +56,14 @@ const Input = ({
                     </label>
                 }
                 <input
-                    type={secure && !showPassword ? 'password' : 'text'}
+                    {...props}
+                    type={secure ? showPassword ? 'text' : 'password' : 'text'}
                     id={props.id}
                     className={`border-transparent focus:border-transparent focus:ring-0 flex-grow ${textSize} border-none focus:outline-none bg-transparent dark:text-gray-100 ${label && "placeholder-transparent"}`}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
-                    {...props}
                 />
                 {secure && (
                     <button className="focus:outline-none" onClick={togglePassword}>

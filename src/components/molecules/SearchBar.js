@@ -20,15 +20,12 @@ const SearchBar = ({ items, onItemSelect, renderItem }) => {
         }
     };
 
-    console.log('SearchBar.js: items:', items);
-
     const filterItems = (items, query) => {
         const lowercaseQuery = query.toLowerCase();
         return items
             .map(section => ({
                 ...section,
                 items: section.items.filter(subItem =>
-                    console.log('SearchBar.js: subItem:', subItem) ||
                     subItem.title.toLowerCase().includes(lowercaseQuery)
                 ),
             }))

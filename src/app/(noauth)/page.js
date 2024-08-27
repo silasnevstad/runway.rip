@@ -92,7 +92,6 @@ export default function Landing() {
                         <BadgeCarousel
                             words={['Supabase', 'Tailwind CSS', 'Mailgun', 'Stripe', 'Next.js']}
                             shape="pill"
-                            fadeLeft={true}
                             fadeRight={true}
                             mode="scroll"
                             scrollSpeed={1}

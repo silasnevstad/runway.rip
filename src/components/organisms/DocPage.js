@@ -11,7 +11,6 @@ function DocumentationPageLayout({ children }) {
     const router = useRouter();
 
     const handleSearchSelect = (item) => {
-        console.log('Selected item:', item.href);
         router.push(item.href);
     }
 

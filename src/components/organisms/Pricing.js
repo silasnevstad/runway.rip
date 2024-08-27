@@ -3,7 +3,6 @@ import { pricingConfig } from "@/config";
 
 const Pricing = () => {
     const { plans } = pricingConfig;
-    console.log(plans[-1]);
     // const allFeatures = plans[-1].features;
     const allFeatures = [
         "NextJS boilerplate",

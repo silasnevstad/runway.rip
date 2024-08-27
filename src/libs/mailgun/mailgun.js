@@ -15,9 +15,7 @@ export async function sendEmail({ to, from, subject, message }) {
     };
 
     try {
-        const result = await mailgunClient.messages().send(emailData);
-        console.log('Email sent successfully!');
-        return result;
+        return await mailgunClient.messages().send(emailData);
     } catch (error) {
         console.error('Error sending email:', error);
         throw error;
