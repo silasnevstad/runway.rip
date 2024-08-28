@@ -8,6 +8,19 @@ related:
 sites:
   - title: "Next.js Project Structure"
     url: "https://nextjs.org/docs/getting-started/project-structure"
+onThisPage:
+  - title: "Top-level Structure"
+    href: "#top-level-structure"
+  - title: "src Folder Structure"
+    href: "#src-folder-structure"
+  - title: "app Directory Structure"
+    href: "#app-directory-structure"
+  - title: "Components Directory"
+    href: "#components-directory"
+  - title: "Configuration Files"
+    href: "#configuration-files"
+  - title: "app Routing Conventions"
+    href: "#app-routing-conventions"
 ---
 
 
@@ -16,6 +29,7 @@ Runway.js follows a typical Next.js project structure with some custom organizat
 <br />
 <Divider />
 
+<div id="top-level-structure" />
 ### Top-level Structure
 
 At the root of the project, you'll find these key elements:
@@ -40,6 +54,7 @@ our local environment variables (API keys, etc.).
 <br />
 <Divider />
 
+<div id="src-folder-structure" />
 ### `src` Folder Structure
 
 Inside the `src` folder, we organize our code into several directories:
@@ -64,6 +79,7 @@ This structure allows for a modular approach to development, separating concerns
 <br />
 <Divider />
 
+<div id="app-directory-structure" />
 ### `app` Directory Structure
 
 The `app` directory is the heart of our Next.js application, structured as follows:
@@ -85,6 +101,7 @@ This structure leverages Next.js 13's app router, allowing for easy organization
 
 <br />
 
+<div id="noauth-directory" />
 #### `(noauth)` Directory
 
 The `(noauth)` directory contains our public-facing pages:
@@ -98,6 +115,7 @@ The `(noauth)` directory contains our public-facing pages:
 
 <br />
 
+<div id="auth-directory" />
 #### `(auth)` Directory
 
 The `(auth)` directory contains our authenticated pages, add as many as needed.
@@ -112,6 +130,7 @@ The `(auth)` directory contains our authenticated pages, add as many as needed.
 <br />
 <Divider />
 
+<div id="components-directory" />
 ### `components` Directory
 
 We use the atomic design methodology to organize our React components:
@@ -134,6 +153,7 @@ This structure promotes reusability and maintainability of our UI components.
 <br />
 <Divider />
 
+<div id="configuration-files" />
 ### Configuration Files
 
 Key configuration files in our project:
@@ -150,6 +170,7 @@ These files are crucial for managing application behavior and security.
 <br />
 <Divider />
 
+<div id="app-routing-conventions" />
 ### `app` Routing Conventions
 
 We follow Next.js routing conventions in our `app` directory:

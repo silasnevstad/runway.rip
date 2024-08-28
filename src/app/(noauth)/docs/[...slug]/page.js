@@ -40,11 +40,11 @@ export function generateStaticParams() {
 
 const RelatedContent = ({ items }) => (
     <div className="border border-gray-300 dark:border-gray-800 p-4 rounded-lg">
-        <h3 className="text-lg font-semibold mb-2 opacity-80">Related Content</h3>
+        <h3 className="text-md font-semibold mb-2 opacity-80">Related Content</h3>
         <ul className="space-y-2">
             {items.map((item, index) => (
                 <li key={index}>
-                    <TextLink href={item.href} className="text-blue-500 hover:underline" icon>
+                    <TextLink href={item.href} className="text-sm text-blue-500 hover:underline" icon>
                         {item.title}
                     </TextLink>
                 </li>
@@ -55,14 +55,29 @@ const RelatedContent = ({ items }) => (
 
 const RelatedSites = ({ sites }) => (
     <div className="border border-gray-300 dark:border-gray-800 p-4 rounded-lg mt-4">
-        <h3 className="text-lg font-semibold mb-2 opacity-80">Related Sites</h3>
+        <h3 className="text-md font-semibold mb-2 opacity-80">Related Sites</h3>
         <ul className="space-y-2">
             {sites.map((site, index) => (
                 <li key={index}>
-                    <a href={site.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-blue-500 hover:underline">
+                    <a href={site.url} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm gap-1 text-blue-500 hover:underline">
                         <LinkIcon className="w-4 h-4 inline-block mr-1" />
                         {site.title}
                     </a>
+                </li>
+            ))}
+        </ul>
+    </div>
+);
+
+const OnThisPage = ({ items }) => (
+    <div className="border border-gray-300 dark:border-gray-800 p-4 rounded-lg mt-4">
+        <h3 className="text-md font-semibold mb-2 opacity-80">On This Page</h3>
+        <ul className="space-y-2">
+            {items.map((item, index) => (
+                <li key={index}>
+                    <TextLink href={item.href} className="text-sm text-blue-500 hover:underline">
+                        {item.title}
+                    </TextLink>
                 </li>
             ))}
         </ul>
@@ -75,7 +90,14 @@ export default async function DocsPage({ params }) {
         "utf8"
     );
 
-    const components = useMDXComponents({});
+    const components = useMDXComponents({
+        Input: require("@/components/atoms/Input").default,
+        Badge: require("@/components/atoms/Badge").default,
+        Avatar: require("@/components/atoms/Avatar").Avatar,
+        LetterAvatar: require("@/components/atoms/Avatar").LetterAvatar,
+        Card: require("@/components/molecules/Card").default,
+        Checkbox: require("@/components/atoms/Checkbox").default,
+    });
 
     const { content, frontmatter } = await compileMDX({
         source,
@@ -93,6 +115,7 @@ export default async function DocsPage({ params }) {
     const pageDescription = frontmatter.description;
     const relatedContent = frontmatter.related || [];
     const relatedSites = frontmatter.sites || [];
+    const onThisPage = frontmatter.onThisPage || [];
 
     return (
         <div className="flex flex-col items-start md:flex-row gap-8 justify-between mt-10">
@@ -110,6 +133,7 @@ export default async function DocsPage({ params }) {
             <div className="max-md:hidden md:sticky md:top-28 self-start md:w-64 space-y-4">
                 {relatedContent.length > 0 && <RelatedContent items={relatedContent}/>}
                 {relatedSites.length > 0 && <RelatedSites sites={relatedSites}/>}
+                {onThisPage.length > 0 && <OnThisPage items={onThisPage}/>}
             </div>
         </div>
     );

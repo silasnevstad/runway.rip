@@ -1,15 +1,12 @@
 'use client';
 
 import React from 'react';
-import { motion } from "framer-motion";
 import { makeClassNameImportant } from "@/utils/utils";
 
 const Card = ({
     className = '',
     children,
     hoverEffect = 'shadow',
-    animationDelay = 0,
-    animate = true,
     border = true,
     ...props
 }) => {
@@ -20,23 +17,20 @@ const Card = ({
         outline: 'hover:border-black hover:bg-bg-0 dark:hover:bg-bg-800 dark:hover:border-gray-700'
     };
 
+    const combinedStyles = `
+        relative bg-bg-50 dark:bg-bg-900 rounded-2xl p-6
+        ${border && 'border border-bg-300 dark:border-gray-800'}
+        transition-all ease-in-out ${hoverEffects[hoverEffect]}
+        ${makeClassNameImportant(className)}
+    `;
+
     return (
-        <motion.div
-            initial={{ opacity: animate ? 0 : 1, y: animate ? 20 : 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: animationDelay }}
-            className={`
-                relative
-                ${makeClassNameImportant(className)}
-                bg-bg-50 dark:bg-bg-900 rounded-2xl p-6
-                ${border && 'border border-bg-300 dark:border-gray-800'}
-                transition-all ease-in-out
-                ${hoverEffects[hoverEffect]}
-            `}
+        <div
+            className={combinedStyles}
             {...props}
         >
             {children}
-        </motion.div>
+        </div>
     );
 };
 

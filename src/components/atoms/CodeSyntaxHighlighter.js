@@ -4,13 +4,14 @@ import { CopyBlock } from 'react-code-blocks';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneLight, atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
-const SyntaxHighlighter = ({
+const CodeSyntaxHighlighter = ({
     children: code,
     language,
     showLineNumbers = false,
     startingLineNumber = 1,
     copy = false,
     darkTheme = true,
+    wrapLines = false,
 }) => {
 
     if (copy) {
@@ -19,8 +20,6 @@ const SyntaxHighlighter = ({
                 text={code.trim()}
                 language={language}
                 style={darkTheme ? atomOneDark : atomOneLight}
-                codeBlock
-                wrapLines
                 showLineNumbers={showLineNumbers}
                 startingLineNumber={startingLineNumber}
                 customStyle={{ borderRadius: '0.3rem' }}
@@ -33,8 +32,7 @@ const SyntaxHighlighter = ({
         <SyntaxHighlighter
             language={language}
             style={darkTheme ? atomOneDark : atomOneLight}
-            codeBlock
-            wrapLines
+            wrapLines={wrapLines}
             showLineNumbers={showLineNumbers}
             startingLineNumber={startingLineNumber}
             customStyle={{ borderRadius: '0.3rem' }}
@@ -45,4 +43,4 @@ const SyntaxHighlighter = ({
     );
 };
 
-export default SyntaxHighlighter;
+export default CodeSyntaxHighlighter;

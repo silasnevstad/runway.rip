@@ -15,7 +15,7 @@ export const DocsNav = [
         href: "/docs/tutorials",
         icon: <MapIcon className="w-6 h-6" />,
         items: [
-            { title: "Launch in 5 minutes", href: "/docs/tutorials/ship-in-5-minutes" },
+            { title: "Launch in 5 minutes", href: "/docs/tutorials/launch-in-5-minutes" },
             { title: "Static page", href: "/docs/tutorials/static-page" },
             { title: "User authentication", href: "/docs/tutorials/authentication" },
             { title: "API call", href: "/docs/tutorials/api-call" },

@@ -14,7 +14,7 @@ export const Avatar = ({src, alt, className, width = 50, height = 50}) => {
 
 export const LetterAvatar = ({ letter, className }) => {
     return (
-        <div className={`flex justify-center items-center rounded-full border-2 border-gray-400 dark:border-gray-500 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 ${className} w-8 h-8`}>
+        <div className={`flex justify-center items-center rounded-full border-2 border-gray-400 dark:border-gray-500 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 ${className} w-12 h-12`}>
             <span className="text-lg font-semibold">{letter}</span>
         </div>
     );

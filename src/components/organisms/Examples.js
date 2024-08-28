@@ -14,7 +14,7 @@ import moment from "moment/moment";
 import RadarGraph from "@/components/atoms/RadarGraph";
 import LineGraph from "@/components/atoms/LineGraph";
 import BarGraph from "@/components/atoms/BarGraph";
-import SyntaxHighlighter from "@/components/atoms/SyntaxHighlighter";
+import CodeSyntaxHighlighter from "@/components/atoms/CodeSyntaxHighlighter";
 import Checkbox from "@/components/atoms/Checkbox";
 import Toggle from "@/components/atoms/Toggle";
 import Switcher from "@/components/atoms/Switcher";

@@ -20,8 +20,10 @@ const CodeBlock = ({
     const codeLines = children.trim().split('\n');
 
     return (
-        <div className={`text-sm mt-4 mb-6 bg-gray-800 text-gray-100 rounded-lg`}>
-            <div className="flex items-center justify-between bg-bg-800 dark:bg-bg-700 px-4 py-3 border-b border-gray-700 rounded-t-lg">
+        <div className={`text-sm mt-4 mb-6 bg-bg-50 text-gray-100 rounded-lg 
+            border-l border-r border-b border-bg-400 dark:border-none`}>
+            <div className={`flex items-center justify-between bg-bg-600 dark:bg-bg-700 px-4 py-3 
+                border-b border-gray-500 dark:border-gray-700 rounded-t-lg`}>
                 <span className="text-sm opacity-60">{language}</span>
                 <button
                     onClick={handleCopy}
@@ -34,7 +36,7 @@ const CodeBlock = ({
                     )}
                 </button>
             </div>
-            <div className="font-mono overflow-x-auto">
+            <div className="font-mono overflow-x-auto text-black dark:text-white">
                 <pre className="p-4 py-5">
                     {codeLines.map((line, index) => (
                         <div key={index} className="table-row">

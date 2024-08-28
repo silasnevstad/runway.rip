@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import {makeClassNameImportant} from "@/utils/utils";
 
 const Input = ({
     className,
@@ -64,6 +65,7 @@ const Input = ({
                     onBlur={handleBlur}
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
+                    autoComplete={props.autoComplete || "off"}
                 />
                 {secure && (
                     <button className="focus:outline-none" onClick={togglePassword}>

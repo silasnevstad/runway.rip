@@ -1,0 +1,168 @@
+---
+title: "Badge"
+description: "Display customizable badges for various purposes"
+onThisPage:
+  - title: "Badge"
+    href: "#badge"
+  - title: "Props"
+    href: "#props"
+  - title: "Usage Examples"
+    href: "#usage-examples"
+---
+
+The Badge component is a versatile element used to highlight and categorize content. It offers various customization options to fit different design needs and contexts.
+
+<br/>
+<Divider />
+<br/>
+
+<br />
+
+<div class="grid grid-cols-5 max-md:grid-cols-5 max-sm:grid-cols-4 gap-4">
+    <Badge>Primary</Badge>
+    <Badge color="green" shape="square">Green</Badge>
+    <Badge color="red" style="solid" shape="square">Red</Badge>
+    <Badge color="blue">Blue</Badge>
+    <Badge color="purple" border>Purple</Badge>
+    <Badge style="solid" color="orange">Solid</Badge>
+    <Badge shape="square" color="yellow" border>Square</Badge>
+    <Badge shape="square" color="primary" border>Border</Badge>
+    <Badge color="green">Green</Badge>
+    <Badge hover>Hover</Badge>
+</div>
+
+<br />
+
+<div id="badge" />
+## Badge
+The `Badge` component creates a customizable badge that can be used to label, categorize, or highlight information.
+
+```javascript
+import {makeClassNameImportant} from "@/utils/utils";
+
+const Badge = ({
+    children,
+    className = '',
+    shape = 'pill', // 'pill', 'square', 'circle'
+    border = false,
+    style = 'soft', // 'soft', 'solid'
+    color = 'primary', // 'primary', 'green'
+    hover = false,
+    onClick,
+}) => {
+    const baseStyles = `inline-flex justify-center items-center text-center gap-1 font-medium`;
+
+    const shapeStyles = {
+        pill: 'rounded-full px-2.5 py-1',
+        square: 'rounded-lg px-2.5 py-1',
+        circle: 'rounded-full px-3 py-3',
+    };
+
+    const colorStyles = {
+        soft: {
+            primary: 'bg-primary-100 dark:bg-primary-600/25 text-primary-800 dark:text-primary-400',
+            green: 'bg-green-100 dark:bg-green-600/25 text-green-800 dark:text-green-400',
+            red: 'bg-red-100 dark:bg-red-600/25 text-red-800 dark:text-red-400',
+            yellow: 'bg-yellow-100 dark:bg-yellow-600/25 text-yellow-800 dark:text-yellow-400',
+            orange: 'bg-orange-100 dark:bg-orange-600/25 text-orange-800 dark:text-orange-400',
+            blue: 'bg-blue-100 dark:bg-blue-600/25 text-blue-800 dark:text-blue-400',
+            purple: 'bg-purple-100 dark:bg-purple-600/25 text-purple-800 dark:text-purple-400',
+            gray: 'bg-gray-100 dark:bg-gray-600/25 text-gray-800 dark:text-gray-400',
+        },
+        solid: {
+            primary: 'bg-primary-600 text-white',
+            green: 'bg-green-600 text-white',
+            red: 'bg-red-600 text-white',
+            yellow: 'bg-yellow-400 text-white',
+            orange: 'bg-orange-600 text-white',
+            blue: 'bg-blue-600 text-white',
+            purple: 'bg-purple-600 text-white',
+            gray: 'bg-gray-600 text-white',
+        },
+    };
+
+
+    const borderColor = style === 'soft' ? `border-${color}-800` : `border-${color}-600`;
+    const borderStyles = border
+        ? `border ${borderColor}`
+        : '';
+
+    const hoverStyles = hover ? `hover:scale-101 transition-all ease-in-out` : '';
+
+    const combinedStyles = [
+        baseStyles,
+        shapeStyles[shape],
+        colorStyles[style][color],
+        borderStyles,
+        hoverStyles,
+    ].join(' ');
+
+    return <div className={`${combinedStyles} ${makeClassNameImportant(className)}`} onClick={onClick}>{children}</div>;
+};
+
+export default Badge;
+```
+
+<Tip>
+    Use the `color` and `style` props to match the badge appearance to your application's design system.
+</Tip>
+<Warning>
+    Ensure that the text content inside the badge is concise to prevent overflow issues, especially with smaller shapes like 'circle'.
+</Warning>
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+## Props
+The Badge component accepts the following props:
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| children | ReactNode | - | The content to be displayed inside the badge |
+| className | string | '' | Additional CSS classes to be applied |
+| shape | 'pill' \| 'square' \| 'circle' | 'pill' | The shape of the badge |
+| border | boolean | false | Whether to display a border around the badge |
+| style | 'soft' \| 'solid' | 'soft' | The style of the badge (soft or solid background) |
+| color | 'primary' \| 'green' \| 'red' \| 'yellow' \| 'orange' \| 'blue' \| 'purple' \| 'gray' | 'primary' | The color scheme of the badge |
+| hover | boolean | false | Whether to apply a hover effect |
+| onClick | function | - | Function to be called when the badge is clicked |
+
+<Info>
+    The `makeClassNameImportant` utility is used to ensure custom classes take precedence over default styles.
+</Info>
+<br/>
+
+<div id="usage-examples" />
+
+## Usage Examples
+### Basic Badge
+
+```jsx
+<Badge>New</Badge>
+```
+
+### Customized Badge
+```jsx
+<Badge shape="square" style="solid" color="green" border>
+  Success
+</Badge>
+```
+
+### Badge with Hover Effect
+```jsx
+<Badge hover onClick={() => console.log('Badge clicked')}>
+  Click me
+</Badge>
+```
+
+### Different Colors and Styles
+```jsx
+<div className="flex gap-2">
+  <Badge color="primary">Primary</Badge>
+  <Badge color="red" style="solid">Red</Badge>
+  <Badge color="yellow">Yellow</Badge>
+  <Badge color="blue" style="solid">Blue</Badge>
+</div>
+```

@@ -1,0 +1,191 @@
+---
+title: "Checkbox"
+description: "A customizable checkbox component with label positioning options"
+onThisPage:
+  - title: "Checkbox"
+    href: "#checkbox"
+  - title: "Props"
+    href: "#props"
+  - title: "Usage Examples"
+    href: "#usage-examples"
+---
+
+The Checkbox component provides a customizable checkbox input with various styling options and label positioning.
+
+<br/>
+<Divider />
+<br/>
+
+<br />
+
+<div class="flex flex-col space-y-4">
+    <Checkbox
+        label="Checkbox"
+        hover
+        checked
+    />
+    <Checkbox
+        label="Checkbox"
+        color="text-green-500"
+        checked
+    />
+    <Checkbox
+        label="Checkbox"
+        color="text-yellow-500"
+        checked
+    />
+    <Checkbox
+        label="Checkbox"
+        checked
+        color="text-red-500"
+        disabled
+    />
+</div>
+
+<br />
+
+<div id="checkbox" />
+
+```jsx
+import { makeClassNameImportant } from "@/utils/utils";
+
+const Checkbox = ({
+    className = '',
+    id,
+    name,
+    label,
+    checked = false,
+    onChange,
+    labelPosition = 'left',
+    disabled = false,
+    ripple = false,
+    circle = false
+}) => {
+    const labelClasses = `mx-3 font-medium`;
+
+    return (
+        <div className={`flex ${labelPosition === 'left' ? 'flex-row-reverse' : 'flex-row'} items-center justify-center ${disabled ? 'opacity-50' : ''}`}>
+            <input
+                className={`checkbox h-4 w-4 ${circle ? 'rounded-full' : 'rounded'} border-gray-300 text-primary-500 ${ripple ? 'ripple' : ''} ${makeClassNameImportant(className)}`}
+                type="checkbox"
+                id={id}
+                name={name}
+                checked={checked}
+                onChange={onChange}
+                disabled={disabled}
+            />
+            <label htmlFor={id} className={labelClasses}>
+                {label}
+            </label>
+        </div>
+    );
+};
+
+export default Checkbox;
+```
+<Tip>
+    Use the `labelPosition` prop to control the placement of the label relative to the checkbox.
+</Tip>
+<Warning>
+    The Checkbox component uses the 'use client' directive, ensuring it's only rendered on the client-side. Be mindful of this when using it in your Next.js application.
+</Warning>
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional classes to apply to the checkbox |
+| id | string | - | Unique identifier for the checkbox |
+| name | string | - | Name attribute for the checkbox |
+| label | string | - | Label text for the checkbox |
+| checked | boolean | false | Whether the checkbox is checked |
+| onChange | function | - | Function to handle checkbox state changes |
+| labelPosition | 'left' \| 'right' | 'left' | Position of the label relative to the checkbox |
+| disabled | boolean | false | Whether the checkbox is disabled |
+| ripple | boolean | false | Whether to apply a ripple effect |
+| circle | boolean | false | Whether to make the checkbox circular |
+
+<Tip>
+    Use the `labelPosition` prop to control the layout of your checkbox and label.
+</Tip>
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="usage-examples" />
+
+## Usage Examples
+
+### Basic Checkbox
+```jsx
+<Checkbox
+  id="terms"
+  name="terms"
+  label="I agree to the terms and conditions"
+  checked={isChecked}
+  onChange={(e) => setIsChecked(e.target.checked)}
+/>
+```
+
+### Checkbox with Right Label
+```jsx
+<Checkbox
+  id="newsletter"
+  name="newsletter"
+  label="Subscribe to newsletter"
+  labelPosition="right"
+  checked={isSubscribed}
+  onChange={(e) => setIsSubscribed(e.target.checked)}
+/>
+```
+
+### Circular Checkbox with Custom Color
+```jsx
+<Checkbox
+  className="text-blue-500"
+  id="darkMode"
+  name="darkMode"
+  label="Enable dark mode"
+  circle
+  checked={isDarkMode}
+  onChange={(e) => setIsDarkMode(e.target.checked)}
+/>
+```
+
+### Disabled Checkbox
+```jsx
+<Checkbox
+  id="disabled"
+  name="disabled"
+  label="This checkbox is disabled"
+  disabled
+/>
+```
+
+### Checkbox with Ripple Effect
+```jsx
+<Checkbox
+  id="ripple-checkbox"
+  name="ripple-checkbox"
+  label="Checkbox with ripple effect"
+  ripple={true}
+  checked={isRippleChecked}
+  onChange={(e) => setIsRippleChecked(e.target.checked)}
+/>
+```
+
+<Tip>
+    Combine different props to create checkboxes that match your design requirements and user interaction needs.
+</Tip>
+
+<br />
+<br />

@@ -2,7 +2,7 @@
 
 import Sidebar from "@/components/organisms/sidebars/Sidebar";
 import DocumentationSidebar from "@/components/organisms/sidebars/DocumentationSidebar";
-import BreadcrumbTitle from "@/components/atoms/BreadcrumbTitle";
+import Breadcrumb from "@/components/atoms/Breadcrumb";
 import SearchBar from "@/components/molecules/SearchBar";
 import { useRouter } from 'next/navigation'
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
@@ -41,7 +41,7 @@ function DocumentationPageLayout({ children }) {
                     </div>
                 </div>
                 <div className="-mt-16 p-10 pr-5">
-                    <BreadcrumbTitle sections={DocsNav}/>
+                    <Breadcrumb sections={DocsNav}/>
                     {children}
                 </div>
             </main>

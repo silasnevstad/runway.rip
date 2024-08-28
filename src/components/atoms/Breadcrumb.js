@@ -4,7 +4,7 @@ import React from 'react';
 import { usePathname } from 'next/navigation';
 import { FaChevronRight } from 'react-icons/fa';
 
-const BreadcrumbTitle = ({ sections }) => {
+const Breadcrumb = ({ sections }) => {
     const pathname = usePathname();
 
     const getCurrentPageInfo = () => {
@@ -34,4 +34,4 @@ const BreadcrumbTitle = ({ sections }) => {
     );
 };
 
-export default BreadcrumbTitle;
+export default Breadcrumb;

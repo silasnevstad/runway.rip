@@ -1,0 +1,142 @@
+---
+title: "Avatar"
+description: "Display user avatars and initials"
+onThisPage:
+  - title: "Avatar"
+    href: "#avatar"
+  - title: "Letter Avatar"
+    href: "#letter-avatar"
+  - title: "Avatar List"
+    href: "#avatar-list"
+  - title: "Usage Examples"
+    href: "#usage-examples"
+---
+
+The Avatar component is used to display user avatars or initials. It provides flexible options for representing users in your application.
+
+<br/>
+<Divider />
+<br/>
+
+<br />
+
+<div class="flex justify-center items-center space-x-4">
+    <Avatar src="/images/elon-avatar.png" alt="Elon Musk" />
+    <Avatar src="/images/elon-avatar.png" alt="Elon Musk" />
+    <Avatar src="/images/elon-avatar.png" alt="Elon Musk" />
+    <LetterAvatar letter="A" />
+    <LetterAvatar letter="B" />
+    <LetterAvatar letter="C" />
+</div>
+
+<br />
+
+<div id="avatar" />
+
+## Avatar
+
+The `Avatar` component displays an image avatar using Next.js's `Image` component for optimal performance.
+
+```javascript
+import Image from 'next/image';
+
+export const Avatar = ({src, alt, className, width = 50, height = 50}) => {
+    return (
+        <Image
+            src={src}
+            alt={alt}
+            className={`rounded-full border-2 border-gray-400 dark:border-gray-500 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 ${className}`}
+            width={width}
+            height={height}
+        />
+    );
+}
+```
+<Tip>
+    Use the `width` and `height` props to adjust the size of the avatar. The default size is 50x50 pixels.
+</Tip>
+<Warning>
+    Ensure that the `src` prop points to a valid image URL. Invalid URLs may cause rendering issues.
+</Warning>
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="letter-avatar" />
+## Letter Avatar
+The `LetterAvatar` component displays a single letter, typically the user's initial, when an image is not available.
+
+```javascript
+export const LetterAvatar = ({ letter, className }) => {
+    return (
+        <div className={`flex justify-center items-center rounded-full border-2 border-gray-400 dark:border-gray-500 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 ${className} w-8 h-8`}>
+            <span className="text-lg font-semibold">{letter}</span>
+        </div>
+    );
+}
+```
+<Info>
+    The `LetterAvatar` is useful for representing users who haven't uploaded a profile picture or when you want to display initials instead of images.
+</Info>
+<Tip>
+    You can customize the background color and text color by modifying the className prop to match your application's color scheme.
+</Tip>
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="avatar-list" />
+## Avatar List
+The `AvatarList` component displays a group of avatars, typically used to show multiple users or participants.
+
+```javascript
+export const AvatarList = ({ avatars }) => {
+    return (
+        <div className="flex">
+            {avatars.map((avatar, index) => (
+                <Avatar key={index} src={avatar.src} alt={avatar.alt} className={index > 0 ? "-ml-4" : ""}/>
+            ))}
+        </div>
+    );
+}
+```
+<Info>
+    The `AvatarList` component slightly overlaps avatars to create a compact group representation.
+</Info>
+<Tip>
+    Limit the number of avatars displayed to prevent overcrowding. Consider showing a "+X more" indicator for additional users.
+</Tip>
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="usage-examples" />
+## Usage Examples
+### Basic Avatar
+
+```jsx
+<Avatar src="/public/images/user.jpg" alt="User Name" />
+```
+
+### Letter Avatar
+```jsx
+<LetterAvatar letter="J" />
+```
+
+### Avatar List
+```jsx
+const users = [
+    { src: "/public/user1.jpg", alt: "User 1" },
+    { src: "/public/user2.jpg", alt: "User 2" },
+    { src: "/public/user3.jpg", alt: "User 3" },
+];
+
+<AvatarList avatars={users} />
+```
+
+<Warning>
+    When using `AvatarList`, ensure that each avatar object in the array has both `src` and `alt` properties to avoid rendering issues.
+</Warning>

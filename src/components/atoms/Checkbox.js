@@ -1,16 +1,17 @@
 'use client'
 
 import React from 'react';
+import { makeClassNameImportant } from "@/utils/utils";
 
 const Checkbox = ({
+    className = '',
     id,
     name,
     label,
     checked = false,
     onChange,
-    labelPosition = 'left', // can be 'left' or 'right'
+    labelPosition = 'left',
     disabled = false,
-    color = 'text-primary-500',
     ripple = false,
     circle = false
 }) => {
@@ -19,7 +20,7 @@ const Checkbox = ({
     return (
         <div className={`flex ${labelPosition === 'left' ? 'flex-row-reverse' : 'flex-row'} items-center justify-center ${disabled ? 'opacity-50' : ''}`}>
             <input
-                className={`checkbox h-4 w-4 ${circle ? 'rounded-full' : 'rounded'} border-gray-300 ${color} ${ripple ? 'ripple' : ''}`}
+                className={`checkbox h-4 w-4 ${circle ? 'rounded-full' : 'rounded'} border-gray-300 text-primary-500 ${ripple ? 'ripple' : ''} ${makeClassNameImportant(className)}`}
                 type="checkbox"
                 id={id}
                 name={name}

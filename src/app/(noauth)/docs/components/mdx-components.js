@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CodeBlock from "@/components/atoms/CodeBlock";
 import Divider from "@/components/atoms/Divider";
+import CodeSyntaxHighlighter from "@/components/atoms/CodeSyntaxHighlighter";
 
 export function useMDXComponents(components) {
     return {
@@ -52,33 +53,51 @@ export function useMDXComponents(components) {
             if (!className) {
                 return <code className="bg-bg-300 dark:bg-bg-500/40 rounded px-1 py-0.5">{children}</code>;
             }
+
             // This handles code blocks (remove hljs class)
             const language = className.replace('language-', '').replace('hljs', '').trim();
 
-
-            // Process the children array to handle React elements
-            const processedChildren = children.map(child => {
-                if (typeof child === 'string') {
-                    return child;
-                } else if (child.props && child.props.children) {
-                    return child.props.children;
+            // Function to extract text content from React elements
+            const extractText = (element) => {
+                if (typeof element === 'string') return element;
+                if (Array.isArray(element)) return element.map(extractText).join('');
+                if (element && typeof element === 'object' && 'props' in element) {
+                    return extractText(element.props.children);
                 }
                 return '';
-            }).join('');
+            };
 
-            // Remove backticks if present
-            const codeString = processedChildren.replace(/`/g, '');
+            // Extract the text content
+            const codeString = extractText(children);
+
+            // Remove backticks if present and unescape HTML entities
+            const cleanedCode = codeString.replace(/`/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+
+            if (language === 'bash') {
+                return (
+                    <CodeBlock
+                        language={language}
+                        showLineNumbers={true}
+                        startingLineNumber={1}
+                        darkTheme={true}
+                        {...props}
+                    >
+                        {cleanedCode}
+                    </CodeBlock>
+                );
+            }
 
             return (
-                <CodeBlock
+                <CodeSyntaxHighlighter
                     language={language}
                     showLineNumbers={true}
                     startingLineNumber={1}
                     darkTheme={true}
+                    wrapLines={true}
                     {...props}
                 >
-                    {codeString}
-                </CodeBlock>
+                    {cleanedCode}
+                </CodeSyntaxHighlighter>
             );
         },
         pre: ({ children }) => <div className="my-4">{children}</div>,
@@ -89,13 +108,13 @@ export function useMDXComponents(components) {
         ),
         table: ({ children }) => (
             <div className="overflow-x-auto my-10">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800 rounded-lg">
                     {children}
                 </table>
             </div>
         ),
         th: ({ children }) => (
-            <th className="hidden px-6 py-3 bg-gray-50 dark:bg-gray-900 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-800 dark:bg-gray-900 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase">
                 {children}
             </th>
         ),
