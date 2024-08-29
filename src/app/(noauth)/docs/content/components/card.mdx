@@ -10,6 +10,7 @@ onThisPage:
     href: "#usage-examples"
 ---
 
+<div id="card" />
 <Divider />
 <br/>
 <br />
@@ -32,50 +33,10 @@ onThisPage:
         <p>This card has custom styles.</p>
     </Card>
 </div>
-
+<br />
 <br />
 
-<div id="card" />
-## Card
-
 The `Card` component is a versatile card component that can be used to display content in a structured and visually appealing way. It comes with animation and hover effects that can be customized to fit your design needs.
-
-```jsx
-import { makeClassNameImportant } from "@/utils/utils";
-
-const Card = ({
-    className = '',
-    children,
-    hoverEffect = 'shadow',
-    border = true,
-    ...props
-}) => {
-    const hoverEffects = {
-        none: '',
-        shadow: 'hover:shadow-md hover:-translate-y-0.5',
-        scale: 'hover:scale-105',
-        outline: 'hover:border-black hover:bg-bg-0 dark:hover:bg-bg-800 dark:hover:border-gray-700'
-    };
-
-    const combinedStyles = `
-        relative bg-bg-50 dark:bg-bg-900 rounded-2xl p-6
-        ${border && 'border border-bg-300 dark:border-gray-800'}
-        transition-all ease-in-out ${hoverEffects[hoverEffect]}
-        ${makeClassNameImportant(className)}
-    `;
-
-    return (
-        <div
-            className={combinedStyles}
-            {...props}
-        >
-            {children}
-        </div>
-    );
-};
-
-export default Card;
-```
 
 <Tip>
     Use the `hoverEffect` prop to add interactive elements to your cards without additional styling.

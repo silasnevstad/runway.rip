@@ -9,14 +9,10 @@ onThisPage:
   - title: "Usage Examples"
     href: "#usage-examples"
 ---
-
-The Slider component is a versatile input element that allows users to select a value or range of values within a specified minimum and maximum.
-
-<br/>
+<div id="slider" />
 <Divider />
 <br/>
 <br />
-
 <div class="flex items-center gap-4 max-md:flex-col">
     <Slider
         min={0}
@@ -25,7 +21,7 @@ The Slider component is a versatile input element that allows users to select a 
         defaultValue={50}
         valuePosition="left"
         showValue={true}
-        showLabels={true}
+        showLabels={false}
         className="my-4"
     />
     <Slider
@@ -35,63 +31,14 @@ The Slider component is a versatile input element that allows users to select a 
         defaultValue={50}
         valuePosition="right"
         showValue={true}
+        showLabels={false}
         className="my-4"
     />
 </div>
 
 <br />
 
-<div id="slider" />
-## Slider
-
-The `Slider` component creates a customizable slider input that can be used for single value or range selection.
-
-```jsx
-'use client'
-
-import React, { useState } from 'react';
-import ReactSlider from 'react-slider';
-
-const Slider = ({
-    min = 0,
-    max = 100,
-    step = 1,
-    value,
-    onChange,
-    range = false,
-    className = '',
-    ...props
-}) => {
-    const [sliderValue, setSliderValue] = useState(value);
-
-    const handleChange = (newValue) => {
-        setSliderValue(newValue);
-        if (onChange) {
-            onChange(newValue);
-        }
-    };
-
-    return (
-        <ReactSlider
-            min={min}
-            max={max}
-            step={step}
-            value={sliderValue}
-            onChange={handleChange}
-            className={`h-2 ${className}`}
-            thumbClassName="w-4 h-4 cursor-grab bg-primary-500 rounded-full outline-none"
-            trackClassName="bg-gray-300 dark:bg-gray-700 rounded-full"
-            renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-            pearling
-            minDistance={range ? 10 : 0}
-            {...(range ? { className: `h-2 ${className}` } : {})}
-            {...props}
-        />
-    );
-};
-
-export default Slider;
-```
+The `Slider` component creates a customizable slider input that can be used for single value or range selection. It is a great way to allow users to select values within a specified range.
 
 <Tip>
     Use the `range` prop to create a range slider with two thumbs.
@@ -111,12 +58,17 @@ export default Slider;
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| className | string | - | Additional CSS classes to be applied |
-| children | ReactNode | - | The content to be displayed inside the card |
-| hoverEffect | 'none' \| 'shadow' \| 'scale' \| 'outline' | 'shadow' | The hover effect to apply to the card |
-| animationDelay | number | 0 | Delay in seconds before the animation starts |
-| animate | boolean | true | Whether to animate the card on mount |
-| border | boolean | true | Whether to display a border around the card |
+| min | number | 0 | The minimum value of the slider. |
+| max | number | 100 | The maximum value of the slider. |
+| step | number | 1 | The step value of the slider. |
+| value | number | 0 | The value of the slider. |
+| defaultValue | number | 0 | The default value of the slider. |
+| showValue | boolean | false | Whether to show the value of the slider. |
+| showLabels | boolean | true | Whether to show the labels of the slider. |
+| valuePosition | string | 'left' | The position of the value. Possible values: 'left', 'right'. |
+| trackColor | string | 'primary-500' | The color of the track. |
+| thumbColor | string | 'primary-500' | The color of the thumb. |
+
 
 <Info>
     The component also accepts any additional props that can be applied to the ReactSlider component.
@@ -132,30 +84,36 @@ export default Slider;
 ## Usage Examples
 
 ### Basic Slider
-
+<PreviewCode preview={
+    <Slider
+        min={0}
+        max={100}
+        value={50}
+        showLabels={false}
+    />
+}>
 ```jsx
 <Slider
   min={0}
   max={100}
   value={50}
+  showLabels={false}
   onChange={(value) => console.log(value)}
 />
 ```
-
-### Range Slider
-
-```jsx
-<Slider
-  min={0}
-  max={100}
-  value={[25, 75]}
-  range
-  onChange={(values) => console.log(values)}
-/>
-```
+</PreviewCode>
 
 ### Custom Slider
-
+<PreviewCode preview={
+    <Slider
+        min={0}
+        max={100}
+        step={10}
+        value={50}
+        trackColor="red"
+        thumbColor="green"
+    />
+}>
 ```jsx
 <Slider
   min={0}
@@ -163,12 +121,14 @@ export default Slider;
   step={10}
   value={50}
   className="bg-primary-500"
-  thumbClassName="w-6 h-6 cursor-grab bg-white rounded-full outline-none"
-  trackClassName="bg-gray-300 dark:bg-gray-700 rounded-full"
-  renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+  trackColor="red"
+  thumbColor="green"
   onChange={(value) => console.log(value)}
+  showLabels={false}
 />
 ```
+</PreviewCode>
+
 <br/>
 <Tip>
     Experiment with different props and styles to create sliders that fit your design needs and use cases.

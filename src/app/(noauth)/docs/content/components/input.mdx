@@ -9,15 +9,10 @@ onThisPage:
   - title: "Usage Examples"
     href: "#usage-examples"
 ---
-
-The Input component is a versatile text input with support for labels, icons, and password visibility toggle.
-
-<br/>
+<div id="input" />
 <Divider />
 <br/>
-
 <br />
-
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <Input
         id="Example"
@@ -32,100 +27,7 @@ The Input component is a versatile text input with support for labels, icons, an
 
 <br />
 
-<div id="input" />
-## Input
-
 The `Input` component creates a customizable text input field with various features like floating labels, left and right icons, and password visibility toggle.
-
-```javascript
-'use client'
-
-import React, { useState } from "react";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-
-const Input = ({
-    className,
-    label,
-    leftIcon: LeftIcon,
-    rightIcon: RightIcon,
-    leftIconOnClick,
-    rightIconOnClick,
-    focus,
-    secure,
-    textSize = "text-lg",
-    ...props
-}) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
-    const [value, setValue] = useState(props.value || '');
-
-    const togglePassword = () => {
-        setShowPassword(!showPassword);
-    }
-
-    const handleFocus = () => {
-        setIsFocused(true);
-    }
-
-    const handleBlur = () => {
-        setIsFocused(false);
-    }
-
-    return (
-        <div className="flex flex-col w-full gap-2">
-            <div className={`relative flex items-center rounded-lg border border-gray-500 p-1 dark:border-gray-700 ${focus && 'focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500'} ${className}`}>
-                {LeftIcon &&
-                    <LeftIcon
-                        className={
-                            `flex-shrink-0 w-5 h-5 text-gray-600 opacity-75 dark:text-gray-500 ml-2
-                            ${leftIconOnClick ? 'cursor-pointer hover:scale-103 hover:text-primary-500' : ''}`
-                        }
-                        onClick={leftIconOnClick}
-                    />
-                }
-                {label && (!value || isFocused) &&
-                    <label
-                        onClick={() => document.getElementById(props.id).focus()}
-                        className={`absolute transition-all duration-200 cursor-text ${
-                            isFocused || props.value
-                                ? '-top-3.5 left-2 px-2 bg-bg-50 dark:bg-bg-900 text-primary-500 text-opacity-80'
-                                : 'text-lg left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-600'
-                        }`}
-                    >
-                        {label}
-                    </label>
-                }
-                <input
-                    {...props}
-                    type={secure ? showPassword ? 'text' : 'password' : 'text'}
-                    id={props.id}
-                    className={`border-transparent focus:border-transparent focus:ring-0 flex-grow ${textSize} border-none focus:outline-none bg-transparent dark:text-gray-100 ${label && "placeholder-transparent"}`}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                />
-                {secure && (
-                    <button className="focus:outline-none" onClick={togglePassword}>
-                        {showPassword ? <EyeSlashIcon className="mr-2 w-5 h-5 text-gray-600 opacity-75 dark:text-gray-500"/> : <EyeIcon className="mr-2 w-5 h-5 text-gray-600 opacity-75 dark:text-gray-500"/>}
-                    </button>
-                )}
-                {RightIcon &&
-                    <RightIcon
-                        className={
-                            `mr-2 w-5 h-5 text-gray-600 opacity-75 dark:text-gray-500
-                            ${rightIconOnClick ? 'cursor-pointer hover:scale-103 hover:text-primary-500' : ''}`
-                        }
-                        onClick={rightIconOnClick}
-                    />
-                }
-            </div>
-        </div>
-    );
-}
-
-export default Input;
-```
 
 <Tip>
     Use the `secure` prop to create a password input with a visibility toggle.
@@ -168,7 +70,13 @@ export default Input;
 ## Usage Examples
 
 ### Basic Input
-
+<PreviewCode preview={
+    <Input
+        id="username"
+        label="Username"
+        placeholder="Enter your username"
+    />
+}>
 ```jsx
 <Input
   id="username"
@@ -176,9 +84,16 @@ export default Input;
   placeholder="Enter your username"
 />
 ```
+</PreviewCode>
 
 ### Input with Left Icon
-
+<PreviewCode preview={
+    <Input
+        id="email"
+        label="Email"
+        placeholder="Enter your email"
+    />
+}>
 ```jsx
 import { UserIcon } from "@heroicons/react/24/outline";
 
@@ -189,9 +104,17 @@ import { UserIcon } from "@heroicons/react/24/outline";
   placeholder="Enter your email"
 />
 ```
+</PreviewCode>
 
 ### Password Input
-
+<PreviewCode preview={
+    <Input
+        id="password"
+        label="Password"
+        secure={true}
+        placeholder="Enter your password"
+    />
+}>
 ```jsx
 <Input
   id="password"
@@ -200,9 +123,16 @@ import { UserIcon } from "@heroicons/react/24/outline";
   placeholder="Enter your password"
 />
 ```
+</PreviewCode>
 
 ### Input with Right Icon and Click Handler
-
+<PreviewCode preview={
+    <Input
+        id="question"
+        label="Question"
+        placeholder="Ask a question"
+    />
+}>
 ```jsx
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 
@@ -214,18 +144,28 @@ import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
   placeholder="Ask a question"
 />
 ```
+</PreviewCode>
 
 ### Custom Styled Input
-
+<PreviewCode preview={
+    <Input
+        id="custom"
+        label="Custom Input"
+        className="border-blue-500 focus-within:border-blue-700"
+        textSize="text-xl"
+        placeholder="Custom styled input"
+    />
+}>
 ```jsx
 <Input
   id="custom"
   label="Custom Input"
-  className="border-blue-500 focus-within:border-blue-700"
+  className="bg-bg-200 darK:bg-bg-800 border-blue-500 focus-within:border-blue-700"
   textSize="text-xl"
   placeholder="Custom styled input"
 />
 ```
+</PreviewCode>
 
 <Tip>
     Combine different props to create inputs that match your design requirements and enhance user interaction.

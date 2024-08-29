@@ -9,6 +9,7 @@ onThisPage:
   - title: "Usage Examples"
     href: "#usage-examples"
 ---
+<div id="accordion" />
 
 <Divider />
 <br/>
@@ -34,53 +35,8 @@ onThisPage:
 
 <br />
 
-<div id="accordion" />
-
-## Accordion
-
 The `Accordion` component is a simple accordion component that can be used to display collapsible content. It is a great way to organize and display information in a structured and visually appealing way.
 It uses the [`DropdownText`](/docs/components/dropdown-text) component to display the accordion items.
-
-```jsx
-import { useState } from 'react';
-import DropdownText from "@/components/atoms/DropdownText";
-
-const Accordion = ({
-    className,
-    items,
-    oneOpen = false
-}) => {
-    const [openIndexes, setOpenIndexes] = useState([]);
-
-    const toggleItem = (index) => {
-        setOpenIndexes((prevIndexes) => {
-            if (oneOpen) {
-                return prevIndexes.includes(index) ? [] : [index];
-            } else {
-                return prevIndexes.includes(index)
-                    ? prevIndexes.filter((i) => i !== index)
-                    : [...prevIndexes, index];
-            }
-        });
-    };
-
-    return (
-        <div className={`flex flex-col w-full ${className}`}>
-            {items.map((item, index) => (
-                <DropdownText
-                    key={index}
-                    title={item.title}
-                    content={item.content}
-                    isOpen={openIndexes.includes(index)}
-                    onToggle={() => toggleItem(index)}
-                />
-            ))}
-        </div>
-    );
-};
-
-export default Accordion;
-```
 
 <br/>
 <br/>

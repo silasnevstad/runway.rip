@@ -7,6 +7,7 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { LinkIcon } from "@heroicons/react/24/outline";
 import TextLink from "@/components/atoms/TextLink";
+import { UserIcon } from "@heroicons/react/24/solid";
 
 export const dynamic = "force-static";
 
@@ -106,6 +107,7 @@ export default async function DocsPage({ params }) {
         DropdownText: require("@/components/atoms/DropdownText").default,
         Breadcrumb: require("@/components/atoms/Breadcrumb").default,
         Loader: require("@/components/atoms/Loader").default,
+        UserIcon: UserIcon,
     });
 
     const { content, frontmatter } = await compileMDX({

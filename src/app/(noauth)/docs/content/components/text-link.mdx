@@ -9,7 +9,7 @@ onThisPage:
   - title: "Usage Examples"
     href: "#usage-examples"
 ---
-
+<div id="text-link" />
 <Divider />
 <br/>
 <br/>
@@ -31,49 +31,7 @@ onThisPage:
 
 <br />
 
-<div id="text-link" />
-
-## TextLink
-
 The `TextLink` component is a text link component that can be used to navigate to other pages. It uses the [`Link`](https://nextjs.org/docs/app/api-reference/components/link) component from Next.js to create a link to another page. The `TextLink` component can be customized with different styles and options to fit the design of your application.
-
-```jsx
-"use client"
-
-import React from 'react';
-import Link from "next/link";
-import { LinkIcon } from "@heroicons/react/24/outline";
-
-const TextLink = ({
-    children,
-    href,
-    className,
-    icon = false,
-    grow = false,
-    fade = false,
-    underline = false,
-    underlineHeight = 'px',
-    selected = false
-}) => (
-    <Link
-        href={href}
-        className={`relative flex items-center gap-1
-        ${grow && "hover:transform hover:scale-105"}
-        ${fade && !selected && "transition-opacity opacity-50 hover:opacity-100"}
-        ${selected && "opacity-100 font-semibold"}
-        ${underline && `after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-${underlineHeight} after:bg-primary-500 after:transition-all after:duration-300 after:ease-in-out after:transform after:scale-x-0 after:origin-left hover:after:scale-x-100`}
-        ${!underline && "ease-[cubic-bezier(0.25, 0.46, 0.45, 0.94)] duration-200"}
-        cursor-pointer
-        ${className}`}
-    >
-        {icon && <LinkIcon className="w-4 h-4 mr-1" />}
-        {children}
-    </Link>
-);
-
-export default TextLink;
-```
-
 
 <br/>
 <br/>
@@ -133,27 +91,27 @@ The `TextLink` component accepts the following props:
 ```
 </PreviewCode>
 
-### Text Link with Grow Effect
+### Red Text Link with Grow Effect
 <PreviewCode preview={
-    <TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" grow>
+    <TextLink href="/docs/components/text-link" className="text-red-500 hover:text-red-600" grow>
         Go to TextLink
     </TextLink>
 }>
 ```jsx
-<TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" grow>
+<TextLink href="/docs/components/text-link" className="text-red-500 hover:text-red-600" grow>
     Go to TextLink
 </TextLink>
 ```
 </PreviewCode>
 
-### Text Link with Fade Effect
+### Green Text Link with Fade Effect
 <PreviewCode preview={
-    <TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" fade>
+    <TextLink href="/docs/components/text-link" className="text-green-500 hover:text-green-600" fade>
         Go to TextLink
     </TextLink>
 }>
 ```jsx
-<TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" fade>
+<TextLink href="/docs/components/text-link" className="text-green-500 hover:text-green-600" fade>
     Go to TextLink
 </TextLink>
 ```

@@ -34,7 +34,7 @@ const Input = ({
 
     return (
         <div className="flex flex-col w-full gap-2">
-            <div className={`relative flex items-center rounded-lg border border-gray-500 p-1 dark:border-gray-700 ${focus && 'focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500'} ${className}`}>
+            <div className={`relative flex items-center rounded-lg border border-gray-500 p-1 dark:border-gray-700 ${focus && 'focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500'} ${makeClassNameImportant(className)}`}>
                 {LeftIcon &&
                     <LeftIcon
                         className={

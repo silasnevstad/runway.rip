@@ -10,15 +10,12 @@ onThisPage:
     href: "#usage-examples"
 ---
 <div id="checkbox" />
-The Checkbox component provides a customizable checkbox input with various styling options and label positioning.
-
 <br/>
 <Divider />
 <br/>
-
 <br />
 
-<div className="flex w-full items-center">
+<div className="flex w-full items-center justify-center">
     <Checkbox
         hover
         checked
@@ -59,43 +56,8 @@ The Checkbox component provides a customizable checkbox input with various styli
 
 <br />
 
-```jsx
-import { makeClassNameImportant } from "@/utils/utils";
+The `Checkbox` component provides a customizable checkbox input with various styling options and label positioning.
 
-const Checkbox = ({
-    className = '',
-    id,
-    name,
-    label,
-    checked = false,
-    onChange,
-    labelPosition = 'left',
-    disabled = false,
-    ripple = false,
-    circle = false
-}) => {
-    const labelClasses = `mx-3 font-medium`;
-
-    return (
-        <div className={`flex ${labelPosition === 'left' ? 'flex-row-reverse' : 'flex-row'} items-center justify-center ${disabled ? 'opacity-50' : ''}`}>
-            <input
-                className={`checkbox h-4 w-4 ${circle ? 'rounded-full' : 'rounded'} border-gray-300 text-primary-500 ${ripple ? 'ripple' : ''} ${makeClassNameImportant(className)}`}
-                type="checkbox"
-                id={id}
-                name={name}
-                checked={checked}
-                onChange={onChange}
-                disabled={disabled}
-            />
-            <label htmlFor={id} className={labelClasses}>
-                {label}
-            </label>
-        </div>
-    );
-};
-
-export default Checkbox;
-```
 <Tip>
     Use the `labelPosition` prop to control the placement of the label relative to the checkbox.
 </Tip>
