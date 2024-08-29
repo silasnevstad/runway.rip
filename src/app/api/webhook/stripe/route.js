@@ -30,19 +30,19 @@ export async function POST(req) {
     // Handle the event
     switch (event.type) {
         case 'checkout.session.async_payment_failed':
-            await handleAsyncPaymentFailed(event.data.object);
+            // Handle payment failure
             break;
         case 'checkout.session.async_payment_succeeded':
-            await handleAsyncPaymentSucceeded(event.data.object);
+            // Handle successful payment
             break;
         case 'checkout.session.completed':
             await handleCheckoutSessionCompleted(event.data.object);
             break;
         case 'checkout.session.expired':
-            await handleCheckoutSessionExpired(event.data.object);
+            // Handle checkout session expiration
             break;
         case 'invoice.payment_failed':
-            await handleInvoicePaymentFailed(event.data.object);
+            // Handle payment failure
             break;
         default:
             console.log(`Unhandled event type ${event.type}`);
@@ -51,35 +51,16 @@ export async function POST(req) {
     return NextResponse.json({ received: true });
 }
 
-async function handleAsyncPaymentFailed(session) {
-    // Implement your logic here
-    console.log('Async payment failed:', session.id);
-    // You might want to update your database, send a notification, etc.
-}
-
-async function handleAsyncPaymentSucceeded(session) {
-    // Implement your logic here
-    console.log('Async payment succeeded:', session.id);
-    // You might want to update your database, provision access to your product, etc.
-}
-
 async function handleCheckoutSessionCompleted(session) {
     const userEmail = session.customer_details.email;
     const accessToken = generateAccessToken();
 
     try {
-        // Grant repository access
         await grantRepoAccess(accessToken);
 
-        // Send email to user
         await sendAccessEmail(userEmail, accessToken);
-
-        // Store the access token (optional, depending on your needs)
-        await storeAccessToken(userEmail, accessToken);
-
     } catch (error) {
         console.error('Error handling successful payment:', error);
-        // Implement error handling (e.g., notify admin, retry logic)
     }
 }
 
@@ -88,8 +69,6 @@ function generateAccessToken() {
 }
 
 async function grantRepoAccess(accessToken, type) {
-    const repo = 'silasnevstad/runway-' + type;
-
     await octokit.repos.addCollaborator({
         owner: 'silasnevstad',
         repo: 'runway-' + type,
@@ -114,22 +93,4 @@ async function sendAccessEmail(email, accessToken, type) {
   `;
 
     await sendSupportEmail(email, 'Access to GitHub Repository', emailContent);
-}
-
-async function storeAccessToken(email, accessToken) {
-    // Implement your logic here
-    console.log('Storing access token:', accessToken);
-    // You might want to store the access token in your database
-}
-
-async function handleCheckoutSessionExpired(session) {
-    // Implement your logic here
-    console.log('Checkout session expired:', session.id);
-    // You might want to clean up any pending orders or send a follow-up email
-}
-
-async function handleInvoicePaymentFailed(invoice) {
-    // Implement your logic here
-    console.log('Invoice payment failed:', invoice.id);
-    // You might want to reach out to the customer or adjust their account status
 }
