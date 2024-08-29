@@ -22,5 +22,14 @@ export async function sendEmail({ to, from, subject, message }) {
     }
 }
 
+export async function sendSupportEmail(to, subject, message) {
+    return await sendEmail({
+        to: to,
+        from: process.env.NEXT_PUBLIC_SUPPORT_EMAIL,
+        subject,
+        message,
+    });
+}
+
 
 

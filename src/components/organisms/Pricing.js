@@ -18,7 +18,7 @@ const Pricing = () => {
     return (
         <div className="flex max-md:flex-col gap-10 w-full max-sm:gap-8">
             {plans.map((plan, index) => (
-                <PricingCard key={index} title={plan.title} oldPrice={plan.oldPrice} price={plan.price} includedFeatures={plan.features} allFeatures={allFeatures} isPopular={plan.isPopular}/>
+                <PricingCard key={index} type={plan.type} title={plan.title} oldPrice={plan.oldPrice} price={plan.price} includedFeatures={plan.features} allFeatures={allFeatures} isPopular={plan.isPopular}/>
             ))}
         </div>
     );

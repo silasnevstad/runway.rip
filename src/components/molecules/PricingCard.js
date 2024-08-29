@@ -1,12 +1,44 @@
+'use client'
+
+import React, { useEffect } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
 import {CheckIcon, RocketLaunchIcon, XMarkIcon} from "@heroicons/react/24/solid";
 import Badge from "@/components/atoms/Badge";
 import Button from "@/components/atoms/Button";
 import config from "@/config";
 
-const PricingCard = ({ title, oldPrice, price, includedFeatures, allFeatures, isPopular }) => {
+const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
+
+const PricingCard = ({ type, title, oldPrice, price, includedFeatures, allFeatures, isPopular }) => {
     const { appName } = config;
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const response = await fetch('/api/checkout_sessions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: { type } }),
+        });
+
+        const { sessionId } = await response.json();
+
+        const stripe = await stripePromise;
+        const result = await stripe.redirectToCheckout({
+            sessionId,
+        });
+
+        if (result.error) {
+            console.error(result.error.message);
+        }
+    };
+
     return (
-        <div className={`relative flex flex-col gap-6 px-8 py-10 rounded-2xl w-full bg-bg-0 dark:bg-gray-900 shadow-sm ${isPopular ? "border-2 border-primary-400" : ""}`}>
+        <form onSubmit={handleSubmit} className={`relative flex flex-col gap-6 px-8 py-10 rounded-2xl w-full bg-bg-0 dark:bg-gray-900 shadow-sm ${isPopular ? "border-2 border-primary-400" : ""}`}>
             {isPopular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <Badge shape="pill" style="solid">
@@ -24,23 +56,24 @@ const PricingCard = ({ title, oldPrice, price, includedFeatures, allFeatures, is
             </div>
 
             <ul className="flex flex-col gap-3 mt-3 mb-5">
-            {allFeatures.map((feature, index) => (
+                {allFeatures.map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                         {includedFeatures.includes(feature) ? (
-                            <CheckIcon className="w-6 h-6 text-primary-500" />
+                            <CheckIcon className="w-6 h-6 text-primary-500"/>
                         ) : (
-                            <XMarkIcon className="w-6 h-6 text-red-500" />
+                            <XMarkIcon className="w-6 h-6 text-red-500"/>
                         )}
-                        <span className={`text-base font-semibold ${includedFeatures.includes(feature) ? "opacity-100" : "opacity-40"}`}>{feature}</span>
+                        <span
+                            className={`text-base font-semibold ${includedFeatures.includes(feature) ? "opacity-100" : "opacity-40"}`}>{feature}</span>
                     </li>
                 ))}
             </ul>
-            <Button>
-                <RocketLaunchIcon className="w-5 h-5" />
+            <Button type="submit" role="link">
+                <RocketLaunchIcon className="w-5 h-5"/>
                 Get {appName}
             </Button>
             <p className="text-base font-semibold opacity-40 text-center -mt-2">Pay once, unlimited uses!</p>
-        </div>
+        </form>
     );
 }
 

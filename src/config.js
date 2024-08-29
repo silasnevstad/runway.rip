@@ -144,6 +144,7 @@ export const landingConfig = {
 export const pricingConfig = {
     plans: [
         {
+            type: "starter",
             title: "Starter",
             oldPrice: 69,
             price: 49,
@@ -159,6 +160,7 @@ export const pricingConfig = {
             priceId: "price_1Pr8LGGjMg6waABSg1bjDLEQ"
         },
         {
+            type: "pro",
             title: "Pro",
             oldPrice: 149,
             price: 99,
