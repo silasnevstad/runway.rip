@@ -4,6 +4,7 @@ import Sidebar from "@/components/organisms/sidebars/Sidebar";
 import DocumentationSidebar from "@/components/organisms/sidebars/DocumentationSidebar";
 import Breadcrumb from "@/components/atoms/Breadcrumb";
 import SearchBar from "@/components/molecules/SearchBar";
+import ThemeSwitch from "@/components/molecules/ThemeSwitch";
 import { useRouter } from 'next/navigation'
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
 
@@ -29,7 +30,8 @@ function DocumentationPageLayout({ children }) {
             <main className="ml-64 w-full relative">
                 <div className="sticky top-0 right-0 pt-5 pl-10 pr-5 z-10 flex justify-between items-start">
                     <p></p>
-                    <div className="ml-4">
+                    <div className="flex items-center ml-4 gap-4">
+                        <ThemeSwitch />
                         <SearchBar
                             items={DocsNav}
                             onItemSelect={handleSearchSelect}
@@ -41,7 +43,7 @@ function DocumentationPageLayout({ children }) {
                         />
                     </div>
                 </div>
-                <div className="-mt-16 p-10 pr-5">
+                <div className="-mt-16 p-10 pr-5 w-full">
                     <Breadcrumb sections={DocsNav}/>
                     {children}
                 </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Switch from "@/components/atoms/Switch";
 
-const PreviewCode = ({ children, preview }) => {
+const PreviewCode = ({ children, preview, border = true }) => {
     const [showPreview, setShowPreview] = useState(true);
 
     return (
@@ -19,11 +19,16 @@ const PreviewCode = ({ children, preview }) => {
                 shape="rounded-xl"
             />
             {showPreview ?
-                <div className="flex justify-center border rounded-lg border-bg-200 dark:border-gray-900 py-5 shadow-sm">
+                <div
+                    className={`flex justify-center ${border && 'border rounded-lg border-bg-200 dark:border-gray-900'} py-5 shadow-sm`}>
                     {preview}
                 </div>
-            :
-                children
+                :
+                <div
+                    className="flex w-full flex-col -mt-3">
+                    {children}
+                </div>
+
             }
         </div>
     );

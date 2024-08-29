@@ -10,7 +10,6 @@ onThisPage:
     href: "#usage-examples"
 ---
 <div id="checkbox" />
-<br/>
 <Divider />
 <br/>
 <br />
@@ -59,16 +58,12 @@ onThisPage:
 The `Checkbox` component provides a customizable checkbox input with various styling options and label positioning.
 
 <Tip>
-    Use the `labelPosition` prop to control the placement of the label relative to the checkbox.
+    Use the `circle` and `color` props to customize the appearance of the checkbox.
 </Tip>
-<Warning>
-    The Checkbox component uses the 'use client' directive, ensuring it's only rendered on the client-side. Be mindful of this when using it in your Next.js application.
-</Warning>
 
 <br/>
 <br/>
 <Divider />
-<br/>
 
 <div id="props" />
 
@@ -80,16 +75,21 @@ The `Checkbox` component provides a customizable checkbox input with various sty
 | id | string | - | Unique identifier for the checkbox |
 | name | string | - | Name attribute for the checkbox |
 | label | string | - | Label text for the checkbox |
+| helperText | string | - | Helper text to display below the checkbox |
 | checked | boolean | false | Whether the checkbox is checked |
 | onChange | function | - | Function to handle checkbox state changes |
-| labelPosition | 'left' \| 'right' | 'left' | Position of the label relative to the checkbox |
+| labelPosition | 'left' \| 'right' | 'right' | Position of the label relative to the checkbox |
+| color | string | 'primary' | Color scheme of the checkbox |
 | disabled | boolean | false | Whether the checkbox is disabled |
-| ripple | boolean | false | Whether to apply a ripple effect |
 | circle | boolean | false | Whether to make the checkbox circular |
 
 <Tip>
-    Use the `labelPosition` prop to control the layout of your checkbox and label.
+    Use the `color` prop to change the color of the checkbox
+    (<span className="text-primary-500">primary</span>, <span className="text-purple-500">purple</span>, <span className="text-red-500">red</span>, etc).
 </Tip>
+<Info>
+    Use the `labelPosition` prop to control the layout of your checkbox and label.
+</Info>
 
 <br/>
 <br/>
@@ -119,13 +119,13 @@ The `Checkbox` component provides a customizable checkbox input with various sty
 ```
 </PreviewCode>
 
-### Checkbox with Right Label
+### Checkbox with Left Label
 <PreviewCode preview={
     <Checkbox
         id="newsletter"
         name="newsletter"
         label="Subscribe to newsletter"
-        labelPosition="right"
+        labelPosition="left"
     />
 }>
 ```jsx
@@ -133,7 +133,7 @@ The `Checkbox` component provides a customizable checkbox input with various sty
   id="newsletter"
   name="newsletter"
   label="Subscribe to newsletter"
-  labelPosition="right"
+  labelPosition="left"
   checked={isSubscribed}
   onChange={(e) => setIsSubscribed(e.target.checked)}
 />
@@ -164,6 +164,26 @@ The `Checkbox` component provides a customizable checkbox input with various sty
 ```
 </PreviewCode>
 
+### Checkbox with Helper Text
+<PreviewCode preview={
+    <Checkbox
+        id="rememberMe"
+        name="rememberMe"
+        label="Remember me"
+        helperText="Keep me logged in"
+    />
+}>
+```jsx
+<Checkbox
+  id="rememberMe"
+  name="rememberMe"
+  label="Remember me"
+  checked={isRemembered}
+  onChange={(e) => setIsRemembered(e.target.checked)}
+/>
+```
+</PreviewCode>
+
 ### Disabled Checkbox
 <PreviewCode preview={
     <Checkbox
@@ -179,27 +199,6 @@ The `Checkbox` component provides a customizable checkbox input with various sty
   name="disabled"
   label="This checkbox is disabled"
   disabled
-/>
-```
-</PreviewCode>
-
-### Checkbox with Ripple Effect
-<PreviewCode preview={
-    <Checkbox
-        id="ripple-checkbox"
-        name="ripple-checkbox"
-        label="Checkbox with ripple effect"
-        ripple
-    />
-}>
-```jsx
-<Checkbox
-  id="ripple-checkbox"
-  name="ripple-checkbox"
-  label="Checkbox with ripple effect"
-  ripple={true}
-  checked={isRippleChecked}
-  onChange={(e) => setIsRippleChecked(e.target.checked)}
 />
 ```
 </PreviewCode>

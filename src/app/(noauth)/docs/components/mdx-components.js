@@ -3,6 +3,8 @@ import Link from "next/link";
 import Divider from "@/components/atoms/Divider";
 import Code from "@/app/(noauth)/docs/components/Code";
 import PreviewCode from "@/app/(noauth)/docs/components/PreviewCode";
+import ClientSideToggle from "@/app/(noauth)/docs/components/ClientSideToggle";
+import ClientSideCheckbox from "@/app/(noauth)/docs/components/ClientSideCheckbox";
 import { InformationCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 export function useMDXComponents(components) {
@@ -67,6 +69,8 @@ export function useMDXComponents(components) {
         ),
         code: Code,
         PreviewCode: PreviewCode,
+        Toggle: ClientSideToggle,
+        Checkbox: ClientSideCheckbox,
         pre: ({ children }) => <div className="my-4">{children}</div>,
         blockquote: ({ children }) => (
             <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">

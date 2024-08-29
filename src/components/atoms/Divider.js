@@ -1,24 +1,32 @@
 const Divider = ({
-    orientation = 'horizontal',
-    text = '',
     className = '',
-    style = {}
+    text = '',
+    vertical = false,
+    color = 'gray',
+    opacity = 70,
+    margin = 2,
+    width = 0.5,
+    noWrap = true,
 }) => {
-    const baseStyle = orientation === 'horizontal'
-        ? 'w-full h-0.5'
-        : 'w-0.5 h-full';
+    const baseStyle = !vertical
+        ? `w-full h-${width}`
+        : `w-${width} h-full`;
 
-    const dividerClass = `bg-gray-200 dark:bg-gray-800 opacity-50 ${baseStyle} ${className}`;
+    const dividerClass = `bg-${color}-200 dark:bg-${color}-800 opacity-${opacity} 
+        ${vertical ? `mx-${margin}` : `my-${margin}`}
+        ${baseStyle} ${className}`;
 
     return (
         text ? (
-            <div className="flex items-center gap-4 m-6" style={style}>
+            <div className={
+                `flex ${vertical ? 'h-full' : 'w-full'} items-center ${vertical ? `mx-${margin}` : `my-${margin}`}`
+            }>
                 <div className={dividerClass}></div>
-                <p className="text-gray-600 dark:text-gray-400">{text}</p>
+                <p className={`text-gray-600 dark:text-gray-400 px-5 ${noWrap && 'whitespace-nowrap'}`}>{text}</p>
                 <div className={dividerClass}></div>
             </div>
         ) : (
-            <div className={dividerClass} style={style}></div>
+            <div className={dividerClass}></div>
         )
     );
 };

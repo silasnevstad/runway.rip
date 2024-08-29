@@ -99,14 +99,13 @@ export default async function DocsPage({ params }) {
         LetterAvatar: require("@/components/atoms/Avatar").LetterAvatar,
         AvatarList: require("@/components/atoms/Avatar").AvatarList,
         Card: require("@/components/molecules/Card").default,
-        Checkbox: require("@/components/atoms/Checkbox").default,
         Slider: require("@/components/atoms/Slider").default,
         Switch: require("@/components/atoms/Switch").default,
-        Toggle: require("@/components/atoms/Toggle").default,
         TextLink: require("@/components/atoms/TextLink").default,
         DropdownText: require("@/components/atoms/DropdownText").default,
         Breadcrumb: require("@/components/atoms/Breadcrumb").default,
         Loader: require("@/components/atoms/Loader").default,
+        CodeBlock: require("@/components/atoms/CodeBlock").default,
         UserIcon: UserIcon,
     });
 
@@ -129,7 +128,7 @@ export default async function DocsPage({ params }) {
     const onThisPage = frontmatter.onThisPage || [];
 
     return (
-        <div className="flex flex-col items-start md:flex-row gap-8 justify-between mt-10">
+        <div className="flex flex-col w-full items-start md:flex-row gap-8 justify-between mt-10">
             <div className="flex-grow max-w-prose">
                 <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                     {pageTitle}
@@ -137,7 +136,7 @@ export default async function DocsPage({ params }) {
                 {pageDescription && (
                     <p className="text-xl text-gray-800 dark:text-gray-200 mb-8">{pageDescription}</p>
                 )}
-                <div className="max-w-prose max-md:prose-sm">
+                <div className="w-full">
                     {content}
                 </div>
             </div>

@@ -8,18 +8,16 @@ const Checkbox = ({
     id,
     name,
     label,
+    helperText,
     checked = false,
     onChange,
-    labelPosition = 'left',
+    labelPosition = 'right',
     color = 'primary',
     disabled = false,
-    ripple = false,
     circle = false,
 }) => {
-    const labelClasses = `mx-3 font-medium`;
     const checkboxClasses = `checkbox h-4 w-4 border-gray-300 text-${color}-500 
         ${circle ? 'rounded-full' : 'rounded'} 
-        ${ripple ? 'ripple' : ''} 
         ${makeClassNameImportant(className)}`
 
     return (
@@ -34,9 +32,12 @@ const Checkbox = ({
                 onChange={onChange}
                 disabled={disabled}
             />
-            <label htmlFor={id} className={labelClasses}>
-                {label}
-            </label>
+            <div className={`flex flex-col items-center justify-start ${helperText && 'mt-4'}`}>
+                <label htmlFor={id} className="mx-3 font-medium">
+                    {label}
+                </label>
+                {helperText && <p className="text-xs text-gray-500">{helperText}</p>}
+            </div>
         </div>
     );
 };

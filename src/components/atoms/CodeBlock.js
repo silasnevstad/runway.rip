@@ -1,55 +1,75 @@
 'use client'
 
-import React, { useState } from 'react';
-import { FiCopy, FiCheck } from 'react-icons/fi';
+import { useState } from "react";
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneLight, atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { useTheme } from "next-themes";
+import { ClipboardIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 
 const CodeBlock = ({
-    children,
-    language = 'plain',
+    children: code,
+    language,
     showLineNumbers = false,
     startingLineNumber = 1,
+    copy = false,
+    wrapLines = false,
+    showLanguage = false,
 }) => {
+    const { theme } = useTheme();
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(children);
+        navigator.clipboard.writeText(code);
         setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
-
-    const codeLines = children.trim().split('\n');
+        setTimeout(() => {
+            setCopied(false);
+        }, 2000);
+    }
 
     return (
-        <div className={`text-sm mt-4 mb-6 bg-bg-50 dark:bg-bg-900 text-gray-100 rounded-lg 
-            border-l border-r border-b border-bg-400 dark:border-gray-700`}>
-            <div className={`flex items-center justify-between bg-bg-600 dark:bg-bg-700 px-4 py-3 
-                border-b border-gray-500 dark:border-gray-700 rounded-t-lg`}>
-                <span className="text-sm opacity-60">{language}</span>
-                <button
-                    onClick={handleCopy}
-                    className="text-sm flex items-center space-x-1 transition-colors duration-200"
-                >
-                    {copied ? (
-                        <FiCheck className="text-green-500" />
-                    ) : (
-                        <FiCopy className={`text-gray-400 hover:text-gray-200`} />
-                    )}
-                </button>
-            </div>
-            <div className="font-mono overflow-x-auto text-black dark:text-white">
-                <pre className="p-4 py-5">
-                    {codeLines.map((line, index) => (
-                        <div key={index} className="table-row">
-                            {showLineNumbers && (
-                                <span className="table-cell text-right pr-4 select-none opacity-50">
-                                    {startingLineNumber + index}
-                                </span>
+        <div className="flex w-full flex-col bg-gray-900 dark:bg-bg-800 border border-bg-200 dark:border-gray-900 rounded-lg rounded-t-xl">
+            {copy || showLanguage ? (
+                <div className="flex items-center justify-between p-2 pr-3 bg-bg-200 dark:bg-gray-900 rounded-t-lg">
+                    {showLanguage ? (
+                        <p className="text-xs font-medium opacity-30">
+                            {language}
+                        </p>
+                    ) : (<p></p>)}
+                    {copy && (
+                        <div
+                            className={
+                                `flex items-center gap-1 hover:opacity-90 ${copied ? 'opacity-90' : 'opacity-65'} transition-opacity cursor-pointer`
+                            }
+                            onClick={handleCopy}
+                        >
+                            {copied ? (
+                                <CheckCircleIcon className="w-5 h-5 text-green-500"/>
+                            ) : (
+                                <ClipboardIcon className="w-5 h-5"/>
                             )}
-                            <code className="table-cell">{line}</code>
+                            <button className={`text-sm font-medium ${copied && 'text-green-500'} focus:outline-none`}>
+                                {copied ? 'Copied' : 'Copy'}
+                            </button>
                         </div>
-                    ))}
-                </pre>
-            </div>
+                    )}
+                </div>
+            ) : null}
+            <SyntaxHighlighter
+                language={language}
+                style={theme === 'light' ? atomOneLight : atomOneDark}
+                wrapLines={wrapLines}
+                showLineNumbers={showLineNumbers}
+                startingLineNumber={startingLineNumber}
+                customStyle={{
+                    borderRadius: '0.3rem',
+                    borderTopLeftRadius: '0rem',
+                    borderTopRightRadius: '0rem',
+                    backgroundColor: 'transparent'
+                }}
+                lineNumberStyle={{opacity: 0.7}}
+            >
+                {code.trim()}
+            </SyntaxHighlighter>
         </div>
     );
 };

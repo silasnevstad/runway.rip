@@ -29,10 +29,6 @@ html {
   background-clip: content-box;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -61,5 +57,11 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer base{
+  body {
+    @apply dark:bg-bg-900 bg-bg-50 dark:text-white text-black;
   }
 }

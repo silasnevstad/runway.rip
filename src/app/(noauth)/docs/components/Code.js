@@ -1,6 +1,5 @@
 'use client'
 
-import CodeSyntaxHighlighter from "@/components/atoms/CodeSyntaxHighlighter";
 import CodeBlock from "@/components/atoms/CodeBlock";
 
 const Code = ({ children, className, ...props }) => {
@@ -28,31 +27,19 @@ const Code = ({ children, className, ...props }) => {
     // Remove backticks if present and unescape HTML entities
     const cleanedCode = codeString.replace(/`/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
-    if (language === 'bash') {
-        return (
-            <CodeBlock
-                language={language}
-                showLineNumbers={true}
-                startingLineNumber={1}
-                darkTheme={true}
-                {...props}
-            >
-                {cleanedCode}
-            </CodeBlock>
-        );
-    }
-
     return (
-        <CodeSyntaxHighlighter
+        <CodeBlock
             language={language}
             showLineNumbers={true}
             startingLineNumber={1}
             darkTheme={true}
             wrapLines={true}
+            copy
+            showLanguage
             {...props}
         >
             {cleanedCode}
-        </CodeSyntaxHighlighter>
+        </CodeBlock>
     );
 }
 

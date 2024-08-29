@@ -1,0 +1,108 @@
+---
+title: "Divider"
+description: "A customizable divider to separate content horizontally or vertically"
+onThisPage:
+  - title: "Divider"
+    href: "#divider"
+  - title: "Props"
+    href: "#props"
+  - title: "Usage Examples"
+    href: "#usage-examples"
+---
+<div id="divider" />
+<Divider />
+<br/>
+<br />
+
+<div className="flex flex-col w-full items-center justify-center">
+    <Divider color="primary" />
+    <Divider color="purple" />
+    <Divider color="orange" />
+    <Divider text="With Text" />
+    <Divider color="red" />
+    <Divider color="green" />
+    <Divider color="blue" />
+</div>
+<br/>
+<br/>
+<Divider />
+<br/>
+<br />
+
+The `Divider` component is a simple horizontal or vertical line that separates content. It can be customized with different colors, opacity levels, and text.
+
+<br/>
+<br/>
+<Divider />
+
+<div id="props" />
+
+## Props
+
+The Divider component accepts the following props:
+
+| Name     | Type     | Default | Description                                                                 |
+|----------|----------|---------|-----------------------------------------------------------------------------|
+| className | `string` |         | Custom CSS classes to apply to the divider                                 |
+| text      | `string` |         | Text to display between the divider lines                                  |
+| vertical  | `boolean` | `false` | Whether the divider should be vertical or horizontal                       |
+| color     | `string` | `gray`  | The color scheme of the divider                                            |
+| opacity   | `number` | `70`    | The opacity level of the divider (0-100)                                   |
+| margin    | `string` |         | Margin to apply to the divider                                            |
+| width     | `string` |         | Width of the divider                                                      |
+| noWrap    | `boolean` | `false` | Whether to prevent text wrapping in the divider text                       |
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="usage-examples" />
+
+## Usage Examples
+
+### Horizontal Divider
+<PreviewCode preview={
+    <Divider />
+}>
+```javascript
+<Divider />
+```
+</PreviewCode>
+
+### Vertical Divider
+<PreviewCode preview={
+    <Divider vertical />
+}>
+```javascript
+<Divider vertical />
+```
+</PreviewCode>
+
+### Divider with Text
+<PreviewCode preview={
+    <Divider text="With Text" noWrap={true} />
+}>
+```javascript
+<Divider text="With Text" noWrap={true} />
+```
+</PreviewCode>
+
+### Custom Divider
+<PreviewCode preview={
+    <Divider color="purple" opacity={100} margin="2" width="2" />
+}>
+```javascript
+<Divider color="purple" opacity={100} margin="2" width="2" />
+```
+</PreviewCode>
+
+<br />
+
+<Tip>
+    Use the `color` prop to change the color of the divider
+    (<span className="text-primary-500">primary</span>, <span className="text-purple-500">purple</span>, <span className="text-red-500">red</span>, etc).
+</Tip>
+
+<br />
+<br />
