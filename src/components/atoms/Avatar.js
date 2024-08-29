@@ -24,7 +24,10 @@ export const AvatarList = ({ avatars }) => {
     return (
         <div className="flex">
             {avatars.map((avatar, index) => (
-                <Avatar key={index} src={avatar.src} alt={avatar.alt} className={index > 0 ? "-ml-4" : ""}/>
+                avatar.src && avatar.alt ?
+                    <Avatar key={index} src={avatar.src} alt={avatar.alt} className={index > 0 ? "-ml-4" : ""}/>
+                :
+                    <LetterAvatar key={index} letter={avatar.letter} className={index > 0 ? "-ml-4" : ""}/>
             ))}
         </div>
     );

@@ -60,6 +60,7 @@ export const DocsNav = [
             { title: "PricingCard", href: "/docs/components/pricingcard" },
             { title: "RadarGraph", href: "/docs/components/radargraph" },
             { title: "Select", href: "/docs/components/select" },
+            { title: "Slider", href: "/docs/components/slider" },
             { title: "Switch", href: "/docs/components/switch" },
             { title: "SyntaxHighlighter", href: "/docs/components/syntaxhighlighter" },
             { title: "TextHighlight", href: "/docs/components/texthighlight" },

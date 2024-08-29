@@ -1,0 +1,178 @@
+---
+title: "Slider"
+description: "A customizable slider component for selecting values within a range"
+onThisPage:
+  - title: "Slider"
+    href: "#slider"
+  - title: "Props"
+    href: "#props"
+  - title: "Usage Examples"
+    href: "#usage-examples"
+---
+
+The Slider component is a versatile input element that allows users to select a value or range of values within a specified minimum and maximum.
+
+<br/>
+<Divider />
+<br/>
+<br />
+
+<div class="flex items-center gap-4 max-md:flex-col">
+    <Slider
+        min={0}
+        max={100}
+        step={1}
+        defaultValue={50}
+        valuePosition="left"
+        showValue={true}
+        showLabels={true}
+        className="my-4"
+    />
+    <Slider
+        min={0}
+        max={100}
+        step={1}
+        defaultValue={50}
+        valuePosition="right"
+        showValue={true}
+        className="my-4"
+    />
+</div>
+
+<br />
+
+<div id="slider" />
+## Slider
+
+The `Slider` component creates a customizable slider input that can be used for single value or range selection.
+
+```jsx
+'use client'
+
+import React, { useState } from 'react';
+import ReactSlider from 'react-slider';
+
+const Slider = ({
+    min = 0,
+    max = 100,
+    step = 1,
+    value,
+    onChange,
+    range = false,
+    className = '',
+    ...props
+}) => {
+    const [sliderValue, setSliderValue] = useState(value);
+
+    const handleChange = (newValue) => {
+        setSliderValue(newValue);
+        if (onChange) {
+            onChange(newValue);
+        }
+    };
+
+    return (
+        <ReactSlider
+            min={min}
+            max={max}
+            step={step}
+            value={sliderValue}
+            onChange={handleChange}
+            className={`h-2 ${className}`}
+            thumbClassName="w-4 h-4 cursor-grab bg-primary-500 rounded-full outline-none"
+            trackClassName="bg-gray-300 dark:bg-gray-700 rounded-full"
+            renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+            pearling
+            minDistance={range ? 10 : 0}
+            {...(range ? { className: `h-2 ${className}` } : {})}
+            {...props}
+        />
+    );
+};
+
+export default Slider;
+```
+
+<Tip>
+    Use the `range` prop to create a range slider with two thumbs.
+</Tip>
+<Warning>
+    The Slider component uses the 'use client' directive, ensuring it's only rendered on the client-side. Be mindful of this when using it in your Next.js application.
+</Warning>
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | string | - | Additional CSS classes to be applied |
+| children | ReactNode | - | The content to be displayed inside the card |
+| hoverEffect | 'none' \| 'shadow' \| 'scale' \| 'outline' | 'shadow' | The hover effect to apply to the card |
+| animationDelay | number | 0 | Delay in seconds before the animation starts |
+| animate | boolean | true | Whether to animate the card on mount |
+| border | boolean | true | Whether to display a border around the card |
+
+<Info>
+    The component also accepts any additional props that can be applied to the ReactSlider component.
+</Info>
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="usage-examples" />
+
+## Usage Examples
+
+### Basic Slider
+
+```jsx
+<Slider
+  min={0}
+  max={100}
+  value={50}
+  onChange={(value) => console.log(value)}
+/>
+```
+
+### Range Slider
+
+```jsx
+<Slider
+  min={0}
+  max={100}
+  value={[25, 75]}
+  range
+  onChange={(values) => console.log(values)}
+/>
+```
+
+### Custom Slider
+
+```jsx
+<Slider
+  min={0}
+  max={100}
+  step={10}
+  value={50}
+  className="bg-primary-500"
+  thumbClassName="w-6 h-6 cursor-grab bg-white rounded-full outline-none"
+  trackClassName="bg-gray-300 dark:bg-gray-700 rounded-full"
+  renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+  onChange={(value) => console.log(value)}
+/>
+```
+<br/>
+<Tip>
+    Experiment with different props and styles to create sliders that fit your design needs and use cases.
+</Tip>
+
+<br/>
+<br/>

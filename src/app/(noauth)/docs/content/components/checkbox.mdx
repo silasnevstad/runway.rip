@@ -9,7 +9,7 @@ onThisPage:
   - title: "Usage Examples"
     href: "#usage-examples"
 ---
-
+<div id="checkbox" />
 The Checkbox component provides a customizable checkbox input with various styling options and label positioning.
 
 <br/>
@@ -18,33 +18,46 @@ The Checkbox component provides a customizable checkbox input with various styli
 
 <br />
 
-<div class="flex flex-col space-y-4">
+<div className="flex w-full items-center">
     <Checkbox
-        label="Checkbox"
         hover
         checked
     />
     <Checkbox
-        label="Checkbox"
-        color="text-green-500"
+        color="green"
+        border
         checked
     />
     <Checkbox
-        label="Checkbox"
-        color="text-yellow-500"
+        color="yellow"
+        circle
         checked
     />
     <Checkbox
-        label="Checkbox"
+        color="purple"
+        circle
+    />
+    <Checkbox
+        color="red"
         checked
-        color="text-red-500"
+    />
+    <Checkbox
+        checked
+        color="green"
         disabled
+    />
+    <Checkbox
+        color="purple"
+        circle
+        checked
+    />
+    <Checkbox
+        color="primary"
+        checked
     />
 </div>
 
 <br />
-
-<div id="checkbox" />
 
 ```jsx
 import { makeClassNameImportant } from "@/utils/utils";
@@ -126,17 +139,33 @@ export default Checkbox;
 ## Usage Examples
 
 ### Basic Checkbox
+<PreviewCode preview={
+    <Checkbox
+        id="terms"
+        name="terms"
+        label="I agree to the terms and conditions"
+        checked
+    />
+}>
 ```jsx
 <Checkbox
   id="terms"
   name="terms"
   label="I agree to the terms and conditions"
-  checked={isChecked}
-  onChange={(e) => setIsChecked(e.target.checked)}
+  onChange={(e) => console.log(e.target.checked)}
 />
 ```
+</PreviewCode>
 
 ### Checkbox with Right Label
+<PreviewCode preview={
+    <Checkbox
+        id="newsletter"
+        name="newsletter"
+        label="Subscribe to newsletter"
+        labelPosition="right"
+    />
+}>
 ```jsx
 <Checkbox
   id="newsletter"
@@ -147,21 +176,41 @@ export default Checkbox;
   onChange={(e) => setIsSubscribed(e.target.checked)}
 />
 ```
+</PreviewCode>
 
 ### Circular Checkbox with Custom Color
+<PreviewCode preview={
+    <Checkbox
+        color="purple"
+        id="darkMode"
+        name="darkMode"
+        label="Enable dark mode"
+        circle
+        checked
+    />
+}>
 ```jsx
 <Checkbox
-  className="text-blue-500"
-  id="darkMode"
-  name="darkMode"
-  label="Enable dark mode"
-  circle
-  checked={isDarkMode}
-  onChange={(e) => setIsDarkMode(e.target.checked)}
+    color="purple"
+    id="darkMode"
+    name="darkMode"
+    label="Enable dark mode"
+    circle
+    checked={isDarkMode}
+    onChange={(e) => setIsDarkMode(e.target.checked)}
 />
 ```
+</PreviewCode>
 
 ### Disabled Checkbox
+<PreviewCode preview={
+    <Checkbox
+        id="disabled"
+        name="disabled"
+        label="This checkbox is disabled"
+        disabled
+    />
+}>
 ```jsx
 <Checkbox
   id="disabled"
@@ -170,8 +219,17 @@ export default Checkbox;
   disabled
 />
 ```
+</PreviewCode>
 
 ### Checkbox with Ripple Effect
+<PreviewCode preview={
+    <Checkbox
+        id="ripple-checkbox"
+        name="ripple-checkbox"
+        label="Checkbox with ripple effect"
+        ripple
+    />
+}>
 ```jsx
 <Checkbox
   id="ripple-checkbox"
@@ -182,9 +240,12 @@ export default Checkbox;
   onChange={(e) => setIsRippleChecked(e.target.checked)}
 />
 ```
+</PreviewCode>
+
+<br />
 
 <Tip>
-    Combine different props to create checkboxes that match your design requirements and user interaction needs.
+    You can customize the appearance of the Checkbox component by passing additional classes or props.
 </Tip>
 
 <br />

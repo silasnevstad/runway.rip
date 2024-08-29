@@ -1,3 +1,35 @@
+---
+title: "Switch"
+description: "A customizable switch component for toggling between states"
+onThisPage:
+  - title: "Switch"
+    href: "#switch"
+  - title: "Props"
+    href: "#props"
+  - title: "Usage Examples"
+    href: "#usage-examples"
+---
+
+The Switch component is a versatile toggle switch that can be used to enable or disable a feature or setting.
+
+<br/>
+<Divider />
+<br/>
+<br />
+
+<PreviewCode preview={
+    <Switch
+        options={[
+            { name: 'Option 1', value: 'opt1' },
+            { name: 'Option 2', value: 'opt2' },
+        ]}
+        selected="opt1"
+        shape="rounded-lg"
+        border
+        hover
+    />
+}>
+```jsx
 'use client'
 
 import React from 'react';
@@ -34,9 +66,9 @@ const Switcher = ({
                 <Tooltip key={index} text={tooltip ? option.name : ''} position="top">
                     <button
                         className={`
-                            whitespace-nowrap flex items-center gap-2 py-2.5 px-5 
-                            text-center ${shape} ${hoverStyle} 
-                            ${vertical ? 'flex-col' : 'flex-row'} 
+                            whitespace-nowrap flex items-center gap-2 py-2.5 px-5
+                            text-center ${shape} ${hoverStyle}
+                            ${vertical ? 'flex-col' : 'flex-row'}
                             ${colorStyles(selected === option.value)}
                             transition-all duration-200 ease-in-out
                         `}
@@ -52,3 +84,5 @@ const Switcher = ({
 }
 
 export default Switcher;
+```
+</PreviewCode>

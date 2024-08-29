@@ -114,29 +114,47 @@ export const AvatarList = ({ avatars }) => {
 <br/>
 
 <div id="usage-examples" />
-## Usage Examples
-### Basic Avatar
 
+## Usage Examples
+
+### Basic Avatar
+<PreviewCode preview={
+    <Avatar src="/images/elon-avatar.png" alt="Elon Musk" />
+}>
 ```jsx
 <Avatar src="/public/images/user.jpg" alt="User Name" />
 ```
+</PreviewCode>
 
 ### Letter Avatar
+<PreviewCode preview={
+    <LetterAvatar letter="J" />
+}>
 ```jsx
 <LetterAvatar letter="J" />
 ```
+</PreviewCode>
 
 ### Avatar List
+<PreviewCode preview={
+    <AvatarList avatars={[
+        { letter: "A" },
+        { letter: "B" },
+        { letter: "C" },
+    ]} />
+}>
 ```jsx
-const users = [
-    { src: "/public/user1.jpg", alt: "User 1" },
-    { src: "/public/user2.jpg", alt: "User 2" },
-    { src: "/public/user3.jpg", alt: "User 3" },
-];
-
-<AvatarList avatars={users} />
+<AvatarList avatars={[
+    { letter: "A" },
+    { letter: "B" },
+    { letter: "C" },
+]} />
 ```
+</PreviewCode>
+<br/>
+<Info>
+    When using `AvatarList`, either provide a valid image URL or a letter for each avatar. The component will automatically render the appropriate avatar type based on the provided data.
+</Info>
 
-<Warning>
-    When using `AvatarList`, ensure that each avatar object in the array has both `src` and `alt` properties to avoid rendering issues.
-</Warning>
+<br/>
+<br/>

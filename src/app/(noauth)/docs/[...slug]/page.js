@@ -95,8 +95,11 @@ export default async function DocsPage({ params }) {
         Badge: require("@/components/atoms/Badge").default,
         Avatar: require("@/components/atoms/Avatar").Avatar,
         LetterAvatar: require("@/components/atoms/Avatar").LetterAvatar,
+        AvatarList: require("@/components/atoms/Avatar").AvatarList,
         Card: require("@/components/molecules/Card").default,
         Checkbox: require("@/components/atoms/Checkbox").default,
+        Slider: require("@/components/atoms/Slider").default,
+        Switch: require("@/components/atoms/Switcher").default,
     });
 
     const { content, frontmatter } = await compileMDX({

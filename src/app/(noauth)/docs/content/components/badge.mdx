@@ -138,26 +138,49 @@ The Badge component accepts the following props:
 
 ## Usage Examples
 ### Basic Badge
-
+<PreviewCode preview={
+    <Badge>New</Badge>
+}>
 ```jsx
 <Badge>New</Badge>
 ```
+</PreviewCode>
 
 ### Customized Badge
+<PreviewCode preview={
+    <Badge shape="square" style="solid" color="green" border>
+        Success
+    </Badge>
+}>
 ```jsx
 <Badge shape="square" style="solid" color="green" border>
   Success
 </Badge>
 ```
+</PreviewCode>
 
 ### Badge with Hover Effect
+<PreviewCode preview={
+    <Badge hover>
+        Click me
+    </Badge>
+}>
 ```jsx
 <Badge hover onClick={() => console.log('Badge clicked')}>
   Click me
 </Badge>
 ```
+</PreviewCode>
 
 ### Different Colors and Styles
+<PreviewCode preview={
+    <div className="flex gap-2">
+        <Badge color="primary">Primary</Badge>
+        <Badge color="red" style="solid">Red</Badge>
+        <Badge color="yellow">Yellow</Badge>
+        <Badge color="blue" style="solid">Blue</Badge>
+    </div>
+}>
 ```jsx
 <div className="flex gap-2">
   <Badge color="primary">Primary</Badge>
@@ -166,3 +189,4 @@ The Badge component accepts the following props:
   <Badge color="blue" style="solid">Blue</Badge>
 </div>
 ```
+</PreviewCode>

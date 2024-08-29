@@ -47,7 +47,7 @@ const Badge = ({
         ? `border ${borderColor}`
         : '';
 
-    const hoverStyles = hover ? `hover:scale-101 transition-all ease-in-out` : '';
+    const hoverStyles = hover ? `hover:-translate-y-1 transition-all ease-in-out` : '';
 
     const combinedStyles = [
         baseStyles,

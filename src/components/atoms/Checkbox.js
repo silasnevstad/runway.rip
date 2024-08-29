@@ -11,16 +11,22 @@ const Checkbox = ({
     checked = false,
     onChange,
     labelPosition = 'left',
+    color = 'primary',
     disabled = false,
     ripple = false,
-    circle = false
+    circle = false,
 }) => {
     const labelClasses = `mx-3 font-medium`;
+    const checkboxClasses = `checkbox h-4 w-4 border-gray-300 text-${color}-500 
+        ${circle ? 'rounded-full' : 'rounded'} 
+        ${ripple ? 'ripple' : ''} 
+        ${makeClassNameImportant(className)}`
 
     return (
-        <div className={`flex ${labelPosition === 'left' ? 'flex-row-reverse' : 'flex-row'} items-center justify-center ${disabled ? 'opacity-50' : ''}`}>
+        <div className={`flex ${labelPosition === 'left' ? 'flex-row-reverse' : 'flex-row'} items-center justify-center 
+            ${disabled ? 'opacity-50' : ''} ${makeClassNameImportant(className)}`}>
             <input
-                className={`checkbox h-4 w-4 ${circle ? 'rounded-full' : 'rounded'} border-gray-300 text-primary-500 ${ripple ? 'ripple' : ''} ${makeClassNameImportant(className)}`}
+                className={checkboxClasses}
                 type="checkbox"
                 id={id}
                 name={name}

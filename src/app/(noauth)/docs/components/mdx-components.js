@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import CodeBlock from "@/components/atoms/CodeBlock";
 import Divider from "@/components/atoms/Divider";
-import CodeSyntaxHighlighter from "@/components/atoms/CodeSyntaxHighlighter";
+import Code from "@/app/(noauth)/docs/components/Code";
+import PreviewCode from "@/app/(noauth)/docs/components/PreviewCode";
+import { InformationCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 export function useMDXComponents(components) {
     return {
@@ -14,22 +15,38 @@ export function useMDXComponents(components) {
         ol: ({ children }) => <ol className="list-decimal list-inside my-4">{children}</ol>,
         li: ({ children }) => <li className="my-1">{children}</li>,
         Required: ({ children }) => (
-            <div className="bg-bg-200 dark:bg-bg-800 border-l-4 border-yellow-500 px-4 py-1 my-2">
+            <div className="bg-yellow-500/20 rounded-lg border border-yellow-500 p-4 my-4">
+                <p className="flex items-center text-sm text-yellow-500 font-semibold">
+                    <ExclamationCircleIcon className="w-5 h-5 inline-block mr-1" />
+                    Required
+                </p>
                 {children}
             </div>
         ),
-        Info: ({ children }) => (
-            <div className="bg-bg-200 dark:bg-bg-800 border-l-4 border-blue-500 p-4 my-4">
+        Info: ({children}) => (
+            <div className="bg-blue-500/20 rounded-lg border border-blue-500 p-4 my-4">
+                <p className="flex items-center text-sm text-blue-500 font-semibold">
+                    <InformationCircleIcon className="w-5 h-5 inline-block mr-1" />
+                    Info
+                </p>
                 {children}
             </div>
         ),
-        Tip: ({ children }) => (
-            <div className="bg-bg-200 dark:bg-bg-800 border-l-4 border-green-500 p-4 my-4">
+        Tip: ({children}) => (
+            <div className="bg-green-500/20 rounded-lg border border-green-500 p-4 my-4">
+                <p className="flex items-center text-sm text-green-500 font-semibold">
+                    <ExclamationCircleIcon className="w-5 h-5 inline-block mr-1" />
+                    Tip!
+                </p>
                 {children}
             </div>
         ),
-        Warning: ({ children }) => (
-            <div className="bg-bg-200 dark:bg-bg-800 border-l-4 border-red-500 p-4 my-4">
+        Warning: ({children}) => (
+            <div className="bg-red-500/20 rounded-lg border border-red-500 p-4 my-4">
+                <p className="flex items-center text-sm text-red-500 font-semibold">
+                    <ExclamationTriangleIcon className="w-5 h-5 inline-block mr-1" />
+                    Warning!
+                </p>
                 {children}
             </div>
         ),
@@ -48,58 +65,8 @@ export function useMDXComponents(components) {
                 layout="responsive"
             />
         ),
-        code: ({ children, className, ...props }) => {
-            // This handles inline code
-            if (!className) {
-                return <code className="bg-bg-300 dark:bg-bg-500/40 rounded px-1 py-0.5">{children}</code>;
-            }
-
-            // This handles code blocks (remove hljs class)
-            const language = className.replace('language-', '').replace('hljs', '').trim();
-
-            // Function to extract text content from React elements
-            const extractText = (element) => {
-                if (typeof element === 'string') return element;
-                if (Array.isArray(element)) return element.map(extractText).join('');
-                if (element && typeof element === 'object' && 'props' in element) {
-                    return extractText(element.props.children);
-                }
-                return '';
-            };
-
-            // Extract the text content
-            const codeString = extractText(children);
-
-            // Remove backticks if present and unescape HTML entities
-            const cleanedCode = codeString.replace(/`/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-
-            if (language === 'bash') {
-                return (
-                    <CodeBlock
-                        language={language}
-                        showLineNumbers={true}
-                        startingLineNumber={1}
-                        darkTheme={true}
-                        {...props}
-                    >
-                        {cleanedCode}
-                    </CodeBlock>
-                );
-            }
-
-            return (
-                <CodeSyntaxHighlighter
-                    language={language}
-                    showLineNumbers={true}
-                    startingLineNumber={1}
-                    darkTheme={true}
-                    wrapLines={true}
-                    {...props}
-                >
-                    {cleanedCode}
-                </CodeSyntaxHighlighter>
-            );
-        },
+        code: Code,
+        PreviewCode: PreviewCode,
         pre: ({ children }) => <div className="my-4">{children}</div>,
         blockquote: ({ children }) => (
             <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">
