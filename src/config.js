@@ -156,6 +156,7 @@ export const pricingConfig = {
                 "Supabase",
                 "Mailgun",
             ],
+            priceId: "price_1Pr8LGGjMg6waABSg1bjDLEQ"
         },
         {
             title: "Pro",
@@ -173,7 +174,8 @@ export const pricingConfig = {
                 "Discord community",
                 "Lifetime updates"
             ],
-            isPopular: true
+            isPopular: true,
+            priceId: "price_1Pr8LfGjMg6waABSu7URa9qT"
         }
     ]
 };
