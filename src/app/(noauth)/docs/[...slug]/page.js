@@ -105,6 +105,7 @@ export default async function DocsPage({ params }) {
         TextLink: require("@/components/atoms/TextLink").default,
         DropdownText: require("@/components/atoms/DropdownText").default,
         Breadcrumb: require("@/components/atoms/Breadcrumb").default,
+        Loader: require("@/components/atoms/Loader").default,
     });
 
     const { content, frontmatter } = await compileMDX({

@@ -1,0 +1,100 @@
+---
+title: "Loader"
+description: "A loader component that displays a loading animation."
+onThisPage:
+  - title: "Loader"
+    href: "#loader"
+  - title: "Props"
+    href: "#props"
+  - title: "Usage Examples"
+    href: "#usage-examples"
+---
+
+<Divider />
+<br/>
+<br/>
+
+<div className="flex flex-col justify-center items-center gap-10">
+    <Loader type="spinner" className="h-5 w-5 text-primary-500" />
+    <Loader type="dots" className="h-5 w-5 text-primary-500" />
+</div>
+
+<div id="loader" />
+
+## Loader
+
+The `Loader` component is a loader component that displays a loading animation. It is a great way to show users that content is loading and to keep them engaged while they wait.
+
+```jsx
+import React from 'react';
+
+const Loader = ({ type = 'spinner', className = '' }) => {
+    if (type === 'spinner') {
+        return (
+            <svg className={`animate-spin h-5 w-5 text-primary-500 ${className}`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.313 1.353 6.315 3.514 8.485l2.486-2.194z"></path>
+            </svg>
+        );
+    } else if (type === 'dots') {
+        return (
+            <div className={`flex space-x-1 text-primary-500 ${className}`}>
+                <div className="bg-current rounded-full w-2 h-2 animate-bounce1"></div>
+                <div className="bg-current rounded-full w-2 h-2 animate-bounce2"></div>
+                <div className="bg-current rounded-full w-2 h-2 animate-bounce3"></div>
+            </div>
+        );
+    }
+
+    return null;
+};
+
+export default Loader;
+```
+<br/>
+<Tip>
+    Use the `type` prop to specify the type of loader to display. The `spinner` type displays a spinning circle loader, while the `dots` type displays a three-dot loader.
+</Tip>
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+The `Loader` component accepts the following props:
+
+| Prop      | Type     | Default | Description                                                                 |
+|-----------|----------|---------|-----------------------------------------------------------------------------|
+| type      | string   | spinner | The type of loader to display. Possible values are `spinner` and `dots`.   |
+| className | string   |         | Additional classes to apply to the loader.                                 |
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="usage-examples" />
+
+## Usage Examples
+
+### Spinner Loader
+<PreviewCode preview={
+    <Loader type="spinner" className="h-5 w-5 text-primary-500" />
+}>
+```jsx
+    <Loader type="spinner" className="h-5 w-5 text-primary-500" />
+```
+</PreviewCode>
+
+### Dots Loader
+<PreviewCode preview={
+    <Loader type="dots" className="h-5 w-5 text-primary-500" />
+}>
+```jsx
+    <Loader type="dots" className="h-5 w-5 text-primary-500" />
+```
+</PreviewCode>

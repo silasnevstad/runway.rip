@@ -14,7 +14,7 @@ onThisPage:
 <br/>
 <br/>
 
-<div className="flex justify-center items-center gap-10">
+<div className="flex flex-col items-center justify-center gap-2">
     <TextLink href="/docs" className="text-primary-500 hover:text-primary-600">
         Default
     </TextLink>
@@ -73,3 +73,104 @@ const TextLink = ({
 
 export default TextLink;
 ```
+
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+The `TextLink` component accepts the following props:
+
+| Name            | Type      | Default | Description                                                                 |
+| --------------- | --------- | ------- | --------------------------------------------------------------------------- |
+| children        | `node`    |         | The content of the text link component.                                    |
+| href            | `string`  |         | The URL of the page to navigate to.                                         |
+| className       | `string`  |         | Additional classes to apply to the text link component.                     |
+| icon            | `boolean` | `false` | Whether to show an icon next to the text link component.                   |
+| grow            | `boolean` | `false` | Whether to grow the text link component on hover.                          |
+| fade            | `boolean` | `false` | Whether to fade the text link component on hover.                          |
+| underline       | `boolean` | `false` | Whether to underline the text link component on hover.                     |
+| underlineHeight | `string`  | `px`    | The height of the underline for the text link component.                   |
+| selected        | `boolean` | `false` | Whether the text link component is selected.                               |
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="usage-examples" />
+
+## Usage Examples
+
+### Basic Text Link
+<PreviewCode preview={
+    <TextLink href="/docs" className="text-primary-500 hover:text-primary-600">
+        Go to Docs
+    </TextLink>
+}>
+```jsx
+<TextLink href="/docs" className="text-primary-500 hover:text-primary-600">
+    Go to Docs
+</TextLink>
+```
+</PreviewCode>
+
+### Text Link with Icon
+<PreviewCode preview={
+    <TextLink href="/docs/components" className="text-primary-500 hover:text-primary-600" icon>
+        Components
+    </TextLink>
+}>
+```jsx
+<TextLink href="/docs/components" className="text-primary-500 hover:text-primary-600" icon>
+    Components
+</TextLink>
+```
+</PreviewCode>
+
+### Text Link with Grow Effect
+<PreviewCode preview={
+    <TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" grow>
+        Go to TextLink
+    </TextLink>
+}>
+```jsx
+<TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" grow>
+    Go to TextLink
+</TextLink>
+```
+</PreviewCode>
+
+### Text Link with Fade Effect
+<PreviewCode preview={
+    <TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" fade>
+        Go to TextLink
+    </TextLink>
+}>
+```jsx
+<TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" fade>
+    Go to TextLink
+</TextLink>
+```
+</PreviewCode>
+
+### Text Link with Underline
+<PreviewCode preview={
+    <TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" underline>
+        Go to TextLink
+    </TextLink>
+}>
+```jsx
+<TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" underline>
+    Go to TextLink
+</TextLink>
+```
+</PreviewCode>
+
+<br/>
+<br/>
