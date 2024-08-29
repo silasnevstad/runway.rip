@@ -133,9 +133,3 @@ async function handleInvoicePaymentFailed(invoice) {
     console.log('Invoice payment failed:', invoice.id);
     // You might want to reach out to the customer or adjust their account status
 }
-
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
