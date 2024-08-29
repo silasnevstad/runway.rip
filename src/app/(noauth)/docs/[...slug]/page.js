@@ -6,7 +6,7 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { LinkIcon } from "@heroicons/react/24/outline";
-import {TextLink} from "@/components/atoms/Buttons";
+import TextLink from "@/components/atoms/TextLink";
 
 export const dynamic = "force-static";
 
@@ -44,7 +44,7 @@ const RelatedContent = ({ items }) => (
         <ul className="space-y-2">
             {items.map((item, index) => (
                 <li key={index}>
-                    <TextLink href={item.href} className="text-sm text-blue-500 hover:underline" icon>
+                    <TextLink href={item.href} className="text-sm text-blue-500" icon underline>
                         {item.title}
                     </TextLink>
                 </li>
@@ -91,6 +91,7 @@ export default async function DocsPage({ params }) {
     );
 
     const components = useMDXComponents({
+        Accordion: require("@/components/molecules/Accordion").default,
         Input: require("@/components/atoms/Input").default,
         Badge: require("@/components/atoms/Badge").default,
         Avatar: require("@/components/atoms/Avatar").Avatar,
@@ -99,7 +100,11 @@ export default async function DocsPage({ params }) {
         Card: require("@/components/molecules/Card").default,
         Checkbox: require("@/components/atoms/Checkbox").default,
         Slider: require("@/components/atoms/Slider").default,
-        Switch: require("@/components/atoms/Switcher").default,
+        Switch: require("@/components/atoms/Switch").default,
+        Toggle: require("@/components/atoms/Toggle").default,
+        TextLink: require("@/components/atoms/TextLink").default,
+        DropdownText: require("@/components/atoms/DropdownText").default,
+        Breadcrumb: require("@/components/atoms/Breadcrumb").default,
     });
 
     const { content, frontmatter } = await compileMDX({

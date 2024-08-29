@@ -1,5 +1,5 @@
 import config from "@/config";
-import { TextLink } from "@/components/atoms/Buttons";
+import TextLink from "@/components/atoms/TextLink";
 import { FaInstagram, FaXTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import MadeWithTag from "@/components/atoms/MadeWithTag";
 

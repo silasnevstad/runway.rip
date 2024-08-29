@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Badge from "@/components/atoms/Badge";
-import {Button} from "@/components/atoms/Buttons";
+import Button from "@/components/atoms/Button";
 import Tooltip from "@/components/atoms/Tooltip";
 import Card from "@/components/molecules/Card";
 import Menu from "@/components/molecules/Menu";
@@ -17,8 +17,8 @@ import BarGraph from "@/components/atoms/BarGraph";
 import CodeSyntaxHighlighter from "@/components/atoms/CodeSyntaxHighlighter";
 import Checkbox from "@/components/atoms/Checkbox";
 import Toggle from "@/components/atoms/Toggle";
-import Switcher from "@/components/atoms/Switcher";
-import FileDrop from "@/components/atoms/FileDrop";
+import Switch from "@/components/atoms/Switch";
+import FileInput from "@/components/atoms/FileDrop";
 import FileInput from "@/components/atoms/FileInput";
 import Indicator from "@/components/atoms/Indicator";
 import {MdNotifications} from "react-icons/md";
@@ -149,7 +149,7 @@ def code:
                 />
             </div>
             <div className="flex gap-2">
-                <Switcher
+                <Switch
                     options={
                         [
                             {name: 'Home', value: 'home', Icon: HomeIcon},
@@ -300,7 +300,7 @@ def code:
                 </Timeline>
             </div>
             <div className="flex flex-col gap-2 items-center">
-                <FileDrop/>
+                <FileInput/>
                 <FileInput/>
             </div>
             <div className="flex flex-row gap-2 items-center gap-8">

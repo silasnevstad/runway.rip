@@ -20,8 +20,8 @@ const CodeBlock = ({
     const codeLines = children.trim().split('\n');
 
     return (
-        <div className={`text-sm mt-4 mb-6 bg-bg-50 text-gray-100 rounded-lg 
-            border-l border-r border-b border-bg-400 dark:border-none`}>
+        <div className={`text-sm mt-4 mb-6 bg-bg-50 dark:bg-bg-900 text-gray-100 rounded-lg 
+            border-l border-r border-b border-bg-400 dark:border-gray-700`}>
             <div className={`flex items-center justify-between bg-bg-600 dark:bg-bg-700 px-4 py-3 
                 border-b border-gray-500 dark:border-gray-700 rounded-t-lg`}>
                 <span className="text-sm opacity-60">{language}</span>

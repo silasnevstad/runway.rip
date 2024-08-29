@@ -3,7 +3,7 @@
 import React from 'react';
 import Tooltip from "@/components/atoms/Tooltip";
 
-const Switcher = ({
+const Switch = ({
     options,
     selected,
     onChange,
@@ -27,15 +27,14 @@ const Switcher = ({
     const hoverStyle = hover ? `hover:bg-${inactiveBgColor}-200 dark:hover:bg-${inactiveBgColor}-800` : '';
 
     return (
-        <div className={
-            `flex items-center ${shape} p-1 gap-1 bg-${inactiveBgColor}-100 dark:bg-${inactiveBgColor}-800 ${className}`
-        } {...props}>
+        <div className={`flex items-center ${vertical ? 'rounded-xl' : shape} p-1 gap-1 bg-${inactiveBgColor}-100 dark:bg-${inactiveBgColor}-800 
+            ${className} ${vertical ? 'flex-col' : 'flex-row'}`} {...props}>
             {options.map((option, index) => (
                 <Tooltip key={index} text={tooltip ? option.name : ''} position="top">
                     <button
                         className={`
-                            whitespace-nowrap flex items-center gap-2 py-2.5 px-5 
-                            text-center ${shape} ${hoverStyle} 
+                            whitespace-nowrap flex items-center gap-2 py-2 px-4 
+                            text-center ${vertical ? 'rounded-xl' : shape} ${hoverStyle} 
                             ${vertical ? 'flex-col' : 'flex-row'} 
                             ${colorStyles(selected === option.value)}
                             transition-all duration-200 ease-in-out
@@ -51,4 +50,4 @@ const Switcher = ({
     )
 }
 
-export default Switcher;
+export default Switch;

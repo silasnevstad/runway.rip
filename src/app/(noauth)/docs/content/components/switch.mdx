@@ -17,25 +17,27 @@ The Switch component is a versatile toggle switch that can be used to enable or 
 <br/>
 <br />
 
-<PreviewCode preview={
+<div class="flex justify-center items-center space-x-4">
     <Switch
         options={[
-            { name: 'Option 1', value: 'opt1' },
-            { name: 'Option 2', value: 'opt2' },
+            { name: 'Option 1', value: 'option1' },
+            { name: 'Option 2', value: 'option2' },
+            { name: 'Option 3', value: 'option3' },
         ]}
-        selected="opt1"
-        shape="rounded-lg"
-        border
-        hover
+        selected="option1"
     />
-}>
+</div>
+
+<br/>
+
+<div id="switch" />
+
+## Switch
+
+The `Switch` component is a versatile toggle switch that can be used switch between different states.
+
 ```jsx
-'use client'
-
-import React from 'react';
-import Tooltip from "@/components/atoms/Tooltip";
-
-const Switcher = ({
+const Switch = ({
     options,
     selected,
     onChange,
@@ -59,15 +61,14 @@ const Switcher = ({
     const hoverStyle = hover ? `hover:bg-${inactiveBgColor}-200 dark:hover:bg-${inactiveBgColor}-800` : '';
 
     return (
-        <div className={
-            `flex items-center ${shape} p-1 gap-1 bg-${inactiveBgColor}-100 dark:bg-${inactiveBgColor}-800 ${className}`
-        } {...props}>
+        <div className={`flex items-center ${vertical ? 'rounded-xl' : shape} p-1 gap-1 bg-${inactiveBgColor}-100 dark:bg-${inactiveBgColor}-800
+            ${className} ${vertical ? 'flex-col' : 'flex-row'}`} {...props}>
             {options.map((option, index) => (
                 <Tooltip key={index} text={tooltip ? option.name : ''} position="top">
                     <button
                         className={`
                             whitespace-nowrap flex items-center gap-2 py-2.5 px-5
-                            text-center ${shape} ${hoverStyle}
+                            text-center ${vertical ? 'rounded-xl' : shape} ${hoverStyle}
                             ${vertical ? 'flex-col' : 'flex-row'}
                             ${colorStyles(selected === option.value)}
                             transition-all duration-200 ease-in-out
@@ -83,6 +84,153 @@ const Switcher = ({
     )
 }
 
-export default Switcher;
+export default Switch;
+```
+
+<Tip>
+    Use `shape` prop to change the shape of the switch. The available options are `rounded-full`, `rounded-lg`, and `rounded-none`.
+</Tip>
+<Warning>
+    Ensure that the `options` prop is an array of objects with `name` and `value` properties.
+</Warning>
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+The `Switch` component accepts the following props:
+
+| Name          | Type     | Default | Description                                                                 |
+| :------------ | :------- | :------ | :-------------------------------------------------------------------------- |
+| options       | array    |         | An array of objects with `name` and `value` properties.                    |
+| selected      | string   |         | The value of the selected option.                                          |
+| onChange      | function |         | A function that is called when an option is selected.                      |
+| activeColor   | string   | `gray`  | The color of the selected option.                                          |
+| inactiveColor | string   | `gray`  | The color of the unselected options.                                       |
+| activeBgColor | string   | `bg`    | The background color of the selected option.                               |
+| inactiveBgColor | string | `bg`    | The background color of the unselected options.                            |
+| hover         | boolean  | `false` | Whether to apply hover styles to the options.                              |
+| tooltip       | boolean  | `false` | Whether to show tooltips on hover.                                         |
+| vertical      | boolean  | `false` | Whether to display the options vertically.                                 |
+| shape         | string   | `rounded-full` | The shape of the switch. Possible values: `rounded-full`, `rounded-lg`, `rounded-none`. |
+| className     | string   |         | Additional CSS classes to be applied to the switch container.              |
+
+<br/>
+<br/>
+
+<div id="usage-examples" />
+
+## Usage Examples
+### Basic Switch
+<PreviewCode preview={
+    <Switch
+        options={[
+            { name: 'Option 1', value: 'option1' },
+            { name: 'Option 2', value: 'option2' },
+            { name: 'Option 3', value: 'option3' },
+        ]}
+        selected="option1"
+    />
+}>
+```jsx
+<Switch
+    options={[
+        { name: 'Option 1', value: 'option1' },
+        { name: 'Option 2', value: 'option2' },
+        { name: 'Option 3', value: 'option3' },
+    ]}
+    selected="option1"
+/>
 ```
 </PreviewCode>
+
+### Custom Colors
+<PreviewCode preview={
+    <Switch
+        options={[
+            { name: 'Option 1', value: 'option1' },
+            { name: 'Option 2', value: 'option2' },
+            { name: 'Option 3', value: 'option3' },
+        ]}
+        selected="option2"
+        activeColor="red"
+        inactiveColor="gray"
+        activeBgColor="red"
+        inactiveBgColor="gray"
+        hover
+    />
+}>
+```jsx
+<Switch
+    options={[
+        { name: 'Option 1', value: 'option1' },
+        { name: 'Option 2', value: 'option2' },
+        { name: 'Option 3', value: 'option3' },
+    ]}
+    selected="option2"
+    activeColor="red"
+    inactiveColor="gray"
+    activeBgColor="red"
+    inactiveBgColor="gray"
+    hover
+/>
+```
+</PreviewCode>
+
+### Vertical Switch
+<PreviewCode preview={
+    <Switch
+        options={[
+            { name: 'Option 1', value: 'option1' },
+            { name: 'Option 2', value: 'option2' },
+            { name: 'Option 3', value: 'option3' },
+        ]}
+        selected="option3"
+        vertical
+    />
+}>
+```jsx
+<Switch
+    options={[
+        { name: 'Option 1', value: 'option1' },
+        { name: 'Option 2', value: 'option2' },
+        { name: 'Option 3', value: 'option3' },
+    ]}
+    selected="option3"
+    vertical
+/>
+```
+</PreviewCode>
+
+### Switch with Tooltips
+<PreviewCode preview={
+    <Switch
+        options={[
+            { name: 'Option 1', value: 'option1' },
+            { name: 'Option 2', value: 'option2' },
+            { name: 'Option 3', value: 'option3' },
+        ]}
+        selected="option1"
+        tooltip
+    />
+}>
+```jsx
+<Switch
+    options={[
+        { name: 'Option 1', value: 'option1' },
+        { name: 'Option 2', value: 'option2' },
+        { name: 'Option 3', value: 'option3' },
+    ]}
+    selected="option1"
+    tooltip
+/>
+```
+</PreviewCode>
+
+<br/>
+<br/>

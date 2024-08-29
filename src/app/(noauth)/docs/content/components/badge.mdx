@@ -10,15 +10,11 @@ onThisPage:
     href: "#usage-examples"
 ---
 
-The Badge component is a versatile element used to highlight and categorize content. It offers various customization options to fit different design needs and contexts.
-
-<br/>
 <Divider />
 <br/>
-
 <br />
 
-<div class="grid grid-cols-5 max-md:grid-cols-5 max-sm:grid-cols-4 gap-4">
+<div className="grid grid-cols-5 max-md:grid-cols-5 max-sm:grid-cols-4 gap-4">
     <Badge>Primary</Badge>
     <Badge color="green" shape="square">Green</Badge>
     <Badge color="red" style="solid" shape="square">Red</Badge>
@@ -38,7 +34,7 @@ The Badge component is a versatile element used to highlight and categorize cont
 The `Badge` component creates a customizable badge that can be used to label, categorize, or highlight information.
 
 ```javascript
-import {makeClassNameImportant} from "@/utils/utils";
+import { makeClassNameImportant } from "@/utils/utils";
 
 const Badge = ({
     children,
@@ -190,3 +186,6 @@ The Badge component accepts the following props:
 </div>
 ```
 </PreviewCode>
+
+<br/>
+<br/>

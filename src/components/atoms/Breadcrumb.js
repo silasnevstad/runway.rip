@@ -2,34 +2,49 @@
 
 import React from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { FaChevronRight } from 'react-icons/fa';
+
+const BreadcrumbItem = ({ href, title, isLast }) => (
+    <>
+        <Link href={href} className={`opacity-${isLast ? '50' : '30'} hover:opacity-100 transition-opacity`}>
+            {title}
+        </Link>
+        {!isLast && <FaChevronRight className="mx-1 w-3 h-3 text-gray-600 dark:text-gray-600" />}
+    </>
+);
 
 const Breadcrumb = ({ sections }) => {
     const pathname = usePathname();
 
-    const getCurrentPageInfo = () => {
-        for (const section of sections) {
-            if (section.href === pathname) {
-                return { section: section.title };
+    const findPathToCurrentPage = (items, currentPath = []) => {
+        for (const item of items) {
+            const newPath = [...currentPath, item];
+            if (item.href === pathname) {
+                return newPath;
             }
-            for (const item of section.items) {
-                if (item.href === pathname) {
-                    return { section: section.title, page: item.title };
-                }
+            if (item.items) {
+                const result = findPathToCurrentPage(item.items, newPath);
+                if (result) return result;
             }
         }
         return null;
     };
 
-    const pageInfo = getCurrentPageInfo();
+    const breadcrumbItems = findPathToCurrentPage(sections);
 
-    if (!pageInfo) return null;
+    if (!breadcrumbItems || breadcrumbItems.length === 0) return null;
 
     return (
-        <h1 className="font-medium mb-6 flex items-center">
-            <span className="opacity-30">{pageInfo.section}</span>
-            {pageInfo.page && <FaChevronRight className="mx-1 w-3 h-3 text-gray-600 dark:text-gray-600" />}
-            <span className="opacity-50">{pageInfo.page}</span>
+        <h1 className="font-medium mb-6 flex items-center flex-wrap">
+            {breadcrumbItems.map((item, index) => (
+                <BreadcrumbItem
+                    key={item.href}
+                    href={item.href}
+                    title={item.title}
+                    isLast={index === breadcrumbItems.length - 1}
+                />
+            ))}
         </h1>
     );
 };

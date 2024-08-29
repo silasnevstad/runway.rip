@@ -24,12 +24,13 @@ onThisPage:
 ---
 
 
-Runway.js follows a typical Next.js project structure with some custom organization. Here's an overview of the main directories and files:
-<br />
+Runway follows a typical [Next.js](http://nextjs.org) project structure with some custom organization. Here's an overview of the main directories and files:
+
 <br />
 <Divider />
 
 <div id="top-level-structure" />
+
 ### Top-level Structure
 
 At the root of the project, you'll find these key elements:
@@ -69,6 +70,8 @@ Inside the `src` folder, we organize our code into several directories:
 
 This structure allows for a modular approach to development, separating concerns and making it easier to find and maintain different parts of the application.
 
+Check out the [Components](/docs/components) documentation for more information on the atomic design methodology.
+
 <br />
 
 <Info>
@@ -93,7 +96,7 @@ The `app` directory is the heart of our Next.js application, structured as follo
 | `auth` | Holds authentication-related files and logic |
 | `lib` | Stores library files specific to the app directory |
 
-This structure leverages Next.js 13's app router, allowing for easy organization of authenticated and public routes.
+This structure leverages [Next.js 13's app router](https://nextjs.org/docs/app), allowing for easy organization of authenticated and public routes.
 
 <Tip>
     Use route groups (folders starting with parentheses) to organize your routes without affecting the URL structure.

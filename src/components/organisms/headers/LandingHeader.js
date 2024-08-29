@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import config from "@/config";
-import { TextLink } from "@/components/atoms/Buttons";
+import TextLink from "@/components/atoms/TextLink";
 import Link from "next/link";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
 

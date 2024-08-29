@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Input from "@/components/atoms/Input";
-import { Button } from "@/components/atoms/Buttons";
+import Button from "@/components/atoms/Button";
 import { UserIcon, KeyIcon } from "@heroicons/react/24/solid";
 import Divider from "@/components/atoms/Divider";
 import { useFormState, useFormStatus } from 'react-dom';

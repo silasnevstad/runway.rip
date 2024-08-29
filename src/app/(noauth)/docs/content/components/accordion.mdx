@@ -1,0 +1,201 @@
+---
+title: "Accordion"
+description: "A simple accordion component that can be used to display collapsible content"
+onThisPage:
+  - title: "Accordion"
+    href: "#accordion"
+  - title: "Props"
+    href: "#props"
+  - title: "Usage Examples"
+    href: "#usage-examples"
+---
+
+<Divider />
+<br/>
+
+<div className="flex justify-center">
+    <Accordion
+        items={[
+            {
+                title: 'Accordion Item 1',
+                content: 'This is the content of accordion item 1.'
+            },
+            {
+                title: 'Accordion Item 2',
+                content: 'This is the content of accordion item 2.'
+            },
+            {
+                title: 'Accordion Item 3',
+                content: 'This is the content of accordion item 3.'
+            }
+        ]}
+    />
+</div>
+
+<br />
+
+<div id="accordion" />
+
+## Accordion
+
+The `Accordion` component is a simple accordion component that can be used to display collapsible content. It is a great way to organize and display information in a structured and visually appealing way.
+It uses the [`DropdownText`](/docs/components/dropdown-text) component to display the accordion items.
+
+```jsx
+import { useState } from 'react';
+import DropdownText from "@/components/atoms/DropdownText";
+
+const Accordion = ({
+    className,
+    items,
+    oneOpen = false
+}) => {
+    const [openIndexes, setOpenIndexes] = useState([]);
+
+    const toggleItem = (index) => {
+        setOpenIndexes((prevIndexes) => {
+            if (oneOpen) {
+                return prevIndexes.includes(index) ? [] : [index];
+            } else {
+                return prevIndexes.includes(index)
+                    ? prevIndexes.filter((i) => i !== index)
+                    : [...prevIndexes, index];
+            }
+        });
+    };
+
+    return (
+        <div className={`flex flex-col w-full ${className}`}>
+            {items.map((item, index) => (
+                <DropdownText
+                    key={index}
+                    title={item.title}
+                    content={item.content}
+                    isOpen={openIndexes.includes(index)}
+                    onToggle={() => toggleItem(index)}
+                />
+            ))}
+        </div>
+    );
+};
+
+export default Accordion;
+```
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+The `Accordion` component accepts the following props:
+
+| Name      | Type      | Default | Description                                                                 |
+| --------- | --------- | ------- | --------------------------------------------------------------------------- |
+| className | `string`  | `''`    | Additional classes to be added to the accordion container.                  |
+| items     | `array`   | -       | An array of objects containing the `title` and `content` of each accordion item. |
+| oneOpen   | `boolean` | `false` | If `true`, only one accordion item can be open at a time.                   |
+
+<Info>
+    The `items` prop should be an array of objects, where each object contains a `title` and `description` property. The `title` property is used as the title of the accordion item, and the `description` property is used as the content of the accordion item.
+</Info>
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="usage-examples" />
+
+## Usage Examples
+
+### Basic Accordion
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <Accordion
+            items={[
+                {
+                    title: 'Accordion Item 1',
+                    content: 'This is the content of accordion item 1.'
+                },
+                {
+                    title: 'Accordion Item 2',
+                    content: 'This is the content of accordion item 2.'
+                },
+                {
+                    title: 'Accordion Item 3',
+                    content: 'This is the content of accordion item 3.'
+                }
+            ]}
+            className="bg-red-500 px-4"
+        />
+    </div>
+}>
+```jsx
+<Accordion
+    items={[
+        {
+            title: 'Accordion Item 1',
+            content: 'This is the content of accordion item 1.'
+        },
+        {
+            title: 'Accordion Item 2',
+            content: 'This is the content of accordion item 2.'
+        },
+        {
+            title: 'Accordion Item 3',
+            content: 'This is the content of accordion item 3.'
+        }
+    ]}
+/>
+```
+</PreviewCode>
+
+### Accordion with One Open Item
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <Accordion
+            items={[
+                {
+                    title: 'Accordion Item 1',
+                    content: 'This is the content of accordion item 1.'
+                },
+                {
+                    title: 'Accordion Item 2',
+                    content: 'This is the content of accordion item 2.'
+                },
+                {
+                    title: 'Accordion Item 3',
+                    content: 'This is the content of accordion item 3.'
+                }
+            ]}
+            oneOpen
+        />
+    </div>
+}>
+```jsx
+<Accordion
+    items={[
+        {
+            title: 'Accordion Item 1',
+            content: 'This is the content of accordion item 1.'
+        },
+        {
+            title: 'Accordion Item 2',
+            content: 'This is the content of accordion item 2.'
+        },
+        {
+            title: 'Accordion Item 3',
+            content: 'This is the content of accordion item 3.'
+        }
+    ]}
+    oneOpen
+/>
+```
+</PreviewCode>
+
+
+<br/>
+<br/>

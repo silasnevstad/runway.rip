@@ -1,5 +1,3 @@
-import {Button} from "@/components/atoms/Buttons";
-import { PencilIcon } from "@heroicons/react/24/outline";
 import UserForm from "@/app/(auth)/account/UserForm";
 
 export default function Account() {

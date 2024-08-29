@@ -8,7 +8,7 @@ import { FaCheck } from "react-icons/fa";
 import Badge from "@/components/atoms/Badge";
 import Image from "next/image";
 import Card from "@/components/molecules/Card";
-import {TextLink} from "@/components/atoms/Buttons";
+import TextLink from "@/components/atoms/TextLink";
 
 const Features = () => {
     const [selectedFeature, setSelectedFeature] = useState(0);

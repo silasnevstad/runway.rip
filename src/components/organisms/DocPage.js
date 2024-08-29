@@ -23,6 +23,7 @@ function DocumentationPageLayout({ children }) {
                 collapsedWidth="w-16"
                 bgColor="bg-bg-0 dark:bg-gray-900"
             >
+                <p className="font-medium">Runway</p>
                 <DocumentationSidebar/>
             </Sidebar>
             <main className="ml-64 w-full relative">

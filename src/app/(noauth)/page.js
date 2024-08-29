@@ -1,4 +1,4 @@
-import { Button } from "@/components/atoms/Buttons";
+import Button from "@/components/atoms/Button";
 import TextHighlight from "@/components/atoms/TextHighlight";
 import TrustedBy from "@/components/molecules/TrustedBy";
 import Pricing from "@/components/organisms/Pricing";

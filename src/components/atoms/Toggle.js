@@ -7,7 +7,7 @@ const Toggle = ({
     onChange = () => {},
     className = '',
     label = '',
-    labelPosition = 'left', // can be 'left' or 'right'
+    labelPosition = 'left', // 'left' or 'right'
     color = 'primary',
     icon = false,
     focus = false,

@@ -52,7 +52,7 @@ export function useMDXComponents(components) {
         ),
         Divider: Divider,
         a: ({ href, children }) => (
-            <Link href={href} className="text-blue-500 hover:text-blue-700 underline">
+            <Link href={href} className="text-green-500 hover:text-green-700 underline">
                 {children}
             </Link>
         ),

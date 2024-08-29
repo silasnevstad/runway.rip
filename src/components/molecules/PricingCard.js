@@ -1,6 +1,6 @@
 import {CheckIcon, RocketLaunchIcon, XMarkIcon} from "@heroicons/react/24/solid";
 import Badge from "@/components/atoms/Badge";
-import { Button } from "@/components/atoms/Buttons";
+import Button from "@/components/atoms/Button";
 import config from "@/config";
 
 const PricingCard = ({ title, oldPrice, price, includedFeatures, allFeatures, isPopular }) => {

@@ -1,7 +1,3 @@
-import AuthForm from "@/components/organisms/AuthForm";
-import { TextLink } from "@/components/atoms/Buttons";
-import Divider from "@/components/atoms/Divider";
-
 export default function DocumentationPage() {
     return (
         <div className="flex flex-col items-start max-w-prose gap-6 pb-40">

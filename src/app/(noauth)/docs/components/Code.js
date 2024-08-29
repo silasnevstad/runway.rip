@@ -1,12 +1,12 @@
 'use client'
 
-import { CodeBlock } from "react-code-blocks";
 import CodeSyntaxHighlighter from "@/components/atoms/CodeSyntaxHighlighter";
+import CodeBlock from "@/components/atoms/CodeBlock";
 
 const Code = ({ children, className, ...props }) => {
     // This handles inline code
     if (!className) {
-        return <code className="bg-bg-500/50 dark:bg-bg-500/40 rounded px-1 py-0.5">{children}</code>;
+        return <code className="bg-bg-500/50 dark:bg-bg-400/15 rounded px-1 py-0.5">{children}</code>;
     }
 
     // This handles code blocks (remove hljs class)

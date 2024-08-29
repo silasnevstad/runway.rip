@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Button } from "@/components/atoms/Buttons";
+import Button from "@/components/atoms/Button";
 import { PencilIcon, XMarkIcon, CheckIcon } from "@heroicons/react/24/solid";
 import Input from "@/components/atoms/Input";
 
