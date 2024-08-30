@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import React from 'react';
 import Tooltip from "@/components/atoms/Tooltip";
 
@@ -33,7 +34,7 @@ const Switch = ({
                 <Tooltip key={index} text={tooltip ? option.name : ''} position="top">
                     <button
                         className={`
-                            whitespace-nowrap flex items-center gap-2 py-2 px-4 
+                            whitespace-nowrap flex items-center gap-2 py-2.5 px-5
                             text-center ${vertical ? 'rounded-xl' : shape} ${hoverStyle} 
                             ${vertical ? 'flex-col' : 'flex-row'} 
                             ${colorStyles(selected === option.value)}
@@ -42,6 +43,7 @@ const Switch = ({
                         onClick={() => onChange(option.value)}
                     >
                         {option.Icon && <option.Icon className="w-4 h-4" />}
+                        {option.image && <Image src={option.image} width={24} height={24} />}
                         {option.name}
                     </button>
                 </Tooltip>

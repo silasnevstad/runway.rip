@@ -35,20 +35,38 @@ Don't have a domain yet? Check out the [Set up Domain](/docs/tutorials/domain-se
     Both have the same free tier (100 emails/day), but Resend's Pro tier is offers more emails and unlimited domains for only $5/month more.
 </Tip>
 
+<br />
+
 <div className="flex items-center">
-    <TutorialGuide options={[
-        { name: 'Resend', value: 'resend' },
-        { name: 'Mailgun', value: 'mailgun' }
-    ]}>
-
-
-
-        <ResendGuide />
-        <MailgunGuide />
-
-        <Info>
-            Remember to replace placeholder values like email addresses and API keys with your actual information in the `.env` file.
-        </Info>
-
+    <TutorialGuide
+        options={[
+            { name: 'Resend', value: 'resend', image: '/logos/resend.png' },
+            { name: 'Mailgun', value: 'mailgun', image: '/logos/mailgun.png' },
+        ]}
+        firstPage={
+            <div>
+                <div className="flex items-center text-2xl font-medium mt-8 mb-2"><WrenchIcon className="h-6 w-6 mr-2 text-primary-500" /> Setup</div>
+                <ol className="list-decimal list-inside">
+                    <li className="flex items-center gap-1">
+                        Sign up for a account.
+                        <TextLink href="https://resend.com" className="underline text-green-500 hover:text-green-700">Resend</TextLink>
+                        <p> account.</p>
+                    </li>
+                </ol>
+            </div>
+        }
+    >
+        ### <div className="flex items-center"><WrenchIcon className="h-6 w-6 mr-2 text-primary-500" /> Setup</div>
+        1. Sign up for a [Mailgun](https://signup.mailgun.com/new/signup) account.
+        2. Go to <InlineHighlight type="navigation">Send</InlineHighlight> > <InlineHighlight type="navigation">Sending</InlineHighlight> > <InlineHighlight type="navigation">Domains</InlineHighlight> and click <InlineHighlight type="button">Add New Domain</InlineHighlight>. Consider creating a specific subdomain, such as mail.yourdomain.com, for your email service.
+        3. Complete the DNS verification process by adding the DNS records provided by Mailgun to your domain's DNS settings.
+           <Info>
+               This could take up to 48 hours but usually happens within a few minutes.
+           </Info>
+        4. Click your account in the top right and select <InlineHighlight type="navigation">API Security</InlineHighlight> > <InlineHighlight type="button">Add new Key</InlineHighlight>, then add this to the `.env.local` as `MAILGUN_API_KEY`.
+        5. Add the domain you verified to the `.env.local` as `MAILGUN_DOMAIN`.
     </TutorialGuide>
 </div>
+
+<br />
+<br />

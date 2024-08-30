@@ -62,6 +62,6 @@ html {
 
 @layer base{
   body {
-    @apply dark:bg-bg-900 bg-bg-50 dark:text-white text-black;
+    @apply dark:bg-bg-900 bg-bg-50 dark:text-gray-300 text-black;
   }
 }

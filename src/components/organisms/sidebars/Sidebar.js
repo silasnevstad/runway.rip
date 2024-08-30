@@ -16,7 +16,13 @@ const Sidebar = ({
 
     useEffect(() => {
         const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
+            const isMobile = window.innerWidth < 768;
+            setIsMobile(isMobile);
+            if (!isMobile) {
+                setIsOpen(true);
+            } else {
+                setIsOpen(false);
+            }
         };
 
         checkMobile();
@@ -45,7 +51,7 @@ const Sidebar = ({
         flex items-center justify-center transition-colors duration-200 z-50
     `;
 
-    const openButtonClasses = `fixed top-4 ${position}-4 ${buttonClasses}`;
+    const openButtonClasses = `fixed top-4 left-4 ${buttonClasses}`;
 
     return (
         <>

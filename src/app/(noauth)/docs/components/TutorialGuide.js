@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Switch from "@/components/atoms/Switch";
 
-const TutorialGuide = ({ options, children }) => {
+const TutorialGuide = ({ options, firstPage, children: secondPage }) => {
     const [selectedOption, setSelectedOption] = useState(options[0].value);
 
     return (
@@ -14,11 +14,8 @@ const TutorialGuide = ({ options, children }) => {
                 onChange={setSelectedOption}
                 hover={true}
                 shape="rounded-xl"
-                className="mb-8"
             />
-            {React.Children.map(children, child =>
-                React.cloneElement(child, { selectedOption })
-            )}
+            {selectedOption === options[0].value ? firstPage : secondPage}
         </div>
     );
 };
