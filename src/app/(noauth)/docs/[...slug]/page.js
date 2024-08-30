@@ -128,7 +128,7 @@ export default async function DocsPage({ params }) {
     const onThisPage = frontmatter.onThisPage || [];
 
     return (
-        <div className="flex flex-col w-full items-start gap-8 justify-between">
+        <div className="flex flex-col w-full items-start gap-8 md:flex-row justify-between">
             <div className="flex-grow max-w-prose">
                 <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                     {pageTitle}

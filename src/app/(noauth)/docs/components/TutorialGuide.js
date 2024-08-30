@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Switch from "@/components/atoms/Switch";
 
-const TutorialGuide = ({ options, firstPage, children: secondPage }) => {
+const TutorialGuide = ({ options, firstPage, secondPage }) => {
     const [selectedOption, setSelectedOption] = useState(options[0].value);
 
     return (

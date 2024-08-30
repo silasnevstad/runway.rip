@@ -1,22 +1,53 @@
 const config = {
     appName: 'Runway',
     appDescription: 'Everything you need to launch your ideas.',
-    domainName: 'runway.me',
-    development: {
-        apiBaseUrl: 'http://localhost:3000/api',
-        apiKey: 'dev-secret-key',
-    },
-    production: {
-        apiBaseUrl: 'https://runway.me/api',
-        apiKey: 'prod-secret-key',
-    },
+    domainName: 'runway.rip',
     socialMedia: {
         twitter: 'https://twitter.com/runway',
         instagram: 'https://instagram.com/runway',
         github: 'https://github.com/runway-app',
     },
-    contactEmail: 'support@runway.com',
-    feedbackEmail: 'feedback@runway.com',
+    emailSubdomain: "mail",
+    supportEmail: "Runway Support <support@runway.rip>",
+    noReplyEmail: "Runway <noreply@runway.rip>",
+    pricingPlans: [
+        {
+            type: "starter",
+            title: "Starter",
+            oldPrice: 69,
+            price: 49,
+            description: "Get started with the basics.",
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "SEO tools",
+                "Stripe",
+                "Supabase",
+                "Mailgun",
+            ],
+            priceId: "price_1Pr8LGGjMg6waABSg1bjDLEQ"
+        },
+        {
+            type: "pro",
+            title: "Pro",
+            oldPrice: 149,
+            price: 99,
+            description: "Unlock the full potential of Runway.",
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "SEO tools",
+                "Stripe",
+                "Supabase",
+                "Mailgun",
+                "Priority support",
+                "Discord community",
+                "Lifetime updates"
+            ],
+            isPopular: true,
+            priceId: "price_1Pr8LfGjMg6waABSu7URa9qT"
+        }
+    ]
 };
 
 export const landingConfig = {

@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import Divider from "@/components/atoms/Divider";
@@ -77,7 +78,16 @@ export function useMDXComponents(components) {
         PreviewCode: PreviewCode,
         Toggle: ClientSideToggle,
         Checkbox: ClientSideCheckbox,
-        TutorialGuide: TutorialGuide,
+        TutorialGuide: ({ options, children }) => {
+            const [firstPage, secondPage] = React.Children.toArray(children);
+            return (
+                <TutorialGuide
+                    options={options}
+                    firstPage={firstPage}
+                    secondPage={secondPage}
+                />
+            );
+        },
         ResendGuide: ResendGuide,
         MailgunGuide: MailgunGuide,
         WrenchIcon: WrenchIcon,
