@@ -24,7 +24,7 @@ const Switch = ({
         return `${textColor} ${bgColor}`;
     };
 
-    const hoverStyle = hover ? `hover:bg-${inactiveBgColor}-200 dark:hover:bg-${inactiveBgColor}-800` : '';
+    const hoverStyle = hover ? `hover:bg-${inactiveBgColor}-200 dark:hover:bg-${inactiveBgColor}-900` : '';
 
     return (
         <div className={`flex items-center ${vertical ? 'rounded-xl' : shape} p-1 gap-1 bg-${inactiveBgColor}-100 dark:bg-${inactiveBgColor}-800 

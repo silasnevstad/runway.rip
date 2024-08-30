@@ -1,4 +1,4 @@
-import DocumentationPageLayout from '@/components/organisms/DocPage';
+import DocumentationPageLayout from '@/app/(noauth)/docs/components/DocPage';
 
 export default function DocumentationLayout({ children }) {
     return (

@@ -5,7 +5,10 @@ import Code from "@/app/(noauth)/docs/components/Code";
 import PreviewCode from "@/app/(noauth)/docs/components/PreviewCode";
 import ClientSideToggle from "@/app/(noauth)/docs/components/ClientSideToggle";
 import ClientSideCheckbox from "@/app/(noauth)/docs/components/ClientSideCheckbox";
+import TutorialGuide from "@/app/(noauth)/docs/components/TutorialGuide";
 import { InformationCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import ResendGuide from "@/app/(noauth)/docs/components/ResendGuide";
+import MailgunGuide from "@/app/(noauth)/docs/components/MailgunGuide";
 
 export function useMDXComponents(components) {
     return {
@@ -71,6 +74,9 @@ export function useMDXComponents(components) {
         PreviewCode: PreviewCode,
         Toggle: ClientSideToggle,
         Checkbox: ClientSideCheckbox,
+        TutorialGuide: TutorialGuide,
+        ResendGuide: ResendGuide,
+        MailgunGuide: MailgunGuide,
         pre: ({ children }) => <div className="my-4">{children}</div>,
         blockquote: ({ children }) => (
             <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">

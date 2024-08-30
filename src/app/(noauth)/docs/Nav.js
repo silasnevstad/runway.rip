@@ -20,6 +20,8 @@ export const DocsNav = [
             { title: "User authentication", href: "/docs/tutorials/authentication" },
             { title: "API call", href: "/docs/tutorials/api-call" },
             { title: "Stripe Subscriptions", href: "/docs/tutorials/stripe-subscriptions" },
+            { title: "Domain", href: "/docs/tutorials/domain-setup" },
+            { title: "Emails", href: "/docs/tutorials/email-setup" },
         ]
     },
     {
