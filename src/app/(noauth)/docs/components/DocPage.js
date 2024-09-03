@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Sidebar from "@/components/organisms/sidebars/Sidebar";
 import DocumentationSidebar from "@/components/organisms/sidebars/DocumentationSidebar";
 import Breadcrumb from "@/components/atoms/Breadcrumb";
@@ -24,7 +25,11 @@ function DocumentationPageLayout({ children }) {
                 collapsedWidth="w-16"
                 bgColor="bg-bg-0 dark:bg-gray-900"
             >
-                <DocumentationSidebar/>
+                <div className="flex items-center self-start gap-2">
+                    <Image src="/logo.png" alt="Runway" width={30} height={30} />
+                    <p className="text-2xl font-bold">Runway</p>
+                </div>
+                <DocumentationSidebar />
             </Sidebar>
             <main className={`ml-64 max-md:ml-0 w-full relative`}>
                 <div className="sticky top-0 right-0 pt-5 pl-10 md:pr-5 z-10 flex justify-between items-start">
