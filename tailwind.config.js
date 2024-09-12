@@ -4,7 +4,7 @@ const colorTones = [100, 200, 300, 400, 500, 600, 700, 800, 900];
 const colors = ["bg", "primary", "gray", "red", "yellow", "orange", "green", "blue", "purple"];
 
 module.exports = {
-    darkMode: 'class',
+    // darkMode: 'class',
     content: [
         "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
