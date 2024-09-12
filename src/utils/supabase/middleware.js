@@ -2,6 +2,9 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
 const PROTECTED_ROUTES = [
+    '/policies',
+    '/login',
+    '/sign-up',
     '/dashboard',
     '/account',
 ]
@@ -62,10 +65,11 @@ export async function updateSession(request) {
     // refreshing the auth token
     const { data, error } = await supabase.auth.getUser();
 
-    if (PROTECTED_ROUTES.includes(request.nextUrl.pathname)) {
-        if (!data) {
-            response = NextResponse.redirect('/login')
-        }
+    // if in protected routes or if based route ('/')
+    if (PROTECTED_ROUTES.includes(request.nextUrl.pathname) || request.nextUrl.pathname === '/') {
+        // if (!data) {
+            response = NextResponse.rewrite(new URL('/waitlist', request.url))
+        // }
     }
 
     return response
