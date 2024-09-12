@@ -25,9 +25,10 @@ function DocumentationPageLayout({ children }) {
                 collapsedWidth="w-16"
                 bgColor="bg-bg-0 dark:bg-gray-900"
             >
-                <div className="flex items-center self-start gap-2">
-                    <Image src="/logo.png" alt="Runway" width={30} height={30} />
-                    <p className="text-2xl font-bold">Runway</p>
+                <div className="flex items-start gap-2 self-start">
+                    <Image src={"/logo.png"} alt={"runway"} width={22} height={22} className="block dark:hidden"/>
+                    <Image src={"/logo-white.png"} alt={"runway"} width={22} height={22} className="hidden dark:block"/>
+                    <p className="text-xl font-bold">Runway</p>
                 </div>
                 <DocumentationSidebar />
             </Sidebar>
