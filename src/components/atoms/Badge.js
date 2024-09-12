@@ -10,7 +10,7 @@ const Badge = ({
     hover = false,
     onClick,
 }) => {
-    const baseStyles = `inline-flex justify-center items-center text-center gap-1 font-medium`;
+    const baseStyles = `inline-flex flex-col justify-center items-center text-center gap-1 font-medium`;
 
     const shapeStyles = {
         pill: 'rounded-full px-2.5 py-1',
@@ -57,7 +57,16 @@ const Badge = ({
         hoverStyles,
     ].join(' ');
 
-    return <div className={`${combinedStyles} ${makeClassNameImportant(className)}`} onClick={onClick}>{children}</div>;
+    return (
+        <div
+            className={`${combinedStyles} ${makeClassNameImportant(className)}`}
+            onClick={onClick}
+        >
+            <div className="px-2.5 py-1">
+                {children}
+            </div>
+        </div>
+    );
 };
 
 export default Badge;

@@ -1,4 +1,5 @@
 import React from 'react';
+import {makeClassNameImportant} from "@/utils/utils";
 
 const TextHighlight = ({
     text,
@@ -6,7 +7,8 @@ const TextHighlight = ({
     className = '',
     effect = 'none',
     gradientColors = ['from-blue-500', 'to-purple-500'],
-    highlightClassName = ''
+    highlightClassName = '',
+    textSize = 'text-6xl'
 }) => {
     const regex = new RegExp(`(${highlight})`, 'gi');
     const parts = text.split(regex);
@@ -25,7 +27,7 @@ const TextHighlight = ({
     };
 
     return (
-        <h1 className={`z-1 text-6xl font-bold leading-snug max-w-prose ${className}`}>
+        <h1 className={`z-1 ${textSize} font-bold leading-snug max-w-prose ${makeClassNameImportant(className)}`}>
             {parts.map((part, index) =>
                 regex.test(part) ? (
                     <span key={index} className={`${getHighlightClass()} ${highlightClassName}`}>

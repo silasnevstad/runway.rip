@@ -5,16 +5,16 @@ import Link from "next/link";
 import { LinkIcon } from "@heroicons/react/24/outline";
 
 const TextLink = ({
-                      children,
-                      href,
-                      className,
-                      icon = false,
-                      grow = false,
-                      fade = false,
-                      underline = false,
-                      underlineHeight = '1px',
-                      selected = false
-                  }) => (
+    children,
+    href,
+    className,
+    icon = false,
+    grow = false,
+    fade = false,
+    underline = false,
+    underlineHeight = '1px',
+    selected = false
+}) => (
     <Link
         href={href}
         className={`

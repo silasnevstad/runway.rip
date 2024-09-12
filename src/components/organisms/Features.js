@@ -27,7 +27,7 @@ const Features = () => {
             imageAlt: "Stripe",
         },
         {
-            title: 'Authentication',
+            title: 'Auth',
             features: [
                 'Email/password login',
                 'Social auth',
@@ -82,20 +82,21 @@ const Features = () => {
 
     return (
         <div className="flex flex-col items-center gap-10 w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6" id="features">
-            <div className="grid grid-cols-3 gap-4 sm:grid-cols-6">
+            <div className="grid grid-cols-3 gap-6 sm:grid-cols-6">
                 {features.map((feature, index) => (
-                    <Badge
+                    <div
                         key={index}
-                        className="w-24 h-24 flex flex-col justify-center items-center cursor-pointer"
+                        className={`cursor-pointer transform transition-transform duration-200 ease-in-out px-4 py-3 rounded-lg
+                            ${selectedFeature === index ? 'scale-100' : 'scale-100'}
+                            ${selectedFeature === index ? 'text-primary-500 dark:text-primary-400' : 'text-gray-600'}
+                        `}
                         onClick={() => setSelectedFeature(index)}
-                        shape="square"
-                        color={selectedFeature === index ? 'primary' : ''}
                     >
-                        <div className="flex flex-col items-center gap-2 cursor-pointer">
-                            <feature.icon className="text-3xl"/>
-                            <span className="text-xs font-semibold">{feature.title}</span>
+                        <div className="flex flex-col items-center gap-2">
+                            <feature.icon className="text-3xl flex-shrink-0"/>
+                            <span className="text-xs font-semibold text-center">{feature.title}</span>
                         </div>
-                    </Badge>
+                    </div>
                 ))}
             </div>
             <Card className="relative flex flex-col items-center text-center bg-transparent" animate={false} hoverEffect="none">
