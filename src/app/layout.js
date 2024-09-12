@@ -1,5 +1,6 @@
 import config from "@/config";
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import './globals.css';
 
 // 💡 Load your font(s)...
@@ -12,8 +13,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
-                <body className={inter.className}>{children}</body>
+        <html lang="en" suppressHydrationWarning>
+            <body className={inter.className}>
+                <ThemeProvider defaultTheme="system" enableSystem={true}>
+                    {children}
+                </ThemeProvider>
+            </body>
         </html>
     );
 }
