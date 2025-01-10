@@ -9,7 +9,7 @@ import ThemeSwitch from "@/components/molecules/ThemeSwitch";
 import { useRouter } from 'next/navigation'
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
 
-function DocumentationPageLayout({ children }) {
+function DocumentationPage({ children }) {
     const router = useRouter();
 
     const handleSearchSelect = (item) => {
@@ -57,4 +57,4 @@ function DocumentationPageLayout({ children }) {
     );
 }
 
-export default DocumentationPageLayout;
+export default DocumentationPage;
