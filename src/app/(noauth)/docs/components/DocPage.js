@@ -17,7 +17,7 @@ function DocumentationPage({ children }) {
     }
 
     return (
-        <div className="flex w-full min-h-screen max-md:-ml-5">
+        <div className="flex min-h-screen w-full max-md:-ml-5">
             <Sidebar
                 alwaysOpen={true}
                 position="left"
@@ -32,11 +32,13 @@ function DocumentationPage({ children }) {
                 </div>
                 <DocumentationSidebar />
             </Sidebar>
-            <main className={`ml-64 max-md:ml-0 w-full relative`}>
+            <div className={`flex w-64`}>
+            </div>
+            <main className={`max-md:ml-0 w-[calc(100vw-16rem)] overflow-x-auto relative`}>
                 <div className="sticky top-0 right-0 pt-5 pl-10 md:pr-5 z-10 flex justify-between items-start">
                     <p></p>
                     <div className="flex items-center ml-4 gap-4">
-                        <ThemeSwitch />
+                        {/*<ThemeSwitch />*/}
                         <SearchBar
                             items={DocsNav}
                             onItemSelect={handleSearchSelect}
@@ -48,7 +50,7 @@ function DocumentationPage({ children }) {
                         />
                     </div>
                 </div>
-                <div className="-mt-16 max-md:mt-2 p-10 max-md:p-0 pr-5 max-md:pr-0 w-full">
+                <div className="-mt-16 max-md:mt-2 pl-10 pt-10 max-md:p-0 pr-5 max-md:pr-0 w-full">
                     <Breadcrumb sections={DocsNav}/>
                     {children}
                 </div>

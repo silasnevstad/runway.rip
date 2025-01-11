@@ -129,7 +129,7 @@ export default async function DocsPage({ params }) {
 
     return (
         <div className="flex flex-col w-full items-start gap-8 md:flex-row justify-between">
-            <div className="flex-grow max-w-prose">
+            <div className="flex-1 min-w-0 overflow-x-auto">
                 <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                     {pageTitle}
                 </h1>
@@ -140,7 +140,7 @@ export default async function DocsPage({ params }) {
                     {content}
                 </div>
             </div>
-            <div className="max-lg:hidden md:sticky md:top-28 self-start md:w-64 space-y-4">
+            <div className="max-lg:hidden md:sticky md:top-28 self-start md:w-44 flex-shrink-0 space-y-4">
                 {relatedContent.length > 0 && <RelatedContent items={relatedContent}/>}
                 {relatedSites.length > 0 && <RelatedSites sites={relatedSites}/>}
                 {onThisPage.length > 0 && <OnThisPage items={onThisPage}/>}

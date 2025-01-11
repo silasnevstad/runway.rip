@@ -19,7 +19,7 @@ const TextLink = ({
         href={href}
         className={`
             relative flex items-center gap-1
-            ${grow ? "hover:transform hover:scale-105" : ""}
+            ${grow ? "hover:transform hover:scale-101" : ""}
             ${fade && !selected ? "transition-opacity opacity-50 hover:opacity-100" : ""}
             ${selected ? "opacity-100 font-semibold" : ""}
             ${underline ? "group" : "ease-[cubic-bezier(0.25, 0.46, 0.45, 0.94)] duration-200"}

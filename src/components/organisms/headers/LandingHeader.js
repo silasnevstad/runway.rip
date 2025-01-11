@@ -7,7 +7,7 @@ import Link from "next/link";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
 
 const LandingHeader = ({
-    background = "bg-bg-100",
+    background = "bg-bg-100 border-border-b-gray-200 dark:border-b-gray-800',",
     sticky = false
 }) => {
     const { appName } = config;
@@ -18,7 +18,7 @@ const LandingHeader = ({
     };
 
     return (
-        <header className={`flex justify-center p-4 w-full ${background} ${isDropdownOpen && 'bg-opacity-100'} max-sm:sticky ${sticky && 'sticky'} top-0 z-20`}>
+        <header className={`flex justify-center p-4 w-full h-14 ${background} ${isDropdownOpen && 'bg-opacity-100'} max-sm:sticky ${sticky && 'sticky'} top-0 z-20`}>
             <div className="flex justify-between items-center max-w-5xl w-full">
                 <div className="flex items-center">
                     <Link href="" className="text-2xl font-semibold">{appName}</Link>

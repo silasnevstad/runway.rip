@@ -28,18 +28,17 @@ export default function Landing() {
     return (
         <main className="flex items-center flex-col w-full">
             <LandingHeader background={header.background} sticky={header.sticky} />
-            <div className="flex items-center flex-col w-full z-1">
-                <div className="flex flex-col justify-center h-screen">
+            <div className="flex items-center flex-col w-full z-10">
+                <div className="flex flex-col justify-center h-svh max-h-[1000px] min-h-96">
                     <div
-                        className="flex flex-col gap-5 max-w-[60ch] max-lg:max-w-[60ch] max-sm:max-w-[53ch] text-center place-items-center -mt-20"
+                        className="flex flex-col gap-5 max-w-[60ch] max-lg:max-w-[60ch] max-sm:max-w-[53ch] text-center place-items-center"
                     >
                         <div className="flex gap-3 items-center">
                             <p className="text-lg max-sm:text-sm font-semibold opacity-60">
                                 Made with:
                             </p>
-                            {/* if dark mode show nextjs-light*/}
-                            {/* if light mode show nextjs-dark*/}
-                            <Image src={"/logos/nextjs-white.png"} alt={"nextjs"} width={25} height={25} />
+                            <Image src={"/logos/nextjs-white.png"} alt={"nextjs"} width={25} height={25} className="hidden dark:block" />
+                            <Image src={"/logos/nextjs.png"} alt={"nextjs"} width={25} height={25} className="block dark:hidden" />
                             <Image src={"/logos/tailwindcss.png"} alt={"tailwindcss"} width={25} height={25} />
                             <Image src={"/logos/supabase.png"} alt={"supabase"} width={25} height={25} />
                             <Image src={"/logos/mailgun.png"} alt={"mailgun"} width={25} height={25} />
@@ -66,21 +65,22 @@ export default function Landing() {
                         {heroSection.trustedBy && <TrustedBy />}
                     </div>
                 </div>
-                <div className="-mt-28 flex flex-col items-center bg-gradient-to-b from-bg-50 dark:from-bg-900 to-green-100 dark:to-green-900/45 w-full pb-10">
+                <div className="-mt-24 flex flex-col items-center bg-gradient-to-b from-bg-50 dark:from-bg-900 to-green-100 dark:to-green-900/45 w-full pb-10">
                     {features.show && (
-                        <div className="flex flex-col items-center gap-10 w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6" id="features">
+                        <div className="flex flex-col items-center w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6"
+                             id="features">
                             <h3 className="text-3xl font-semibold text-center mb-0 text-gray-800 dark:text-gray-100">
                                 {features.title}
-                                <span
-                                    className="text-lg opacity-50 font-normal ml-5 bg-gradient-to-r from-bg-800 dark:from-bg-100 from-20% to-bg-900 dark:to-bg-0 to-80% bg-clip-text text-transparent">
-                                    {features.subtitle}
-                                </span>
                             </h3>
-                            <Features />
+                            <h4 className="mt-2 mb-4 text-lg opacity-50 font-normal ml-5 bg-gradient-to-r from-bg-800 dark:from-bg-100 from-20% to-bg-900 dark:to-bg-0 to-80% bg-clip-text text-transparent">
+                                    {features.subtitle}
+                            </h4>
+                            <Features/>
                         </div>
                     )}
                 </div>
-                <div className="flex flex-col items-center bg-gradient-to-b from-green-100 dark:from-green-900/45 to-bg-0 dark:to-bg-900 w-full pb-10">
+                <div
+                    className="flex flex-col items-center bg-gradient-to-b from-green-100 dark:from-green-900/45 to-bg-0 dark:to-bg-900 w-full pb-10">
                     <div className="flex flex-col pt-32 gap-5 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-5/6" id="how-it-works">
                         <h3 className="text-4xl font-semibold text-start mb-0 text-gray-800 dark:text-gray-100">
                             {howItWorks.title}

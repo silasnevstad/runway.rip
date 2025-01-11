@@ -56,7 +56,7 @@ const CodeBlock = ({
             ) : null}
             <SyntaxHighlighter
                 language={language}
-                style={theme === 'light' ? atomOneLight : atomOneDark}
+                style={theme === 'dark' ? atomOneLight : atomOneDark}
                 wrapLines={wrapLines}
                 showLineNumbers={showLineNumbers}
                 startingLineNumber={startingLineNumber}

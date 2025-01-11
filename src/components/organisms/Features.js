@@ -15,18 +15,6 @@ const Features = () => {
 
     const features = [
         {
-            title: 'Payments',
-            features: [
-                'Securely accept payments',
-                'Manage subscriptions',
-                'Ensure PCI compliance'
-            ],
-            description: 'Securely accept payments and manage subscriptions with Stripe integration. Handle transactions effortlessly while ensuring PCI compliance, allowing you to focus on growing your business.',
-            icon: MdPayment,
-            imageSrc: "/logos/stripe.png",
-            imageAlt: "Stripe",
-        },
-        {
             title: 'Auth',
             features: [
                 'Email/password login',
@@ -37,6 +25,18 @@ const Features = () => {
             icon: MdOutlineVerifiedUser,
             imageSrc: "/logos/supabase.png",
             imageAlt: "Supabase",
+        },
+        {
+            title: 'Payments',
+            features: [
+                'Securely accept payments',
+                'Manage subscriptions',
+                'Ensure PCI compliance'
+            ],
+            description: 'Securely accept payments and manage subscriptions with Stripe integration. Handle transactions effortlessly while ensuring PCI compliance, allowing you to focus on growing your business.',
+            icon: MdPayment,
+            imageSrc: "/logos/stripe.png",
+            imageAlt: "Stripe",
         },
         {
             title: 'Database',

@@ -4,13 +4,6 @@ description: "Learn how to install and set up the project"
 related:
   - title: "Project Structure"
     href: "/docs/project-structure"
-  - title: "Configuration"
-    href: "/docs/configuration"
-sites:
-  - title: "Official Documentation"
-    url: "https://docs.example.com"
-  - title: "GitHub Repository"
-    url: "https://github.com/example/repo"
 onThisPage:
   - title: "System Requirements"
     href: "#system-requirements"
@@ -18,20 +11,26 @@ onThisPage:
     href: "#set-up-the-project"
 ---
 
-Once you're done, you can check out the [Launch in 5 Minutes](/docs/launch-in-5-minutes) tutorial to learn how to deploy your project in minutes.
+Once you're done, you can check out the [Launch in 5 Minutes](/docs/tutorials/launch-in-5-minutes) tutorial to learn how to deploy your project in minutes.
 
 Let's get started! 🚀
 
 <br/>
 
 <div id="system-requirements" />
-System Requirements:
+**System Requirements:**
 
-- <TextLink href="https://nodejs.org/en/" className="text-sm text-blue-500">Node.js (version 14 or higher)</TextLink>
-
-- <div className="flex gap-2 "><TextLink href="https://www.npmjs.com/" className="text-sm text-blue-500">npm (version 6 or higher)</TextLink>
-    or
-    <TextLink href="https://yarnpkg.com/" className="text-sm text-blue-500">yarn (version 1.22 or higher)</TextLink></div>
+<ul className="ml-0.5 list-disc list-inside flex flex-col gap-2 whitespace-nowrap text-sm">
+    <li>
+        <TextLink href="https://nodejs.org/en/" className="text-blue-500" underline>Node.js (version 14 or higher)</TextLink>
+    </li>
+    <li>
+        <div className="flex items-center">
+        <TextLink href="https://www.npmjs.com/" className="text-blue-500" underline>npm (version 6 or higher)</TextLink>
+        <span className="text-sm mx-2 ml-4">or</span> <TextLink href="https://yarnpkg.com/" className="text-sm text-blue-500">yarn (version 1.22 or higher)</TextLink>
+        </div>
+    </li>
+</ul>
 
 <br/>
 <Divider />
@@ -67,4 +66,6 @@ Follow these steps to get Runway.js up and running on your local machine:
     <br />
 3. Open `http://localhost:3000` and done!
 
+<br />
+<br />
 <br />

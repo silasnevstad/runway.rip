@@ -52,7 +52,7 @@ const config = {
 
 export const landingConfig = {
     header: {
-        background: "bg-bg-50 dark:bg-bg-900 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",
+        background: "border-b bg-bg-50 dark:bg-bg-900 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",
         sticky: true
     },
     heroSection: {

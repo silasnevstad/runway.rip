@@ -32,7 +32,7 @@ const Code = ({ children, className, ...props }) => {
             language={language}
             showLineNumbers={true}
             startingLineNumber={1}
-            darkTheme={true}
+            darkTheme={false}
             wrapLines={true}
             copy
             showLanguage
