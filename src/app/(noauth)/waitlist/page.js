@@ -24,7 +24,8 @@ export default function WaitlistPage() {
                     <p className="font-semibold opacity-50">
                         Made with:
                     </p>
-                    <Image src={"/logos/nextjs-white.png"} alt={"nextjs"} width={20} height={20}/>
+                    <Image src={"/logos/nextjs-white.png"} alt={"nextjs"} width={20} height={20} className="hidden dark:block" />
+                    <Image src={"/logos/nextjs.png"} alt={"nextjs"} width={20} height={20} className="block dark:hidden" />
                     <Image src={"/logos/tailwindcss.png"} alt={"tailwindcss"} width={20} height={20}/>
                     <Image src={"/logos/supabase.png"} alt={"supabase"} width={20} height={20}/>
                     <Image src={"/logos/mailgun.png"} alt={"mailgun"} width={20} height={20}/>
