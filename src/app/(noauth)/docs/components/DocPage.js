@@ -32,9 +32,9 @@ function DocumentationPage({ children }) {
                 </div>
                 <DocumentationSidebar />
             </Sidebar>
-            <div className={`flex w-64`}>
+            <div className={`flex w-64 max-md:w-0`}>
             </div>
-            <main className={`max-md:ml-0 w-[calc(100vw-16rem)] overflow-x-auto relative`}>
+            <main className={`max-md:ml-0 md:w-[calc(100vw-16rem)] overflow-x-auto relative`}>
                 <div className="sticky top-0 right-0 pt-5 pl-10 md:pr-5 z-10 flex justify-between items-start">
                     <p></p>
                     <div className="flex items-center ml-4 gap-4">
