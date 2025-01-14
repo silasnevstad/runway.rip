@@ -95,6 +95,7 @@ export default async function DocsPage({ params }) {
         Accordion: require("@/components/molecules/Accordion").default,
         Input: require("@/components/atoms/Input").default,
         Badge: require("@/components/atoms/Badge").default,
+        Button: require("@/components/atoms/Button").default,
         Avatar: require("@/components/atoms/Avatar").Avatar,
         LetterAvatar: require("@/components/atoms/Avatar").LetterAvatar,
         AvatarList: require("@/components/atoms/Avatar").AvatarList,
