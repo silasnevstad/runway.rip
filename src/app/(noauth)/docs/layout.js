@@ -1,11 +1,16 @@
-import DocumentationPage from '@/app/(noauth)/docs/components/DocPage';
+import DocsShell from "./_components/DocsShell";
 
-export default function DocumentationLayout({ children }) {
+export const metadata = {
+    title: "Runway Docs",
+    description: "Documentation for the Runway",
+};
+
+export default function DocsLayout({ children }) {
     return (
         <section className="flex w-full min-h-screen">
-            <DocumentationPage>
+            <DocsShell>
                 {children}
-            </DocumentationPage>
+            </DocsShell>
         </section>
     );
 }

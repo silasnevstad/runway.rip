@@ -1,12 +1,15 @@
-export default function DocumentationPage() {
+export const metadata = {
+    title: "Runway Docs Home",
+};
+
+export default function DocsIndexPage() {
     return (
-        <div className="flex flex-col items-start max-w-prose gap-6 pb-40">
-            <div>
-                <h4 className="text-xl font-medium">Welcome to the Runway Docs! 👋</h4>
-            </div>
-            <p>
+        <div className="max-w-prose">
+            <h1 className="text-4xl font-bold mb-4">Welcome to the Runway Docs! 👋</h1>
+            <p className="mb-6">
                 Browse through the documentation to learn more about Runway and how to use it.
             </p>
+            <p>Pick a topic from the sidebar to get started!</p>
         </div>
     );
 }

@@ -1,4 +1,10 @@
-import { PlayIcon, BookOpenIcon, CursorArrowRaysIcon, MapIcon, PuzzlePieceIcon } from "@heroicons/react/24/outline";
+import {
+    PlayIcon,
+    BookOpenIcon,
+    CursorArrowRaysIcon,
+    MapIcon,
+    PuzzlePieceIcon,
+} from "@heroicons/react/24/outline";
 
 export const DocsNav = [
     {
@@ -8,7 +14,7 @@ export const DocsNav = [
         items: [
             { title: "Installation", href: "/docs/installation" },
             { title: "Project Structure", href: "/docs/project-structure" },
-        ]
+        ],
     },
     {
         title: "Tutorials",
@@ -22,7 +28,7 @@ export const DocsNav = [
             { title: "Stripe Subscriptions", href: "/docs/tutorials/stripe-subscriptions" },
             { title: "Domain", href: "/docs/tutorials/domain-setup" },
             { title: "Emails", href: "/docs/tutorials/email-setup" },
-        ]
+        ],
     },
     {
         title: "Features",
@@ -34,7 +40,7 @@ export const DocsNav = [
             { title: "Emails", href: "/docs/features/emails" },
             { title: "Payments", href: "/docs/features/payments" },
             { title: "Auth", href: "/docs/features/auth" },
-        ]
+        ],
     },
     {
         title: "Components",
@@ -71,6 +77,6 @@ export const DocsNav = [
             { title: "Timeline", href: "/docs/components/timeline" },
             { title: "Toggle", href: "/docs/components/toggle" },
             { title: "Tooltip", href: "/docs/components/tooltip" },
-        ]
+        ],
     },
 ];
