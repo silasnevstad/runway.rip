@@ -1,32 +1,52 @@
 ---
-title: "Avatars"
-description: "Display user avatars and initials"
+title: "Avatar"
+description: "A flexible avatar component that displays either an image or a fallback letter. Includes optional status indicators."
 onThisPage:
+  - title: "Overview"
+    href: "#avatar-overview"
   - title: "Props"
     href: "#props"
-  - title: "Image Avatar"
-    href: "#image-avatar"
-  - title: "Letter Avatar"
-    href: "#letter-avatar"
-  - title: "Avatar List"
-    href: "#avatar-list"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
 
-<div id="avatar" />
+<div id="avatar-overview" />
 
-<br/>
 <Divider />
 
-<div class="flex justify-center items-center space-x-4">
-    <Avatar src="/images/elon-avatar.png" alt="Elon Musk" />
-    <Avatar src="/images/elon-avatar.png" alt="Elon Musk" />
-    <Avatar src="/images/elon-avatar.png" alt="Elon Musk" />
-    <LetterAvatar letter="A" />
-    <LetterAvatar letter="B" />
-    <LetterAvatar letter="C" />
+<br/>
+
+<div className="flex gap-4 mb-4 justify-center items-center">
+    <Avatar
+        src="/avatar1.png"
+        alt="User Example"
+        size="lg"
+    />
+    <Avatar
+        letter="D"
+        size="md"
+        shape="square"
+    />
+    <Avatar
+        src="/avatar2.png"
+        alt="Broken"
+        shape="rounded"
+        status="online"
+    />
 </div>
+
+<br/>
+
+<p>
+    The <InlineHighlight>Avatar</InlineHighlight> component displays a user’s profile image if available.
+    When the image fails to load or isn’t provided, it falls back to a letter. You can customize <InlineHighlight>size</InlineHighlight>, <InlineHighlight>shape</InlineHighlight>, ring colors,
+    status indicators, and more.
+</p>
+
+<Info>
+    For collections of multiple avatars, see the
+    <InlineHighlight type="navigation">[AvatarList](/docs/components/avatar-list)</InlineHighlight> component.
+</Info>
 
 <br/>
 <Divider />
@@ -36,144 +56,148 @@ onThisPage:
 
 ## Props
 
-The `Avatar` component accepts the following props:
+| **Prop**       | **Type**                         | **Default**                  | **Description**                                                                                                                              |
+|----------------|----------------------------------|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| src            | string                           | -                            | URL of the image. If absent or fails to load, we show a fallback letter.                                                                     |
+| alt            | string                           | ''                           | Accessible text (for screen readers) and used for the fallback letter.                                                                       |
+| letter         | string                           | -                            | Explicit letter to show if no image (overrides the first character of <InlineHighlight>alt</InlineHighlight>).                               |
+| size           | `xs\|sm\|md\|lg\|xl`             | `md`                         | Controls the Avatar dimensions (width/height/font size).                                                                                     |
+| shape          | `circle\|rounded\|square`        | `circle`                     | Determines corner rounding.                                                                                                                  |
+| borderColor    | string                           | `gray-400 dark:border-gray-500` | Tailwind classes for the outer border color.                                                                                              |
+| bgColor        | string                           | `bg-gray-200 dark:bg-gray-700`  | Tailwind classes for the avatar background.                                                                                                |
+| textColor      | string                           | `text-gray-600 dark:text-gray-300` | Tailwind classes for fallback letter text color.                                                                                         |
+| ringColor      | string                           | -                            | Tailwind classes for ring highlight, e.g. <InlineHighlight>ring-2 ring-blue-500</InlineHighlight>.                                          |
+| status         | string                           | -                            | Status label (e.g. <InlineHighlight>"online"</InlineHighlight>). If provided, we show a small colored dot in the bottom-right corner.       |
+| statusColor    | string                           | `bg-green-400`               | Tailwind class for the status dot color.                                                                                                    |
+| className      | string                           | ''                           | Additional classes appended to the outer container.                                                                                         |
+| onClick        | function                         | -                            | Callback fired when the avatar is clicked.                                                                                                  |
+| style          | object                           | -                            | Inline style object for custom styling.                                                                                                     |
 
-| Name      | Type      | Default | Description                                                                 |
-| --------- | --------- | ------- | --------------------------------------------------------------------------- |
-| className | `string`  | `''`    | Additional classes to be added to the accordion container.                  |
-| src       | `string`  | -       | The URL of the image to be displayed as the avatar.                          |
-| alt       | `string`  | -       | The alt text for the image, used for accessibility.                          |
-| letter    | `string`  | -       | The letter to be displayed in the avatar.                                     |
-
-<br/>
-<br/>
-<Divider />
-<br/>
-
-<div id="image-avatar" />
-## Image Avatar
-
-The `Avatar` component displays an image avatar using Next.js's `Image` component for optimal performance.
-
-<PreviewCode preview={
-    <Avatar src="/images/elon-avatar.png" alt="Elon Musk" />
-}>
-    ```jsx
-    <Avatar src="/public/images/user.jpg" alt="User Name" />
-    ```
-</PreviewCode>
-
-<Tip>
-    Use the `width` and `height` props to adjust the size of the avatar. The default size is 50x50 pixels.
-</Tip>
-<Warning>
-    Ensure that the `src` prop points to a valid image URL. Invalid URLs may cause rendering issues.
-</Warning>
-<br/>
-<br/>
-<Divider />
-<br/>
-
-<div id="letter-avatar" />
-
-## Letter Avatar
-
-The `LetterAvatar` component displays a single letter, typically the user's initial, when an image is not available.
-
-<PreviewCode preview={
-    <LetterAvatar letter="J" />
-}>
-    ```jsx
-    <LetterAvatar letter="J" />
-    ```
-</PreviewCode>
-
-<Info>
-    The `LetterAvatar` is useful for representing users who haven't uploaded a profile picture or when you want to display initials instead of images.
-</Info>
-<Tip>
-    You can customize the background color and text color by modifying the className prop to match your application's color scheme.
-</Tip>
-<br/>
-<br/>
-<Divider />
-<br/>
-
-<div id="avatar-list" />
-
-## Avatar List
-
-The `AvatarList` component displays a group of avatars, typically used to show multiple users or participants.
-
-<PreviewCode preview={
-    <AvatarList avatars={[
-        { letter: "A" },
-        { letter: "B" },
-        { letter: "C" },
-    ]} />
-}>
-    ```jsx
-    <AvatarList avatars={[
-        { letter: "A" },
-        { letter: "B" },
-        { letter: "C" },
-    ]} />
-    ```
-</PreviewCode>
-
-<Info>
-    The `AvatarList` component slightly overlaps avatars to create a compact group representation.
-</Info>
-<Tip>
-    Limit the number of avatars displayed to prevent overcrowding. Consider showing a "+X more" indicator for additional users.
-</Tip>
-<br/>
-<br/>
-<Divider />
-<br/>
-
-<div id="usage-examples" />
-
-## Usage Examples
-
-### Basic Avatar
-<PreviewCode preview={
-    <Avatar src="/images/elon-avatar.png" alt="Elon Musk" />
-}>
-```jsx
-<Avatar src="/public/images/user.jpg" alt="User Name" />
-```
-</PreviewCode>
-
-### Letter Avatar
-<PreviewCode preview={
-    <LetterAvatar letter="J" />
-}>
-```jsx
-<LetterAvatar letter="J" />
-```
-</PreviewCode>
-
-### Avatar List
-<PreviewCode preview={
-    <AvatarList avatars={[
-        { letter: "A" },
-        { letter: "B" },
-        { letter: "C" },
-    ]} />
-}>
-```jsx
-<AvatarList avatars={[
-    { letter: "A" },
-    { letter: "B" },
-    { letter: "C" },
-]} />
-```
-</PreviewCode>
 <br/>
 <Info>
-    When using `AvatarList`, either provide a valid image URL or a letter for each avatar. The component will automatically render the appropriate avatar type based on the provided data.
+    For advanced usage, you can also add the <InlineHighlight>ringColor</InlineHighlight> prop to highlight the avatar with a Tailwind ring (e.g. <InlineHighlight>ring-2 ring-primary-500</InlineHighlight>).
 </Info>
 
 <br/>
+<Divider />
 <br/>
+
+<div id="examples" />
+
+## Examples
+
+### 1. Basic Image Avatar
+
+<PreviewCode preview={
+    <div className="flex gap-3">
+        <Avatar
+            src="/avatar1.png"
+            alt="User One"
+            size="sm"
+        />
+        <Avatar
+            src="/avatar2.png"
+            alt="User Two"
+            size="lg"
+            borderColor="border-primary-500"
+        />
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-3">
+        <Avatar
+            src="/avatar1.png"
+            alt="User One"
+            size="sm"
+        />
+        <Avatar
+            src="/avatar2.png"
+            alt="User Two"
+            size="lg"
+            borderColor="border-primary-500"
+        />
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+
+### 2. Letter Fallback
+If an image is missing or broken, <InlineHighlight>Avatar</InlineHighlight> shows the first character of <InlineHighlight>alt</InlineHighlight> or the explicit <InlineHighlight>letter</InlineHighlight> prop.
+
+<PreviewCode preview={
+    <div className="flex gap-3">
+        <Avatar
+            alt="Ava Jones"
+            src="/invalid-img.jpg"
+        />
+        <Avatar
+            letter="Z"
+            shape="square"
+        />
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-3">
+        <Avatar
+            alt="Ava Jones"
+            src="/invalid-img.jpg"  // this will fail
+        />
+        <Avatar
+            letter="Z"
+            shape="square"
+        />
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+
+### 3. Status Indicator
+
+<PreviewCode preview={
+    <div className="flex gap-3">
+        <Avatar
+            src="/avatar1.png"
+            alt="Online User"
+            status="online"
+        />
+        <Avatar
+            letter="O"
+            status="busy"
+            statusColor="bg-red-500"
+            shape="rounded"
+        />
+        <Avatar
+            src="/avatar3.png"
+            alt="Online User"
+            status="busy"
+            statusColor="bg-yellow-300"
+        />
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-3">
+        <Avatar
+            src="/avatar1.png"
+            alt="Online User"
+            status="online"
+        />
+        <Avatar
+            letter="O"
+            status="busy"
+            statusColor="bg-red-500"
+            shape="rounded"
+        />
+        <Avatar
+            src="/avatar3.png"
+            alt="Online User"
+            status="busy"
+            statusColor="bg-yellow-300"
+        />
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+<br />

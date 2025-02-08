@@ -1,0 +1,97 @@
+---
+title: "File Input"
+description: "A file input component for selecting files"
+onThisPage:
+  - title: "Overview"
+    href: "#file-input-overview"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="file-input-overview" />
+
+<Divider />
+<br/>
+
+<div className="flex gap-4 mb-4 justify-center items-center">
+    <FileInput />
+</div>
+
+<br/>
+
+<p>
+    The <InlineHighlight>FileInput</InlineHighlight> component provides an intuitive interface for selecting files.
+    It features a customizable button with an icon and displays the selected file name.
+</p>
+
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+| **Prop**          | **Type**   | **Default**                   | **Description**                                                                                           |
+|-------------------|------------|-------------------------------|-----------------------------------------------------------------------------------------------------------|
+| onFileChange      | function   | -                             | Callback function that is called when a file is selected. Receives the selected file as an argument.      |
+| text              | string     | `"Choose File"`               | Text displayed on the file input button.                                                                  |
+| placeholder       | string     | `"No file selected"`          | Placeholder text displayed when no file is selected.                                                      |
+| className         | string     | -                             | Additional CSS classes for custom styling.                                                                |
+| buttonClassName   | string     | -                             | Additional CSS classes for the file input button.                                                         |
+| inputClassName    | string     | -                             | Additional CSS classes for the file input element.                                                        |
+| color             | string     | `"gray"`                      | Color scheme for the file input button.                                                                   |
+| buttonIcon        | Icon       | `FiFilePlus`                  | Icon component to display on the file input button.                                                       |
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="examples" />
+
+## Examples
+
+### 1. Basic Usage
+
+<PreviewCode preview={
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <FileInput />
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <FileInput />
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+
+### 2. Customized FileInput
+
+<PreviewCode preview={
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <FileInput
+            text="Select Document"
+            buttonClassName="bg-purple-600 hover:bg-purple-700"
+            inputClassName="border-purple-300"
+            placeholder="No document chosen"
+        />
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <FileInput
+            text="Select Document"
+            buttonClassName="bg-purple-600 hover:bg-purple-700"
+            inputClassName="border-purple-300"
+            placeholder="No document chosen"
+        />
+    </div>
+    ```
+</PreviewCode>
+
+<br/>

@@ -40,8 +40,6 @@ const config = {
                 "Stripe",
                 "Supabase",
                 "Mailgun",
-                "Priority support",
-                "Discord community",
                 "Lifetime updates"
             ],
             isPopular: true,
@@ -52,8 +50,12 @@ const config = {
 
 export const landingConfig = {
     header: {
-        background: "border-b bg-bg-50 dark:bg-bg-900 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",
-        sticky: true
+        background: "border-b border-b-bg-300 dark:border-b-bg-700 bg-bg-50 dark:bg-bg-900 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",
+        sticky: true,
+        logo: {
+            src: "/logo.png",
+            alt: "Runway Logo"
+        },
     },
     heroSection: {
         textHighlight: {
@@ -182,7 +184,6 @@ export const pricingConfig = {
             description: "Get started with the basics.",
             features: [
                 "NextJS boilerplate",
-                "Component library",
                 "SEO tools",
                 "Stripe",
                 "Supabase",
@@ -204,7 +205,6 @@ export const pricingConfig = {
                 "Supabase",
                 "Mailgun",
                 "Priority support",
-                "Discord community",
                 "Lifetime updates"
             ],
             isPopular: true,

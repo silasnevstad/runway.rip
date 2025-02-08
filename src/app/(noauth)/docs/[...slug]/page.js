@@ -8,16 +8,10 @@ import remarkGfm from "remark-gfm";
 
 import { LinkIcon } from "@heroicons/react/24/outline";
 import TextLink from "@/components/atoms/TextLink";
-
-// Example: your custom React components:
 import { mdxComponents } from "../_components/mdx-components";
 
-// 1. Base content dir
 const DOCS_DIR = path.join(process.cwd(), "src", "app", "(noauth)", "docs", "content");
 
-/**
- * Recursively gather all .mdx files -> build { slug: string[] }
- */
 function getAllMdxFilesRecursively(dir, baseDir = dir) {
     let result = [];
     const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -38,13 +32,11 @@ function getAllMdxFilesRecursively(dir, baseDir = dir) {
     return result;
 }
 
-/** Next 13 static route generation */
 export async function generateStaticParams() {
     const files = getAllMdxFilesRecursively(DOCS_DIR);
     return files.map((slugArray) => ({ slug: slugArray }));
 }
 
-// Example sidebars
 const RelatedContent = ({ items }) => (
     <div className="border border-gray-300 dark:border-gray-800 p-4 rounded-lg">
         <h3 className="text-md font-semibold mb-2 opacity-80">Related Content</h3>
@@ -96,23 +88,19 @@ const OnThisPage = ({ items }) => (
     </div>
 );
 
-/** The main dynamic docs page */
 export default async function DocsPage({ params }) {
-    // 1. Construct .mdx file path
     const filePath = path.join(DOCS_DIR, ...params.slug) + ".mdx";
     if (!fs.existsSync(filePath)) {
         notFound();
     }
 
-    // 2. Read raw file content
     const source = fs.readFileSync(filePath, "utf8");
 
-    // 3. Compile MDX to a ReactNode with next-mdx-remote/rsc
     const { content, frontmatter } = await compileMDX({
         source,
         components: mdxComponents, // custom shortcodes or overrides
         options: {
-            parseFrontmatter: true, // also parse frontmatter
+            parseFrontmatter: true,
             mdxOptions: {
                 remarkPlugins: [remarkGfm],
                 rehypePlugins: [rehypeHighlight, rehypeSlug],
@@ -120,13 +108,10 @@ export default async function DocsPage({ params }) {
         },
     });
 
-    // 4. Gather frontmatter for sidebars
     const relatedContent = frontmatter?.related || [];
     const relatedSites = frontmatter?.sites || [];
     const onThisPage = frontmatter?.onThisPage || [];
 
-    // 5. Return the *server-rendered* MDX content
-    //    content is an actual React element at this point – no function passing required
     return (
         <div className="flex flex-col w-full items-start gap-8 md:flex-row justify-between">
             {/* Left - main docs area */}

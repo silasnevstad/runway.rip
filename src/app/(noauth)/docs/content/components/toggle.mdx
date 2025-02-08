@@ -6,13 +6,16 @@ onThisPage:
     href: "#toggle"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
+
 <div id="toggle" />
+
 <Divider />
-<br/>
+
 <br />
+
 <div className="flex items-center justify-center">
     <Toggle checked />
     <Toggle color="red" checked icon />
@@ -23,6 +26,7 @@ onThisPage:
     <Toggle color="purple" checked icon />
     <Toggle color="gray" checked />
 </div>
+
 <br />
 
 The `Toggle` component is a simple switch that can be toggled on or off. It is commonly used to enable or disable a feature or setting.
@@ -32,7 +36,6 @@ The `Toggle` component is a simple switch that can be toggled on or off. It is c
 </Tip>
 
 <br/>
-<br/>
 <Divider />
 <br/>
 
@@ -40,17 +43,17 @@ The `Toggle` component is a simple switch that can be toggled on or off. It is c
 ## Props
 The Toggle component accepts the following props:
 
-| Name          | Type       | Default | Description                                                                 |
-|---------------|------------|---------|-----------------------------------------------------------------------------|
-| checked       | `boolean`  | `false` | Whether the toggle switch is checked or not                                 |
-| onChange      | `function` |         | Callback function to handle the toggle switch change event                  |
-| className     | `string`   |         | Custom CSS classes to apply to the toggle switch                             |
-| label         | `string`   |         | Label text to display next to the toggle switch                              |
-| labelPosition | `string`   | `left`  | Position of the label relative to the toggle switch ('left' or 'right')     |
-| color         | `string`   | `primary` | The color scheme of the toggle switch                                       |
-| icon          | `boolean`  | `false` | Whether to display an icon inside the toggle switch                         |
-| focus         | `boolean`  | `false` | Whether to apply a focus ring effect when the toggle switch is focused      |
-| disabled      | `boolean`  | `false` | Whether the toggle switch is disabled or not                                 |
+| Name          | Type     | Default   | Description                                                             |
+|---------------|----------|-----------|-------------------------------------------------------------------------|
+| checked       | boolean  | `false`   | Whether the toggle switch is checked or not                             |
+| onChange      | function |           | Callback function to handle the toggle switch change event              |
+| className     | string   |           | Custom CSS classes to apply to the toggle switch                        |
+| label         | string   |           | Label text to display next to the toggle switch                         |
+| labelPosition | string   | `left`    | Position of the label relative to the toggle switch ('left' or 'right') |
+| color         | string   | `primary` | The color scheme of the toggle switch                                   |
+| icon          | boolean  | `false`   | Whether to display an icon inside the toggle switch                     |
+| focus         | boolean  | `false`   | Whether to apply a focus ring effect when the toggle switch is focused  |
+| disabled      | boolean  | `false`   | Whether the toggle switch is disabled or not                            |
 
 
 <Info>
@@ -59,14 +62,14 @@ The Toggle component accepts the following props:
 
 <br/>
 
-<div id="usage-examples" />
+<div id="examples" />
 
-## Usage Examples
+## Examples
 ### Basic Toggle
 <PreviewCode preview={
     <Toggle checked />
 }>
-```jsx
+```javascript
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
@@ -78,7 +81,7 @@ The Toggle component accepts the following props:
 <PreviewCode preview={
     <Toggle checked label="Enable feature" />
 }>
-```jsx
+```javascript
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
@@ -91,7 +94,7 @@ The Toggle component accepts the following props:
 <PreviewCode preview={
     <Toggle checked icon />
 }>
-```jsx
+```javascript
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
@@ -104,7 +107,7 @@ The Toggle component accepts the following props:
 <PreviewCode preview={
     <Toggle checked disabled />
 }>
-```jsx
+```javascript
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
@@ -122,7 +125,7 @@ The Toggle component accepts the following props:
         label="Customized toggle"
     />
 }>
-```jsx
+```javascript
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}

@@ -9,8 +9,11 @@ onThisPage:
   - title: "Usage Examples"
     href: "#usage-examples"
 ---
+
 <div id="divider" />
+
 <Divider />
+
 <br />
 
 <div className="flex flex-col w-full items-center justify-center">
@@ -23,7 +26,6 @@ def hello_world():
 </div>
 
 <br />
-<br />
 
 The `CodeBlock` component is a customizable code block that can be used to display code snippets. It supports syntax highlighting, line numbers, and copy-to-clipboard functionality.
 
@@ -31,7 +33,6 @@ The `CodeBlock` component is a customizable code block that can be used to displ
     Use the `copy`, `showLanguage`, and `showLineNumbers` props to enable additional features for the code block.
 </Tip>
 
-<br/>
 <br/>
 <Divider />
 <br/>
@@ -70,7 +71,7 @@ print("Hello, World!")
 `}
     </CodeBlock>
 }>
-```jsx
+```javascript
 <CodeBlock language="python">
     print("Hello, World!")
 </CodeBlock>
@@ -87,7 +88,7 @@ function add(a, b) {
 `}
     </CodeBlock>
 }>
-```jsx
+```javascript
 <CodeBlock language="javascript" showLineNumbers startingLineNumber={5}>
     function add(a, b) {
         return a + b;
@@ -107,7 +108,7 @@ interface User {
 `}
     </CodeBlock>
 }>
-```jsx
+```javascript
 <CodeBlock language="typescript" copy>
     interface User {
         name: string;
@@ -129,7 +130,7 @@ public class HelloWorld {
 `}
     </CodeBlock>
 }>
-```jsx
+```javascript
 <CodeBlock language="java" showLanguage>
     public class HelloWorld {
         public static void main(String[] args) {

@@ -1,41 +1,38 @@
 ---
 title: "Switch"
-description: "A customizable switch component for toggling between states"
+description: "A switch component for toggling between options"
 onThisPage:
-  - title: "Switch"
-    href: "#switch"
+  - title: "Overview"
+    href: "#switch-overview"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
-<div id="switch" />
+
+<div id="switch-overview" />
+
 <Divider />
 <br/>
-<br />
 
-<div class="flex justify-center items-center space-x-4">
-    <Switch
+<div className="flex gap-4 mb-4 justify-center items-center">
+    <SwitchDemo
         options={[
-            { name: 'Option 1', value: 'option1' },
-            { name: 'Option 2', value: 'option2' },
-            { name: 'Option 3', value: 'option3' },
+            { value: "option1", name: "Option 1" },
+            { value: "option2", name: "Option 2" },
+            { value: "option3", name: "Option 3" },
         ]}
-        selected="option1"
+        shape="rounded-xl"
     />
 </div>
 <br/>
 
-The `Switch` component is a versatile toggle switch that can be used switch between different states.
+<p>
+    The <InlineHighlight>Switch</InlineHighlight> component provides a segmented control interface
+    for toggling between multiple options. It supports both horizontal and vertical layouts,
+    customizable colors, hover effects, and optional tooltips.
+</p>
 
-<Tip>
-    Use `shape` prop to change the shape of the switch. The available options are `rounded-full`, `rounded-lg`, and `rounded-none`.
-</Tip>
-<Warning>
-    Ensure that the `options` prop is an array of objects with `name` and `value` properties.
-</Warning>
-
-<br/>
 <br/>
 <Divider />
 <br/>
@@ -44,134 +41,87 @@ The `Switch` component is a versatile toggle switch that can be used switch betw
 
 ## Props
 
-The `Switch` component accepts the following props:
-
-| Name          | Type     | Default | Description                                                                 |
-| :------------ | :------- | :------ | :-------------------------------------------------------------------------- |
-| options       | array    |         | An array of objects with `name` and `value` properties.                    |
-| selected      | string   |         | The value of the selected option.                                          |
-| onChange      | function |         | A function that is called when an option is selected.                      |
-| activeColor   | string   | `gray`  | The color of the selected option.                                          |
-| inactiveColor | string   | `gray`  | The color of the unselected options.                                       |
-| activeBgColor | string   | `bg`    | The background color of the selected option.                               |
-| inactiveBgColor | string | `bg`    | The background color of the unselected options.                            |
-| hover         | boolean  | `false` | Whether to apply hover styles to the options.                              |
-| tooltip       | boolean  | `false` | Whether to show tooltips on hover.                                         |
-| vertical      | boolean  | `false` | Whether to display the options vertically.                                 |
-| shape         | string   | `rounded-full` | The shape of the switch. Possible values: `rounded-full`, `rounded-lg`, `rounded-none`. |
-| className     | string   |         | Additional CSS classes to be applied to the switch container.              |
+| **Prop**         | **Type**            | **Default**              | **Description**                                                                                                   |
+|------------------|---------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------|
+| options          | array               | -                        | An array of option objects. Each option may contain: `value`, `name`, `Icon`, or `image`.                         |
+| selected         | any                 | -                        | The currently selected option value.                                                                              |
+| onChange         | function            | -                        | Callback fired when an option is selected. Receives the selected option's value.                                    |
+| activeColor      | string              | `"blue"`                 | Text color for the active option (e.g., `"blue"`, `"red"`).                                                       |
+| inactiveColor    | string              | `"gray"`                 | Text color for inactive options.                                                                                  |
+| activeBgColor    | string              | `"blue"`                 | Background color for the active option.                                                                           |
+| inactiveBgColor  | string              | `"gray"`                 | Background color for inactive options.                                                                            |
+| hover            | boolean             | `false`                  | If `true`, applies a hover effect on each option.                                                                 |
+| tooltip          | boolean             | `false`                  | If `true`, shows a tooltip with the option name on hover.                                                         |
+| vertical         | boolean             | `false`                  | If `true`, displays options in a vertical layout.                                                                 |
+| shape            | string              | `"rounded-full"`         | Border radius style for both the container and each option button.                                                |
+| className        | string              | `""`                     | Additional CSS classes for custom styling of the container.                                                       |
 
 <br/>
 <br/>
-
-<div id="usage-examples" />
-
-## Usage Examples
-### Basic Switch
-<PreviewCode preview={
-    <Switch
-        options={[
-            { name: 'Option 1', value: 'option1' },
-            { name: 'Option 2', value: 'option2' },
-            { name: 'Option 3', value: 'option3' },
-        ]}
-        selected="option1"
-    />
-}>
-```jsx
-<Switch
-    options={[
-        { name: 'Option 1', value: 'option1' },
-        { name: 'Option 2', value: 'option2' },
-        { name: 'Option 3', value: 'option3' },
-    ]}
-    selected="option1"
-/>
-```
-</PreviewCode>
-
-### Custom Colors
-<PreviewCode preview={
-    <Switch
-        options={[
-            { name: 'Option 1', value: 'option1' },
-            { name: 'Option 2', value: 'option2' },
-            { name: 'Option 3', value: 'option3' },
-        ]}
-        selected="option2"
-        activeColor="red"
-        inactiveColor="gray"
-        activeBgColor="red"
-        inactiveBgColor="gray"
-        hover
-    />
-}>
-```jsx
-<Switch
-    options={[
-        { name: 'Option 1', value: 'option1' },
-        { name: 'Option 2', value: 'option2' },
-        { name: 'Option 3', value: 'option3' },
-    ]}
-    selected="option2"
-    activeColor="red"
-    inactiveColor="gray"
-    activeBgColor="red"
-    inactiveBgColor="gray"
-    hover
-/>
-```
-</PreviewCode>
-
-### Vertical Switch
-<PreviewCode preview={
-    <Switch
-        options={[
-            { name: 'Option 1', value: 'option1' },
-            { name: 'Option 2', value: 'option2' },
-            { name: 'Option 3', value: 'option3' },
-        ]}
-        selected="option3"
-        vertical
-    />
-}>
-```jsx
-<Switch
-    options={[
-        { name: 'Option 1', value: 'option1' },
-        { name: 'Option 2', value: 'option2' },
-        { name: 'Option 3', value: 'option3' },
-    ]}
-    selected="option3"
-    vertical
-/>
-```
-</PreviewCode>
-
-### Switch with Tooltips
-<PreviewCode preview={
-    <Switch
-        options={[
-            { name: 'Option 1', value: 'option1' },
-            { name: 'Option 2', value: 'option2' },
-            { name: 'Option 3', value: 'option3' },
-        ]}
-        selected="option1"
-        tooltip
-    />
-}>
-```jsx
-<Switch
-    options={[
-        { name: 'Option 1', value: 'option1' },
-        { name: 'Option 2', value: 'option2' },
-        { name: 'Option 3', value: 'option3' },
-    ]}
-    selected="option1"
-    tooltip
-/>
-```
-</PreviewCode>
-
+<Divider />
 <br/>
+
+<div id="examples" />
+
+## Examples
+
+### 1. Basic Horizontal Switch
+
+<PreviewCode preview={
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <SwitchDemo
+            options={[
+                { value: "on", name: "On" },
+                { value: "off", name: "Off" },
+            ]}
+        />
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <Switch
+            options={[
+                { value: "on", name: "On" },
+                { value: "off", name: "Off" },
+            ]}
+            selected={selected}
+            onChange={setSelected}
+        />
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+
+### 2. Vertical Switch with Tooltips
+
+<PreviewCode preview={
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <SwitchDemo
+            options={[
+                { value: "day", name: "Day" },
+                { value: "night", name: "Night" },
+            ]}
+            vertical={true}
+            tooltip={true}
+            tooltipPosition="left"
+        />
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <Switch
+            options={[
+                { value: "day", name: "Day" },
+                { value: "night", name: "Night" },
+            ]}
+            selected={selected}
+            onChange={setSelected}
+            vertical={true}
+            tooltip={true}
+        />
+    </div>
+    ```
+</PreviewCode>
+
 <br/>

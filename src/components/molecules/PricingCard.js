@@ -13,6 +13,16 @@ const stripePromise = loadStripe(
 
 const PricingCard = ({ type, title, oldPrice, price, includedFeatures, allFeatures, isPopular }) => {
     const { appName } = config;
+    // reorganize allFeatures to put not included features at the end
+    const allFeaturesSorted = allFeatures.sort((a, b) => {
+        if (includedFeatures.includes(a) && !includedFeatures.includes(b)) {
+            return -1;
+        }
+        if (!includedFeatures.includes(a) && includedFeatures.includes(b)) {
+            return 1;
+        }
+        return 0;
+    });
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -40,8 +50,8 @@ const PricingCard = ({ type, title, oldPrice, price, includedFeatures, allFeatur
     return (
         <form onSubmit={handleSubmit} className={`relative flex flex-col gap-6 px-8 py-10 rounded-2xl w-full bg-bg-0 dark:bg-gray-900 shadow-sm ${isPopular ? "border-2 border-primary-400" : ""}`}>
             {isPopular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge shape="pill" style="solid">
+                <div className="absolute -top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                    <Badge shape="pill" style="solid" size="large">
                         <span className="font-semibold">Most Popular</span>
                     </Badge>
                 </div>
@@ -56,7 +66,7 @@ const PricingCard = ({ type, title, oldPrice, price, includedFeatures, allFeatur
             </div>
 
             <ul className="flex flex-col gap-3 mt-3 mb-5">
-                {allFeatures.map((feature, index) => (
+                {allFeaturesSorted.map((feature, index) => (
                     <li key={index} className="flex items-center gap-3">
                         {includedFeatures.includes(feature) ? (
                             <CheckIcon className="w-6 h-6 text-primary-500"/>

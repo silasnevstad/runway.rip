@@ -1,70 +1,70 @@
-import {makeClassNameImportant} from "@/utils/utils";
+"use client";
+
+import { mergeClasses } from "@/utils/classNames";
 
 const Badge = ({
     children,
-    className = '',
-    shape = 'pill', // 'pill', 'square', 'circle'
+    className = "",
+    shape = "pill",       // 'pill', 'square', 'circle'
+    size = "medium",      // 'small', 'medium', 'large'
     border = false,
-    style = 'soft', // 'soft', 'solid'
-    color = 'primary', // 'primary', 'green'
+    style = "soft",       // 'soft', 'solid'
+    color = "primary",    // 'primary', 'green'
     hover = false,
     onClick,
 }) => {
-    const baseStyles = `inline-flex flex-col justify-center items-center text-center gap-1 font-medium`;
+    const baseStyles =
+        "inline-flex justify-center items-center text-center font-medium";
 
-    const shapeStyles = {
-        pill: 'rounded-full px-2.5 py-1',
-        square: 'rounded-lg px-2.5 py-1',
-        circle: 'rounded-full px-3 py-3',
+    const shapeSizeStyles = {
+        pill: {
+            small: "rounded-full px-2 py-1 text-xs",
+            medium: "rounded-full px-3 py-1 text-sm",
+            large: "rounded-full px-4 py-1.5 text-base",
+        },
+        square: {
+            small: "rounded-lg px-2 py-1 text-xs",
+            medium: "rounded-lg px-3 py-1 text-sm",
+            large: "rounded-lg px-4 py-1.5 text-base",
+        },
+        circle: {
+            small: "rounded-full px-1 py-1 text-xs",
+            medium: "rounded-full px-2 py-2 text-sm",
+            large: "rounded-full px-3 py-3 text-base",
+        },
     };
+
+    // Get the styles for the given shape and size (default to 'pill' and 'medium').
+    let shapeStyles = shapeSizeStyles[shape] || shapeSizeStyles.pill;
+    shapeStyles = shapeStyles[size] || shapeStyles.medium;
 
     const colorStyles = {
-        soft: {
-            primary: 'bg-primary-100 dark:bg-primary-600/25 text-primary-800 dark:text-primary-400',
-            green: 'bg-green-100 dark:bg-green-600/25 text-green-800 dark:text-green-400',
-            red: 'bg-red-100 dark:bg-red-600/25 text-red-800 dark:text-red-400',
-            yellow: 'bg-yellow-100 dark:bg-yellow-600/25 text-yellow-800 dark:text-yellow-400',
-            orange: 'bg-orange-100 dark:bg-orange-600/25 text-orange-800 dark:text-orange-400',
-            blue: 'bg-blue-100 dark:bg-blue-600/25 text-blue-800 dark:text-blue-400',
-            purple: 'bg-purple-100 dark:bg-purple-600/25 text-purple-800 dark:text-purple-400',
-            gray: 'bg-gray-100 dark:bg-gray-600/25 text-gray-800 dark:text-gray-400',
-        },
-        solid: {
-            primary: 'bg-primary-600 text-white',
-            green: 'bg-green-600 text-white',
-            red: 'bg-red-600 text-white',
-            yellow: 'bg-yellow-400 text-white',
-            orange: 'bg-orange-600 text-white',
-            blue: 'bg-blue-600 text-white',
-            purple: 'bg-purple-600 text-white',
-            gray: 'bg-gray-600 text-white',
-        },
+        soft: `bg-${color}-100 dark:bg-${color}-600/25 text-${color}-800 dark:text-${color}-400`,
+        solid: `bg-${color}-600 text-white`,
     };
 
+    const borderColor =
+        style === "soft" ? `border-${color}-800` : `border-${color}-600`;
+    const borderStyles = border ? `border ${borderColor}` : "";
 
-    const borderColor = style === 'soft' ? `border-${color}-800` : `border-${color}-600`;
-    const borderStyles = border
-        ? `border ${borderColor}`
-        : '';
+    const hoverStyles = hover
+        ? "hover:-translate-y-1 transition-all ease-in-out"
+        : "";
+    const onClickStyles = onClick ? "cursor-pointer active:scale-95" : "";
 
-    const hoverStyles = hover ? `hover:-translate-y-1 transition-all ease-in-out` : '';
-
-    const combinedStyles = [
+    const combinedStyles = mergeClasses(
         baseStyles,
-        shapeStyles[shape],
-        colorStyles[style][color],
+        shapeStyles,
+        colorStyles[style],
         borderStyles,
         hoverStyles,
-    ].join(' ');
+        onClickStyles,
+        className
+    );
 
     return (
-        <div
-            className={`${combinedStyles} ${makeClassNameImportant(className)}`}
-            onClick={onClick}
-        >
-            <div className="px-2.5 py-1">
-                {children}
-            </div>
+        <div className={combinedStyles} onClick={onClick}>
+            {children}
         </div>
     );
 };

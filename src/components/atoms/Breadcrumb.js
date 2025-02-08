@@ -1,20 +1,46 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import { FaChevronRight } from 'react-icons/fa';
+import React from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { FaChevronRight } from "react-icons/fa";
 
-const BreadcrumbItem = ({ href, title, isLast }) => (
-    <>
-        <Link href={href} className={`opacity-${isLast ? '50' : '30'} hover:opacity-100 transition-opacity`}>
-            {title}
-        </Link>
-        {!isLast && <FaChevronRight className="mx-1 w-3 h-3 text-gray-600 dark:text-gray-600" />}
-    </>
-);
+function BreadcrumbItem({ href, title, isLast, delimiter, isInteractiveLast }) {
+    // If it's the last breadcrumb and we want it non-interactive, render a <span> instead of a link.
+    if (isLast && !isInteractiveLast) {
+        return (
+            <>
+                <span className="opacity-50">
+                    {title}
+                </span>
+            </>
+        );
+    }
 
-const Breadcrumb = ({ sections }) => {
+    return (
+        <>
+            <Link
+                href={href}
+                className={`transition-opacity hover:opacity-100 ${
+                    isLast ? "opacity-50" : "opacity-30"
+                }`}
+            >
+                {title}
+            </Link>
+            {!isLast && (
+                <span className="mx-1 mr-2 mb-0.5 w-3 h-3 text-gray-600 dark:text-gray-600">
+                    {delimiter}
+                </span>
+            )}
+        </>
+    );
+}
+
+export default function Breadcrumb({
+    sections,
+    delimiter = <FaChevronRight />,
+    isInteractiveLast = false
+}) {
     const pathname = usePathname();
 
     const findPathToCurrentPage = (items, currentPath = []) => {
@@ -43,10 +69,10 @@ const Breadcrumb = ({ sections }) => {
                     href={item.href}
                     title={item.title}
                     isLast={index === breadcrumbItems.length - 1}
+                    delimiter={delimiter}
+                    isInteractiveLast={isInteractiveLast}
                 />
             ))}
         </h1>
     );
-};
-
-export default Breadcrumb;
+}

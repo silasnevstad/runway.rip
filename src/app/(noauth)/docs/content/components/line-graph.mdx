@@ -1,0 +1,232 @@
+---
+title: "LineGraph"
+description: "A highly customizable line graph component built with react-chartjs-2 and Chart.js. Supports curved or straight lines, custom markers, axis styling, and more."
+onThisPage:
+  - title: "Overview"
+    href: "#linegraph-overview"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="linegraph-overview" />
+
+<Divider />
+
+<br/>
+
+<LineGraph
+    data={{
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+            label: 'Revenue',
+            data: [10, 15, 12, 20, 18, 22],
+            borderColor: '#6b72fdfc'
+        }]
+    }}
+    curved={true}
+    showPoints={true}
+/>
+
+<br/>
+
+<p>
+    The <InlineHighlight>LineGraph</InlineHighlight> component is a versatile charting solution that renders a line graph using Chart.js. It allows you to customize the line curve, point markers, axis styling, fill opacity, and more – making it ideal for financial data, performance charts, or any time-series visualization.
+</p>
+
+<Info>
+    The component uses <InlineHighlight>react-chartjs-2</InlineHighlight> and <InlineHighlight>Chart.js</InlineHighlight> under the hood. Make sure these packages are installed in your project.
+</Info>
+
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+| **Prop**            | **Type** | **Default**                                                                                                           | **Description**                                                                                                                           |
+|---------------------|----------|-----------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| data                | object   | -                                                                                                                     | The chart data, including `labels` and `datasets`. Each dataset should have a `data` array (and optionally `x` values) for plotting.      |
+| curved              | boolean  | `true`                                                                                                                | If `true`, the line is rendered with a curve (default tension of 0.3). If `false`, the line is straight (tension = 0).                    |
+| showPoints          | boolean  | `true`                                                                                                                | Toggle to display data point markers on the graph.                                                                                        |
+| lastPointMarkerOnly | boolean  | `false`                                                                                                               | If `true`, only the last data point is marked (ideal for stock charts with a status indicator).                                           |
+| markerOptions       | object   | `{ radius: 3, pointBackgroundColor: "#6b72fdfc", pointBorderColor: "#6b72fdfc", pointBorderWidth: 2, lastRadius: 6 }` | Customization options for point markers. You can define default marker styles and override the last point styling with `lastRadius`, etc. |
+| axisStyles          | object   | `{}`                                                                                                                  | Custom styles for the x and y axes. Can include settings for ticks, grid lines, and title styling.                                        |
+| lineStyle           | object   | `{}`                                                                                                                  | Custom styles for the line element. Override properties such as `tension`, `fill`, `backgroundColor`, `borderColor`, and `borderWidth`.   |
+| fillOpacity         | number   | `0.4`                                                                                                                 | Opacity for the line fill when `fill` is enabled.                                                                                         |
+| xAxisLabel          | string   | `""`                                                                                                                  | Label for the x-axis.                                                                                                                     |
+| yAxisLabel          | string   | `""`                                                                                                                  | Label for the y-axis.                                                                                                                     |
+| customOptions       | object   | `{}`                                                                                                                  | Additional Chart.js options to merge with the default options.                                                                            |
+
+<br/>
+<Info>
+    For advanced customization, you can use the <InlineHighlight>lineStyle</InlineHighlight> and <InlineHighlight>customOptions</InlineHighlight> props to further tweak the graph’s appearance.
+</Info>
+
+<br/>
+<Divider />
+<br/>
+
+<div id="examples" />
+
+## Examples
+
+### 1. Basic Line Graph
+
+<PreviewCode preview={
+    <LineGraph
+        data={{
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Revenue',
+                data: [10, 15, 12, 20, 18, 22],
+                borderColor: '#6b72fdfc'
+            }]
+        }}
+        curved={true}
+        showPoints={true}
+    />
+}>
+    ```javascript
+    <LineGraph
+        data={{
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Revenue',
+                data: [10, 15, 12, 20, 18, 22],
+                borderColor: '#6b72fdfc'
+            }]
+        }}
+        curved={true}
+        showPoints={true}
+    />
+    ```
+</PreviewCode>
+
+<br />
+
+### 2. Straight Line with Only the Last Point Marked
+
+<PreviewCode preview={
+    <LineGraph
+        data={{
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            datasets: [{
+                label: 'Profit',
+                data: [5, 9, 7, 11],
+                borderColor: '#ff5733'
+            }]
+        }}
+        curved={false}
+        showPoints={true}
+        lastPointMarkerOnly={true}
+        markerOptions={{ radius: 3, lastRadius: 8, pointBackgroundColor: '#ff5733', pointBorderColor: '#ff5733', pointBorderWidth: 2 }}
+        xAxisLabel="Quarter"
+        yAxisLabel="Profit (in $K)"
+    />
+}>
+    ```javascript
+    <LineGraph
+        data={{
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            datasets: [{
+                label: 'Profit',
+                data: [5, 9, 7, 11],
+                borderColor: '#ff5733'
+            }]
+        }}
+        curved={false}
+        showPoints={true}
+        lastPointMarkerOnly={true}
+        markerOptions={{ radius: 3, lastRadius: 8, pointBackgroundColor: '#ff5733', pointBorderColor: '#ff5733', pointBorderWidth: 2 }}
+        xAxisLabel="Quarter"
+        yAxisLabel="Profit (in $K)"
+    />
+    ```
+</PreviewCode>
+
+<br />
+
+### 3. Custom Axis and Line Styling
+
+<PreviewCode preview={
+    <LineGraph
+        data={{
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            datasets: [{
+                label: 'Visits',
+                data: [120, 150, 100, 170, 160],
+                borderColor: '#28a745'
+            }]
+        }}
+        curved={true}
+        showPoints={false}
+        axisStyles={{
+            x: {
+                ticks: { color: '#555', font: { size: 12 } },
+                grid: { color: '#ccc' },
+                titleColor: '#333',
+                titleFontSize: 14
+            },
+            y: {
+                ticks: { color: '#555', font: { size: 12 } },
+                grid: { color: '#ccc' },
+                titleColor: '#333',
+                titleFontSize: 14
+            }
+        }}
+        lineStyle={{
+            tension: 0.5,
+            fill: true,
+            backgroundColor: 'rgba(40, 167, 69, 0.3)',
+            borderColor: '#28a745',
+            borderWidth: 4
+        }}
+        xAxisLabel="Day of Week"
+        yAxisLabel="Number of Visits"
+    />
+}>
+    ```javascript
+    <LineGraph
+        data={{
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            datasets: [{
+                label: 'Visits',
+                data: [120, 150, 100, 170, 160],
+                borderColor: '#28a745'
+            }]
+        }}
+        curved={true}
+        showPoints={false}
+        axisStyles={{
+            x: {
+                ticks: { color: '#555', font: { size: 12 } },
+                grid: { color: '#ccc' },
+                titleColor: '#333',
+                titleFontSize: 14
+            },
+            y: {
+                ticks: { color: '#555', font: { size: 12 } },
+                grid: { color: '#ccc' },
+                titleColor: '#333',
+                titleFontSize: 14
+            }
+        }}
+        lineStyle={{
+            tension: 0.5,
+            fill: true,
+            backgroundColor: 'rgba(40, 167, 69, 0.3)',
+            borderColor: '#28a745',
+            borderWidth: 4
+        }}
+        xAxisLabel="Day of Week"
+        yAxisLabel="Number of Visits"
+    />
+    ```
+</PreviewCode>
+
+<br />
+<br />

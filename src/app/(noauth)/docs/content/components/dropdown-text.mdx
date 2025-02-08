@@ -9,10 +9,13 @@ onThisPage:
   - title: "Usage Examples"
     href: "#usage-examples"
 ---
+
 <div id="dropdown-text" />
+
 <Divider />
+
 <br/>
-<br/>
+
 <div className="flex justify-center">
     <DropdownText
         title="Dropdown Text"
@@ -39,13 +42,13 @@ The `DropdownText` component is a dropdown text component that can be used to di
 
 The `DropdownText` component accepts the following props:
 
-| Name       | Type      | Default | Description                                                                 |
-| ---------- | --------- | ------- | --------------------------------------------------------------------------- |
-| title      | `string`  |         | The title of the dropdown text component.                                   |
-| content    | `string`  |         | The content of the dropdown text component.                                 |
-| isOpen     | `boolean` | `false` | The state of the dropdown text component.                                   |
-| onToggle   | `func`    |         | The function to toggle the state of the dropdown text component.            |
-| border     | `boolean` | `true`  | Whether to show a border at the bottom of the dropdown text component.      |
+| Name     | Type     | Default | Description                                                            |
+|----------|----------|---------|------------------------------------------------------------------------|
+| title    | string   |         | The title of the dropdown text component.                              |
+| content  | string   |         | The content of the dropdown text component.                            |
+| isOpen   | boolean  | `false` | The state of the dropdown text component.                              |
+| onToggle | function |         | The function to toggle the state of the dropdown text component.       |
+| border   | boolean  | `true`  | Whether to show a border at the bottom of the dropdown text component. |
 
 <br/>
 <br/>
@@ -65,7 +68,7 @@ The `DropdownText` component accepts the following props:
         />
     </div>
 }>
-```jsx
+```javascript
 <DropdownText
     title="Dropdown Text"
     content="This is the content of the dropdown text component."
@@ -83,7 +86,7 @@ The `DropdownText` component accepts the following props:
         />
     </div>
 }>
-```jsx
+```javascript
 <DropdownText
     title="Dropdown Text"
     content="This is the content of the dropdown text component."
@@ -103,7 +106,7 @@ The `DropdownText` component accepts the following props:
         />
     </div>
 }>
-```jsx
+```javascript
 <DropdownText
     title="Dropdown Text"
     content="This is the content of the dropdown text component."

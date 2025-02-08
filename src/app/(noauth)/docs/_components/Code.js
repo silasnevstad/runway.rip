@@ -32,11 +32,9 @@ const Code = ({ children, className, ...props }) => {
             language={language}
             showLineNumbers={true}
             startingLineNumber={1}
-            darkTheme={false}
             wrapLines={true}
             copy
             showLanguage
-            {...props}
         >
             {cleanedCode}
         </CodeBlock>

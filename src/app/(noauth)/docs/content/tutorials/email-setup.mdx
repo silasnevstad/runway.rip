@@ -35,14 +35,11 @@ Don't have a domain yet? Check out the [Set up Domain](/docs/tutorials/domain-se
 <br />
 
 <div className="flex items-center">
-    <TutorialGuide
-        options={[
-            { name: 'Resend', value: 'resend', image: '/logos/resend.png' },
-            { name: 'Mailgun', value: 'mailgun', image: '/logos/mailgun.png' },
-        ]}
-    >
-        {/* First page content */}
-        <div>
+    <TutorialGuide options={[
+        { name: 'Resend', value: 'resend', image: '/logos/resend.png' },
+        { name: 'Mailgun', value: 'mailgun', image: '/logos/mailgun.png' },
+    ]}>
+        <div id="resend">
             ### <div className="flex items-center"><WrenchIcon className="h-6 w-6 mr-2 text-primary-500" /> Setup</div>
             1. Sign up for a [Resend](https://resend.com) account.
             2. Go to the **Domains** in the sidebar and click **Add Domain**. Add your domain (i.e. yourdomain.com).
@@ -50,8 +47,8 @@ Don't have a domain yet? Check out the [Set up Domain](/docs/tutorials/domain-se
             4. Go to **API Keys** in the sidebar and click **Create API Key**. Add this to the `.env.local` file as `RESEND_API_KEY`.
         </div>
 
-        {/* Second page content */}
-        <div>
+        <div id="mailgun">
+            {/* Second page content */}
             ### <div className="flex items-center"><WrenchIcon className="h-6 w-6 mr-2 text-primary-500" /> Setup</div>
             1. Sign up for a [Mailgun](https://signup.mailgun.com/new/signup) account.
             2. Go to **Send** > **Sending** > **Domains** and click **Add New Domain**. Consider creating a specific subdomain, such as mail.yourdomain.com, for your email service.

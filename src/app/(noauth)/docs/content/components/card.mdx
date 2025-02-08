@@ -11,9 +11,10 @@ onThisPage:
 ---
 
 <div id="card" />
+
 <Divider />
+
 <br/>
-<br />
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <Card>
@@ -28,12 +29,12 @@ onThisPage:
         <h2>Scalable Card</h2>
         <p>This card scales up on hover.</p>
     </Card>
-    <Card className="bg-blue-500 text-blue-800">
+    <Card className="bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-200">
         <h2>Custom Styled Card</h2>
         <p>This card has custom styles.</p>
     </Card>
 </div>
-<br />
+
 <br />
 
 The `Card` component is a versatile card component that can be used to display content in a structured and visually appealing way. It comes with animation and hover effects that can be customized to fit your design needs.
@@ -41,11 +42,7 @@ The `Card` component is a versatile card component that can be used to display c
 <Tip>
     Use the `hoverEffect` prop to add interactive elements to your cards without additional styling.
 </Tip>
-<Warning>
-    The Card component uses 'use client' directive, ensuring it's only rendered on the client-side. Be mindful of this when using it in your Next.js application.
-</Warning>
 
-<br/>
 <br/>
 <Divider />
 <br/>
@@ -58,9 +55,7 @@ The `Card` component is a versatile card component that can be used to display c
 |------|------|---------|-------------|
 | className | string | - | Additional CSS classes to be applied |
 | children | ReactNode | - | The content to be displayed inside the card |
-| hoverEffect | 'none' \| 'shadow' \| 'scale' \| 'outline' | 'shadow' | The hover effect to apply to the card |
-| animationDelay | number | 0 | Delay in seconds before the animation starts |
-| animate | boolean | true | Whether to animate the card on mount |
+| hoverEffect | 'none', 'shadow', 'scale', 'outline' | 'shadow' | The hover effect to apply to the card |
 | border | boolean | true | Whether to display a border around the card |
 
 <Info>
@@ -83,7 +78,7 @@ The `Card` component is a versatile card component that can be used to display c
         <p>This is a basic card with default settings.</p>
     </Card>
 }>
-```jsx
+```javascript
 <Card>
     <h2>Card Title</h2>
     <p>This is a basic card with default settings.</p>
@@ -98,10 +93,10 @@ The `Card` component is a versatile card component that can be used to display c
         <p>This card has an outline effect on hover.</p>
     </Card>
 }>
-```jsx
-<Card hoverEffect="scale">
-  <h2>Scalable Card</h2>
-  <p>This card scales up on hover.</p>
+```javascript
+<Card hoverEffect="outline">
+    <h2>Outlined Card</h2>
+    <p>This card has an outline effect on hover.</p>
 </Card>
 ```
 </PreviewCode>
@@ -113,7 +108,7 @@ The `Card` component is a versatile card component that can be used to display c
         <p>This card does not animate on mount.</p>
     </Card>
 }>
-```jsx
+```javascript
 <Card hoverEffect="none">
   <h2>Static Card</h2>
   <p>This card does not animate on mount.</p>
@@ -123,13 +118,13 @@ The `Card` component is a versatile card component that can be used to display c
 
 ### Card with Custom Styling
 <PreviewCode preview={
-    <Card className="bg-primary-100 text-blue-800" border={false}>
+    <Card className="bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200" border={false}>
         <h2>Custom Styled Card</h2>
         <p>This card has custom background and text colors.</p>
     </Card>
 }>
-```jsx
-<Card className="bg-blue-100 text-blue-800" border={false}>
+```javascript
+<Card className="bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200" border={false}>
   <h2>Custom Styled Card</h2>
   <p>This card has custom background and text colors.</p>
 </Card>

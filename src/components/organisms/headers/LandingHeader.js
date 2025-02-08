@@ -1,16 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import config from "@/config";
+import config, {landingConfig} from "@/config";
 import TextLink from "@/components/atoms/TextLink";
 import Link from "next/link";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
 
 const LandingHeader = ({
-    background = "bg-bg-100 border-border-b-gray-200 dark:border-b-gray-800',",
+    background = "bg-bg-100 border-b border-b-bg-300 dark:border-b-bg-700",
     sticky = false
 }) => {
     const { appName } = config;
+    const { logo } = landingConfig.header;
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -21,6 +22,9 @@ const LandingHeader = ({
         <header className={`flex justify-center p-4 w-full h-14 ${background} ${isDropdownOpen && 'bg-opacity-100'} max-sm:sticky ${sticky && 'sticky'} top-0 z-20`}>
             <div className="flex justify-between items-center max-w-5xl w-full">
                 <div className="flex items-center">
+                    {logo && (
+                        <img src={logo.src} alt={logo.alt} className="h-6 mr-2" />
+                    )}
                     <Link href="" className="text-2xl font-semibold">{appName}</Link>
                 </div>
                 <div className="hidden md:flex items-center space-x-10">

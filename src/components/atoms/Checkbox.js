@@ -1,30 +1,47 @@
-'use client'
+"use client";
 
-import React from 'react';
-import { makeClassNameImportant } from "@/utils/utils";
+import React from "react";
+import { mergeClasses } from "@/utils/classNames";
 
 const Checkbox = ({
-    className = '',
+    className = "",
     id,
     name,
     label,
     helperText,
     checked = false,
     onChange,
-    labelPosition = 'right',
-    color = 'primary',
+    labelPosition = "right", // "left" or "right"
+    color = "primary",
     disabled = false,
     circle = false,
 }) => {
-    const checkboxClasses = `checkbox h-4 w-4 border-gray-300 text-${color}-500 
-        ${circle ? 'rounded-full' : 'rounded'} 
-        ${makeClassNameImportant(className)}`
+    // Container styles: set layout and opacity if disabled.
+    const containerClasses = mergeClasses(
+        "flex items-center justify-center",
+        labelPosition === "left" ? "flex-row-reverse" : "flex-row",
+        disabled && "opacity-50",
+        className
+    );
+
+    // Input checkbox styles: set size, border, color, and shape.
+    const inputClasses = mergeClasses(
+        "checkbox h-4 w-4 border-gray-300",
+        `text-${color}-500`,
+        circle ? "rounded-full" : "rounded",
+        className
+    );
+
+    // Label container: add margin-top if helper text is provided.
+    const labelContainerClasses = mergeClasses(
+        "flex flex-col items-center justify-start",
+        helperText && "mt-4"
+    );
 
     return (
-        <div className={`flex ${labelPosition === 'left' ? 'flex-row-reverse' : 'flex-row'} items-center justify-center 
-            ${disabled ? 'opacity-50' : ''} ${makeClassNameImportant(className)}`}>
+        <div className={containerClasses}>
             <input
-                className={checkboxClasses}
+                className={inputClasses}
                 type="checkbox"
                 id={id}
                 name={name}
@@ -32,7 +49,7 @@ const Checkbox = ({
                 onChange={onChange}
                 disabled={disabled}
             />
-            <div className={`flex flex-col items-center justify-start ${helperText && 'mt-4'}`}>
+            <div className={labelContainerClasses}>
                 <label htmlFor={id} className="mx-3 font-medium">
                     {label}
                 </label>

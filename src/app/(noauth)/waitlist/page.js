@@ -39,7 +39,7 @@ export default function WaitlistPage() {
                 <Button variant="soft" disabled>
                     Coming soon!
                 </Button>
-                <Button href="/docs" variant="soft" backgroundColor="green-500" hoverBackgroundColor="green-600" textColor="green-500">
+                <Button href="/docs" variant="soft" className="bg-green-500 hover:bg-green-600">
                     Docs
                 </Button>
             </div>

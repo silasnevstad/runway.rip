@@ -6,7 +6,6 @@ import FAQ from "@/components/organisms/FAQ";
 import LandingHeader from "@/components/organisms/headers/LandingHeader";
 import Footer from "@/components/organisms/footers/Footer";
 import { landingConfig } from "@/config";
-import Card from "@/components/molecules/Card";
 import BadgeCarousel from "@/components/molecules/BadgeCarousel";
 import Image from "next/image";
 import { RocketLaunchIcon } from "@heroicons/react/24/solid";

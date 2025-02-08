@@ -8,6 +8,7 @@ import Sidebar from "@/components/organisms/sidebars/Sidebar"; // adjust import 
 import DocumentationSidebar from "@/components/organisms/sidebars/DocumentationSidebar";
 import SearchBar from "@/components/molecules/SearchBar";
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
+import Button from "@/components/atoms/Button";
 
 
 export default function DocsShell({ children }) {
@@ -42,7 +43,7 @@ export default function DocsShell({ children }) {
                         height={22}
                         className="hidden dark:block"
                     />
-                    <p className="text-xl font-bold">Runway</p>
+                    <p className="text-xl font-bold"></p>
                 </div>
                 <DocumentationSidebar />
             </Sidebar>
@@ -52,7 +53,7 @@ export default function DocsShell({ children }) {
 
             {/* Main content area */}
             <main className="md:w-[calc(100vw-16rem)] overflow-x-auto relative">
-                <div className="sticky top-0 right-0 pt-5 pl-10 md:pr-5 z-10 flex justify-between items-start">
+                <div className="absolute top-0 right-0 pt-5 pl-10 md:pr-5 z-10 flex justify-between items-start">
                     <p></p>
                     <div className="flex items-center ml-4 gap-4">
                         <SearchBar
@@ -67,10 +68,9 @@ export default function DocsShell({ children }) {
                     </div>
                 </div>
 
-                {/* Actual MDX page content */}
-                <div className="-mt-16 max-md:mt-2 pl-10 pt-10 max-md:p-0 pr-5 max-md:pr-0 w-full">
-                    <Breadcrumb sections={DocsNav}/>
-                    {children}
+                <div className="max-md:mt-2 pl-10 pt-10 max-md:p-0 pr-5 max-md:pr-0 w-full">
+                    <Breadcrumb sections={DocsNav} />
+                    {children} {/* MDX content */}
                 </div>
             </main>
         </div>

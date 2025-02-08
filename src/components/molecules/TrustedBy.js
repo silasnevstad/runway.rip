@@ -1,4 +1,4 @@
-import { AvatarList } from "@/components/atoms/Avatar";
+import AvatarList from "@/components/molecules/AvatarList";
 import StarRating from "@/components/atoms/StarRating";
 
 export default function TrustBy() {
@@ -14,7 +14,6 @@ export default function TrustBy() {
         />
         <div className="flex flex-col gap-1">
             <StarRating numStars={5} />
-
             <p className="text-1xl">Trusted by 1000+ people</p>
         </div>
     </section>

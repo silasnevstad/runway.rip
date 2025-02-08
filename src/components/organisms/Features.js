@@ -74,6 +74,11 @@ const Features = () => {
         },
         {
             title: 'Components',
+            features: [
+                'Pre-built components',
+                'Customizable UI',
+                'Responsive design',
+            ],
             description: 'Accelerate development with our library of pre-built, customizable components. From basic UI elements to complex widgets, our component system offers flexibility and consistency, complete with responsive layouts and accessibility features.',
             icon: MdOutlineSpaceDashboard,
             docs: true,
@@ -99,9 +104,9 @@ const Features = () => {
                     </div>
                 ))}
             </div>
-            <Card className="relative flex flex-col items-center text-center bg-transparent" animate={false} hoverEffect="none">
-                <h3 className="text-xl font-bold mb-2">{features[selectedFeature].title}</h3>
-                {features[selectedFeature].description && <p className="text-gray-600 max-w-prose">{features[selectedFeature].description}</p>}
+            <Card className="relative flex flex-col items-start text-center bg-transparent" animate={false} hoverEffect="none">
+                <h3 className="text-xl self-center font-bold mb-2">{features[selectedFeature].title}</h3>
+                {features[selectedFeature].description && <p className="text-gray-600 max-w-prose mb-1">{features[selectedFeature].description}</p>}
                 {features[selectedFeature].features && (
                     <ul className="text-left mt-4">
                         {features[selectedFeature].features.map((feature, index) => (
@@ -126,7 +131,7 @@ const Features = () => {
                     </div>
                 }
                 {features[selectedFeature].docs &&
-                    <div className="flex items-center gap-1 mt-4">
+                    <div className="absolute bottom-3 right-3 flex items-center gap-2 mt-10">
                         <p className="text-gray-600 font-semibold">Check out</p>
                         <TextLink href="/docs" variant="underline" className="text-primary-500 font-semibold">the docs</TextLink>
                     </div>

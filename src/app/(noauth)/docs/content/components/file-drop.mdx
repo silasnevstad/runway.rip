@@ -1,0 +1,107 @@
+---
+title: "File Drop"
+description: "A file drop component for uploading files"
+onThisPage:
+  - title: "Overview"
+    href: "#file-drop-overview"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="file-drop-overview" />
+
+<Divider />
+
+<br/>
+
+<div className="flex gap-4 mb-4 justify-center items-center">
+    <FileDropDemo />
+</div>
+
+<br/>
+
+<p>
+    The <InlineHighlight>FileDrop</InlineHighlight> component provides a user-friendly drag-and-drop interface for uploading files.
+    It supports customization of border colors, background colors, icons, and text.
+</p>
+
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+| **Prop**          | **Type** | **Default**                             | **Description**                                                                                     |
+|-------------------|----------|-----------------------------------------|-----------------------------------------------------------------------------------------------------|
+| onDrop            | function | -                                       | Callback function that is called when files are dropped. Receives the dropped files as an argument. |
+| className         | string   | -                                       | Additional CSS classes for custom styling.                                                          |
+| text              | string   | `"Drop files here, or click to select"` | Text displayed inside the drop area.                                                                |
+| textColor         | string   | `"text-gray-500"`                       | Text color for the drop area.                                                                       |
+| idleBorderColor   | string   | `"border-gray-300"`                     | Border color when the drop area is idle.                                                            |
+| activeBorderColor | string   | `"border-blue-500"`                     | Border color when the drop area is active (i.e., when files are dragged over it).                   |
+| activeBgColor     | string   | `"bg-blue-100"`                         | Background color when the drop area is active.                                                      |
+| icon              | Icon     | `LuFilePlus`                            | Icon component to display inside the drop area.                                                     |
+| iconSize          | string   | `"text-5xl"`                            | Size of the icon.                                                                                   |
+| borderClass       | string   | `"border-2 border-dashed"`              | CSS classes for the border style of the drop area.                                                  |
+
+<br/>
+<br/>
+<Divider />
+<br/>
+
+<div id="examples" />
+
+## Examples
+
+### 1. Basic Usage
+
+<PreviewCode preview={
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <FileDropDemo />
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <FileDrop />
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+
+### 2. Customized FileDrop
+
+<PreviewCode preview={
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <FileDropDemo
+            text="Upload your documents"
+            textColor="text-green-600 dark:text-green-400"
+            idleBorderColor="border-green-500"
+            activeBorderColor="border-green-500"
+            activeBgColor="bg-green-100"
+            iconSize="text-6xl"
+            borderClass="border-4 border-dotted"
+        />
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-4 mb-4 justify-center items-center">
+        <FileDrop
+            text="Upload your documents"
+            textColor="text-green-600 dark:text-green-400"
+            idleBorderColor="border-green-500"
+            activeBorderColor="border-green-500"
+            activeBgColor="bg-green-100"
+            iconSize="text-6xl"
+            borderClass="border-4 border-dotted"
+        />
+    </div>
+    ```
+</PreviewCode>
+
+<br/>
+<br/>

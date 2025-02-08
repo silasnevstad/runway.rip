@@ -9,10 +9,12 @@ onThisPage:
   - title: "Usage Examples"
     href: "#usage-examples"
 ---
+
 <div id="divider" />
+
 <Divider />
+
 <br/>
-<br />
 
 <div className="flex flex-col w-full items-center justify-center">
     <Divider color="primary" />
@@ -23,17 +25,14 @@ onThisPage:
     <Divider color="green" />
     <Divider color="blue" />
 </div>
-<br/>
-<br/>
-<Divider />
-<br/>
+
 <br />
 
 The `Divider` component is a simple horizontal or vertical line that separates content. It can be customized with different colors, opacity levels, and text.
 
 <br/>
-<br/>
 <Divider />
+<br/>
 
 <div id="props" />
 
@@ -41,16 +40,16 @@ The `Divider` component is a simple horizontal or vertical line that separates c
 
 The Divider component accepts the following props:
 
-| Name     | Type     | Default | Description                                                                 |
-|----------|----------|---------|-----------------------------------------------------------------------------|
-| className | `string` |         | Custom CSS classes to apply to the divider                                 |
-| text      | `string` |         | Text to display between the divider lines                                  |
-| vertical  | `boolean` | `false` | Whether the divider should be vertical or horizontal                       |
-| color     | `string` | `gray`  | The color scheme of the divider                                            |
-| opacity   | `number` | `70`    | The opacity level of the divider (0-100)                                   |
-| margin    | `string` |         | Margin to apply to the divider                                            |
-| width     | `string` |         | Width of the divider                                                      |
-| noWrap    | `boolean` | `false` | Whether to prevent text wrapping in the divider text                       |
+| Name      | Type    | Default | Description                                          |
+|-----------|---------|---------|------------------------------------------------------|
+| className | string  |         | Custom CSS classes to apply to the divider           |
+| text      | string  |         | Text to display between the divider lines            |
+| vertical  | boolean | `false` | Whether the divider should be vertical or horizontal |
+| color     | string  | `gray`  | The color scheme of the divider                      |
+| opacity   | number  | `70`    | The opacity level of the divider (0-100)             |
+| margin    | string  |         | Margin to apply to the divider                       |
+| width     | string  |         | Width of the divider                                 |
+| noWrap    | boolean | `false` | Whether to prevent text wrapping in the divider text |
 
 <br/>
 <br/>
@@ -72,10 +71,18 @@ The Divider component accepts the following props:
 
 ### Vertical Divider
 <PreviewCode preview={
-    <Divider vertical />
+    <div className="flex items-center">
+        <span>Text on the left</span>
+        <Divider vertical />
+        <span>Text on the right</span>
+    </div>
 }>
 ```javascript
-<Divider vertical />
+<div className="flex items-center">
+    <span>Text on the left</span>
+    <Divider vertical />
+    <span>Text on the right</span>
+</div>
 ```
 </PreviewCode>
 
@@ -90,10 +97,10 @@ The Divider component accepts the following props:
 
 ### Custom Divider
 <PreviewCode preview={
-    <Divider color="purple" opacity={100} margin="2" width="2" />
+    <Divider color="purple" opacity={30} margin="1" width="1" />
 }>
 ```javascript
-<Divider color="purple" opacity={100} margin="2" width="2" />
+<Divider color="purple" opacity={30} margin="1" width="1" />
 ```
 </PreviewCode>
 

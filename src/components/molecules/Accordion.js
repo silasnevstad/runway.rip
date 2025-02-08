@@ -1,14 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import DropdownText from "@/components/atoms/DropdownText";
-import { makeClassNameImportant } from "@/utils/utils";
+import { mergeClasses } from "@/utils/classNames";
 
 const Accordion = ({
     className,
     items,
     oneOpen = false,
-    borders = true
+    borders = true,
+    level = 0, // level is used to automatically indent nested accordions.
 }) => {
     const [openIndexes, setOpenIndexes] = useState([]);
 
@@ -25,17 +26,44 @@ const Accordion = ({
     };
 
     return (
-        <div className={`flex flex-col w-full ${makeClassNameImportant(className)}`}>
-            {items.map((item, index) => (
-                <DropdownText
-                    key={index}
-                    title={item.title}
-                    content={item.content}
-                    isOpen={openIndexes.includes(index)}
-                    onToggle={() => toggleItem(index)}
-                    border={borders}
-                />
-            ))}
+        <div
+            // Compute margin and width dynamically based on the nesting level.
+            style={{
+                marginLeft: `${level * 20}px`,
+                width: `calc(100% - ${level * 20}px)`,
+            }}
+            className={mergeClasses("flex flex-col", className)}
+        >
+            {items.map((item, index) => {
+                // If the item has nested `items`, render a nested Accordion.
+                let content;
+                if (item.items) {
+                    content = (
+                        <>
+                            {item.content && <div className="mb-2">{item.content}</div>}
+                            <Accordion
+                                items={item.items}
+                                oneOpen={oneOpen}
+                                borders={borders}
+                                level={level + 1}
+                            />
+                        </>
+                    );
+                } else {
+                    content = item.content;
+                }
+
+                return (
+                    <DropdownText
+                        key={index}
+                        title={item.title}
+                        content={content}
+                        isOpen={openIndexes.includes(index)}
+                        onToggle={() => toggleItem(index)}
+                        border={index < items.length - 1 && borders}
+                    />
+                );
+            })}
         </div>
     );
 };

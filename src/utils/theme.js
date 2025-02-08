@@ -1,5 +1,6 @@
-import { theme } from '../../tailwind.config';
+import { useTheme } from 'next-themes';
 
-export const getThemeColor = (color, shade) => {
-    return theme.colors[color][shade];
+export const toggleTheme = () => {
+    const { theme, setTheme } = useTheme();
+    setTheme(theme === 'light' ? 'dark' : 'light');
 }

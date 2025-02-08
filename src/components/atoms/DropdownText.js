@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from 'react';
-import { Transition } from '@headlessui/react';
+import { useState } from "react";
+import { Transition } from "@headlessui/react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
 
 const DropdownText = ({
@@ -9,10 +9,9 @@ const DropdownText = ({
     content,
     isOpen: isOpenProp,
     onToggle: onToggleProp,
-    border = true
+    border = true,
 }) => {
     const [isOpenState, setIsOpenState] = useState(false);
-
     const isControlled = isOpenProp !== undefined;
     const isOpen = isControlled ? isOpenProp : isOpenState;
 
@@ -25,22 +24,33 @@ const DropdownText = ({
     };
 
     return (
-        <div className={
-            `w-full py-4 hover:cursor-pointer group transition-colors duration-100
-            ${border && 'border-b border-gray-200'}`
-        }>
-            <div className="flex justify-between items-center w-full" onClick={onToggle}>
-                <h2 className={`text-lg font-semibold transition-colors duration-300 ${isOpen ? 'text-primary-500' : ''} group-hover:text-primary-500`}>{title}</h2>
+        <div
+            className={`w-full py-4 transition-colors duration-100 ${
+                border ? "border-b border-gray-200" : ""
+            }`}
+        >
+            {/* The group class is now applied only to the header row */}
+            <div
+                className="group relative flex justify-between items-center w-full hover:cursor-pointer"
+                onClick={onToggle}
+            >
+                <h2
+                    className={`text-lg font-semibold transition-colors duration-300 ${
+                        isOpen ? "text-primary-500" : ""
+                    } group-hover:text-primary-500`}
+                >
+                    {title}
+                </h2>
                 <div className="transition ease-in-out duration-300 transform">
                     {isOpen ? (
-                        <MinusIcon className="h-5 w-5 rotate-180 text-primary-500"/>
+                        <MinusIcon className="h-5 w-5 rotate-180 text-primary-500" />
                     ) : (
-                        <PlusIcon className="h-5 w-5 rotate-0 group-hover:text-primary-500"/>
+                        <PlusIcon className="h-5 w-5 rotate-0 group-hover:text-primary-500" />
                     )}
                 </div>
             </div>
             <Transition
-                show={isOpen || false}
+                show={isOpen}
                 enter="transition-all duration-300 ease-in-out"
                 enterFrom="max-h-0 opacity-0"
                 enterTo="max-h-[1000px] opacity-100"
@@ -48,7 +58,13 @@ const DropdownText = ({
                 leaveFrom="max-h-[1000px] opacity-100"
                 leaveTo="max-h-0 opacity-0"
             >
-                <p className="mt-2 text-lg transition-opacity duration-100 delay-200">{content}</p>
+                <div className="mt-2 transition-opacity duration-100 delay-200">
+                    {typeof content === "string" ? (
+                        <p className="text-lg">{content}</p>
+                    ) : (
+                        content
+                    )}
+                </div>
             </Transition>
         </div>
     );

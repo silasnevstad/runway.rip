@@ -3,18 +3,8 @@ import { pricingConfig } from "@/config";
 
 const Pricing = () => {
     const { plans } = pricingConfig;
-    // const allFeatures = plans[-1].features;
-    const allFeatures = [
-        "NextJS boilerplate",
-        "Component library",
-        "SEO tools",
-        "Stripe",
-        "Supabase",
-        "Mailgun",
-        "Priority support",
-        "Discord community",
-        "Lifetime updates"
-    ];
+    const allFeatures = plans[plans.length - 1].features;
+    console.log(allFeatures);
     return (
         <div className="flex max-md:flex-col gap-10 w-full max-sm:gap-8">
             {plans.map((plan, index) => (

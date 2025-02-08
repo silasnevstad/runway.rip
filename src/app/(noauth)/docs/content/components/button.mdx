@@ -1,204 +1,179 @@
 ---
 title: "Button"
-description: "A flexible and powerful button component for triggering actions or navigation"
+description: "A versatile button component with support for variants, icons, loading states, and more."
 onThisPage:
-  - title: "Button Overview"
+  - title: "Overview"
     href: "#button-overview"
-  - title: "Variants"
-    href: "#variants"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
 
-<Divider />
-
-## Button Overview
 <div id="button-overview" />
 
-The `Button` is a versatile component that supports multiple variants, icons, loading states, disabled states, and much more. It helps you create consistent and interactive buttons throughout your application.
-
-<Info>
-    By default, the `Button` includes nice transitions, hover effects, and an optional dark mode style. This ensures a polished and accessible user experience without additional boilerplate.
-</Info>
-
 <Divider />
 
-## Variants
-<div id="variants" />
+<br/>
 
-Below is a quick visual reference showing some of the available `Button` variants and states. You can combine variants with props like `loading`, `disabled`, `shape`, etc.
-
-<div className="flex w-full flex-wrap gap-3 items-start">
-    <Button variant="primary">Primary</Button>
-    <Button variant="soft">Soft</Button>
-    <Button variant="danger">Danger</Button>
-    <Button variant="outline">Outline</Button>
-    <Button variant="underline">Underline</Button>
-    <Button variant="warning">Warning</Button>
-    <Button variant="success">Success</Button>
-    <Button variant="info">Info</Button>
-    <Button variant="transparent">Transparent</Button>
+<div className="flex items-center flex-col gap-4 mb-8">
+    <Button>Default Button</Button>
+    <Button className="bg-red-500 hover:bg-red-600" lift>Danger</Button>
+    <Button className="bg-green-500 hover:bg-green-400" grow>Success</Button>
+    <Button loading>Loading</Button>
 </div>
 
-<Warning>
-    Be sure to pick a variant that best suits the intent of the action. For example, `danger` for destructive actions (like “Delete”), `primary` for high-priority actions, etc.
-</Warning>
+<br/>
 
+<p>
+    The <InlineHighlight>Button</InlineHighlight> component can be rendered as either a
+    <InlineHighlight type="code">button</InlineHighlight> or a Next.js <InlineHighlight type="code">Link</InlineHighlight> (if you provide the <InlineHighlight type="code">href</InlineHighlight> prop).
+    It includes support for different variants, icons, loading states, and more.
+</p>
+
+<br/>
 <Divider />
+<br/>
 
-## Props
 <div id="props" />
 
-The `Button` supports a range of props for maximum flexibility and control over its behavior. Here’s a brief overview:
+## Props
 
-| **Prop**            | **Type**        | **Default**         | **Description**                                                                     |
-|---------------------|-----------------|---------------------|-------------------------------------------------------------------------------------|
-| `children`          | `ReactNode`     | `-`                 | The text or elements displayed inside the button.                                  |
-| `onClick`           | `function`      | `undefined`         | Callback function invoked when the button is clicked (not used if `href` is set).  |
-| `href`              | `string`        | `""`                | If provided, renders as a Next.js `<Link>` to navigate to the specified URL.       |
-| `className`         | `string`        | `""`                | Additional classes passed down for styling or layout overrides.                    |
-| `disabled`          | `boolean`       | `false`             | Disables the button, preventing clicks and visually indicating a disabled state.   |
-| `loading`           | `boolean`       | `false`             | Shows a loading spinner instead of the button content.                             |
-| `variant`           | `string`        | `"primary"`         | Predefined variant styles. Options include `"primary"`, `"danger"`, `"soft"`, etc. |
-| `shape`             | `string`        | `"rounded-lg"`      | Controls corner rounding. Examples: `"rounded-full"`, `"rounded-none"`, etc.       |
-| `fontSize`          | `string`        | `"lg"`              | Adjusts the font size (e.g., `"sm"`, `"md"`, `"lg"`).                              |
-| `fontWeight`        | `string`        | `"semibold"`        | Adjusts the font weight (e.g., `"normal"`, `"bold"`).                              |
-| `textColor`         | `string`        | `"white"`           | The text color if not using a predefined variant.                                  |
-| `backgroundColor`   | `string`        | `"primary-500"`     | The background color if not using a predefined variant.                            |
-| `hoverBackgroundColor` | `string`     | `"primary-600"`     | Background color on hover if not using a predefined variant.                       |
-| `border`            | `boolean`       | `false`             | Adds a border around the button if `true`.                                         |
-| `shadow`            | `boolean`       | `false`             | Adds a subtle shadow if `true`.                                                    |
-| `ping`              | `boolean`       | `false`             | Applies a Tailwind “ping” animation.                                               |
-| `grow`              | `boolean`       | `false`             | Applies a subtle “grow” (scale) effect on hover.                                   |
-| `icon`              | `React.ElementType \| null` | `null` | If provided, renders a React icon component (e.g., from Heroicons).               |
-| `iconSrc`           | `string`        | `""`                | If provided, renders an image from the given source.                               |
-| `iconAlt`           | `string`        | `""`                | Alt text for the icon image.                                                       |
-| `iconClassname`     | `string`        | `""`                | Additional class for styling the icon.                                            |
+| **Prop**             | **Type**         | **Default**              | **Description**                                                                                                         |
+|----------------------|------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| children             | ReactNode             | -                        | The content of the button.                                                                                             |
+| onClick              | function         | -                        | Click event handler.                                                                                                   |
+| href                 | string           | -                        | If provided, the button will render as a Next.js <InlineHighlight type="code">Link</InlineHighlight>.                   |
+| className            | string           | -                        | Additional CSS classes for custom styling.                                                                             |
+| disabled             | boolean          | `false`                  | If `true`, the button will be disabled.                                                                                 |
+| loading              | boolean          | `false`                  | If `true`, shows a loading spinner and disables pointer events.                                                          |
+| shadow               | boolean          | `false`                  | If `true`, applies a shadow effect to the button.                                                                       |
+| active               | boolean          | `true`                   | If `true`, applies an active effect when the button is pressed.                                                         |
+| grow                 | boolean          | `false`                  | If `true`, the button will grow to fill the width of its container.                                                      |
+| lift                 | boolean          | `false`                  | If `true`, applies a lift effect to the button.                                                                         |
+| icon                 | Icon             | -                        | A React component to render as an icon inside the button.                                                               |
+| iconSrc             | string           | -                        | URL of an external image to render as an icon inside the button.                                                         |
+| iconAlt             | string           | -                        | Alt text for the icon image.                                                                                            |
+| iconClassname        | string           | -                        | Additional CSS classes for the icon.                                                                                   |
+| textColor            | string           | -                        | Tailwind CSS classes for text color.                                                                                    |
+| backgroundColor      | string           | -                        | Tailwind CSS classes for background color.                                                                              |
+| hoverBackgroundColor | string           | -                        | Tailwind CSS classes for background color on hover.                                                                     |
+| shape                | string           | -                        | Tailwind CSS classes for border radius.                                                                                 |
 
+<br/>
+<Info>
+    <strong>Note:</strong> If both <InlineHighlight>icon</InlineHighlight> and <InlineHighlight>iconSrc</InlineHighlight> are provided, <InlineHighlight>icon</InlineHighlight> (the React component) takes precedence.
+</Info>
+
+<br/>
+<Divider />
+<br/>
+
+<div id="examples" />
+
+## Examples
+
+### 1. Basic Usage
+
+<PreviewCode preview={
+    <div className="flex flex-wrap gap-4">
+        <Button>Default</Button>
+        <Button className="bg-red-500 hover:bg-red-600 rounded-md" lift>Danger</Button>
+        <Button className="bg-blue-500 hover:bg-blue-600 rounded-full" lift>Info</Button>
+        <Button className="bg-green-500 hover:bg-green-600">Success</Button>
+    </div>
+}>
+    ```javascript
+    <div className="flex flex-wrap gap-4">
+        <Button>Default</Button>
+        <Button className="bg-red-500 hover:bg-red-600 rounded-md" lift>Danger</Button>
+        <Button className="bg-blue-500 hover:bg-blue-600 rounded-full" lift>Info</Button>
+        <Button className="bg-green-500 hover:bg-green-600">Success</Button>
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+
+### 2. Disabled & Loading
+When <InlineHighlight>disabled</InlineHighlight> or <InlineHighlight>loading</InlineHighlight> is set, the button
+cannot be clicked. <InlineHighlight>loading</InlineHighlight> also shows a <InlineHighlight>Loader</InlineHighlight>.
+
+<PreviewCode preview={
+    <div className="flex flex-wrap gap-4">
+        <Button disabled>Disabled</Button>
+        <Button loading variant="warning">
+            Loading...
+        </Button>
+    </div>
+}>
+    ```javascript
+    <div className="flex flex-wrap gap-4">
+        <Button disabled>Disabled</Button>
+        <Button loading variant="warning">
+            Loading...
+        </Button>
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+
+### 3. Icons
+Pass a React icon component (<InlineHighlight>icon</InlineHighlight>) or an external image (<InlineHighlight>iconSrc</InlineHighlight>).
+
+<PreviewCode preview={
+    <ButtonIconDemo />
+}>
+    ```javascript
+    <div className="flex flex-wrap gap-4 items-center">
+        <Button
+            icon={() => <ClipboardIcon className="w-5 h-5" />}
+            className="px-5"
+        >
+            Copy
+        </Button>
+        <Button
+            icon={() => <InformationCircleIcon className="w-5 h-5" />}
+        >
+            Click Me
+        </Button>
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+
+### 4. As a Link
+If you pass an <InlineHighlight>href</InlineHighlight> prop, the button renders as a Next.js <InlineHighlight>Link</InlineHighlight>.
+
+<PreviewCode preview={
+    <div className="flex flex-wrap gap-4">
+        <Button href="/docs" variant="underline">
+            Go to Docs
+        </Button>
+    </div>
+}>
+    ```javascript
+    <div className="flex flex-wrap gap-4">
+        <Button href="/docs" variant="underline">
+            Go to Docs
+        </Button>
+    </div>
+    ```
+</PreviewCode>
+
+<br />
 <Tip>
-    It’s best to stick to the predefined `variant` options for consistency. If you need brand new colors or overrides, you can still pass custom `backgroundColor`, `textColor`, etc.
+    Combine <InlineHighlight>href</InlineHighlight> with a <InlineHighlight>target="_blank"</InlineHighlight>
+    for external links if desired.
 </Tip>
 
-<Divider />
+<br />
+<Caution>
+    <strong>Warning:</strong> Avoid using <InlineHighlight>href</InlineHighlight> and <InlineHighlight>onClick</InlineHighlight>
+    together if they lead to conflicting actions. Typically <InlineHighlight>href</InlineHighlight> takes precedence.
+</Caution>
 
-## Usage Examples
-<div id="usage-examples" />
-
-### Basic Usage
-<PreviewCode preview={
-    <div className="flex gap-4 flex-wrap">
-        <Button onClick={}>
-            Default Button
-        </Button>
-        <Button variant="danger" onClick={}>
-            Danger
-        </Button>
-    </div>
-}>
-    ```jsx
-    <Button onClick={() => alert("Button clicked!")}>
-        Default Button
-    </Button>
-
-    <Button variant="danger" onClick={() => alert("Danger button clicked!")}>
-        Danger
-    </Button>
-    ```
-</PreviewCode>
-
-### Button with Loading State
-<PreviewCode preview={
-    <Button loading variant="primary">
-        Submitting...
-    </Button>
-}>
-    ```jsx
-    <Button loading variant="primary">
-        Submitting...
-    </Button>
-    ```
-</PreviewCode>
-
-<Info>
-    While `loading` is `true`, the button is disabled and shows a spinner. You can still pass `children` text (e.g., “Submitting…”), though often you might keep it empty to display only the spinner.
-</Info>
-
-### Disabled and Ping
-<PreviewCode preview={
-    <div className="flex gap-4 flex-wrap">
-        <Button disabled>Disabled</Button>
-        <Button variant="warning" ping>
-            Ping Animation
-        </Button>
-    </div>
-}>
-    ```jsx
-    <Button disabled>
-        Disabled
-    </Button>
-
-    <Button variant="warning" ping>
-        Ping Animation
-    </Button>
-    ```
-</PreviewCode>
-
-### Button Linking (Using `href`)
-<PreviewCode preview={
-    <Button href="/docs" variant="outline">
-        Go to Docs
-    </Button>
-}>
-    ```jsx
-    <Button href="/docs" variant="outline">
-        Go to Docs
-    </Button>
-    ```
-</PreviewCode>
-<Warning>
-    When `href` is provided, the button automatically renders as a Next.js `<Link/>`, so `onClick` will not be used in that scenario.
-</Warning>
-
-### Custom Icon
-<PreviewCode preview={
-    <Button
-        variant="soft"
-        icon={() => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-        </svg>}
-    >
-        Add New
-    </Button>
-}>
-    ```jsx
-    <Button
-        variant="soft"
-        icon={() => (
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-5 h-5"
-            >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 4.5v15m7.5-7.5h-15"
-                />
-            </svg>
-        )}
-    >
-        Add New
-    </Button>
-    ```
-</PreviewCode>
-
-<Divider />
-
-<Info>
-    That covers all the essentials! For more advanced usage, experiment with combining props like `grow`, `border`, or custom `fontSize` for unique button styles.
-</Info>
+<br />
+<br />

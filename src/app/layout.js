@@ -1,6 +1,6 @@
 import config from "@/config";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from 'next-themes'
 import './globals.css';
 
 // 💡 Load your font(s)...
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={inter.className}>
-                <ThemeProvider defaultTheme="system" enableSystem={true}>
+                <ThemeProvider enableSystem={true} defaultTheme={'system'} attribute="class">
                     {children}
                 </ThemeProvider>
             </body>

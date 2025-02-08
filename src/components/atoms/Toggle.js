@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react';
+import {mergeClasses} from "@/utils/classNames";
 
 const Toggle = ({
     checked = false,
@@ -19,7 +20,14 @@ const Toggle = ({
             <button
                 type="button"
                 onClick={onChange}
-                className={`${checked ? `bg-${color}-500` : 'bg-gray-200'} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${focus && 'focus:ring-2 focus:ring-${color}-600 focus:ring-offset-2 focus:outline-none'} ${className}`}
+                className={
+                    mergeClasses(
+                        `${checked ? `bg-${color}-500` : 'bg-gray-200'}`,
+                        `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out`,
+                        `${focus && 'focus:ring-2 focus:ring-${color}-600 focus:ring-offset-2 focus:outline-none'}`,
+                        className
+                    )
+            }
                 role="switch"
                 aria-checked={checked}
                 disabled={disabled}

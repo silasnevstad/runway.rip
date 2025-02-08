@@ -6,39 +6,50 @@ onThisPage:
     href: "#breadcrumb"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
+
 <div id="breadcrumb" />
+
 <Divider />
-<br/>
+
 <br/>
 
 <div className="flex flex-col justify-center items-center">
     <Breadcrumb
         sections={[
-            { href: '/', title: 'Home' },
-            { href: '/docs', title: 'Docs', items: [
-                { href: '/docs/getting-started', title: 'Getting Started' },
-                { href: '/docs/components', title: 'Components' },
-                { href: '/docs/layout', title: 'Layout' },
-                { href: '/docs/utilities', title: 'Utilities' },
-                { href: '/docs/components', title: 'Components', items: [
-                    { href: '/docs/components/alert', title: 'Alert' },
-                    { href: '/docs/components/breadcrumb', title: 'Breadcrumb' },
-                ] }
-            ] }
+            {
+                href: "/docs",
+                title: "Docs",
+                items: [
+                    {
+                        href: "/docs/components",
+                        title: "Components",
+                        items: [
+                            { href: "/docs/components/alert", title: "Alert" },
+                            { href: "/docs/components/breadcrumb", title: "Breadcrumb" },
+                        ],
+                    },
+                ],
+            },
         ]}
     />
 </div>
 
-The `Breadcrumb` component is a breadcrumb component that displays the current page's location in the site hierarchy. It is a great way to help users understand where they are in the site and navigate back to previous pages.
+<br/>
+
+<p>
+    The <InlineHighlight>Breadcrumb</InlineHighlight> component shows the user’s current page within the site hierarchy.
+    It helps users understand where they are and navigate back to higher-level pages.
+</p>
 
 <Info>
-    The `Breadcrumb` component uses the `usePathname` hook from the [`next/navigation`](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating) package to get the current pathname.
+    The <InlineHighlight>Breadcrumb</InlineHighlight> component uses <InlineHighlight>usePathname</InlineHighlight> from
+    <InlineHighlight type="navigation">[next/navigation](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating)</InlineHighlight>
+    to identify the current route.
 </Info>
 
-<br/>
 <br/>
 <Divider />
 <br/>
@@ -47,58 +58,73 @@ The `Breadcrumb` component is a breadcrumb component that displays the current p
 
 ## Props
 
-The `Breadcrumb` component accepts the following props:
+| **Name**   | **Type**  | **Default** | **Description**                                                                                           |
+|------------|-----------|-------------|-----------------------------------------------------------------------------------------------------------|
+| sections   | `Array`   | -           | An array of objects representing each section of the breadcrumb. Each object has a <code>href</code> and <code>title</code>. The optional <code>items</code> array can nest more sections. |
+| delimiter  | ReactNode | `FaChevronRight` | (Optional) Icon or text inserted between breadcrumb items.                                                |
+| isInteractiveLast | boolean | `false`  | (Optional) If <code>false</code>, the final breadcrumb is a non-clickable <code>&lt;span&gt;</code> instead of a link. |
 
-| Name     | Type     | Default | Description                                                                 |
-| -------- | -------- | ------- | --------------------------------------------------------------------------- |
-| sections | `Array`  |         | An array of objects representing the sections of the breadcrumb. Each object should have a `href` and `title` property. The `items` property can be used to nest sections. |
-
-<br/>
 <br/>
 <Divider />
 <br/>
 
-<div id="usage-examples" />
+<div id="examples" />
 
-## Usage Examples
+## Examples
 
 ### Basic Breadcrumb
+
 <PreviewCode preview={
     <Breadcrumb
         sections={[
-            { href: '/', title: 'Home' },
-            { href: '/docs', title: 'Docs', items: [
-                { href: '/docs/getting-started', title: 'Getting Started' },
-                { href: '/docs/components', title: 'Components' },
-                { href: '/docs/layout', title: 'Layout' },
-                { href: '/docs/utilities', title: 'Utilities' },
-                { href: '/docs/components', title: 'Components', items: [
-                    { href: '/docs/components/alert', title: 'Alert' },
-                    { href: '/docs/components/breadcrumb', title: 'Breadcrumb' },
-                ] }
-            ] }
+            { href: "/", title: "Home" },
+            {
+                href: "/docs",
+                title: "Docs",
+                items: [
+                    { href: "/docs/getting-started", title: "Getting Started" },
+                    { href: "/docs/components", title: "Components" },
+                    { href: "/docs/layout", title: "Layout" },
+                    { href: "/docs/utilities", title: "Utilities" },
+                    {
+                        href: "/docs/components",
+                        title: "Components",
+                        items: [
+                            { href: "/docs/components/alert", title: "Alert" },
+                            { href: "/docs/components/breadcrumb", title: "Breadcrumb" },
+                        ],
+                    },
+                ],
+            },
         ]}
     />
 }>
-```jsx
-<Breadcrumb
-    sections={[
-        { href: '/', title: 'Home' },
-        { href: '/docs', title: 'Docs', items: [
-            { href: '/docs/getting-started', title: 'Getting Started' },
-            { href: '/docs/components', title: 'Components' },
-            { href: '/docs/layout', title: 'Layout' },
-            { href: '/docs/utilities', title: 'Utilities' },
-            { href: '/docs/components', title: 'Components', items: [
-                { href: '/docs/components/alert', title: 'Alert' },
-                { href: '/docs/components/breadcrumb', title: 'Breadcrumb' },
-            ] }
-        ] }
-    ]}
-/>
-```
+    ```javascript
+    <Breadcrumb
+        sections={[
+            { href: "/", title: "Home" },
+            {
+                href: "/docs",
+                title: "Docs",
+                items: [
+                    { href: "/docs/getting-started", title: "Getting Started" },
+                    { href: "/docs/components", title: "Components" },
+                    { href: "/docs/layout", title: "Layout" },
+                    { href: "/docs/utilities", title: "Utilities" },
+                    {
+                        href: "/docs/components",
+                        title: "Components",
+                        items: [
+                            { href: "/docs/components/alert", title: "Alert" },
+                            { href: "/docs/components/breadcrumb", title: "Breadcrumb" },
+                        ],
+                    },
+                ],
+            },
+        ]}
+    />
+    ```
 </PreviewCode>
 
-<br/>
 <br/>
 <br/>

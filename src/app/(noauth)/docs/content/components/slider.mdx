@@ -9,10 +9,13 @@ onThisPage:
   - title: "Usage Examples"
     href: "#usage-examples"
 ---
+
 <div id="slider" />
+
 <Divider />
-<br/>
+
 <br />
+
 <div class="flex items-center gap-4 max-md:flex-col">
     <Slider
         min={0}
@@ -48,7 +51,6 @@ The `Slider` component creates a customizable slider input that can be used for 
 </Warning>
 
 <br/>
-<br/>
 <Divider />
 <br/>
 
@@ -56,18 +58,18 @@ The `Slider` component creates a customizable slider input that can be used for 
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| min | number | 0 | The minimum value of the slider. |
-| max | number | 100 | The maximum value of the slider. |
-| step | number | 1 | The step value of the slider. |
-| value | number | 0 | The value of the slider. |
-| defaultValue | number | 0 | The default value of the slider. |
-| showValue | boolean | false | Whether to show the value of the slider. |
-| showLabels | boolean | true | Whether to show the labels of the slider. |
-| valuePosition | string | 'left' | The position of the value. Possible values: 'left', 'right'. |
-| trackColor | string | 'primary-500' | The color of the track. |
-| thumbColor | string | 'primary-500' | The color of the thumb. |
+| Prop          | Type    | Default       | Description                                                  |
+|---------------|---------|---------------|--------------------------------------------------------------|
+| min           | number  | 0             | The minimum value of the slider.                             |
+| max           | number  | 100           | The maximum value of the slider.                             |
+| step          | number  | 1             | The step value of the slider.                                |
+| value         | number  | 0             | The value of the slider.                                     |
+| defaultValue  | number  | 0             | The default value of the slider.                             |
+| showValue     | boolean | false         | Whether to show the value of the slider.                     |
+| showLabels    | boolean | true          | Whether to show the labels of the slider.                    |
+| valuePosition | string  | 'left'        | The position of the value. Possible values: 'left', 'right'. |
+| trackColor    | string  | 'primary-500' | The color of the track.                                      |
+| thumbColor    | string  | 'primary-500' | The color of the thumb.                                      |
 
 
 <Info>
@@ -92,7 +94,7 @@ The `Slider` component creates a customizable slider input that can be used for 
         showLabels={false}
     />
 }>
-```jsx
+```javascript
 <Slider
   min={0}
   max={100}
@@ -114,7 +116,7 @@ The `Slider` component creates a customizable slider input that can be used for 
         thumbColor="green"
     />
 }>
-```jsx
+```javascript
 <Slider
   min={0}
   max={100}

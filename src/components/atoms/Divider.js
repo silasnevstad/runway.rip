@@ -1,3 +1,5 @@
+import { mergeClasses } from "@/utils/classNames";
+
 const Divider = ({
     className = '',
     text = '',
@@ -12,9 +14,11 @@ const Divider = ({
         ? `w-full h-${width}`
         : `w-${width} h-full`;
 
-    const dividerClass = `bg-${color}-200 dark:bg-${color}-800 opacity-${opacity} 
-        ${vertical ? `mx-${margin}` : `my-${margin}`}
-        ${baseStyle} ${className}`;
+    const dividerClass = mergeClasses(baseStyle,
+        `bg-${color}-500 dark:bg-${color}-800 opacity-${opacity}`,
+        `${vertical ? `mx-${margin}` : `my-${margin}`}`,
+        className
+    );
 
     return (
         text ? (

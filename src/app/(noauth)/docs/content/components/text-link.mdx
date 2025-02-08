@@ -6,25 +6,27 @@ onThisPage:
     href: "#text-link"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
+
 <div id="text-link" />
+
 <Divider />
-<br/>
+
 <br/>
 
 <div className="flex flex-col items-center justify-center gap-2">
-    <TextLink href="/docs" className="text-primary-500 hover:text-primary-600">
+    <TextLink href="/docs/components/text-link">
         Default
     </TextLink>
-    <TextLink href="/components" className="text-primary-500 hover:text-primary-600" underline>
+    <TextLink href="/docs/components/text-link" underline>
         Underline
     </TextLink>
-    <TextLink href="/utilities" className="text-primary-500 hover:text-primary-600" grow>
+    <TextLink href="/docs/components/text-link" grow>
         Grow
     </TextLink>
-    <TextLink href="/layout" className="text-primary-500 hover:text-primary-600" fade>
+    <TextLink href="/docs/components/text-link" fade>
         Fade
     </TextLink>
 </div>
@@ -33,7 +35,6 @@ onThisPage:
 
 The `TextLink` component is a text link component that can be used to navigate to other pages. It uses the [`Link`](https://nextjs.org/docs/app/api-reference/components/link) component from Next.js to create a link to another page. The `TextLink` component can be customized with different styles and options to fit the design of your application.
 
-<br/>
 <br/>
 <Divider />
 <br/>
@@ -44,26 +45,26 @@ The `TextLink` component is a text link component that can be used to navigate t
 
 The `TextLink` component accepts the following props:
 
-| Name            | Type      | Default | Description                                                                 |
-| --------------- | --------- | ------- | --------------------------------------------------------------------------- |
-| children        | `node`    |         | The content of the text link component.                                    |
-| href            | `string`  |         | The URL of the page to navigate to.                                         |
-| className       | `string`  |         | Additional classes to apply to the text link component.                     |
-| icon            | `boolean` | `false` | Whether to show an icon next to the text link component.                   |
-| grow            | `boolean` | `false` | Whether to grow the text link component on hover.                          |
-| fade            | `boolean` | `false` | Whether to fade the text link component on hover.                          |
-| underline       | `boolean` | `false` | Whether to underline the text link component on hover.                     |
-| underlineHeight | `string`  | `px`    | The height of the underline for the text link component.                   |
-| selected        | `boolean` | `false` | Whether the text link component is selected.                               |
+| Name               | Type      | Default | Description                                               |
+|--------------------|-----------|---------|-----------------------------------------------------------|
+| children           | ReactNode |         | The content of the link.                                  |
+| href               | string    |         | The URL to link to.                                       |
+| className          | string    |         | Additional classes to apply to the link.                  |
+| icon               | Icon      |         | An icon to display next to the link text.                 |
+| grow               | boolean   | `false` | Whether the link should grow to fill the available space. |
+| fade               | boolean   | `false` | Whether the link should fade out on hover.                |
+| underline          | boolean   | `false` | Whether the link should have an underline.                |
+| underlineClassName | string    |         | Additional classes to apply to the underline.             |
+| underlineHeight    | string    | `1px`   | The height of the underline.                              |
+| selected           | boolean   | `false` | Whether the link is selected.                             |
 
-<br/>
 <br/>
 <Divider />
 <br/>
 
-<div id="usage-examples" />
+<div id="examples" />
 
-## Usage Examples
+## Examples
 
 ### Basic Text Link
 <PreviewCode preview={
@@ -71,7 +72,7 @@ The `TextLink` component accepts the following props:
         Go to Docs
     </TextLink>
 }>
-```jsx
+```javascript
 <TextLink href="/docs" className="text-primary-500 hover:text-primary-600">
     Go to Docs
 </TextLink>
@@ -80,12 +81,10 @@ The `TextLink` component accepts the following props:
 
 ### Text Link with Icon
 <PreviewCode preview={
-    <TextLink href="/src/app/(noauth)/docs/_components" className="text-primary-500 hover:text-primary-600" icon>
-        Components
-    </TextLink>
+    <TextLinkIconDemo />
 }>
-```jsx
-<TextLink href="/src/app/(noauth)/docs/_components" className="text-primary-500 hover:text-primary-600" icon>
+```javascript
+<TextLink href="/docs/components" className="text-primary-500 hover:text-primary-600">
     Components
 </TextLink>
 ```
@@ -97,7 +96,7 @@ The `TextLink` component accepts the following props:
         Go to TextLink
     </TextLink>
 }>
-```jsx
+```javascript
 <TextLink href="/docs/components/text-link" className="text-red-500 hover:text-red-600" grow>
     Go to TextLink
 </TextLink>
@@ -110,7 +109,7 @@ The `TextLink` component accepts the following props:
         Go to TextLink
     </TextLink>
 }>
-```jsx
+```javascript
 <TextLink href="/docs/components/text-link" className="text-green-500 hover:text-green-600" fade>
     Go to TextLink
 </TextLink>
@@ -123,7 +122,7 @@ The `TextLink` component accepts the following props:
         Go to TextLink
     </TextLink>
 }>
-```jsx
+```javascript
 <TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" underline>
     Go to TextLink
 </TextLink>

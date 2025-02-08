@@ -39,7 +39,7 @@ const SearchBar = ({ items, onItemSelect, renderItem }) => {
     };
 
     return (
-        <div className="relative w-full max-w-xs">
+        <div className="relative w-full max-w-xs z-50">
             <Input
                 id="search"
                 leftIcon={MagnifyingGlassIcon}

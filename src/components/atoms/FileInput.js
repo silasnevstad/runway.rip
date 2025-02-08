@@ -1,12 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FiFilePlus } from 'react-icons/fi';  // Importing a file icon from react-icons
+import { FiFilePlus } from 'react-icons/fi';
+import {mergeClasses} from "@/utils/classNames";  // Importing a file icon from react-icons
 
 const FileInput = ({
     onFileChange = () => { },
     text = 'Choose File',
+    placeholder = 'No file selected',
     className = '',
+    buttonClassName = '',
+    inputClassName = '',
+    color = 'gray',
+    buttonIcon: IconComponent = FiFilePlus,
 }) => {
     const [file, setFile] = useState(null);
 
@@ -23,17 +29,27 @@ const FileInput = ({
     };
 
     return (
-        <div className={`flex items-center rounded-lg ${className}`}>
+        <div className={mergeClasses(`flex justify-center items-center rounded-lg`, className)}>
             <button
-                className="bg-gray-800 text-white p-2 cursor-pointer flex items-center rounded-l-lg px-4 whitespace-nowrap"
-                onClick={handleButtonClick}>
-                <FiFilePlus className="mr-2" />
+                className={
+                    mergeClasses(
+                        `bg-${color}-700 dark:bg-${color}-800 text-white p-2 border  border-${color}-700 dark:border-${color}-800 cursor-pointer flex items-center rounded-l-lg px-4 whitespace-nowrap`,
+                        buttonClassName
+                    )
+                }
+                onClick={handleButtonClick}
+            >
+                <IconComponent className="mr-2" />
                 {text}
             </button>
             <input
                 type="text"
-                className="flex-grow p-2 border border-gray-300 rounded-r-lg"
-                placeholder="no file selected"
+                className={
+                    mergeClasses(`flex items-center border-1 border-l-0 whitespace-nowrap p-2 rounded-r-lg border-${color}-700 dark:border-${color}-800 bg-bg-100 dark:bg-bg-800`,
+                        inputClassName
+                    )
+                }
+                placeholder={placeholder}
                 value={file ? file.name : ''}
                 readOnly
             />
