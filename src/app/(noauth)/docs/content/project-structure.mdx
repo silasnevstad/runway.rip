@@ -24,7 +24,10 @@ onThisPage:
 ---
 
 
-Runway follows a typical [Next.js](http://nextjs.org) project structure with some custom organization. Here's an overview of the main directories and files:
+<p>
+    Runway follows a typical [Next.js](http://nextjs.org) project structure with some custom organization. If you're unfamiliar with Next.js, I recommend checking out their [project structure documentation](https://nextjs.org/docs/getting-started/project-structure) for a solid foundation.
+    Here's an overview of the main directories and files:
+</p>
 
 <br />
 <Divider />
@@ -35,12 +38,12 @@ Runway follows a typical [Next.js](http://nextjs.org) project structure with som
 
 At the root of the project, you'll find these key elements:
 
-| Folder/File | Description |
-|-------------|-------------|
-| `src/` | Contains all the application source code |
-| `public/` | Stores static assets to be served directly |
-| `.env.local` | Holds local environment variables |
-| `package.json` | Lists project dependencies and scripts |
+| Folder/File                     | Description                                |
+|---------------------------------|--------------------------------------------|
+| [`src/`](#src-folder-structure) | Contains all the application source code   |
+| `public/`                       | Stores static assets to be served directly |
+| `.env.local`                    | Holds local environment variables          |
+| `package.json`                  | Lists project dependencies and scripts     |
 
 The `src` folder contains all of our application code, while `public` is for static assets. The `.env.local` file stores all
 our local environment variables (API keys, etc.).
@@ -60,13 +63,13 @@ our local environment variables (API keys, etc.).
 
 Inside the `src` folder, we organize our code into several directories:
 
-| Path | Description |
-|------|-------------|
-| `app` | Contains the Next.js 13+ App Router structure |
-| `components` | Houses React components organized by atomic design |
-| `contexts` | Stores React context providers for global state management |
-| `libs` | Contains shared libraries and utilities (e.g., Stripe, Mailgun) |
-| `utils` | Holds utility functions used across the application |
+| Path                                  | Description                                                     |
+|---------------------------------------|-----------------------------------------------------------------|
+| [`app`](#app-directory-structure)     | Contains the Next.js 13+ App Router structure                   |
+| [`components`](#components-directory) | Houses React components organized by atomic design              |
+| `contexts`                            | Stores React context providers for global state management      |
+| `libs`                                | Contains shared libraries and utilities (e.g., Stripe, Mailgun) |
+| `utils`                               | Holds utility functions used across the application             |
 
 This structure allows for a modular approach to development, separating concerns and making it easier to find and maintain different parts of the application.
 
@@ -87,14 +90,14 @@ Check out the [Components](/docs/components) documentation for more information 
 
 The `app` directory is the heart of our Next.js application, structured as follows:
 
-| Path | Description |
-|------|-------------|
-| `(auth)` | Contains routes that require user authentication |
-| `(noauth)` | Houses public routes accessible without authentication |
-| `actions` | Stores server actions for handling form submissions and data mutations |
-| `api` | Contains API routes for backend functionality |
-| `auth` | Holds authentication-related files and logic |
-| `lib` | Stores library files specific to the app directory |
+| Path                            | Description                                                            |
+|---------------------------------|------------------------------------------------------------------------|
+| [`(auth)`](#auth-directory)     | Contains routes that require user authentication                       |
+| [`(noauth)`](#noauth-directory) | Houses public routes accessible without authentication                 |
+| `actions`                       | Stores server actions for handling form submissions and data mutations |
+| `api`                           | Contains API routes for backend functionality                          |
+| `auth`                          | Holds authentication-related files and logic                           |
+| `lib`                           | Stores library files specific to the app directory                     |
 
 This structure leverages [Next.js 13's app router](https://nextjs.org/docs/app), allowing for easy organization of authenticated and public routes.
 
@@ -109,12 +112,12 @@ This structure leverages [Next.js 13's app router](https://nextjs.org/docs/app),
 
 The `(noauth)` directory contains our public-facing pages:
 
-| Path | Description |
-| ---- | ----------- |
-| `docs` | Documentation pages for users and developers |
-| `login` | The user login page |
+| Path       | Description                                             |
+|------------|---------------------------------------------------------|
+| `docs`     | Documentation pages for users and developers            |
+| `login`    | The user login page                                     |
 | `policies` | Legal pages such as privacy policy and terms of service |
-| `sign-up` | The user registration page |
+| `sign-up`  | The user registration page                              |
 
 <br />
 
@@ -138,10 +141,10 @@ The `(auth)` directory contains our authenticated pages, add as many as needed.
 
 We use the atomic design methodology to organize our React components:
 
-| Path | Description |
-|------|-------------|
-| `atoms` | Basic building blocks like buttons, inputs, and labels |
-| `molecules` | Slightly more complex components composed of atoms |
+| Path        | Description                                                     |
+|-------------|-----------------------------------------------------------------|
+| `atoms`     | Basic building blocks like buttons, inputs, and labels          |
+| `molecules` | Slightly more complex components composed of atoms              |
 | `organisms` | Large, complex components often composed of molecules and atoms |
 
 This structure promotes reusability and maintainability of our UI components.
@@ -161,10 +164,10 @@ This structure promotes reusability and maintainability of our UI components.
 
 Key configuration files in our project:
 
-| Path | Description |
-|------|-------------|
-| `src/config.js` | Central configuration file for application-wide settings |
-| `src/middleware.js` | Next.js middleware for route protection and redirects |
+| Path                | Description                                              |
+|---------------------|----------------------------------------------------------|
+| `src/config.js`     | Central configuration file for application-wide settings |
+| `src/middleware.js` | Next.js middleware for route protection and redirects    |
 
 These files are crucial for managing application behavior and security.
 
@@ -178,14 +181,14 @@ These files are crucial for managing application behavior and security.
 
 We follow Next.js routing conventions in our `app` directory:
 
-| File | Description |
-|------|-------------|
-| `layout.js` `.jsx` `.tsx` | Defines the layout for a route segment |
-| `page.js` `.jsx` `.tsx` | Represents a UI that is unique to a route |
-| `loading.js` `.jsx` `.tsx` | Creates loading UI for a segment |
-| `not-found.js` `.jsx` `.tsx` | Creates not found UI for a segment |
-| `error.js` `.jsx` `.tsx` | Defines error UI for a segment |
-| `route.js` `.ts` | Creates API endpoints |
+| File                         | Description                               |
+|------------------------------|-------------------------------------------|
+| `layout.js` `.jsx` `.tsx`    | Defines the layout for a route segment    |
+| `page.js` `.jsx` `.tsx`      | Represents a UI that is unique to a route |
+| `loading.js` `.jsx` `.tsx`   | Creates loading UI for a segment          |
+| `not-found.js` `.jsx` `.tsx` | Creates not found UI for a segment        |
+| `error.js` `.jsx` `.tsx`     | Defines error UI for a segment            |
+| `route.js` `.ts`             | Creates API endpoints                     |
 
 These conventions allow for intuitive and powerful routing capabilities within our Next.js application.
 

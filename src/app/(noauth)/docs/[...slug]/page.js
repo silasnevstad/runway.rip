@@ -43,7 +43,7 @@ const RelatedContent = ({ items }) => (
         <ul className="space-y-2">
             {items.map((item, index) => (
                 <li key={index}>
-                    <TextLink href={item.href} className="text-sm text-blue-500" icon underline>
+                    <TextLink href={item.href} className="text-sm text-blue-500" underline>
                         {item.title}
                     </TextLink>
                 </li>
