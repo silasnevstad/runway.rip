@@ -44,8 +44,10 @@ import Loader from "@/components/atoms/Loader";
 import LineGraph from "@/components/atoms/LineGraph";
 import Slider from "@/components/atoms/Slider";
 import {TextLinkIconDemo} from "@/app/(noauth)/docs/_components/demos/TextLinkDemo";
+import Tooltip from "@/components/atoms/Tooltip";
+import SearchBar from "@/components/molecules/SearchBar";
+import ClientSideSearchBar from "@/app/(noauth)/docs/_components/ClientSideSearchBar";
 
-// can have the same colors for multiple types (string, number, integer, float, boolean, array, ReactNode)
 const TypesColorMap = {
     string: 'text-green-500',
     number: 'text-blue-500',
@@ -156,8 +158,6 @@ export const mdxComponents = {
     InlineHighlight: InlineHighlight,
     code: Code,
     PreviewCode: PreviewCode,
-    Toggle: ClientSideToggle,
-    Checkbox: ClientSideCheckbox,
     TutorialGuide: ({ options, children }) => {
         const [firstPage, secondPage] = React.Children.toArray(children);
         return (
@@ -168,8 +168,6 @@ export const mdxComponents = {
             />
         );
     },
-    WrenchIcon: WrenchIcon,
-    EnvelopeIcon: EnvelopeIcon,
     pre: ({ children }) => <div className="my-4">{children}</div>,
     blockquote: ({ children }) => (
         <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">
@@ -198,8 +196,8 @@ export const mdxComponents = {
             ) : children}
         </td>
     ),
-    TextLink: TextLink,
-    TextLinkIconDemo: TextLinkIconDemo,
+
+    // Components
     Accordion: Accordion,
     Avatar: Avatar,
     AvatarList: AvatarList,
@@ -210,6 +208,7 @@ export const mdxComponents = {
     ButtonIconDemo: ButtonIconDemo,
     ButtonOnClickDemo: ButtonOnClickDemo,
     Card: Card,
+    Checkbox: ClientSideCheckbox,
     CodeBlock: CodeBlock,
     DropdownText: DropdownText,
     FileDrop: FileDrop,
@@ -217,11 +216,22 @@ export const mdxComponents = {
     FileInput: FileInput,
     Switch: Switch,
     SwitchDemo: SwitchDemo,
+    TextLink: TextLink,
+    TextLinkIconDemo: TextLinkIconDemo,
+    Toggle: ClientSideToggle,
+    Tooltip: Tooltip,
     Input: Input,
     Loader: Loader,
     LineGraph: LineGraph,
+    SearchBar: SearchBar,
+    ClientSideSearchBar: ClientSideSearchBar,
     Slider: Slider,
+
     DocsNav: DocsNav,
+
+    // Icons
+    WrenchIcon: WrenchIcon,
+    EnvelopeIcon: EnvelopeIcon,
     QuestionMarkCircleIcon: QuestionMarkCircleIcon,
     MdQuestionMark: MdQuestionMark,
     BiCheck: BiCheck,

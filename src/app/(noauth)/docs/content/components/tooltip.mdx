@@ -1,0 +1,81 @@
+---
+title: "Tooltip"
+description: "A simple tooltip component that displays additional information on hover."
+onThisPage:
+  - title: "Overview"
+    href: "#tooltip-overview"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="tooltip-overview" />
+
+<Divider />
+
+<br/>
+
+<p>
+    The <InlineHighlight>Tooltip</InlineHighlight> component provides a lightweight and customizable tooltip that appears when hovering over an element. It supports various positions and custom styling through Tailwind CSS classes.
+</p>
+
+<Info>
+    This component leverages the <InlineHighlight>mergeClasses</InlineHighlight> utility to seamlessly combine default classes with any custom class names passed via props.
+</Info>
+
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+| **Prop**   | **Type**    | **Default** | **Description**                                                               |
+|------------|-------------|-------------|-------------------------------------------------------------------------------|
+| children   | ReactNode   | -           | The element that triggers the tooltip on hover.                             |
+| text       | string      | -           | The text content displayed within the tooltip.                              |
+| className  | string      | `""`        | Additional CSS classes for the tooltip container.                           |
+| position   | string      | `"top"`     | Position of the tooltip relative to the children (`top`, `bottom`, `left`, or `right`). |
+
+<br/>
+<Divider />
+<br/>
+
+<div id="examples" />
+
+## Examples
+
+### 1. Basic Tooltip
+
+<PreviewCode preview={
+    <Tooltip text="This is a tooltip">
+        <button className="px-4 py-2 bg-blue-500 text-white rounded">Hover me</button>
+    </Tooltip>
+}>
+    ```javascript
+    <Tooltip text="This is a tooltip">
+        <button className="px-4 py-2 bg-blue-500 text-white rounded">Hover me</button>
+    </Tooltip>
+    ```
+</PreviewCode>
+
+<br />
+
+### 2. Tooltip with Custom Position and Styling
+
+<PreviewCode preview={
+    <Tooltip text="Tooltip on the right" position="right" className="custom-tooltip-class">
+        <span className="underline cursor-pointer">Hover here</span>
+    </Tooltip>
+}>
+    ```javascript
+    <Tooltip text="Tooltip on the right" position="right" className="custom-tooltip-class">
+        <span className="underline cursor-pointer">Hover here</span>
+    </Tooltip>
+    ```
+</PreviewCode>
+
+<br />
+<br />

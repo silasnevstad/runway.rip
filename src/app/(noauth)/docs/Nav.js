@@ -68,6 +68,7 @@ export const DocsNav = [
             // { title: "Modal", href: "/docs/components/modal" },
             // { title: "RadarGraph", href: "/docs/components/radar-graph" },
             // { title: "Select", href: "/docs/components/select" },
+            { title: "SearchBar", href: "/docs/components/search-bar" },
             { title: "Slider", href: "/docs/components/slider" },
             { title: "Switch", href: "/docs/components/switch" },
             { title: "TextLink", href: "/docs/components/text-link" },

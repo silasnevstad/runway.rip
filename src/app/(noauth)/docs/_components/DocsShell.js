@@ -59,11 +59,6 @@ export default function DocsShell({ children }) {
                         <SearchBar
                             items={DocsNav}
                             onItemSelect={handleSearchSelect}
-                            renderItem={(item) => (
-                                <div className="flex items-center space-x-2">
-                                    <span>{item.title}</span>
-                                </div>
-                            )}
                         />
                     </div>
                 </div>

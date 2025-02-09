@@ -1,0 +1,85 @@
+---
+title: "SearchBar"
+description: "A responsive search bar component for filtering and selecting items from a list organized into sections."
+onThisPage:
+  - title: "Overview"
+    href: "#searchbar-overview"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="searchbar-overview" />
+
+<Divider />
+
+<br/>
+
+<div className="flex justify-center mb-4">
+    <ClientSideSearchBar items={[
+        { title: 'Section 1', items: [{ title: 'Item 1', href: '/item1' }, { title: 'Item 2', href: '/item2' }] },
+        { title: 'Section 2', items: [{ title: 'Item A', href: '/itemA' }, { title: 'Item B', href: '/itemB' }] },
+    ]} placeholder="Search docs..." />
+</div>
+
+<br/>
+
+<p>
+    The <InlineHighlight>SearchBar</InlineHighlight> component allows users to search through a list of items that are organized into sections. The component filters both section titles and sub-items based on the search query and displays the results in a dropdown.
+</p>
+
+<Info>
+    It leverages the <InlineHighlight>Input</InlineHighlight> atom for the input field and the <InlineHighlight>mergeClasses</InlineHighlight> utility for optimal styling. This component is designed to be easily integrated into documentation pages or other parts of your application.
+</Info>
+
+<br/>
+<Divider />
+<br/>
+
+<div id="props" />
+
+## Props
+
+| **Prop**           | **Type**    | **Default**    | **Description**                                                                                                     |
+|--------------------|-------------|----------------|---------------------------------------------------------------------------------------------------------------------|
+| items              | array       | -              | An array of section objects. Each section should have a `title` and an `items` array with sub-items.                |
+| onItemSelect       | function    | -              | Callback fired when an item is selected. Receives the selected item as an argument.                                  |
+| renderItem         | function    | -              | Optional. A function to customize how each item is rendered.                                                        |
+| containerClassName | string      | `""`           | Additional classes for the outer container of the SearchBar.                                                        |
+| inputClassName     | string      | `""`           | Additional classes for the Input component.                                                                         |
+| placeholder        | string      | `"Search..."`  | Placeholder text for the search input.                                                                              |
+
+<br/>
+<Divider />
+<br/>
+
+<div id="examples" />
+
+## Examples
+
+### 1. Basic SearchBar
+
+<PreviewCode preview={
+    <SearchBar
+        items={[
+            { title: 'Section 1', items: [{ title: 'Item 1', href: '/item1' }, { title: 'Item 2', href: '/item2' }] },
+            { title: 'Section 2', items: [{ title: 'Item A', href: '/itemA' }, { title: 'Item B', href: '/itemB' }] },
+        ]}
+    />
+}>
+    ```javascript
+    <SearchBar
+        items={[
+            { title: 'Section 1', items: [{ title: 'Item 1', href: '/item1' }, { title: 'Item 2', href: '/item2' }] },
+            { title: 'Section 2', items: [{ title: 'Item A', href: '/itemA' }, { title: 'Item B', href: '/itemB' }] },
+        ]}
+    />
+    ```
+</PreviewCode>
+
+<br />
+
+
+<br />
+<br />

@@ -1,12 +1,13 @@
-'use client'
+'use client';
 
 import { useState, useRef } from 'react';
+import { mergeClasses } from '@/utils/classNames';
 
 const Tooltip = ({
     children,
     text,
     className = '',
-    position = 'top', // Default position is top
+    position = 'top',
 }) => {
     const [isVisible, setIsVisible] = useState(false);
     const tooltipRef = useRef(null);
@@ -35,7 +36,7 @@ const Tooltip = ({
     };
 
     return (
-        <div className={`relative flex ${className}`}>
+        <div className={mergeClasses("relative flex", className)}>
             <div
                 ref={tooltipRef}
                 onMouseEnter={handleMouseEnter}
@@ -45,7 +46,12 @@ const Tooltip = ({
                 {children}
             </div>
             {isVisible && text && (
-                <div className={`${getPositionClasses()} absolute px-3 py-1 bg-bg-600 dark:bg-bg-900 text-white text-sm rounded-lg shadow whitespace-nowrap`}>
+                <div
+                    className={mergeClasses(
+                        getPositionClasses(),
+                        "absolute px-3 py-1 bg-bg-600 dark:bg-bg-900 text-white text-sm rounded-lg shadow whitespace-nowrap"
+                    )}
+                >
                     {text}
                 </div>
             )}
