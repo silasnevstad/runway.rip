@@ -12,6 +12,7 @@ const Badge = ({
     color = "primary",    // 'primary', 'green'
     hover = false,
     onClick,
+    ...props
 }) => {
     const baseStyles =
         "inline-flex justify-center items-center text-center font-medium";
@@ -63,7 +64,7 @@ const Badge = ({
     );
 
     return (
-        <div className={combinedStyles} onClick={onClick}>
+        <div className={combinedStyles} onClick={onClick} {...props}>
             {children}
         </div>
     );

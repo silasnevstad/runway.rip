@@ -4,7 +4,6 @@ import { pricingConfig } from "@/config";
 const Pricing = () => {
     const { plans } = pricingConfig;
     const allFeatures = plans[plans.length - 1].features;
-    console.log(allFeatures);
     return (
         <div className="flex max-md:flex-col gap-10 w-full max-sm:gap-8">
             {plans.map((plan, index) => (

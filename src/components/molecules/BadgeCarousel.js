@@ -27,7 +27,7 @@ const BadgeCarousel = ({
         >
             {words.map((word, index) => (
                 <div key={index} className="flex justify-center items-center h-full px-2">
-                    <Badge key={index}  color={getRandomColor()} shape={getRandomShape()}>
+                    <Badge key={index} color={getRandomColor()} shape={getRandomShape()}>
                         {word}
                     </Badge>
                 </div>

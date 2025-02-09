@@ -20,6 +20,7 @@
     "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "^2.42.7",
     "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/vite": "^4.0.5",
     "@types/mdx": "^2.0.13",
     "axios": "^1.7.5",
     "chart.js": "^4.4.2",
@@ -56,6 +57,6 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.1",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.17"
   }
 }

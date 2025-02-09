@@ -43,7 +43,7 @@ const Button = ({
         hoverBackgroundColor ? `hover:bg-${hoverBackgroundColor}` : "hover:bg-primary-600",
         `flex items-center justify-center gap-2 transition duration-200 ease-in-out`,
         // add effect where when you click the button it scales down and back up
-        active ? `active:scale-95` : "",
+        active ? `active:scale-97` : "",
         shadow ? "shadow-md" : "",
         disabled || loading ? "cursor-not-allowed opacity-50" : "cursor-pointer",
         grow ? "hover:scale-105" : "",

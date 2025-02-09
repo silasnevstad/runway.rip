@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import {mergeClasses} from "@/utils/classNames";
 
 const Slider = ({
     className = '',
@@ -78,7 +79,7 @@ const Slider = ({
     );
 
     return (
-        <div className={`flex flex-col w-full gap-2 ${className}`}>
+        <div className={mergeClasses(`flex flex-col w-full gap-2`, className)}>
             {valuePosition === 'top' && renderValue()}
             {valuePosition === 'left' && (
                 <div className="flex items-center gap-2">

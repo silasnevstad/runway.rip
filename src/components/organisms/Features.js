@@ -104,7 +104,7 @@ const Features = () => {
                     </div>
                 ))}
             </div>
-            <Card className="relative flex flex-col items-start text-center bg-transparent" animate={false} hoverEffect="none">
+            <Card className="relative flex flex-col items-start text-center bg-transparent" hoverEffect="none">
                 <h3 className="text-xl self-center font-bold mb-2">{features[selectedFeature].title}</h3>
                 {features[selectedFeature].description && <p className="text-gray-600 max-w-prose mb-1">{features[selectedFeature].description}</p>}
                 {features[selectedFeature].features && (
