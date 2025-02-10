@@ -98,7 +98,7 @@ const Features = () => {
                         onClick={() => setSelectedFeature(index)}
                     >
                         <div className="flex flex-col items-center gap-2">
-                            <feature.icon className="text-3xl flex-shrink-0"/>
+                            <feature.icon className="text-3xl shrink-0"/>
                             <span className="text-xs font-semibold text-center">{feature.title}</span>
                         </div>
                     </div>

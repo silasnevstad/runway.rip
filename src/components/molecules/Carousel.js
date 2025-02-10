@@ -70,7 +70,7 @@ const Carousel = ({
 
     const renderContent = () => {
         const content = React.Children.map(children, (child, index) => (
-            <div key={index} className={`flex-shrink-0 ${fullWidth ? 'w-full' : ''}`}>
+            <div key={index} className={`shrink-0 ${fullWidth ? 'w-full' : ''}`}>
                 {child}
             </div>
         ));

@@ -45,7 +45,7 @@ const CodeBlock = ({
                                 <ClipboardIcon className="w-5 h-5" />
                             )}
                             <button
-                                className={`text-sm font-medium ${copied && 'text-green-500'} focus:outline-none`}
+                                className={`text-sm font-medium ${copied && 'text-green-500'} focus:outline-hidden`}
                             >
                                 {copied ? 'Copied' : 'Copy'}
                             </button>

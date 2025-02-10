@@ -22,7 +22,7 @@ export default function Avatar({
     alt = "",
     letter,
     size = "md",          // "xs" | "sm" | "md" | "lg" | "xl"
-    shape = "circle",    // "circle" | "rounded" | "square"
+    shape = "circle",    // "circle" | "rounded-sm" | "square"
     borderColor = "gray-400 dark:border-gray-500",
     bgColor = "bg-gray-200 dark:bg-gray-700",
     textColor = "text-gray-600 dark:text-gray-300",
@@ -46,7 +46,7 @@ export default function Avatar({
     const finalShape = shapeStyles[shape] || shapeStyles.circle;
     const finalSize = sizeStyles[size] || sizeStyles.md;
     const ring = ringColor ? ringColor : "";
-    const base = `relative inline-flex justify-center items-center border-2 ${finalShape} ${finalSize} ${borderColor} ${bgColor} ${textColor} ${ring} ${className}`;
+    const base = `relative inline-flex justify-center items-center border-2 ${finalShape} ${finalSize} ${borderColor} ${bgColor} ${textColor} ${ring-3} ${className}`;
 
     const handleError = () => {
         setImgError(true);

@@ -49,7 +49,7 @@ export default function DocsShell({ children }) {
             </Sidebar>
 
             {/* Padded spacer to accommodate the sidebar */}
-            <div className="flex-shrink-0 w-64 max-md:w-0" />
+            <div className="shrink-0 w-64 max-md:w-0" />
 
             {/* Main content area */}
             <main className="md:w-[calc(100vw-16rem)] overflow-x-auto relative">

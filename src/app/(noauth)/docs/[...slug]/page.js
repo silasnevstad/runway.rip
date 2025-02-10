@@ -132,7 +132,7 @@ export default async function DocsPage({ params }) {
             </div>
 
             {/* Right - sidebars */}
-            <div className="max-lg:hidden md:sticky md:top-28 self-start md:w-44 flex-shrink-0 space-y-4">
+            <div className="max-lg:hidden md:sticky md:top-28 self-start md:w-44 shrink-0 space-y-4">
                 {relatedContent.length > 0 && <RelatedContent items={relatedContent} />}
                 {relatedSites.length > 0 && <RelatedSites sites={relatedSites} />}
                 {onThisPage.length > 0 && <OnThisPage items={onThisPage} />}

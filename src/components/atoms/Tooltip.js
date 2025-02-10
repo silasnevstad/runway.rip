@@ -49,7 +49,7 @@ const Tooltip = ({
                 <div
                     className={mergeClasses(
                         getPositionClasses(),
-                        "absolute px-3 py-1 bg-bg-600 dark:bg-bg-900 text-white text-sm rounded-lg shadow whitespace-nowrap"
+                        "absolute px-3 py-1 bg-bg-600 dark:bg-bg-900 text-white text-sm rounded-lg shadow-sm whitespace-nowrap"
                     )}
                 >
                     {text}

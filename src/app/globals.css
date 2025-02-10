@@ -1,63 +1,73 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../../safelist.txt";
+@config '../../tailwind.config.js';
 
-html {
-  scroll-behavior:smooth;
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 245, 245, 245;
-  --background-end-rgb: 255, 255, 255;
+@utility text-balance {
+  text-wrap: balance;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+@layer utilities {
+  html {
+    scroll-behavior: smooth;
+  }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #cccccc;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background-color: #989898;
-  border: 1px solid transparent;
-  border-radius: 9px;
-  background-clip: content-box;
-}
-
-@media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 30, 30, 30;
-    --background-end-rgb: 20, 20, 20;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 245, 245, 245;
+    --background-end-rgb: 255, 255, 255;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #393939;
+    background: #cccccc;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background-color: #7c7c7c;
+    background-color: #989898;
     border: 1px solid transparent;
     border-radius: 9px;
+    background-clip: content-box;
   }
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-}
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 30, 30, 30;
+      --background-end-rgb: 20, 20, 20;
+    }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #393939;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background-color: #7c7c7c;
+      border: 1px solid transparent;
+      border-radius: 9px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
   }
 }
 

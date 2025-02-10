@@ -14,7 +14,7 @@ const TextHighlight = ({
     const parts = text.split(regex);
 
     const getGradientClass = () => {
-        return `bg-gradient-to-r ${gradientColors.join(' ')} bg-clip-text text-transparent`;
+        return `bg-linear-to-r ${gradientColors.join(' ')} bg-clip-text text-transparent`;
     };
 
     const getHighlightClass = () => {

@@ -6,7 +6,7 @@ import Button from "@/components/atoms/Button";
 import { UserIcon, KeyIcon } from "@heroicons/react/24/solid";
 import Divider from "@/components/atoms/Divider";
 import { useFormState, useFormStatus } from 'react-dom';
-import { signup, signin } from '@/app/actions/auth'
+import { signup, signin, signinwithgoogle } from '@/app/actions/auth'
 
 const LoadingButton = ({
     'sign-up': isSignUp
@@ -23,7 +23,12 @@ const LoadingButton = ({
 export default function AuthForm({
     type = 'sign-in' // either sign-in or sign-up
 }) {
-    const [state, action] = useFormState(type === 'sign-in' ? signin : signup, undefined);
+    const [state, action] = useFormState(type === 'sign-in' ? signin : signup);
+    const { pending } = useFormStatus();
+
+    const loginWithGoogle = async () => {
+        await signinwithgoogle();
+    }
 
     return (
         <form className="flex flex-col w-full gap-2" action={action}>
@@ -70,14 +75,9 @@ export default function AuthForm({
                 iconSrc="/logos/google.png"
                 iconAlt="Google Icon"
                 iconPlacement={'center'}
-                onClick={null}
+                onClick={loginWithGoogle}
                 shape="rounded-lg"
-                backgroundColor="bg-bg-50 dark:bg-bg-800"
-                hoverBackgroundColor="hover:bg-bg-200 dark:hover:bg-bg-900"
-                textColor="text-gray-900 dark:text-gray-100 text-opacity-70"
-                textPlacement="center"
-                fontSize="text-lg"
-                fontWeight="font-regular"
+                className="text-lg font-regular bg-bg-50 dark:bg-bg-800 hover:bg-bg-200 dark:hover:bg-gray-900 text-gray-900 dark:text-gray-100 text-opacity-70"
                 border
             >
                 Continue with Google

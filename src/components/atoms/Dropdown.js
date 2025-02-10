@@ -17,15 +17,15 @@ const DropdownItem = ({
         className="flex items-center justify-between gap-2 bg-bg-100 hover:bg-bg-200 dark:bg-bg-900 dark:hover:bg-bg-700 pl-3 pr-1 py-2 cursor-pointer rounded-md"
         onClick={onClick}
     >
-        {Icon && <Icon className="h-5 w-5 flex-shrink-0 text-gray-500" />}
-        {avatar && <img src={avatar.src} alt={avatar.alt} className="h-6 w-6 rounded-full flex-shrink-0" />}
-        <span className="flex-grow flex flex-col">
+        {Icon && <Icon className="h-5 w-5 shrink-0 text-gray-500" />}
+        {avatar && <img src={avatar.src} alt={avatar.alt} className="h-6 w-6 rounded-full shrink-0" />}
+        <span className="grow flex flex-col">
             <span className={`truncate ${isSelected ? 'font-semibold' : 'font-normal'}`}>{text}</span>
             {secondaryText && <span className="text-gray-500 text-xs truncate">{secondaryText}</span>}
             {subText && <span className="text-gray-400 text-xs truncate">{subText}</span>}
         </span>
         {isSelected && selectedIcon && (
-            <CheckIcon className="h-5 w-5 text-gray-500 flex-shrink-0" />
+            <CheckIcon className="h-5 w-5 text-gray-500 shrink-0" />
         )}
     </div>
 );

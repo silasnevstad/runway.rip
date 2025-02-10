@@ -30,7 +30,7 @@ onThisPage:
     <Avatar
         src="/avatar2.png"
         alt="Broken"
-        shape="rounded"
+        shape="rounded-sm"
         status="online"
     />
 </div>
@@ -62,7 +62,7 @@ onThisPage:
 | alt            | string                           | ''                           | Accessible text (for screen readers) and used for the fallback letter.                                                                       |
 | letter         | string                           | -                            | Explicit letter to show if no image (overrides the first character of <InlineHighlight>alt</InlineHighlight>).                               |
 | size           | `xs\|sm\|md\|lg\|xl`             | `md`                         | Controls the Avatar dimensions (width/height/font size).                                                                                     |
-| shape          | `circle\|rounded\|square`        | `circle`                     | Determines corner rounding.                                                                                                                  |
+| shape          | `circle\|rounded-sm\|square`        | `circle`                     | Determines corner rounding.                                                                                                                  |
 | borderColor    | string                           | `gray-400 dark:border-gray-500` | Tailwind classes for the outer border color.                                                                                              |
 | bgColor        | string                           | `bg-gray-200 dark:bg-gray-700`  | Tailwind classes for the avatar background.                                                                                                |
 | textColor      | string                           | `text-gray-600 dark:text-gray-300` | Tailwind classes for fallback letter text color.                                                                                         |
@@ -166,7 +166,7 @@ If an image is missing or broken, <InlineHighlight>Avatar</InlineHighlight> show
             letter="O"
             status="busy"
             statusColor="bg-red-500"
-            shape="rounded"
+            shape="rounded-sm"
         />
         <Avatar
             src="/avatar3.png"
@@ -187,7 +187,7 @@ If an image is missing or broken, <InlineHighlight>Avatar</InlineHighlight> show
             letter="O"
             status="busy"
             statusColor="bg-red-500"
-            shape="rounded"
+            shape="rounded-sm"
         />
         <Avatar
             src="/avatar3.png"

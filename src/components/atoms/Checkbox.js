@@ -28,7 +28,7 @@ const Checkbox = ({
     const inputClasses = mergeClasses(
         "checkbox h-4 w-4 border-gray-300",
         `text-${color}-500`,
-        circle ? "rounded-full" : "rounded",
+        circle ? "rounded-full" : "rounded-sm",
         className
     );
 

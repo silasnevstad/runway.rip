@@ -36,7 +36,7 @@ const LandingHeader = ({
                 {/*    <TextLink href="/sign-up" className="text-1xl font-semibold">Sign Up</TextLink>*/}
                 {/*</div>*/}
                 <div className="md:hidden flex items-center">
-                    <button onClick={toggleDropdown} className="focus:outline-none">
+                    <button onClick={toggleDropdown} className="focus:outline-hidden">
                         {isDropdownOpen ? (
                             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                         ) : (

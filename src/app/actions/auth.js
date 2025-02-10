@@ -3,73 +3,87 @@
 import { SignupFormSchema, LoginFormSchema } from '@/app/lib/definitions'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import {createClient} from "@/utils/supabase/server";
+import { createClient } from '@/utils/supabase/server'
 
 export async function signup(state, formData) {
-    const validatedFields = SignupFormSchema.safeParse({
-        email: formData.get('email'),
-        password: formData.get('password'),
-        confirmPassword: formData.get('confirmPassword'),
-    });
+    try {
+        const validatedFields = SignupFormSchema.safeParse({
+            email: formData.get('email'),
+            password: formData.get('password'),
+            confirmPassword: formData.get('confirmPassword'),
+        });
 
-    if (!validatedFields.success) {
-        return {
-            errors: validatedFields.error.flatten().fieldErrors,
-        };
-    }
-
-    const supabase = createClient();
-
-    const { email, password } = validatedFields.data;
-
-    const { error } = await supabase.auth.signUp({
-        email,
-        password,
-    })
-
-    if (error) {
-        return {
-            errors: {
-                email: error.message,
-            },
+        if (!validatedFields.success) {
+            return {
+                errors: validatedFields.error.flatten().fieldErrors,
+            };
         }
-    }
 
-    revalidatePath('/', 'layout');
-    redirect('/account');
+        const supabase = createClient();
+        const { email, password } = validatedFields.data;
+
+        const { error } = await supabase.auth.signUp({ email, password });
+        if (error) {
+            return {
+                errors: { email: error.message },
+            };
+        }
+
+        revalidatePath('/', 'layout');
+        redirect('/account');
+    } catch (err) {
+        return { errors: { general: 'An unexpected error occurred.' } };
+    }
 }
 
 export async function signin(state, formData) {
-    // Validate form fields
-    const validatedFields = LoginFormSchema.safeParse({
-        email: formData.get('email'),
-        password: formData.get('password'),
-    })
+    try {
+        const validatedFields = LoginFormSchema.safeParse({
+            email: formData.get('email'),
+            password: formData.get('password'),
+        });
 
-    // If any form fields are invalid, return early
-    if (!validatedFields.success) {
-        return {
-            errors: validatedFields.error.flatten().fieldErrors,
+        if (!validatedFields.success) {
+            return {
+                errors: validatedFields.error.flatten().fieldErrors,
+            };
         }
+
+        const supabase = createClient();
+        const { email, password } = validatedFields.data;
+
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) {
+            return {
+                errors: { email: error.message },
+            };
+        }
+
+        revalidatePath('/', 'layout');
+        redirect('/account');
+    } catch (err) {
+        return { errors: { general: 'An unexpected error occurred.' } };
     }
+}
 
-    const supabase = createClient();
-
-    const { email, password } = validatedFields.data;
-
-    const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-    })
-
-    if (error) {
-        return {
-            errors: {
-                email: error.message,
+export async function signinwithgoogle(state, formData) {
+    try {
+        const supabase = createClient();
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`,
             },
+        });
+        if (error) {
+            return {
+                errors: { email: error.message },
+            };
         }
-    }
 
-    revalidatePath('/', 'layout');
-    redirect('/account');
+        revalidatePath('/', 'layout');
+        redirect('/account');
+    } catch (err) {
+        return { errors: { general: 'An unexpected error occurred.' } };
+    }
 }

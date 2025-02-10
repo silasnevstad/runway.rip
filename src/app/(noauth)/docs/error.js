@@ -12,7 +12,7 @@ export default function Error({ error, reset }) {
             <p className="my-2">{error?.message}</p>
             <button
                 onClick={() => reset()}
-                className="px-4 py-2 rounded bg-blue-600 text-white"
+                className="px-4 py-2 rounded-sm bg-blue-600 text-white"
             >
                 Try again
             </button>

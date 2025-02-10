@@ -7,7 +7,7 @@ import {mergeClasses} from "@/utils/classNames";
 export default function Card({
     className = '',
     children,
-    hoverEffect = 'shadow',
+    hoverEffect = 'shadow-sm',
     border = true,
     ...props
 }) {

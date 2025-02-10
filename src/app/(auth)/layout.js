@@ -8,7 +8,7 @@ export default function AuthenticatedLayout({ children }) {
             <UserProvider>
                 <div className="flex min-h-screen bg-bg-50 dark:bg-bg-800">
                     <UserSidebar />
-                    <div className="flex flex-col flex-grow">
+                    <div className="flex flex-col grow">
                         {children}
                     </div>
                 </div>

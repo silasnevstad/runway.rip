@@ -3,7 +3,7 @@ import React from 'react';
 
 const InlineHighlight = ({ children, type = 'default' }) => {
     // Shared baseline classes (font, spacing, border-radius)
-    const baseClasses = "rounded px-1 py-0.5 font-mono transition-colors";
+    const baseClasses = "rounded-sm px-1 py-0.5 font-mono transition-colors";
 
     // Type-specific classes for light/dark modes
     const styles = {

@@ -50,7 +50,7 @@ const config = {
 
 export const landingConfig = {
     header: {
-        background: "border-b border-b-bg-300 dark:border-b-bg-700 bg-bg-50 dark:bg-bg-900 mx-sm:bg-opacity-80 mx-sm:dark:bg-opacity-10",
+        background: "border-b border-b-bg-300 dark:border-b-bg-700 bg-bg-50 dark:bg-bg-900 mx-sm:bg-bg-50/80 mx-sm:dark:bg-bg-900/10",
         sticky: true,
         logo: {
             src: "/logo.png",

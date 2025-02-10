@@ -64,7 +64,7 @@ const Input = ({
             }>
                 {LeftIcon && (
                     <LeftIcon
-                        className={`flex-shrink-0 w-5 h-5 text-gray-600 opacity-75 dark:text-gray-500 ml-2 ${leftIconOnClick ? 'cursor-pointer hover:scale-103 hover:text-primary-500' : ''}`}
+                        className={`shrink-0 w-5 h-5 text-gray-600 opacity-75 dark:text-gray-500 ml-2 ${leftIconOnClick ? 'cursor-pointer hover:scale-103 hover:text-primary-500' : ''}`}
                         onClick={leftIconOnClick}
                     />
                 )}
@@ -84,7 +84,7 @@ const Input = ({
                     {...props}
                     type={secure ? (showPassword ? 'text' : 'password') : 'text'}
                     id={props.id}
-                    className={`border-transparent focus:border-transparent focus:ring-0 flex-grow ${textSize} border-none focus:outline-none bg-transparent dark:text-gray-100 ${label ? "placeholder-transparent" : ""}`}
+                    className={`border-transparent focus:border-transparent focus:ring-0 grow ${textSize} border-none focus:outline-hidden bg-transparent dark:text-gray-100 ${label ? "placeholder-transparent" : ""}`}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     value={internalValue}
@@ -92,7 +92,7 @@ const Input = ({
                     autoComplete={props.autoComplete || "off"}
                 />
                 {secure && (
-                    <button className="focus:outline-none" onClick={togglePassword}>
+                    <button className="focus:outline-hidden" onClick={togglePassword}>
                         {showPassword ? (
                             <EyeSlashIcon className="mr-2 w-5 h-5 text-gray-600 opacity-75 dark:text-gray-500" />
                         ) : (

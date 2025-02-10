@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server'
 
 const PROTECTED_ROUTES = [
     '/policies',
-    '/login',
-    '/sign-up',
+    // '/login',
+    // '/sign-up',
     '/dashboard',
     '/account',
 ]

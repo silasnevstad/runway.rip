@@ -48,7 +48,7 @@ const PricingCard = ({ type, title, oldPrice, price, includedFeatures, allFeatur
     };
 
     return (
-        <form onSubmit={handleSubmit} className={`relative flex flex-col gap-6 px-8 py-10 rounded-2xl w-full bg-bg-0 dark:bg-gray-900 shadow-sm ${isPopular ? "border-2 border-primary-400" : ""}`}>
+        <form onSubmit={handleSubmit} className={`relative flex flex-col gap-6 px-8 py-10 rounded-2xl w-full bg-bg-0 dark:bg-gray-900 shadow-xs ${isPopular ? "border-2 border-primary-400" : ""}`}>
             {isPopular && (
                 <div className="absolute -top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                     <Badge shape="pill" style="solid" size="large">

@@ -48,7 +48,7 @@ const Modal = ({
     if (!isOpen) return null;
 
     return createPortal(
-        <div className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center ${className}`} ref={modalRef} onClick={handleBackdropClick}>
+        <div className={`fixed inset-0 bg-black/50 flex justify-center items-center ${className}`} ref={modalRef} onClick={handleBackdropClick}>
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-md mx-auto z-50 overflow-y-auto">
                 {children}
             </div>
