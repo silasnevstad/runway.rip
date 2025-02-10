@@ -47,6 +47,9 @@ import {TextLinkIconDemo} from "@/app/(noauth)/docs/_components/demos/TextLinkDe
 import Tooltip from "@/components/atoms/Tooltip";
 import SearchBar from "@/components/molecules/SearchBar";
 import ClientSideSearchBar from "@/app/(noauth)/docs/_components/ClientSideSearchBar";
+import PasswordAuthForm from "@/components/auth/PasswordAuthForm";
+import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
+import OAuthButtons from "@/components/auth/OAuthButtons";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -92,6 +95,12 @@ export const mdxComponents = {
         <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
             {title && <h4 className="font-bold text-yellow-700 mb-2">{title}</h4>}
             <p className="text-yellow-700">{children}</p>
+        </div>
+    ),
+    InfoCallout: ({ title, children }) => (
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
+            {title && <h4 className="font-bold text-blue-700 mb-2">{title}</h4>}
+            <p className="text-blue-700">{children}</p>
         </div>
     ),
     Required: ({ children }) => (
@@ -226,6 +235,10 @@ export const mdxComponents = {
     SearchBar: SearchBar,
     ClientSideSearchBar: ClientSideSearchBar,
     Slider: Slider,
+
+    PasswordAuthForm: PasswordAuthForm,
+    PasswordlessAuthForm: PasswordlessAuthForm,
+    OAuthButtons: OAuthButtons,
 
     DocsNav: DocsNav,
 

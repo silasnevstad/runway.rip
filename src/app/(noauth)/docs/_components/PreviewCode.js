@@ -17,7 +17,6 @@ const PreviewCode = ({ children, preview, border = false }) => {
                 onChange={(value) => setShowPreview(value === 'preview')}
                 className="mb-4 self-start"
                 shape="rounded-xl"
-                hover
             />
             {showPreview ?
                 <div

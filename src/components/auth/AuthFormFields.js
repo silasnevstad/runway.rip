@@ -1,17 +1,17 @@
 'use client'
 import React from 'react';
-import AuthInput from './AuthInput';
+import AuthInputField from './AuthInputField';
 
 const AuthFormFields = ({ type, state }) => {
     return (
         <div className="flex flex-col w-full gap-4 mb-4">
-            <AuthInput
+            <AuthInputField
                 label="Email"
                 name="email"
                 type="email"
                 error={state?.errors?.email}
             />
-            <AuthInput
+            <AuthInputField
                 label="Password"
                 name="password"
                 type="password"
@@ -23,7 +23,7 @@ const AuthFormFields = ({ type, state }) => {
                 }
             />
             {type === 'sign-up' && (
-                <AuthInput
+                <AuthInputField
                     label="Confirm Password"
                     name="confirmPassword"
                     type="password"

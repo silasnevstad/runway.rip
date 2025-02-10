@@ -2,7 +2,7 @@
 import React from 'react';
 import Input from '@/components/atoms/Input';
 
-const AuthInput = ({ label, name, type = "text", secure = false, error }) => {
+const AuthInputField = ({ label, name, type = "text", secure = false, error }) => {
     return (
         <div className="flex flex-col gap-2">
             <Input label={label} id={name} name={name} type={type} secure={secure} />
@@ -11,4 +11,4 @@ const AuthInput = ({ label, name, type = "text", secure = false, error }) => {
     );
 };
 
-export default AuthInput;
+export default AuthInputField;

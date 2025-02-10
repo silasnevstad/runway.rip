@@ -2,26 +2,21 @@
 
 import React from 'react';
 import Button from '@/components/atoms/Button';
-import Divider from '@/components/atoms/Divider';
 
-const SocialAuthButton = ({
-    text = 'Continue with Google',
-    social = 'google',
-    onClick,
-}) => {
+const OAuthButton = ({ provider, logoSrc, logoAlt, onClick }) => {
     return (
         <Button
-            iconSrc={`/logos/${social}.png`}
-            iconAlt={`${social.charAt(0).toUpperCase() + social.slice(1)} Icon`}
+            iconSrc={logoSrc}
+            iconAlt={logoAlt || `${provider} Icon`}
             iconPlacement="center"
-            onClick={onClick}
+            onClick={() => onClick(provider)}
             shape="rounded-lg"
             className="text-md font-regular border-bg-200 dark:border-bg-700 bg-bg-50 dark:bg-bg-800 hover:bg-bg-200 dark:hover:bg-gray-900 text-gray-900 dark:text-gray-100 text-opacity-70"
             border
         >
-            {text}
+            Continue with {provider.charAt(0).toUpperCase() + provider.slice(1)}
         </Button>
     );
 };
 
-export default SocialAuthButton;
+export default OAuthButton;

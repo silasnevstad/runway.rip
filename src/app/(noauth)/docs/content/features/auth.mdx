@@ -1,96 +1,122 @@
 ---
 title: "Authentication Features"
-description: "A secure and ready-to-use auth system that handles email/password and social logins."
+description: "A full overview of the authentication system in this Next.js + Supabase boilerplate, including password-based, passwordless, and OAuth logins."
 onThisPage:
   - title: "Overview"
     href: "#overview"
-  - title: "How It Works"
-    href: "#how-it-works"
-  - title: "Benefits"
-    href: "#benefits"
-  - title: "Production Tips"
-    href: "#production-tips"
+  - title: "Password-Based"
+    href: "#password-based-auth"
+  - title: "Passwordless"
+    href: "#passwordless-auth"
+  - title: "Social & OAuth"
+    href: "#social-oauth-logins"
 ---
 
 <div id="overview" />
 
-Here, you get a secure and ready-to-use auth system that handles email/password and social logins.
+<Divider />
+
+<br/>
+
+Here, you get a secure and ready-to-use auth system that handles password-based, passwordless, and social logins.
 <div className="flex my-2" />
-This auth system is built on Supabase and Next.js 14, leveraging the new App Router features. It provides a seamless user experience with automatic cache revalidation and redirections.
+It's built with [Supabase](https://supabase.com/docs/guides/auth), offering a flexible and secure way to manage user authentication.
 <div className="flex my-4" />
 <Info>
     All sensitive operations run exclusively on the server so your credentials and secret logic stay hidden.
 </Info>
+<div className="flex my-8" />
+
+- **[Password-Based Auth](#password-based-auth)** (the traditional email/password flow)
+- **[Passwordless Auth](#passwordless-auth)** (magic links / OTP)
+- **[Social & OAuth Logins](#social-oauth-logins)** (with support for multiple providers)
 
 <br />
 
-## How It Works
+## Password-Based Auth
 
-<div id="how-it-works" />
+<div id="password-based-auth" />
 
-<div className="flex my-6" />
+This is the classic login method. Users provide an email and password. The system validates inputs (using) and processes sign-ups or sign-ins securely on the server.
 
-**1️⃣ Input Validation**
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <PasswordAuthForm mode={'sign-in'} />
+    </div>
+}>
+    ```javascript
+    <PasswordAuthForm mode={'sign-in'} />
+    ```
+</PreviewCode>
 
-When a user submits their credentials, the system first validates the input using a schema (powered by Zod). This ensures emails, passwords, and confirmations are correctly formatted.
+<Callout title="Note!">
+    All inputs are **validated** and all emails are **verified**.
+</Callout>
 
-```jsx
-// Minimal snippet for validating signup data:
-const result = SignupFormSchema.safeParse({ email, password, confirmPassword });
-if (!result.success) {
-// Return or display validation errors
-}
-```
+<br/>
+<Divider />
+<br/>
 
-<div className="flex my-10" />
+## Passwordless Auth
 
-**2️⃣ Server-Side Authentication**
-The validated data is passed to a server action that securely calls Supabase methods. For example, signing up or logging in happens on the server so that nothing sensitive ever reaches the client.
+<div id="passwordless-auth" />
 
-```jsx
-// Example snippet: signing up a user
-const { error } = await supabase.auth.signUp({ email, password });
-if (error) {
-// Handle error appropriately
-}
-```
+For a frictionless experience, users can log in without a password. They simply enter their email, and a magic link or OTP is sent:
 
-<div className="flex my-10" />
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <PasswordlessAuthForm />
+    </div>
+}>
+    ```javascript
+    <PasswordlessAuthForm />
+    ```
+</PreviewCode>
 
-**3️⃣ Cache Revalidation & Redirection**
-After a successful auth operation, the cache is revalidated and the user is redirected to their account page. This happens automatically to keep the UI in sync.
+<Info>
+    No passwords to remember means less friction and a smoother user experience.
+</Info>
 
-```jsx
-// Trigger cache update and redirect:
-revalidatePath('/', 'layout');
-redirect('/account');
-```
+<br/>
+<Divider />
+<br/>
 
-## Benefits
+## Social & OAuth Logins
 
-<div id="benefits" />
+<div id="social-oauth-logins" />
 
-- **Simplicity:**
-No need to rebuild the wheel—everything is set up out of the box.
-- **Security:**
-Server-only operations keep your secret credentials safe.
-- **Performance:**
-Automatic cache revalidation and redirections provide a smooth user experience.
+Social login allows users to authenticate using their existing accounts (Google, Facebook, Apple, GitHub, etc.). This flow is unified so you can easily switch providers without changing your core code.
+
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <OAuthButtons providers={[
+            { name: 'google', logoSrc: '/logos/google.png', logoAlt: 'Google' },
+            { name: 'github', logoSrc: '/logos/github.png', logoAlt: 'GitHub' },
+        ]} />
+    </div>
+}>
+    ```javascript
+    const providers = [
+        { name: 'google', logoSrc: '/logos/google.png', logoAlt: 'Google' },
+        // { name: 'facebook', logoSrc: '/logos/facebook.png', logoAlt: 'Facebook' },
+        // { name: 'apple', logoSrc: '/logos/apple.png', logoAlt: 'Apple' },
+        { name: 'github', logoSrc: '/logos/github.png', logoAlt: 'GitHub' },
+    ];
+
+    <OAuthButtons providers={providers} />
+    ```
+</PreviewCode>
 
 <Tip>
-    With this setup, you can focus on building your app instead of re-creating auth flows.
+    Customize the OAuth buttons by simply adjusting the provider’s name and logo—supporting as many providers as you need.
 </Tip>
 
-## Production Tips
+<br/>
+<Divider />
+<br/>
 
-<div id="production-tips" />
 
-<Caution>
-    Ensure your Supabase URL and anon key are stored securely in your .env.local file.
-</Caution>
+Enjoy the freedom to pick the authentication method that fits your project best!
 
-<Warning>
-    When deploying, double-check your middleware and session configurations so that protected routes are truly secure.
-</Warning>
-
-That’s it—auth is heavy lifting I’ve already done for you. Now you can build amazing apps without reinventing the authentication logic every time.
+<br/>
+<br/>
