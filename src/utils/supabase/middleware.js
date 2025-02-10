@@ -68,7 +68,7 @@ export async function updateSession(request) {
     // if in protected routes or if based route ('/')
     if (PROTECTED_ROUTES.includes(request.nextUrl.pathname) || request.nextUrl.pathname === '/') {
         // if (!data) {
-            response = NextResponse.rewrite(new URL('/', request.url))
+            response = NextResponse.rewrite(new URL('/waitlist', request.url))
         // }
     }
 

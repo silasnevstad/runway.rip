@@ -32,6 +32,7 @@ const Button = ({
     backgroundColor = "",
     hoverBackgroundColor = "",
     shape = "",
+    border = false,
 
     ...props
 }) => {
@@ -41,6 +42,7 @@ const Button = ({
         textColor ?`text-${textColor}` : "text-white",
         backgroundColor ? `bg-${backgroundColor}` : "bg-primary-600",
         hoverBackgroundColor ? `hover:bg-${hoverBackgroundColor}` : "hover:bg-primary-600",
+        border ? `border border-${backgroundColor}` : "",
         `flex items-center justify-center gap-2 transition duration-200 ease-in-out`,
         // add effect where when you click the button it scales down and back up
         active ? `active:scale-97` : "",
@@ -68,10 +70,10 @@ const Button = ({
     const content = loading ? (
         <Loader className="text-primary-900" />
     ) : (
-        <>
+        <div className="flex items-center justify-center gap-3">
             {iconElement}
             {children}
-        </>
+        </div>
     );
 
     // If `href` is set, render as a Next.js Link

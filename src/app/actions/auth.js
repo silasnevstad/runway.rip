@@ -66,7 +66,7 @@ export async function signin(state, formData) {
     }
 }
 
-export async function signinwithgoogle(state, formData) {
+export async function signinwithgoogle() {
     try {
         const supabase = createClient();
         const { error } = await supabase.auth.signInWithOAuth({
@@ -76,6 +76,7 @@ export async function signinwithgoogle(state, formData) {
             },
         });
         if (error) {
+            console.log(error);
             return {
                 errors: { email: error.message },
             };
@@ -86,4 +87,22 @@ export async function signinwithgoogle(state, formData) {
     } catch (err) {
         return { errors: { general: 'An unexpected error occurred.' } };
     }
+}
+
+export async function signinwithgithub(state, formData) {
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+            redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`,
+        },
+    });
+    if (error) {
+        return {
+            errors: { email: error.message },
+        };
+    }
+
+    revalidatePath('/', 'layout');
+    redirect('/account');
 }

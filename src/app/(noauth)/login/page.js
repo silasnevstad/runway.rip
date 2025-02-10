@@ -1,4 +1,4 @@
-import AuthForm from "@/components/organisms/AuthForm";
+import AuthForm from "@/components/auth/AuthForm";
 import TextLink from "@/components/atoms/TextLink";
 
 export default function LoginPage() {

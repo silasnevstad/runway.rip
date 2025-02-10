@@ -1,1 +1,96 @@
+---
+title: "Authentication Features"
+description: "A secure and ready-to-use auth system that handles email/password and social logins."
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "How It Works"
+    href: "#how-it-works"
+  - title: "Benefits"
+    href: "#benefits"
+  - title: "Production Tips"
+    href: "#production-tips"
+---
 
+<div id="overview" />
+
+Here, you get a secure and ready-to-use auth system that handles email/password and social logins.
+<div className="flex my-2" />
+This auth system is built on Supabase and Next.js 14, leveraging the new App Router features. It provides a seamless user experience with automatic cache revalidation and redirections.
+<div className="flex my-4" />
+<Info>
+    All sensitive operations run exclusively on the server so your credentials and secret logic stay hidden.
+</Info>
+
+<br />
+
+## How It Works
+
+<div id="how-it-works" />
+
+<div className="flex my-6" />
+
+**1️⃣ Input Validation**
+
+When a user submits their credentials, the system first validates the input using a schema (powered by Zod). This ensures emails, passwords, and confirmations are correctly formatted.
+
+```jsx
+// Minimal snippet for validating signup data:
+const result = SignupFormSchema.safeParse({ email, password, confirmPassword });
+if (!result.success) {
+// Return or display validation errors
+}
+```
+
+<div className="flex my-10" />
+
+**2️⃣ Server-Side Authentication**
+The validated data is passed to a server action that securely calls Supabase methods. For example, signing up or logging in happens on the server so that nothing sensitive ever reaches the client.
+
+```jsx
+// Example snippet: signing up a user
+const { error } = await supabase.auth.signUp({ email, password });
+if (error) {
+// Handle error appropriately
+}
+```
+
+<div className="flex my-10" />
+
+**3️⃣ Cache Revalidation & Redirection**
+After a successful auth operation, the cache is revalidated and the user is redirected to their account page. This happens automatically to keep the UI in sync.
+
+```jsx
+// Trigger cache update and redirect:
+revalidatePath('/', 'layout');
+redirect('/account');
+```
+
+## Benefits
+
+<div id="benefits" />
+
+- **Simplicity:**
+No need to rebuild the wheel—everything is set up out of the box.
+- **Security:**
+Server-only operations keep your secret credentials safe.
+- **Performance:**
+Automatic cache revalidation and redirections provide a smooth user experience.
+
+<Tip>
+    With this setup, you can focus on building your app instead of re-creating auth flows.
+</Tip>
+
+## Production Tips
+
+<div id="production-tips" />
+
+<Caution>
+    Ensure your Supabase URL and anon key are stored securely in your .env.local file.
+</Caution>
+
+<Warning>
+    When deploying, double-check your middleware and session configurations so that protected routes are truly secure.
+</Warning>
+
+That’s it—auth is heavy lifting I’ve already done for you. Now you can build amazing apps without reinventing the authentication logic every time.
