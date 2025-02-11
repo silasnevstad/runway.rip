@@ -178,37 +178,63 @@ export const pricingConfig = {
     plans: [
         {
             type: "starter",
-            title: "Starter",
-            oldPrice: 69,
-            price: 49,
-            description: "Get started with the basics.",
-            features: [
-                "NextJS boilerplate",
-                "SEO tools",
-                "Stripe",
-                "Supabase",
-                "Mailgun",
-            ],
-            priceId: "price_1Pr8LGGjMg6waABSg1bjDLEQ"
-        },
-        {
-            type: "pro",
-            title: "Pro",
-            oldPrice: 149,
-            price: 99,
-            description: "Unlock the full potential of Runway.",
+            mode: "payment", // One-time purchase
+            title: "Starter (One-Time)",
+            description: "Perfect for a single purchase.",
+            isPopular: false,
             features: [
                 "NextJS boilerplate",
                 "Component library",
-                "SEO tools",
-                "Stripe",
-                "Supabase",
-                "Mailgun",
-                "Priority support",
-                "Lifetime updates"
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "Lifetime updates",
             ],
+            intervals: [
+                {
+                    name: "one_time",
+                    label: "One-Time Purchase",
+                    oldPrice: 69,
+                    price: 49,
+                    priceId: "price_1Pr8LGGjMg6waABSg1bjDLEQ"
+                }
+            ]
+        },
+        {
+            type: "pro",
+            mode: "subscription", // Recurring
+            title: "Pro Subscription",
+            description: "Unlock advanced features with a recurring plan.",
             isPopular: true,
-            priceId: "price_1Pr8LfGjMg6waABSu7URa9qT"
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "SEO tools",
+                "Lifetime updates",
+            ],
+            intervals: [
+                {
+                    name: "monthly",
+                    label: "Monthly",
+                    oldPrice: 49,
+                    price: 29,
+                    discountLabel: "Save 40%",
+                    priceId: "price_monthly_xxx"
+                },
+                {
+                    name: "yearly",
+                    label: "Yearly",
+                    oldPrice: 399,
+                    price: 299,
+                    discountLabel: "Save 50%",
+                    priceId: "price_yearly_xxx"
+                }
+            ]
         }
     ]
 };

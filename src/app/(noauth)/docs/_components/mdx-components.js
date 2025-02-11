@@ -104,8 +104,8 @@ export const mdxComponents = {
         </div>
     ),
     Required: ({ children }) => (
-        <div className="bg-yellow-500/20 rounded-lg border border-yellow-500 p-3 pb-2 my-4">
-            <p className="flex items-center text-sm text-yellow-500 font-semibold">
+        <div className="bg-yellow-500/20 rounded-lg border-l-4 rounded-l-none border-yellow-500 p-3 pb-2 my-4">
+            <p className="flex items-center text-md text-yellow-500 font-semibold">
                 <ExclamationCircleIcon className="w-5 h-5 inline-block mr-1" />
                 Required
             </p>
@@ -114,7 +114,7 @@ export const mdxComponents = {
     ),
     Info: ({children}) => (
         <div className="bg-blue-500/20 rounded-lg border border-blue-500 p-3 pb-2 my-4">
-            <p className="flex items-center text-sm text-blue-500 font-semibold">
+            <p className="flex items-center text-md text-blue-500 font-semibold">
                 <InformationCircleIcon className="w-5 h-5 inline-block mr-1" />
                 Info
             </p>
@@ -122,28 +122,28 @@ export const mdxComponents = {
         </div>
     ),
     Tip: ({children}) => (
-        <div className="bg-green-500/20 rounded-lg border border-green-500 p-3 pb-2 my-4">
-            <p className="flex items-center text-sm text-green-500 font-semibold">
+        <div className="bg-green-500/20 rounded-lg border-l-4 rounded-l-none border-green-500 p-3 pb-2 my-4">
+            <p className="flex items-center text-md text-green-500 font-semibold">
                 <ExclamationCircleIcon className="w-5 h-5 inline-block mr-1" />
-                Tip!
+                Tip
             </p>
             {children}
         </div>
     ),
     Caution: ({children}) => (
-        <div className="bg-orange-500/20 rounded-lg border border-orange-500 p-3 pb-2 my-4">
-            <p className="flex items-center text-sm text-orange-500 font-semibold">
+        <div className="bg-orange-500/20 rounded-lg border-l-4 rounded-l-none border-orange-500 p-3 pb-2 my-4">
+            <p className="flex items-center text-md text-orange-500 font-semibold">
                 <ExclamationTriangleIcon className="w-5 h-5 inline-block mr-1 text-orange-500" />
-                Caution!
+                Caution
             </p>
             {children}
         </div>
     ),
     Warning: ({children}) => (
-        <div className="bg-red-500/20 rounded-lg border border-red-500 p-3 pb-2 my-4">
-            <p className="flex items-center text-sm text-red-500 font-semibold">
+        <div className="bg-red-500/20 rounded-lg border-l-4 rounded-l-none border-red-500 p-3 pb-2 my-4">
+            <p className="flex items-center text-md text-red-500 font-semibold">
                 <ExclamationTriangleIcon className="w-5 h-5 inline-block mr-1" />
-                Warning!
+                Warning
             </p>
             {children}
         </div>

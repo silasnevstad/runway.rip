@@ -1,0 +1,92 @@
+---
+title: "One-Time Payments Tutorial"
+description: "A step-by-step guide to setting up one-time payments using Stripe Checkout in this boilerplate."
+onThisPage:
+  - title: "Introduction"
+    href: "#introduction"
+  - title: "Environment Setup"
+    href: "#environment-setup"
+  - title: "Creating a Checkout Session"
+    href: "#creating-a-checkout-session"
+  - title: "Testing Your Payment"
+    href: "#testing-your-payment"
+  - title: "Additional Tips"
+    href: "#additional-tips"
+---
+
+<div id="introduction" />
+
+<Divider />
+
+This tutorial walks you through setting up one-time payments using Stripe Checkout. I’ve done the heavy lifting so you can quickly integrate payments into your project without reinventing the wheel.
+
+<br />
+
+## Environment Setup
+
+<div id="environment-setup" />
+
+1. **Stripe Account:**
+Create an account on [Stripe](https://stripe.com/). Once logged in, navigate to [API Keys](https://dashboard.stripe.com/apikeys) to retrieve your keys.
+
+2. **Configure Environment Variables:**
+In your **.env.local** file, add:
+
+```bash
+STRIPE_SECRET_KEY=sk_live_...
+STRIPE_PUBLIC_KEY=pk_live_...
+```
+
+<br />
+
+## Creating a Checkout Session
+
+<div id="creating-a-checkout-session" />
+
+We use an API endpoint to create Checkout Sessions. This function is defined in our libs/stripe/checkout.js. For one-time payments, set the mode to "payment".
+
+```jsx
+// Example usage:
+const session = await createCheckoutSession({
+    planType: "starter",  // or "pro"
+    mode: "payment",
+    successUrl: "https://your-app.com/thank-you",
+    cancelUrl: "https://your-app.com/",
+});
+```
+
+The returned session ID is then used on the client to redirect your customer to Stripe’s secure payment page.
+
+<br />
+
+## Testing Your Payment
+
+<div id="testing-your-payment" />
+
+- **Test Card:**
+Use the test card number [4242 4242 4242 4242](https://stripe.com/docs/testing) for a successful payment.
+
+- **Verify:**
+Ensure that your webhook endpoint logs the payment events correctly.
+
+<br />
+
+## Additional Tips
+
+<div id="additional-tips" />
+
+<Tip>
+    Customize the Checkout Session by adding metadata or adjusting tax settings directly in the session options.
+</Tip>
+
+<Caution>
+    Always secure your API keys and webhook secret in your environment variables.
+</Caution>
+
+<Warning>
+    In production, double-check your [Stripe Dashboard](https://dashboard.stripe.com/) settings, such as authorized domains and redirect URLs.
+</Warning>
+
+<Divider />
+
+That’s it for one-time payments! With this setup, you’re ready to accept single payments in your app—without the hassle of custom payment forms.

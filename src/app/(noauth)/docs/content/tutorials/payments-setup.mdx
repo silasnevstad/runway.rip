@@ -1,0 +1,114 @@
+---
+title: "Stripe Payments Tutorial"
+description: "Stripe payments, including one-time payments, subscriptions, and webhook configuration."
+onThisPage:
+  - title: "Introduction"
+    href: "#introduction"
+  - title: "Environment Setup"
+    href: "#environment-setup"
+  - title: "Creating Checkout Sessions"
+    href: "#creating-checkout-sessions"
+  - title: "Configuring Webhooks"
+    href: "#configuring-webhooks"
+  - title: "Testing Your Integration"
+    href: "#testing-your-integration"
+  - title: "Additional Tips"
+    href: "#additional-tips"
+---
+
+<div id="introduction" />
+
+<Divider />
+
+This tutorial covers one-time payments, subscriptions, tax handling, and webhook event processing. Let's start by setting up your environment.
+
+<br />
+
+## Environment Setup
+
+<div id="environment-setup" />
+
+To get started, set up your [Stripe](https://stripe.com/) account and copy your [API keys](https://dashboard.stripe.com/apikeys).
+
+If you are using subscriptions, also create a webhook endpoint (`api/webhook/stripe`)
+
+In `.env.local`, add your Stripe secret and public keys (as well as the webhook secret if subscriptions are used):
+
+```bash
+STRIPE_SECRET_KEY=sk_live_...
+STRIPE_PUBLIC_KEY=pk_live_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+```
+
+## Creating Checkout Sessions
+
+<div id="creating-checkout-sessions" />
+
+We use a dedicated API endpoint to create Checkout Sessions. This endpoint accepts the plan type and mode (payment or subscription) and creates a session with automatic tax enabled.
+
+```jsx
+// Example: Creating a Checkout Session
+const session = await createCheckoutSession({
+planType: "starter",  // or "pro"
+mode: "payment",      // use "subscription" for recurring payments
+successUrl: "https://your-app.com/thank-you",
+cancelUrl: "https://your-app.com/",
+});
+```
+
+This session is then used on the client to redirect users to Stripe’s secure, hosted payment page.
+
+## Configuring Webhooks
+
+<div id="configuring-webhooks" />
+
+Stripe sends payment events via webhooks. Set up your local environment to listen to these events:
+
+1. **Local Testing:**
+Use the Stripe CLI to forward events to your endpoint:
+
+```bash
+stripe listen --forward-to localhost:3000/api/webhook/stripe
+```
+
+2. **Webhook Endpoint:**
+Our endpoint (api/webhook/stripe/route.js) verifies the signature and then routes the event to custom handlers. Customize these handlers in libs/stripe/webhookHandlers.js to, for example, update subscription statuses or send confirmation emails.
+
+```jsx
+// Example: Verifying webhook events
+const event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+await handleStripeWebhookEvent(event);
+```
+
+## Testing Your Integration
+
+<div id="testing-your-integration" />
+
+- **One-Time Payments:**
+Use test card number 4242 4242 4242 4242 for a successful charge.
+- **Subscriptions:**
+Create subscriptions using your test pricing IDs and verify that recurring billing works.
+- **Webhook Testing:**
+Ensure your local webhook endpoint receives and processes events correctly. Check your logs for messages from our custom event handlers.
+
+## Additional Tips
+
+<div id="additional-tips" />
+
+<Tip>
+    Customize your Checkout Session by setting different modes, adding metadata, or adjusting tax settings directly in the session creation options.
+</Tip>
+
+<Caution>
+    Always secure your endpoints. Verify webhook signatures and store your API keys in environment variables.
+</Caution>
+
+<Warning>
+    In production, double-check your Stripe Dashboard settings—like authorized domains and redirect URLs—to ensure a seamless payment experience.
+</Warning>
+
+<Divider />
+
+That’s it! With this guide, you have a full Stripe payment system that’s modular, secure, and ready for production. Enjoy building your app without the hassle of setting up payments from scratch.
+
+Happy coding!

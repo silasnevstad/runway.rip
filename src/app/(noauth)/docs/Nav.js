@@ -25,7 +25,8 @@ export const DocsNav = [
             { title: "Static page", href: "/docs/tutorials/static-page" },
             { title: "User authentication", href: "/docs/tutorials/authentication" },
             { title: "API call", href: "/docs/tutorials/api-call" },
-            { title: "Stripe Subscriptions", href: "/docs/tutorials/stripe-subscriptions" },
+            { title: "One Time Payments", href: "/docs/tutorials/one-time-payments" },
+            { title: "Subscriptions", href: "/docs/tutorials/subscriptions" },
             { title: "Domain", href: "/docs/tutorials/domain-setup" },
             { title: "Emails", href: "/docs/tutorials/email-setup" },
         ],
@@ -36,7 +37,7 @@ export const DocsNav = [
         icon: <CursorArrowRaysIcon className="w-6 h-6" />,
         items: [
             { title: "SEO", href: "/docs/features/seo" },
-            { title: "Database", href: "/docs/features/database" },
+            { title: "Database", href: "/docs/features/db" },
             { title: "Emails", href: "/docs/features/emails" },
             { title: "Payments", href: "/docs/features/payments" },
             { title: "Auth", href: "/docs/features/auth" },

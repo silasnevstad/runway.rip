@@ -20,7 +20,7 @@ const getOptionClasses = (
 };
 
 const Switch = ({
-    options,
+    options,  // { value, name, Icon, image }[]
     selected,
     onChange,
     activeTextColor = "gray",
