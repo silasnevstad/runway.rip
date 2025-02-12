@@ -1,7 +1,7 @@
 import Button from "@/components/atoms/Button";
 import TextHighlight from "@/components/atoms/TextHighlight";
 import TrustedBy from "@/components/molecules/TrustedBy";
-import Pricing from "@/components/organisms/Pricing";
+import PricingPlans from "@/components/payments/PricingPlans";
 import FAQ from "@/components/organisms/FAQ";
 import LandingHeader from "@/components/organisms/headers/LandingHeader";
 import Footer from "@/components/organisms/footers/Footer";
@@ -142,7 +142,7 @@ export default function Landing() {
                                 {pricing.subtitle}
                             </h2>
                             <div className="flex flex-col items-center w-5/6 max-xl:w-5/6 max-lg:w-5/6 max-md:w-4/6 max-sm:6/7 max-sm:gap-0">
-                                <Pricing />
+                                <PricingPlans />
                             </div>
                         </div>
                     </div>

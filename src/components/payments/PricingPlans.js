@@ -5,7 +5,7 @@ import PlanCard from "@/components/payments/PlanCard";
 import { pricingConfig } from "@/config";
 import Switch from "@/components/atoms/Switch";
 
-export default function Pricing() {
+export default function PricingPlans() {
     const { plans } = pricingConfig;
 
     // We'll let the user toggle "monthly" vs. "yearly". Default "monthly".

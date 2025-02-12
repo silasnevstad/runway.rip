@@ -14,9 +14,7 @@ const BadgeCarousel = ({
     fadeLeft = false,
     fadeRight = false,
     mode = 'multi',
-    scrollSpeed = 1,
 }) => {
-    const extendedWords = [...words, ...words, ...words]; // Duplicate the words for continuous scrolling
     return (
         <Carousel
             mode={mode}
@@ -27,8 +25,9 @@ const BadgeCarousel = ({
             showIndicators={false}
             showArrows={false}
             margin={0}
+            infinite={true}
         >
-            {extendedWords.map((word, index) => (
+            {words.map((word, index) => (
                 <div key={index} className="flex justify-center items-center h-full px-2">
                     <Badge key={index} color={getRandomColor()} shape={getRandomShape()}>
                         {word}

@@ -11,33 +11,24 @@ import React, {
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 /**
- * Carousel Props:
+ * Carousel Props
+ * ---------------
+ * - mode: "single" | "multi"
+ * - children: the slides
  *
- * Required:
- *   mode: "single" | "multi"
- *   children: slide elements
+ * - currentIndex?: number (controlled index from parent)
+ * - onChange?: (index: number) => void (callback when index changes)
+ * - infinite?: boolean (wrap around)
+ * - autoPlay?: boolean
+ * - interval?: number (ms for autoPlay)
+ * - showArrows?: boolean
+ * - showIndicators?: boolean
  *
- * Optional:
- *   currentIndex?: number (externally control which slide is active)
- *   onChange?(index: number): void (callback when active slide changes)
- *   infinite?: boolean (wrap from last->first in an "infinite" manner)
- *   autoPlay?: boolean
- *   interval?: number (ms for autoPlay)
- *   showArrows?: boolean
- *   showIndicators?: boolean
+ * - fadeCenter?: boolean (fade/scale the active slide)
+ * - scaleCenter?: number (scale factor for the active slide)
+ * - sideOpacity?: number (opacity for non-active slides)
  *
- *   fadeCenter?: boolean (whether to fade/scale the "active" slide)
- *   scaleCenter?: number (scale factor for the active slide)
- *   sideOpacity?: number (opacity for non-active slides)
- *
- *   margin?: number (when mode="multi", sets the "mx-{margin}" class for gap)
- *
- * Usage:
- *   <Carousel mode="single" fadeCenter infinite autoPlay interval={3000}>
- *     <div>Slide 1</div>
- *     <div>Slide 2</div>
- *     ...
- *   </Carousel>
+ * - margin?: number (only used in multi mode, sets `mx-${margin}` for gap)
  */
 export default function Carousel({
     mode = "single",
@@ -56,27 +47,25 @@ export default function Carousel({
 }) {
     const itemCount = Children.count(children);
 
-    // Internal state if not provided from parent
+    // If no external index, we manage internal state
     const [internalIndex, setInternalIndex] = useState(0);
-    const activeIndex = currentIndex != null ? currentIndex : internalIndex;
+    const activeIndex = currentIndex ?? internalIndex;
 
-    // Helper to safely update activeIndex
     const setActiveIndex = useCallback(
-        (newIndex) => {
-            // If there's no controlled index from parent, update internal state
+        (idx) => {
             if (currentIndex == null) {
-                setInternalIndex(newIndex);
+                setInternalIndex(idx);
             }
-            if (onChange) onChange(newIndex);
+            if (onChange) onChange(idx);
         },
         [currentIndex, onChange]
     );
 
-    // Next / Prev
+    // Next/Prev
     const goNext = useCallback(() => {
-        if (itemCount < 2) return; // no slides to move
+        if (itemCount < 2) return;
         if (infinite) {
-            setActiveIndex((activeIndex + 1 + itemCount) % itemCount);
+            setActiveIndex((activeIndex + 1) % itemCount);
         } else {
             setActiveIndex(Math.min(activeIndex + 1, itemCount - 1));
         }
@@ -92,56 +81,63 @@ export default function Carousel({
     }, [activeIndex, infinite, itemCount, setActiveIndex]);
 
     // Auto-play
-    const autoPlayRef = useRef(null);
+    const intervalRef = useRef(null);
     useEffect(() => {
         if (!autoPlay || itemCount <= 1) return;
-        autoPlayRef.current = setInterval(() => {
+        intervalRef.current = setInterval(() => {
             goNext();
         }, interval);
-        return () => clearInterval(autoPlayRef.current);
+
+        return () => clearInterval(intervalRef.current);
     }, [autoPlay, interval, goNext, itemCount, activeIndex]);
 
-    // Decide which sub-component to use
-    return mode === "single" ? (
-        <SingleCarousel
-            children={children}
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
-            itemCount={itemCount}
-            goPrev={goPrev}
-            goNext={goNext}
-            showArrows={showArrows}
-            showIndicators={showIndicators}
-            infinite={infinite}
-            fadeCenter={fadeCenter}
-            scaleCenter={scaleCenter}
-            sideOpacity={sideOpacity}
-        />
-    ) : (
-        <MultiCarousel
-            children={children}
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
-            itemCount={itemCount}
-            goPrev={goPrev}
-            goNext={goNext}
-            showArrows={showArrows}
-            showIndicators={showIndicators}
-            infinite={infinite}
-            fadeCenter={fadeCenter}
-            scaleCenter={scaleCenter}
-            sideOpacity={sideOpacity}
-            margin={margin}
-        />
-    );
+    if (mode === "single") {
+        return (
+            <SingleCarousel
+                children={children}
+                activeIndex={activeIndex}
+                setActiveIndex={setActiveIndex}
+                itemCount={itemCount}
+                goPrev={goPrev}
+                goNext={goNext}
+                showArrows={showArrows}
+                showIndicators={showIndicators}
+                infinite={infinite}
+                fadeCenter={fadeCenter}
+                scaleCenter={scaleCenter}
+                sideOpacity={sideOpacity}
+            />
+        );
+    } else {
+        return (
+            <MultiCarousel
+                children={children}
+                activeIndex={activeIndex}
+                setActiveIndex={setActiveIndex}
+                itemCount={itemCount}
+                goPrev={goPrev}
+                goNext={goNext}
+                showArrows={showArrows}
+                showIndicators={showIndicators}
+                infinite={infinite}
+                fadeCenter={fadeCenter}
+                scaleCenter={scaleCenter}
+                sideOpacity={sideOpacity}
+                margin={margin}
+            />
+        );
+    }
 }
 
 /**
- * SINGLE-ITEM mode
- * Each slide is absolutely positioned. The center slide is offset by (offset * 100%) - 50% =>
- * offset=0 => -50% => centered in container
+ * SINGLE-ITEM MODE
+ * We measure:
+ *   - The container's width
+ *   - The child's (slide) width
  *
- * If infinite=true, we re-map offset to keep slides in a small range around 0.
+ * Then we center the active slide: xPos = offset * childWidth + (containerWidth - childWidth) / 2.
+ * Because offset=0 => xPos = (containerWidth - childWidth)/2 => truly centered in container.
+ * If offset=1 => xPos = childWidth + (containerWidth - childWidth)/2 => one child to the right of center.
  */
 function SingleCarousel({
                             children,
@@ -157,29 +153,57 @@ function SingleCarousel({
                             scaleCenter,
                             sideOpacity
                         }) {
+    const containerRef = useRef(null);
+    const [containerWidth, setContainerWidth] = useState(0);
+    const [childWidth, setChildWidth] = useState(0);
+
+    // Measure container + single slide width
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        // container width
+        const cRect = containerRef.current.getBoundingClientRect();
+        setContainerWidth(cRect.width);
+
+        // measure first child
+        const firstSlide = containerRef.current.querySelector(".single-slide");
+        if (firstSlide) {
+            const fRect = firstSlide.getBoundingClientRect();
+            setChildWidth(fRect.width);
+        }
+    }, [children]);
+
+    // Render slides
     const slides = Children.map(children, (child, i) => {
         let offset = i - activeIndex;
+
+        // If infinite, re-map offset to small range around 0
         if (infinite) {
             const half = Math.floor(itemCount / 2);
             if (offset < -half) offset += itemCount;
             if (offset > half) offset -= itemCount;
         }
-        const isCenter = (offset === 0);
+        const isCenter = offset === 0;
 
-        // xPos: shift horizontally so that offset=0 => -50% => center in container
-        const xPos = offset * 100 - 50;
-        const transformList = [`translateX(${xPos}%) translateY(-50%)`];
+        // xPos => offset * childWidth + centerShift
+        // centerShift = (containerWidth - childWidth)/2 => ensures offset=0 => center
+        const centerShift = (containerWidth - childWidth) / 2;
+        const xPos = offset * childWidth + centerShift;
+
+        const transformList = [`translateX(${xPos}px)`];
+        // If you also want vertical centering:
+        transformList.push("translateY(-50%)");
+
         if (isCenter && fadeCenter && scaleCenter !== 1.0) {
             transformList.push(`scale(${scaleCenter})`);
         }
-
         const transform = transformList.join(" ");
         const opacity = !isCenter && fadeCenter ? sideOpacity : 1;
 
         return (
             <div
                 key={i}
-                className="absolute top-1/2 left-1/2 transition-all duration-300 ease-in-out"
+                className="single-slide absolute top-1/2 left-0 transition-all duration-300 ease-in-out"
                 style={{ transform, opacity }}
             >
                 {cloneElement(child, { isActive: isCenter })}
@@ -188,10 +212,12 @@ function SingleCarousel({
     });
 
     return (
-        <div className="relative w-full h-[300px] md:h-[350px] lg:h-[400px] overflow-hidden">
+        <div
+            ref={containerRef}
+            className="relative w-full h-[300px] md:h-[350px] lg:h-[400px] overflow-hidden"
+        >
             {slides}
 
-            {/* Arrows */}
             {showArrows && itemCount > 1 && (
                 <>
                     <button
@@ -209,7 +235,6 @@ function SingleCarousel({
                 </>
             )}
 
-            {/* Indicators */}
             {showIndicators && itemCount > 1 && (
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                     {Array.from({ length: itemCount }).map((_, i) => (
@@ -228,10 +253,9 @@ function SingleCarousel({
 }
 
 /**
- * MULTI-ITEM mode
- * Renders slides in a horizontal row. Clicking next or prev shifts by
- * exactly one slide's width. If infinite=true, we just “jump” from last to first
- * or first to last (no complicated duplication).
+ * MULTI-ITEM MODE
+ * We do the simpler approach: measure one item’s width, shift by activeIndex * itemWidth.
+ * Optionally fade/scale the center item if fadeCenter is true (the “activeIndex”).
  */
 function MultiCarousel({
                            children,
@@ -251,27 +275,22 @@ function MultiCarousel({
     const trackRef = useRef(null);
     const [itemWidth, setItemWidth] = useState(0);
 
-    // Measure first child to know how many px to shift each time
+    // measure the first item for width
     useEffect(() => {
         if (!trackRef.current) return;
         const first = trackRef.current.querySelector(".carousel-item");
         if (!first) return;
-        const rect = first.getBoundingClientRect();
-        setItemWidth(rect.width);
+        const fRect = first.getBoundingClientRect();
+        setItemWidth(fRect.width);
     }, [children]);
 
-    // If infinite, the “activeIndex” effectively wraps around 0..(itemCount-1).
-    // We do that logic in goNext/goPrev. We'll just compute translation from activeIndex here:
-    const translateX = -(activeIndex * itemWidth);
+    // translateX
+    const translateX = -(activeIndex * itemWidth) - (activeIndex * margin * 2) - (itemWidth / 2);
 
     const slides = Children.map(children, (child, i) => {
-        // Optionally fade/scale the “active” item
-        const isCenter = fadeCenter && i === activeIndex;
+        const isCenter = i === activeIndex;
         const style = isCenter
-            ? {
-                transform: `scale(${scaleCenter})`,
-                transition: "transform 0.3s ease"
-            }
+            ? { transform: `scale(${scaleCenter})`, transition: "transform 0.3s ease" }
             : fadeCenter
                 ? { opacity: sideOpacity }
                 : {};
@@ -291,10 +310,17 @@ function MultiCarousel({
         <div className="relative w-full overflow-hidden">
             <div
                 ref={trackRef}
-                className="flex transition-transform duration-300 ease-in-out"
+                className={`flex transition-transform duration-300 ease-in-out ${!infinite && 'translate-x-1/2'}`}
                 style={{ transform: `translateX(${translateX}px)` }}
             >
-                {slides}
+                {/* if infinite is true, duplicate the slides */}
+                {infinite && itemCount > 1
+                    ? [
+                        slides[slides.length - 1],
+                        ...slides,
+                        slides[0]
+                    ]
+                    : slides}
             </div>
 
             {showArrows && itemCount > 1 && (

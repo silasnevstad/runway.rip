@@ -95,8 +95,7 @@ export default function Features() {
                     onChange={(i) => setSelectedFeature(i)}
                     mode="multi"
                     fadeCenter
-                    infinite
-                    autoPlay={true}
+                    // autoPlay={true}
                     showArrows={false}
                     showIndicators={false}
                 >
