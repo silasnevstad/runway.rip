@@ -4,7 +4,7 @@ import React from "react";
 import PricingPlans from "@/components/payments/PricingPlans";
 import { landingConfig } from "@/config"; // or pass as prop
 
-export default function PricingSection() {
+export default function Pricing() {
     const { pricing } = landingConfig;
 
     if (!pricing?.show) return null;

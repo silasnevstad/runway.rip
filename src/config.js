@@ -361,4 +361,23 @@ export const featuresData = [
     }
 ];
 
+export const FAQS = [
+    {
+        title: "What is the refund policy?",
+        content: "We offer a 30-day money back guarantee if you are not satisfied with our product."
+    },
+    {
+        title: "How do I cancel my subscription?",
+        content: "You can cancel your subscription by logging into your account and clicking the cancel button."
+    },
+    {
+        title: "Can I upgrade my plan?",
+        content: "Yes, you can upgrade your plan at any time by logging into your account and selecting the upgrade option."
+    },
+    {
+        title: "Do you offer a free trial?",
+        content: "Yes, we offer a 14-day free trial for all new customers."
+    }
+];
+
 export default config;

@@ -6,7 +6,7 @@ import { FiGithub } from "react-icons/fi";
 import { Cog8ToothIcon, RocketLaunchIcon as RocketLaunchIconOutline } from "@heroicons/react/24/outline";
 import { landingConfig } from "@/config";
 
-export default function HowItWorksSection() {
+export default function HowItWorks() {
     const { howItWorks } = landingConfig;
 
     return (
