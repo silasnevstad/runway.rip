@@ -1,7 +1,7 @@
 import DocsShell from "./_components/DocsShell";
 
 export const metadata = {
-    title: "Runway Docs",
+    title: "Docs | Runway",
     description: "Documentation for the Runway",
 };
 

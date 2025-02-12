@@ -1,5 +1,5 @@
 export const metadata = {
-    title: "Runway Docs Home",
+    title: "Docs | Runway",
 };
 
 export default function DocsIndexPage() {

@@ -41,6 +41,7 @@ export default function Landing() {
                     {faq && <FAQ />}
                 </div>
             </div>
+
             <Footer />
         </main>
     );
