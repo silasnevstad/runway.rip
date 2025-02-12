@@ -1,5 +1,5 @@
 import stripe from "./stripe";
-import { pricingConfig } from "@/config/pricingConfig";
+import { pricingConfig } from "@/config";
 
 function findPlan(planType) {
     return pricingConfig.plans.find(
