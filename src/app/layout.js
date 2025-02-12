@@ -1,4 +1,4 @@
-import config from "@/config";
+import appConfig from "@/config";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from 'next-themes'
 import './globals.css';
@@ -7,8 +7,8 @@ import './globals.css';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-    title: config.appName,
-    description: config.appDescription,
+    title: appConfig.appName,
+    description: appConfig.appDescription,
 };
 
 export default function RootLayout({ children }) {

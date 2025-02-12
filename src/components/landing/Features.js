@@ -6,8 +6,8 @@ import Image from "next/image";
 import Card from "@/components/molecules/Card";
 import TextLink from "@/components/atoms/TextLink";
 import Carousel from "@/components/molecules/Carousel";
-import { featuresData } from "@/config";
-import { landingConfig } from "@/config";
+import appConfig from "@/config";
+import { landingConfig, featuresConfig } from "@/config";
 
 export default function Features() {
     const { features } = landingConfig;
@@ -31,7 +31,7 @@ export default function Features() {
             <div className="max-w-5xl w-full mx-auto px-4 py-6 flex flex-col items-center justify-center gap-6">
                 {/* Top icon grid */}
                 <div className="grid grid-cols-3 sm:grid-cols-6">
-                    {featuresData.map((feat, index) => {
+                    {featuresConfig.map((feat, index) => {
                         const isActive = selectedFeature === index;
                         return (
                             <div
@@ -62,7 +62,7 @@ export default function Features() {
                     showArrows={false}
                     showIndicators={false}
                 >
-                    {featuresData.map((feat, idx) => (
+                    {featuresConfig.map((feat, idx) => (
                         <FeatureCard key={idx} feature={feat} />
                     ))}
                 </Carousel>

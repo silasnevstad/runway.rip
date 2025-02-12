@@ -5,14 +5,14 @@ import { loadStripe } from '@stripe/stripe-js';
 import {CheckIcon, RocketLaunchIcon, XMarkIcon} from "@heroicons/react/24/solid";
 import Badge from "@/components/atoms/Badge";
 import Button from "@/components/atoms/Button";
-import config from "@/config";
+import appConfig from "@/config";
 
 const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
 const PricingCard = ({ type, title, oldPrice, price, includedFeatures, allFeatures, isPopular }) => {
-    const { appName } = config;
+    const { appName } = appConfig;
     // reorganize allFeatures to put not included features at the end
     const allFeaturesSorted = allFeatures.sort((a, b) => {
         if (includedFeatures.includes(a) && !includedFeatures.includes(b)) {

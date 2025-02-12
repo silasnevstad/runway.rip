@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import config, {landingConfig} from "@/config";
+import appConfig, {landingConfig} from "@/config";
 import TextLink from "@/components/atoms/TextLink";
 import Link from "next/link";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
@@ -10,7 +10,7 @@ const LandingHeader = ({
     background = "bg-bg-100 border-b border-b-bg-300 dark:border-b-bg-700",
     sticky = false
 }) => {
-    const { appName } = config;
+    const { appName } = appConfig;
     const { logo } = landingConfig.header;
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 

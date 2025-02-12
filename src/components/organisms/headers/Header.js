@@ -1,6 +1,6 @@
 'use client'
 
-import config from "@/config";
+import appConfig from "@/config";
 import { TextLink, Button } from "@/components/atoms/Buttons";
 import Link from "next/link";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
@@ -9,7 +9,7 @@ import { Avatar } from "@/components/atoms/Avatar";
 const Header = ({
     background = "bg-bg-100 dark:bg-bg-900",
 }) => {
-    const { appName } = config;
+    const { appName } = appConfig;
     return (
         <header className={`flex justify-center p-4 w-full ${background}`}>
             <div className="flex justify-between items-center w-full px-4">
