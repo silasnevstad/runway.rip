@@ -43,7 +43,7 @@ export default function PlanCTA({
     };
 
     return (
-        <Button onClick={handleCheckout} shape="rounded-full">
+        <Button onClick={handleCheckout} className="font-bold text-md">
             <RocketLaunchIcon className="w-5 h-5" />
             {buttonLabel}
         </Button>

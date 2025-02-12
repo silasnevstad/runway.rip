@@ -1,4 +1,4 @@
-import { FaCheck, FaXmark } from "react-icons/fa6";
+import { MdCheck, MdOutlineClose } from "react-icons/md";
 
 export default function PlanFeatures({ planFeatures, allFeatures }) {
     // Sort so that included features appear first
@@ -15,13 +15,15 @@ export default function PlanFeatures({ planFeatures, allFeatures }) {
             {sortedFeatures.map((feat, idx) => {
                 const included = planFeatures.includes(feat);
                 return (
-                    <li key={idx} className="flex items-center gap-3">
+                    <li key={idx} className="flex items-center gap-3 opacity-70">
                         {included ? (
-                            <FaCheck className="w-6 h-6 text-primary-500 bg-primary-500/20 rounded-full p-1 m-0 border" />
+                            // <FaCheck className="w-6 h-6 text-primary-500 bg-primary-500/20 rounded-full p-1 m-0 border" />
+                            <MdCheck className="w-6 h-6 " />
                         ) : (
-                            <FaXmark className="w-6 h-6 text-red-500 bg-red-500/20 rounded-full p-1 m-0 border" />
+                            // <FaXmark className="w-6 h-6 text-red-500 bg-red-500/20 rounded-full p-1 m-0 border" />
+                            <MdOutlineClose className="w-6 h-6 text-red-500 " />
                         )}
-                        <span className={`text-base font-semibold ${included ? "" : "opacity-40"}`}>
+                        <span className={`text-base font-medium ${included ? "" : "opacity-30 line-through decoration-2"}`}>
               {feat}
             </span>
                     </li>

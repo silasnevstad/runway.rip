@@ -51,7 +51,7 @@ const config = {
 export const landingConfig = {
     header: {
         background: "border-b border-b-bg-300 dark:border-b-bg-700 bg-bg-50 dark:bg-bg-900 mx-sm:bg-bg-50/80 mx-sm:dark:bg-bg-900/10",
-        sticky: true,
+        sticky: false,
         logo: {
             src: "/logo.png",
             alt: "Runway Logo"
@@ -179,8 +179,9 @@ export const pricingConfig = {
         {
             type: "starter",
             mode: "payment", // One-time purchase
-            title: "Starter (One-Time)",
-            description: "Perfect for a single purchase.",
+            title: "Starter",
+            description: "",
+            subText: "Pay once, use forever.",
             isPopular: false,
             features: [
                 "NextJS boilerplate",
@@ -194,18 +195,85 @@ export const pricingConfig = {
             intervals: [
                 {
                     name: "one_time",
-                    label: "One-Time Purchase",
+                    label: "",
                     oldPrice: 69,
                     price: 49,
-                    priceId: "price_1Pr8LGGjMg6waABSg1bjDLEQ"
+                    priceId: "price_XXX"
+                }
+            ]
+        },
+        {
+            type: "pro",
+            mode: "payment", // One-time purchase
+            title: "All-in",
+            description: "",
+            subText: "Pay once, use forever.",
+            isPopular: true,
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "SEO tools",
+                "Lifetime updates",
+            ],
+            intervals: [
+                {
+                    name: "one_time",
+                    label: "",
+                    oldPrice: 149,
+                    price: 99,
+                    priceId: "price_XXX"
+                }
+            ]
+        }
+    ]
+};
+
+export const pricingSubscriptionConfig = {
+    plans: [
+        {
+            type: "starter",
+            mode: "subscription", // Recurring
+            title: "Starter",
+            description: "Get started with the basics.",
+            subText: "Pay monthly or yearly.",
+            isPopular: false,
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "Lifetime updates",
+            ],
+            intervals: [
+                {
+                    name: "monthly",
+                    label: "Monthly",
+                    oldPrice: 29,
+                    price: 19,
+                    discountLabel: "Save 40%",
+                    priceId: "price_monthly_xxx"
+                },
+                {
+                    name: "yearly",
+                    label: "Yearly",
+                    oldPrice: 199,
+                    price: 99,
+                    discountLabel: "Save 50%",
+                    priceId: "price_yearly_xxx"
                 }
             ]
         },
         {
             type: "pro",
             mode: "subscription", // Recurring
-            title: "Pro Subscription",
-            description: "Unlock advanced features with a recurring plan.",
+            title: "Pro",
+            description: "Unlock the full potential of Runway.",
             isPopular: true,
             features: [
                 "NextJS boilerplate",

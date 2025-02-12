@@ -19,18 +19,21 @@ const Badge = ({
 
     const shapeSizeStyles = {
         pill: {
-            small: "rounded-full px-2 py-1 text-xs",
-            medium: "rounded-full px-3 py-1 text-sm",
-            large: "rounded-full px-4 py-1.5 text-base",
+            xs: "rounded-full px-1 py-1 text-xs",
+            small: "rounded-full px-2 py-1 text-sm",
+            medium: "rounded-full px-3 py-1 text-md",
+            large: "rounded-full px-4 py-1.5 text-lg",
         },
         square: {
-            small: "rounded-lg px-2 py-1 text-xs",
-            medium: "rounded-lg px-3 py-1 text-sm",
+            xs: "rounded-lg px-1 py-1 text-xs",
+            small: "rounded-lg px-2 py-1 text-sm",
+            medium: "rounded-lg px-3 py-1 text-md",
             large: "rounded-lg px-4 py-1.5 text-base",
         },
         circle: {
-            small: "rounded-full px-1 py-1 text-xs",
-            medium: "rounded-full px-2 py-2 text-sm",
+            xs: "rounded-full px-1 py-1 text-xs",
+            small: "rounded-full px-1 py-1 text-sm",
+            medium: "rounded-full px-2 py-2 text-md",
             large: "rounded-full px-3 py-3 text-base",
         },
     };
