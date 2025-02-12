@@ -1,63 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { MdPayment, MdOutlineVerifiedUser, MdOutlineMail, MdOutlineSpaceDashboard } from "react-icons/md";
-import { GoDatabase } from "react-icons/go";
-import { PiMagnifyingGlassBold } from "react-icons/pi";
 import { FaCheck } from "react-icons/fa";
 import Image from "next/image";
 import TextLink from "@/components/atoms/TextLink";
 import Card from "@/components/molecules/Card";
 import Carousel from "@/components/molecules/Carousel";
-
-const featuresData = [
-    {
-        title: "Auth",
-        features: ["Email/password login", "Social auth", "Role-based access control"],
-        description: "Implement robust user authentication and authorization using Supabase.",
-        icon: MdOutlineVerifiedUser,
-        imageSrc: "/logos/supabase.png",
-        imageAlt: "Supabase"
-    },
-    {
-        title: "Payments",
-        features: ["Securely accept payments", "Manage subscriptions", "Ensure PCI compliance"],
-        description: "Securely accept payments and manage subscriptions with Stripe integration.",
-        icon: MdPayment,
-        imageSrc: "/logos/stripe.png",
-        imageAlt: "Stripe"
-    },
-    {
-        title: "Database",
-        features: ["SQL database", "Real-time data sync"],
-        description: "Harness Supabase’s PostgreSQL DB for real-time data sync.",
-        icon: GoDatabase,
-        imageSrc: "/logos/supabase.png",
-        imageAlt: "Supabase"
-    },
-    {
-        title: "Email",
-        features: ["Email verification", "Transactional emails", "Newsletters"],
-        description: "Integrate seamless email communication with Mailgun.",
-        icon: MdOutlineMail,
-        imageSrc: "/logos/mailgun.png",
-        imageAlt: "Mailgun"
-    },
-    {
-        title: "SEO",
-        features: ["Meta tags", "Sitemaps", "Structured data"],
-        description: "Boost your visibility with built-in SEO tools, auto meta tags, etc.",
-        icon: PiMagnifyingGlassBold,
-        docs: true
-    },
-    {
-        title: "Components",
-        features: ["Pre-built components", "Customizable UI", "Responsive design"],
-        description: "Use our library of pre-built, customizable components.",
-        icon: MdOutlineSpaceDashboard,
-        docs: true
-    }
-];
+import { featuresData } from "@/config";
 
 export default function Features() {
     const [selectedFeature, setSelectedFeature] = useState(0);
