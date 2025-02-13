@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneLight, atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useTheme } from "next-themes";
@@ -17,7 +17,13 @@ const CodeBlock = ({
 }) => {
     const { resolvedTheme } = useTheme();
     const [copied, setCopied] = useState(false);
-    const checkDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const [checkDarkTheme, setCheckDarkTheme] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setCheckDarkTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+        }
+    }, []);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(code);
