@@ -65,9 +65,9 @@ export default function Carousel({
     const goNext = useCallback(() => {
         if (itemCount < 2) return;
         if (infinite) {
-            setActiveIndex((activeIndex + 1) % itemCount);
+            setActiveIndex((activeIndex + 1) % itemCount); // (activeIndex + 1) % itemCount = 1, 2, 3, 0, 1, 2, 3, 0, ...
         } else {
-            setActiveIndex(Math.min(activeIndex + 1, itemCount - 1));
+            setActiveIndex((activeIndex + 1) % itemCount);
         }
     }, [activeIndex, infinite, itemCount, setActiveIndex]);
 
@@ -258,20 +258,20 @@ function SingleCarousel({
  * Optionally fade/scale the center item if fadeCenter is true (the “activeIndex”).
  */
 function MultiCarousel({
-                           children,
-                           activeIndex,
-                           setActiveIndex,
-                           itemCount,
-                           goPrev,
-                           goNext,
-                           showArrows,
-                           showIndicators,
-                           infinite,
-                           fadeCenter,
-                           scaleCenter,
-                           sideOpacity,
-                           margin
-                       }) {
+    children,
+    activeIndex,
+    setActiveIndex,
+    itemCount,
+    goPrev,
+    goNext,
+    showArrows,
+    showIndicators,
+    infinite,
+    fadeCenter,
+    scaleCenter,
+    sideOpacity,
+    margin
+}) {
     const trackRef = useRef(null);
     const [itemWidth, setItemWidth] = useState(0);
 

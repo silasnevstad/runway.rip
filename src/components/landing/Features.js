@@ -59,6 +59,7 @@ export default function Features() {
                     mode="multi"
                     fadeCenter
                     autoPlay={true}
+                    interval={5000}
                     showArrows={false}
                     showIndicators={false}
                 >
