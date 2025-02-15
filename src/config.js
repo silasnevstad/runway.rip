@@ -1,6 +1,5 @@
 import {FaMagnifyingGlassChart, FaRegCreditCard, FaUserShield} from "react-icons/fa6";
-import { LuDatabase, LuLayoutDashboard, LuMail, LuSearch } from "react-icons/lu";
-import {TbCreditCard} from "react-icons/tb";
+import { LuDatabase, LuLayoutDashboard, LuMail } from "react-icons/lu";
 
 const appConfig = {
     appName: 'Runway',
@@ -86,7 +85,7 @@ export const landingConfig = {
         "faq": "bg-linear-to-b from-primary-100 dark:from-primary-900/10 to-bg-0 dark:to-bg-900",
     },
     header: {
-        background: "border-b-none border-b-bg-300 dark:border-b-bg-700 bg-bg-0 dark:bg-bg-900 mx-sm:bg-bg-50/80 mx-sm:dark:bg-bg-900/10",
+        background: "border-b-none bg-bg-0 dark:bg-bg-900 mx-sm:bg-bg-50/80 mx-sm:dark:bg-bg-900/10",
         sticky: false,
         logo: {
             src: "/logo.png",
@@ -151,7 +150,6 @@ export const landingConfig = {
     },
     features: {
         show: true,
-        layout: "cards",
         title: "Tired of starting from scratch?",
         subtitle: "Everything you need to launch your ideas.",
     },
@@ -160,7 +158,10 @@ export const landingConfig = {
         subtitle: "Use Runway to save hours of coding and launch faster.",
         show: true
     },
-    faq: true
+    faq: {
+        show: true,
+        title: "Frequently Asked Questions",
+    }
 };
 
 export const featuresConfig = [
@@ -231,6 +232,7 @@ export const faqConfig = [
     }
 ];
 
+// Example of subscription pricing config
 export const pricingSubscriptionConfig = {
     plans: [
         {

@@ -88,7 +88,7 @@ export default function Landing() {
 
                 {/* FAQ Section */}
                 <div className={`flex flex-col items-center w-full pb-20 ${backgrounds.faq}`}>
-                    {faq && <FAQ />}
+                    {faq.show && <FAQ />}
                 </div>
             </div>
 

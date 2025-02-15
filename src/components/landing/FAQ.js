@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import appConfig, { faqConfig, landingConfig } from "@/config";
+import { faqConfig, landingConfig } from "@/config";
 import Accordion from "@/components/molecules/Accordion";
 
 export default function FAQ() {
@@ -18,7 +18,7 @@ export default function FAQ() {
                     className="flex max-sm:flex-col justify-between gap-10 mb-10"
                     id="faq"
                 >
-                    <h3 className="text-3xl font-semibold text-left max-w-[20ch]">Frequently Asked Questions</h3>
+                    <h3 className="text-3xl font-semibold text-left max-w-[20ch]">{faq.title}</h3>
                     <div className="flex flex-col w-10/12 max-sm:w-full">
                         <Accordion items={faqConfig} />
                     </div>
