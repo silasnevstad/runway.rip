@@ -5,7 +5,7 @@ import { useUser } from "@/contexts/UserContext";
 import { BiHomeAlt, BiUserCircle, BiCog } from "react-icons/bi";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Card from "@/components/molecules/Card";
+import Card from "@/components/atoms/Card";
 import UserMenuCard from "@/components/molecules/UserMenuCard";
 import {LetterAvatar} from "@/components/atoms/Avatar";
 

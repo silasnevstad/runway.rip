@@ -8,11 +8,12 @@ const Divider = ({
     opacity = 70,
     margin = 2,
     width = 0.5,
+    height = 'full',
     noWrap = true,
 }) => {
     const baseStyle = !vertical
-        ? `w-full h-${width}`
-        : `w-${width} h-full`;
+        ? `w-${height} h-${width}`
+        : `w-${width} h-${height}`;
 
     const dividerClass = mergeClasses(baseStyle,
         `bg-${color}-500 dark:bg-${color}-800 opacity-${opacity}`,

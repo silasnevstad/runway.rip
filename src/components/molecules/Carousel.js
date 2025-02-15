@@ -285,7 +285,7 @@ function MultiCarousel({
     }, [children]);
 
     // translateX
-    const translateX = -(activeIndex * itemWidth) - (activeIndex * margin * 2) - (itemWidth / 2);
+    const translateX = -(activeIndex * itemWidth) - (activeIndex * margin * 8) - (itemWidth / 2);
 
     const slides = Children.map(children, (child, i) => {
         const isCenter = i === activeIndex;

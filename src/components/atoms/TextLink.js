@@ -13,13 +13,14 @@ const TextLink = ({
     underline = false,
     underlineClassName = "",
     underlineHeight = '1px',
+    underlineOffset = '0',
     selected = false,
 }) => {
     const baseStyles = "relative flex items-center gap-1 cursor-pointer";
 
     const dynamicClasses = mergeClasses(
         baseStyles,
-        grow && "transition-all duration-200 ease-in-out hover:scale-103",
+        grow && "transition-all duration-200 ease-in-out hover:scale-105",
         fade && !selected && "transition-opacity opacity-50 hover:opacity-100",
         selected && "opacity-100 font-semibold",
         underline
@@ -40,15 +41,17 @@ const TextLink = ({
             )}
             <span className="relative">
                 {children}
-                        {underline && (
-                            <span
-                                className={mergeClasses(
-                                    "absolute left-0 bottom-0 w-full bg-bg-800 dark:bg-bg-200 transform origin-left scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100",
-                                    underlineClassName
-                                )}
-                                style={{ height: underlineHeight }}
-                            />
+                {underline && (
+                    <span
+                        className={mergeClasses(
+                            `absolute w-full left-0 bottom-${underlineOffset}`,
+                            `bg-bg-800 dark:bg-bg-200`,
+                            `transform origin-left scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100`,
+                            underlineClassName
                         )}
+                        style={{ height: underlineHeight }}
+                    />
+                )}
               </span>
         </Link>
     );

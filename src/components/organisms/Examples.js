@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Badge from "@/components/atoms/Badge";
 import Button from "@/components/atoms/Button";
 import Tooltip from "@/components/atoms/Tooltip";
-import Card from "@/components/molecules/Card";
+import Card from "@/components/atoms/Card";
 import Menu from "@/components/molecules/Menu";
 import {EnvelopeIcon, HomeIcon, QuestionMarkCircleIcon} from "@heroicons/react/24/outline";
 import Dropdown from "@/components/atoms/Dropdown";
@@ -261,43 +261,43 @@ def code:
                 {/*/>*/}
             </div>
             <div className="flex gap-2">
-                <Timeline>
-                    <TimelineItem
-                        type="dot"
-                        date={moment('2023-04-25')}
-                    >
-                        <p className="ttext-gray-500 dark:text-gray-600">Applied to <a href="#"
-                                                                                       className="font-medium text-gray-900 dark:text-gray-200">Front
-                            End Developer</a> position.</p>
-                        <Badge variant="primary" shape="pill" className="text-sm font-normal">New</Badge>
-                    </TimelineItem>
-                    <TimelineItem
-                        type="icon"
-                        content={<HomeIcon className="h-5 w-5 text-gray-800"/>}
-                        date={moment('2024-02-25')}
-                    >
-                        <p className="text-gray-500 dark:text-gray-600">Advanced to phone screening by <a href="#"
-                                                                                                          className="font-medium text-gray-900 dark:text-gray-200">Bethany
-                            Blake</a></p>
-                    </TimelineItem>
-                    <TimelineItem
-                        type="image"
-                        content={{src: "/images/elon-avatar.png", alt: "Elon Avatar"}}
-                        date={moment('2024-04-14')}
-                    >
-                        <p className="text-gray-500 dark:text-gray-600">Completed interview with <a href="#"
-                                                                                                    className="font-medium text-gray-900 dark:text-gray-200">Katherine
-                            Snyder</a></p>
-                    </TimelineItem>
-                    <TimelineItem
-                        date={moment('2024-04-25')}
-                        isLast
-                    >
-                        <p className="text-gray-500 dark:text-gray-600">Completed interview with <a href="#"
-                                                                                                    className="font-medium text-gray-900 dark:text-gray-200">Katherine
-                            Snyder</a></p>
-                    </TimelineItem>
-                </Timeline>
+                {/*<Timeline>*/}
+                {/*    <TimelineItem*/}
+                {/*        type="dot"*/}
+                {/*        date={moment('2023-04-25')}*/}
+                {/*    >*/}
+                {/*        <p className="ttext-gray-500 dark:text-gray-600">Applied to <a href="#"*/}
+                {/*                                                                       className="font-medium text-gray-900 dark:text-gray-200">Front*/}
+                {/*            End Developer</a> position.</p>*/}
+                {/*        <Badge variant="primary" shape="pill" className="text-sm font-normal">New</Badge>*/}
+                {/*    </TimelineItem>*/}
+                {/*    <TimelineItem*/}
+                {/*        type="icon"*/}
+                {/*        content={<HomeIcon className="h-5 w-5 text-gray-800"/>}*/}
+                {/*        date={moment('2024-02-25')}*/}
+                {/*    >*/}
+                {/*        <p className="text-gray-500 dark:text-gray-600">Advanced to phone screening by <a href="#"*/}
+                {/*                                                                                          className="font-medium text-gray-900 dark:text-gray-200">Bethany*/}
+                {/*            Blake</a></p>*/}
+                {/*    </TimelineItem>*/}
+                {/*    <TimelineItem*/}
+                {/*        type="image"*/}
+                {/*        content={{src: "/images/elon-avatar.png", alt: "Elon Avatar"}}*/}
+                {/*        date={moment('2024-04-14')}*/}
+                {/*    >*/}
+                {/*        <p className="text-gray-500 dark:text-gray-600">Completed interview with <a href="#"*/}
+                {/*                                                                                    className="font-medium text-gray-900 dark:text-gray-200">Katherine*/}
+                {/*            Snyder</a></p>*/}
+                {/*    </TimelineItem>*/}
+                {/*    <TimelineItem*/}
+                {/*        date={moment('2024-04-25')}*/}
+                {/*        isLast*/}
+                {/*    >*/}
+                {/*        <p className="text-gray-500 dark:text-gray-600">Completed interview with <a href="#"*/}
+                {/*                                                                                    className="font-medium text-gray-900 dark:text-gray-200">Katherine*/}
+                {/*            Snyder</a></p>*/}
+                {/*    </TimelineItem>*/}
+                {/*</Timeline>*/}
             </div>
             <div className="flex flex-col gap-2 items-center">
                 <FileInput/>

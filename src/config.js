@@ -1,6 +1,6 @@
-import {MdOutlineMail, MdOutlineSpaceDashboard, MdOutlineVerifiedUser, MdPayment} from "react-icons/md";
-import {GoDatabase} from "react-icons/go";
-import {PiMagnifyingGlassBold} from "react-icons/pi";
+import {FaMagnifyingGlassChart, FaRegCreditCard, FaUserShield} from "react-icons/fa6";
+import { LuDatabase, LuLayoutDashboard, LuMail, LuSearch } from "react-icons/lu";
+import {TbCreditCard} from "react-icons/tb";
 
 const appConfig = {
     appName: 'Runway',
@@ -10,79 +10,12 @@ const appConfig = {
         twitter: 'https://twitter.com/runway',
         instagram: 'https://instagram.com/runway',
         github: 'https://github.com/runway-app',
+        linkedin: ''
     },
     emailSubdomain: "mail",
     supportEmail: "Runway Support <support@runway.rip>",
     noReplyEmail: "Runway <noreply@runway.rip>",
 };
-
-export const featuresConfig = [
-    {
-        title: "Auth",
-        features: ["Email/password login", "Social auth", "Role-based access control"],
-        description: "Implement robust user authentication and authorization using Supabase.",
-        icon: MdOutlineVerifiedUser,
-        imageSrc: "/logos/supabase.png",
-        imageAlt: "Supabase"
-    },
-    {
-        title: "Payments",
-        features: ["Securely accept payments", "Manage subscriptions", "Ensure PCI compliance"],
-        description: "Securely accept payments and manage subscriptions with Stripe integration.",
-        icon: MdPayment,
-        imageSrc: "/logos/stripe.png",
-        imageAlt: "Stripe"
-    },
-    {
-        title: "Database",
-        features: ["SQL database", "Real-time data sync"],
-        description: "Harness Supabase’s PostgreSQL DB for real-time data sync.",
-        icon: GoDatabase,
-        imageSrc: "/logos/supabase.png",
-        imageAlt: "Supabase"
-    },
-    {
-        title: "Email",
-        features: ["Email verification", "Transactional emails", "Newsletters"],
-        description: "Integrate seamless email communication with Mailgun.",
-        icon: MdOutlineMail,
-        imageSrc: "/logos/mailgun.png",
-        imageAlt: "Mailgun"
-    },
-    {
-        title: "SEO",
-        features: ["Meta tags", "Sitemaps", "Structured data"],
-        description: "Boost your visibility with built-in SEO tools, auto meta tags, etc.",
-        icon: PiMagnifyingGlassBold,
-        docs: true
-    },
-    {
-        title: "Components",
-        features: ["Pre-built components", "Customizable UI", "Responsive design"],
-        description: "Use our library of pre-built, customizable components.",
-        icon: MdOutlineSpaceDashboard,
-        docs: true
-    }
-]
-
-export const faqConfig = [
-    {
-        title: "What is the refund policy?",
-        content: "We offer a 30-day money back guarantee if you are not satisfied with our product."
-    },
-    {
-        title: "How do I cancel my subscription?",
-        content: "You can cancel your subscription by logging into your account and clicking the cancel button."
-    },
-    {
-        title: "Can I upgrade my plan?",
-        content: "Yes, you can upgrade your plan at any time by logging into your account and selecting the upgrade option."
-    },
-    {
-        title: "Do you offer a free trial?",
-        content: "Yes, we offer a 14-day free trial for all new customers."
-    }
-];
 
 export const pricingConfig = {
     plans: [
@@ -143,8 +76,17 @@ export const pricingConfig = {
 };
 
 export const landingConfig = {
+    backgrounds: {
+        "hero": "bg-transparent",
+        "features": "bg-linear-to-b from-bg-0 dark:from-bg-900 to-green-200 dark:to-green-900/45",
+        "why": "bg-linear-to-b from-green-200 dark:from-green-900/45 to-bg-0 dark:to-bg-900",
+        "howItWorks": "bg-linear-to-b from-green-200 dark:from-green-900/45 to-bg-0 dark:to-bg-900",
+        "whoAndHow": "bg-bg-100 dark:bg-bg-800",
+        "pricing": "bg-linear-to-b from-bg-0 dark:from-bg-900 to-primary-100 dark:to-primary-900/10",
+        "faq": "bg-linear-to-b from-primary-100 dark:from-primary-900/10 to-bg-0 dark:to-bg-900",
+    },
     header: {
-        background: "border-b-none border-b-bg-300 dark:border-b-bg-700 bg-bg-50 dark:bg-bg-900 mx-sm:bg-bg-50/80 mx-sm:dark:bg-bg-900/10",
+        background: "border-b-none border-b-bg-300 dark:border-b-bg-700 bg-bg-0 dark:bg-bg-900 mx-sm:bg-bg-50/80 mx-sm:dark:bg-bg-900/10",
         sticky: false,
         logo: {
             src: "/logo.png",
@@ -152,20 +94,37 @@ export const landingConfig = {
         },
     },
     heroSection: {
-        textHighlight: {
-            text: "Code less, launch faster",
-            highlight: "less "
+        textPosition: "left",
+        image: {
+            src: "/path/to/image.png",
+            alt: "Hero Image"
         },
-        description: "A fully-loaded NextJS boilerplate to build your SaaS, AI tool, or web app and start monetizing in days, not weeks.",
+        textHighlight: {
+            text: "Code less, launch faster.",
+            highlight: "launch faster."
+        },
+        description: "A NextJS boilerplate to build your SaaS, AI tool, or web app and start monetizing in hours, not weeks.",
         buttonText: "Get Started",
         buttonSubText: "No credit card required",
         trustedBy: false,
     },
-    howItWorks: {
+    why: {
         show: true,
+        title: "Save endless hours of setup and headaches and get right to business",
+    },
+    whoAndHow: {
+        show: true,
+        whoTitle: "Who's this for?",
+        whoSubtitle: "For developers, designers, and entrepreneurs.",
+        whoText: "For developers, designers, and entrepreneurs. Anyone who wants to build and launch a web app quickly and skip out on all the tedious hassle.",
+        howTitle: "How this works?",
+        howSubtitle: "Get started in seconds.",
+        howText: "It's a NextJS boilerplate that includes everything you need to build and launch your web app. With Runway, you can get started in seconds and start monetizing your project in hours, not weeks.",
+    },
+    howItWorks: {
+        show: false,
         title: "Get started in seconds",
-        subtitle: "Launch in three simple steps.",
-        layout: "list", // or "cards"
+        subtitle: "let takeoffTime = now() + 5",
         steps: [
             {
                 badge: 1,
@@ -191,75 +150,10 @@ export const landingConfig = {
         ],
     },
     features: {
-        title: "Tired of starting from scratch?",
-        subtitle: "Everything you need to launch your ideas.",
         show: true,
         layout: "cards",
-        features: [
-            {
-                title: "Payments with Stripe",
-                description: "Accept payments securely within minutes of deployment. Our Stripe integration handles everything from processing to subscription management.",
-                imageSrc: "/logos/stripe.png",
-                imageAlt: "Stripe Logo",
-                imageClassName: "rounded-lg"
-            },
-            {
-                title: "Database with Supabase",
-                description: "Leverage Supabase for real-time databases, authentication, and automatic APIs. Scale your backend effortlessly with this powerful Firebase alternative.",
-                imageSrc: "/logos/supabase.png",
-                imageAlt: "Supabase Logo",
-                imageClassName: "rounded-lg"
-            },
-            {
-                title: "Email Service with Mailgun",
-                description: "Send transactional emails, newsletters, and automated responses with ease. Keep your users engaged with high deliverability rates and detailed analytics.",
-                imageSrc: "/logos/mailgun.png",
-                imageAlt: "Mailgun Logo",
-                imageClassName: "rounded-lg"
-            },
-            {
-                title: "Sleek Design with Tailwind CSS",
-                description: "Create beautiful, responsive designs quickly using this utility-first CSS framework. Customize your look effortlessly while maintaining consistency across your project.",
-                imageSrc: "/logos/tailwindcss.png",
-                imageAlt: "Tailwind CSS Logo",
-                imageClassName: "rounded-lg"
-            },
-            {
-                title: "Next.js for Powerful Frontend",
-                description: "Build a fast, SEO-friendly frontend with server-side rendering and intuitive routing. Create modern web applications that users love.",
-                imageSrc: "/logos/nextjs.png",
-                imageAlt: "Next.js Logo",
-                imageClassName: "rounded-lg"
-            },
-            {
-                title: "Ease of Use",
-                description: "We've made Runway as easy to use as possible. With a simple command line interface, you can get started with your project in minutes.",
-                imageSrc: null,
-                imageAlt: null
-            },
-            {
-                title: "Customizable",
-                description: "Runway is fully customizable. You can change anything you want to make it fit your project perfectly.",
-                imageSrc: null,
-                imageAlt: null
-            },
-            {
-                title: "Save Time",
-                description: "With Runway, you can save hours of coding. We've done all the hard work so you can focus on building your project.",
-                imageSrc: null,
-                imageAlt: null
-            },
-            {
-                title: "No Lock-In",
-                description: "Runway is designed to be open and flexible. You can take your project and run it anywhere you want.",
-                imageSrc: null,
-                imageAlt: null
-            },
-        ]
-    },
-    examples: {
-        title: "Examples",
-        show: true
+        title: "Tired of starting from scratch?",
+        subtitle: "Everything you need to launch your ideas.",
     },
     pricing: {
         title: "Pricing",
@@ -268,6 +162,74 @@ export const landingConfig = {
     },
     faq: true
 };
+
+export const featuresConfig = [
+    {
+        title: "Auth",
+        features: ["Email/password login", "Social auth", "Role-based access control"],
+        description: "Implement robust user authentication and authorization using Supabase.",
+        icon: FaUserShield,
+        imageSrc: "/logos/supabase.png",
+        imageAlt: "Supabase"
+    },
+    {
+        title: "Payments",
+        features: ["Securely accept payments", "Manage subscriptions", "Ensure PCI compliance"],
+        description: "Securely accept payments and manage subscriptions with Stripe integration.",
+        icon: FaRegCreditCard,
+        imageSrc: "/logos/stripe.png",
+        imageAlt: "Stripe"
+    },
+    {
+        title: "Database",
+        features: ["SQL database", "Real-time data sync"],
+        description: "Harness Supabase’s PostgreSQL DB for real-time data sync.",
+        icon: LuDatabase,
+        imageSrc: "/logos/supabase.png",
+        imageAlt: "Supabase"
+    },
+    {
+        title: "Email",
+        features: ["Email verification", "Transactional emails", "Newsletters"],
+        description: "Integrate seamless email communication with Mailgun.",
+        icon: LuMail,
+        imageSrc: "/logos/mailgun.png",
+        imageAlt: "Mailgun"
+    },
+    {
+        title: "SEO",
+        features: ["Meta tags", "Sitemaps", "Structured data"],
+        description: "Boost your visibility with built-in SEO tools, auto meta tags, etc.",
+        icon: FaMagnifyingGlassChart,
+        docs: true
+    },
+    {
+        title: "Components",
+        features: ["Pre-built components", "Customizable UI", "Responsive design"],
+        description: "Use our library of pre-built, customizable components.",
+        icon: LuLayoutDashboard,
+        docs: true
+    }
+]
+
+export const faqConfig = [
+    {
+        title: "What is the refund policy?",
+        content: "We offer a 30-day money back guarantee if you are not satisfied with our product."
+    },
+    {
+        title: "How do I cancel my subscription?",
+        content: "You can cancel your subscription by logging into your account and clicking the cancel button."
+    },
+    {
+        title: "Can I upgrade my plan?",
+        content: "Yes, you can upgrade your plan at any time by logging into your account and selecting the upgrade option."
+    },
+    {
+        title: "Do you offer a free trial?",
+        content: "Yes, we offer a 14-day free trial for all new customers."
+    }
+];
 
 export const pricingSubscriptionConfig = {
     plans: [

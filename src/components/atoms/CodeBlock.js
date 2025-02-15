@@ -5,6 +5,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneLight, atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useTheme } from "next-themes";
 import { ClipboardIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
+import {vs2015} from "react-code-blocks";
 
 const CodeBlock = ({
     children: code,

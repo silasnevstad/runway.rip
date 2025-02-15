@@ -3,10 +3,9 @@
 import React, {useState} from "react";
 import {FaCheck} from "react-icons/fa";
 import Image from "next/image";
-import Card from "@/components/molecules/Card";
+import Card from "@/components/atoms/Card";
 import TextLink from "@/components/atoms/TextLink";
 import Carousel from "@/components/molecules/Carousel";
-import appConfig from "@/config";
 import { landingConfig, featuresConfig } from "@/config";
 
 export default function Features() {
@@ -20,7 +19,7 @@ export default function Features() {
         >
             <div className="flex flex-col items-center w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6"
                  id="features">
-                <h3 className="text-3xl font-semibold text-center mb-0 text-gray-800 dark:text-gray-100">
+                <h3 className="text-2xl sm:text-3xl font-semibold text-center mb-0 text-gray-800 dark:text-gray-100">
                     {features.title}
                 </h3>
                 <h4 className="mt-2 mb-4 text-lg opacity-50 font-normal ml-5 bg-linear-to-r from-bg-800 dark:from-bg-100 from-20% to-bg-900 dark:to-bg-0 to-80% bg-clip-text text-transparent">
@@ -36,15 +35,13 @@ export default function Features() {
                         return (
                             <div
                                 key={feat.title}
-                                className={`cursor-pointer transform transition-transform duration-200 ease-in-out
-                  px-2 py-3 rounded-lg
-                  ${isActive ? "scale-105 text-primary-500 dark:text-primary-400" : "text-gray-600 scale-100"}
-                `}
+                                className={`cursor-pointer transform transition-transform duration-200 ease-in-out px-2 py-3 rounded-lg
+                                     ${isActive ? "scale-105 text-primary-500 dark:text-primary-400" : "text-gray-600 scale-100"}`}
                                 onClick={() => setSelectedFeature(index)}
                             >
                                 <div className="flex flex-col items-center gap-2">
                                     <feat.icon className="text-3xl shrink-0" />
-                                    <span className="text-xs font-semibold text-center">{feat.title}</span>
+                                    <span className="text-sm font-semibold text-center">{feat.title}</span>
                                 </div>
                             </div>
                         );
@@ -64,7 +61,12 @@ export default function Features() {
                     showIndicators={false}
                 >
                     {featuresConfig.map((feat, idx) => (
-                        <FeatureCard key={idx} feature={feat} />
+                        <FeatureCard
+                            key={idx}
+                            feature={feat}
+                            onClick={() => setSelectedFeature(idx)}
+                            isActive={selectedFeature === idx}
+                        />
                     ))}
                 </Carousel>
             </div>
@@ -72,14 +74,17 @@ export default function Features() {
     );
 }
 
-function FeatureCard({ feature, isActive }) {
+function FeatureCard({ key, feature, isActive, onClick }) {
     return (
         <Card
-            className={`relative flex flex-col items-start text-start mx-auto transition-all
-        ${isActive ? "shadow-xl" : "shadow-md opacity-90"}
-        w-[280px] sm:w-[440px]
-      `}
+            key={key}
+            className={
+                `relative flex flex-col items-start text-start transition-all
+                ${isActive ? "shadow-xl" : "shadow-md opacity-90"}
+                w-[440px] sm:w-[440px] cursor-pointer
+            `}
             hoverEffect="none"
+            onClick={onClick}
         >
             <div className="flex items-center gap-2 mb-3">
                 <feature.icon className="text-2xl text-primary-500" />
@@ -101,13 +106,13 @@ function FeatureCard({ feature, isActive }) {
             )}
 
             {feature.imageSrc && (
-                <div className="absolute bottom-3 right-3 flex items-center gap-2 mt-2">
+                <div className="absolute bottom-3 right-3 flex items-center gap-2 mt-2 text-sm">
                     <p className="text-gray-600">with</p>
                     <Image
                         src={feature.imageSrc}
                         alt={feature.imageAlt}
-                        width={30}
-                        height={30}
+                        width={25}
+                        height={25}
                         className="rounded-lg"
                     />
                     <p className="text-gray-600">{feature.imageAlt}</p>

@@ -5,6 +5,8 @@ import BadgeCarousel from "@/components/molecules/BadgeCarousel";
 import { FiGithub } from "react-icons/fi";
 import { Cog8ToothIcon, RocketLaunchIcon as RocketLaunchIconOutline } from "@heroicons/react/24/outline";
 import { landingConfig } from "@/config";
+import Timeline from "@/components/molecules/Timeline";
+import TimelineItem from "@/components/atoms/TimelineItem";
 
 export default function HowItWorks() {
     const { howItWorks } = landingConfig;
@@ -12,21 +14,18 @@ export default function HowItWorks() {
     return (
         <section
             id="how-it-works"
-            className="flex flex-col items-center w-full"
+            className="flex flex-col items-center w-full gap-2"
         >
             <div className="flex flex-col pt-32 gap-5 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-5/6">
                 <h3 className="text-4xl font-semibold text-start mb-0 text-gray-800 dark:text-gray-100">
                     {howItWorks.title}
-                    <span className="text-xl opacity-50 font-normal ml-5 bg-clip-text text-transparent">
-            {howItWorks.subtitle}
-          </span>
+                    <span className="text-base font-mono text-primary-500 opacity-90 font-normal ml-5">
+                        {howItWorks.subtitle}
+                    </span>
                 </h3>
 
                 <BadgeCarousel
                     words={["Supabase", "Stripe", "Next.js", "Tailwind CSS", "Mailgun"]}
-                    fadeRight
-                    mode="scroll"
-                    scrollSpeed={1}
                 />
 
                 <div className="flex flex-col gap-5 text-left mt-5">

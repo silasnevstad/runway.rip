@@ -1,6 +1,6 @@
 'use client'
 
-import Card from "@/components/molecules/Card";
+import Card from "@/components/atoms/Card";
 import React from "react";
 import Switch from "@/components/atoms/Switch";
 import { PiMoonBold, PiSunBold } from "react-icons/pi";

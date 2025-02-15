@@ -27,7 +27,7 @@ import Breadcrumb from "@/components/atoms/Breadcrumb";
 import { DocsNav } from "@/app/(noauth)/docs/Nav";
 import Button from "@/components/atoms/Button";
 import { ButtonIconDemo, ButtonOnClickDemo } from "@/app/(noauth)/docs/_components/demos/ButtonDemo";
-import Card from "@/components/molecules/Card";
+import Card from "@/components/atoms/Card";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import { MdQuestionMark } from "react-icons/md";
 import { BiCheck } from "react-icons/bi";
