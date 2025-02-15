@@ -167,7 +167,7 @@ export const landingConfig = {
 export const featuresConfig = [
     {
         title: "Auth",
-        features: ["Email/password login", "Social auth", "Role-based access control"],
+        features: ["Email/password login", "Social auth", "Login/Signup pages"],
         description: "Implement robust user authentication and authorization using Supabase.",
         icon: FaUserShield,
         imageSrc: "/logos/supabase.png",
