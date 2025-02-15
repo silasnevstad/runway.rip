@@ -82,7 +82,7 @@ export default function Landing() {
                 </div>
 
                 {/* Pricing Section */}
-                <div className={`flex flex-col items-center w-full pb-10 mt-35 ${backgrounds.pricing}`}>
+                <div className={`flex flex-col items-center w-full pb-10 mt-30 ${backgrounds.pricing}`}>
                     {pricing.show && <Pricing />}
                 </div>
 
