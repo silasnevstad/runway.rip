@@ -8638,6 +8638,8 @@ dark:border-purple-600/100
 dark:border-purple-700/100
 dark:border-purple-800/100
 dark:border-purple-900/100
+w-full
+h-full
 w-0.5
 w-1
 w-2
@@ -8682,3 +8684,12 @@ h-64
 h-72
 h-80
 h-96
+top-500
+top-600
+top-700
+top-800
+top-900
+top-1000
+top-1100
+top-1200
+top-1300

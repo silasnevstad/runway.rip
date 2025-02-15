@@ -10,6 +10,7 @@ import Why from "@/components/landing/Why";
 import WhoAndHow from "@/components/landing/WhoAndHow";
 import TextLink from "@/components/atoms/TextLink";
 import appConfig, { landingConfig } from "@/config";
+import BackgroundBlur from "@/components/atoms/BackgroundBlur";
 
 export default function Landing() {
     const { appName } = appConfig;
@@ -56,24 +57,15 @@ export default function Landing() {
                 </div>
 
                 {/* Features Section */}
-                <div className={`-mt-24 flex flex-col items-center w-full pb-10 ${backgrounds.features}`}>
+                <div className={`-mt-24 flex flex-col items-center w-full pb-10 z-10`}>
                     {features.show && <Features />}
                 </div>
 
+                <BackgroundBlur top={270} color={"from-green-600/40 dark:from-green-500/30"}/>
+
                 {/* Why Section */}
-                <div className={`flex flex-col items-center w-full ${backgrounds.howItWorks}`}>
+                <div className={`flex flex-col items-center w-full z-10`}>
                     {why.show && <Why />}
-                </div>
-
-                {/* Who and How Section */}
-                <div className={`flex flex-col items-center w-full mt-44 ${backgrounds.whoAndHow}`}>
-                    {whoAndHow && <WhoAndHow />}
-                </div>
-
-                <div className="">
-                    <TextLink href="/docs" className="text-2xl font-black text-center my-15 max-w-[30ch]" grow>
-                        Check out the <span className="text-primary-500">docs</span> for more info!
-                    </TextLink>
                 </div>
 
                 {/* How It Works Section */}
@@ -81,13 +73,28 @@ export default function Landing() {
                     {howItWorks.show && <HowItWorks />}
                 </div>
 
+
+
                 {/* Pricing Section */}
-                <div className={`flex flex-col items-center w-full pb-10 mt-30 ${backgrounds.pricing}`}>
+                <div className={`flex flex-col items-center w-full pb-10 mt-30 z-10`}>
                     {pricing.show && <Pricing />}
                 </div>
 
+                <BackgroundBlur top={600} color={"from-primary-600/40 dark:from-primary-500/30"}/>
+
+                {/* Who and How Section */}
+                <div className={`flex flex-col items-center w-full mt-44 z-10 bg-bg-800`}>
+                    {whoAndHow && <WhoAndHow />}
+                </div>
+
+                <div className="">
+                    <TextLink href="/docs" className="text-2xl font-black text-center my-10 max-w-[30ch]" grow>
+                        Check out the <span className="text-primary-500">docs</span> for more info!
+                    </TextLink>
+                </div>
+
                 {/* FAQ Section */}
-                <div className={`flex flex-col items-center w-full pb-20 ${backgrounds.faq}`}>
+                <div className={`flex flex-col items-center w-full pb-20`}>
                     {faq.show && <FAQ />}
                 </div>
             </div>
