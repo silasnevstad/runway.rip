@@ -75,15 +75,6 @@ export const pricingConfig = {
 };
 
 export const landingConfig = {
-    backgrounds: {
-        "hero": "bg-transparent",
-        "features": "bg-linear-to-b from-bg-0 dark:from-bg-900 to-green-200 dark:to-green-900/45",
-        "why": "bg-linear-to-b from-green-200 dark:from-green-900/45 to-bg-0 dark:to-bg-900",
-        "howItWorks": "bg-linear-to-b from-green-200 dark:from-green-900/45 to-bg-0 dark:to-bg-900",
-        "whoAndHow": "bg-bg-100 dark:bg-bg-800",
-        "pricing": "bg-linear-to-b from-bg-0 dark:from-bg-900 to-primary-100 dark:to-primary-900/10",
-        "faq": "bg-linear-to-b from-primary-100 dark:from-primary-900/10 to-bg-0 dark:to-bg-900",
-    },
     header: {
         background: "border-b-none bg-bg-0 dark:bg-bg-900 mx-sm:bg-bg-50/80 mx-sm:dark:bg-bg-900/10",
         sticky: false,
