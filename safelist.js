@@ -3,9 +3,10 @@ const fs = require("fs");
 const colorTones = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const colors = ["bg", "primary", "gray", "red", "yellow", "orange", "green", "blue", "purple"];
 const opacities = [0, 5, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 95, 100];
+const gradients = ["from", "to"];
 
 const widths = [0.5, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96];
-const topPositions = [500, 600, 700, 800, 900, 1000, 1100, 1200, 1300];
+const topPositions = [250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300];
 
 const measurements = [
     "w-full",
@@ -44,6 +45,20 @@ const safelist = [
             colors
                 .map((color) =>
                     colorTones.map((tone) => `border-${color}-${tone}/${opacity}`)
+                )
+                .flat()
+        )
+        .flat(),
+
+    ...gradients
+        .map((gradient) =>
+            opacities
+                .map((opacity) =>
+                    colors
+                        .map((color) =>
+                            colorTones.map((tone) => `${gradient}-${color}-${tone}/${opacity}`)
+                        )
+                        .flat()
                 )
                 .flat()
         )

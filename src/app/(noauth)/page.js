@@ -60,7 +60,7 @@ export default function Landing() {
                     {features.show && <Features />}
                 </div>
 
-                <BackgroundBlur top={270} color={"from-green-600/40 dark:from-green-500/30"}/>
+                <BackgroundBlur top={250} color={"from-green-600/40 dark:from-green-500/30"}/>
 
                 {/* Why Section */}
                 <div className={`flex flex-col items-center w-full z-10`}>
