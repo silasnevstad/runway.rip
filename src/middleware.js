@@ -11,6 +11,6 @@ export const config = {
         // - favicon.ico
         // - public files (like .png .jpg)
         // - any route that is fully public (like /public or /docs)
-        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|gif)).*)',
+        '/((?!_next/static|_next/image|favicon.ico|docs||.*\\.(?:png|jpg|jpeg|svg|gif)).*)',
     ],
 };
