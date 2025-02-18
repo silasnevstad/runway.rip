@@ -21,15 +21,15 @@ onThisPage:
         <h2>Card Title</h2>
         <p>This is a basic card with default settings.</p>
     </Card>
-    <Card hoverEffect="outline">
+    <Card outline>
         <h2>Outlined Card</h2>
         <p>This card has an outline effect on hover.</p>
     </Card>
-    <Card hoverEffect="scale" className="bg-bg-200 dark:bg-bg-800">
+    <Card scale className="bg-bg-200 dark:bg-bg-800">
         <h2>Scalable Card</h2>
         <p>This card scales up on hover.</p>
     </Card>
-    <Card className="bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-200">
+    <Card className="bg-primary-300/50 dark:bg-primary-600/20 text-blue-800 dark:text-gray-200" lift>
         <h2>Custom Styled Card</h2>
         <p>This card has custom styles.</p>
     </Card>
@@ -88,13 +88,13 @@ The `Card` component is a versatile card component that can be used to display c
 
 ### Card with Hover Outline Effect
 <PreviewCode preview={
-    <Card hoverEffect="outline">
+    <Card outline>
         <h2>Outlined Card</h2>
         <p>This card has an outline effect on hover.</p>
     </Card>
 }>
 ```javascript
-<Card hoverEffect="outline">
+<Card outline>
     <h2>Outlined Card</h2>
     <p>This card has an outline effect on hover.</p>
 </Card>
@@ -103,13 +103,13 @@ The `Card` component is a versatile card component that can be used to display c
 
 ### Card with No Animation
 <PreviewCode preview={
-    <Card hoverEffect="none">
+    <Card>
         <h2>Static Card</h2>
         <p>This card does not animate on mount.</p>
     </Card>
 }>
 ```javascript
-<Card hoverEffect="none">
+<Card>
   <h2>Static Card</h2>
   <p>This card does not animate on mount.</p>
 </Card>
