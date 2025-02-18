@@ -9,7 +9,7 @@ const DocumentationSidebar = () => {
     const pathname = usePathname();
 
     return (
-        <nav className="py-4 mt-4">
+        <nav className="py-4 mt-4 overflow-x-hidden overflow-y-auto">
             {DocsNav.map((section, index) => {
                 const isActive = pathname === section.href;
                 return (

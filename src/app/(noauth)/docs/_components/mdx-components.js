@@ -184,19 +184,21 @@ export const mdxComponents = {
         </blockquote>
     ),
     table: ({ children }) => (
-        <div className="overflow-x-auto my-10">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800 rounded-lg">
-                {children}
-            </table>
+        <div className="prose dark:prose-invert w-full">
+            <div className="overflow-x-auto my-4">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+                    {children}
+                </table>
+            </div>
         </div>
     ),
     th: ({ children }) => (
-        <th className="px-6 py-3 bg-gray-800 dark:bg-bg-700 text-left text-md font-medium text-gray-500 dark:text-gray-200 uppercase">
+        <th className="px-6 py-3 bg-gray-800 dark:bg-bg-700 text-left text-md font-medium text-gray-500 dark:text-gray-200 uppercase rounded-t-lg">
             {children}
         </th>
     ),
     td: ({ children }) => (
-        <td className="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200 border-b border-gray-200 dark:border-gray-800">
+        <td className="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200 border border-gray-200 dark:border-gray-800">
             {/* use colorMap to see if this is a type */}
             {TypesColorMap[children] ? (
                 <span className={TypesColorMap[children]}>

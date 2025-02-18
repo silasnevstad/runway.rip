@@ -7,7 +7,7 @@ import { PiXBold } from "react-icons/pi";
 const Sidebar = ({
     children,
     width = '64',
-    bgColor = 'bg-white',
+    bgColor = 'bg-bg-0 dark:bg-bg-900',
     onToggle,
 }) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -15,7 +15,7 @@ const Sidebar = ({
 
     useEffect(() => {
         const checkMobile = () => {
-            const mobile = window.innerWidth < 640;
+            const mobile = window.innerWidth < 768;
             setIsMobile(mobile);
             // If we're no longer on mobile, ensure the sidebar is open
             if (!mobile) {
@@ -43,8 +43,7 @@ const Sidebar = ({
     const sidebarClasses = `
     ${isMobile ? 'fixed left-0 top-0 h-full z-50 transition-transform' : 'relative min-h-screen shrink-0'}
     ${bgColor}
-    w-${width} min-w-${width} max-w-${width}
-    overflow-y-auto
+    w-${width} h-full
     ${isMobile ? (isOpen ? 'translate-x-0' : '-translate-x-full') : ''}
   `;
 
@@ -58,7 +57,7 @@ const Sidebar = ({
     // Show the "open" button only on mobile when sidebar is closed
     const openButtonClasses = `
     ${buttonBaseClasses}
-    fixed top-5 right-5 z-50
+    fixed top-2 right-2 z-50
   `;
 
     return (

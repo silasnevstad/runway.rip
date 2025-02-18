@@ -3,7 +3,6 @@
 import Breadcrumb from "@/components/atoms/Breadcrumb";
 import {OnThisPage, SidebarSection} from "@/app/(noauth)/docs/_components/RightSidebar";
 import {DocsNav} from "@/app/(noauth)/docs/Nav";
-import {mergeClasses} from "@/utils/classNames";
 
 export default function DocsContentShell({
     title,
@@ -14,14 +13,9 @@ export default function DocsContentShell({
     relatedSites,
 }) {
     return (
-        <div
-            className={mergeClasses(
-                "w-full px-4 py-6 md:py-8 flex flex-col-reverse lg:flex-row gap-8",
-                "max-w-screen-xl mx-auto" // optional: keep it narrower than full screen
-            )}
-        >
+        <div className="w-full flex lg:flex-row gap-8">
             {/* MAIN COLUMN */}
-            <article className="flex-1 min-w-0 mx-auto max-w-prose">
+            <article className="flex-1 min-w-0 mx-auto max-w-prose prose">
                 <Breadcrumb sections={DocsNav} className="mb-2" />
 
                 {title && (
@@ -41,7 +35,7 @@ export default function DocsContentShell({
 
             {/* RIGHT SIDEBAR (large screens only) */}
             {(onThisPage?.length || relatedContent?.length || relatedSites?.length) && (
-                <aside className="hidden lg:flex flex-col w-64 shrink-0">
+                <aside className="hidden lg:flex flex-col w-44 shrink-0">
                     <div className="sticky top-24 space-y-4">
                         {onThisPage?.length > 0 && <OnThisPage items={onThisPage} />}
                         {relatedDocs?.length > 0 && <SidebarSection title="Related Docs" items={relatedDocs} />}

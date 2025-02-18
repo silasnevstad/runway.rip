@@ -4,13 +4,6 @@ import createMDX from '@next/mdx'
 const nextConfig = {
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 
-    future: {
-
-        // by default, if you customize webpack config, they switch back to version 4.
-        // Looks like backward compatibility approach.
-        webpack5: true,
-    },
-
     webpack(config) {
         config.resolve.fallback = {
 
