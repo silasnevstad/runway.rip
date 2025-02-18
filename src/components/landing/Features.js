@@ -93,7 +93,6 @@ function FeatureCard({ key, feature, isActive, onClick }) {
                 ${isActive ? "shadow-xl" : "shadow-md opacity-90"}
                 w-[440px] sm:w-[440px] cursor-pointer
             `}
-            hoverEffect="none"
             onClick={onClick}
         >
             <div className="flex items-center gap-2 mb-3">

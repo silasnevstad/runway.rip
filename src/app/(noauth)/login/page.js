@@ -10,8 +10,7 @@ export default function LoginPage() {
             </div>
             <div className="flex flex-col items-center justify-center w-full max-w-md p-4">
                 <div className="flex flex-col items-center justify-center w-full max-w-md p-4 rounded-lg gap-2">
-                    <AuthForm method="magiclink" mode="sign-in"/>
-                    <AuthForm method="oauth" mode="sign-in"/>
+                    <AuthForm mode="sign-in"/>
                 </div>
             </div>
             <div className="absolute top-8 right-8 flex flex-col items-end">

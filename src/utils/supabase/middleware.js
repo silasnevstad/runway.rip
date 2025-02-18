@@ -1,76 +1,43 @@
-import { createServerClient } from '@supabase/ssr'
-import { NextResponse } from 'next/server'
-
-const PROTECTED_ROUTES = [
-    '/policies',
-    // '/login',
-    // '/sign-up',
-    '/dashboard',
-    '/account',
-]
+import { createServerClient } from '@supabase/ssr';
+import { NextResponse } from 'next/server';
+import appConfig from '@/config';
 
 export async function updateSession(request) {
-    let response = NextResponse.next({
-        request: {
-            headers: request.headers,
-        },
-    })
+    let supabaseResponse = NextResponse.next({ request });
 
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
         {
             cookies: {
-                get(name) {
-                    return request.cookies.get(name)?.value
-                },
-                set(name, value, options) {
-                    request.cookies.set({
-                        name,
-                        value,
-                        ...options,
-                    })
-                    response = NextResponse.next({
-                        request: {
-                            headers: request.headers,
-                        },
-                    })
-                    response.cookies.set({
-                        name,
-                        value,
-                        ...options,
-                    })
-                },
-                remove(name, options) {
-                    request.cookies.set({
-                        name,
-                        value: '',
-                        ...options,
-                    })
-                    response = NextResponse.next({
-                        request: {
-                            headers: request.headers,
-                        },
-                    })
-                    response.cookies.set({
-                        name,
-                        value: '',
-                        ...options,
-                    })
+                getAll: () => request.cookies.getAll(),
+                setAll: (cookiesToSet) => {
+                    cookiesToSet.forEach(({ name, value, options }) =>
+                        request.cookies.set(name, value, options)
+                    );
+                    supabaseResponse = NextResponse.next({ request });
+                    cookiesToSet.forEach(({ name, value, options }) =>
+                        supabaseResponse.cookies.set(name, value, options)
+                    );
                 },
             },
         }
-    )
+    );
 
-    // refreshing the auth token
-    const { data, error } = await supabase.auth.getUser();
+    // Must call getUser() to re-validate and refresh tokens.
+    const { data: { user } } = await supabase.auth.getUser();
 
-    // if in protected routes or if based route ('/')
-    if (PROTECTED_ROUTES.includes(request.nextUrl.pathname) || request.nextUrl.pathname === '/') {
-        // if (!data) {
-            response = NextResponse.rewrite(new URL('/', request.url))
-        // }
+    // If route is in protectedRoutes, ensure we have a user.
+    // (Alternatively, you can match route by checking request.nextUrl.pathname)
+    if (
+        !user &&
+        !appConfig.publicRoutes.some((r) => request.nextUrl.pathname.startsWith(r))
+    ) {
+        // redirect to login if no user
+        const url = request.nextUrl.clone();
+        url.pathname = '/login';
+        return NextResponse.redirect(url);
     }
 
-    return response
+    return supabaseResponse;
 }

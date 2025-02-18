@@ -3,13 +3,11 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-import Breadcrumb from "@/components/atoms/Breadcrumb";
-import Sidebar from "@/components/organisms/sidebars/Sidebar";
-import DocumentationSidebar from "@/components/organisms/sidebars/DocumentationSidebar";
+import Sidebar from "@/components/organisms/Sidebar";
 import SearchBar from "@/components/molecules/SearchBar";
+import DocumentationSidebar from "@/app/(noauth)/docs/_components/DocumentationSidebar";
+import { mergeClasses } from "@/utils/classNames";
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
-import {mergeClasses} from "@/utils/classNames";
-
 
 export default function DocsLayout({ children }) {
     const router = useRouter();

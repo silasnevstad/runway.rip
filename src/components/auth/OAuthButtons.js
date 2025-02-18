@@ -8,7 +8,7 @@ const OAuthButtons = ({ providers = [] }) => {
     const handleOAuth = async (provider) => {
         const formData = new FormData();
         formData.append('provider', provider);
-        await signinWithOAuth(null, formData);
+        await signinWithOAuth(formData);
     };
 
     if (!providers.length) return null;

@@ -10,7 +10,7 @@ export default function SignUpPage() {
             </div>
             <div className="flex flex-col items-center justify-center w-full max-w-md p-4">
                 <div className="flex flex-col items-center justify-center w-full max-w-md p-4 rounded-lg">
-                    <AuthForm method="magiclink" mode={"sign-up"} />
+                    <AuthForm mode={"sign-up"} />
                 </div>
             </div>
             <div className="absolute top-8 right-8 flex flex-col items-end">

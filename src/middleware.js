@@ -1,19 +1,16 @@
-import { updateSession } from '@/utils/supabase/middleware'
+import { updateSession } from '@/utils/supabase/middleware';
 
 export async function middleware(request) {
-    // update user's auth session
-    return await updateSession(request)
+    return await updateSession(request);
 }
 
 export const config = {
     matcher: [
-        /*
-         * Match all request paths except for the ones starting with:
-         * - api (API routes)
-         * - _next/static (static files)
-         * - _next/image (image optimization files)
-         * - favicon.ico (favicon file)
-         */
-        '/((?!api|_next/static|_next/image|favicon.ico).*)',
+        // Example ignoring:
+        // - _next/static and _next/image (Next.js internals)
+        // - favicon.ico
+        // - public files (like .png .jpg)
+        // - any route that is fully public (like /public or /docs)
+        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|gif)).*)',
     ],
-}
+};

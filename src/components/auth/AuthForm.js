@@ -1,19 +1,40 @@
-'use client'
+'use client';
+
 import React from 'react';
 import PasswordAuthForm from './PasswordAuthForm';
 import PasswordlessAuthForm from './PasswordlessAuthForm';
-import OAuthSection from './OAuthSection';
+import OAuthSection, { defaultOAuthProviders } from './OAuthSection';
+import appConfig from "@/config";
 
-const AuthForm = ({ method = 'password', mode = 'sign-in' }) => {
-    switch (method) {
-        case 'magiclink':
-            return <PasswordlessAuthForm />;
-        case 'oauth':
-            return <OAuthSection />;
-        case 'password':
-        default:
-            return <PasswordAuthForm mode={mode} />;
+const AuthForm = ({ mode = 'sign-in' }) => {
+    //
+    // switch (method) {
+    //     case 'magiclink':
+    //         return <PasswordlessAuthForm />;
+    //     case 'oauth':
+    //         return <OAuthSection />;
+    //     case 'password':
+    //     default:
+    //         return <PasswordAuthForm mode={mode} />;
+    // }
+    // we need to go through the appConfig.authMethods and render each appropriate form, they are either magiclink, password or one of the oauth providers
+    const authMethods = appConfig.authMethods;
+    const oauthProviders = defaultOAuthProviders.filter(provider => authMethods.includes(provider.name));
+    const forms = [];
+    if (authMethods.includes('magiclink')) {
+        forms.push(<PasswordlessAuthForm key="magiclink" />);
     }
+    if (authMethods.includes('password')) {
+        forms.push(<PasswordAuthForm key="password" mode={mode} />);
+    }
+    if (oauthProviders.length > 0) {
+        forms.push(<OAuthSection key="oauth" providers={oauthProviders} />);
+    }
+    return (
+        <div className="flex flex-col w-full gap-2">
+            {forms}
+        </div>
+    );
 };
 
 export default AuthForm;

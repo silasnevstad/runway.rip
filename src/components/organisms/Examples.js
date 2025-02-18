@@ -209,9 +209,6 @@ def code:
             <div className="flex gap-2 flex-wrap">
                 <Card
                     className="whitespace-normal"
-                    imageSrc="/logos/google.png"
-                    imagePosition="right"
-                    hoverEffect="outline"
                 >
                     <h2 className="text-2xl font-semibold">Title</h2>
                     <p className="opacity-60 text-lg">Subtitle</p>
