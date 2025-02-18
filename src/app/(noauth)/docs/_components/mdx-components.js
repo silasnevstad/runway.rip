@@ -194,7 +194,7 @@ export const mdxComponents = {
         </div>
     ),
     th: ({ children }) => (
-        <th className="px-6 py-3 bg-gray-800 dark:bg-bg-700 text-left text-md font-medium text-gray-500 dark:text-gray-200 uppercase rounded-t-lg">
+        <th className="px-6 py-3 bg-gray-200 dark:bg-bg-700 text-left text-md font-normal text-gray-600 dark:text-gray-200 uppercase rounded-t-lg">
             {children}
         </th>
     ),
