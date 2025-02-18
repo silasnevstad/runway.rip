@@ -8,8 +8,7 @@ const InlineHighlight = ({ children, type = 'default' }) => {
     // Type-specific classes for light/dark modes
     const styles = {
         default: `
-      bg-gray-200 text-gray-900 
-      dark:bg-gray-700 dark:text-gray-100
+      bg-bg-400/40 dark:bg-bg-800 rounded-sm px-1.5 py-1 dark:border dark:border-gray-800
     `,
         button: `
       bg-primary-500/20 text-primary-800 

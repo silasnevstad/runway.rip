@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function Layout({ children }) {
     return (
-        <section className="flex w-full min-h-screen">
+        <section className="flex w-full min-h-screen bg-bg-50 dark:bg-bg-900">
             <DocsLayout>
                 {children}
             </DocsLayout>

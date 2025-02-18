@@ -17,7 +17,7 @@ export default function DocsLayout({ children }) {
     };
 
     return (
-        <div className="flex h-screen overflow-hidden w-full bg-bg-0 dark:bg-bg-900">
+        <div className="flex h-screen overflow-hidden w-full bg-bg-50 dark:bg-bg-900">
             {/* Left Sidebar */}
             <Sidebar width="64" bgColor="bg-bg-50 dark:bg-bg-900">
                 <div className="flex flex-col">
@@ -64,7 +64,7 @@ export default function DocsLayout({ children }) {
 
             {/* Main content area */}
             <main className="flex-1 h-full overflow-y-auto flex flex-col">
-                <div className="md:hidden flex items-start gap-2 self-start p-3">
+                <div className="md:hidden flex items-start gap-2 self-start p-3 w-full">
                     <Image
                         src="/logo.png"
                         alt="runway"
@@ -79,7 +79,7 @@ export default function DocsLayout({ children }) {
                         height={22}
                         className="hidden dark:block"
                     />
-                    <p className="text-xl font-bold">Runway Docs</p>
+                    <p className="text-lg font-bold">Runway Docs</p>
                 </div>
 
                 <div className={mergeClasses(
