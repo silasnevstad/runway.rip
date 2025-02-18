@@ -14,15 +14,12 @@ const appConfig = {
     emailSubdomain: "mail",
     supportEmail: "Runway Support <support@runway.rip>",
     noReplyEmail: "Runway <noreply@runway.rip>",
-    authMethods: ['magiclink', 'google', 'github'],  // password, magiclink, google, github, apple, facebook
+    authMethods: ['magiclink', 'google', 'github'],             // password, magiclink, google, github, apple, facebook
     protectedRoutes: [
         '/private',
         '/account',
     ],
-    emailRedirectPath: '/auth',
-    // Where to send a user after successful login
-    afterLoginPath: '/account',
-    // Default "noauth" pages that should not be forced to have a user
+    afterLoginPath: '/account',                                 // Where to send a user after successful login
     publicRoutes: ['/login', '/sign-up', '/auth', '/error'],
 };
 
