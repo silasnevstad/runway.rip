@@ -34,7 +34,7 @@ export default function DocsContentShell({
             </article>
 
             {/* RIGHT SIDEBAR (large screens only) */}
-            {(onThisPage?.length || relatedContent?.length || relatedSites?.length) && (
+            {(onThisPage?.length || relatedDocs?.length || relatedSites?.length) && (
                 <aside className="hidden lg:flex flex-col w-44 shrink-0">
                     <div className="fixed top-24 space-y-4">
                         {onThisPage?.length > 0 && <OnThisPage items={onThisPage} />}
