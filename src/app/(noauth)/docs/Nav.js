@@ -9,9 +9,10 @@ import {
 export const DocsNav = [
     {
         title: "Get started",
-        href: "/docs",
+        href: "/docs/getting-started",
         icon: <PlayIcon className="w-5 h-5" />,
         items: [
+            { title: "Overview", href: "/docs" },
             { title: "Installation", href: "/docs/installation" },
             { title: "Project Structure", href: "/docs/project-structure" },
         ],

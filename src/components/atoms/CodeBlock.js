@@ -32,9 +32,9 @@ const CodeBlock = ({
     };
 
     return (
-        <div className="flex w-full flex-col border border-bg-200 dark:border-gray-900 rounded-lg rounded-t-xl">
+        <div className="flex w-full flex-col border border-bg-200 dark:border-bg-800 rounded-lg rounded-t-lg">
             {(copy || showLanguage) && (
-                <div className="flex items-center justify-between p-2.5 pr-3 bg-bg-200 dark:bg-gray-900 rounded-t-lg">
+                <div className="flex items-center justify-between p-2.5 pr-3 bg-bg-200 dark:bg-bg-800 rounded-t-lg">
                     {showLanguage ? (
                         <p className="text-xs font-medium opacity-50">
                             {language}
@@ -46,15 +46,10 @@ const CodeBlock = ({
                             onClick={handleCopy}
                         >
                             {copied ? (
-                                <CheckCircleIcon className="w-5 h-5 text-green-500" />
+                                <CheckCircleIcon className="w-5 h-5 text-green-500/50" />
                             ) : (
                                 <ClipboardIcon className="w-5 h-5" />
                             )}
-                            <button
-                                className={`text-sm font-medium ${copied && 'text-green-500'} focus:outline-hidden`}
-                            >
-                                {copied ? 'Copied' : 'Copy'}
-                            </button>
                         </div>
                     )}
                 </div>
@@ -74,6 +69,7 @@ const CodeBlock = ({
                     paddingTop: '.2rem',
                     paddingBottom: '.5rem',
                     paddingRight: '1rem',
+                    background: 'var(--color-bg-100)',
                 }}
                 lineNumberStyle={{ opacity: 0.7 }}
             >

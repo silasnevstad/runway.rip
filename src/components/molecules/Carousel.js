@@ -39,7 +39,7 @@ export default function Carousel({
     autoPlay = false,
     interval = 3000,
     showArrows = true,
-    showIndicators = true,
+    showIndicators = false,
     fadeCenter = false,
     scaleCenter = 1.0,
     sideOpacity = 0.6,

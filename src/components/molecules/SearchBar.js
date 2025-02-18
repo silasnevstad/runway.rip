@@ -11,6 +11,7 @@ const SearchBar = ({
     onItemSelect,
     renderItem,
     containerClassName = '',
+    size = 'md',
     inputClassName = '',
     placeholder = 'Search...',
     modalPlaceholder = 'Search...',
@@ -72,7 +73,7 @@ const SearchBar = ({
                         inputClassName,
                         filteredItems.length > 0 && 'rounded-b-none border-b-0'
                     )}
-                    textSize="text-sm"
+                    size={size}
                 />
 
                 {filteredItems.length > 0 && (
@@ -119,7 +120,7 @@ const SearchBar = ({
                     'bg-bg-0 dark:bg-gray-900 text-sm',
                     inputClassName
                 )}
-                textSize="text-sm"
+                size={size}
                 readOnly
                 onClick={() => setIsModalOpen(true)}
             />
@@ -155,7 +156,12 @@ const SearchBar = ({
                                 <div key={idx}>
                                     <div
                                         onClick={() => handleItemClick(section)}
-                                        className="cursor-pointer px-2 py-2 text-sm text-gray-600  hover:bg-gray-100 dark:hover:bg-gray-800"
+                                        className={`
+                                            flex items-center gap-1
+                                            cursor-pointer px-2 py-2 text-sm rounded-lg
+                                            text-gray-600 dark:text-gray-500  hover:text-gray-900 dark:hover:text-gray-300
+                                            hover:bg-gray-300 dark:hover:bg-gray-900
+                                        `}
                                     >
                                         {section.title}
                                     </div>
@@ -163,7 +169,11 @@ const SearchBar = ({
                                         <div
                                             key={i}
                                             onClick={() => handleItemClick(item)}
-                                            className="cursor-pointer p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                            className={`
+                                                cursor-pointer p-2 rounded-lg
+                                                text-gray-800 dark:text-gray-200  hover:text-gray-900 dark:hover:text-gray-100
+                                                hover:bg-gray-300 dark:hover:bg-gray-900
+                                            `}
                                         >
                                             {renderItem ? renderItem(item) : item.title}
                                         </div>

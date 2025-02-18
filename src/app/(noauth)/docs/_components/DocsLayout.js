@@ -21,30 +21,32 @@ export default function DocsLayout({ children }) {
     return (
         <div className="flex h-screen overflow-hidden w-full bg-bg-0 dark:bg-bg-900">
             {/* Left Sidebar */}
-            <Sidebar width="64">
+            <Sidebar width="64" bgColor="bg-bg-50 dark:bg-bg-900">
                 <div className="flex flex-col">
-                    <div className="flex items-start gap-2 self-start">
+                    <div className="flex items-start gap-2 self-start cursor-pointer" onClick={() => router.push('/')}>
                         <Image
                             src="/logo.png"
                             alt="runway"
-                            width={22}
-                            height={22}
+                            width={20}
+                            height={20}
                             className="block dark:hidden"
                         />
                         <Image
                             src="/logo-white.png"
                             alt="runway"
-                            width={22}
-                            height={22}
+                            width={20}
+                            height={20}
                             className="hidden dark:block"
                         />
-                        <p className="text-xl font-bold"></p>
+                        <p className="text-lg font-bold">Runway Docs</p>
                     </div>
 
                     <div className="flex items-center justify-between mt-6 lg:hidden">
                         <SearchBar
                             items={DocsNav}
                             onItemSelect={handleSearchSelect}
+                            size="sm"
+                            modalSearch={true}
                         />
                     </div>
                 </div>
@@ -83,7 +85,7 @@ export default function DocsLayout({ children }) {
                 </div>
 
                 <div className={mergeClasses(
-                    "w-full px-5 py-6 md:py-8 md:pl-10",
+                    "w-full h-full px-5 py-6 md:py-8 md:pl-10",
                     // "max-w-screen-xl mx-auto",
                     "bg-bg-0 dark:bg-gray-900",
                     "max-md:rounded-t-2xl"

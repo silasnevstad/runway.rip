@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import { PiXBold } from "react-icons/pi";
 
 const Sidebar = ({
     children,
-    width = '64',
-    bgColor = 'bg-bg-0 dark:bg-bg-900',
+    width = "64",
+    bgColor = "bg-bg-0 dark:bg-bg-900",
     onToggle,
 }) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -17,7 +17,6 @@ const Sidebar = ({
         const checkMobile = () => {
             const mobile = window.innerWidth < 768;
             setIsMobile(mobile);
-            // If we're no longer on mobile, ensure the sidebar is open
             if (!mobile) {
                 setIsOpen(true);
             } else {
@@ -26,8 +25,8 @@ const Sidebar = ({
         };
 
         checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
     const toggleSidebar = () => {
@@ -38,13 +37,21 @@ const Sidebar = ({
         }
     };
 
-    // On desktop, position it relatively (so it doesn't overlay content).
-    // On mobile, we use fixed + translate-x for a slide-in/slide-out effect.
+    let pinnedChild = children;
+    let scrollableChild = null;
+
+    if (Array.isArray(children)) {
+        pinnedChild = children[0];
+        scrollableChild = children[1] || null;
+    }
+
     const sidebarClasses = `
-    ${isMobile ? 'fixed left-0 top-0 h-full z-50 transition-transform' : 'relative min-h-screen shrink-0'}
+    ${isMobile ? "fixed left-0 top-0 h-full z-50 transition-transform" : "relative h-full shrink-0"}
     ${bgColor}
-    w-${width} h-full
-    ${isMobile ? (isOpen ? 'translate-x-0' : '-translate-x-full') : ''}
+    w-${width}
+    overflow-x-hidden
+    ${isMobile ? (isOpen ? "translate-x-0" : "-translate-x-full") : ""}
+    flex flex-col
   `;
 
     const buttonBaseClasses = `
@@ -54,7 +61,7 @@ const Sidebar = ({
     flex items-center justify-center transition-colors duration-200
   `;
 
-    // Show the "open" button only on mobile when sidebar is closed
+    // Mobile "open" button (only if the sidebar is closed)
     const openButtonClasses = `
     ${buttonBaseClasses}
     fixed top-2 right-2 z-50
@@ -62,7 +69,7 @@ const Sidebar = ({
 
     return (
         <>
-            {/* Mobile "open sidebar" button (only appears when sidebar is closed) */}
+            {/* Mobile "open sidebar" button */}
             {isMobile && !isOpen && (
                 <button className={openButtonClasses} onClick={toggleSidebar}>
                     <Bars3Icon className="text-gray-700 dark:text-gray-200 w-7 h-7" />
@@ -70,7 +77,7 @@ const Sidebar = ({
             )}
 
             <div className={sidebarClasses}>
-                {/* Mobile close button inside sidebar */}
+                {/* Mobile "close sidebar" button */}
                 {isMobile && isOpen && (
                     <button
                         className="absolute top-5 right-5"
@@ -79,9 +86,18 @@ const Sidebar = ({
                         <PiXBold className="text-gray-500 w-5 h-5" />
                     </button>
                 )}
-                <div className="p-4 h-full overflow-y-auto">
-                    {children}
+
+                {/* Pinned top portion (logo, search, etc.) */}
+                <div className="flex-none p-4">
+                    {pinnedChild}
                 </div>
+
+                {/* Scrollable docs nav portion */}
+                {scrollableChild && (
+                    <div className="flex-1 overflow-y-auto px-4">
+                        {scrollableChild}
+                    </div>
+                )}
             </div>
         </>
     );

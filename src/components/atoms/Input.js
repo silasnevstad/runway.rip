@@ -13,7 +13,7 @@ const Input = ({
     rightIconOnClick,
     focus,
     secure,
-    textSize = "text-lg",
+    size = "md",
     value: controlledValue,
     onChange,
     ...props
@@ -52,11 +52,22 @@ const Input = ({
         setIsFocused(false);
     };
 
+    const getPadding = (size) => {
+        switch (size) {
+            case "sm":
+                return "p-0.5";
+            case "md":
+                return "p-1";
+            case "lg":
+                return "p-2";
+        }
+    }
+
     return (
         <div className="flex flex-col w-full gap-2">
             <div className={
                 mergeClasses(
-                    `relative flex items-center rounded-lg border border-gray-500 p-1 dark:border-gray-700`,
+                    `relative flex items-center rounded-lg border border-gray-500 ${getPadding(size)} dark:border-gray-700`,
                     `${focus ? 'focus-within:border-primary-500 focus-within:ring-[1px] focus-within:ring-primary-500/30' : ''}`,
                     className
                 )
@@ -83,7 +94,7 @@ const Input = ({
                     {...props}
                     type={secure ? (showPassword ? 'text' : 'password') : 'text'}
                     id={props.id}
-                    className={`border-transparent focus:border-transparent focus:ring-0 grow ${textSize} border-none focus:outline-hidden bg-transparent dark:text-gray-100 ${label ? "placeholder-transparent" : ""}`}
+                    className={`border-transparent focus:border-transparent focus:ring-0 grow text-${size} border-none focus:outline-hidden bg-transparent dark:text-gray-100 ${label ? "placeholder-transparent" : ""}`}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     value={internalValue}

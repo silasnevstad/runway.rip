@@ -16,7 +16,7 @@ export default function DocsContentShell({
         <div className="w-full flex lg:flex-row gap-8">
             {/* MAIN COLUMN */}
             <article className="flex-1 min-w-0 mx-auto max-w-prose prose">
-                <Breadcrumb sections={DocsNav} className="mb-2" />
+                <Breadcrumb sections={DocsNav} className="mb-2 md:mb-4 lg:mb-8" />
 
                 {title && (
                     <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">

@@ -9,20 +9,19 @@ const DocumentationSidebar = () => {
     const pathname = usePathname();
 
     return (
-        <nav className="py-4 mt-4 overflow-x-hidden overflow-y-auto">
+        <nav className="py-4 mt-0">
             {DocsNav.map((section, index) => {
                 const isActive = pathname === section.href;
                 return (
                     <div key={index} className="mb-6 scroll-auto">
                         <div className="flex items-center -mt-3">
-                            <Link href={section.href} className={
+                            <div className={
                                 `group flex w-full p-1 pl-2 py-2 pr-8 rounded-md mb-[2px]
-                                ${isActive ? 'bg-gray-200 dark:bg-gray-800' : 'text-gray-600 dark:text-gray-400'} 
-                                hover:bg-bg-200 dark:hover:bg-gray-800 transition-colors`
+                                transition-colors`
                             }>
                                 {section.icon}
-                                <span className={`${isActive ? 'text-gray-800 dark:text-gray-100' : 'text-gray-800 dark:text-gray-300'} group-hover:text-gray-800 dark:group-hover:text-gray-200 ml-1 font-semibold text-sm`}>{section.title.toUpperCase()}</span>
-                            </Link>
+                                <span className={`ml-1 font-semibold text-sm`}>{section.title.toUpperCase()}</span>
+                            </div>
                         </div>
                         <ul>
                             {section.items.map((item, itemIndex) => {
