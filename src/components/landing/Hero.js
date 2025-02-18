@@ -54,7 +54,7 @@ export default function Hero({
                             </Button>
                             <p className="flex items-center text-sm opacity-100 font-semibold">
                                 <GiftIcon className="w-5 h-5 mr-1 text-primary-500" />
-                                <span className="text-primary-500 mr-1">100$</span> off for first 1000 users (12 left)
+                                <span className="text-primary-500 mr-1">50$</span> off for first 1000 users (12 left)
                             </p>
                         </div>
 

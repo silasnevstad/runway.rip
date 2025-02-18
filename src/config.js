@@ -38,7 +38,7 @@ export const pricingConfig = {
                 {
                     name: "one_time",
                     label: "",
-                    oldPrice: 69,
+                    oldPrice: 99,
                     price: 49,
                     priceId: "price_XXX"
                 }
@@ -142,7 +142,7 @@ export const landingConfig = {
     features: {
         show: true,
         title: "Tired of starting from scratch?",
-        subtitle: "Everything you need to launch your ideas.",
+        subtitle: "Everything you need to launch your ideas. Tired of having to set up auth, payments, databases, components, SEO,... the list goes on. Runway has you covered.",
     },
     pricing: {
         title: "Pricing",

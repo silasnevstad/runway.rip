@@ -56,14 +56,14 @@ export default function Landing() {
                 </div>
 
                 {/* Features Section */}
-                <div className={`-mt-24 flex flex-col items-center w-full pb-10 z-10`}>
+                <div className={`-mt-28 flex flex-col items-center w-full pb-28 z-10`}>
                     {features.show && <Features />}
                 </div>
 
-                <BackgroundBlur top={250} color={"from-green-600/40 dark:from-green-500/30"}/>
+                {/*<BackgroundBlur top={250} color={"from-green-600/40 dark:from-green-500/30"}/>*/}
 
                 {/* Why Section */}
-                <div className={`flex flex-col items-center w-full z-10`}>
+                <div className={`flex flex-col items-center w-full z-10 bg-bg-100 dark:bg-bg-800 pt-20 pb-20`}>
                     {why.show && <Why />}
                 </div>
 
@@ -78,17 +78,14 @@ export default function Landing() {
                     {pricing.show && <Pricing />}
                 </div>
 
-                <BackgroundBlur top={600} color={"from-primary-600/40 dark:from-primary-500/30"}/>
+                {/*<BackgroundBlur top={600} color={"from-primary-600/40 dark:from-primary-500/30"}/>*/}
 
                 {/* Who and How Section */}
-                <div className={`flex flex-col items-center w-full mt-44 z-10 bg-bg-800`}>
+                <div className={`flex flex-col items-center w-full mt-24 pt-20 pb-10 z-10  bg-bg-100 dark:bg-bg-800 gap-20`}>
                     {whoAndHow && <WhoAndHow />}
-                </div>
-
-                <div className="">
-                    <TextLink href="/docs" className="text-2xl font-black text-center my-10 max-w-[30ch]" grow>
-                        Check out the <span className="text-primary-500">docs</span> for more info!
-                    </TextLink>
+                    <p  className="text-2xl font-black text-center my-10 max-w-[30ch] flex flex-row gap-2" >
+                        Check out the <TextLink href="/docs" className="text-primary-500" grow>docs</TextLink> for more info!
+                    </p>
                 </div>
 
                 {/* FAQ Section */}

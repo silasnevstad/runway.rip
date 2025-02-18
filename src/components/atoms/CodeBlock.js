@@ -2,10 +2,9 @@
 
 import {useEffect, useState} from "react";
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneLight, atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { atomOneLight, atomOneDark, tomorrowNightEighties, arta } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useTheme } from "next-themes";
 import { ClipboardIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
-import {vs2015} from "react-code-blocks";
 
 const CodeBlock = ({
     children: code,
@@ -64,7 +63,7 @@ const CodeBlock = ({
             <SyntaxHighlighter
                 key={resolvedTheme}
                 language={language}
-                style={checkDarkTheme ? atomOneDark : atomOneLight}
+                style={checkDarkTheme ? tomorrowNightEighties : atomOneLight}
                 wrapLines={wrapLines}
                 showLineNumbers={showLineNumbers}
                 startingLineNumber={startingLineNumber}

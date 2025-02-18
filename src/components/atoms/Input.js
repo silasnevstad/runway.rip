@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { makeClassNameImportant } from "@/utils/utils";
 import {mergeClasses} from "@/utils/classNames";
 
 const Input = ({
@@ -58,7 +57,7 @@ const Input = ({
             <div className={
                 mergeClasses(
                     `relative flex items-center rounded-lg border border-gray-500 p-1 dark:border-gray-700`,
-                    `${focus ? 'focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500' : ''}`,
+                    `${focus ? 'focus-within:border-primary-500 focus-within:ring-[1px] focus-within:ring-primary-500/30' : ''}`,
                     className
                 )
             }>

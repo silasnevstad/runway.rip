@@ -2,59 +2,86 @@
 
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
-const Modal = ({
-    children,
+export default function Modal({
     isOpen,
     onClose,
-    className = '',
-}) => {
-    const modalRef = useRef();
+    children,
+    fade = true,
+    blur = false,
+    closeOnOutsideClick = true,
+    showCloseButton = true,
+    backdropClassName = '',
+    contentClassName = '',
+}) {
+    const backdropRef = useRef(null);
 
     const handleBackdropClick = (e) => {
-        if (modalRef.current === e.target) {
-            onClose?.();
-        }
+        if (!closeOnOutsideClick) return;
+        if (backdropRef.current === e.target) onClose?.();
     };
 
+    // Trap focus
     useEffect(() => {
-        const focusableModalElements = modalRef.current.querySelectorAll(
-            'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled])'
-        );
-        const firstElement = focusableModalElements[0];
-        const lastElement = focusableModalElements[focusableModalElements.length - 1];
+        if (!isOpen) return;
+        const el = backdropRef.current;
+        if (!el) return;
 
-        const handleFocus = (event) => {
-            if (event.shiftKey) {
-                if (document.activeElement === firstElement) {
-                    lastElement.focus();
+        const focusable = el.querySelectorAll(
+            'a[href], button:not([disabled]), textarea, input, select'
+        );
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        const onKeyDown = (event) => {
+            if (event.key === 'Tab') {
+                if (event.shiftKey && document.activeElement === first) {
                     event.preventDefault();
-                }
-            } else {
-                if (document.activeElement === lastElement) {
-                    firstElement.focus();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
                     event.preventDefault();
+                    first.focus();
                 }
             }
         };
 
-        modalRef.current.addEventListener('keydown', handleFocus);
-
-        return () => {
-            modalRef.current.removeEventListener('keydown', handleFocus);
-        };
+        el.addEventListener('keydown', onKeyDown);
+        return () => el.removeEventListener('keydown', onKeyDown);
     }, [isOpen]);
 
     if (!isOpen) return null;
 
     return createPortal(
-        <div className={`fixed inset-0 bg-black/50 flex justify-center items-center ${className}`} ref={modalRef} onClick={handleBackdropClick}>
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-md mx-auto z-50 overflow-y-auto">
+        <div
+            ref={backdropRef}
+            onMouseDown={handleBackdropClick}
+            className={[
+                'fixed inset-0 z-[9999] flex items-center justify-center', // big z-index
+                fade ? 'bg-black/50' : '',
+                blur ? 'backdrop-blur' : '',
+                backdropClassName,
+            ].join(' ')}
+        >
+            {showCloseButton && (
+                <button
+                    onClick={onClose}
+                    className="absolute top-5 right-5 text-gray-400 hover:text-gray-200"
+                >
+                    <XMarkIcon className="h-8 w-8" />
+                </button>
+            )}
+            {/*<div*/}
+            {/*    className={[*/}
+            {/*        'relative bg-bg-100 dark:bg-gray-800 rounded-lg shadow-lg p-4 max-w-lg w-full mx-4',*/}
+            {/*        contentClassName,*/}
+            {/*    ].join(' ')}*/}
+            {/*>*/}
                 {children}
-            </div>
+            {/*</div>*/}
         </div>,
         document.body
     );
-};
-
-export default Modal;
+}

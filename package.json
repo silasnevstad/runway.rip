@@ -30,6 +30,7 @@
     "d3-shape": "^3.2.0",
     "firebase": "^10.11.0",
     "framer-motion": "^11.3.21",
+    "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "mailgun-js": "^0.22.0",
     "mdx-components": "^1.0.1",

@@ -1,16 +1,16 @@
-import DocsShell from "./_components/DocsShell";
+import DocsLayout from "./_components/DocsLayout";
 
 export const metadata = {
     title: "Docs | Runway",
     description: "Documentation for the Runway",
 };
 
-export default function DocsLayout({ children }) {
+export default function Layout({ children }) {
     return (
         <section className="flex w-full min-h-screen">
-            <DocsShell>
+            <DocsLayout>
                 {children}
-            </DocsShell>
+            </DocsLayout>
         </section>
     );
 }

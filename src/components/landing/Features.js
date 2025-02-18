@@ -11,6 +11,13 @@ import { landingConfig, featuresConfig } from "@/config";
 export default function Features() {
     const { features } = landingConfig;
     const [selectedFeature, setSelectedFeature] = useState(0);
+    //  get device time in HH:MM + 10 minutes from now for launch time
+    const currentTime = new Date() // get current date
+    const hours = currentTime.getHours() // get current hours
+    const ampm = hours >= 12 ? 'PM' : 'AM' // set AM/PM
+    // 12 hours format (21 = 09, 22 = 10, 23 = 11, 24 = 12) so % 12 and also add 0 if less than 10
+    const hours12 = `${hours % 12 || 12}`.padStart(2, '0')
+    const minutes = currentTime.getMinutes() // get current minutes
 
     return (
         <section
@@ -19,10 +26,13 @@ export default function Features() {
         >
             <div className="flex flex-col items-center w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6"
                  id="features">
+                <p className="text-lg font-mono text-orange-500 opacity-90 font-normal ml-5">
+                    const launchTime = {hours12}:{minutes + 10} {ampm}
+                </p>
                 <h3 className="text-2xl sm:text-3xl font-semibold text-center mb-0 text-gray-800 dark:text-gray-100">
                     {features.title}
                 </h3>
-                <h4 className="mt-2 mb-4 text-lg opacity-50 font-normal ml-5 bg-linear-to-r from-bg-800 dark:from-bg-100 from-20% to-bg-900 dark:to-bg-0 to-80% bg-clip-text text-transparent">
+                <h4 className="mt-2 mb-4 text-lg opacity-50 font-normal ml-5 text-center">
                     {features.subtitle}
                 </h4>
             </div>

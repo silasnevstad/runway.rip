@@ -4,14 +4,13 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Breadcrumb from "@/components/atoms/Breadcrumb";
-import Sidebar from "@/components/organisms/sidebars/Sidebar"; // adjust import as needed
+import Sidebar from "@/components/organisms/sidebars/Sidebar";
 import DocumentationSidebar from "@/components/organisms/sidebars/DocumentationSidebar";
 import SearchBar from "@/components/molecules/SearchBar";
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
-import Button from "@/components/atoms/Button";
 
 
-export default function DocsShell({ children }) {
+export default function DocsLayout({ children }) {
     const router = useRouter();
 
     const handleSearchSelect = (item) => {
@@ -19,14 +18,11 @@ export default function DocsShell({ children }) {
     };
 
     return (
-        <div className="flex min-h-screen w-full max-md:-ml-5">
+        <div className="flex min-h-screen w-full">
             {/* Left Sidebar */}
             <Sidebar
-                alwaysOpen
-                position="left"
-                width="w-64"
-                collapsedWidth="w-16"
-                bgColor="bg-bg-0 dark:bg-gray-900"
+                width="64"
+                bgColor="bg-bg-50 dark:bg-gray-900"
             >
                 <div className="flex items-start gap-2 self-start">
                     <Image
@@ -45,28 +41,24 @@ export default function DocsShell({ children }) {
                     />
                     <p className="text-xl font-bold"></p>
                 </div>
+
+                <div className="flex items-center justify-between mt-6 lg:hidden">
+                    <SearchBar
+                        items={DocsNav}
+                        onItemSelect={handleSearchSelect}
+                    />
+                </div>
+
                 <DocumentationSidebar />
             </Sidebar>
 
-            {/* Padded spacer to accommodate the sidebar */}
-            <div className="shrink-0 w-64 max-md:w-0" />
+            <aside className="fixed top-5 right-5 flex max-lg:hidden">
+                <SearchBar modalPlaceholder="Search docs" items={DocsNav} onItemSelect={handleSearchSelect} modalSearch={true} />
+            </aside>
 
             {/* Main content area */}
-            <main className="md:w-[calc(100vw-16rem)] overflow-x-auto relative">
-                <div className="absolute top-0 right-0 pt-5 pl-10 md:pr-5 z-10 flex justify-between items-start">
-                    <p></p>
-                    <div className="flex items-center ml-4 gap-4">
-                        <SearchBar
-                            items={DocsNav}
-                            onItemSelect={handleSearchSelect}
-                        />
-                    </div>
-                </div>
-
-                <div className="max-md:mt-2 pl-10 pt-10 max-md:p-0 pr-5 max-md:pr-0 w-full">
-                    <Breadcrumb sections={DocsNav} />
-                    {children} {/* MDX content */}
-                </div>
+            <main className="flex-1 mt-6">
+                {children}
             </main>
         </div>
     );

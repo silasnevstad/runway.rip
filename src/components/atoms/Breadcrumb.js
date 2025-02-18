@@ -4,6 +4,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa";
+import {mergeClasses} from "@/utils/classNames";
 
 function BreadcrumbItem({ href, title, isLast, delimiter, isInteractiveLast }) {
     // If it's the last breadcrumb and we want it non-interactive, render a <span> instead of a link.
@@ -37,6 +38,7 @@ function BreadcrumbItem({ href, title, isLast, delimiter, isInteractiveLast }) {
 }
 
 export default function Breadcrumb({
+    className = "",
     sections,
     delimiter = <FaChevronRight />,
     isInteractiveLast = false
@@ -62,7 +64,7 @@ export default function Breadcrumb({
     if (!breadcrumbItems || breadcrumbItems.length === 0) return null;
 
     return (
-        <h1 className="font-medium mb-6 flex items-center flex-wrap">
+        <h1 className={mergeClasses("font-medium flex items-center flex-wrap", className)}>
             {breadcrumbItems.map((item, index) => (
                 <BreadcrumbItem
                     key={item.href}

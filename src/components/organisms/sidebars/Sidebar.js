@@ -6,8 +6,7 @@ import { PiXBold } from "react-icons/pi";
 
 const Sidebar = ({
     children,
-    position = 'left',
-    width = 'w-64',
+    width = '64',
     bgColor = 'bg-white',
     onToggle,
 }) => {
@@ -16,9 +15,10 @@ const Sidebar = ({
 
     useEffect(() => {
         const checkMobile = () => {
-            const isMobile = window.innerWidth < 768;
-            setIsMobile(isMobile);
-            if (!isMobile) {
+            const mobile = window.innerWidth < 640;
+            setIsMobile(mobile);
+            // If we're no longer on mobile, ensure the sidebar is open
+            if (!mobile) {
                 setIsOpen(true);
             } else {
                 setIsOpen(false);
@@ -38,35 +38,49 @@ const Sidebar = ({
         }
     };
 
+    // On desktop, position it relatively (so it doesn't overlay content).
+    // On mobile, we use fixed + translate-x for a slide-in/slide-out effect.
     const sidebarClasses = `
-        fixed top-0 ${position}-0 h-full ${width} ${bgColor}
-        transition-all duration-300 ease-in-out z-50
-        ${isMobile ? (isOpen ? 'translate-x-0' : '-translate-x-full') : ''}
-        ${!isMobile && !isOpen ? 'hidden' : ''}
-        ${isMobile ? 'w-full' : ''}
-    `;
+    ${isMobile ? 'fixed left-0 top-0 h-full z-50 transition-transform' : 'relative min-h-screen shrink-0'}
+    ${bgColor}
+    w-${width} min-w-${width} max-w-${width}
+    overflow-y-auto
+    ${isMobile ? (isOpen ? 'translate-x-0' : '-translate-x-full') : ''}
+  `;
 
-    const buttonClasses = `
-        p-1 rounded-lg dark:bg-gray-800 hover:bg-gray-300 h-10 w-10 border border-gray-300
-        flex items-center justify-center transition-colors duration-200 z-50
-    `;
+    const buttonBaseClasses = `
+    p-1 rounded-lg bg-gray-200 dark:bg-gray-800 
+    hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 
+    w-8 h-8 border border-gray-400 dark:border-gray-700 
+    flex items-center justify-center transition-colors duration-200
+  `;
 
-    const openButtonClasses = `fixed top-4 left-4 ${buttonClasses}`;
+    // Show the "open" button only on mobile when sidebar is closed
+    const openButtonClasses = `
+    ${buttonBaseClasses}
+    fixed top-5 right-5 z-50
+  `;
 
     return (
         <>
-            {(!isOpen && isMobile) && (
-                <button className={`${openButtonClasses} ${isMobile ? 'sticky' : ''}`} onClick={toggleSidebar}>
-                    <Bars3Icon className="text-gray-200 w-8 h-8" />
+            {/* Mobile "open sidebar" button (only appears when sidebar is closed) */}
+            {isMobile && !isOpen && (
+                <button className={openButtonClasses} onClick={toggleSidebar}>
+                    <Bars3Icon className="text-gray-700 dark:text-gray-200 w-7 h-7" />
                 </button>
             )}
+
             <div className={sidebarClasses}>
-                {(isMobile) && (
-                    <button className="absolute top-5 right-5" onClick={toggleSidebar}>
+                {/* Mobile close button inside sidebar */}
+                {isMobile && isOpen && (
+                    <button
+                        className="absolute top-5 right-5"
+                        onClick={toggleSidebar}
+                    >
                         <PiXBold className="text-gray-500 w-5 h-5" />
                     </button>
                 )}
-                <div className={`p-4 h-full overflow-y-auto ${isMobile ? 'w-full' : ''}`}>
+                <div className="p-4 h-full overflow-y-auto">
                     {children}
                 </div>
             </div>

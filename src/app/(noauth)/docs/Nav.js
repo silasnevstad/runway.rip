@@ -10,7 +10,7 @@ export const DocsNav = [
     {
         title: "Get started",
         href: "/docs",
-        icon: <PlayIcon className="w-6 h-6" />,
+        icon: <PlayIcon className="w-5 h-5" />,
         items: [
             { title: "Installation", href: "/docs/installation" },
             { title: "Project Structure", href: "/docs/project-structure" },
@@ -19,7 +19,7 @@ export const DocsNav = [
     {
         title: "Tutorials",
         href: "/docs/tutorials",
-        icon: <MapIcon className="w-6 h-6" />,
+        icon: <MapIcon className="w-5 h-5" />,
         items: [
             { title: "Launch in 5 minutes", href: "/docs/tutorials/launch-in-5-minutes" },
             { title: "Static page", href: "/docs/tutorials/static-page" },
@@ -34,7 +34,7 @@ export const DocsNav = [
     {
         title: "Features",
         href: "/docs/features",
-        icon: <CursorArrowRaysIcon className="w-6 h-6" />,
+        icon: <CursorArrowRaysIcon className="w-5 h-5" />,
         items: [
             { title: "SEO", href: "/docs/features/seo" },
             { title: "Database", href: "/docs/features/db" },
@@ -46,7 +46,7 @@ export const DocsNav = [
     {
         title: "Components",
         href: "/docs/components",
-        icon: <PuzzlePieceIcon className="w-6 h-6" />,
+        icon: <PuzzlePieceIcon className="w-5 h-5" />,
         items: [
             { title: "Accordion", href: "/docs/components/accordion" },
             { title: "Avatar", href: "/docs/components/avatar" },

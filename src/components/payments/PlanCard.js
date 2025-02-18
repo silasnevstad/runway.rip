@@ -16,7 +16,7 @@ export default function PlanCard({
     return (
         <div
             className={`relative flex flex-col gap-4 px-6 py-8 rounded-2xl w-full 
-        bg-bg-0 dark:bg-gray-900 shadow-xs
+        bg-bg-50 dark:bg-gray-900 shadow-sm
         ${isPopular ? "border-2 border-primary-400" : ""}`}
         >
             {isPopular && (
