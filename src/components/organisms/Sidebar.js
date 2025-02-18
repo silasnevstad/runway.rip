@@ -39,10 +39,12 @@ const Sidebar = ({
 
     let pinnedChild = children;
     let scrollableChild = null;
+    let bottomChild = null;
 
     if (Array.isArray(children)) {
         pinnedChild = children[0];
         scrollableChild = children[1] || null;
+        bottomChild = children[2] || null;
     }
 
     const sidebarClasses = `
@@ -52,20 +54,20 @@ const Sidebar = ({
     overflow-x-hidden
     ${isMobile ? (isOpen ? "translate-x-0" : "-translate-x-full") : ""}
     flex flex-col
-  `;
+    `;
 
     const buttonBaseClasses = `
     p-1 rounded-lg bg-gray-200 dark:bg-gray-800 
     hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 
     w-8 h-8 border border-gray-400 dark:border-gray-700 
     flex items-center justify-center transition-colors duration-200
-  `;
+    `;
 
     // Mobile "open" button (only if the sidebar is closed)
     const openButtonClasses = `
     ${buttonBaseClasses}
     fixed top-2 right-2 z-50
-  `;
+    `;
 
     return (
         <>
@@ -96,6 +98,13 @@ const Sidebar = ({
                 {scrollableChild && (
                     <div className="flex-1 overflow-y-auto px-4">
                         {scrollableChild}
+                    </div>
+                )}
+
+                {/* Bottom portion (footer, etc.) */}
+                {bottomChild && (
+                    <div className="flex-none">
+                        {bottomChild}
                     </div>
                 )}
             </div>

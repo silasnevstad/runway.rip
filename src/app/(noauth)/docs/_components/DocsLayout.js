@@ -2,12 +2,15 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
+import { RiDiscordLine } from "react-icons/ri";
 
 import Sidebar from "@/components/organisms/Sidebar";
 import SearchBar from "@/components/molecules/SearchBar";
 import DocumentationSidebar from "@/app/(noauth)/docs/_components/DocumentationSidebar";
 import { mergeClasses } from "@/utils/classNames";
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
+import { emailSupport } from "@/utils/email";
 
 export default function DocsLayout({ children }) {
     const router = useRouter();
@@ -19,7 +22,7 @@ export default function DocsLayout({ children }) {
     return (
         <div className="flex h-screen overflow-hidden w-full bg-bg-50 dark:bg-bg-900">
             {/* Left Sidebar */}
-            <Sidebar width="64" bgColor="bg-bg-50 dark:bg-bg-900">
+            <Sidebar width="56" bgColor="bg-bg-50 dark:bg-bg-900">
                 <div className="flex flex-col">
                     <div className="flex items-start gap-2 self-start cursor-pointer" onClick={() => router.push('/')}>
                         <Image
@@ -50,6 +53,24 @@ export default function DocsLayout({ children }) {
                 </div>
 
                 <DocumentationSidebar />
+
+                <div className="flex flex-col border-t border-gray-200 dark:border-gray-800 w-full">
+                    <div className="flex flex-col items-center justify-center p-2 px-4 gap-1 mb-2">
+                        <div
+                            className="group w-full flex items-center p-2 rounded-lg hover:bg-bg-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                            onClick={() => emailSupport()}
+                        >
+                            <AiOutlineQuestionCircle size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
+                            <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">Help</p>
+                        </div>
+                        <div
+                            className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                        >
+                            <RiDiscordLine size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
+                            <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">Discord</p>
+                        </div>
+                    </div>
+                </div>
             </Sidebar>
 
             {/* A "floating" search bar in the top-right (desktop only) */}

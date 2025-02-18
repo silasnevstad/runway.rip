@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Loader from "@/components/atoms/Loader";
-import {makeClassNameImportant, mergeClasses} from "@/utils/classNames";
+import { mergeClasses } from "@/utils/classNames";
 
 const Button = ({
     // Core props
@@ -37,7 +37,7 @@ const Button = ({
     ...props
 }) => {
     const baseStyles = [
-        `text-lg font-semibold py-2.5 px-12`,
+        `text-md font-semibold py-2.5 px-12`,
         shape ? `${shape}` : "rounded-lg",
         textColor ?`text-${textColor}` : "text-white",
         backgroundColor ? `bg-${backgroundColor}` : "bg-primary-600",

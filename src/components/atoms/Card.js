@@ -17,7 +17,7 @@ export default function Card({
     ...props
 }) {
     const combinedStyles = mergeClasses(
-        `relative bg-bg-50 dark:bg-bg-900 rounded-2xl p-6
+        `relative bg-bg-50 dark:bg-bg-800 rounded-2xl p-6
         ${border && 'border border-bg-300 dark:border-gray-800'}
         ${shadow && 'hover:shadow-md'}
         ${scale && 'hover:scale-101'}

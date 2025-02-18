@@ -10,7 +10,7 @@ export const DocsNav = [
     {
         title: "Get started",
         href: "/docs/getting-started",
-        icon: <PlayIcon className="w-5 h-5" />,
+        icon: <PlayIcon className="w-4 h-4" />,
         items: [
             { title: "Overview", href: "/docs" },
             { title: "Installation", href: "/docs/installation" },
@@ -20,7 +20,7 @@ export const DocsNav = [
     {
         title: "Tutorials",
         href: "/docs/tutorials",
-        icon: <MapIcon className="w-5 h-5" />,
+        icon: <MapIcon className="w-4 h-4" />,
         items: [
             { title: "Launch in 5 minutes", href: "/docs/tutorials/launch-in-5-minutes" },
             { title: "Stripe Setup", href: "/docs/tutorials/stripe" },
@@ -36,7 +36,7 @@ export const DocsNav = [
     {
         title: "Features",
         href: "/docs/features",
-        icon: <CursorArrowRaysIcon className="w-5 h-5" />,
+        icon: <CursorArrowRaysIcon className="w-4 h-4" />,
         items: [
             { title: "SEO", href: "/docs/features/seo" },
             { title: "Database", href: "/docs/features/db" },

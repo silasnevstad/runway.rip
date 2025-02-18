@@ -20,7 +20,7 @@ const DocumentationSidebar = () => {
                                 transition-colors`
                             }>
                                 {section.icon}
-                                <span className={`ml-1 font-semibold text-sm`}>{section.title.toUpperCase()}</span>
+                                <span className={`ml-1 font-semibold text-xs text-gray-800 dark:text-gray-100`}>{section.title.toUpperCase()}</span>
                             </div>
                         </div>
                         <ul>
@@ -29,11 +29,11 @@ const DocumentationSidebar = () => {
                                 return (
                                     <li key={itemIndex} className={
                                         `group p-1 pl-2 py-2 rounded-md mb-[1px]
-                                        ${isActive ? 'bg-gray-200 dark:bg-gray-800' : 'border-l-none border-gray-500 dark:border-gray-800'} 
+                                        ${isActive ? 'bg-bg-200 dark:bg-gray-800' : 'border-l-none border-gray-500 dark:border-gray-800'} 
                                         hover:bg-bg-200 dark:hover:bg-gray-800`
                                     }>
                                         <Link href={item.href}
-                                              className={`text-sm block ${isActive ? 'text-gray-800 dark:text-gray-100 font-semibold' : 'text-gray-700 dark:text-gray-400'} group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors`}>
+                                              className={`text-[13px] block ${isActive ? 'text-gray-800 dark:text-gray-100 font-semibold' : 'text-gray-700 dark:text-gray-400'} group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors`}>
                                             {item.title}
                                         </Link>
                                     </li>
