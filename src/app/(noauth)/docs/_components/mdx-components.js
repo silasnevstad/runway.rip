@@ -150,6 +150,7 @@ export const mdxComponents = {
     ),
     Divider: Divider,
     a: ({ href, children }) => (
+        // make underline faded
         <Link href={href} className="text-green-500 hover:text-green-700 underline">
             {children}
         </Link>

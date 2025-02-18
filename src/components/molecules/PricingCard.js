@@ -8,7 +8,7 @@ import Button from "@/components/atoms/Button";
 import appConfig from "@/config";
 
 const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY
 );
 
 const PricingCard = ({ type, title, oldPrice, price, includedFeatures, allFeatures, isPopular }) => {

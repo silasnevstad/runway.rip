@@ -1,0 +1,107 @@
+---
+title: "Authentication Tutorial"
+description: "A tutorial going over setting up authentication, including password-based, passwordless, and social logins."
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Password-Based"
+    href: "#password-based-auth"
+  - title: "Passwordless"
+    href: "#passwordless-auth"
+  - title: "Social & OAuth"
+    href: "#social-oauth-logins"
+---
+
+<div id="overview" />
+
+First, ensure you have set up your [Supabase](https://supabase.com/) account and have your API keys ready.
+
+<br />
+
+## Password-Based Auth
+
+<div id="password-based-auth" />
+
+This is the classic login method. Users provide an email and password. The system validates inputs (using) and processes sign-ups or sign-ins securely on the server.
+
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <PasswordAuthForm mode={'sign-in'} />
+    </div>
+}>
+    ```javascript
+    <PasswordAuthForm mode={'sign-in'} />
+    ```
+</PreviewCode>
+
+<Callout title="Note!">
+    All inputs are **validated** and all emails are **verified**.
+</Callout>
+
+<br/>
+<Divider />
+<br/>
+
+## Passwordless Auth
+
+<div id="passwordless-auth" />
+
+For a frictionless experience, users can log in without a password. They simply enter their email, and a magic link or OTP is sent:
+
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <PasswordlessAuthForm />
+    </div>
+}>
+    ```javascript
+    <PasswordlessAuthForm />
+    ```
+</PreviewCode>
+
+<Info>
+    No passwords to remember means less friction and a smoother user experience.
+</Info>
+
+<br/>
+<Divider />
+<br/>
+
+## Social & OAuth Logins
+
+<div id="social-oauth-logins" />
+
+Social login allows users to authenticate using their existing accounts (Google, Facebook, Apple, GitHub, etc.). This flow is unified so you can easily switch providers without changing your core code.
+
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <OAuthButtons providers={[
+            { name: 'google', logoSrc: '/logos/google.png', logoAlt: 'Google' },
+            { name: 'github', logoSrc: '/logos/github.png', logoAlt: 'GitHub' },
+        ]} />
+    </div>
+}>
+    ```javascript
+    const providers = [
+    { name: 'google', logoSrc: '/logos/google.png', logoAlt: 'Google' },
+    // { name: 'facebook', logoSrc: '/logos/facebook.png', logoAlt: 'Facebook' },
+    // { name: 'apple', logoSrc: '/logos/apple.png', logoAlt: 'Apple' },
+    { name: 'github', logoSrc: '/logos/github.png', logoAlt: 'GitHub' },
+    ];
+
+    <OAuthButtons providers={providers} />
+    ```
+</PreviewCode>
+
+<Tip>
+    Customize the OAuth buttons by simply adjusting the provider’s name and logo—supporting as many providers as you need.
+</Tip>
+
+<br/>
+<Divider />
+<br/>
+
+
+Enjoy the freedom to pick the authentication method that fits your project best!
+
+<br/>
+<br/>

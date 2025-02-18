@@ -13,7 +13,7 @@ export default function DocsContentShell({
     relatedSites,
 }) {
     return (
-        <div className="w-full flex lg:flex-row gap-8">
+        <div className="w-full h-full flex lg:flex-row gap-8">
             {/* MAIN COLUMN */}
             <article className="flex-1 min-w-0 mx-auto max-w-prose prose">
                 <Breadcrumb sections={DocsNav} className="mb-2 md:mb-4 lg:mb-8" />
@@ -36,7 +36,7 @@ export default function DocsContentShell({
             {/* RIGHT SIDEBAR (large screens only) */}
             {(onThisPage?.length || relatedContent?.length || relatedSites?.length) && (
                 <aside className="hidden lg:flex flex-col w-44 shrink-0">
-                    <div className="sticky top-24 space-y-4">
+                    <div className="fixed top-24 space-y-4">
                         {onThisPage?.length > 0 && <OnThisPage items={onThisPage} />}
                         {relatedDocs?.length > 0 && <SidebarSection title="Related Docs" items={relatedDocs} />}
                         {relatedSites?.length > 0 && <SidebarSection title="Related Sites" items={relatedSites} />}

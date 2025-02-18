@@ -23,7 +23,8 @@ export const DocsNav = [
         icon: <MapIcon className="w-5 h-5" />,
         items: [
             { title: "Launch in 5 minutes", href: "/docs/tutorials/launch-in-5-minutes" },
-            { title: "Static page", href: "/docs/tutorials/static-page" },
+            { title: "Stripe Setup", href: "/docs/tutorials/stripe" },
+            { title: "Supabase Setup", href: "/docs/tutorials/supabase" },
             { title: "User authentication", href: "/docs/tutorials/authentication" },
             { title: "API call", href: "/docs/tutorials/api-call" },
             { title: "One Time Payments", href: "/docs/tutorials/one-time-payments" },

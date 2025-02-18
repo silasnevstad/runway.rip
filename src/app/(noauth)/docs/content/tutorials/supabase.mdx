@@ -1,0 +1,32 @@
+---
+title: "Supabase Setup"
+description: "Setting up Supabase for authentication and database access."
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+---
+
+<div id="overview" />
+
+1. Create a [Supabase](https://supabase.com/sign-up) account.
+
+2. Create a [new project](http://database.new).
+
+3. Get your project `URL` and `anon public` API key, they should look something like this:
+
+    ```plaintext
+    https://<project-id>.supabase.co
+    ```
+
+    ```plaintext
+    eyXXX.eyXXX.C-UIPXXX
+    ```
+
+4. Copy them into `.env.local`:
+
+    ```.env.local
+    NEXT_PUBLIC_SUPABASE_URL=https://<project-id>.supabase.co
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=eyXXX.eyXXX.C-UIPXXX
+    ```
+
+5. And you're ready to go!

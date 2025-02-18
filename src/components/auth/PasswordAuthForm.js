@@ -11,7 +11,7 @@ const PasswordAuthForm = ({ mode = 'sign-in' }) => {
     return (
         <form className="flex flex-col w-full gap-2" action={action}>
             <AuthFormFields type={mode} state={state} />
-            <LoadingButton isSignUp={mode === 'sign-up'} />
+            <LoadingButton mode={mode} />
         </form>
     );
 };

@@ -6,7 +6,7 @@ import OAuthSection from './OAuthSection';
 
 const AuthForm = ({ method = 'password', mode = 'sign-in' }) => {
     switch (method) {
-        case 'passwordless':
+        case 'magiclink':
             return <PasswordlessAuthForm />;
         case 'oauth':
             return <OAuthSection />;

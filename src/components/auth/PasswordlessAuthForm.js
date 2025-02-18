@@ -4,6 +4,7 @@ import { useFormState } from 'react-dom';
 import Input from '@/components/atoms/Input';
 import Button from '@/components/atoms/Button';
 import { passwordlessSignin } from '@/app/actions/auth';
+import LoadingButton from "@/components/auth/LoadingButton";
 
 const PasswordlessAuthForm = () => {
     const [state, action] = useFormState(passwordlessSignin);
@@ -14,9 +15,7 @@ const PasswordlessAuthForm = () => {
                 <Input label="Email" id="email" name="email" type="email" />
                 {state?.errors?.email && <p className="text-red-500 font-semibold">{state.errors.email}</p>}
             </div>
-            <Button type="submit" className="mt-2" shape="rounded-xl">
-                Send Magic Link
-            </Button>
+            <LoadingButton mode="magiclink" />
         </form>
     );
 };

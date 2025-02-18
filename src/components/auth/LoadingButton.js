@@ -1,15 +1,51 @@
 'use client'
-import React from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import Button from '@/components/atoms/Button';
 import { useFormStatus } from 'react-dom';
 
-const LoadingButton = ({ isSignUp }) => {
+export default function LoadingButton({ mode = 'sign-in' }) {
     const { pending } = useFormStatus();
+    const [message, setMessage] = useState('');
+    const wasPending = useRef(false);
+
+    useEffect(() => {
+        if (!pending && wasPending.current) {
+            const successText =
+                mode === 'sign-up'
+                    ? 'Signed up!'
+                    : mode === 'magiclink'
+                        ? 'Sent!'
+                        : 'Signed in!';
+
+            setMessage(successText);
+            const timeout = setTimeout(() => setMessage(''), 1500);
+            return () => clearTimeout(timeout);
+        }
+        wasPending.current = pending;
+    }, [pending, mode]);
+
+    const getButtonLabel = () => {
+        if (message) return message;
+        switch (mode) {
+            case 'sign-up':
+                return 'Sign Up';
+            case 'magiclink':
+                return 'Send Magic Link';
+            default:
+                return 'Sign In';
+        }
+    };
+
     return (
-        <Button type="submit" className="mt-2" shape="rounded-xl" disabled={pending} loading={pending}>
-            {isSignUp ? 'Sign Up' : 'Sign In'}
+        <Button
+            type="submit"
+            className="mt-2"
+            shape="rounded-xl"
+            disabled={pending}
+            loading={pending}
+        >
+            {getButtonLabel()}
         </Button>
     );
-};
-
-export default LoadingButton;
+}
