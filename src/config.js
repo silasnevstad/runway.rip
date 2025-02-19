@@ -85,15 +85,12 @@ export const landingConfig = {
     header: {
         background: "border-b-none bg-bg-0 dark:bg-bg-900 mx-sm:bg-bg-50/80 mx-sm:dark:bg-bg-900/10",
         sticky: false,
-        logo: {
-            src: "/logo.png",
-            alt: "Runway Logo"
-        },
+        logo: true,
     },
-    heroSection: {
+    hero: {
         textPosition: "left",
         image: {
-            src: "/path/to/image.png",
+            src: "/hero.png",
             alt: "Hero Image"
         },
         textHighlight: {
@@ -103,11 +100,29 @@ export const landingConfig = {
         description: "A NextJS boilerplate to build your SaaS, AI tool, or web app and start monetizing in hours, not weeks.",
         buttonText: "Get Started",
         buttonSubText: "No credit card required",
+        promo: true,
         trustedBy: false,
+    },
+    features: {
+        show: true,
+        title: "Tired of starting from scratch?",
+        subtitle: "Tired of having to set up auth, payments, databases, components, SEO,... the list goes on. Runway has everything you need to launch your ideas.",
     },
     why: {
         show: true,
         title: "Save endless hours of setup and headaches and get right to business",
+    },
+    who: {
+        show: true,
+        title: "Who's this for?",
+        subtitle: "For developers, designers, and entrepreneurs.",
+        text: "For developers, designers, and entrepreneurs. Anyone who wants to build and launch a web app quickly and skip out on all the tedious hassle.",
+    },
+    how: {
+        show: true,
+        title: "How this works?",
+        subtitle: "Get started in seconds.",
+        text: "It's a NextJS boilerplate that includes everything you need to build and launch your web app. With Runway, you can get started in seconds and start monetizing your project in hours, not weeks.",
     },
     whoAndHow: {
         show: true,
@@ -119,37 +134,9 @@ export const landingConfig = {
         howText: "It's a NextJS boilerplate that includes everything you need to build and launch your web app. With Runway, you can get started in seconds and start monetizing your project in hours, not weeks.",
     },
     howItWorks: {
-        show: false,
-        title: "Get started in seconds",
-        subtitle: "let takeoffTime = now() + 5",
-        steps: [
-            {
-                badge: 1,
-                title: "Git Clone",
-                description: "Download the project to your computer.",
-                imageSrc: "/path/to/image1.png",
-                imageAlt: "Git Clone Image"
-            },
-            {
-                badge: 2,
-                title: "Customize",
-                description: "Customize the configuration to fit your project and make it your own.",
-                imageSrc: "/path/to/image2.png",
-                imageAlt: "Code Away Image"
-            },
-            {
-                badge: 3,
-                title: "Deploy",
-                description: "Deploy your project and share it with the world.",
-                imageSrc: "/path/to/image3.png",
-                imageAlt: "Deploy Image"
-            }
-        ],
-    },
-    features: {
         show: true,
-        title: "Tired of starting from scratch?",
-        subtitle: "Everything you need to launch your ideas. Tired of having to set up auth, payments, databases, components, SEO,... the list goes on. Runway has you covered.",
+        title: "Get started in seconds",
+        subtitle: "let takeoffTime = now() + 5 minutes",
     },
     pricing: {
         title: "Pricing",

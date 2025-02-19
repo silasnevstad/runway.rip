@@ -6,7 +6,7 @@ import { createClient } from '@/utils/supabase/server';
 import appConfig from '@/config';
 import { SignupFormSchema, LoginFormSchema } from '@/app/lib/definitions';
 
-export async function signup(formData) {
+export async function passwordSignup(formData) {
     const validatedFields = SignupFormSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
@@ -26,7 +26,23 @@ export async function signup(formData) {
     redirect(appConfig.afterLoginPath);
 }
 
-export async function signin(formData) {
+export async function resetPassword(formData) {
+    const email = formData.get('email');
+    if (!email) {
+        return { errors: { email: 'Email is required.' } };
+    }
+
+    const supabase = createClient();
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: process.env.NEXT_PUBLIC_URL + '/account/update-password',
+    });
+    if (error) {
+        return { errors: { email: error.message } };
+    }
+    return { message: 'Check your email for a password reset link.' };
+}
+
+export async function passwordSignin(formData) {
     const validatedFields = LoginFormSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
@@ -63,8 +79,7 @@ export async function passwordlessSignin(formData) {
     return { message: 'Check your email for a magic link.' };
 }
 
-export async function signinWithOAuth(formData) {
-    const provider = formData.get('provider');
+export async function signinWithOAuth(provider) {
     if (!provider) {
         return { errors: { provider: 'No OAuth provider specified.' } };
     }

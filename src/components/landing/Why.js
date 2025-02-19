@@ -19,7 +19,7 @@ export default function Why() {
 
                 {/*<div className="flex flex-col gap-2 bg-green-500/70 dark:bg-orange-900/50 p-7 text-xl font-semibold text-center text-gray-100 dark:text-gray-500">*/}
                 <TerminalCard className="flex flex-col gap-2 text-lg font-regular max-w-xl dark:bg-purple-900/10">
-                    <span className="dark:text-red-400 text-red-500 ml-2">npx create-next-app</span>
+                    <span className="dark:text-red-400 text-red-500">npx create-next-app</span>
                     <p>
                         + <span className="dark:text-red-400 text-red-500 font-semibold text-2xl -ml-1.5">3</span> hrs configuring auth
                     </p>

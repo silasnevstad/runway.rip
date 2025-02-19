@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React from 'react';
 import OAuthButton from './OAuthButton';
 import Divider from '@/components/atoms/Divider';
@@ -6,9 +7,7 @@ import { signinWithOAuth } from '@/app/actions/auth';
 
 const OAuthButtons = ({ providers = [] }) => {
     const handleOAuth = async (provider) => {
-        const formData = new FormData();
-        formData.append('provider', provider);
-        await signinWithOAuth(formData);
+        await signinWithOAuth(provider);
     };
 
     if (!providers.length) return null;

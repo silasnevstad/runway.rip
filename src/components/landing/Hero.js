@@ -15,7 +15,7 @@ export default function Hero({
     imageSrc = "",
     imageAlt = "",
 }) {
-    const { heroSection } = landingConfig;
+    const { hero } = landingConfig;
 
     return (
         <section className="relative flex items-center justify-center w-full min-h-screen py-16">
@@ -33,15 +33,15 @@ export default function Hero({
                         <MadeWith className="-mt-8" />
 
                         <TextHighlight
-                            text={heroSection.textHighlight.text}
-                            highlight={heroSection.textHighlight.highlight}
+                            text={hero.textHighlight.text}
+                            highlight={hero.textHighlight.highlight}
                             effect="gradient"
                             gradientColors={["from-primary-600", "to-purple-500"]}
                             className={`text-${textPosition}`}
                         />
 
                         <p className={`text-lg opacity-60 font-semibold max-w-[45ch] text-${textPosition}`}>
-                            {heroSection.description}
+                            {hero.description}
                         </p>
 
                         <div className={
@@ -50,15 +50,22 @@ export default function Hero({
                         }>
                             <Button className="w-fit" onClick={() => window.location.href = "#pricing"}>
                                 <RocketLaunchIcon className="w-5 h-5" />
-                                {heroSection.buttonText}
+                                {hero.buttonText}
                             </Button>
-                            <p className="flex items-center text-sm opacity-100 font-semibold">
-                                <GiftIcon className="w-5 h-5 mr-1 text-primary-500" />
-                                <span className="text-primary-500 mr-1">50$</span> off for first 1000 users (12 left)
-                            </p>
+                            {hero.buttonSubText && (
+                                <p className="text-sm opacity-60 font-semibold">
+                                    {hero.buttonSubText}
+                                </p>
+                            )}
+                            {hero.promo && (
+                                <p className="flex items-center text-sm opacity-100 font-semibold">
+                                    <GiftIcon className="w-5 h-5 mr-1 text-primary-500" />
+                                    <span className="text-primary-500 mr-1">50$</span> off for first 1000 users (12 left)
+                                </p>
+                            )}
                         </div>
 
-                        {heroSection.trustedBy && (
+                        {hero.trustedBy && (
                             <div className="mt-8">
                                 <TrustedBy />
                             </div>
@@ -69,12 +76,11 @@ export default function Hero({
                     <div className="w-full lg:w-1/2 flex justify-center">
                         {/* Replace below with your own image or illustration */}
                         {imageSrc && (
-                            <div className="relative w-full max-w-md aspect-[16/9] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm mb-10 -mt-5">
+                            <div className="relative w-full h-full max-w-lg aspect-[10/14]">
                                 <Image
                                     src={imageSrc}
                                     alt={imageAlt}
                                     fill
-                                    style={{ objectFit: "cover" }}
                                 />
                             </div>
                         )}

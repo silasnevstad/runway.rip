@@ -1,12 +1,12 @@
 'use client'
 import React from 'react';
 import { useFormState } from 'react-dom';
-import { signin, signup } from '@/app/actions/auth';
+import { passwordSignin, passwordSignup } from '@/app/actions/auth';
 import AuthFormFields from './AuthFormFields';
 import LoadingButton from './LoadingButton';
 
 const PasswordAuthForm = ({ mode = 'sign-in' }) => {
-    const [state, action] = useFormState(mode === 'sign-in' ? signin : signup);
+    const [state, action] = useFormState(mode === 'sign-in' ? passwordSignin : passwordSignup);
 
     return (
         <form className="flex flex-col w-full gap-2" action={action}>

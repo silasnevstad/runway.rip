@@ -48,7 +48,7 @@ const Badge = ({
     };
 
     const borderColor =
-        style === "soft" ? `border-${color}-800` : `border-${color}-600`;
+        style === "soft" ? `border-${color}-800` : `border-${color}-900`;
     const borderStyles = border ? `border ${borderColor}` : "";
 
     const hoverStyles = hover

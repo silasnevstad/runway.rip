@@ -1,5 +1,5 @@
-import { sendSupportEmail } from "@/libs/mailgun/mailgun";
 import { handleSubscriptionCreated, handleSubscriptionUpdated, handleSubscriptionDeleted } from "./subscriptionHandlers";
+import {sendSupportEmail, sendNoReplyEmail, sendThankYouEmail} from "@/libs/resend/resend";
 
 /*
 Common Stripe events:
@@ -16,25 +16,9 @@ Common Stripe events:
 
 async function handleCheckoutSessionCompleted(session) {
     const userEmail = session.customer_details?.email;
-    if (userEmail) {
-        await handleThankYouEmail(userEmail);
-    }
-}
-
-async function handleThankYouEmail(email) {
-    const subject = "Thank you for your payment!";
-    const message = `
-    Hi there!
-    
-    Thank you for your recent payment. We appreciate your support!
-    
-    Best regards,
-    Your Team
-  `;
-    try {
-        await sendSupportEmail(email, subject, message);
-    } catch (error) {
-        console.error("Error sending thank you email:", error);
+    const userFirstName = session.customer_details?.first_name;
+    if (userEmail && userFirstName) {
+        await sendThankYouEmail({ userEmail, userFirstName });
     }
 }
 
