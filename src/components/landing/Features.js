@@ -25,7 +25,7 @@ export default function Features() {
             <div className="flex flex-col items-center w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6 max-w-prose"
                  id="features">
                 <p className="text-lg font-mono text-orange-500 opacity-90 font-normal mb-2">
-                    const launchTime = {hours12}:{minutes + 10} {ampm}
+                    const launchTime = {hours12}:{minutes + 6} {ampm}
                 </p>
                 <h3 className="text-2xl sm:text-3xl font-semibold text-center mb-0 text-gray-900 dark:text-gray-100">
                     {features.title}

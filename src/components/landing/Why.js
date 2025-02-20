@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
+import { IoBriefcaseOutline } from "react-icons/io5";
 
 import { StandoutCard } from "@/components/atoms/CustomCards";
 import { landingConfig } from "@/config";
@@ -67,12 +68,13 @@ export default function Why() {
             className={`flex flex-col items-center w-full`}
         >
             <div
-                className="flex flex-col items-center w-3/5 max-xl:w-3/5 max-lg:w-4/6 max-sm:w-5/6"
+                className="relative flex flex-col items-center w-3/5 max-xl:w-3/5 max-lg:w-4/6 max-sm:w-5/6 max-w-prose"
                 id="why"
             >
-                <h2 className="text-4xl font-black text-gray-800 dark:text-gray-100 text-center mb-15 max-w-[30ch]">
-                    {why.title}
-                </h2>
+                <IoBriefcaseOutline className="absolute -top-16 -right-16 text-gray-200 dark:text-orange-500/20 text-[300px] opacity-10" />
+                <p className="text-4xl font-black text-gray-800 dark:text-gray-100 text-center mb-15 max-w-[30ch]">
+                    Save endless hours of headaches and get right to business
+                </p>
 
                 {/*<div className="flex flex-col gap-2 bg-green-500/70 dark:bg-orange-900/50 p-7 text-xl font-semibold text-center text-gray-100 dark:text-gray-500">*/}
                 <StandoutCard innerClassName="flex flex-col gap-2 text-xl font-regular max-w-xl p-10">

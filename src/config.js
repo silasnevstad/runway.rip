@@ -11,7 +11,6 @@ const appConfig = {
         github: 'https://github.com/runway-app',
         linkedin: ''
     },
-    emailSubdomain: "mail",
     supportEmail: "Runway Support <support@runway.rip>",
     noReplyEmail: "Runway <noreply@runway.rip>",
     authMethods: ['magiclink', 'google', 'github'],             // password, magiclink, google, github, apple, facebook
@@ -97,7 +96,7 @@ export const landingConfig = {
             text: "Code less, launch faster.",
             highlight: "launch faster."
         },
-        description: "The Next.js boilerplate to build your SaaS, AI tool, or web app and start monetizing in hours, not weeks.",
+        description: "Everything you need in a Next.js boilerplate, so you can focus on innovation instead of configuration.",
         buttonText: "Get Started",
         promo: {
             show: true,
@@ -123,7 +122,7 @@ export const landingConfig = {
     },
     why: {
         show: true,
-        title: "Save endless hours of setup and headaches and get right to business",
+        title: "Save endless hours of headaches and get right to business",
     },
     who: {
         show: true,

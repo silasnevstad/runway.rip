@@ -1,4 +1,3 @@
-// app/api/send/welcome/route.js
 import { NextResponse } from 'next/server';
 import resend from '@/libs/resend/resend';
 import { WelcomeEmailTemplate } from '@/libs/resend/templates';
