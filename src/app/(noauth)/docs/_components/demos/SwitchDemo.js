@@ -1,6 +1,6 @@
 "use client";
 
-import Switch from "@/components/atoms/Switch";
+import Switcher from "@/components/atoms/Switcher";
 import {useState} from "react";
 
 export default function SwitchDemo({
@@ -18,7 +18,7 @@ export default function SwitchDemo({
 
     return (
         <div className="flex flex-wrap gap-3">
-            <Switch
+            <Switcher
                 options={options}
                 selected={selectedOption}
                 onChange={setSelectedOption}

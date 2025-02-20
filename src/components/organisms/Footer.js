@@ -3,6 +3,7 @@ import TextLink from "@/components/atoms/TextLink";
 import { FaInstagram, FaXTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import MadeWithTag from "@/components/atoms/MadeWithTag";
 import Divider from "@/components/atoms/Divider";
+import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
 
 const Footer = () => {
     const { appName, appDescription, socialMedia } = appConfig;
@@ -14,6 +15,7 @@ const Footer = () => {
                     <p className="text-gray-500">{appDescription}</p>
                     <p className="text-gray-500 mb-2">Copyright © 2024. All Rights Reserved.</p>
                     <MadeWithTag style="vertical" />
+                    <ThemeSwitcher className="mt-4" />
                 </div>
                 <div className="flex max-xl:pr-10 max-sm:gap-10 gap-3">
                     <div className="flex flex-col gap-3 opacity-80">

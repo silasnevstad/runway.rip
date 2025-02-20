@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import Switch from "@/components/atoms/Switch";
+import Switcher from "@/components/atoms/Switcher";
 
 const TutorialGuide = ({ options, firstPage, secondPage }) => {
     const [selectedOption, setSelectedOption] = useState(options[0].value);
 
     return (
         <div className="flex flex-col items-start">
-            <Switch
+            <Switcher
                 options={options}
                 selected={selectedOption}
                 onChange={setSelectedOption}

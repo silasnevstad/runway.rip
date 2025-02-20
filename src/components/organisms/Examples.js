@@ -17,7 +17,7 @@ import BarGraph from "@/components/atoms/BarGraph";
 import CodeBlock from "@/components/atoms/CodeBlock";
 import Checkbox from "@/components/atoms/Checkbox";
 import Toggle from "@/components/atoms/Toggle";
-import Switch from "@/components/atoms/Switch";
+import Switcher from "@/components/atoms/Switcher";
 import FileInput from "@/components/atoms/FileDrop";
 import FileInput from "@/components/atoms/FileInput";
 import Indicator from "@/components/atoms/Indicator";
@@ -149,7 +149,7 @@ def code:
                 />
             </div>
             <div className="flex gap-2">
-                <Switch
+                <Switcher
                     options={
                         [
                             {name: 'Home', value: 'home', Icon: HomeIcon},

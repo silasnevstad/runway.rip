@@ -22,9 +22,10 @@ function BreadcrumbItem({ href, title, isLast, delimiter, isInteractiveLast }) {
         <>
             <Link
                 href={href}
-                className={`transition-opacity hover:opacity-100 ${
-                    isLast ? "opacity-50" : "opacity-30"
-                }`}
+                className={
+                    `text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100
+                    ${isLast ? "opacity-50" : "opacity-40 hover:opacity-80"}`
+                }
             >
                 {title}
             </Link>

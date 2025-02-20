@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import PlanCard from "@/components/payments/PlanCard";
 import { pricingConfig } from "@/config";
-import Switch from "@/components/atoms/Switch";
+import Switcher from "@/components/atoms/Switcher";
 
 export default function PricingPlans() {
     const { plans } = pricingConfig;
@@ -38,7 +38,7 @@ export default function PricingPlans() {
             {/* Only show a toggle if at least one plan has multiple intervals. */}
             {hasIntervalToggle && (
                 <div className="flex items-center justify-center">
-                    <Switch
+                    <Switcher
                         options={[
                             { name: "Monthly", value: "monthly" },
                             { name: "Yearly", value: "yearly" },

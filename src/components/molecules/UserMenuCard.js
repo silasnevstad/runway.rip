@@ -2,7 +2,7 @@
 
 import Card from "@/components/atoms/Card";
 import React from "react";
-import Switch from "@/components/atoms/Switch";
+import Switcher from "@/components/atoms/Switcher";
 import { PiMoonBold, PiSunBold } from "react-icons/pi";
 
 const UserMenuCard = ({
@@ -26,7 +26,7 @@ const UserMenuCard = ({
                     <div
                         className="flex justify-between items-end gap-4 pl-2">
                         <p className="pl-1">Theme</p>
-                        <Switch
+                        <Switcher
                             options={[
                                 {value: "light", Icon: PiSunBold},
                                 {value: "dark", Icon: PiMoonBold}

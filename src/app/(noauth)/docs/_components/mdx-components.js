@@ -34,7 +34,7 @@ import { BiCheck } from "react-icons/bi";
 import DropdownText from "@/components/atoms/DropdownText";
 import FileDrop from "@/components/atoms/FileDrop";
 import FileInput from "@/components/atoms/FileInput";
-import Switch from "@/components/atoms/Switch";
+import Switcher from "@/components/atoms/Switcher";
 import SwitchDemo from "@/app/(noauth)/docs/_components/demos/SwitchDemo";
 import {FileDropDemo} from "@/app/(noauth)/docs/_components/demos/FileDropDemo";
 import { LuUpload } from "react-icons/lu";
@@ -226,7 +226,7 @@ export const mdxComponents = {
     FileDrop: FileDrop,
     FileDropDemo: FileDropDemo,
     FileInput: FileInput,
-    Switch: Switch,
+    Switch: Switcher,
     SwitchDemo: SwitchDemo,
     TextLink: TextLink,
     TextLinkIconDemo: TextLinkIconDemo,

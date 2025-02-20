@@ -11,6 +11,7 @@ import DocumentationSidebar from "@/app/(noauth)/docs/_components/DocumentationS
 import { mergeClasses } from "@/utils/classNames";
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
 import { emailSupport } from "@/utils/email";
+import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
 
 export default function DocsLayout({ children }) {
     const router = useRouter();
@@ -69,6 +70,7 @@ export default function DocsLayout({ children }) {
                             <RiDiscordLine size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
                             <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">Discord</p>
                         </div>
+                        <ThemeSwitcher className="mt-2" />
                     </div>
                 </div>
             </Sidebar>

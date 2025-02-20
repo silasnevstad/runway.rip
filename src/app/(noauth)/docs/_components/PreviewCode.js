@@ -1,14 +1,14 @@
 'use client'
 
 import { useState } from "react";
-import Switch from "@/components/atoms/Switch";
+import Switcher from "@/components/atoms/Switcher";
 
 const PreviewCode = ({ children, preview, border = false }) => {
     const [showPreview, setShowPreview] = useState(true);
 
     return (
         <div className="my-4 flex flex-col w-full">
-            <Switch
+            <Switcher
                 options={[
                     { name: 'Preview', value: 'preview' },
                     { name: 'Code', value: 'code' },
