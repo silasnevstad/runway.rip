@@ -61,15 +61,13 @@ export default function Landing() {
                     {features.show && <Features />}
                 </div>
 
-                <BackgroundBlur top={250} color={"from-green-600/40 dark:from-green-500/30"}/>
-
                 {/* Why Section */}
-                <div className={`flex flex-col items-center w-full z-10 bg-bg-100 dark:bg-bg-800 pt-20 pb-20`}>
+                <div className={`flex flex-col items-center w-full z-10 bg-bg-100 dark:bg-bg-800 pt-28 pb-28 sm:pb-32`}>
                     {why.show && <Why />}
                 </div>
 
                 {/* How It Works Section */}
-                <div className={`flex flex-col items-center w-full bg-bg-100 dark:bg-bg-800 pb-10`}>
+                <div className={`flex flex-col items-center w-full bg-bg-100 dark:bg-bg-800 pb-30`}>
                     {howItWorks.show && <HowItWorks />}
                 </div>
 
@@ -78,31 +76,8 @@ export default function Landing() {
                     {pricing.show && <Pricing />}
                 </div>
 
-                <BackgroundBlur top={600} color={"from-primary-600/40 dark:from-primary-500/30"}/>
-
-                <div className={`flex flex-col items-center w-full mt-24 pt-20 pb-10 z-10  bg-bg-100 dark:bg-bg-800 gap-20`}>
-                    {who.show &&
-                        <ImageSection
-                            title={who.title}
-                            subtitle={who.subtitle}
-                            description={who.text}
-                            position="left"
-                        >
-                        </ImageSection>
-                    }
-                    {how.show &&
-                        <ImageSection
-                            title={how.title}
-                            subtitle={how.subtitle}
-                            description={how.text}
-                            position="right"
-                        >
-                        </ImageSection>
-                    }
-                </div>
-
                 {/* FAQ Section */}
-                <div className={`flex flex-col items-center w-full pb-20`}>
+                <div className={`flex flex-col items-center w-full pt-10 pb-20`}>
                     {faq.show && <FAQ />}
                 </div>
             </div>

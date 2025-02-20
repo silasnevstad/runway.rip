@@ -18,10 +18,9 @@ export default function Header({
     ctaButton, // optional CTA object
     background = "bg-bg-100 dark:bg-bg-800 border-b border-b-bg-300 dark:border-b-bg-700",
     sticky = false,
-    account = false ,  // optional whether to show account dropdown
+    account = false, // optional whether to show account dropdown
 }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    // since this header can be used for unauthenticated users, we need to only use useUser ({user, setUser}) if account is true
     const [username, setUsername] = useState("");
 
     useEffect(() => {
@@ -31,14 +30,16 @@ export default function Header({
         }
     }, [account]);
 
-
     const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+    // Condition to decide whether to show collapsible mobile menu
+    const showCollapsibleMenu = navLinks.length > 2;
 
     return (
         <header
             className={`flex justify-center p-4 w-full h-14 ${background} ${
-                isDropdownOpen && "bg-opacity-100"
-            } ${sticky && "sticky"} top-0 z-20`}
+                sticky && "sticky"
+            } top-0 z-20`}
         >
             <div className="flex justify-between items-center w-full max-w-7xl px-5 sm:px-8 lg:px-8">
                 {/* Brand Section */}
@@ -76,7 +77,10 @@ export default function Header({
                     )}
                     {account && (
                         <div className="relative">
-                            <button onClick={toggleDropdown} className="flex items-center space-x-2">
+                            <button
+                                onClick={toggleDropdown}
+                                className="flex items-center space-x-2"
+                            >
                                 <Avatar src="/avatar1.png" alt="User Avatar" size="sm" />
                                 <span className="text-sm font-semibold">{username}</span>
                             </button>
@@ -84,25 +88,33 @@ export default function Header({
                     )}
                 </div>
 
-                {/* Mobile Menu Toggle */}
-                <div className="md:hidden flex items-center">
-                    <button onClick={toggleDropdown} className="focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-900 p-2 rounded-md">
-                        {isDropdownOpen ? (
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                        ) : (
-                            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-                        )}
-                    </button>
-                </div>
+                {/* Mobile Menu Toggle (only if more than two links) */}
+                {showCollapsibleMenu && (
+                    <div className="md:hidden flex items-center">
+                        <button
+                            onClick={toggleDropdown}
+                            className="focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-900 p-2 rounded-md"
+                        >
+                            {isDropdownOpen ? (
+                                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                            ) : (
+                                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                            )}
+                        </button>
+                    </div>
+                )}
             </div>
 
-            {/* Mobile Nav Dropdown */}
-            {isDropdownOpen && (
-                <div
-                    className={`absolute top-16 left-0 w-full ${background} bg-opacity-100 shadow-md z-10 transition-all ${
-                        isDropdownOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-                    } overflow-hidden duration-300 ease-in-out`}
-                >
+            {/* Mobile Nav Dropdown (only if more than two links) */}
+            {showCollapsibleMenu && isDropdownOpen && (
+                <div className={
+                    `absolute top-16 left-0 w-full 
+                    ${background} bg-opacity-100 shadow-md z-10 
+                    overflow-hidden 
+                    transition-[max-height,opacity,transform] duration-300 ease-in-out 
+                    ${isDropdownOpen ? "max-h-screen opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"}
+                    `
+                }>
                     <div className="flex flex-col items-center space-y-4 p-4 text-lg">
                         {navLinks.map((navItem, idx) => (
                             <TextLink

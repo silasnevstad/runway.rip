@@ -8,7 +8,7 @@ const Footer = () => {
     const { appName, appDescription, socialMedia } = appConfig;
     return (
         <footer className="flex items-center justify-center p-4 w-full bg-bg-0 dark:bg-bg-900 border-t border-gray-200 rounded-tr-3xl dark:border-gray-700 pt-5 pb-10 z-10">
-            <div className="flex max-md:flex-col-reverse max-md:gap-10 max-w-7xl w-full justify-between p-8">
+            <div className="flex max-md:flex-col-reverse max-md:gap-10 w-full max-w-7xl px-5 sm:px-8 lg:px-8 justify-between p-8">
                 <div className="flex flex-col text-left items-start">
                     <h1 className="text-2xl font-semibold">{appName}</h1>
                     <p className="text-gray-500">{appDescription}</p>

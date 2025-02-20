@@ -4,7 +4,6 @@ import React from "react";
 import { FiGithub } from "react-icons/fi";
 import { Cog8ToothIcon, RocketLaunchIcon as RocketLaunchIconOutline } from "@heroicons/react/24/outline";
 import { landingConfig } from "@/config";
-import Card from "@/components/atoms/Card";
 import Badge from "@/components/atoms/Badge";
 import {StandoutCard} from "@/components/atoms/CustomCards";
 
@@ -16,7 +15,7 @@ export default function HowItWorks() {
             id="how-it-works"
             className="flex flex-col items-center w-full gap-2"
         >
-            <div className="flex flex-col pt-32 gap-5">
+            <div className="flex flex-col gap-5">
                 <div className="flex flex-col items-center gap-2">
                     <h3 className="text-4xl font-semibold text-start mb-0 text-gray-800 dark:text-gray-100">
                         {howItWorks.title}
@@ -61,10 +60,10 @@ function Step({ number, Icon, title, description, duration, tags }) {
     return (
         <div className="flex flex-row gap-4 items-center">
             <div className="relative group p-3 rounded-2xl hover:bg-primary-500/90 z-10">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-semibold text-gray-500/15 dark:text-gray-500/5 group-hover:hidden z-0">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-semibold text-gray-500/10 dark:text-gray-500/5 group-hover:hidden z-0">
                     {number}
                 </div>
-                <Icon className="w-9 h-9 text-primary-500 group-hover:text-gray-50 z-20" />
+                <Icon className="w-9 h-9 text-primary-500 dark:group-hover:text-gray-200 group-hover:text-gray-50 z-20" />
             </div>
             <div className="flex flex-col gap-1 items-start">
                 <p className="text-xl font-semibold opacity-90">

@@ -149,7 +149,7 @@ export const landingConfig = {
     howItWorks: {
         show: true,
         title: "Get started in seconds",
-        subtitle: "let takeoffTime = now() + 5 minutes",
+        subtitle: "Focus on what matters most",
     },
     pricing: {
         title: "Pricing",

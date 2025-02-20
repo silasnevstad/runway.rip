@@ -1,7 +1,11 @@
+'use client';
+
+import { useEffect, useRef, useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
 
 import { StandoutCard } from "@/components/atoms/CustomCards";
 import { landingConfig } from "@/config";
+
 
 const TimeSpentCard = ({ hours, text }) => (
     <div className="flex items-end text-xl font-semibold">
@@ -13,19 +17,43 @@ const TimeSpentCard = ({ hours, text }) => (
     </div>
 );
 
-// a dashed line, horizontal or vertical, with a line width of w-width and color of color
-// do not use border-t border-dashed since this does not let use change the width and gap
-function Runway({ vertical = false, width = "16", color = "primary" }) {
-    //  we need a smart way to calculate how many divs we need to fill the space
-    // calculate the outer width of the div, then divide by the width of the div + ga
+// Dynamic dashed runway component
+function Runway({ vertical = false, dashSize = 40, gapSize = 28, color = "primary" }) {
+    const containerRef = useRef(null);
+    const [numDashes, setNumDashes] = useState(0);
+
+    useEffect(() => {
+        const updateDashCount = () => {
+            if (containerRef.current) {
+                const availableSpace = vertical
+                    ? containerRef.current.clientHeight
+                    : containerRef.current.clientWidth;
+                const dashCount = Math.floor(availableSpace / (dashSize + gapSize));
+                setNumDashes(dashCount);
+            }
+        };
+
+        updateDashCount();
+        window.addEventListener("resize", updateDashCount);
+        return () => window.removeEventListener("resize", updateDashCount);
+    }, [dashSize, gapSize, vertical]);
+
     return (
-        <div className={`flex ${vertical ? "flex-col h-full" : "w-full"} items-center space-x-6 min-w-0 flex-1`}>
-            <div className={`${vertical ? `w-2 h-${width}` : `w-${width} h-2`}  h-2 bg-${color}-500 dark:bg-${color}-500`} />
-            <div className={`${vertical ? `w-2 h-${width}` : `w-${width} h-2`} bg-${color}-500 dark:bg-${color}-500`} />
-            <div className={`${vertical ? `w-2 h-${width}` : `w-${width} h-2`} bg-${color}-500 dark:bg-${color}-500`} />
-            <div className={`${vertical ? `w-2 h-${width}` : `w-${width} h-2`} bg-${color}-500 dark:bg-${color}-500`} />
-            <div className={`${vertical ? `w-2 h-${width}` : `w-${width} h-2`} bg-${color}-500 dark:bg-${color}-500`} />
-            <div className={`${vertical ? `w-2 h-${width}` : `w-${width} h-2`} bg-${color}-500 dark:bg-${color}-500`} />
+        <div
+            ref={containerRef}
+            className={`flex ${vertical ? "flex-col h-full" : "w-full"} items-center min-w-0 flex-1 justify-between`}
+            // style={{ gap: `${gapSize}px` }}
+        >
+            {Array.from({ length: numDashes }).map((_, index) => (
+                <div
+                    key={index}
+                    className={`bg-${color}-500/60 dark:bg-${color}-500/40`}
+                    style={{
+                        width: vertical ? "8px" : `${dashSize}px`,
+                        height: vertical ? `${dashSize}px` : "8px",
+                    }}
+                />
+            ))}
         </div>
     );
 }
@@ -65,18 +93,18 @@ export default function Why() {
                         <span className="ml-2">of <span className="underline">busy work</span></span>
                     </div>
                 </StandoutCard>
+            </div>
 
-                <div className="flex items-center w-full gap-4 mt-20">
-                    {/*dashed divider horizontal*/}
-                    <Runway />
-                    <div className="flex items-center gap-2 text-lg text-center">
-                        <p className="text-gray-800 dark:text-gray-100 whitespace-nowrap">
-                            <span className="font-semibold">With Runway,</span> there's a better way.
-                        </p>
-                        <FaArrowDown className="text-xl animate-bounce" />
-                    </div>
-                    <Runway />
+            <div className="flex items-center w-full gap-8 mt-28 sm:mt-32">
+                {/*dashed divider horizontal*/}
+                <Runway />
+                <div className="flex items-center gap-2 text-lg text-center">
+                    <p className="text-gray-800 dark:text-gray-100 whitespace-nowrap">
+                        <span className="font-semibold">With Runway,</span> there's a better way.
+                    </p>
+                    <FaArrowDown className="text-xl animate-bounce" />
                 </div>
+                <Runway />
             </div>
         </section>
     );
