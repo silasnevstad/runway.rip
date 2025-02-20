@@ -18,7 +18,7 @@ export default function PlanFeatures({ planFeatures, allFeatures }) {
                     <li key={idx} className="flex items-center gap-3 opacity-70">
                         {included ? (
                             // <FaCheck className="w-6 h-6 text-primary-500 bg-primary-500/20 rounded-full p-1 m-0 border" />
-                            <MdCheck className="w-6 h-6 " />
+                            <MdCheck className="w-6 h-6 text-green-500" />
                         ) : (
                             // <FaXmark className="w-6 h-6 text-red-500 bg-red-500/20 rounded-full p-1 m-0 border" />
                             <MdOutlineClose className="w-6 h-6 text-red-500 " />

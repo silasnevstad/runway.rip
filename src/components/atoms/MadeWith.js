@@ -16,7 +16,7 @@ export default function MadeWith({
 }) {
     return (
         <div className={mergeClasses(`flex gap-3 items-center opacity-90`, className)}>
-            <p className="text-base max-sm:text-sm font-semibold opacity-60">
+            <p className="text-sm font-semibold opacity-60">
                 Made with:
             </p>
             {items.map((item, idx) => (

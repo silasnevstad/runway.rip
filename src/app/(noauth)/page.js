@@ -50,16 +50,14 @@ export default function Landing() {
 
             <div className="flex items-center flex-col w-full z-10">
                 {/* Hero Section */}
-                <div className={`w-full`}>
-                    <Hero
-                        textPosition={hero.textPosition}
-                        imageSrc={hero.image.src}
-                        imageAlt={hero.image.alt}
-                    />
-                </div>
+                <Hero
+                    textPosition={hero.textPosition}
+                    imageSrc={hero.image.src}
+                    imageAlt={hero.image.alt}
+                />
 
                 {/* Features Section */}
-                <div className={`-mt-28 flex flex-col items-center w-full pb-28 z-10`}>
+                <div className={`-mt-30 flex flex-col items-center w-full pb-28 z-10`}>
                     {features.show && <Features />}
                 </div>
 
@@ -71,7 +69,7 @@ export default function Landing() {
                 </div>
 
                 {/* How It Works Section */}
-                <div className={`flex flex-col items-center w-full pb-10`}>
+                <div className={`flex flex-col items-center w-full bg-bg-100 dark:bg-bg-800 pb-10`}>
                     {howItWorks.show && <HowItWorks />}
                 </div>
 

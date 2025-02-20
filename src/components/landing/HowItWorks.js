@@ -6,6 +6,7 @@ import { Cog8ToothIcon, RocketLaunchIcon as RocketLaunchIconOutline } from "@her
 import { landingConfig } from "@/config";
 import Card from "@/components/atoms/Card";
 import Badge from "@/components/atoms/Badge";
+import {StandoutCard} from "@/components/atoms/CustomCards";
 
 export default function HowItWorks() {
     const { howItWorks } = landingConfig;
@@ -25,7 +26,7 @@ export default function HowItWorks() {
                     </p>
                 </div>
 
-                <Card className="flex flex-col md:flex-col gap-10 text-left mt-2 shadow-md">
+                <StandoutCard innerClassName="flex flex-col md:flex-col gap-10 text-left shadow-md">
                     {/* 1) Git clone */}
                     <Step
                         number={1}
@@ -50,7 +51,7 @@ export default function HowItWorks() {
                         description="Share your project with the world."
                         duration="~5"
                     />
-                </Card>
+                </StandoutCard>
             </div>
         </section>
     );

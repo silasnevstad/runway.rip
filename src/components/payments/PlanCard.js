@@ -14,11 +14,12 @@ export default function PlanCard({
     const { type, title, description, subText, features, isPopular, mode } = plan;
 
     return (
-        <div
-            className={`relative flex flex-col gap-4 px-6 py-8 rounded-2xl w-full 
-        bg-bg-50 dark:bg-gray-900 shadow-sm
-        ${isPopular ? "border-2 border-primary-400" : ""}`}
-        >
+        <div className={
+            `relative flex flex-col gap-4 px-6 py-8 rounded-2xl
+            bg-bg-50 dark:bg-gray-900 shadow-sm 
+            w-80 lg:w-88
+            ${isPopular ? "border-2 border-primary-400" : ""}`
+        }>
             {isPopular && (
                 <div className="absolute -top-0 left-1/2 -translate-y-1/2 -translate-x-1/2">
                     <Badge shape="pill" style="solid" size="medium">

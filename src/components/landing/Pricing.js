@@ -18,10 +18,10 @@ export default function Pricing() {
                 <h3 className="text-2xl font-bold text-center text-primary-500">
                     {pricing.title}
                 </h3>
-                <h2 className="text-5xl font-black max-w-[20ch] text-center mb-16 text-gray-800 dark:text-gray-100">
+                <h2 className="text-5xl font-black max-w-[20ch] text-center mb-16 text-bg-800 dark:text-gray-100">
                     {pricing.subtitle}
                 </h2>
-                <div className="flex flex-col items-center w-5/6 max-xl:w-5/6 max-lg:w-5/6 max-md:w-4/6 max-sm:6/7 max-sm:gap-0">
+                <div className="flex flex-col items-center max-sm:gap-0">
                     <PricingPlans />
                 </div>
             </div>

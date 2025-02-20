@@ -3,6 +3,8 @@ import TextLink from "@/components/atoms/TextLink";
 import TextHighlight from "@/components/atoms/TextHighlight";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import React from "react";
+import {landingConfig} from "@/config";
 
 export default function WaitlistPage() {
     return (
@@ -14,11 +16,11 @@ export default function WaitlistPage() {
             </div>
             <div className="flex flex-col gap-1 items-center">
                 <TextHighlight
-                    text="Code less, launch faster."
-                    highlight="launch faster."
-                    effect="gradient"
-                    gradientColors={['from-primary-600', 'to-purple-500']}
-                    textSize="text-4xl max-sm:text-3xl"
+                    text={landingConfig.hero.textHighlight.text}
+                    highlight={landingConfig.hero.textHighlight.highlight}
+                    // gradientColors={["primary", "purple"]}
+                    className={`text-${landingConfig.hero.textPosition} mt-6`}
+                    // highlightClassName={`from-primary-600`}
                 />
                 <div className="flex gap-3 items-center">
                     <p className="font-semibold opacity-50">

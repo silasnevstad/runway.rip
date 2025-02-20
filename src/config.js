@@ -88,20 +88,33 @@ export const landingConfig = {
         logo: true,
     },
     hero: {
-        textPosition: "left",
+        textPosition: "center",
         image: {
-            src: "/hero.png",
+            // src: "/hero.png",
             alt: "Hero Image"
         },
         textHighlight: {
             text: "Code less, launch faster.",
             highlight: "launch faster."
         },
-        description: "A NextJS boilerplate to build your SaaS, AI tool, or web app and start monetizing in hours, not weeks.",
+        description: "The Next.js boilerplate to build your SaaS, AI tool, or web app and start monetizing in hours, not weeks.",
         buttonText: "Get Started",
-        buttonSubText: "No credit card required",
-        promo: true,
-        trustedBy: false,
+        promo: {
+            show: true,
+            price: 50,
+            text: "off for first 1000 users (12 left)",
+        },
+        trustedBy: {
+            show: true,
+            text: "Trusted by 200+ people",
+            avatars: [
+                {src: "/avatar1.png", alt: "Avatar 1"},
+                {src: "/avatar2.png", alt: "Avatar 2"},
+                {src: "/avatar3.png", alt: "Avatar 3"},
+                {src: "/avatar1.png", alt: "Avatar 1"},
+            ],
+            numStars: 4,
+        }
     },
     features: {
         show: true,
@@ -152,16 +165,17 @@ export const landingConfig = {
 export const featuresConfig = [
     {
         title: "Auth",
-        features: ["Email/password login", "Social auth", "Login/Signup pages"],
         description: "Implement robust user authentication and authorization using Supabase.",
+        features: ["Magic links & Social auth", "Email/password login", "Login/Signup pages", "Protected routes"],
+
         icon: FaUserShield,
         imageSrc: "/logos/supabase.png",
         imageAlt: "Supabase"
     },
     {
         title: "Payments",
-        features: ["Securely accept payments", "Manage subscriptions", "Ensure PCI compliance"],
         description: "Securely accept payments and manage subscriptions with Stripe integration.",
+        features: ["One time payments", "Subscriptions", "Webhook handling (to update user's account)", "Invoices"],
         icon: FaRegCreditCard,
         imageSrc: "/logos/stripe.png",
         imageAlt: "Stripe"

@@ -2,6 +2,7 @@
 
 import { mergeClasses } from "@/utils/classNames";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import Card from "@/components/atoms/Card";
 
 export const TerminalCard = ({
     children,
@@ -10,9 +11,9 @@ export const TerminalCard = ({
     ...props
 }) => {
     const containerStyles = `
-    relative w-full rounded-md shadow-md 
-    bg-gray-900/75 dark:bg-gray-800/50 
-    text-gray-100 dark:text-gray-100
+    relative rounded-md shadow-md 
+    bg-gray-900/75 dark:bg-gray-800/30 
+    text-gray-100 dark:text-gray-100 p-0
     `;
 
     const headerStyles = `
@@ -24,7 +25,7 @@ export const TerminalCard = ({
     const bodyStyles = `p-3 font-mono -mt-2`;
 
     return (
-        <div className={mergeClasses(containerStyles, className)} {...props}>
+        <Card className={mergeClasses(containerStyles, className)} {...props}>
             <div className={headerStyles}>
                 <span className="inline-block w-3 h-3 bg-red-500 rounded-full" />
                 <span className="inline-block w-3 h-3 bg-yellow-500 rounded-full" />
@@ -34,21 +35,22 @@ export const TerminalCard = ({
                 <span className="text-green-500">{terminalText}</span>
                 {children}
             </div>
-        </div>
+        </Card>
     );
 };
 
 export const WebsiteCard = ({
     children,
     className = "",
-    search = false,
+    bodyClassName = "",
+    search = true,
     searchPlaceholder = "",
     ...props
 }) => {
     const containerStyles = `
-    relative w-full rounded-md shadow-md 
+    relative rounded-md shadow-md 
     bg-gray-100 dark:bg-gray-800 
-    text-gray-900 dark:text-gray-100
+    text-gray-900 dark:text-gray-100 p-0
     `;
 
     const headerStyles = `
@@ -57,10 +59,10 @@ export const WebsiteCard = ({
     border-b border-gray-300 dark:border-gray-700
     `;
 
-    const bodyStyles = `p-3 font-mono`;
+    const bodyStyles = `p-3`;
 
     return (
-        <div className={mergeClasses(containerStyles, className)} {...props}>
+        <Card className={mergeClasses(containerStyles, className)} {...props}>
             <div className={headerStyles}>
                 <div className="flex items-center gap-1.5">
                     <span className="inline-block w-3 h-3 bg-red-500 rounded-full" />
@@ -81,7 +83,34 @@ export const WebsiteCard = ({
                     </>
                 )}
             </div>
-            <div className={bodyStyles}>{children}</div>
-        </div>
+            <div className={mergeClasses(bodyStyles, bodyClassName)}>{children}</div>
+        </Card>
     );
 };
+
+export const StandoutCard = ({
+    children,
+    outerClassName = "",
+    innerClassName = "",
+    ...props
+}) => {
+    const outerContainerStyles = `
+    relative shadow-md rounded-2xl p-1.5
+    bg-gray-200/50 dark:bg-gray-800/20 
+    dark:inset-shadow-sm overflow-hidden shadow-sm
+    border-[0.1px] border-gray-200/50 dark:border-gray-800/15
+    `;
+
+    const innerContainerStyles = `
+    flex flex-col items-start
+    bg-bg-50 dark:bg-bg-900 rounded-2xl p-5
+    `;
+
+    return (
+        <Card className={mergeClasses(outerContainerStyles, outerClassName)} border={false} {...props}>
+            <div className={mergeClasses(innerContainerStyles, innerClassName)}>
+                {children}
+            </div>
+        </Card>
+    );
+}

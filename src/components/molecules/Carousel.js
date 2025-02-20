@@ -307,7 +307,7 @@ function MultiCarousel({
     });
 
     return (
-        <div className="relative w-full overflow-hidden">
+        <div className="relative w-full">
             <div
                 ref={trackRef}
                 className={`flex transition-transform duration-300 ease-in-out ${!infinite && 'translate-x-1/2'}`}

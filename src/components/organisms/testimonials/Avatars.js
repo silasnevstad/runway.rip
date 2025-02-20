@@ -1,10 +1,9 @@
 import AvatarList from "@/components/molecules/AvatarList";
 import StarRating from "@/components/atoms/StarRating";
 
-export default function TrustBy({
+export default function AvatarsTestimonial({
     className = "",
     text = "Trusted by 1000+ people",
-    numStars = 5,
     avatars = [
         { src:"/avatar1.png", alt: "Avatar 1" },
         { src:"/avatar2.png", alt: "Avatar 2" },
@@ -18,7 +17,7 @@ export default function TrustBy({
                 avatars={avatars}
             />
             <div className="flex flex-col gap-1">
-                <StarRating numStars={numStars} />
+                <StarRating numStars={5} />
                 <p className="text-1xl">{text}</p>
             </div>
         </section>

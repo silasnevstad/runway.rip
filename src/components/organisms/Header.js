@@ -40,7 +40,7 @@ export default function Header({
                 isDropdownOpen && "bg-opacity-100"
             } ${sticky && "sticky"} top-0 z-20`}
         >
-            <div className="flex justify-between items-center max-w-5xl w-full">
+            <div className="flex justify-between items-center w-full max-w-7xl px-5 sm:px-8 lg:px-8">
                 {/* Brand Section */}
                 <div className="flex items-center">
                     {brand.logoSrc && (
@@ -52,7 +52,7 @@ export default function Header({
                 </div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center space-x-6">
+                <div className="hidden md:flex items-center md:space-x-16">
                     {navLinks.map((navItem, idx) => (
                         <TextLink
                             key={idx}
@@ -86,7 +86,7 @@ export default function Header({
 
                 {/* Mobile Menu Toggle */}
                 <div className="md:hidden flex items-center">
-                    <button onClick={toggleDropdown} className="focus:outline-none">
+                    <button onClick={toggleDropdown} className="focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-900 p-2 rounded-md">
                         {isDropdownOpen ? (
                             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                         ) : (

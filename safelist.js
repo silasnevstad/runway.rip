@@ -6,6 +6,7 @@ const opacities = [0, 5, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 95, 100];
 const gradients = ["from", "to"];
 
 const widths = [0.5, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96];
+const margins = [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96];
 const topPositions = [250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300];
 
 const measurements = [
@@ -13,6 +14,8 @@ const measurements = [
     "h-full",
     ...widths.map((width) => `w-${width}`),
     ...widths.map((width) => `h-${width}`),
+    ...margins.map((width) => `mx-${width}`),
+    ...margins.map((width) => `my-${width}`),
 ];
 
 const topPositionsClasses = topPositions.map((top) => `top-${top}`);

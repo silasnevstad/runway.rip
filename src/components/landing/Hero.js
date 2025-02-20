@@ -5,39 +5,59 @@ import Image from "next/image";
 import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 import Button from "@/components/atoms/Button";
 import TextHighlight from "@/components/atoms/TextHighlight";
-import TrustedBy from "@/components/molecules/TrustedBy";
 import { landingConfig } from "@/config";
 import MadeWith from "@/components/atoms/MadeWith";
-import {GiftIcon} from "@heroicons/react/24/outline";
+import { GiftIcon } from "@heroicons/react/24/outline";
+import AvatarsTestimonial from "@/components/organisms/testimonials/Avatars";
 
 export default function Hero({
     textPosition = "center",
     imageSrc = "",
     imageAlt = "",
+    backgroundGlow = "",
+    glowOpacity = .5,
+    glowSize = "30%",
+    glowBlur = 100
 }) {
     const { hero } = landingConfig;
 
     return (
-        <section className="relative flex items-center justify-center w-full min-h-screen py-16">
-            <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 -mt-18">
+        <section
+            className={
+            `relative flex w-full min-h-screen h-full justify-center
+            ${textPosition !== "center" && "max-w-7xl"}
+            py-16 px-9 sm:px-6 lg:px-8`
+        }>
+            {backgroundGlow && (
+                <div
+                    className={`absolute inset-0 -z-10 pointer-events-none text-${backgroundGlow}-500`}
+                    style={{
+                        backgroundImage: `radial-gradient(circle, currentColor 0%, transparent ${glowSize})`,
+                        filter: `blur(${glowBlur}px)`,
+                        opacity: glowOpacity,
+                    }}
+                />
+            )}
+
+            <div className="w-full z-10 mt-10">
                 <div className={
-                    `flex flex-col-reverse gap-10  lg:items-center
-                    ${textPosition === "right" ? "lg:flex-row-reverse" : textPosition === "center" ? "lg:flex-col-reverse" : "lg:flex-row"}`
+                    `flex gap-10 items-center
+                    ${textPosition === "right" ? "flex-row-reverse" : textPosition === "center" ? "flex-col" : "flex-row"}`
                 }>
                     {/* Text Content */}
                     <div className={
-                        `w-full lg:w-full flex flex-col gap-5 
+                        `w-full flex flex-col gap-4 max-w-3xl
                         ${textPosition === "center" ? "items-center" : textPosition === "right" ? "items-end" : "items-start"}`
                     }>
                         {/* Made With Logos */}
-                        <MadeWith className="-mt-8" />
+                        <MadeWith />
 
                         <TextHighlight
                             text={hero.textHighlight.text}
                             highlight={hero.textHighlight.highlight}
-                            effect="gradient"
-                            gradientColors={["from-primary-600", "to-purple-500"]}
-                            className={`text-${textPosition}`}
+                            gradientColors={["primary", "purple"]}
+                            className={`text-${textPosition} mt-6`}
+                            highlightClassName={`from-primary-600`}
                         />
 
                         <p className={`text-lg opacity-60 font-semibold max-w-[45ch] text-${textPosition}`}>
@@ -45,7 +65,7 @@ export default function Hero({
                         </p>
 
                         <div className={
-                            `flex flex-col gap-3 mt-5
+                            `flex flex-col gap-3 mt-14
                             ${textPosition === "right" ? "items-end" : textPosition === "center" ? "items-center" : "items-start"}`
                         }>
                             <Button className="w-fit" onClick={() => window.location.href = "#pricing"}>
@@ -53,35 +73,31 @@ export default function Hero({
                                 {hero.buttonText}
                             </Button>
                             {hero.buttonSubText && (
-                                <p className="text-sm opacity-60 font-semibold">
-                                    {hero.buttonSubText}
-                                </p>
+                                <p className="text-sm opacity-60 font-semibold">{hero.buttonSubText}</p>
                             )}
-                            {hero.promo && (
+                            {hero.promo.show && (
                                 <p className="flex items-center text-sm opacity-100 font-semibold">
-                                    <GiftIcon className="w-5 h-5 mr-1 text-primary-500" />
-                                    <span className="text-primary-500 mr-1">50$</span> off for first 1000 users (12 left)
+                                    <GiftIcon className="w-5 h-5 mr-1 text-green-500" />
+                                    <span className="text-green-500 mr-1">{hero.promo.price}$</span> {hero.promo.text}
                                 </p>
                             )}
                         </div>
 
-                        {hero.trustedBy && (
-                            <div className="mt-8">
-                                <TrustedBy />
+                        {hero.trustedBy.show && (
+                            <div className="mt-10">
+                                <AvatarsTestimonial
+                                    text={hero.trustedBy.text}
+                                    avatars={hero.trustedBy.avatars}
+                                />
                             </div>
                         )}
                     </div>
 
                     {/* Right Column (Image or Placeholder) */}
                     <div className="w-full lg:w-1/2 flex justify-center">
-                        {/* Replace below with your own image or illustration */}
                         {imageSrc && (
-                            <div className="relative w-full h-full max-w-lg aspect-[10/14]">
-                                <Image
-                                    src={imageSrc}
-                                    alt={imageAlt}
-                                    fill
-                                />
+                            <div className="relative w-full h-full max-w-lg aspect-[16/9]">
+                                <Image src={imageSrc} alt={imageAlt} fill />
                             </div>
                         )}
                     </div>
