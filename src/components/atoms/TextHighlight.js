@@ -1,5 +1,4 @@
 import React from 'react';
-import {makeClassNameImportant} from "@/utils/utils";
 import {mergeClasses} from "@/utils/classNames";
 
 const TextHighlight = ({

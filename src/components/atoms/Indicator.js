@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeClassNameImportant} from "@/utils/utils";
+import { mergeClasses } from "@/utils/classNames";
 
 const Indicator = ({
     className = '',
@@ -26,12 +26,11 @@ const Indicator = ({
     return (
         <div className="relative">
             {children}
-            <div className={
+            <div className={mergeClasses(
                 `absolute ${positionClass} min-w-7 min-h-6 p-1 bg-primary-500 
-                text-center text-white rounded-full text-sm ${ping ? 'animate-ping' : ''}
-                ${makeClassNameImportant(className)}`
-            }
-            >
+                text-center text-white rounded-full text-sm ${ping ? 'animate-ping' : ''}`,
+                className
+            )}>
                 {content}
             </div>
         </div>

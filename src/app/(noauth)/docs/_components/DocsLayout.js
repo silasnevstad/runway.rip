@@ -10,7 +10,7 @@ import SearchBar from "@/components/molecules/SearchBar";
 import DocumentationSidebar from "@/app/(noauth)/docs/_components/DocumentationSidebar";
 import { mergeClasses } from "@/utils/classNames";
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
-import { emailSupport } from "@/utils/email";
+import { openEmailSupport } from "@/utils/email";
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
 
 export default function DocsLayout({ children }) {
@@ -59,7 +59,7 @@ export default function DocsLayout({ children }) {
                     <div className="flex flex-col items-start justify-center p-2 px-4 gap-1 mb-2">
                         <div
                             className="group w-full flex items-center p-2 rounded-lg hover:bg-bg-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
-                            onClick={() => emailSupport()}
+                            onClick={() => openEmailSupport()}
                         >
                             <AiOutlineQuestionCircle size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
                             <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">Help</p>
