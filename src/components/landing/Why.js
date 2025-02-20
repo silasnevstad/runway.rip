@@ -71,7 +71,7 @@ export default function Why() {
                 className="relative flex flex-col items-center w-3/5 max-xl:w-3/5 max-lg:w-4/6 max-sm:w-5/6 max-w-prose"
                 id="why"
             >
-                <IoBriefcaseOutline className="absolute -top-16 -right-16 text-gray-200 dark:text-orange-500/20 text-[300px] opacity-10" />
+                {/*<IoBriefcaseOutline className="absolute -top-16 -right-16 text-gray-200 dark:text-orange-500/20 text-[300px] opacity-10" />*/}
                 <p className="text-4xl font-black text-gray-800 dark:text-gray-100 text-center mb-15 max-w-[30ch]">
                     Save endless hours of headaches and get right to business
                 </p>
