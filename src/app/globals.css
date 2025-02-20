@@ -56,7 +56,8 @@
 
   /* Handle on hover */
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    width: 10px;
+    background: #888;
   }
 }
 

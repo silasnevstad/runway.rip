@@ -21,7 +21,7 @@ export default function DocsLayout({ children }) {
     };
 
     return (
-        <div className="flex h-screen overflow-hidden w-full bg-bg-50 dark:bg-bg-900">
+        <div className="flex h-screen overflow-hidden w-full bg-bg-100 dark:bg-bg-900">
             {/* Left Sidebar */}
             <Sidebar width="56" bgColor="bg-bg-50 dark:bg-bg-900">
                 <div className="flex flex-col">
@@ -55,7 +55,7 @@ export default function DocsLayout({ children }) {
 
                 <DocumentationSidebar />
 
-                <div className="flex flex-col border-t border-gray-200 dark:border-gray-800 w-full">
+                <div className="flex flex-col border-t border-r border-gray-200 dark:border-gray-800 w-full">
                     <div className="flex flex-col items-start justify-center p-2 px-4 gap-1 mb-2">
                         <div
                             className="group w-full flex items-center p-2 rounded-lg hover:bg-bg-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
@@ -70,7 +70,7 @@ export default function DocsLayout({ children }) {
                             <RiDiscordLine size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
                             <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">Discord</p>
                         </div>
-                        <ThemeSwitcher className="mt-2" />
+                        <ThemeSwitcher className="mt-1" />
                     </div>
                 </div>
             </Sidebar>
@@ -106,10 +106,10 @@ export default function DocsLayout({ children }) {
                 </div>
 
                 <div className={mergeClasses(
-                    "w-full h-full px-5 py-6 md:py-8 md:pl-10",
+                    "max-w-full h-full px-5 py-6 md:py-8 md:pl-10",
                     "overflow-y-auto",
                     "bg-bg-0 dark:bg-gray-900",
-                    "max-md:rounded-t-2xl"
+                    "max-md:rounded-t-2xl max-md:mx-2"
                 )}>
                     {children}
                 </div>

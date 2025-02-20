@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/atoms/Breadcrumb";
 import {OnThisPage, SidebarSection} from "@/app/(noauth)/docs/_components/RightSidebar";
 import {DocsNav} from "@/app/(noauth)/docs/Nav";
 
-export default function DocsContentShell({
+export default function DocsPage({
     title,
     description,
     content,
@@ -15,7 +15,7 @@ export default function DocsContentShell({
     return (
         <div className="w-full h-full flex lg:flex-row gap-8">
             {/* MAIN COLUMN */}
-            <article className="flex-1 min-w-0 mx-auto max-w-prose prose">
+            <article className="flex-1 min-w-0 md:mx-auto max-w-prose prose">
                 <Breadcrumb sections={DocsNav} className="mb-2 md:mb-4 lg:mb-8" />
 
                 {title && (

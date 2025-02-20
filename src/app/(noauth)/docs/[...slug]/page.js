@@ -7,7 +7,7 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
 import { mdxComponents } from "../_components/mdx-components";
-import DocsContentShell from "@/app/(noauth)/docs/_components/DocsContentShell";
+import DocsPage from "@/app/(noauth)/docs/_components/DocsPage";
 
 
 const DOCS_DIR = path.join(process.cwd(), "src", "app", "(noauth)", "docs", "content");
@@ -36,7 +36,7 @@ export async function generateStaticParams() {
     return files.map((slugArray) => ({ slug: slugArray }));
 }
 
-export default async function DocsPage({ params }) {
+export default async function Page({ params }) {
     // Build file path from slug
     const filePath = path.join(DOCS_DIR, ...params.slug) + ".mdx";
     if (!fs.existsSync(filePath)) {
@@ -64,7 +64,7 @@ export default async function DocsPage({ params }) {
 
     // Pass it to our docs shell
     return (
-        <DocsContentShell
+        <DocsPage
             title={frontmatter?.title ?? "Untitled"}
             description={frontmatter?.description}
             content={content}
