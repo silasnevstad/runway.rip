@@ -56,7 +56,7 @@ export default function DocsLayout({ children }) {
                 <DocumentationSidebar />
 
                 <div className="flex flex-col border-t border-gray-200 dark:border-gray-800 w-full">
-                    <div className="flex flex-col items-center justify-center p-2 px-4 gap-1 mb-2">
+                    <div className="flex flex-col items-start justify-center p-2 px-4 gap-1 mb-2">
                         <div
                             className="group w-full flex items-center p-2 rounded-lg hover:bg-bg-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                             onClick={() => emailSupport()}
