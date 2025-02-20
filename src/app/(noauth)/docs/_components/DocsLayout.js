@@ -21,11 +21,14 @@ export default function DocsLayout({ children }) {
     };
 
     return (
-        <div className="flex h-screen overflow-hidden w-full bg-bg-100 dark:bg-bg-900">
+        <div className="flex h-screen w-full bg-bg-100 dark:bg-bg-900">
             {/* Left Sidebar */}
             <Sidebar width="56" bgColor="bg-bg-50 dark:bg-bg-900">
                 <div className="flex flex-col">
-                    <div className="flex items-start gap-2 self-start cursor-pointer" onClick={() => router.push('/')}>
+                    <div
+                        className="flex items-start gap-2 self-start cursor-pointer"
+                        onClick={() => router.push('/')}
+                    >
                         <Image
                             src="/logo.png"
                             alt="runway"
@@ -62,13 +65,15 @@ export default function DocsLayout({ children }) {
                             onClick={() => openEmailSupport()}
                         >
                             <AiOutlineQuestionCircle size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
-                            <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">Help</p>
+                            <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">
+                                Help
+                            </p>
                         </div>
-                        <div
-                            className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
-                        >
+                        <div className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer">
                             <RiDiscordLine size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
-                            <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">Discord</p>
+                            <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">
+                                Discord
+                            </p>
                         </div>
                         <ThemeSwitcher className="mt-1" />
                     </div>
@@ -86,7 +91,7 @@ export default function DocsLayout({ children }) {
             </aside>
 
             {/* Main content area */}
-            <main className="flex-1 h-full overflow-y-auto flex flex-col">
+            <main className="flex-1 h-full flex flex-col">
                 <div className="md:hidden flex items-start gap-2 self-start p-3 w-full">
                     <Image
                         src="/logo.png"
@@ -105,12 +110,14 @@ export default function DocsLayout({ children }) {
                     <p className="text-lg font-bold">Runway Docs</p>
                 </div>
 
-                <div className={mergeClasses(
-                    "max-w-full h-full px-5 py-6 md:py-8 md:pl-10",
-                    "overflow-y-auto",
-                    "bg-bg-0 dark:bg-gray-900",
-                    "max-md:rounded-t-2xl max-md:mx-2"
-                )}>
+                <div
+                    className={mergeClasses(
+                        "max-w-full h-full px-5 py-6 md:py-8 md:pl-10",
+                        "overflow-y-auto",
+                        "bg-bg-0 dark:bg-gray-900",
+                        "max-md:rounded-t-2xl max-md:mx-2"
+                    )}
+                >
                     {children}
                 </div>
             </main>
