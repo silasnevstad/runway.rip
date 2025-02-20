@@ -21,11 +21,11 @@ const measurements = [
 const topPositionsClasses = topPositions.map((top) => `top-${top}`);
 
 const safelist = [
-    ...colors.map((color) => colorTones.map((tone) => `bg-${color}-${tone}`)).flat(),
-    ...colors.map((color) => colorTones.map((tone) => `text-${color}-${tone}`)).flat(),
-    ...colors.map((color) => colorTones.map((tone) => `border-${color}-${tone}`)).flat(),
+    ...colors.map((color) => colorTones.map((tone) => `bg-${color}-${tone}`)).flat(),  // bg-color-tone
+    ...colors.map((color) => colorTones.map((tone) => `text-${color}-${tone}`)).flat(),  // text-color-tone
+    ...colors.map((color) => colorTones.map((tone) => `border-${color}-${tone}`)).flat(),  // border-color-tone
 
-    ...opacities
+    ...opacities  // bg-color-tone/opacity
         .map((opacity) =>
             colors
                 .map((color) =>
@@ -34,7 +34,7 @@ const safelist = [
                 .flat()
         )
         .flat(),
-    ...opacities
+    ...opacities // text-color-tone/opacity
         .map((opacity) =>
             colors
                 .map((color) =>
@@ -43,7 +43,7 @@ const safelist = [
                 .flat()
         )
         .flat(),
-    ...opacities
+    ...opacities // border-color-tone/opacity
         .map((opacity) =>
             colors
                 .map((color) =>
@@ -53,7 +53,16 @@ const safelist = [
         )
         .flat(),
 
-    ...gradients
+    ...gradients // gradient-color-tone
+        .map((gradient) =>
+            colors
+                .map((color) =>
+                    colorTones.map((tone) => `${gradient}-${color}-${tone}`)
+                )
+                .flat()
+        )
+        .flat(),
+    ...gradients // gradient-color-tone/opacity
         .map((gradient) =>
             opacities
                 .map((opacity) =>

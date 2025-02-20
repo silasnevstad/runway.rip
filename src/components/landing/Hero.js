@@ -53,10 +53,10 @@ export default function Hero({
                         <MadeWith />
 
                         <TextHighlight
+                            className={`text-${textPosition} mt-6`}
                             text={hero.textHighlight.text}
                             highlight={hero.textHighlight.highlight}
                             gradientColors={["primary", "purple"]}
-                            className={`text-${textPosition} mt-6`}
                             highlightClassName={`from-primary-600`}
                         />
 
