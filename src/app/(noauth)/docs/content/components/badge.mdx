@@ -1,9 +1,12 @@
+import Divider from "../../../../../components/atoms/Divider";
 ---
 title: "Badge"
-description: "A small, inline component used to highlight statuses or labels, with flexible styling."
+description: "A badge component offering color, size, and variant options."
 onThisPage:
   - title: "Overview"
     href: "#badge-overview"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
   - title: "Examples"
@@ -12,156 +15,138 @@ onThisPage:
 
 <div id="badge-overview" />
 
-<Divider />
-
 <br/>
 
-<div className="flex flex-wrap gap-2 justify-center mb-6 items-center">
+<div className="flex gap-3 justify-center items-center mb-4">
     <Badge>Default Badge</Badge>
-    <Badge style="solid">Solid Badge</Badge>
-    <Badge color="green" border>Soft + Border</Badge>
-    <Badge style="solid" color="red">Red Solid</Badge>
-    <Badge shape="circle" color="orange" style="soft" size="a" border><BiCheck className="w-4 h-4" /></Badge>
+    <Badge color="red">Soft Red</Badge>
+    <Badge variant="solid" color="blue">Solid Blue</Badge>
+    <Badge color="green" border>Green Border</Badge>
 </div>
 
 <br/>
 
-The <InlineHighlight>Badge</InlineHighlight> component is a minimal, inline element. It's often used to display short, contextual text such as statuses, labels, or counts. You can customize its shape, color, style, and even add a hover effect or click handler.
+<div>
+    The `Badge` component is a simple yet versatile element for labeling, categorizing, or drawing attention to items in your interface. It comes with flexible size options, color themes, and allows you to tweak the `borderRadius` for shaping.
+</div>
 
-<Tip>
-    For best results, keep your badge text short—one or two words or small numbers.
-</Tip>
+<Info>
+    The `Badge` component is great for displaying information that is not critical but still important.
+</Info>
 
+<br/>
+<br/>
+
+<Divider />
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Badge from '@/components/atoms/Badge';
+
+<Badge color="primary" variant="soft">
+    Hello Badge
+</Badge>
+```
+
+<br/>
+<br/>
 <br/>
 <Divider />
-<br/>
-
 <div id="props" />
 
 ## Props
 
-| **Name**    | **Type**                  | **Default** | **Description**                                                                                         |
-|-------------|---------------------------|-------------|---------------------------------------------------------------------------------------------------------|
-| children    | ReactNode                 | -           | Content inside the badge (usually text or an icon).                                                     |
-| className   | string                    | ''          | Additional utility classes appended to the badge.                                                       |
-| shape       | 'pill', 'square', 'circle' | 'pill'    | Determines the badge’s rounded corners and padding.                                                     |
-| border      | boolean                  | false       | If true, adds a border around the badge (color depends on the badge’s style/color).                     |
-| style       | 'soft', 'solid'          | 'soft'      | soft shows a tinted background, solid is fully colored with white text.                          |
-| color       | <span className="text-primary-500">'primary'</span>, <span className="text-green-500">'green'</span>, <span className="text-red-500">'red'</span>, <span className="text-yellow-500">'yellow'</span>, <span className="text-orange-500">'orange'</span>, <span className="text-blue-500">'blue'</span>, <span className="text-purple-500">'purple'</span>, <span className="text-gray-500">'gray'</span> | <span className="text-primary-500">'primary'</span> | The badge’s color scheme. Combines with style to determine background/text color.                       |
-| hover       | boolean                 | false       | If true, the badge slightly lifts (translate-y) on hover (for a subtle interactive feel).               |
-| onClick     | Function                | -           | Callback fired when the badge is clicked.                                                               |
+| **Prop**     | **Type**                     | **Default** | **Description**                                                                                                       |
+|--------------|------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------|
+| children     | React.ReactNode              | -           | Content displayed inside the badge                                                                                    |
+| className    | string                       | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed)                                 |
+| borderRadius | string                       | `"full"`    | The tailwind-friendly [rounding for corners](https://tailwindcss.com/docs/border-radius) (e.g. `"md"`, `"full"`, etc) |
+| size         | "xs" \| "sm" \| "md" \| "lg" | `"md"`      | Determines overall size of the badge                                                                                  |
+| variant      | "soft" \| "solid"            | `"soft"`    | Selects a muted (`soft`) or bold (`solid`) visual style                                                               |
+| color        | string                       | `"primary"` | Base color. Must match your Tailwind color keys (e.g. `primary`, `gray`, `blue`)                                      |
+| border       | boolean                      | `false`     | Adds a border in a complementary color                                                                                |
+| hover        | boolean                      | `false`     | Enables a hover animation that gently lifts the badge                                                                 |
+| onClick      | function                     | -           | If provided, the badge is clickable; includes a small press-scale animation                                           |
+| ...props     | object                       | -           | Any other props you’d like to pass to the root `<div>`                                                                |
 
-<Info>
-    You can combine <InlineHighlight>hover</InlineHighlight> and <InlineHighlight>onClick</InlineHighlight> to make your badge feel like a button.
-</Info>
 
-<Tip>
-    Combining badges with tooltips can be a great way to expand context without cluttering the UI.
-</Tip>
-
+<br/>
+<br/>
 <br/>
 <Divider />
-<br/>
-
 <div id="examples" />
 
 ## Examples
 
-### 1. Basic Badge
+### 1. Basic Badges
+A swift example with minimal configuration. Just drop in some content!
 
 <PreviewCode preview={
-    <div className="flex flex-wrap gap-3">
+    <div className="flex gap-3">
         <Badge>Default</Badge>
-        <Badge style="solid">Solid</Badge>
-        <Badge style="soft" color="red">Red Soft</Badge>
+        <Badge color="orange" variant="solid">Solid Orange</Badge>
+        <Badge color="red" border>Soft Red</Badge>
     </div>
 }>
     ```javascript
-    <div className="flex flex-wrap gap-3">
+    <div className="flex gap-3">
         <Badge>Default</Badge>
-        <Badge style="solid">Solid</Badge>
-        <Badge style="soft" color="red">Red Soft</Badge>
-    </div>
-    ```
-</PreviewCode>
-
-<br />
-
-### 2. Different Shapes
-Control the shape via the <InlineHighlight>shape</InlineHighlight> prop: "pill", "square", or "circle".
-
-<PreviewCode preview={
-    <div className="flex flex-wrap gap-3 items-center">
-        <Badge shape="pill">Pill</Badge>
-        <Badge shape="square" style="solid" size="small">Small Square Solid</Badge>
-        <Badge shape="circle" color="purple"><MdQuestionMark className="w-4 h-4" /></Badge>
-    </div>
-}>
-    ```javascript
-    <div className="flex flex-wrap gap-3 items-center">
-        <Badge shape="pill">Pill</Badge>
-        <Badge shape="square" style="solid" className="text-sm">Square Solid</Badge>
-        <Badge shape="circle" color="purple"><MdQuestionMark className="w-4 h-4" /></Badge>
-    </div>
-    ```
-</PreviewCode>
-
-<br />
-
-### 3. Border & Hover
-Add <InlineHighlight>border</InlineHighlight> and <InlineHighlight>hover</InlineHighlight> to give the badge an outline and slight lift on hover.
-
-<PreviewCode preview={
-    <div className="flex flex-wrap gap-3 items-center">
-        <Badge border color="blue">With Border</Badge>
-        <Badge hover color="yellow" style="solid">Hover Badge</Badge>
-        <Badge border hover shape="circle" color="orange" style="soft"><MdQuestionMark className="w-4 h-4" /></Badge>
-    </div>
-}>
-    ```javascript
-    <div className="flex flex-wrap gap-3 items-center">
-        <Badge border color="blue">With Border</Badge>
-        <Badge hover color="yellow" style="solid">Hover Badge</Badge>
-        <Badge border hover shape="circle" color="orange" style="soft"><MdQuestionMark className="w-4 h-4" /></Badge>
-    </div>
-    ```
-</PreviewCode>
-
-<br />
-
-### 4. Clickable Badges
-Use <InlineHighlight>onClick</InlineHighlight> for interactive badges (e.g. filtering tags).
-
-<PreviewCode preview={
-    <BadgeDemo />
-}>
-    ```javascript
-    <div className="flex flex-wrap gap-3">
-        <Badge
-            style="solid"
-            color="green"
-            onClick={() => alert('Badge clicked!')}
-            hover
-        >
-            Click Me
-        </Badge>
-        <Badge
-            style="soft"
-            border
-            color="purple"
-            onClick={() => console.log('Filtering...')}
-            hover
-        >
-            Filter Tag
-        </Badge>
+        <Badge color="orange" variant="solid">Solid Orange</Badge>
+        <Badge color="red" border>Soft Red</Badge>
     </div>
     ```
 </PreviewCode>
 
 <br/>
-<Caution>
-    Don't rely on <InlineHighlight>hover</InlineHighlight> alone to convey meaning—some users may not hover or may be on touch devices. Provide other cues or text to ensure clarity.
-</Caution>
+
+### 2. Different Shapes (borderRadius)
+Use `borderRadius` to shape corners—like `"none"`, `"md"`, `"full"` (circle-like).
+
+<PreviewCode preview={
+    <div className="flex gap-3">
+        <Badge borderRadius="none">None</Badge>
+        <Badge borderRadius="lg">Rounded</Badge>
+        <Badge borderRadius="full" variant="solid">Full</Badge>
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-3">
+        <Badge borderRadius="none">None</Badge>
+        <Badge borderRadius="lg">Rounded</Badge>
+        <Badge borderRadius="full">Full</Badge>
+    </div>
+    ```
+</PreviewCode>
+
+<Info>
+    Tailwind’s [“rounded”](https://tailwindcss.com/docs/border-radius) classes come in a bunch of variations. Pass them in as you like—maybe <code>borderRadius="xl"</code> for super smooth corners!
+</Info>
+
+<br/>
+
+### 3. Adding Hover and Custom Classes
+Spice it up your own [Tailwind](https://tailwindcss.com) classes and a subtle hover animation. Great for clickable or important badges.
+
+<PreviewCode preview={
+    <div className="flex gap-3">
+        <Badge hover>Hover</Badge>
+        <Badge className={"bg-blue-500 dark:bg-blue-500 text-bg-0  dark:text-bg-900"}>Custom</Badge>
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-3">
+        <Badge hover>Hover</Badge>
+        <Badge className={"bg-blue-500 dark:bg-blue-500 text-bg-0  dark:text-bg-900"}>Custom</Badge>
+    </div>
+    ```
+</PreviewCode>
+
+<Tip>
+    If you need your own styles, just add them via <code>className</code>.
+</Tip>
 
 <br />
 <br />
+<br/>

@@ -1,76 +1,53 @@
 "use client";
-
+import React from "react";
 import { mergeClasses } from "@/utils/classNames";
 
-const Badge = ({
+export default function Badge({
     children,
     className = "",
-    shape = "pill",       // 'pill', 'square', 'circle'
-    size = "medium",      // 'small', 'medium', 'large'
+    borderRadius = "full",
+    size = "md",
+    variant = "soft",
+    color = "primary",
     border = false,
-    style = "soft",       // 'soft', 'solid'
-    color = "primary",    // 'primary', 'green'
     hover = false,
     onClick,
     ...props
-}) => {
-    const baseStyles =
-        "inline-flex justify-center items-center text-center font-medium";
-
-    const shapeSizeStyles = {
-        pill: {
-            xs: "rounded-full px-1 py-1 text-xs",
-            small: "rounded-full px-2 py-1 text-sm",
-            medium: "rounded-full px-3 py-1 text-md",
-            large: "rounded-full px-4 py-1.5 text-lg",
-        },
-        square: {
-            xs: "rounded-lg px-1 py-1 text-xs",
-            small: "rounded-lg px-2 py-1 text-sm",
-            medium: "rounded-lg px-3 py-1 text-md",
-            large: "rounded-lg px-4 py-1.5 text-base",
-        },
-        circle: {
-            xs: "rounded-full px-1 py-1 text-xs",
-            small: "rounded-full px-1 py-1 text-sm",
-            medium: "rounded-full px-2 py-2 text-md",
-            large: "rounded-full px-3 py-3 text-base",
-        },
+}) {
+    // Size & shape definitions
+    const sizeShapeStyles = {
+        xs: `rounded-${borderRadius} px-1.5 py-1 text-xs`,
+        sm: `rounded-${borderRadius} px-2 py-1 text-sm`,
+        md: `rounded-${borderRadius} px-3 py-1 text-base`,
+        lg: `rounded-${borderRadius} px-4 py-1.5 text-lg`,
     };
 
-    // Get the styles for the given shape and size (default to 'pill' and 'medium').
-    let shapeStyles = shapeSizeStyles[shape] || shapeSizeStyles.pill;
-    shapeStyles = shapeStyles[size] || shapeStyles.medium;
-
+    // Color & variant definitions
     const colorStyles = {
         soft: `bg-${color}-100 dark:bg-${color}-600/25 text-${color}-800 dark:text-${color}-400`,
         solid: `bg-${color}-600 text-white`,
     };
 
-    const borderColor =
-        style === "soft" ? `border-${color}-800` : `border-${color}-900`;
-    const borderStyles = border ? `border ${borderColor}` : "";
+    // Border logic
+    const borderStyles = {
+        soft: `border border-${color}-600 dark:border-${color}-600`,
+        solid: `border border-${color}-600`,
+    }
 
-    const hoverStyles = hover
-        ? "hover:-translate-y-1 transition-all ease-in-out"
-        : "";
-    const onClickStyles = onClick ? "cursor-pointer active:scale-95" : "";
-
-    const combinedStyles = mergeClasses(
-        baseStyles,
-        shapeStyles,
-        colorStyles[style],
-        borderStyles,
-        hoverStyles,
-        onClickStyles,
+    // Final classes
+    const finalClasses = mergeClasses(
+        "inline-flex items-center justify-center font-medium",
+        sizeShapeStyles[size] || sizeShapeStyles.md,
+        colorStyles[variant] || colorStyles.soft,
+        border && (borderStyles[variant] || borderStyles.soft),
+        hover && "transition-all ease-in-out hover:-translate-y-1",
+        onClick && "cursor-pointer active:scale-95",
         className
     );
 
     return (
-        <div className={combinedStyles} onClick={onClick} {...props}>
+        <div className={finalClasses} onClick={onClick} {...props}>
             {children}
         </div>
     );
-};
-
-export default Badge;
+}

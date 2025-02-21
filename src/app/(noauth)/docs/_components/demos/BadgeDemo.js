@@ -6,7 +6,7 @@ export default function BadgeDemo() {
     return (
         <div className="flex flex-wrap gap-3">
             <Badge
-                style="solid"
+                variant="solid"
                 color="green"
                 onClick={() => alert("Badge clicked!")}
                 hover
@@ -14,7 +14,7 @@ export default function BadgeDemo() {
                 Click Me
             </Badge>
             <Badge
-                style="soft"
+                varient="soft"
                 border
                 color="purple"
                 onClick={() => console.log("Filtering...")}

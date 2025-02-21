@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { RiDiscordLine } from "react-icons/ri";
+import { FiTool } from "react-icons/fi";
 
 import Sidebar from "@/components/organisms/Sidebar";
 import SearchBar from "@/components/molecules/SearchBar";
@@ -43,7 +44,7 @@ export default function DocsLayout({ children }) {
                             height={20}
                             className="hidden dark:block"
                         />
-                        <p className="text-lg font-bold">Runway Docs</p>
+                        <p className="text-lg font-bold">Runway</p>
                     </div>
 
                     <div className="flex items-center justify-between mt-6 lg:hidden">
@@ -73,6 +74,12 @@ export default function DocsLayout({ children }) {
                             <RiDiscordLine size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
                             <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">
                                 Discord
+                            </p>
+                        </div>
+                        <div className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+                            <FiTool size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
+                            <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">
+                                Dev Tools
                             </p>
                         </div>
                         <ThemeSwitcher className="mt-1" />
@@ -107,7 +114,7 @@ export default function DocsLayout({ children }) {
                         height={22}
                         className="hidden dark:block"
                     />
-                    <p className="text-lg font-bold">Runway Docs</p>
+                    <p className="text-lg font-bold">Runway</p>
                 </div>
 
                 <div

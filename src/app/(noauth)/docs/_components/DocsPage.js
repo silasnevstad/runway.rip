@@ -15,7 +15,7 @@ export default function DocsPage({
     return (
         <div className="w-full h-full flex lg:flex-row gap-8">
             {/* MAIN COLUMN */}
-            <article className="flex-1 min-w-0 md:mx-auto max-w-prose prose">
+            <article className="flex-1 min-w-0 md:mx-auto max-w-prose">
                 <Breadcrumb sections={DocsNav} className="mb-2 md:mb-4 lg:mb-8" />
 
                 {title && (
@@ -24,7 +24,7 @@ export default function DocsPage({
                     </h1>
                 )}
                 {description && (
-                    <p className="text-xl text-gray-800 dark:text-gray-200 mb-6">
+                    <p className="text-lg text-gray-800 dark:text-gray-200 mb-6">
                         {description}
                     </p>
                 )}

@@ -24,6 +24,7 @@ related:
         src="/avatar1.png"
         alt="User Example"
         size="lg"
+        border={false}
     />
     <Avatar
         letter="D"
@@ -46,13 +47,13 @@ related:
 </div>
 
 <Info>
-    For multiple avatars, see the
-    <InlineHighlight type="navigation">[AvatarList](/docs/components/avatar-list)</InlineHighlight> component.
+    For multiple avatars, see the [AvatarList](/docs/components/avatar-list) component.
 </Info>
 
 <br/>
 <br/>
-
+<br/>
+<Divider />
 <div id="usage" />
 
 ## Usage
@@ -65,34 +66,35 @@ import Avatar from '@/components/atoms/avatar';
 
 <br/>
 <br/>
-
+<br/>
+<Divider />
 <div id="props" />
 
 ## Props
 
-| **Prop**     | **Type**                 | **Default**    | **Description**                         |
-|--------------|--------------------------|----------------|-----------------------------------------|
-| src          | string                   | -              | Image URL                               |
-| alt          | string                   | ''             | Image alt text                          |
-| letter       | string                   | -              | Letter to display                       |
-| color        | string                   | `gray`         | Avatar color (from tailwind.config)     |
-| size         | xs, sm, md, lg, xl       | `md`           | Avatar size                             |
-| borderRadius | xs, sm, md, lg, xl, full | `full`         | Border radius (full for circle)         |
-| status       | string                   | -              | A status indicator (e.g. 'online')      |
-| statusColor  | string                   | `bg-green-400` | Status color (from tailwind.config)     |
-| className    | string                   | ''             | Additional classes (overrides defaults) |
-| onClick      | function                 | -              | Click handler                           |
-| **...props** | object                   | -              | Additional props for the image element  |
+| **Prop**     | **Type**           | **Default**    | **Description**                                                                       |
+|--------------|--------------------|----------------|---------------------------------------------------------------------------------------|
+| className    | string             | `""`           | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed) |
+| src          | string             | -              | Image URL                                                                             |
+| alt          | string             | `""`           | Image alt text                                                                        |
+| letter       | string             | -              | Letter to display                                                                     |
+| color        | string             | `gray`         | Avatar color (from tailwind.config)                                                   |
+| borderRadius | string             | `"full"`       | The tailwind-friendly rounding for corners (e.g. `"md"`, `"full"`, etc)               |
+| size         | xs, sm, md, lg, xl | `md`           | Avatar size                                                                           |
+| border       | boolean            | `true`         | Whether to show a border                                                              |
+| status       | string             | -              | A status indicator (e.g. 'online')                                                    |
+| statusColor  | string             | `bg-green-400` | Status color (from tailwind.config)                                                   |
+| onClick      | function           | -              | Click handler                                                                         |
+| ...props     | object             | -              | Additional props for the image element                                                |
 
-<br/>
 <Tip>
     Feel free to customize the `status` prop any way you like, such as 'online' or 'busy'.
 </Tip>
 
 <br/>
-<Divider />
 <br/>
-
+<br/>
+<Divider />
 <div id="examples" />
 
 ## Examples
@@ -175,18 +177,18 @@ You can add a status indicator to show if the user is online, busy, etc.
         <Avatar
             src="/avatar1.png"
             alt="Online User"
-            status="online"
+            status="Online"
         />
         <Avatar
             letter="O"
-            status="busy"
+            status="Offline"
             statusColor="red"
             borderRadius="sm"
         />
         <Avatar
             src="/avatar3.png"
             alt="Online User"
-            status="busy"
+            status="Busy"
             statusColor="yellow"
         />
     </div>
@@ -196,23 +198,24 @@ You can add a status indicator to show if the user is online, busy, etc.
         <Avatar
             src="/avatar1.png"
             alt="Online User"
-            status="online"
+            status="Online"
         />
         <Avatar
             letter="O"
-            status="busy"
+            status="Offline"
             statusColor="red"
             borderRadius="sm"
         />
         <Avatar
             src="/avatar3.png"
             alt="Online User"
-            status="busy"
+            status="Busy"
             statusColor="yellow"
         />
     </div>
     ```
 </PreviewCode>
 
+<br />
 <br />
 <br />

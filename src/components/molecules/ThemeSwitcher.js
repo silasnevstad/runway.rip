@@ -35,6 +35,7 @@ export default function ThemeSwitcher({
                 onChange={onChange}
                 className="gap-0.5 p-0.5"
                 buttonClassName="p-1.5"
+                buttonBorder
             />
         </div>
     );

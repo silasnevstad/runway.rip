@@ -169,16 +169,16 @@ def code:
                     <Badge shape="square">
                         Squares
                     </Badge>
-                    <Badge color="green" style="soft" shape="pill">
+                    <Badge color="green" variant="soft" shape="pill">
                         Soft Pill
                     </Badge>
-                    <Badge color="red" style="soft" shape="pill">
+                    <Badge color="red" variant="soft" shape="pill">
                         Soft Square
                     </Badge>
-                    <Badge color="green" style="soft" shape="square" border>
+                    <Badge color="green" variant="soft" shape="square" border>
                         Borders
                     </Badge>
-                    <Badge color="red" style="soft" shape="square" border>
+                    <Badge color="red" variant="soft" shape="square" border>
                         Borders
                     </Badge>
                 </div>

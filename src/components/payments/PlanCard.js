@@ -22,7 +22,7 @@ export default function PlanCard({
         }>
             {isPopular && (
                 <div className="absolute -top-0 left-1/2 -translate-y-1/2 -translate-x-1/2">
-                    <Badge shape="pill" style="solid" size="medium">
+                    <Badge borderRadius="full" variant="solid" size="medium">
                         <span className="font-semibold">Most Popular</span>
                     </Badge>
                 </div>

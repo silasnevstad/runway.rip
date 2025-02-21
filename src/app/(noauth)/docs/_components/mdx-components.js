@@ -50,6 +50,7 @@ import ClientSideSearchBar from "@/app/(noauth)/docs/_components/ClientSideSearc
 import PasswordAuthForm from "@/components/auth/PasswordAuthForm";
 import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
 import OAuthButtons from "@/components/auth/OAuthButtons";
+import Alert from "@/components/atoms/Alert";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -57,7 +58,7 @@ const TypesColorMap = {
     integer: 'text-blue-500',
     float: 'text-blue-500',
     boolean: 'text-yellow-500',
-    array: 'text-red-500',
+    array: 'text-purple-500',
     ReactNode: 'text-purple-500',
     Function: 'text-purple-500',
     function: 'text-purple-500',
@@ -67,7 +68,7 @@ const TypesColorMap = {
 
 export const mdxComponents = {
     h1: ({ children }) => <h1 className="text-4xl font-bold mt-8 mb-4">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-3xl font-semibold mt-6 mb-3">{children}</h2>,
+    h2: ({ children }) => <h2 className="text-2xl md:text-3xl font-semibold mt-6 mb-3">{children}</h2>,
     h3: ({ children }) => <h3 className="text-2xl font-medium mt-8 mb-2">{children}</h3>,
     p: ({ children }) => <p className="my-2 leading-relaxed">{children}</p>,
     ul: ({ children }) => <ul className="list-disc list-inside my-4">{children}</ul>,
@@ -150,7 +151,6 @@ export const mdxComponents = {
     ),
     Divider: Divider,
     a: ({ href, children }) => (
-        // make underline faded
         <Link href={href} className="text-green-500 hover:text-green-700 underline">
             {children}
         </Link>
@@ -179,29 +179,31 @@ export const mdxComponents = {
         );
     },
     table: ({ children }) => (
-        <div className="prose dark:prose-invert max-w-full">
-            <div className="max-w-full my-4">
-                <table className="min-w-full max-w-full">
-                    {children}
-                </table>
-            </div>
+        <div className="w-full overflow-x-auto">
+            <table className="table-auto w-full border-collapse">
+                {children}
+            </table>
         </div>
     ),
     th: ({ children }) => (
-        <th className="py-3 text-left text-xs uppercase font-normal text-gray-800 dark:text-gray-200">
+        <th className="py-3 px-2 text-left text-xs uppercase font-normal text-gray-900 dark:text-gray-200 whitespace-normal">
             {children}
         </th>
     ),
     td: ({ children }) => (
-        <td className="pr-4 py-4 text-sm text-gray-700 dark:text-gray-400 border-t border-bg-200/50 dark:border-gray-800/40">
+        <td className="py-3 px-2 text-[13px] text-gray-700 dark:text-gray-400
+                 border-t border-gray-200 dark:border-gray-800
+                 whitespace-normal">
             <span className={`${TypesColorMap[children] || ''}`}>
-                {children}
+              {children}
             </span>
         </td>
     ),
 
+
     // Components
     Accordion: Accordion,
+    Alert: Alert,
     Avatar: Avatar,
     AvatarList: AvatarList,
     Badge: Badge,

@@ -15,8 +15,6 @@ related:
 
 <div id="avatar-list-overview" />
 
-<Divider />
-
 <br/>
 
 <AvatarList
@@ -32,47 +30,65 @@ related:
 <br/>
 
 <div>
-    The `AvatarList` component helps you visually group multiple avatars. You can show them
-    in a row or column, stack them with overlap, and even limit how many are displayed (e.g., "+3 more"). Each item is powered
-    by the <InlineHighlight type="navigation">[Avatar](/docs/components/avatar)</InlineHighlight> component, so they share all the same properties and fallback behavior.
+    The `AvatarList` component groups together multiple avatars. You can show them in a row or column, stack them with overlap,
+    and even limit how many are displayed (e.g., "+3 more").
 </div>
 
 <Info>
-    You can pass <InlineHighlight>sharedAvatarProps</InlineHighlight> to style every avatar in the list consistently
-    (e.g. <InlineHighlight>size="sm"</InlineHighlight> for all).
+    Each item is powered by the [Avatar](/docs/components/avatar) component, so you can customize it with any of its props.
 </Info>
 
 <br/>
-<Divider />
 <br/>
+<br/>
+<Divider />
+<div id="usage" />
 
+## Usage
+
+```javascript
+import AvatarList from '@/components/molecules/AvatarList';
+
+<AvatarList
+    avatars={[
+        { src: "/avatar1.png", alt: "User 1" },
+        { letter: "B" },
+        { src: "/avatar2.png", alt: "User 2" }
+    ]}
+/>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
 <div id="props" />
 
 ## Props
 
-| **Prop**          | **Type**                        | **Default**           | **Description**                                                                                                     |
-|-------------------|---------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|
-| avatars           | array of objects                | []                    | Each object can contain <InlineHighlight>src</InlineHighlight>/<InlineHighlight>alt</InlineHighlight> or <InlineHighlight>letter</InlineHighlight>. |
-| direction         | `horizontal\|vertical`          | `horizontal`          | Chooses layout direction.                                                                                           |
-| overlap           | boolean                         | true                  | If true, applies negative margins (like Slack or GitHub) so the avatars stack.                                      |
-| maxVisible        | number                          | 5                     | Max avatars displayed before the last is replaced with <InlineHighlight>+X more</InlineHighlight>.                  |
-| sharedAvatarProps | object                          | {}                    | Common props for every <InlineHighlight>Avatar</InlineHighlight> (e.g. <InlineHighlight>size="sm"</InlineHighlight>).            |
-| className         | string                          | ''                    | Additional classes appended to the list container.                                                                  |
+| **Prop**          | **Type**               | **Default**  | **Description**                                                                                                                                     |
+|-------------------|------------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| avatars           | array                  | `[]`           | Each object can contain <InlineHighlight>src</InlineHighlight>/<InlineHighlight>alt</InlineHighlight> or <InlineHighlight>letter</InlineHighlight>. |
+| direction         | horizontal\|vertical | `horizontal` | Chooses layout direction.                                                                                                                           |
+| overlap           | boolean                | `true`         | If true, applies negative margins (like Slack or GitHub) so the avatars stack.                                                                      |
+| maxVisible        | number                 | `5`            | Max avatars displayed before the last is replaced with <InlineHighlight>+X more</InlineHighlight>.                                                  |
+| sharedAvatarProps | object                 | `{}`           | Common props for every <InlineHighlight>Avatar</InlineHighlight> (e.g. <InlineHighlight>size="sm"</InlineHighlight>).                               |
+| className         | string                 | `""`         | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed)                                                               |
+
+<Tip>
+    Use <InlineHighlight>sharedAvatarProps</InlineHighlight> to set common props for all avatars.
+</Tip>
 
 <br/>
-<Info>
-    To see how an individual avatar is configured, check the <InlineHighlight type="navigation">[Avatar](/docs/components/avatar)</InlineHighlight> componenent.
-</Info>
-
+<br/>
 <br/>
 <Divider />
-<br/>
-
 <div id="examples" />
 
 ## Examples
 
-### 1. Horizontal Overlap (Default)
+### 1. Horizontal List with Overflow
+Set `maxVisible` to limit how many avatars are shown. The rest will be replaced with a "+X more" indicator.
 
 <PreviewCode preview={
     <AvatarList
@@ -85,8 +101,6 @@ related:
             { letter: "Z" }
         ]}
         maxVisible={4}
-        overlap
-        sharedAvatarProps={{ size: "sm" }}
     />
 }>
     ```javascript
@@ -100,8 +114,6 @@ related:
             { letter: "Z" }
         ]}
         maxVisible={4}
-        overlap
-        sharedAvatarProps={{ size: "sm" }}
     />
     ```
 </PreviewCode>
@@ -109,7 +121,7 @@ related:
 <br />
 
 ### 2. Vertical Stacking
-Set <InlineHighlight>direction="vertical"</InlineHighlight>. Overlap will push them upward with <InlineHighlight>-mt-4</InlineHighlight>.
+Set `direction="vertical"` to stack avatars in a column. You can also adjust the avatar's size with `sharedAvatarProps`.
 
 <PreviewCode preview={
     <AvatarList
@@ -119,6 +131,7 @@ Set <InlineHighlight>direction="vertical"</InlineHighlight>. Overlap will push t
             { src: "/avatar2.png", alt: "User B" },
             { letter: "C" }
         ]}
+        sharedAvatarProps={{ size: "sm" }}
     />
 }>
     ```javascript
@@ -129,6 +142,7 @@ Set <InlineHighlight>direction="vertical"</InlineHighlight>. Overlap will push t
             { src: "/avatar2.png", alt: "User B" },
             { letter: "C" }
         ]}
+        sharedAvatarProps={{ size: "sm" }}
     />
     ```
 </PreviewCode>
@@ -170,10 +184,5 @@ Set <InlineHighlight>direction="vertical"</InlineHighlight>. Overlap will push t
 </Tip>
 
 <br />
-<Warning>
-    <strong>Warning:</strong> Overlapping too many large avatars can become unreadable.
-    Consider limiting overlap or using smaller sizes for large lists.
-</Warning>
-
 <br />
 <br />

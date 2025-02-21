@@ -10,6 +10,7 @@ export default function Avatar({
     color = "gray",
     borderRadius = "full",
     size = "md",
+    border = true,
     status,
     statusColor,
     onClick,
@@ -18,7 +19,7 @@ export default function Avatar({
 }) {
     const [imgError, setImgError] = useState(false);
 
-    // Style dictionaries
+    // Size definitions
     const sizeStyles = {
         xs: "w-8 h-8 text-sm",
         sm: "w-10 h-10 text-base",
@@ -30,10 +31,11 @@ export default function Avatar({
     const finalSize = sizeStyles[size] || sizeStyles.md;
 
     const containerClasses = mergeClasses(
-        "relative inline-flex justify-center items-center border-2",
+        "relative inline-flex justify-center items-center",
         finalSize,
         borderRadius && `rounded-${borderRadius}`,
-        `border-${color}-500 dark:border-${color}-600 bg-${color}-200 dark:bg-${color}-800 text-${color}-800 dark:text-${color}-200`,
+        border && `border-2 border-${color}-500 dark:border-${color}-600`,
+        `bg-${color}-200 dark:bg-${color}-800 text-${color}-800 dark:text-${color}-200`,
         onClick && "cursor-pointer active:scale-95",
         className
     );
@@ -44,7 +46,7 @@ export default function Avatar({
     const handleImageError = () => setImgError(true);
 
     return (
-        <div className={containerClasses} onClick={onClick} {...props}>
+        <div className={containerClasses} onClick={onClick} {...props} title={status}>
             {showImage ? (
                 <Image
                     src={src}
@@ -59,7 +61,6 @@ export default function Avatar({
             )}
             {status && (
                 <span
-                    title={status}
                     className={mergeClasses(
                         "z-50 absolute w-3 h-3 rounded-full ring-2 ring-white dark:ring-gray-800 bottom-0 right-0 transform translate-x-1/4 translate-y-1/4",
                         statusColor  ? `bg-${statusColor}-400` : "bg-green-400"

@@ -51,6 +51,7 @@ export const DocsNav = [
         icon: <PuzzlePieceIcon className="w-5 h-5" />,
         items: [
             { title: "Accordion", href: "/docs/components/accordion" },
+            { title: "Alert", href: "/docs/components/alert" },
             { title: "Avatar", href: "/docs/components/avatar" },
             { title: "AvatarList", href: "/docs/components/avatar-list" },
             { title: "Badge", href: "/docs/components/badge" },

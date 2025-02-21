@@ -1,52 +1,28 @@
 "use client";
-
 import React from "react";
-import { usePathname } from "next/navigation";
+import {usePathname} from "next/navigation";
 import Link from "next/link";
-import { FaChevronRight } from "react-icons/fa";
+import {FaChevronRight} from "react-icons/fa";
 import {mergeClasses} from "@/utils/classNames";
 
-function BreadcrumbItem({ href, title, isLast, delimiter, isInteractiveLast }) {
-    // If it's the last breadcrumb and we want it non-interactive, render a <span> instead of a link.
-    if (isLast && !isInteractiveLast) {
-        return (
-            <>
-                <span className="opacity-50">
-                    {title}
-                </span>
-            </>
-        );
-    }
-
-    return (
-        <>
-            <Link
-                href={href}
-                className={
-                    `text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100
-                    ${isLast ? "opacity-50" : "opacity-40 hover:opacity-80"}`
-                }
-            >
-                {title}
-            </Link>
-            {!isLast && (
-                <span className="mx-1 mr-2 mb-0.5 w-3 h-3 text-gray-600 dark:text-gray-600">
-                    {delimiter}
-                </span>
-            )}
-        </>
-    );
-}
-
 export default function Breadcrumb({
-    className = "",
-    sections,
+    sections = [],
     delimiter = <FaChevronRight />,
-    isInteractiveLast = false
+    isInteractiveLast = false,
+    className = "",
+    ...props
 }) {
     const pathname = usePathname();
 
-    const findPathToCurrentPage = (items, currentPath = []) => {
+    // Recursively finds a path of items leading to the current URL (pathname).
+    function findPathToCurrentPage(items = [], currentPath = []) {
+        // Parse the pathname if items/sections are not provided
+        if (!items.length) {
+            return pathname.split("/").filter(Boolean).map((part) => ({
+                href: `/${part}`,
+                title: part.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+            }));
+        }
         for (const item of items) {
             const newPath = [...currentPath, item];
             if (item.href === pathname) {
@@ -58,24 +34,57 @@ export default function Breadcrumb({
             }
         }
         return null;
-    };
+    }
 
     const breadcrumbItems = findPathToCurrentPage(sections);
 
     if (!breadcrumbItems || breadcrumbItems.length === 0) return null;
 
+    const containerClasses = mergeClasses(
+        "font-medium flex items-center flex-wrap gap-1",
+        className
+    );
+
+    // Local component to render a single crumb
+    function BreadcrumbItem({ href, title, isLast }) {
+        if (isLast && !isInteractiveLast) {
+            // Non-clickable final crumb
+            return <span className="opacity-50">{title}</span>;
+        }
+        // Link crumb
+        return (
+            <Link
+                href={href}
+                className={mergeClasses(
+                    `text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100`,
+                    "transition-opacity",
+                    isLast ? "opacity-50" : "opacity-40 hover:opacity-80"
+                )}
+            >
+                {title}
+            </Link>
+        );
+    }
+
     return (
-        <h1 className={mergeClasses("font-medium flex items-center flex-wrap", className)}>
-            {breadcrumbItems.map((item, index) => (
-                <BreadcrumbItem
-                    key={item.href}
-                    href={item.href}
-                    title={item.title}
-                    isLast={index === breadcrumbItems.length - 1}
-                    delimiter={delimiter}
-                    isInteractiveLast={isInteractiveLast}
-                />
-            ))}
-        </h1>
+        <nav aria-label="breadcrumb" className={containerClasses} {...props}>
+            {breadcrumbItems.map((item, index) => {
+                const isLast = index === breadcrumbItems.length - 1;
+                return (
+                    <React.Fragment key={item.href}>
+                        <BreadcrumbItem
+                            href={item.href}
+                            title={item.title}
+                            isLast={isLast}
+                        />
+                        {!isLast && (
+                            <span className="text-sm mx-1 flex items-center">
+                            {delimiter}
+                          </span>
+                        )}
+                    </React.Fragment>
+                );
+            })}
+        </nav>
     );
 }

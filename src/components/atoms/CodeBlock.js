@@ -17,13 +17,6 @@ const CodeBlock = ({
 }) => {
     const { resolvedTheme } = useTheme();
     const [copied, setCopied] = useState(false);
-    const [checkDarkTheme, setCheckDarkTheme] = useState(false);
-
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            setCheckDarkTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
-        }
-    }, []);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(code);
@@ -32,9 +25,9 @@ const CodeBlock = ({
     };
 
     return (
-        <div className="flex w-full flex-col border border-bg-200 dark:border-bg-800 rounded-lg rounded-t-lg">
+        <div className="flex w-full flex-col border border-bg-200 dark:border-gray-800/30 rounded-lg">
             {(copy || showLanguage) && (
-                <div className="flex items-center justify-between p-2.5 pr-3 bg-bg-200 dark:bg-bg-800 rounded-t-lg">
+                <div className="flex items-center justify-between p-2.5 pr-3 bg-bg-100 dark:bg-bg-800 rounded-t-lg border-b border-bg-200 dark:border-gray-800/40">
                     {showLanguage ? (
                         <p className="text-xs font-medium opacity-50">
                             {language}
@@ -58,8 +51,9 @@ const CodeBlock = ({
             <SyntaxHighlighter
                 key={resolvedTheme}
                 language={language}
-                style={checkDarkTheme ? tomorrowNightEighties : atomOneLight}
+                style={resolvedTheme === "dark" ? tomorrowNightEighties : atomOneLight}
                 wrapLines={wrapLines}
+                wrapLongLines={true}
                 showLineNumbers={showLineNumbers}
                 startingLineNumber={startingLineNumber}
                 customStyle={{
@@ -69,9 +63,9 @@ const CodeBlock = ({
                     paddingTop: '.2rem',
                     paddingBottom: '.5rem',
                     paddingRight: '1rem',
-                    background: 'var(--color-bg-100)',
+                    fontSize: '0.85rem',
                 }}
-                lineNumberStyle={{ opacity: 0.7 }}
+                lineNumberStyle={{ opacity: 0.35, fontSize: '0.85rem' }}
             >
                 {code.trim()}
             </SyntaxHighlighter>

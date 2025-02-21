@@ -15,8 +15,9 @@ const PreviewCode = ({ children, preview, border = false }) => {
                 ]}
                 selected={showPreview ? 'preview' : 'code'}
                 onChange={(value) => setShowPreview(value === 'preview')}
-                className="mb-4 self-start"
-                shape="rounded-xl"
+                className="mb-6 self-start text-sm"
+                borderRadius="lg"
+                animate={true}
             />
             {showPreview ?
                 <div
@@ -25,7 +26,7 @@ const PreviewCode = ({ children, preview, border = false }) => {
                 </div>
                 :
                 <div
-                    className="flex w-full flex-col -mt-3">
+                    className="flex w-full flex-col">
                     {children}
                 </div>
 
