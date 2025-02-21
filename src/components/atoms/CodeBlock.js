@@ -13,6 +13,7 @@ const CodeBlock = ({
     startingLineNumber = 1,
     copy = false,
     wrapLines = false,
+    wrapLongLines = true,
     showLanguage = false,
 }) => {
     const { resolvedTheme } = useTheme();
@@ -53,7 +54,7 @@ const CodeBlock = ({
                 language={language}
                 style={resolvedTheme === "dark" ? tomorrowNightEighties : atomOneLight}
                 wrapLines={wrapLines}
-                wrapLongLines={true}
+                wrapLongLines={wrapLongLines}
                 showLineNumbers={showLineNumbers}
                 startingLineNumber={startingLineNumber}
                 customStyle={{

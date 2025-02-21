@@ -63,15 +63,14 @@ const NavigationHierarchy = [
     {
         href: "/docs",
         title: "Docs",
-        items: [
-            {
-                href: "/docs/components",
-                title: "Components",
-                items: [
-                    { href: "/docs/components/breadcrumb", title: "Breadcrumb" },
-                ]
-            }
-        ]
+        items: [{
+            href: "/docs/components",
+            title: "Components",
+            items: [{
+                href: "/docs/components/breadcrumb",
+                title: "Breadcrumb"
+            }]
+        }]
     }
 ];
 
@@ -85,14 +84,14 @@ const NavigationHierarchy = [
 
 ## Props
 
-| **Prop**          | **Type** | **Default** | **Description**                                                                                    |
-|-------------------|----------|-------------|----------------------------------------------------------------------------------------------------|
-| sections          | array    | `[]`        | Breadcrumb route definitions, e.g. `{ href, title, items?: nested }`.                              |
-| delimiter         | Icon     | `<Icon />`  | Separator between crumbs.                                                                          |
-| isInteractiveLast | boolean  | `false`     | Makes the final crumb clickable if `true`.                                                         |
-| color             | string   | `gray`      | Sets the color theme (e.g. `"primary"`, `"gray"`). Other fine-tuning can be done with `className`. |
-| className         | string   | `""`        | Extra Tailwind classes. These override internal defaults using `mergeClasses`.                     |
-| **...props**      | object   | `-`         | Additional props (e.g. `style`, `onMouseEnter`) passed down to the main `<nav>` element.           |
+| **Prop**          | **Type** | **Default** | **Description**                                                                                           |
+|-------------------|----------|-------------|-----------------------------------------------------------------------------------------------------------|
+| sections          | array    | `[]`        | Breadcrumb route definitions, e.g. `{ href, title, items?: nested }`.                                     |
+| delimiter         | Icon     | `<Icon />`  | Separator between crumbs.                                                                                 |
+| isInteractiveLast | boolean  | `false`     | Makes the final crumb clickable if `true`.                                                                |
+| color             | string   | `gray`      | Sets the color theme (e.g. `"primary"`, `"gray"`). Other fine-tuning can be done with `className`.        |
+| className         | string   | `""`        | Extra [Tailwind](https://tailwindcss.com) classes. These override internal defaults using `mergeClasses`. |
+| ...props          | object   | `-`         | Additional props (e.g. `style`, `onMouseEnter`) passed down to the main `<nav>` element.                  |
 
 <br/>
 
@@ -186,16 +185,14 @@ You can nest items deeply in the `sections` array, and `Breadcrumb` automaticall
                 {
                     href: "/products",
                     title: "Products",
-                    items: [
-                        {
-                            href: "/products/electronics",
-                            title: "Electronics",
-                            items: [
-                                { href: "/products/electronics/laptops", title: "Laptops" },
-                                { href: "/products/electronics/phones", title: "Phones" },
-                            ],
-                        },
-                    ],
+                    items: [{
+                        href: "/products/electronics",
+                        title: "Electronics",
+                        items: [
+                            { href: "/products/electronics/laptops", title: "Laptops" },
+                            { href: "/products/electronics/phones", title: "Phones" },
+                        ],
+                    }],
                 },
                 { href: "/products/electronics/phones", title: "Phones" },
             ]}
@@ -208,16 +205,14 @@ You can nest items deeply in the `sections` array, and `Breadcrumb` automaticall
             {
                 href: "/products",
                 title: "Products",
-                items: [
-                    {
-                        href: "/products/electronics",
-                        title: "Electronics",
-                        items: [
-                            { href: "/products/electronics/laptops", title: "Laptops" },
-                            { href: "/products/electronics/phones", title: "Phones" },
-                        ],
-                    },
-                ],
+                items: [{
+                    href: "/products/electronics",
+                    title: "Electronics",
+                    items: [
+                        { href: "/products/electronics/laptops", title: "Laptops" },
+                        { href: "/products/electronics/phones", title: "Phones" },
+                    ],
+                }],
             },
             { href: "/products/electronics/phones", title: "Phones" },
         ]}
