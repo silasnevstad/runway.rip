@@ -68,8 +68,8 @@ const TypesColorMap = {
 
 export const mdxComponents = {
     h1: ({ children }) => <h1 className="text-4xl font-bold mt-8 mb-4">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-2xl md:text-3xl font-semibold mt-6 mb-3">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-2xl font-medium mt-8 mb-2">{children}</h3>,
+    h2: ({ children }) => <h2 className="text-2xl xl:text-3xl font-semibold mt-6 mb-3">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-xl xl:text-2xl font-medium mt-8 mb-2">{children}</h3>,
     p: ({ children }) => <p className="my-2 leading-relaxed">{children}</p>,
     ul: ({ children }) => <ul className="list-disc list-inside my-4">{children}</ul>,
     ol: ({ children }) => <ol className="list-decimal list-inside my-4 space-y-6">{children}</ol>,
