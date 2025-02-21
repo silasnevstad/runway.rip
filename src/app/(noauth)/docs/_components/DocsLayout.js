@@ -70,13 +70,18 @@ export default function DocsLayout({ children }) {
                                 Help
                             </p>
                         </div>
-                        <div className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+                        <div
+                            className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                        >
                             <RiDiscordLine size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
                             <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">
                                 Discord
                             </p>
                         </div>
-                        <div className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+                        <div
+                            className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                            onClick={() => router.push('/docs/devtools')}
+                        >
                             <FiTool size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
                             <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">
                                 Dev Tools
