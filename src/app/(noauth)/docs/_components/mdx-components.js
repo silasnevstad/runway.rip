@@ -113,7 +113,7 @@ export const mdxComponents = {
         </div>
     ),
     Info: ({children}) => (
-        <div className="bg-blue-500/20 rounded-lg border border-blue-500 p-3 pb-2 my-4">
+        <div className="bg-blue-500/20 rounded-lg border-l-4 rounded-l-none border-blue-500 p-3 pb-2 my-4">
             <p className="flex items-center text-md text-blue-500 font-semibold">
                 <InformationCircleIcon className="w-5 h-5 inline-block mr-1" />
                 Info
@@ -178,34 +178,25 @@ export const mdxComponents = {
             />
         );
     },
-    pre: ({ children }) => <div className="my-4">{children}</div>,
-    blockquote: ({ children }) => (
-        <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">
-            {children}
-        </blockquote>
-    ),
     table: ({ children }) => (
-        <div className="prose dark:prose-invert w-full">
-            <div className="overflow-x-auto my-4">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+        <div className="prose dark:prose-invert max-w-full">
+            <div className="max-w-full my-4">
+                <table className="min-w-full max-w-full">
                     {children}
                 </table>
             </div>
         </div>
     ),
     th: ({ children }) => (
-        <th className="px-6 py-3 bg-gray-200 dark:bg-bg-700 text-left text-md font-normal text-gray-600 dark:text-gray-200 uppercase rounded-t-lg">
+        <th className="py-3 text-left text-xs uppercase font-normal text-gray-800 dark:text-gray-200">
             {children}
         </th>
     ),
     td: ({ children }) => (
-        <td className="px-6 py-4 whitespace-nowrap text-md text-gray-900 dark:text-gray-200 border border-gray-200 dark:border-gray-800">
-            {/* use colorMap to see if this is a type */}
-            {TypesColorMap[children] ? (
-                <span className={TypesColorMap[children]}>
-                    {children}
-                </span>
-            ) : children}
+        <td className="pr-4 py-4 text-sm text-gray-700 dark:text-gray-400 border-t border-bg-200/50 dark:border-gray-800/40">
+            <span className={`${TypesColorMap[children] || ''}`}>
+                {children}
+            </span>
         </td>
     ),
 

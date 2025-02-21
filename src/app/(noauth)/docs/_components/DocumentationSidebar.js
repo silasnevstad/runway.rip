@@ -16,7 +16,7 @@ const DocumentationSidebar = () => {
                     <div key={index} className="mb-6 scroll-auto">
                         <div className="flex items-center -mt-3">
                             <div className={
-                                `group flex w-full p-1 pl-2 py-2 pr-8 rounded-md mb-[2px]
+                                `group flex items-end w-full p-1 pl-2 py-2 pr-8 rounded-md mb-[2px]
                                 transition-colors`
                             }>
                                 {section.icon}

@@ -4,6 +4,8 @@ description: "A flexible avatar component that displays either an image or a fal
 onThisPage:
   - title: "Overview"
     href: "#avatar-overview"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
   - title: "Examples"
@@ -14,8 +16,6 @@ related:
 ---
 
 <div id="avatar-overview" />
-
-<Divider />
 
 <br/>
 
@@ -28,58 +28,66 @@ related:
     <Avatar
         letter="D"
         size="md"
-        shape="square"
+        borderRadius="xl"
     />
     <Avatar
         src="/avatar2.png"
         alt="Broken"
-        shape="rounded-sm"
         status="online"
+        borderRadius="None"
     />
 </div>
 
 <br/>
 
 <div>
-    The `Avatar` component displays a user’s profile image if available.
-    When the image fails to load or isn’t provided, it falls back to a letter. You can customize `size`, `shape`, ring colors,
-    status indicators, and more.
+    The `Avatar` component displays a user’s profile image. If the image fails to load or isn’t provided, it
+    automatically falls back to a letter. It supports various `sizes`, `shapes`, `colors`, and `status` indicators.
 </div>
 
 <Info>
-    For collections of multiple avatars, see the
+    For multiple avatars, see the
     <InlineHighlight type="navigation">[AvatarList](/docs/components/avatar-list)</InlineHighlight> component.
 </Info>
 
 <br/>
-<Divider />
+<br/>
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Avatar from '@/components/atoms/avatar';
+
+<Avatar src="/avatar1.png" alt="User Image"/>
+```
+
+<br/>
 <br/>
 
 <div id="props" />
 
 ## Props
 
-| **Prop**       | **Type**                         | **Default**                  | **Description**                                                                                                                              |
-|----------------|----------------------------------|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| src            | string                           | -                            | URL of the image. If absent or fails to load, we show a fallback letter.                                                                     |
-| alt            | string                           | ''                           | Accessible text (for screen readers) and used for the fallback letter.                                                                       |
-| letter         | string                           | -                            | Explicit letter to show if no image (overrides the first character of <InlineHighlight>alt</InlineHighlight>).                               |
-| size           | `xs\|sm\|md\|lg\|xl`             | `md`                         | Controls the Avatar dimensions (width/height/font size).                                                                                     |
-| shape          | `circle\|rounded-sm\|square`        | `circle`                     | Determines corner rounding.                                                                                                                  |
-| borderColor    | string                           | `gray-400 dark:border-gray-500` | Tailwind classes for the outer border color.                                                                                              |
-| bgColor        | string                           | `bg-gray-200 dark:bg-gray-700`  | Tailwind classes for the avatar background.                                                                                                |
-| textColor      | string                           | `text-gray-600 dark:text-gray-300` | Tailwind classes for fallback letter text color.                                                                                         |
-| ringColor      | string                           | -                            | Tailwind classes for ring highlight, e.g. <InlineHighlight>ring-2 ring-blue-500</InlineHighlight>.                                          |
-| status         | string                           | -                            | Status label (e.g. <InlineHighlight>"online"</InlineHighlight>). If provided, we show a small colored dot in the bottom-right corner.       |
-| statusColor    | string                           | `bg-green-400`               | Tailwind class for the status dot color.                                                                                                    |
-| className      | string                           | ''                           | Additional classes appended to the outer container.                                                                                         |
-| onClick        | function                         | -                            | Callback fired when the avatar is clicked.                                                                                                  |
-| style          | object                           | -                            | Inline style object for custom styling.                                                                                                     |
+| **Prop**     | **Type**                 | **Default**    | **Description**                         |
+|--------------|--------------------------|----------------|-----------------------------------------|
+| src          | string                   | -              | Image URL                               |
+| alt          | string                   | ''             | Image alt text                          |
+| letter       | string                   | -              | Letter to display                       |
+| color        | string                   | `gray`         | Avatar color (from tailwind.config)     |
+| size         | xs, sm, md, lg, xl       | `md`           | Avatar size                             |
+| borderRadius | xs, sm, md, lg, xl, full | `full`         | Border radius (full for circle)         |
+| status       | string                   | -              | A status indicator (e.g. 'online')      |
+| statusColor  | string                   | `bg-green-400` | Status color (from tailwind.config)     |
+| className    | string                   | ''             | Additional classes (overrides defaults) |
+| onClick      | function                 | -              | Click handler                           |
+| **...props** | object                   | -              | Additional props for the image element  |
 
 <br/>
-<Info>
-    For advanced usage, you can also add the <InlineHighlight>ringColor</InlineHighlight> prop to highlight the avatar with a Tailwind ring (e.g. <InlineHighlight>ring-2 ring-primary-500</InlineHighlight>).
-</Info>
+<Tip>
+    Feel free to customize the `status` prop any way you like, such as 'online' or 'busy'.
+</Tip>
 
 <br/>
 <Divider />
@@ -90,6 +98,7 @@ related:
 ## Examples
 
 ### 1. Basic Image Avatar
+Simply provide a `src` and `alt` prop. Optionally, style with other props.
 
 <PreviewCode preview={
     <div className="flex gap-3">
@@ -102,7 +111,6 @@ related:
             src="/avatar2.png"
             alt="User Two"
             size="lg"
-            borderColor="border-primary-500"
         />
     </div>
 }>
@@ -117,7 +125,6 @@ related:
             src="/avatar2.png"
             alt="User Two"
             size="lg"
-            borderColor="border-primary-500"
         />
     </div>
     ```
@@ -125,38 +132,43 @@ related:
 
 <br />
 
-### 2. Letter Fallback
-If an image is missing or broken, <InlineHighlight>Avatar</InlineHighlight> shows the first character of <InlineHighlight>alt</InlineHighlight> or the explicit <InlineHighlight>letter</InlineHighlight> prop.
+### 2. Letter
+If you want a letter instead of an image, just provide the `letter` prop.
 
 <PreviewCode preview={
     <div className="flex gap-3">
+        <Avatar
+            letter="Z"
+            borderRadius="sm"
+        />
         <Avatar
             alt="Ava Jones"
             src="/invalid-img.jpg"
         />
-        <Avatar
-            letter="Z"
-            shape="square"
-        />
     </div>
 }>
     ```javascript
     <div className="flex gap-3">
         <Avatar
-            alt="Ava Jones"
-            src="/invalid-img.jpg"  // this will fail
+            letter="Z"
+            borderRadius="sm"
         />
         <Avatar
-            letter="Z"
-            shape="square"
+            alt="Ava Jones"
+            src="/invalid-img.jpg"  // this will fail
         />
     </div>
     ```
 </PreviewCode>
 
+<Info>
+    If the image is missing or broken, `Avatar` shows the the `letter` or the first character of the `alt` text.
+</Info>
+
 <br />
 
 ### 3. Status Indicator
+You can add a status indicator to show if the user is online, busy, etc.
 
 <PreviewCode preview={
     <div className="flex gap-3">
@@ -168,14 +180,14 @@ If an image is missing or broken, <InlineHighlight>Avatar</InlineHighlight> show
         <Avatar
             letter="O"
             status="busy"
-            statusColor="bg-red-500"
-            shape="rounded-sm"
+            statusColor="red"
+            borderRadius="sm"
         />
         <Avatar
             src="/avatar3.png"
             alt="Online User"
             status="busy"
-            statusColor="bg-yellow-300"
+            statusColor="yellow"
         />
     </div>
 }>
@@ -189,14 +201,14 @@ If an image is missing or broken, <InlineHighlight>Avatar</InlineHighlight> show
         <Avatar
             letter="O"
             status="busy"
-            statusColor="bg-red-500"
-            shape="rounded-sm"
+            statusColor="red"
+            borderRadius="sm"
         />
         <Avatar
             src="/avatar3.png"
             alt="Online User"
             status="busy"
-            statusColor="bg-yellow-300"
+            statusColor="yellow"
         />
     </div>
     ```
