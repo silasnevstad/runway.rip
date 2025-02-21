@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { mergeClasses } from "@/utils/classNames";
+import { getHoverClasses } from "@/utils/classes";
 
 export default function Badge({
     children,
@@ -10,7 +11,8 @@ export default function Badge({
     variant = "soft",
     color = "primary",
     border = false,
-    hover = false,
+    lift = false,
+    scale = false,
     onClick,
     ...props
 }) {
@@ -40,7 +42,7 @@ export default function Badge({
         sizeShapeStyles[size] || sizeShapeStyles.md,
         colorStyles[variant] || colorStyles.soft,
         border && (borderStyles[variant] || borderStyles.soft),
-        hover && "transition-all ease-in-out hover:-translate-y-1",
+        getHoverClasses({ lift, scale }),
         onClick && "cursor-pointer active:scale-95",
         className
     );

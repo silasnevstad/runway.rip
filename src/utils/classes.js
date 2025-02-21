@@ -1,5 +1,5 @@
 
-export function getHoverClasses({ lift, scale, active, transitionAll = true }) {
+export function getHoverClasses({ lift, scale, transitionAll = true }) {
     const hoverClasses = [];
 
     if (transitionAll) {
@@ -11,10 +11,6 @@ export function getHoverClasses({ lift, scale, active, transitionAll = true }) {
     }
     if (scale) {
         hoverClasses.push("hover:scale-105");
-    }
-    if (active) {
-        // E.g. slight “press down” effect
-        hoverClasses.push("active:scale-95");
     }
 
     return hoverClasses.join(" ");

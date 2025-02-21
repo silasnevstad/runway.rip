@@ -13,7 +13,6 @@ export default function Alert({
     border = false,
     lift = false,
     scale = false,
-    activeClick = false,
     onClick,
     ...props
 }) {
@@ -66,7 +65,7 @@ export default function Alert({
         "inline-flex items-center font-medium rounded-md gap-2 px-4 py-2.5",
         colorStyles[severity][variant],
         border && borderStyles[severity],
-        getHoverClasses({ lift, scale, activeClick }),
+        getHoverClasses({ lift, scale }),
         onClick && "cursor-pointer active:scale-95",
         className
     );
