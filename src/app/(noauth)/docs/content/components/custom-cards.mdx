@@ -1,0 +1,178 @@
+---
+title: "Custom Cards"
+description: "Some custom pre-styled cards"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Standout Card"
+    href: "#standout-card"
+  - title: "Terminal Card"
+    href: "#terminal-card"
+  - title: "Website Card"
+    href: "#website-card"
+related:
+  - title: "Card"
+    href: "/docs/components/cards"
+---
+
+<div id="overview" />
+
+<br/>
+
+<div className="flex flex-col items-center gap-4">
+    <StandoutCard>
+        <h2>Standout Card</h2>
+        <p>This is a standout card.</p>
+    </StandoutCard>
+    <TerminalCard>
+        <span>Terminal Card</span>
+        <p>This is a terminal card.</p>
+    </TerminalCard>
+    <WebsiteCard>
+        <h2>Website Card</h2>
+        <p>This is a website card.</p>
+    </WebsiteCard>
+</div>
+
+<br />
+
+The `StandoutCard`, `TerminalCard`, and `WebsiteCard` components are pre-styled cards that can be used to display content in a visually appealing way.
+
+<Tip>
+    Check out the [`Card`](/docs/components/cards) page for the base card component.
+</Tip>
+
+<br/>
+<br/>
+<Divider />
+
+<div id="standout-card" />
+
+## StandoutCard
+<br/>
+
+<div className="flex flex-col items-center gap-4">
+    <StandoutCard>
+        <h2>Standout Card</h2>
+        <p>This is a standout card.</p>
+    </StandoutCard>
+</div>
+
+<br/>
+
+The `StandoutCard` component is made to stand out with a unique design.
+
+<br/>
+
+```javascript
+import { StandoutCard } from "@/components/atoms/CustomCards";
+
+<StandoutCard>
+    <h2>Standout Card</h2>
+    <p>This is a standout card.</p>
+</StandoutCard>
+```
+
+<br/>
+
+### Props
+| Prop           | Type      | Default     | Description                                                     |
+|----------------|-----------|-------------|-----------------------------------------------------------------|
+| children       | ReactNode | -           | The content of the card.                                        |
+| borderRadius   | string    | `"2xl"`     | The border radius of the card.                                  |
+| outerClassName | string    | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| innerClassName | string    | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| ...props       | object    | -           | Any other valid HTML attributes for the card.                   |
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="terminal-card" />
+
+## TerminalCard
+<br/>
+
+<div className="flex flex-col items-center gap-4">
+    <TerminalCard>
+        <h2>Terminal Card</h2>
+        <p>This is a terminal card.</p>
+    </TerminalCard>
+</div>
+
+<br/>
+
+The `TerminalCard` component is designed to resemble a terminal.
+
+<br/>
+
+```javascript
+import { TerminalCard } from "@/components/atoms/CustomCards";
+
+<TerminalCard>
+    <span>Terminal Card</span>
+    <p>This is a terminal card.</p>
+</TerminalCard>
+```
+
+<Info>
+    Wrap the first line in a <code>&lt;span&gt;</code> tag to make it part of the command line.
+</Info>
+
+<br/>
+
+### Props
+| Prop         | Type      | Default | Description                                                     |
+|--------------|-----------|---------|-----------------------------------------------------------------|
+| children     | ReactNode | -       | The content of the card.                                        |
+| terminalText | string    | `"$ "`  | The text to display before the content.                         |
+| className    | string    | `""`    | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| ...props     | object    | -       | Any other valid HTML attributes for the card.                   |
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="website-card" />
+
+## WebsiteCard
+<br/>
+
+<div className="flex flex-col items-center gap-4">
+    <WebsiteCard>
+        <h2>Website Card</h2>
+        <p>This is a website card.</p>
+    </WebsiteCard>
+</div>
+
+<br/>
+
+The `WebsiteCard` component is styled to look like a website.
+
+<br/>
+
+```javascript
+import { WebsiteCard } from "@/components/atoms/CustomCards";
+
+<WebsiteCard>
+    <span>Website Card</span>
+    <p>This is a website card.</p>
+</WebsiteCard>
+```
+
+<br/>
+
+### Props
+| Prop              | Type      | Default    | Description                                                     |
+|-------------------|-----------|------------|-----------------------------------------------------------------|
+| children          | ReactNode | -          | The content of the card.                                        |
+| showSearchBar     | boolean   | `true`     | If true, shows a search bar.                                    |
+| searchPlaceholder | string    | `"Search"` | The placeholder text for the search bar.                        |
+| className         | string    | `""`       | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| ...props          | object    | -          | Any other valid HTML attributes for the card.                   |
+
+<br/>
+<br/>
+<br/>

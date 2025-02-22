@@ -60,6 +60,7 @@ export const DocsNav = [
             { title: "Card", href: "/docs/components/card" },
             { title: "Checkbox", href: "/docs/components/checkbox" },
             { title: "CodeBlock", href: "/docs/components/code-block" },
+            { title: "Custom Cards", href: "/docs/components/custom-cards" },
             { title: "Divider", href: "/docs/components/divider" },
             { title: "Dropdown Text", href: "/docs/components/dropdown-text" },
             { title: "FileDrop", href: "/docs/components/file-drop" },

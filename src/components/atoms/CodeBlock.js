@@ -1,13 +1,12 @@
-'use client'
-
-import {useEffect, useState} from "react";
+"use client";
+import { useState } from "react";
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneLight, atomOneDark, tomorrowNightEighties, arta } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { atomOneLight, hybrid } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useTheme } from "next-themes";
 import { ClipboardIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 
 const CodeBlock = ({
-    children: code,
+    children: code,  // NOTE: have to wrap in children {``}, i.e. <CodeBlock>{`print()`}</CodeBlock>
     language,
     showLineNumbers = false,
     startingLineNumber = 1,
@@ -15,6 +14,7 @@ const CodeBlock = ({
     wrapLines = false,
     wrapLongLines = true,
     showLanguage = false,
+    border = false,
 }) => {
     const { resolvedTheme } = useTheme();
     const [copied, setCopied] = useState(false);
@@ -26,7 +26,11 @@ const CodeBlock = ({
     };
 
     return (
-        <div className="flex w-full flex-col border border-bg-200 dark:border-gray-800/30 rounded-lg">
+        <div className={
+            `flex w-full flex-col
+            ${border && "border  border-bg-200 dark:border-gray-800/30"} 
+            rounded-lg`
+        }>
             {(copy || showLanguage) && (
                 <div className="flex items-center justify-between p-2.5 pr-3 bg-bg-100 dark:bg-bg-800 rounded-t-lg border-b border-bg-200 dark:border-gray-800/40">
                     {showLanguage ? (
@@ -52,17 +56,17 @@ const CodeBlock = ({
             <SyntaxHighlighter
                 key={resolvedTheme}
                 language={language}
-                style={resolvedTheme === "dark" ? tomorrowNightEighties : atomOneLight}
+                style={resolvedTheme === "dark" ? hybrid : atomOneLight}
                 wrapLines={wrapLines}
                 wrapLongLines={wrapLongLines}
                 showLineNumbers={showLineNumbers}
                 startingLineNumber={startingLineNumber}
                 customStyle={{
-                    borderRadius: '0.3rem',
-                    borderTopLeftRadius: '0rem',
-                    borderTopRightRadius: '0rem',
-                    paddingTop: '.2rem',
-                    paddingBottom: '.5rem',
+                    borderRadius: '0.4rem',
+                    borderTopLeftRadius: (copy || showLanguage) ? '0rem' : '0.4rem',
+                    borderTopRightRadius: (copy || showLanguage) ? '0rem' : '0.4rem',
+                    paddingTop: '.4rem',
+                    paddingBottom: '.4rem',
                     paddingRight: '1rem',
                     fontSize: '0.85rem',
                 }}

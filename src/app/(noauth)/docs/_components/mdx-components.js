@@ -51,6 +51,7 @@ import PasswordAuthForm from "@/components/auth/PasswordAuthForm";
 import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
 import OAuthButtons from "@/components/auth/OAuthButtons";
 import Alert from "@/components/atoms/Alert";
+import {StandoutCard, TerminalCard, WebsiteCard} from "@/components/atoms/CustomCards";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -207,6 +208,9 @@ export const mdxComponents = {
     ButtonIconDemo: ButtonIconDemo,
     ButtonOnClickDemo: ButtonOnClickDemo,
     Card: Card,
+    TerminalCard: TerminalCard,
+    WebsiteCard: WebsiteCard,
+    StandoutCard: StandoutCard,
     Checkbox: ClientSideCheckbox,
     CodeBlock: CodeBlock,
     DropdownText: DropdownText,

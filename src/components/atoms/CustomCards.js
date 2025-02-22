@@ -1,8 +1,7 @@
 "use client";
-
-import { mergeClasses } from "@/utils/classNames";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Card from "@/components/atoms/Card";
+import { mergeClasses } from "@/utils/classNames";
 
 export const TerminalCard = ({
     children,
@@ -42,8 +41,7 @@ export const TerminalCard = ({
 export const WebsiteCard = ({
     children,
     className = "",
-    bodyClassName = "",
-    search = true,
+    showSearchBar = true,
     searchPlaceholder = "",
     ...props
 }) => {
@@ -59,8 +57,6 @@ export const WebsiteCard = ({
     border-b border-gray-300 dark:border-gray-700
     `;
 
-    const bodyStyles = `p-3`;
-
     return (
         <Card className={mergeClasses(containerStyles, className)} {...props}>
             <div className={headerStyles}>
@@ -70,8 +66,7 @@ export const WebsiteCard = ({
                     <span className="inline-block w-3 h-3 bg-green-500 rounded-full" />
                 </div>
 
-            {/*    search bar */}
-                {search && (
+                {showSearchBar && (
                     <>
                         <div className="flex items-center w-1/3 h-[calc(140%)] min-w-32 bg-white dark:bg-gray-800 rounded-sm">
                             <MagnifyingGlassIcon className="w-3 h-3 text-gray-300 dark:text-gray-500 ml-1" />
@@ -83,27 +78,29 @@ export const WebsiteCard = ({
                     </>
                 )}
             </div>
-            <div className={mergeClasses(bodyStyles, bodyClassName)}>{children}</div>
+            <div className="p-3">{children}</div>
         </Card>
     );
 };
 
 export const StandoutCard = ({
     children,
+    borderRadius = "2xl",
     outerClassName = "",
     innerClassName = "",
     ...props
 }) => {
-    const outerContainerStyles = `
-    relative shadow-md rounded-2xl p-1.5
-    bg-gray-200/50 dark:bg-gray-800/20 
-    dark:inset-shadow-sm overflow-hidden shadow-sm
-    border-[0.1px] border-gray-200/50 dark:border-gray-800/15
-    `;
+    const outerContainerStyles = mergeClasses(
+        `relative shadow-md p-1.5`,
+        borderRadius &&`rounded-${borderRadius}`,
+        `bg-gray-200/50 dark:bg-gray-800/20`,
+        `border-[0.1px] border-gray-200/50 dark:border-gray-800/15`,
+        `dark:inset-shadow-sm overflow-hidden shadow-sm`,
+    );
 
     const innerContainerStyles = `
-    flex flex-col items-start
-    bg-bg-50 dark:bg-bg-900 rounded-2xl p-5
+        flex flex-col items-start
+        bg-bg-50 dark:bg-bg-900 rounded-2xl p-5
     `;
 
     return (

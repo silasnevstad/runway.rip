@@ -4,15 +4,15 @@ description: "A code block component for displaying code snippets"
 onThisPage:
   - title: "CodeBlock"
     href: "#divider"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
 
 <div id="divider" />
-
-<Divider />
 
 <br />
 
@@ -30,27 +30,50 @@ def hello_world():
 The `CodeBlock` component is a customizable code block that can be used to display code snippets. It supports syntax highlighting, line numbers, and copy-to-clipboard functionality.
 
 <Tip>
-    Use the `copy`, `showLanguage`, and `showLineNumbers` props to enable additional features for the code block.
+    Want different themes? Check out [React Syntax Highlighter Demo](https://react-syntax-highlighter.github.io/react-syntax-highlighter/demo/) and tweak the `/components/atoms/CodeBlock` component.
 </Tip>
 
 <br/>
-<Divider />
 <br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+## Usage
+
+```javascript
+import CodeBlock from "@/components/atoms/CodeBlock";
+
+<CodeBlock language="javascript">
+    {`console.log("Hello, World!");`}
+</CodeBlock>
+```
+
+<Info>
+    You have to wrap the code inside curly braces  to pass it as a child to the `CodeBlock` component.
+</Info>
+
+<br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 ## Props
 
 The CodeBlock component accepts the following props:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| children | ReactNode | - | The code to be displayed inside the code block |
-| language | string | - | The language of the code snippet for syntax highlighting |
-| showLineNumbers | boolean | false | Whether to display line numbers for the code snippet |
-| startingLineNumber | number | 1 | The starting line number for the code snippet |
-| copy | boolean | false | Whether to display a copy-to-clipboard button |
-| wrapLines | boolean | false | Whether to wrap long lines of code |
-| showLanguage | boolean | false | Whether to display the language name at the top of the code block |
+| Prop               | Type      | Default | Description                                                       |
+|--------------------|-----------|---------|-------------------------------------------------------------------|
+| children           | ReactNode | -       | The code to be displayed inside the code block                    |
+| language           | string    | -       | The language of the code snippet for syntax highlighting          |
+| showLineNumbers    | boolean   | `false` | Whether to display line numbers for the code snippet              |
+| startingLineNumber | number    | `1`     | The starting line number for the code snippet                     |
+| copy               | boolean   | `false` | Whether to display a copy-to-clipboard button                     |
+| wrapLines          | boolean   | `false` | Whether to wrap long lines of code                                |
+| wrapLongLines      | boolean   | `true`  | Whether to wrap long lines of code                                |
+| showLanguage       | boolean   | `false` | Whether to display the language name at the top of the code block |
+| border             | boolean   | `false` | Whether to display a border around the code block                 |
 
 <Info>
 The `CodeBlock` component uses the [`react-syntax-highlighter`](https://github.com/react-syntax-highlighter/react-syntax-highlighter)
@@ -73,10 +96,12 @@ print("Hello, World!")
 }>
 ```javascript
 <CodeBlock language="python">
-    print("Hello, World!")
+    {`print("Hello, World!")`}
 </CodeBlock>
 ```
 </PreviewCode>
+
+<br/>
 
 ### Code Block with Line Numbers
 <PreviewCode preview={
@@ -90,12 +115,14 @@ function add(a, b) {
 }>
 ```javascript
 <CodeBlock language="javascript" showLineNumbers startingLineNumber={5}>
-    function add(a, b) {
+    {`function add(a, b) {
         return a + b;
-    }
+    }`}
 </CodeBlock>
 ```
 </PreviewCode>
+
+<br/>
 
 ### Code Block with Copy Button
 <PreviewCode preview={
@@ -110,13 +137,15 @@ interface User {
 }>
 ```javascript
 <CodeBlock language="typescript" copy>
-    interface User {
+    {`interface User {
         name: string;
         age: number;
-    }
+    }`}
 </CodeBlock>
 ```
 </PreviewCode>
+
+<br/>
 
 ### Code Block with Language Name
 <PreviewCode preview={
@@ -132,11 +161,42 @@ public class HelloWorld {
 }>
 ```javascript
 <CodeBlock language="java" showLanguage>
-    public class HelloWorld {
+    {`public class HelloWorld {
         public static void main(String[] args) {
             System.out.println("Hello, World!");
         }
-    }
+    }`}
+</CodeBlock>
+```
+</PreviewCode>
+
+### Code Block with Everything
+<PreviewCode preview={
+    <CodeBlock
+        language="javascript"
+        showLanguage
+        showLineNumbers
+        copy
+        wrapLines
+    >
+{`function add(a, b) {
+    return a + b;
+}`}
+    </CodeBlock>
+}>
+```javascript
+<CodeBlock
+    language="javascript"
+    showLanguage
+    showLineNumbers
+    copy
+    wrapLines
+>
+{`
+function add(a, b) {
+    return a + b;
+}
+`}
 </CodeBlock>
 ```
 </PreviewCode>

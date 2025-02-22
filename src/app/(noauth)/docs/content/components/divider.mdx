@@ -4,15 +4,15 @@ description: "A customizable divider to separate content horizontally or vertica
 onThisPage:
   - title: "Divider"
     href: "#divider"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
 
 <div id="divider" />
-
-<Divider />
 
 <br/>
 
@@ -30,9 +30,32 @@ onThisPage:
 
 The `Divider` component is a simple horizontal or vertical line that separates content. It can be customized with different colors, opacity levels, and text.
 
+<Tip>
+    Use the `opacity` prop to change the opacity of the divider (0-100).
+</Tip>
+
+<br/>
 <br/>
 <Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Divider from '@/components/atoms/Divider';
+
+<Divider />
+```
+
+<Info>
+    Use the `text` prop to add text to the divider.
+</Info>
+
 <br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
@@ -40,25 +63,27 @@ The `Divider` component is a simple horizontal or vertical line that separates c
 
 The Divider component accepts the following props:
 
-| Name      | Type    | Default | Description                                          |
-|-----------|---------|---------|------------------------------------------------------|
-| className | string  |         | Custom CSS classes to apply to the divider           |
-| text      | string  |         | Text to display between the divider lines            |
-| vertical  | boolean | `false` | Whether the divider should be vertical or horizontal |
-| color     | string  | `gray`  | The color scheme of the divider                      |
-| opacity   | number  | `70`    | The opacity level of the divider (0-100)             |
-| margin    | string  |         | Margin to apply to the divider                       |
-| width     | string  |         | Width of the divider                                 |
-| noWrap    | boolean | `false` | Whether to prevent text wrapping in the divider text |
+| Name      | Type    | Default     | Description                                                                                      |
+|-----------|---------|-------------|--------------------------------------------------------------------------------------------------|
+| color     | string  | `"primary"` | The base color (use [tailwind.config](/docs/tutorials/config)).                                  |
+| text      | string  | `""`        | Text to display in the divider.                                                                  |
+| opacity   | number  | `100`       | Opacity of the divider (0-100).                                                                  |
+| margin    | number  | `2`         | The margin around the divider.                                                                   |
+| width     | number  | `0.5`       | The width of the divider (in rem).                                                               |
+| height    | string  | `"full"`    | The height of the divider (uses [Tailwind](https://tailwindcss.com/docs/height) height classes). |
+| vertical  | boolean | `false`     | If true, the divider will be vertical.                                                           |
+| noWrap    | boolean | `true`      | If true, the text will not wrap.                                                                 |
+| className | string  | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes.                                  |
+| ...props  | object  | -           | Any other valid HTML attributes for the `button` or `Link`.                                      |
 
+<br/>
 <br/>
 <br/>
 <Divider />
-<br/>
 
-<div id="usage-examples" />
+<div id="examples" />
 
-## Usage Examples
+## Examples
 
 ### Horizontal Divider
 <PreviewCode preview={
@@ -108,8 +133,9 @@ The Divider component accepts the following props:
 
 <Tip>
     Use the `color` prop to change the color of the divider
-    (<span className="text-primary-500">primary</span>, <span className="text-purple-500">purple</span>, <span className="text-red-500">red</span>, etc).
+    (<span className="text-primary-500">"primary"</span>, <span className="text-purple-500">"purple"</span>, <span className="text-red-500">"red"</span>, etc).
 </Tip>
 
+<br />
 <br />
 <br />
