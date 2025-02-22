@@ -1,100 +1,83 @@
 "use client";
-
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Loader from "@/components/atoms/Loader";
 import { mergeClasses } from "@/utils/classNames";
+import { getHoverClasses } from "@/utils/classes";
 
-const Button = ({
-    // Core props
+export default function Button({
     children,
-    onClick,
-    href = "",
-    className = "",
-    disabled = false,
-    loading = false,
-    shadow = false,
-
-    // Effects
-    active = true,
-    grow = false,
+    size = "md",
+    color = "primary",
+    borderRadius = "md",
+    hoverBg = true,
+    scale = false,
     lift = false,
-
-    // Icon support
-    icon: Icon = null,
-    iconSrc = "",
-    iconAlt = "",
-    iconClassname = "",
-
-    // Optional
-    textColor = "",
-    backgroundColor = "",
-    hoverBackgroundColor = "",
-    shape = "",
+    active = true,
     border = false,
-
+    shadow = false,
+    loading = false,
+    disabled = false,
+    href = "",
+    icon = null,
+    onClick,
+    className = "",
     ...props
-}) => {
-    const baseStyles = [
-        `text-md font-semibold py-2.5 px-12`,
-        shape ? `${shape}` : "rounded-lg",
-        textColor ?`text-${textColor}` : "text-white",
-        backgroundColor ? `bg-${backgroundColor}` : "bg-primary-600",
-        hoverBackgroundColor ? `hover:bg-${hoverBackgroundColor}` : "hover:bg-primary-600",
-        border ? `border border-${backgroundColor}` : "",
-        `flex items-center justify-center gap-2 transition duration-200 ease-in-out`,
-        // add effect where when you click the button it scales down and back up
-        active ? `active:scale-97` : "",
-        shadow ? "shadow-md" : "",
-        disabled || loading ? "cursor-not-allowed opacity-50" : "cursor-pointer",
-        grow ? "hover:scale-105" : "",
-        lift ? "hover:-translate-y-1" : "",
-    ].join(" ");
+}) {
+    // Tailwind sizing
+    const sizeStyles = {
+        sm: `px-3 py-1.5 text-sm`,
+        md: `px-4 py-2.5 text-md`,
+        lg: `px-5 py-3 text-lg`,
+    };
 
-    const finalClassName = mergeClasses(
-        "relative",
-        baseStyles,
+    // Color handling & hover background
+    const colorClass = mergeClasses(
+        `bg-${color}-500 text-white`,
+        hoverBg && `hover:bg-${color}-600 dark:hover:bg-${color}-600`
+    );
+
+    // Merge all classes
+    const finalClasses = mergeClasses(
+        "inline-flex items-center justify-center font-medium transition-colors gap-2",
+        sizeStyles[size] || sizeStyles.md,
+        colorClass,
+        border && `border border-bg-700 dark:border-bg-500`,
+        borderRadius && `rounded-${borderRadius}`,
+        shadow && "shadow-md",
+        getHoverClasses({ lift, scale, active }),
+        disabled || loading ? "cursor-not-allowed opacity-50" : "cursor-pointer",
         className
     );
 
-    const iconElement = Icon
-        ? // If using a React icon component (e.g., Heroicons)
-        React.createElement(Icon, { className: `w-5 h-5 ${iconClassname}` })
-        : iconSrc
-            ? // If using an external image
-            <Image src={iconSrc} alt={iconAlt} width={30} height={30} />
-            : null;
-
-    // Loading content or normal content
+    // Loading vs. normal content
     const content = loading ? (
-        <Loader className="text-primary-900" />
+        <Loader className={`text-${color}-900`} />
     ) : (
-        <div className="flex items-center justify-center gap-3">
-            {iconElement}
+        <>
+            {icon && icon}
             {children}
-        </div>
+        </>
     );
 
-    // If `href` is set, render as a Next.js Link
+    // If `href` is provided, render as a Next.js Link
     if (href) {
         return (
-            <Link href={href} className={finalClassName} {...props}>
+            <Link href={href} className={finalClasses} {...props}>
                 {content}
             </Link>
         );
     }
 
+    // Otherwise a standard <button>
     return (
         <button
             onClick={onClick}
             disabled={disabled || loading}
-            className={finalClassName}
+            className={finalClasses}
             {...props}
         >
             {content}
         </button>
     );
-};
-
-export default Button;
+}

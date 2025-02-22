@@ -1,4 +1,3 @@
-import Divider from "../../../../../components/atoms/Divider";
 ---
 title: "Badge"
 description: "A badge component offering color, size, and variant options."
@@ -27,7 +26,7 @@ onThisPage:
 <br/>
 
 <div>
-    The `Badge` component is a simple yet versatile element for labeling, categorizing, or drawing attention to items in your interface. It comes with flexible size options, color themes, and allows you to tweak the `borderRadius` for shaping.
+    The `Badge` component is a simple yet versatile element for labeling, categorizing, or drawing attention to items in your interface. It comes with flexible `size` options, `color` themes, and allows you to tweak the `borderRadius` for shaping.
 </div>
 
 <Info>
@@ -36,7 +35,6 @@ onThisPage:
 
 <br/>
 <br/>
-
 <Divider />
 <div id="usage" />
 
@@ -131,14 +129,28 @@ Spice it up your own [Tailwind](https://tailwindcss.com) classes and a subtle ho
 
 <PreviewCode preview={
     <div className="flex gap-3">
-        <Badge hover>Hover</Badge>
+        <Badge lift>
+            Lift on Hover
+        </Badge>
+        <Badge scale>
+            Scale on Hover
+        </Badge>
         <Badge className={"bg-blue-500 dark:bg-blue-500 text-bg-0  dark:text-bg-900"}>Custom</Badge>
     </div>
 }>
     ```javascript
     <div className="flex gap-3">
-        <Badge hover>Hover</Badge>
-        <Badge className={"bg-blue-500 dark:bg-blue-500 text-bg-0  dark:text-bg-900"}>Custom</Badge>
+        <Badge lift>
+            Lift on Hover
+        </Badge>
+        <Badge scale>
+            Scale on Hover
+        </Badge>
+        <Badge className={
+            "bg-blue-500 dark:bg-blue-500 text-bg-0  dark:text-bg-900"
+        }>
+            Custom
+        </Badge>
     </div>
     ```
 </PreviewCode>
@@ -147,6 +159,6 @@ Spice it up your own [Tailwind](https://tailwindcss.com) classes and a subtle ho
     If you need your own styles, just add them via <code>className</code>.
 </Tip>
 
-<br />
-<br />
+<br/>
+<br/>
 <br/>

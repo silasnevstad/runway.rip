@@ -7,13 +7,13 @@ export function ButtonIconDemo() {
     return (
         <div className="flex flex-wrap gap-4 items-center">
             <Button
-                icon={() => <ClipboardIcon className="w-5 h-5" />}
+                icon={<ClipboardIcon className="w-5 h-5" />}
                 className="px-5"
             >
                 Copy
             </Button>
             <Button
-                icon={() => <InformationCircleIcon className="w-5 h-5" />}
+                icon={<InformationCircleIcon className="w-5 h-5" />}
             >
                 Click Me
             </Button>

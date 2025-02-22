@@ -1,5 +1,5 @@
 
-export function getHoverClasses({ lift, scale, transitionAll = true }) {
+export function getHoverClasses({ background, lift, scale, active, transitionAll = true }) {
     const hoverClasses = [];
 
     if (transitionAll) {
@@ -11,6 +11,12 @@ export function getHoverClasses({ lift, scale, transitionAll = true }) {
     }
     if (scale) {
         hoverClasses.push("hover:scale-105");
+    }
+    if (active) {
+        hoverClasses.push("active:scale-97");
+    }
+    if (background) {
+        hoverClasses.push(`hover:bg-${background}`);
     }
 
     return hoverClasses.join(" ");

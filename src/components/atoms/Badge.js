@@ -5,15 +5,16 @@ import { getHoverClasses } from "@/utils/classes";
 
 export default function Badge({
     children,
-    className = "",
+    color = "primary",
+    variant = "soft",
     borderRadius = "full",
     size = "md",
-    variant = "soft",
-    color = "primary",
     border = false,
     lift = false,
     scale = false,
+    active = false,
     onClick,
+    className = "",
     ...props
 }) {
     // Size & shape definitions
@@ -42,8 +43,7 @@ export default function Badge({
         sizeShapeStyles[size] || sizeShapeStyles.md,
         colorStyles[variant] || colorStyles.soft,
         border && (borderStyles[variant] || borderStyles.soft),
-        getHoverClasses({ lift, scale }),
-        onClick && "cursor-pointer active:scale-95",
+        getHoverClasses({ lift, scale, active }),
         className
     );
 

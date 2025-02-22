@@ -4,16 +4,16 @@ import { MdOutlineInfo, MdOutlineErrorOutline, MdOutlineCheckCircle, MdOutlineWa
 import { mergeClasses } from "@/utils/classNames";
 import { getHoverClasses } from "@/utils/classes";
 
-
 export default function Alert({
     children,
-    className = "",
     variant = "soft",
     severity = "info",  // info, success, warning, error
     border = false,
     lift = false,
     scale = false,
+    active = false,
     onClick,
+    className = "",
     ...props
 }) {
     const colorStyles = {
@@ -65,8 +65,7 @@ export default function Alert({
         "inline-flex items-center font-medium rounded-md gap-2 px-4 py-2.5",
         colorStyles[severity][variant],
         border && borderStyles[severity],
-        getHoverClasses({ lift, scale }),
-        onClick && "cursor-pointer active:scale-95",
+        getHoverClasses({ lift, scale, active }),
         className
     );
 
