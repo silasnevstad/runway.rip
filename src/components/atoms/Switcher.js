@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Tooltip from "@/components/atoms/Tooltip";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 export default function Switcher({
     className = "",

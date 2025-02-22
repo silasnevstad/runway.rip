@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { MdOutlineInfo, MdOutlineErrorOutline, MdOutlineCheckCircle, MdOutlineWarningAmber } from "react-icons/md";
-import { mergeClasses } from "@/utils/classNames";
-import { getHoverClasses } from "@/utils/classes";
+import { mergeClasses, getHoverClasses } from "@/utils/styling";
 
 export default function Alert({
     children,

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 export default function ImageSection({
     image,

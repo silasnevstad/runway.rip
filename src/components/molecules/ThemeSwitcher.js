@@ -1,13 +1,11 @@
-'use client';
-
+"use client";
 import { useEffect, useState } from "react";
-import { CiDesktop, CiSun,  } from "react-icons/ci";
-import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
+import { CiDesktop } from "react-icons/ci";
+import { IoMoonOutline } from "react-icons/io5";
 import { GoSun } from "react-icons/go";
 import { useTheme } from "next-themes";
-
 import Switcher from "@/components/atoms/Switcher";
-import {mergeClasses} from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 export default function ThemeSwitcher({
     className = "",

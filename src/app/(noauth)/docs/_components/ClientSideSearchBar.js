@@ -1,32 +1,30 @@
 'use client';
-
-import { useState } from 'react';
 import SearchBar from '@/components/molecules/SearchBar';
 
 const ClientSideSearchBar = ({
-    items,
-    placeholder = 'Search...',
-    containerClassName = '',
-    inputClassName = '',
-    onSelect = () => {}
+    items = [],
+    onItemSelect = () => {},
+    renderItem,
+    size = "md",
+    placeholder = "Search...",
+    modalPlaceholder = "Search...",
+    modalSearch = false,
+    containerClassName = "",
+    inputClassName = "",
+    ...props
 }) => {
-    const [selectedItem, setSelectedItem] = useState(null);
-
-    const handleItemSelect = (item) => {
-        setSelectedItem(item);
-        // Do something with the selected item or pass it to an external handler.
-        onSelect(item);
-    };
-
     return (
         <SearchBar
             items={items}
+            onItemSelect={onItemSelect}
+            renderItem={renderItem}
+            size={size}
             placeholder={placeholder}
+            modalPlaceholder={modalPlaceholder}
+            modalSearch={modalSearch}
             containerClassName={containerClassName}
             inputClassName={inputClassName}
-            onItemSelect={handleItemSelect}
-            // Here we define a default renderItem function.
-            renderItem={(item) => <div>{item.title}</div>}
+            {...props}
         />
     );
 };

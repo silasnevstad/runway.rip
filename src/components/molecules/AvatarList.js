@@ -1,6 +1,6 @@
 import React from "react";
 import Avatar from "@/components/atoms/Avatar";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 export default function AvatarList({
     avatars = [],

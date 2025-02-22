@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import DropdownText from "@/components/atoms/DropdownText";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 const Accordion = ({
     className,

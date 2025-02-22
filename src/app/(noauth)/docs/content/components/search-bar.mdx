@@ -4,15 +4,18 @@ description: "A responsive search bar component for filtering and selecting item
 onThisPage:
   - title: "Overview"
     href: "#searchbar-overview"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
   - title: "Examples"
     href: "#examples"
+related:
+  - title: "Input"
+    href: "/docs/components/input"
 ---
 
 <div id="searchbar-overview" />
-
-<Divider />
 
 <br/>
 
@@ -30,35 +33,104 @@ onThisPage:
 </div>
 
 <Info>
-    It leverages the `Input` component.
+    It leverages the [`Input`](/docs/components/input) component.
 </Info>
 
 <br/>
-<Divider />
 <br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import SearchBar from "@/components/atoms/SearchBar";
+
+<SearchBar
+    items={[
+        {
+            title: 'Item 1'
+        },
+        {
+            title: 'Item 2'
+        },
+    ]}
+    placeholder="Search docs..."
+/>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
 ## Props
 
-| **Prop**           | **Type**    | **Default**    | **Description**                                                                                                     |
-|--------------------|-------------|----------------|---------------------------------------------------------------------------------------------------------------------|
-| items              | array       | -              | An array of section objects. Each section should have a `title` and an `items` array with sub-items.                |
-| onItemSelect       | function    | -              | Callback fired when an item is selected. Receives the selected item as an argument.                                  |
-| renderItem         | function    | -              | Optional. A function to customize how each item is rendered.                                                        |
-| containerClassName | string      | `""`           | Additional classes for the outer container of the SearchBar.                                                        |
-| inputClassName     | string      | `""`           | Additional classes for the Input component.                                                                         |
-| placeholder        | string      | `"Search..."`  | Placeholder text for the search input.                                                                              |
+| **Prop**           | **Type** | **Default**   | **Description**                                                                                                           |
+|--------------------|----------|---------------|---------------------------------------------------------------------------------------------------------------------------|
+| items              | array    | `[]`          | An array of objects representing the sections and items. Each object should have a `title` and an optional `items` array. |
+| onItemSelect       | function | `() => {}`    | A callback function that is called when an item is selected. It receives the selected item as an argument.                |
+| renderItem         | function | `null`        | A custom render function for each item. It receives the item as an argument and should return a React element.            |
+| size               | string   | `"md"`        | The size of the input. Possible values are `sm`, `md`, `lg`.                                                              |
+| placeholder        | string   | `"Search..."` | The placeholder text for the input.                                                                                       |
+| modalSearch        | boolean  | `false`       | If `true`, the search will be performed in a modal.                                                                       |
+| modalPlaceholder   | string   | `"Search..."` | The placeholder text for the modal input.                                                                                 |
+| containerClassName | string   | `""`          | Additional [Tailwind](https://tailwindcss.com) classes for the container.                                                 |
+| inputClassName     | string   | `""`          | Additional [Tailwind](https://tailwindcss.com) classes for the input.                                                     |
+| textClassName      | string   | `""`          | Additional [Tailwind](https://tailwindcss.com) classes for the text.                                                      |
+| ...props           | object   | -             | Any other valid <code>&lt;input&gt;</code>  attributes (e.g. `type`, `name`, etc.).                                       |
+
+<Tip>
+    The `items` prop should be an array of objects, where each object represents a section. Each section object should have a `title` and an optional `items` array. The `items` array should contain objects with `title` and `href` properties.
+</Tip>
 
 <br/>
-<Divider />
 <br/>
+<br/>
+<Divider />
 
 <div id="examples" />
 
 ## Examples
 
-### 1. Basic SearchBar
+### Simple SearchBar
+<PreviewCode preview={
+    <SearchBar
+        items={[
+            {
+                title: 'Item 1'
+            },
+            {
+                title: 'Item 2'
+            },
+        ]}
+        placeholder="Search items..."
+    />
+}>
+    ```javascript
+    <SearchBar
+        items={[
+            {
+                title: 'Item 1',
+                href: '/item1'
+            },
+            {
+                title: 'Item 2',
+                href: '/item2'
+            },
+        ]}
+        placeholder="Search items..."
+    />
+    ```
+</PreviewCode>
+
+<br />
+
+### SearchBar with Sections
 
 <PreviewCode preview={
     <SearchBar
@@ -78,6 +150,57 @@ onThisPage:
     ```
 </PreviewCode>
 
+<Caution>
+    Currently you can only nest `items` one level deep.
+</Caution>
+
 <br />
+
+### Modal SearchBar
+<PreviewCode preview={
+    <SearchBar
+        items={[
+            { title: 'Section 1', items: [{ title: 'Item 1', href: '/item1' }, { title: 'Item 2', href: '/item2' }] },
+            { title: 'Section 2', items: [{ title: 'Item A', href: '/itemA' }, { title: 'Item B', href: '/itemB' }] },
+        ]}
+        modalSearch
+    />
+}>
+    ```javascript
+    <SearchBar
+        items={[
+            { title: 'Section 1', items: [{ title: 'Item 1', href: '/item1' }, { title: 'Item 2', href: '/item2' }] },
+            { title: 'Section 2', items: [{ title: 'Item A', href: '/itemA' }, { title: 'Item B', href: '/itemB' }] },
+        ]}
+        modalSearch
+    />
+    ```
+</PreviewCode>
+
 <br />
+
+### Custom Styling
+<PreviewCode preview={
+    <SearchBar
+        items={[
+            { title: 'Section 1', items: [{ title: 'Item 1', href: '/item1' }, { title: 'Item 2', href: '/item2' }] },
+            { title: 'Section 2', items: [{ title: 'Item A', href: '/itemA' }, { title: 'Item B', href: '/itemB' }] },
+        ]}
+        containerClassName="bg-blue-500/20"
+        inputClassName="bg-blue-500/20"
+        textClassName="text-blue-500"
+    />
+}>
+    ```javascript
+    <SearchBar
+        items={[
+            { title: 'Section 1', items: [{ title: 'Item 1', href: '/item1' }, { title: 'Item 2', href: '/item2' }] },
+            { title: 'Section 2', items: [{ title: 'Item A', href: '/itemA' }, { title: 'Item B', href: '/itemB' }] },
+        ]}
+        containerClassName="bg-gray-100 p-4 rounded-lg"
+        inputClassName="border border-gray-300 rounded-md"
+    />
+    ```
+</PreviewCode>
+
 <br />

@@ -54,7 +54,10 @@ import Alert from "@/components/atoms/Alert";
 import {StandoutCard, TerminalCard, WebsiteCard} from "@/components/atoms/CustomCards";
 import File from "@/components/atoms/File";
 import Indicator from "@/components/atoms/Indicator";
-import {FaExclamationCircle, FaExclamationTriangle} from "react-icons/fa";
+import { FaExclamationCircle } from "react-icons/fa";
+import {InputIconDemo} from "@/app/(noauth)/docs/_components/demos/InputDemo";
+import TextArea from "@/components/atoms/TextArea";
+import {TextAreaDemo} from "@/app/(noauth)/docs/_components/demos/TextAreaDemo";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -136,11 +139,8 @@ export const mdxComponents = {
         </div>
     ),
     Caution: ({children}) => (
-        <div className="bg-orange-500/20 rounded-lg border-l-4 rounded-l-none border-orange-500 p-3 pb-2 my-4">
-            <p className="flex items-center text-md text-orange-500 font-semibold">
-                <ExclamationTriangleIcon className="w-5 h-5 inline-block mr-1 text-orange-500" />
-                Caution
-            </p>
+        <div className="flex items-start gap-2 text-[15px] bg-orange-500/20 rounded-lg border-l-4 rounded-l-none border-orange-500 p-2 my-4">
+            <ExclamationTriangleIcon className="w-6 h-6 text-orange-500 inline-block mt-2" />
             {children}
         </div>
     ),
@@ -232,11 +232,14 @@ export const mdxComponents = {
     Toggle: ClientSideToggle,
     Tooltip: Tooltip,
     Input: Input,
+    InputIconDemo: InputIconDemo,
     Loader: Loader,
     LineGraph: LineGraph,
     SearchBar: SearchBar,
     ClientSideSearchBar: ClientSideSearchBar,
     Slider: Slider,
+    TextArea: TextArea,
+    TextAreaDemo: TextAreaDemo,
 
     PasswordAuthForm: PasswordAuthForm,
     PasswordlessAuthForm: PasswordlessAuthForm,

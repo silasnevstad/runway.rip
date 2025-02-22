@@ -4,6 +4,8 @@ description: "A loader component that displays a loading animation."
 onThisPage:
   - title: "Loader"
     href: "#loader"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
   - title: "Examples"
@@ -12,13 +14,19 @@ onThisPage:
 
 <div id="loader" />
 
-<Divider />
-
 <br/>
 
 <div className="flex flex-col justify-center items-center gap-10">
-    <Loader type="spinner" className="h-5 w-5 text-primary-500" />
-    <Loader type="dots" className="h-5 w-5 text-primary-500" />
+    <div className="flex items-center gap-8">
+        <Loader type="spinner" color="primary" />
+        <Loader type="spinner" color="green" />
+        <Loader type="spinner" color="orange" />
+    </div>
+    <div className="flex items-center gap-8">
+        <Loader type="dots" color="purple" />
+        <Loader type="dots" color="red" />
+        <Loader type="dots" color="pink" />
+    </div>
 </div>
 
 <br/>
@@ -31,44 +39,67 @@ The `Loader` component is a loader component that displays a loading animation. 
 </Tip>
 
 <br/>
-<Divider />
 <br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Loader from "@/components/atoms/Loader";
+
+<Loader type="spinner" color="primary" />
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
 ## Props
 
-The `Loader` component accepts the following props:
+| Prop      | Type                | Default     | Description                                                                                                 |
+|-----------|---------------------|-------------|-------------------------------------------------------------------------------------------------------------|
+| type      | "spinner" \| "dots" | `"spinner"` | The type of loader to display. Possible values are `spinner` and `dots`.                                    |
+| color     | string              | `"primary"` | [Tailwind](https://tailwindcss.com) color key used for the focus ring and border (`focus-within:border-*`). |
+| className | string              | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the container.                                   |
+| ...props  | object              | -           | Any other valid <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.).                          |
 
-| Prop      | Type     | Default | Description                                                                 |
-|-----------|----------|---------|-----------------------------------------------------------------------------|
-| type      | string   | spinner | The type of loader to display. Possible values are `spinner` and `dots`.   |
-| className | string   |         | Additional classes to apply to the loader.                                 |
-
+<br/>
 <br/>
 <br/>
 <Divider />
-<br/>
 
 <div id="examples" />
 
-## Usage Examples
+## Examples
 
 ### Spinner Loader
 <PreviewCode preview={
-    <Loader type="spinner" className="h-5 w-5 text-primary-500" />
+    <div className="flex items-center gap-8">
+        <Loader type="spinner" />
+        <Loader type="spinner" color="green" />
+    </div>
 }>
 ```javascript
-    <Loader type="spinner" className="h-5 w-5 text-primary-500" />
+<Loader type="spinner" />
+<Loader type="spinner" color="green" />
 ```
 </PreviewCode>
 
 ### Dots Loader
 <PreviewCode preview={
-    <Loader type="dots" className="h-5 w-5 text-primary-500" />
+    <div className="flex items-center gap-8">
+        <Loader type="dots" />
+        <Loader type="dots" color="red" />
+    </div>
 }>
 ```javascript
-    <Loader type="dots" className="h-5 w-5 text-primary-500" />
+<Loader type="dots" />
+<Loader type="dots" color="red" />
 ```
 </PreviewCode>
 

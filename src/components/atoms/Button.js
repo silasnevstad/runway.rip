@@ -2,8 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Loader from "@/components/atoms/Loader";
-import { mergeClasses } from "@/utils/classNames";
-import { getHoverClasses } from "@/utils/classes";
+import { mergeClasses, getHoverClasses } from "@/utils/styling";
 
 export default function Button({
     children,

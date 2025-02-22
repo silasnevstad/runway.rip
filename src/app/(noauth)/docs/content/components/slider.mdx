@@ -12,32 +12,40 @@ onThisPage:
 
 <div id="slider" />
 
-<Divider />
-
 <br />
 
-<div className="flex items-center gap-4 max-md:flex-col">
-    <Slider
-        min={0}
-        max={100}
-        step={1}
-        defaultValue={50}
-        valuePosition="left"
-        showValue={true}
-        showLabels={false}
-        className="my-4"
-    />
-    <Slider
-        min={0}
-        max={100}
-        step={1}
-        defaultValue={50}
-        valuePosition="right"
-        showValue={true}
-        showLabels={false}
-        className="my-4"
-    />
+<div className="flex w-full items-center">
+    <div className="flex flex-col w-full max-w-80 justify-center items-center gap-4">
+        <Slider
+            min={0}
+            max={100}
+            step={1}
+            defaultValue={50}
+            valuePosition="top"
+        />
+        <Slider
+            min={0}
+            max={100}
+            step={1}
+            defaultValue={50}
+            valuePosition="left"
+            showValue={true}
+            showLabels={true}
+            className="my-4"
+        />
+        <Slider
+            min={0}
+            max={100}
+            step={1}
+            defaultValue={50}
+            valuePosition="right"
+            showValue={true}
+            showLabels={false}
+            className="my-4"
+        />
+    </div>
 </div>
+
 
 <br />
 

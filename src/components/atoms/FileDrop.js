@@ -2,7 +2,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import { LuFilePlus } from "react-icons/lu";
 import File from "@/components/atoms/File";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses, renderIcon } from "@/utils/styling";
 
 const FileDrop = ({
     text = "Drop files here, or click to select",
@@ -99,14 +99,18 @@ const FileDrop = ({
         className
     );
 
+    // Prepare icon
     const iconClasses = mergeClasses(
         "h-12 w-12 mx-auto mb-3",
         dragOver ? `text-${activeColor}-500` : `text-${color}-500`
     );
 
-    const clonedIcon = React.cloneElement(icon, {
-        className: iconClasses,
-    });
+    // Prepare icon
+    const iconRendered = renderIcon(
+        icon,
+        null,
+        iconClasses
+    );
 
     return (
         <div
@@ -131,7 +135,7 @@ const FileDrop = ({
             {/* If no files yet, show icon + text */}
             {files.length === 0 && (
                 <>
-                    {icon && clonedIcon}
+                    {iconRendered && iconRendered}
                     <p className={`text-center text-md text-${color}-600 dark:text-${color}-400`}>
                         {text}
                     </p>

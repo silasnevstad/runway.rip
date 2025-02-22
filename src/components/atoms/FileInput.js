@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { FiFilePlus } from 'react-icons/fi';
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 const FileInput = ({
     text = 'Choose File',

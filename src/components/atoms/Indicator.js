@@ -1,6 +1,5 @@
 import React from "react";
-import { POSITION_CLASSES } from "@/utils/classes";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses, POSITION_CLASSES } from "@/utils/styling";
 
 export default function Indicator({
     children,

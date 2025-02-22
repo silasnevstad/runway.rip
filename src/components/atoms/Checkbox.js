@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import { mergeClasses } from "@/utils/classNames";
-import { getHoverClasses } from "@/utils/classes";
+import { mergeClasses, getHoverClasses } from "@/utils/styling";
 
 const Checkbox = ({
     name,

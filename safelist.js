@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const colorTones = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
-const colors = ["bg", "primary", "gray", "red", "yellow", "orange", "green", "blue", "purple"];
+const colors = ["bg", "primary", "gray", "red", "yellow", "orange", "green", "blue", "purple", "pink"];
 const opacities = [0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 95, 100];
 const gradients = ["from", "to"];
 const borderRadius = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "full"];
@@ -17,6 +17,16 @@ const measurements = [
     ...widths.map((width) => `h-${width}`),
     ...margins.map((width) => `mx-${width}`),
     ...margins.map((width) => `my-${width}`),
+    ...margins.map((width) => `mt-${width}`),
+    ...margins.map((width) => `mr-${width}`),
+    ...margins.map((width) => `mb-${width}`),
+    ...margins.map((width) => `ml-${width}`),
+    ...margins.map((width) => `px-${width}`),
+    ...margins.map((width) => `py-${width}`),
+    ...margins.map((width) => `pt-${width}`),
+    ...margins.map((width) => `pr-${width}`),
+    ...margins.map((width) => `pb-${width}`),
+    ...margins.map((width) => `pl-${width}`),
 ];
 
 const topPositionsClasses = topPositions.map((top) => `top-${top}`);

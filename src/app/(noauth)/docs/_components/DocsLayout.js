@@ -9,7 +9,7 @@ import { FiTool } from "react-icons/fi";
 import Sidebar from "@/components/organisms/Sidebar";
 import SearchBar from "@/components/molecules/SearchBar";
 import DocumentationSidebar from "@/app/(noauth)/docs/_components/DocumentationSidebar";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 import { DocsNav } from '@/app/(noauth)/docs/Nav';
 import { openEmailSupport } from "@/utils/email";
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";

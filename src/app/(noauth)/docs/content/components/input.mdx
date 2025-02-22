@@ -10,21 +10,22 @@ onThisPage:
     href: "#props"
   - title: "Examples"
     href: "#examples"
+related:
+  - title: "TextArea"
+    href: "/docs/components/textarea"
 ---
 
 <div id="input" />
-
-<Divider />
 
 <br />
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <Input
-        id="Example"
+        id="example"
         label="With Floating Label"
         placeholder="Example"
-        labelBackground="bg-bg-50 dark:bg-gray-900"
-        floatingLabel
+        labelBackground="bg-bg-0 dark:bg-gray-900"
+        labelMode="float"
     />
     <Input
         id="Password"
@@ -69,29 +70,31 @@ import Input from "@/components/atoms/Input";
 
 ## Props
 
-| Prop             | Type                 | Default                     | Description                                                                                                                                                                                                      |
-|------------------|----------------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| label            | string               | `""`                        | The label for the input.                                                                                                                                                                                         |
-| placeholder      | string               | `""`                        | The placeholder text for the input.                                                                                                                                                                              |
-| floatingLabel    | boolean              | `false`                     | If true, the label floats above the input when focused.                                                                                                                                                          |
-| labelBackground  | string               | `"bg-bg-50 dark:bg-bg-900"` | The background color of the label (only needed when using the `floatingLabel`). This is a little hacky, it will match the default background colors so you only need to modify when the background is different. |
-| size             | "sm" \| "md" \| "lg" | `"md"`                      | The size of the button.                                                                                                                                                                                          |
-| borderRadius     | string               | `"md"`                      | The border radius of the button (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component).                                                                                  |
-| leftIcon         | LeftIcon             | -                           | The icon to display on the left side of the input.                                                                                                                                                               |
-| rightIcon        | RightIcon            | -                           | The icon to display on the right side of the input.                                                                                                                                                              |
-| leftIconOnClick  | function             | -                           | The function to call when the left icon is clicked.                                                                                                                                                              |
-| rightIconOnClick | function             | -                           | The function to call when the right icon is clicked.                                                                                                                                                             |
-| secure           | boolean              | `false`                     | If true, the input is a password field with a visibility toggle (automatically adds a right icon to toggle visibility).                                                                                          |
-| focus            | boolean              | `true`                      | If true, applies a focus effect.                                                                                                                                                                                 |
-| activeColor      | string               | `"primary"`                 | The base color (use [tailwind.config](/docs/tutorials/config)).                                                                                                                                                  |
-| value            | controlledValue      | -                           | The controlled value of the input.                                                                                                                                                                               |
-| onChange         | function             | -                           | The function to call when the input value changes.                                                                                                                                                               |
-| className        | string               | `""`                        | Additional [Tailwind](https://tailwindcss.com) utility classes.                                                                                                                                                  |
-| ...props         | object               | -                           | Any other valid HTML attributes for the `button` or `Link`.                                                                                                                                                      |
+| Prop             | Type                         | Default                     | Description                                                                                                                                                                                                      |
+|------------------|------------------------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| id               | string                       | -                           | The id of the input.                                                                                                                                                                                             |
+| label            | string                       | `""`                        | The label for the input.                                                                                                                                                                                         |
+| labelMode        | "none" \| "above" \| "float" | `"none"`                    | If true, the label floats above the input when focused.                                                                                                                                                          |
+| labelBackground  | string                       | `"bg-bg-50 dark:bg-bg-900"` | The background color of the label (only needed when using the `floatingLabel`). This is a little hacky, it will match the default background colors so you only need to modify when the background is different. |
+| size             | "sm" \| "md" \| "lg"         | `"md"`                      | The size of the button.                                                                                                                                                                                          |
+| borderRadius     | string                       | `"md"`                      | The border radius of the button (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component).                                                                                  |
+| shadow           | string                       | `""`                        | The shadow of the button (uses [Tailwind](https://tailwindcss.com/docs/box-shadow) shadow to shape component).                                                                                                   |
+| leftIcon         | Icon                         | -                           | The icon to display on the left side of the input.                                                                                                                                                               |
+| rightIcon        | Icon                         | -                           | The icon to display on the right side of the input.                                                                                                                                                              |
+| leftIconOnClick  | function                     | -                           | The function to call when the left icon is clicked.                                                                                                                                                              |
+| rightIconOnClick | function                     | -                           | The function to call when the right icon is clicked.                                                                                                                                                             |
+| secure           | boolean                      | `false`                     | If true, the input is a password field with a visibility toggle (automatically adds a right icon to toggle visibility).                                                                                          |
+| focus            | boolean                      | `true`                      | If true, applies a focus effect.                                                                                                                                                                                 |
+| activeColor      | string                       | `"primary"`                 | The base color (use [tailwind.config](/docs/tutorials/config)).                                                                                                                                                  |
+| value            | controlledValue              | -                           | The controlled value of the input.                                                                                                                                                                               |
+| onChange         | function                     | -                           | The function to call when the input value changes.                                                                                                                                                               |
+| className        | string                       | `""`                        | Additional [Tailwind](https://tailwindcss.com) utility classes.                                                                                                                                                  |
+| textClassName    | string                       | `""`                        | Additional [Tailwind](https://tailwindcss.com) utility classes for the text.                                                                                                                                     |
+| ...props         | object                       | -                           | Any other valid HTML attributes for the `button` or `Link`.                                                                                                                                                      |
 
-<Info>
-    The component also accepts all standard HTML input attributes as additional props.
-</Info>
+<Direction>
+    The component also accepts all standard HTML input attributes as additional props (i.e. `type`, `placeholder`, etc.).
+</Direction>
 
 <br/>
 <br/>
@@ -102,100 +105,194 @@ import Input from "@/components/atoms/Input";
 
 ## Examples
 
-### Basic Input
+### Different Label Modes
 <PreviewCode preview={
-    <Input
-        id="username"
-        label="Username"
-        placeholder="Enter your username"
-    />
+    <div className="flex flex-col gap-5">
+        <Input
+            id="none"
+            label="None"
+            placeholder="Only placeholder"
+            labelMode="none"
+        />
+        <Input
+            id="above"
+            label="Above"
+            placeholder="With placeholder"
+            labelMode="above"
+        />
+        <Input
+            id="above"
+            label="Above"
+            placeholder=""
+            labelMode="above"
+        />
+        <Input
+            id="float"
+            label="Float"
+            placeholder="Floating label"
+            labelMode="float"
+            labelBackground="bg-bg-0 dark:bg-gray-900"
+        />
+    </div>
 }>
 ```javascript
 <Input
-  id="username"
-  label="Username"
-  placeholder="Enter your username"
+    id="none"
+    label="None"
+    placeholder="No label"
+    labelMode="none"
+/>
+<Input
+    id="above"
+    label="Above"
+    placeholder="Label above input"
+    labelMode="above"
+/>
+<Input
+    id="float"
+    label="Float"
+    placeholder="Floating label"
+    labelMode="float"
+    labelBackground="dark:bg-bg-900"
 />
 ```
 </PreviewCode>
 
-### Input with Left Icon
+<br />
+
+### Input with Icons
 <PreviewCode preview={
-    <Input
-        id="email"
-        label="Email"
-        placeholder="Enter your email"
-    />
+    <InputIconDemo />
 }>
 ```javascript
-import { UserIcon } from "@heroicons/react/24/outline";
+import { FaPlusCircle, FaPaperPlane } from "react-icons/fa";
 
 <Input
-  id="email"
-  label="Email"
-  leftIcon={UserIcon}
-  placeholder="Enter your email"
+    label="Left Icon"
+    placeholder="Left Icon"
+    labelMode="none"
+    leftIcon={<FaPlusCircle className="w-5 h-5" />}
+    leftIconOnClick={() => alert("Left icon clicked!")}
+    rightIcon={<FaPaperPlane className="w-5 h-5" />}
+    rightIconOnClick={() => alert("Right icon clicked!")}
+    focus={false}
 />
 ```
 </PreviewCode>
+
+<br/>
 
 ### Password Input
 <PreviewCode preview={
-    <Input
-        id="password"
-        label="Password"
-        secure={true}
-        placeholder="Enter your password"
-    />
+    <div className="flex flex-col gap-5">
+        <Input
+            id="password"
+            label="Password"
+            secure={true}
+            placeholder=""
+            labelMode="above"
+        />
+        <Input
+            id="password"
+            label="Password"
+            secure={true}
+            placeholder="Password"
+        />
+        <Input
+            id="password"
+            label="Password"
+            secure={true}
+            placeholder="Password"
+            labelMode="float"
+        />
+    </div>
 }>
 ```javascript
 <Input
-  id="password"
-  label="Password"
-  secure={true}
-  placeholder="Enter your password"
+    id="password"
+    label="Password"
+    secure={true}
+    placeholder=""
+    labelMode="above"
 />
+<Input
+    id="password"
+    label="Password"
+    secure={true}
+    placeholder="Password"
+/>
+<Input
+    id="password"
+    label="Password"
+    secure={true}
+    placeholder="Password"
+    labelMode="float"
+/>
+
 ```
 </PreviewCode>
 
-### Input with Right Icon and Click Handler
+<br/>
+
+### Custom Styled Inputs
 <PreviewCode preview={
-    <Input
-        id="question"
-        label="Question"
-        placeholder="Ask a question"
-    />
+    <div className="flex flex-col gap-5">
+        <Input
+            id="custom"
+            label="Custom Input"
+            className="border-red-500 bg-red-500/10"
+            activeColor="red"
+            size="sm"
+            placeholder="Custom styled input"
+        />
+        <Input
+            id="custom"
+            label="Custom Input"
+            className="border-blue-500 dark:border-blue-500 bg-blue-400/50"
+            textClassName="placeholder:text-blue-500 text-blue-500"
+            activeColor="blue"
+            size="md"
+            placeholder="Custom styled input"
+        />
+        <Input
+            id="custom"
+            label="Custom Input"
+            className="border-2 border-green-500 dark:border-green-500 bg-green-400/50"
+            textClassName="placeholder:text-green-500 text-green-500"
+            activeColor="green"
+            size="lg"
+            borderRadius="full"
+            placeholder="Custom styled input"
+        />
+    </div>
 }>
 ```javascript
-import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
-
 <Input
-  id="question"
-  label="Question"
-  rightIcon={QuestionMarkCircleIcon}
-  rightIconOnClick={() => alert("Need help?")}
-  placeholder="Ask a question"
+    id="custom"
+    label="Custom Input"
+    className="border-red-500 bg-red-500/10"
+    activeColor="red"
+    size="sm"
+    placeholder="Custom styled input"
 />
-```
-</PreviewCode>
-
-### Custom Styled Input
-<PreviewCode preview={
-    <Input
-        id="custom"
-        label="Custom Input"
-        className="border-blue-500 focus-within:border-blue-700"
-        textSize="text-xl"
-        placeholder="Custom styled input"
-    />
-}>
-```javascript
 <Input
-  id="custom"
-  label="Custom Input"
-  className="bg-bg-200 darK:bg-bg-800 border-blue-500 focus-within:border-blue-700"
-  textSize="text-xl"
-  placeholder="Custom styled input"
+    id="custom"
+    label="Custom Input"
+    className="border-blue-500 dark:border-blue-500 bg-blue-400/50"
+    textClassName="placeholder:text-blue-500 text-blue-500"
+    activeColor="blue"
+    size="md"
+    placeholder="Custom styled input"
+/>
+<Input
+    id="custom"
+    label="Custom Input"
+    className="border-2 border-green-500 dark:border-green-500 bg-green-400/50"
+    textClassName="placeholder:text-green-500 text-green-500"
+    activeColor="green"
+    size="lg"
+    borderRadius="full"
+    placeholder="Custom styled input"
 />
 ```
 </PreviewCode>

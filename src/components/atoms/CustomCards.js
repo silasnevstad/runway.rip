@@ -1,7 +1,7 @@
 "use client";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Card from "@/components/atoms/Card";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 export const TerminalCard = ({
     children,

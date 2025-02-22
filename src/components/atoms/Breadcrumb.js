@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaChevronRight } from "react-icons/fa";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 export default function Breadcrumb({
     sections = [],

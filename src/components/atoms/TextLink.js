@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 const TextLink = ({
     children,

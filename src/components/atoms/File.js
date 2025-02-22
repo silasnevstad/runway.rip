@@ -11,7 +11,7 @@ import {
 } from "react-icons/ai";
 import { FaRegFileVideo, FaRegFileAudio } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 const getFileExtension = (filename) => {
     const parts = filename.toLowerCase().split(".");

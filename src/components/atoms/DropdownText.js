@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 const DropdownText = ({
     title,

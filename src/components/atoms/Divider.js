@@ -1,4 +1,4 @@
-import { mergeClasses } from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 const Divider = ({
     color = 'gray',
