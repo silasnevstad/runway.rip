@@ -1,13 +1,15 @@
 ---
 title: "Input"
-description: "A customizable input component with icon support and password toggle"
+description: "A customizable input component with icon support, password toggle, and more."
 onThisPage:
   - title: "Input"
     href: "#input"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
 
 <div id="input" />
@@ -19,11 +21,15 @@ onThisPage:
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <Input
         id="Example"
-        label="Example"
+        label="With Floating Label"
+        placeholder="Example"
+        labelBackground="bg-bg-50 dark:bg-gray-900"
+        floatingLabel
     />
     <Input
         id="Password"
         label="Password"
+        placeholder="Password"
         secure={true}
     />
 </div>
@@ -35,28 +41,53 @@ The `Input` component creates a customizable text input field with various featu
 <Tip>
     Use the `secure` prop to create a password input with a visibility toggle.
 </Tip>
-<Warning>
-    The Input component uses the 'use client' directive, ensuring it's only rendered on the client-side. Be mindful of this when using it in your Next.js application.
-</Warning>
 
 <br/>
-<Divider />
 <br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Input from "@/components/atoms/Input";
+
+<Input
+  id="username"
+  label="Username"
+  placeholder="Enter your username"
+/>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
 ## Props
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| className | string | - | Additional CSS classes for the input container |
-| label | string | - | Label text for the input |
-| leftIcon | component | - | Icon component to display on the left side of the input |
-| rightIcon | component | - | Icon component to display on the right side of the input |
-| leftIconOnClick | function | - | Function to execute when the left icon is clicked |
-| rightIconOnClick | function | - | Function to execute when the right icon is clicked |
-| focus | boolean | - | Whether to show focus styles |
-| secure | boolean | - | Whether the input is for password entry |
-| textSize | string | "text-lg" | Tailwind CSS class for text size |
+
+| Prop             | Type                 | Default                     | Description                                                                                                                                                                                                      |
+|------------------|----------------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| label            | string               | `""`                        | The label for the input.                                                                                                                                                                                         |
+| placeholder      | string               | `""`                        | The placeholder text for the input.                                                                                                                                                                              |
+| floatingLabel    | boolean              | `false`                     | If true, the label floats above the input when focused.                                                                                                                                                          |
+| labelBackground  | string               | `"bg-bg-50 dark:bg-bg-900"` | The background color of the label (only needed when using the `floatingLabel`). This is a little hacky, it will match the default background colors so you only need to modify when the background is different. |
+| size             | "sm" \| "md" \| "lg" | `"md"`                      | The size of the button.                                                                                                                                                                                          |
+| borderRadius     | string               | `"md"`                      | The border radius of the button (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component).                                                                                  |
+| leftIcon         | LeftIcon             | -                           | The icon to display on the left side of the input.                                                                                                                                                               |
+| rightIcon        | RightIcon            | -                           | The icon to display on the right side of the input.                                                                                                                                                              |
+| leftIconOnClick  | function             | -                           | The function to call when the left icon is clicked.                                                                                                                                                              |
+| rightIconOnClick | function             | -                           | The function to call when the right icon is clicked.                                                                                                                                                             |
+| secure           | boolean              | `false`                     | If true, the input is a password field with a visibility toggle (automatically adds a right icon to toggle visibility).                                                                                          |
+| focus            | boolean              | `true`                      | If true, applies a focus effect.                                                                                                                                                                                 |
+| activeColor      | string               | `"primary"`                 | The base color (use [tailwind.config](/docs/tutorials/config)).                                                                                                                                                  |
+| value            | controlledValue      | -                           | The controlled value of the input.                                                                                                                                                                               |
+| onChange         | function             | -                           | The function to call when the input value changes.                                                                                                                                                               |
+| className        | string               | `""`                        | Additional [Tailwind](https://tailwindcss.com) utility classes.                                                                                                                                                  |
+| ...props         | object               | -                           | Any other valid HTML attributes for the `button` or `Link`.                                                                                                                                                      |
 
 <Info>
     The component also accepts all standard HTML input attributes as additional props.
@@ -64,12 +95,12 @@ The `Input` component creates a customizable text input field with various featu
 
 <br/>
 <br/>
-<Divider />
 <br/>
+<Divider />
 
-<div id="usage-examples" />
+<div id="examples" />
 
-## Usage Examples
+## Examples
 
 ### Basic Input
 <PreviewCode preview={

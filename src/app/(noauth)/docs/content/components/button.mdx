@@ -62,25 +62,25 @@ import Button from "@/components/atoms/Button";
 
 ## Props
 
-| **Prop**     | **Type**             | **Default** | **Description**                                                 |
-|--------------|----------------------|-------------|-----------------------------------------------------------------|
-| children     | ReactNode            | -           | The content of the button.                                      |
-| size         | "sm" \| "md" \| "lg" | `"md"`      | The size of the button.                                         |
-| color        | string               | `"primary"` | The base color (use [tailwind.config](/docs/tutorials/config)). |
-| borderRadius | string               | `"md"`      | The border radius of the button.                                |
-| hoverBg      | boolean              | `true`      | If true, applies a hover background color.                      |
-| scale        | boolean              | `false`     | If true, gently scales up on hover.                             |
-| lift         | boolean              | `false`     | If true, lifts on hover.                                        |
-| active       | boolean              | `true`      | If true, the button has an active press-down scale effect.      |
-| border       | boolean              | `false`     | If true, adds a border.                                         |
-| shadow       | boolean              | `false`     | If true, adds a subtle box-shadow.                              |
-| loading      | boolean              | `false`     | If true, shows a spinner instead of children.                   |
-| disabled     | boolean              | `false`     | If true, disables the button.                                   |
-| href         | string               | `""`        | If provided, the button becomes a `Link` instead of a `button`. |
-| icon         | ReactNode            | `null`      | Optional icon component or image to display.                    |
-| onClick      | function             | -           | The click handler for the button.                               |
-| className    | string               | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
-| ...props     | object               | -           | Any other valid HTML attributes for the `button` or `Link`.     |
+| **Prop**     | **Type**             | **Default** | **Description**                                                                                                                 |
+|--------------|----------------------|-------------|---------------------------------------------------------------------------------------------------------------------------------|
+| children     | ReactNode            | -           | The content of the button.                                                                                                      |
+| size         | "sm" \| "md" \| "lg" | `"md"`      | The size of the button.                                                                                                         |
+| color        | string               | `"primary"` | The base color (use [tailwind.config](/docs/tutorials/config)).                                                                 |
+| borderRadius | string               | `"md"`      | The border radius of the button (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component). |
+| hoverBg      | boolean              | `true`      | If true, applies a hover background color.                                                                                      |
+| scale        | boolean              | `false`     | If true, gently scales up on hover.                                                                                             |
+| lift         | boolean              | `false`     | If true, lifts on hover.                                                                                                        |
+| active       | boolean              | `true`      | If true, the button has an active press-down scale effect.                                                                      |
+| border       | boolean              | `false`     | If true, adds a border.                                                                                                         |
+| shadow       | boolean              | `false`     | If true, adds a subtle box-shadow.                                                                                              |
+| loading      | boolean              | `false`     | If true, shows a spinner instead of children.                                                                                   |
+| disabled     | boolean              | `false`     | If true, disables the button.                                                                                                   |
+| href         | string               | `""`        | If provided, the button becomes a `Link` instead of a `button`.                                                                 |
+| icon         | ReactNode            | `null`      | Optional icon component or image to display.                                                                                    |
+| onClick      | function             | -           | The click handler for the button.                                                                                               |
+| className    | string               | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes.                                                                 |
+| ...props     | object               | -           | Any other valid HTML attributes for the `button` or `Link`.                                                                     |
 
 <br/>
 <Info>

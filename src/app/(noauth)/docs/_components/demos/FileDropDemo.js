@@ -2,25 +2,31 @@ import FileDrop from "@/components/atoms/FileDrop";
 
 export function FileDropDemo({
     text,
-    textColor,
-    idleBorderColor,
-    activeBorderColor,
-    activeBgColor,
-    borderClass,
+    subtext,
+    color,
+    activeColor,
     icon,
-    iconSize,
+    borderRadius,
+    borderClass,
+    className,
+    accept,
+    multiple,
+    onDrop,
 }) {
     return (
         <div className="flex flex-wrap gap-4 items-center">
             <FileDrop
                 text={text}
-                textColor={textColor}
-                idleBorderColor={idleBorderColor}
-                activeBorderColor={activeBorderColor}
-                activeBgColor={activeBgColor}
+                subtext={subtext}
+                color={color}
+                activeColor={activeColor}
                 icon={icon}
-                iconSize={iconSize}
+                borderRadius={borderRadius}
                 borderClass={borderClass}
+                className={className}
+                accept={accept}
+                multiple={multiple}
+                onDrop={onDrop}
             />
         </div>
     );

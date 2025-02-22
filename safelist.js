@@ -4,6 +4,7 @@ const colorTones = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const colors = ["bg", "primary", "gray", "red", "yellow", "orange", "green", "blue", "purple"];
 const opacities = [0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 95, 100];
 const gradients = ["from", "to"];
+const borderRadius = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "full"];
 
 const widths = [0.5, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96];
 const margins = [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96];
@@ -77,9 +78,27 @@ const safelist = [
         .flat(),
 ];
 
+const borderRadiusClasses = [
+    ...borderRadius,
+    ...borderRadius.map((radius) => `rounded-t-${radius}`),
+    ...borderRadius.map((radius) => `rounded-r-${radius}`),
+    ...borderRadius.map((radius) => `rounded-b-${radius}`),
+    ...borderRadius.map((radius) => `rounded-l-${radius}`),
+    ...borderRadius.map((radius) => `rounded-tr-${radius}`),
+    ...borderRadius.map((radius) => `rounded-tl-${radius}`),
+    ...borderRadius.map((radius) => `rounded-br-${radius}`),
+    ...borderRadius.map((radius) => `rounded-bl-${radius}`),
+];
+
 const darkSafeList = safelist.map((className) => `dark:${className}`);
 
-const allSafelist = [...safelist, ...darkSafeList, ...measurements, ...topPositionsClasses];
+const allSafelist = [
+    ...safelist,
+    ...darkSafeList,
+    ...measurements,
+    ...topPositionsClasses,
+    ...borderRadiusClasses
+];
 
 fs.writeFileSync("safelist.txt", allSafelist.join("\n"));
 console.log("safelist.txt has been generated successfully.");

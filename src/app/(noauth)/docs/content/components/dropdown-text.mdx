@@ -4,19 +4,22 @@ description: "A dropdown text component that can be used to display hidden conte
 onThisPage:
   - title: "DropdownText"
     href: "#dropdown-text"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "Accordion"
+    href: "/docs/components/accordion"
 ---
 
 <div id="dropdown-text" />
 
-<Divider />
-
 <br/>
 
-<div className="flex justify-center">
+<div className="flex flex-col justify-center">
     <DropdownText
         title="Dropdown Text"
         content="This is the content of the dropdown text component."
@@ -27,14 +30,35 @@ onThisPage:
 
 The `DropdownText` component is a dropdown text component that can be used to display hidden content. It is a great way to organize and display information in a structured and visually appealing way.
 
-<Tip>
-    The component can either manage its own state or be controlled by the parent component using the `isOpen` and `onToggle` props.
-</Tip>
+<Direction>
+    Want to use multiple dropdowns? Check out the [`Accordion`](/docs/components/accordion) component.
+</Direction>
 
 <br/>
 <br/>
 <Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import DropdownText from '@/components/atoms/DropdownText';
+
+<DropdownText
+    title="Dropdown Text"
+    content="This is the content of the dropdown text component."
+/>
+```
+
+<Tip>
+    Use `borderStyle` to change the border style of the dropdown text component.
+</Tip>
+
 <br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
@@ -42,22 +66,30 @@ The `DropdownText` component is a dropdown text component that can be used to di
 
 The `DropdownText` component accepts the following props:
 
-| Name     | Type     | Default | Description                                                            |
-|----------|----------|---------|------------------------------------------------------------------------|
-| title    | string   |         | The title of the dropdown text component.                              |
-| content  | string   |         | The content of the dropdown text component.                            |
-| isOpen   | boolean  | `false` | The state of the dropdown text component.                              |
-| onToggle | function |         | The function to toggle the state of the dropdown text component.       |
-| border   | boolean  | `true`  | Whether to show a border at the bottom of the dropdown text component. |
+| Name        | Type                     | Default     | Description                                                                                                                  |
+|-------------|--------------------------|-------------|------------------------------------------------------------------------------------------------------------------------------|
+| title       | string                   | -           | The title of the dropdown text component.                                                                                    |
+| content     | string                   | -           | The content of the dropdown text component.                                                                                  |
+| isOpen      | boolean                  | false       | If true, the dropdown text component is open.                                                                                |
+| onToggle    | function                 | -           | A function that is called when the dropdown text component is toggled.                                                       |
+| border      | boolean                  | true        | If true, the dropdown text component has a border.                                                                           |
+| borderStyle | "b" \| "t" \| "l" \| "r" | `"b"`       | The border style of the dropdown text component (uses [Tailwind](https://tailwindcss.com/docs/border-width) border classes). |
+| activeColor | string                   | `"primary"` | The base color (use [tailwind.config](/docs/tutorials/config)).                                                              |
+| className   | string                   | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes.                                                              |
+| ...props    | object                   | -           | Any other valid HTML attributes.                                                                                             |
 
+<Info>
+    The component can either manage its own state or be controlled by the parent component using the `isOpen` and `onToggle` props.
+</Info>
+
+<br/>
 <br/>
 <br/>
 <Divider />
-<br/>
 
-<div id="usage-examples" />
+<div id="examples" />
 
-## Usage Examples
+## Examples
 
 ### Basic DropdownText
 <PreviewCode preview={
@@ -75,6 +107,8 @@ The `DropdownText` component accepts the following props:
 />
 ```
 </PreviewCode>
+
+<br />
 
 ### Controlled DropdownText
 <PreviewCode preview={
@@ -96,6 +130,8 @@ The `DropdownText` component accepts the following props:
 ```
 </PreviewCode>
 
+<br />
+
 ### DropdownText with No Border
 <PreviewCode preview={
     <div className="flex w-full px-2">
@@ -111,6 +147,50 @@ The `DropdownText` component accepts the following props:
     title="Dropdown Text"
     content="This is the content of the dropdown text component."
     border={false}
+/>
+```
+</PreviewCode>
+
+<br />
+
+### DropdownText with Custom Border Style
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <DropdownText
+            title="Dropdown Text"
+            content="This is the content of the dropdown text component."
+            borderStyle="t"
+        />
+    </div>
+}>
+```javascript
+<DropdownText
+    title="Dropdown Text"
+    content="This is the content of the dropdown text component."
+    borderStyle="t"
+/>
+```
+</PreviewCode>
+
+<br/>
+
+### Full Border DropdownText
+<PreviewCode preview={
+    <div className="flex w-full px-2">
+        <DropdownText
+            title="Dropdown Text"
+            content="This is the content of the dropdown text component."
+            borderStyle=""
+            className="px-2 rounded-lg"
+        />
+    </div>
+}>
+```javascript
+<DropdownText
+    title="Dropdown Text"
+    content="This is the content of the dropdown text component."
+    borderStyle=""
+    className="px-2 rounded-lg"
 />
 ```
 </PreviewCode>

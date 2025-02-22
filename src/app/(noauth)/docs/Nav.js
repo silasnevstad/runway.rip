@@ -63,6 +63,7 @@ export const DocsNav = [
             { title: "Custom Cards", href: "/docs/components/custom-cards" },
             { title: "Divider", href: "/docs/components/divider" },
             { title: "Dropdown Text", href: "/docs/components/dropdown-text" },
+            { title: "File", href: "/docs/components/file" },
             { title: "FileDrop", href: "/docs/components/file-drop" },
             { title: "FileInput", href: "/docs/components/file-input" },
             { title: "Indicator", href: "/docs/components/indicator" },

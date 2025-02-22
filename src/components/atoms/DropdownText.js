@@ -1,15 +1,19 @@
 "use client";
-
 import { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
+import { mergeClasses } from "@/utils/classNames";
 
 const DropdownText = ({
     title,
     content,
     isOpen: isOpenProp,
     onToggle: onToggleProp,
+    activeColor = "primary",
     border = true,
+    borderStyle = "b",
+    className = "",
+    ...props
 }) => {
     const [isOpenState, setIsOpenState] = useState(false);
     const isControlled = isOpenProp !== undefined;
@@ -23,29 +27,31 @@ const DropdownText = ({
         }
     };
 
+    const outerContainerClasses = mergeClasses(
+        `w-full py-4 transition-colors duration-100`,
+        border &&
+            (borderStyle ? `border-${borderStyle} border-gray-200` : "border border-gray-200"),
+        className
+    );
+
     return (
-        <div
-            className={`w-full py-4 transition-colors duration-100 ${
-                border ? "border-b border-gray-200" : ""
-            }`}
-        >
-            {/* The group class is now applied only to the header row */}
+        <div className={outerContainerClasses} {...props}>
             <div
                 className="group relative flex justify-between items-center w-full hover:cursor-pointer"
                 onClick={onToggle}
             >
-                <h2
-                    className={`text-lg font-semibold transition-colors duration-300 ${
-                        isOpen ? "text-primary-500" : ""
-                    } group-hover:text-primary-500`}
-                >
+                <h2 className={
+                    `text-lg font-semibold transition-colors duration-300 
+                    ${isOpen && `text-${activeColor}-500`}
+                    group-hover:text-${activeColor}-500`
+                }>
                     {title}
                 </h2>
                 <div className="transition ease-in-out duration-300 transform">
                     {isOpen ? (
-                        <MinusIcon className="h-5 w-5 rotate-180 text-primary-500" />
+                        <MinusIcon className={`h-5 w-5 rotate-180 text-${activeColor}-500`} />
                     ) : (
-                        <PlusIcon className="h-5 w-5 rotate-0 group-hover:text-primary-500" />
+                        <PlusIcon className={`h-5 w-5 rotate-0 group-hover:text-${activeColor}-500`} />
                     )}
                 </div>
             </div>

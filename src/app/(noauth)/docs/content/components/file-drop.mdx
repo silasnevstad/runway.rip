@@ -4,15 +4,20 @@ description: "A file drop component for uploading files"
 onThisPage:
   - title: "Overview"
     href: "#file-drop-overview"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
   - title: "Examples"
     href: "#examples"
+related:
+  - title: "File Input"
+    href: "/docs/components/file-input"
+  - title: "File"
+    href: "/docs/components/file"
 ---
 
 <div id="file-drop-overview" />
-
-<Divider />
 
 <br/>
 
@@ -24,40 +29,62 @@ onThisPage:
 
 <div>
     The `FileDrop` component provides a user-friendly drag-and-drop interface for uploading files.
-    It supports customization of border colors, background colors, icons, and text.
+    It supports customization of `text`, `color`, `icon`, and much more.
 </div>
 
+<Direction>
+    Want a single file upload? Check out the [`FileInput`](/docs/components/file-input) component.
+</Direction>
+
+<br/>
 <br/>
 <Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import FileDrop from "@/components/atoms/FileDrop";
+
+<FileDrop
+    onDrop={(files) => console.log(files)}
+/>
+```
+
 <br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
 ## Props
 
-| **Prop**          | **Type** | **Default**                             | **Description**                                                                                     |
-|-------------------|----------|-----------------------------------------|-----------------------------------------------------------------------------------------------------|
-| onDrop            | function | -                                       | Callback function that is called when files are dropped. Receives the dropped files as an argument. |
-| className         | string   | -                                       | Additional CSS classes for custom styling.                                                          |
-| text              | string   | `"Drop files here, or click to select"` | Text displayed inside the drop area.                                                                |
-| textColor         | string   | `"text-gray-500"`                       | Text color for the drop area.                                                                       |
-| idleBorderColor   | string   | `"border-gray-300"`                     | Border color when the drop area is idle.                                                            |
-| activeBorderColor | string   | `"border-blue-500"`                     | Border color when the drop area is active (i.e., when files are dragged over it).                   |
-| activeBgColor     | string   | `"bg-blue-100"`                         | Background color when the drop area is active.                                                      |
-| icon              | Icon     | `LuFilePlus`                            | Icon component to display inside the drop area.                                                     |
-| iconSize          | string   | `"text-5xl"`                            | Size of the icon.                                                                                   |
-| borderClass       | string   | `"border-2 border-dashed"`              | CSS classes for the border style of the drop area.                                                  |
+| **Prop**     | **Type**  | **Default**                             | **Description**                                                 |
+|--------------|-----------|-----------------------------------------|-----------------------------------------------------------------|
+| text         | string    | `"Drop files here, or click to select"` | The text to display in the component.                           |
+| subtext      | string    | `""`                                    | The subtext to display in the component.                        |
+| color        | string    | `"gray"`                                | The base color (use [tailwind.config](/docs/tutorials/config)). |
+| activeColor  | string    | `"primary"`                             | The base color (use [tailwind.config](/docs/tutorials/config)). |
+| icon         | ReactNode | -                                       | The icon to display in the component.                           |
+| borderRadius | string    | `"lg"`                                  | The border radius of the component.                             |
+| borderClass  | string    | `"border-2 border-dashed"`              | The border class of the component.                              |
+| accept       | string    | `"*"`                                   | The file types to accept.                                       |
+| multiple     | boolean   | `true`                                  | If true, multiple files can be uploaded.                        |
+| className    | string    | `""`                                    | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| ...props     | object    | -                                       | Any other valid HTML attributes.                                |
 
 <br/>
 <br/>
-<Divider />
 <br/>
+<Divider />
 
 <div id="examples" />
 
 ## Examples
 
-### 1. Basic Usage
+### Basic Usage
 
 <PreviewCode preview={
     <div className="flex gap-4 mb-4 justify-center items-center">
@@ -65,41 +92,31 @@ onThisPage:
     </div>
 }>
     ```javascript
-    <div className="flex gap-4 mb-4 justify-center items-center">
-        <FileDrop />
-    </div>
+    <FileDrop />
     ```
 </PreviewCode>
 
 <br />
 
-### 2. Customized FileDrop
+### Customized FileDrop
 
 <PreviewCode preview={
     <div className="flex gap-4 mb-4 justify-center items-center">
         <FileDropDemo
             text="Upload your documents"
-            textColor="text-green-600 dark:text-green-400"
-            idleBorderColor="border-green-500"
-            activeBorderColor="border-green-500"
-            activeBgColor="bg-green-100"
-            iconSize="text-6xl"
+            subtext="We accept .pdf, .docx, and .txt files"
             borderClass="border-4 border-dotted"
+            color="orange"
         />
     </div>
 }>
     ```javascript
-    <div className="flex gap-4 mb-4 justify-center items-center">
-        <FileDrop
-            text="Upload your documents"
-            textColor="text-green-600 dark:text-green-400"
-            idleBorderColor="border-green-500"
-            activeBorderColor="border-green-500"
-            activeBgColor="bg-green-100"
-            iconSize="text-6xl"
-            borderClass="border-4 border-dotted"
-        />
-    </div>
+    <FileDrop
+        text="Upload your documents"
+        subtext="We accept .pdf, .docx, and .txt files"
+        borderClass="border-4 border-dotted"
+        color="orange"
+    />
     ```
 </PreviewCode>
 

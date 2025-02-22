@@ -1,0 +1,221 @@
+---
+title: "Indicator"
+description: "An indicator component for displaying file information"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="overview" />
+
+<br/>
+
+<div className="flex gap-5 mb-4 justify-center items-center">
+    <Indicator>
+        <Card borderRadius="sm" className="px-4 py-2">
+            Indicator
+        </Card>
+    </Indicator>
+
+    <Indicator color="red" content="3+">
+        <Card borderRadius="lg" className="px-4 py-2">
+            Indicator
+        </Card>
+    </Indicator>
+
+    <Indicator color="green" content="Offer" ping>
+        <Card borderRadius="lg" className="px-4 py-2">
+            Indicator
+        </Card>
+    </Indicator>
+</div>
+
+<br/>
+
+<div>
+    The `Indicator` component is a small badge or dot that can be used to indicate the status of an item, such as a notification or an unread message. It can be customized with different colors, sizes, and positions.
+</div>
+
+<br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Indicator from "@/components/atoms/Indicator";
+
+<Indicator color="red" content="3+">
+    <Card borderRadius="sm" className="flex px-4 py-2">
+        Indicator
+    </Card>
+</Indicator>
+```
+
+<Tip>
+    The `Indicator` pairs well with the [`Card`](/docs/components/card) component.
+</Tip>
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| **Prop**         | **Type** | **Default** | **Description**                                                 |
+|------------------|----------|-------------|-----------------------------------------------------------------|
+| color            | string   | `"bg"`      | The base color (use [tailwind.config](/docs/tutorials/config)). |
+| position         | string   | `"top-right"` | The position of the indicator.                                  |
+| size             | string   | `"md"`      | The size of the indicator.                                      |
+| content          | string   | `""`        | The content of the indicator.                                   |
+| ping             | boolean  | `false`     | If true, the indicator will have a ping effect.                 |
+| className        | string   | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| ...props         | object   | -           | Any other valid HTML attributes.                                |
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Basic Indicator
+Wrap your desired component with the `Indicator` component. Then, style or add content as needed.
+
+<PreviewCode preview={
+    <div className="flex gap-5 justify-center items-center">
+        <Indicator>
+            <Card borderRadius="sm" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+
+        <Indicator color="red" content="3+">
+            <Card borderRadius="lg" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+
+        <Indicator color="green" content="Offer" ping>
+            <Card borderRadius="lg" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-5 justify-center items-center">
+        <Indicator>
+            <Card borderRadius="sm" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+
+        <Indicator color="red" content="3+">
+            <Card borderRadius="lg" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+
+        <Indicator color="green" content="Offer" ping>
+            <Card borderRadius="lg" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+
+### Customized Indicator
+You can further customize the `Indicator` component by changing its color, size, and position.
+
+<PreviewCode preview={
+    <div className="flex flex-col gap-8 justify-center items-center">
+        <Indicator
+            color="blue"
+            content="New"
+            position="top-left"
+        >
+            <Card borderRadius="sm" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+
+        <Indicator
+            color="yellow"
+            content="Alert"
+            size="lg"
+            position="center"
+        >
+            <Card borderRadius="lg" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+
+        <Indicator
+            color="purple"
+            content="Ping"
+            position="bottom-right"
+            ping
+        >
+            <Card borderRadius="lg" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+    </div>
+}>
+    ```javascript
+    <div className="flex flex-col gap-8 justify-center items-center">
+        <Indicator
+            color="blue"
+            content="New"
+            position="top-left"
+        >
+            <Card borderRadius="sm" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+
+        <Indicator
+            color="yellow"
+            content="Alert"
+            size="lg"
+            position="center"
+        >
+            <Card borderRadius="lg" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+
+        <Indicator
+            color="purple"
+            content="Ping"
+            position="bottom-right"
+            ping
+        >
+            <Card borderRadius="lg" className="px-4 py-2">
+                Indicator
+            </Card>
+        </Indicator>
+    </div>
+    ```
+</PreviewCode>
+
+<br/>
+<br/>
+<br/>

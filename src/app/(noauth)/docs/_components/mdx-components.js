@@ -30,7 +30,7 @@ import Card from "@/components/atoms/Card";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import { MdQuestionMark, MdOutlineInfo } from "react-icons/md";
 import { BiCheck } from "react-icons/bi";
-import {FaInfo, FaRegLightbulb} from "react-icons/fa6";
+import {FaBolt, FaExclamation, FaInfo, FaRegLightbulb} from "react-icons/fa6";
 import DropdownText from "@/components/atoms/DropdownText";
 import FileDrop from "@/components/atoms/FileDrop";
 import FileInput from "@/components/atoms/FileInput";
@@ -52,6 +52,9 @@ import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
 import OAuthButtons from "@/components/auth/OAuthButtons";
 import Alert from "@/components/atoms/Alert";
 import {StandoutCard, TerminalCard, WebsiteCard} from "@/components/atoms/CustomCards";
+import File from "@/components/atoms/File";
+import Indicator from "@/components/atoms/Indicator";
+import {FaExclamationCircle, FaExclamationTriangle} from "react-icons/fa";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -126,6 +129,12 @@ export const mdxComponents = {
             {children}
         </div>
     ),
+    Direction: ({children}) => (
+        <div className="flex items-start gap-2 text-[15px] bg-yellow-500/20 rounded-lg border-l-4 rounded-l-none border-yellow-500 p-2 my-4">
+            <FaBolt className="w-6 h-6 text-yellow-500 inline-block mt-2" />
+            {children}
+        </div>
+    ),
     Caution: ({children}) => (
         <div className="bg-orange-500/20 rounded-lg border-l-4 rounded-l-none border-orange-500 p-3 pb-2 my-4">
             <p className="flex items-center text-md text-orange-500 font-semibold">
@@ -136,11 +145,8 @@ export const mdxComponents = {
         </div>
     ),
     Warning: ({children}) => (
-        <div className="bg-red-500/20 rounded-lg border-l-4 rounded-l-none border-red-500 p-3 pb-2 my-4">
-            <p className="flex items-center text-md text-red-500 font-semibold">
-                <ExclamationTriangleIcon className="w-5 h-5 inline-block mr-1" />
-                Warning
-            </p>
+        <div className="flex items-start gap-2 text-[15px] bg-red-500/20 rounded-lg border-l-4 rounded-l-none border-red-500 p-2 my-4">
+            <FaExclamationCircle className="w-8 h-8 text-red-500 inline-block mt-0.5" />
             {children}
         </div>
     ),
@@ -214,9 +220,11 @@ export const mdxComponents = {
     Checkbox: ClientSideCheckbox,
     CodeBlock: CodeBlock,
     DropdownText: DropdownText,
+    File: File,
     FileDrop: FileDrop,
     FileDropDemo: FileDropDemo,
     FileInput: FileInput,
+    Indicator: Indicator,
     Switch: Switcher,
     SwitchDemo: SwitchDemo,
     TextLink: TextLink,

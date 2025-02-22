@@ -1,24 +1,28 @@
 "use client";
-
-import React, { useState, useRef } from "react";
-import { mergeClasses } from "@/utils/classNames";
+import React, { useState, useRef, useCallback } from "react";
 import { LuFilePlus } from "react-icons/lu";
+import File from "@/components/atoms/File";
+import { mergeClasses } from "@/utils/classNames";
 
 const FileDrop = ({
-    onDrop,
-    className = "",
     text = "Drop files here, or click to select",
-    textColor = "text-gray-600 dark:text-gray-400",
-    idleBorderColor = "border-gray-300",
-    activeBorderColor = "border-blue-500",
-    activeBgColor = "bg-blue-100",
-    icon: IconComponent = LuFilePlus,
-    iconSize = "text-5xl",
+    subtext = "",
+    color = "gray",
+    activeColor = "primary",
+    icon = <LuFilePlus />,
+    borderRadius = "lg",
     borderClass = "border-2 border-dashed",
+    className = "",
+    accept = "*",
+    multiple = true,
+    onDrop,
+    ...props
 }) => {
+    const [files, setFiles] = useState([]);
     const [dragOver, setDragOver] = useState(false);
     const fileInputRef = useRef(null);
 
+    // Drag Events
     const handleDragEnter = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -41,28 +45,68 @@ const FileDrop = ({
         e.preventDefault();
         e.stopPropagation();
         setDragOver(false);
+
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            onDrop(e.dataTransfer.files);
+            const newFiles = Array.from(e.dataTransfer.files);
+            setFiles((prevFiles) => {
+                const updated = [...prevFiles, ...newFiles];
+                onDrop?.(updated);
+                return updated;
+            });
             e.dataTransfer.clearData();
         }
     };
 
+    // File Selection
     const handleFileSelect = (e) => {
         if (e.target.files && e.target.files.length > 0) {
-            onDrop(e.target.files);
+            const newFiles = Array.from(e.target.files);
+            setFiles((prevFiles) => {
+                const updated = [...prevFiles, ...newFiles];
+                onDrop?.(updated);
+                return updated;
+            });
         }
     };
 
+    // Remove Files
+    const handleRemoveFile = useCallback(
+        (index) => {
+            setFiles((prev) => {
+                const updated = [...prev];
+                updated.splice(index, 1);
+                onDrop?.(updated);
+                return updated;
+            });
+        },
+        [onDrop]
+    );
+
+    const handleRemoveAll = useCallback(() => {
+        setFiles([]);
+        onDrop?.([]);
+    }, [onDrop]);
+
+    // Styling
     const containerClasses = mergeClasses(
-        "flex flex-col p-8 rounded-lg cursor-pointer",
+        "flex flex-col cursor-pointer",
+        borderRadius && `rounded-${borderRadius}`,
+        files.length === 0 ? "p-8" : "p-4",
         borderClass,
         dragOver
-            ? mergeClasses(activeBorderColor, activeBgColor)
-            : idleBorderColor,
+            ? `border-${activeColor}-500/50 bg-${activeColor}-100/5`
+            : `border-${color}-700/50 bg-${color}-900/5 dark:border-${color}-500/50 dark:bg-${color}-50/5`,
         className
     );
 
-    const iconClasses = mergeClasses("mt-4 mx-auto", iconSize, textColor);
+    const iconClasses = mergeClasses(
+        "h-12 w-12 mx-auto mb-3",
+        dragOver ? `text-${activeColor}-500` : `text-${color}-500`
+    );
+
+    const clonedIcon = React.cloneElement(icon, {
+        className: iconClasses,
+    });
 
     return (
         <div
@@ -71,17 +115,65 @@ const FileDrop = ({
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            onClick={() => fileInputRef.current && fileInputRef.current.click()}
+            onClick={() => fileInputRef.current?.click()}
+            {...props}
         >
+            {/* Hidden file input */}
             <input
                 type="file"
                 ref={fileInputRef}
                 style={{ display: "none" }}
-                multiple
+                accept={accept}
+                multiple={multiple}
                 onChange={handleFileSelect}
             />
-            <p className={mergeClasses("text-center", textColor)}>{text}</p>
-            {IconComponent && <IconComponent className={iconClasses} />}
+
+            {/* If no files yet, show icon + text */}
+            {files.length === 0 && (
+                <>
+                    {icon && clonedIcon}
+                    <p className={`text-center text-md text-${color}-600 dark:text-${color}-400`}>
+                        {text}
+                    </p>
+                    {subtext && (
+                        <p className={`text-center text-sm text-${color}-400 dark:text-${color}-600`}>
+                            {subtext}
+                        </p>
+                    )}
+                </>
+            )}
+
+            {/* If files exist, show FileItem for each */}
+            {files.length > 0 && (
+                <div className="mt-2 w-full space-y-2">
+                    <div className="flex flex-col gap-2">
+                        {files.map((file, index) => (
+                            <File
+                                key={`${file.name}-${index}`}
+                                file={file}
+                                showRemoveButton
+                                onRemove={() => handleRemoveFile(index)}
+                            />
+                        ))}
+                    </div>
+
+                    <div className="text-center mt-2">
+                        <button
+                            type="button"
+                            className={
+                                `text-sm text-${color}-500 dark:text-${color}-600 
+                                hover:underline hover:text-${color}-800 dark:hover:text-${color}-300`
+                            }
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleRemoveAll();
+                            }}
+                        >
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

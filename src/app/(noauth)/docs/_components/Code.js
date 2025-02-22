@@ -34,6 +34,7 @@ const Code = ({ children, className, ...props }) => {
             startingLineNumber={1}
             wrapLines={true}
             copy
+            border
             showLanguage
         >
             {cleanedCode}
