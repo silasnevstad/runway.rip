@@ -12,7 +12,8 @@ export default function Avatar({
     size = "md",
     border = true,
     status,
-    statusColor,
+    statusColor = "green",
+    ringColor = "gray",
     onClick,
     className = "",
     ...props
@@ -35,6 +36,7 @@ export default function Avatar({
         finalSize,
         borderRadius && `rounded-${borderRadius}`,
         border && `border-2 border-${color}-500 dark:border-${color}-600`,
+        status && ringColor && `border-2 border-${ringColor}-500 dark:border-${ringColor}-500`,
         `bg-${color}-200 dark:bg-${color}-800 text-${color}-800 dark:text-${color}-200`,
         onClick && "cursor-pointer active:scale-95",
         className
@@ -46,7 +48,7 @@ export default function Avatar({
     const handleImageError = () => setImgError(true);
 
     return (
-        <div className={containerClasses} onClick={onClick} {...props} title={status}>
+        <div className={containerClasses} onClick={onClick} {...props} title={status} aria-label={alt}>
             {showImage ? (
                 <Image
                     src={src}
@@ -63,7 +65,7 @@ export default function Avatar({
                 <span
                     className={mergeClasses(
                         "z-50 absolute w-3 h-3 rounded-full ring-2 ring-white dark:ring-gray-800 bottom-0 right-0 transform translate-x-1/4 translate-y-1/4",
-                        statusColor  ? `bg-${statusColor}-400` : "bg-green-400"
+                        statusColor  && `bg-${statusColor}-400`
                     )}
                 />
             )}

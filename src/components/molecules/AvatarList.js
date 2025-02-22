@@ -1,5 +1,6 @@
 import React from "react";
 import Avatar from "@/components/atoms/Avatar";
+import { mergeClasses } from "@/utils/classNames";
 
 export default function AvatarList({
     avatars = [],
@@ -11,7 +12,6 @@ export default function AvatarList({
     ...props
 }) {
     const isHorizontal = direction === "horizontal";
-    const containerClasses = isHorizontal ? "flex flex-row" : "flex flex-col";
     const overlapClass = overlap ? (isHorizontal ? "-ml-4" : "-mt-4") : "";
 
     let displayedAvatars = avatars;
@@ -23,8 +23,15 @@ export default function AvatarList({
         hiddenCount = avatars.length - (maxVisible - 1);
     }
 
+    const finalClasses = mergeClasses(
+        "relative",
+        isHorizontal ? "flex flex-row" : "flex flex-col",
+        overlap ? (isHorizontal ? "-ml-4" : "-mt-4") : "",
+        className
+    );
+
     return (
-        <div className={`${containerClasses} ${className}`} {...props}>
+        <div className={finalClasses} {...props}>
             {displayedAvatars.map((avatar, index) => {
                 const isFirst = index === 0;
                 const marginClass = isFirst ? "" : overlapClass;

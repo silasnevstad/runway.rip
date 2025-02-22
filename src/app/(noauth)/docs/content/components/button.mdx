@@ -60,25 +60,25 @@ import Button from "@/components/atoms/Button";
 
 ## Props
 
-| **Prop**     | **Type**             | **Default** | **Description**                                                               |
-|--------------|----------------------|-------------|-------------------------------------------------------------------------------|
-| children     | ReactNode            | -           | The content of the button.                                                    |
-| size         | "sm" \| "md" \| "lg" | "md"        | The size of the button.                                                       |
-| color        | string               | "primary"   | The base color of the button (use [tailwind.config](/docs/tutorials/config)). |
-| borderRadius | string               | "md"        | The border radius of the button.                                              |
-| hoverBg      | boolean              | true        | If true, applies a hover background color.                                    |
-| scale        | boolean              | false       | If true, gently scales up on hover.                                           |
-| lift         | boolean              | false       | If true, lifts on hover.                                                      |
-| active       | boolean              | true        | If true, the button has an active press-down scale effect.                    |
-| border       | boolean              | false       | If true, adds a border.                                                       |
-| shadow       | boolean              | false       | If true, adds a subtle box-shadow.                                            |
-| loading      | boolean              | false       | If true, shows a spinner instead of children.                                 |
-| disabled     | boolean              | false       | If true, disables the button.                                                 |
-| href         | string               | ""          | If provided, the button becomes a `Link` instead of a `button`.               |
-| icon         | ReactNode            | null        | Optional icon component or image to display.                                  |
-| onClick      | function             | -           | The click handler for the button.                                             |
-| className    | string               | ""          | Additional [Tailwind](https://tailwindcss.com) utility classes.               |
-| ...props     | object               | -           | Any other valid HTML attributes for the `button` or `Link`.                   |
+| **Prop**     | **Type**             | **Default** | **Description**                                                 |
+|--------------|----------------------|-------------|-----------------------------------------------------------------|
+| children     | ReactNode            | -           | The content of the button.                                      |
+| size         | "sm" \| "md" \| "lg" | `"md"`      | The size of the button.                                         |
+| color        | string               | `"primary"` | The base color (use [tailwind.config](/docs/tutorials/config)). |
+| borderRadius | string               | `"md"`      | The border radius of the button.                                |
+| hoverBg      | boolean              | `true`      | If true, applies a hover background color.                      |
+| scale        | boolean              | `false`     | If true, gently scales up on hover.                             |
+| lift         | boolean              | `false`     | If true, lifts on hover.                                        |
+| active       | boolean              | `true`      | If true, the button has an active press-down scale effect.      |
+| border       | boolean              | `false`     | If true, adds a border.                                         |
+| shadow       | boolean              | `false`     | If true, adds a subtle box-shadow.                              |
+| loading      | boolean              | `false`     | If true, shows a spinner instead of children.                   |
+| disabled     | boolean              | `false`     | If true, disables the button.                                   |
+| href         | string               | `""`        | If provided, the button becomes a `Link` instead of a `button`. |
+| icon         | ReactNode            | `null`      | Optional icon component or image to display.                    |
+| onClick      | function             | -           | The click handler for the button.                               |
+| className    | string               | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| ...props     | object               | -           | Any other valid HTML attributes for the `button` or `Link`.     |
 
 <br/>
 <Info>
@@ -93,7 +93,7 @@ import Button from "@/components/atoms/Button";
 
 ## Examples
 
-### 1. Basic Usage
+### Basic Usage
 You can use the `Button` component like this:
 
 <PreviewCode preview={
@@ -124,7 +124,7 @@ You can use the `Button` component like this:
 
 <br />
 
-### 2. Disabled & Loading
+### Disabled & Loading
 When `disabled` or `loading` is set, the button cannot be clicked, `loading` also shows a [`Loader`](/docs/components/loader).
 
 <PreviewCode preview={
@@ -149,7 +149,7 @@ When `disabled` or `loading` is set, the button cannot be clicked, `loading` als
 
 <br />
 
-### 3. Icons
+### Icons
 Pass a React icon component (`icon`) or an external image (`iconSrc`).
 
 <PreviewCode preview={
@@ -174,7 +174,7 @@ Pass a React icon component (`icon`) or an external image (`iconSrc`).
 
 <br />
 
-### 4. As a Link
+### As a Link
 If you pass an `href` prop, the button renders as a Next.js `Link`.
 
 <PreviewCode preview={
@@ -193,8 +193,6 @@ If you pass an `href` prop, the button renders as a Next.js `Link`.
     ```
 </PreviewCode>
 
-<br/>
-
 <Tip>
     Combine `href` with a `target="_blank"` for external links if desired.
 </Tip>
@@ -203,7 +201,9 @@ If you pass an `href` prop, the button renders as a Next.js `Link`.
     Avoid using `href` and `onClick` together if they lead to conflicting actions. `href` takes precedence.
 </Caution>
 
-### 5. Custom Style
+<br />
+
+### Custom Style
 Using [Tailwind](https://tailwindcss.com) utility classes, you can create a custom button.
 
 <PreviewCode preview={

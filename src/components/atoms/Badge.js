@@ -39,7 +39,7 @@ export default function Badge({
 
     // Final classes
     const finalClasses = mergeClasses(
-        "inline-flex items-center justify-center font-medium",
+        "inline-flex items-center justify-center font-medium whitespace-nowrap",
         sizeShapeStyles[size] || sizeShapeStyles.md,
         colorStyles[variant] || colorStyles.soft,
         border && (borderStyles[variant] || borderStyles.soft),
@@ -48,7 +48,7 @@ export default function Badge({
     );
 
     return (
-        <div className={finalClasses} onClick={onClick} {...props}>
+        <div className={finalClasses} onClick={onClick} {...props} aria-label={children}>
             {children}
         </div>
     );

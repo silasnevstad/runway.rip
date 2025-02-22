@@ -40,18 +40,17 @@ onThisPage:
 
 <div>
     The `Breadcrumb` component lets users see their current location in your website’s navigational hierarchy. By default,
-    it automatically looks at the browser path with `usePathname()` and matches it against a nested array of routes you define in
-    `sections`. It supports clickable crumbs (if you want them!), and you can pick a handy delimiter or icon like
-    `FaChevronRight`.
+    it parses the current path and highlights the matching crumb. You can also customize the `sections` prop to define
+    your own breadcrumb structure.
 </div>
 
 <Info>
-    Breadcrumb is a major navigational best practice—especially on docs sites or e-commerce pages. Keep your users oriented with minimal fuss!
+    The `Breadcrumb` component's crumbs are clickable to let the user jump back to any part of the hierarchy.
 </Info>
 
 <br/>
 <br/>
-
+<Divider />
 <div id="usage" />
 
 ## Usage
@@ -59,27 +58,13 @@ onThisPage:
 ```javascript
 import Breadcrumb from '@/components/atoms/Breadcrumb';
 
-const NavigationHierarchy = [
-    {
-        href: "/docs",
-        title: "Docs",
-        items: [{
-            href: "/docs/components",
-            title: "Components",
-            items: [{
-                href: "/docs/components/breadcrumb",
-                title: "Breadcrumb"
-            }]
-        }]
-    }
-];
-
-<Breadcrumb sections={NavigationHierarchy} />
+<Breadcrumb />
 ```
 
 <br/>
 <br/>
-
+<br/>
+<Divider />
 <div id="props" />
 
 ## Props
@@ -89,112 +74,55 @@ const NavigationHierarchy = [
 | sections          | array    | `[]`        | Breadcrumb route definitions, e.g. `{ href, title, items?: nested }`.                                     |
 | delimiter         | Icon     | `<Icon />`  | Separator between crumbs.                                                                                 |
 | isInteractiveLast | boolean  | `false`     | Makes the final crumb clickable if `true`.                                                                |
-| color             | string   | `gray`      | Sets the color theme (e.g. `"primary"`, `"gray"`). Other fine-tuning can be done with `className`.        |
 | className         | string   | `""`        | Extra [Tailwind](https://tailwindcss.com) classes. These override internal defaults using `mergeClasses`. |
 | ...props          | object   | `-`         | Additional props (e.g. `style`, `onMouseEnter`) passed down to the main `<nav>` element.                  |
 
+
 <br/>
-
-<Tip>
-    Typically, you’ll want to match `sections` to your site structure. If you have more deeply nested routes,
-    just nest `items` arrays in each section. The current path is auto-detected via `usePathname()`.
-</Tip>
-
+<br/>
 <br/>
 <Divider />
-<br/>
 
 <div id="examples" />
 
 ## Examples
 
-### 1. Basic Breadcrumb
-
-Let’s display a simple chain of pages using default styles and icons.
+### Default Breadcrumb
+Just drop it in and it will automatically parse the current path.
 
 <PreviewCode
     preview={
-        <Breadcrumb
-            sections={[
-                { href: "/", title: "Home" },
-                { href: "/about", title: "About" },
-                { href: "/about/team", title: "Our Team" },
-            ]}
-        />
+        <Breadcrumb />
     }
 >
     ```javascript
-    <Breadcrumb
-        sections={[
-            { href: "/", title: "Home" },
-            { href: "/about", title: "About" },
-            { href: "/about/team", title: "Our Team" },
-        ]}
-    />
+    <Breadcrumb />
     ```
 </PreviewCode>
 
 <br />
 
-### 2. Custom Delimiter & Interactive Last
-
-Swap in any delimiter you want (like a slash `/` or text `>`). Make the last crumb clickable by setting `isInteractiveLast`.
-
-<PreviewCode
-    preview={
-        <Breadcrumb
-            sections={[
-                { href: "/", title: "Home" },
-                { href: "/blog", title: "Blog" },
-                { href: "/blog/new", title: "New Post" },
-            ]}
-            delimiter="/"
-            isInteractiveLast
-            color="primary"
-        />
-    }
->
-    ```javascript
-    <Breadcrumb
-        sections={[
-            { href: "/", title: "Home" },
-            { href: "/blog", title: "Blog" },
-            { href: "/blog/new", title: "New Post" },
-        ]}
-        delimiter="/"
-        isInteractiveLast
-        color="primary"
-    />
-    ```
-</PreviewCode>
-
-<Info>
-    When `isInteractiveLast` is `false`, we dim the last item and it loses its link behavior.
-    Handy if you just want a label for the current page.
-</Info>
-
-<br />
-
-### 3. Nested Items
-You can nest items deeply in the `sections` array, and `Breadcrumb` automatically digs to find the item that matches your current route.
+### Provide Sections
+Create an array of objects with `href` and `title` properties. Breadcrumb will automatically parse the current path
+and highlight the matching crumb.
 
 <PreviewCode
     preview={
         <Breadcrumb
             sections={[
                 {
-                    href: "/products",
-                    title: "Products",
-                    items: [{
-                        href: "/products/electronics",
-                        title: "Electronics",
-                        items: [
-                            { href: "/products/electronics/laptops", title: "Laptops" },
-                            { href: "/products/electronics/phones", title: "Phones" },
-                        ],
-                    }],
-                },
-                { href: "/products/electronics/phones", title: "Phones" },
+                    href: "/docs",
+                    title: "Docs",
+                    items: [
+                        {
+                            href: "/docs/components",
+                            title: "Components",
+                            items: [
+                                { href: "/docs/components/breadcrumb", title: "Breadcrumb" },
+                            ]
+                        }
+                    ]
+                }
             ]}
         />
     }
@@ -203,24 +131,48 @@ You can nest items deeply in the `sections` array, and `Breadcrumb` automaticall
     <Breadcrumb
         sections={[
             {
-                href: "/products",
-                title: "Products",
+                href: "/docs",
+                title: "Docs",
                 items: [{
-                    href: "/products/electronics",
-                    title: "Electronics",
-                    items: [
-                        { href: "/products/electronics/laptops", title: "Laptops" },
-                        { href: "/products/electronics/phones", title: "Phones" },
-                    ],
-                }],
-            },
-            { href: "/products/electronics/phones", title: "Phones" },
+                    href: "/docs/components",
+                    title: "Components",
+                    items: [{
+                        href: "/docs/components/breadcrumb",
+                        title: "Breadcrumb"
+                    }]
+                }]
+            }
         ]}
     />
     ```
 </PreviewCode>
 
-And that’s it! With minimal setup, your site has easy-peasy breadcrumbs. Build on, friend!
+<Tip>
+    Make sure each item has a `title` and `href` property.
+</Tip>
 
+<br />
+
+### Custom Delimiter
+
+Swap in any delimiter you want (like a slash `/` or text `>`).
+
+<PreviewCode
+    preview={
+        <Breadcrumb
+            sections={[]}
+            delimiter="/"
+        />
+    }
+>
+    ```javascript
+    <Breadcrumb
+        sections={[]}
+        delimiter="/"
+    />
+    ```
+</PreviewCode>
+
+<br />
 <br />
 <br />

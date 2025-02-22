@@ -6,13 +6,16 @@ onThisPage:
     href: "#card"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "CustomCards"
+    href: "/docs/components/custom-cards"
 ---
 
 <div id="card" />
-
-<Divider />
 
 <br/>
 
@@ -25,11 +28,11 @@ onThisPage:
         <h2>Outlined Card</h2>
         <p>This card has an outline effect on hover.</p>
     </Card>
-    <Card scale className="bg-bg-200 dark:bg-bg-800">
+    <Card scale hoverBg className="bg-bg-200 dark:bg-bg-800">
         <h2>Scalable Card</h2>
         <p>This card scales up on hover.</p>
     </Card>
-    <Card className="bg-primary-300/50 dark:bg-primary-600/20 text-blue-800 dark:text-gray-200" lift>
+    <Card hoverBg={false} className="bg-primary-300/50 dark:bg-primary-600/20 text-blue-800 dark:text-gray-200" lift>
         <h2>Custom Styled Card</h2>
         <p>This card has custom styles.</p>
     </Card>
@@ -37,39 +40,69 @@ onThisPage:
 
 <br />
 
-The `Card` component is a versatile card component that can be used to display content in a structured and visually appealing way. It comes with animation and hover effects that can be customized to fit your design needs.
+The `Card` component is a flexible component that can be used to display content in a structured and visually appealing way.
+It comes with animation and hover effects that can be customized to fit your design needs.
 
 <Tip>
-    Use the `hoverEffect` prop to add interactive elements to your cards without additional styling.
+    Check out the [`CustomCards`](/docs/components/custom-cards) page for pre-built custom cards.
 </Tip>
 
 <br/>
-<Divider />
 <br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Card from "@/components/atoms/Card";
+
+<Card>
+    <h2>Card Title</h2>
+    <p>This is a basic card with default settings.</p>
+</Card>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| className | string | - | Additional CSS classes to be applied |
-| children | ReactNode | - | The content to be displayed inside the card |
-| hoverEffect | 'none', 'shadow-sm', 'scale', 'outline' | 'shadow-sm' | The hover effect to apply to the card |
-| border | boolean | true | Whether to display a border around the card |
+| Prop         | Type                 | Default     | Description                                                     |
+|--------------|----------------------|-------------|-----------------------------------------------------------------|
+| children     | ReactNode            | -           | The content of the card.                                        |
+| size         | "sm" \| "md" \| "lg" | `"md"`      | The size of the card.                                           |
+| color        | string               | `"primary"` | The base color (use [tailwind.config](/docs/tutorials/config)). |
+| borderRadius | string               | `"2xl"`     | The border radius of the card.                                  |
+| hoverBg      | boolean              | `false`     | If true, applies a hover background color.                      |
+| scale        | boolean              | `false`     | If true, gently scales up on hover.                             |
+| lift         | boolean              | `false`     | If true, lifts on hover.                                        |
+| active       | boolean              | `false`     | If true, the card has an active press-down scale effect.        |
+| outline      | boolean              | `false`     | If true, adds an outline effect on hover.                       |
+| border       | boolean              | `false`     | If true, adds a border.                                         |
+| shadow       | boolean              | `false`     | If true, adds a subtle box-shadow.                              |
+| href         | string               | `""`        | The URL to navigate to when the card is clicked.                |
+| onClick      | function             | -           | The click handler for the card.                                 |
+| className    | string               | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| ...props     | object               | -           | Any other valid HTML attributes for the card.                   |
 
 <Info>
-    The component also accepts any additional props that can be applied to a div element.
+    Apply your own styling with the `className` prop for custom colors or advanced styling.
 </Info>
 
 <br/>
 <br/>
-<Divider />
 <br/>
+<Divider />
 
-<div id="usage-examples" />
+<div id="examples" />
 
-## Usage Examples
+## Examples
 
 ### Basic Card
 <PreviewCode preview={
@@ -86,6 +119,8 @@ The `Card` component is a versatile card component that can be used to display c
 ```
 </PreviewCode>
 
+<br />
+
 ### Card with Hover Outline Effect
 <PreviewCode preview={
     <Card outline>
@@ -101,22 +136,30 @@ The `Card` component is a versatile card component that can be used to display c
 ```
 </PreviewCode>
 
-### Card with No Animation
+<br />
+
+### Card with Lift and Scale Effects
+Use `lift` and `scale` props to add hover effects. You can also use `active` to enable the press-down scale effect.
+
 <PreviewCode preview={
-    <Card>
-        <h2>Static Card</h2>
-        <p>This card does not animate on mount.</p>
+    <Card lift scale active>
+        <h2>Card with Lift and Scale</h2>
+        <p>This card lifts and scales on hover.</p>
     </Card>
 }>
 ```javascript
-<Card>
-  <h2>Static Card</h2>
-  <p>This card does not animate on mount.</p>
+<Card lift scale active>
+    <h2>Card with Lift and Scale</h2>
+    <p>This card lifts and scales on hover.</p>
 </Card>
 ```
 </PreviewCode>
 
+<br />
+
 ### Card with Custom Styling
+Add your own styling with the `className` prop for custom colors or advanced styling.
+
 <PreviewCode preview={
     <Card className="bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200" border={false}>
         <h2>Custom Styled Card</h2>
@@ -124,7 +167,10 @@ The `Card` component is a versatile card component that can be used to display c
     </Card>
 }>
 ```javascript
-<Card className="bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200" border={false}>
+<Card
+    className="bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200"
+    border={false}
+>
   <h2>Custom Styled Card</h2>
   <p>This card has custom background and text colors.</p>
 </Card>
@@ -135,5 +181,6 @@ The `Card` component is a versatile card component that can be used to display c
     Experiment with different combinations of props to create cards that fit your design needs.
 </Tip>
 
+<br/>
 <br/>
 <br/>

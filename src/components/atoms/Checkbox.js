@@ -1,22 +1,33 @@
 "use client";
-
 import React from "react";
 import { mergeClasses } from "@/utils/classNames";
+import { getHoverClasses } from "@/utils/classes";
 
 const Checkbox = ({
-    className = "",
-    id,
     name,
     label,
     helperText,
+    labelPosition = "right", // "left" or "right"
+    size = "md",
+    color = "primary",
+    borderRadius = "sm",
+    border = false,
+    lift = false,
+    scale = false,
+    active = true,
+    disabled = false,
     checked = false,
     onChange,
-    labelPosition = "right", // "left" or "right"
-    color = "primary",
-    disabled = false,
-    circle = false,
+    className = "",
+    ...props
 }) => {
-    // Container styles: set layout and opacity if disabled.
+    const sizeStyles = {
+        sm: "h-3 w-3",
+        md: "h-4 w-4",
+        lg: "h-5 w-5",
+    }
+
+    // Container styles
     const containerClasses = mergeClasses(
         "flex items-center justify-center",
         labelPosition === "left" ? "flex-row-reverse" : "flex-row",
@@ -24,15 +35,18 @@ const Checkbox = ({
         className
     );
 
-    // Input checkbox styles: set size, border, color, and shape.
+    // Input checkbox styles:
     const inputClasses = mergeClasses(
-        "checkbox h-4 w-4 border-gray-300",
+        "checkbox",
+        sizeStyles[size] || sizeStyles.md,
         `text-${color}-500`,
-        circle ? "rounded-full" : "rounded-sm",
+        border && `border border-${color}-800 dark:border-${color}-200`,
+        borderRadius && `rounded-${borderRadius}`,
+        getHoverClasses({ lift, scale, active }),
         className
     );
 
-    // Label container: add margin-top if helper text is provided.
+    // Label container
     const labelContainerClasses = mergeClasses(
         "flex flex-col items-center justify-start",
         helperText && "mt-4"
@@ -43,14 +57,15 @@ const Checkbox = ({
             <input
                 className={inputClasses}
                 type="checkbox"
-                id={id}
                 name={name}
                 checked={checked}
                 onChange={onChange}
                 disabled={disabled}
+                aria-label={label}
+                {...props}
             />
             <div className={labelContainerClasses}>
-                <label htmlFor={id} className="mx-3 font-medium">
+                <label className="mx-3 font-medium">
                     {label}
                 </label>
                 {helperText && <p className="text-xs text-gray-500">{helperText}</p>}

@@ -16,7 +16,7 @@ onThisPage:
 
 <br/>
 
-<div className="flex gap-3 justify-center items-center mb-4">
+<div className="flex max-sm:flex-col flex-wrap gap-3 justify-center items-center mb-4">
     <Badge>Default Badge</Badge>
     <Badge color="red">Soft Red</Badge>
     <Badge variant="solid" color="blue">Solid Blue</Badge>
@@ -58,15 +58,17 @@ import Badge from '@/components/atoms/Badge';
 
 | **Prop**     | **Type**                     | **Default** | **Description**                                                                                                       |
 |--------------|------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------|
-| children     | React.ReactNode              | -           | Content displayed inside the badge                                                                                    |
-| className    | string                       | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed)                                 |
+| children     | ReactNode                    | -           | Content displayed inside the badge                                                                                    |
+| color        | string                       | `"primary"` | Base color (from [tailwind.config](/docs/tutorial/config))                                                            |
+| variant      | "soft" \| "solid"            | `"soft"`    | Selects a muted (`soft`) or bold (`solid`) visual style                                                               |
 | borderRadius | string                       | `"full"`    | The tailwind-friendly [rounding for corners](https://tailwindcss.com/docs/border-radius) (e.g. `"md"`, `"full"`, etc) |
 | size         | "xs" \| "sm" \| "md" \| "lg" | `"md"`      | Determines overall size of the badge                                                                                  |
-| variant      | "soft" \| "solid"            | `"soft"`    | Selects a muted (`soft`) or bold (`solid`) visual style                                                               |
-| color        | string                       | `"primary"` | Base color. Must match your Tailwind color keys (e.g. `primary`, `gray`, `blue`)                                      |
 | border       | boolean                      | `false`     | Adds a border in a complementary color                                                                                |
-| hover        | boolean                      | `false`     | Enables a hover animation that gently lifts the badge                                                                 |
+| scale        | boolean                      | `false`     | If true, gently scales up on hover.                                                                                   |
+| lift         | boolean                      | `false`     | If true, lifts on hover.                                                                                              |
+| active       | boolean                      | `true`      | If true, the button has an active press-down scale effect.                                                            |
 | onClick      | function                     | -           | If provided, the badge is clickable; includes a small press-scale animation                                           |
+| className    | string                       | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed)                                 |
 | ...props     | object                       | -           | Any other props you’d like to pass to the root `<div>`                                                                |
 
 
@@ -78,7 +80,7 @@ import Badge from '@/components/atoms/Badge';
 
 ## Examples
 
-### 1. Basic Badges
+### Basic Badges
 A swift example with minimal configuration. Just drop in some content!
 
 <PreviewCode preview={
@@ -99,7 +101,7 @@ A swift example with minimal configuration. Just drop in some content!
 
 <br/>
 
-### 2. Different Shapes (borderRadius)
+### Different Shapes (borderRadius)
 Use `borderRadius` to shape corners—like `"none"`, `"md"`, `"full"` (circle-like).
 
 <PreviewCode preview={
@@ -124,7 +126,7 @@ Use `borderRadius` to shape corners—like `"none"`, `"md"`, `"full"` (circle-li
 
 <br/>
 
-### 3. Adding Hover and Custom Classes
+### Adding Hover and Custom Classes
 Spice it up your own [Tailwind](https://tailwindcss.com) classes and a subtle hover animation. Great for clickable or important badges.
 
 <PreviewCode preview={

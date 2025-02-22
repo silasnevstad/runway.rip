@@ -76,6 +76,7 @@ export default function Button({
             disabled={disabled || loading}
             className={finalClasses}
             {...props}
+            aria-label={children}
         >
             {content}
         </button>

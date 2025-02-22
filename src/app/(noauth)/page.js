@@ -7,11 +7,7 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
 import Why from "@/components/landing/Why";
-import WhoAndHow from "@/components/landing/WhoAndHow";
-import TextLink from "@/components/atoms/TextLink";
 import appConfig, { landingConfig } from "@/config";
-import BackgroundBlur from "@/components/atoms/BackgroundBlur";
-import ImageSection from "@/components/landing/ImageSection";
 
 export default function Landing() {
     const { appName } = appConfig;

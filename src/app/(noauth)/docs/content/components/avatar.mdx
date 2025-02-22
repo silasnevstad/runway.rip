@@ -71,20 +71,21 @@ import Avatar from '@/components/atoms/avatar';
 
 ## Props
 
-| **Prop**     | **Type**           | **Default**    | **Description**                                                                       |
-|--------------|--------------------|----------------|---------------------------------------------------------------------------------------|
-| className    | string             | `""`           | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed) |
-| src          | string             | -              | Image URL                                                                             |
-| alt          | string             | `""`           | Image alt text                                                                        |
-| letter       | string             | -              | Letter to display                                                                     |
-| color        | string             | `gray`         | Avatar color (from tailwind.config)                                                   |
-| borderRadius | string             | `"full"`       | The tailwind-friendly rounding for corners (e.g. `"md"`, `"full"`, etc)               |
-| size         | xs, sm, md, lg, xl | `md`           | Avatar size                                                                           |
-| border       | boolean            | `true`         | Whether to show a border                                                              |
-| status       | string             | -              | A status indicator (e.g. 'online')                                                    |
-| statusColor  | string             | `bg-green-400` | Status color (from tailwind.config)                                                   |
-| onClick      | function           | -              | Click handler                                                                         |
-| ...props     | object             | -              | Additional props for the image element                                                |
+| **Prop**     | **Type**                             | **Default** | **Description**                                                                       |
+|--------------|--------------------------------------|-------------|---------------------------------------------------------------------------------------|
+| src          | string                               | -           | Image URL                                                                             |
+| alt          | string                               | `""`        | Image alt text                                                                        |
+| letter       | string                               | -           | Letter to display                                                                     |
+| color        | string                               | `"gray"`    | Avatar color (from [tailwind.config](/docs/tutorial/config))                          |
+| borderRadius | string                               | `"full"`    | The tailwind-friendly rounding for corners (e.g. `"md"`, `"full"`, etc)               |
+| size         | "xs" \| "sm" \| "md" \| "lg" \| "xl" | `"md"`      | Avatar size                                                                           |
+| border       | boolean                              | `true`      | Whether to show a border                                                              |
+| status       | string                               | -           | A status indicator (e.g. 'online')                                                    |
+| statusColor  | string                               | `"green"`   | Status color (from [tailwind.config](/docs/tutorial/config))                          |
+| ringColor    | string                               | `"gray"`    | Border color when status is provided (from [tailwind.config](/docs/tutorial/config))  |
+| onClick      | function                             | -           | Click handler                                                                         |
+| className    | string                               | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed) |
+| ...props     | object                               | -           | Additional props for the image element                                                |
 
 <Tip>
     Feel free to customize the `status` prop any way you like, such as 'online' or 'busy'.
@@ -183,6 +184,7 @@ You can add a status indicator to show if the user is online, busy, etc.
             status="Offline"
             statusColor="red"
             borderRadius="sm"
+            ringColor="red"
         />
         <Avatar
             src="/avatar3.png"
@@ -201,9 +203,10 @@ You can add a status indicator to show if the user is online, busy, etc.
         />
         <Avatar
             letter="O"
+            borderRadius="sm"
             status="Offline"
             statusColor="red"
-            borderRadius="sm"
+            ringColor="red"
         />
         <Avatar
             src="/avatar3.png"
@@ -214,6 +217,10 @@ You can add a status indicator to show if the user is online, busy, etc.
     </div>
     ```
 </PreviewCode>
+
+<Tip>
+    Add a `ringColor` for more emphasis.
+</Tip>
 
 <br />
 <br />

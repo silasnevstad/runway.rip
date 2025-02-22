@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import {usePathname} from "next/navigation";
 import Link from "next/link";
-import {FaChevronRight} from "react-icons/fa";
-import {mergeClasses} from "@/utils/classNames";
+import { usePathname } from "next/navigation";
+import { FaChevronRight } from "react-icons/fa";
+import { mergeClasses } from "@/utils/classNames";
 
 export default function Breadcrumb({
     sections = [],
@@ -14,15 +14,16 @@ export default function Breadcrumb({
 }) {
     const pathname = usePathname();
 
-    // Recursively finds a path of items leading to the current URL (pathname).
+    // Recursively finds a path of items leading to the current URL using items.
+    // If no items are provided, return the current path split into parts and formatted.
     function findPathToCurrentPage(items = [], currentPath = []) {
-        // Parse the pathname if items/sections are not provided
         if (!items.length) {
             return pathname.split("/").filter(Boolean).map((part) => ({
                 href: `/${part}`,
                 title: part.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
             }));
         }
+
         for (const item of items) {
             const newPath = [...currentPath, item];
             if (item.href === pathname) {
@@ -78,7 +79,7 @@ export default function Breadcrumb({
                             isLast={isLast}
                         />
                         {!isLast && (
-                            <span className="text-sm mx-1 flex items-center">
+                            <span className={`text-sm mx-1 flex items-center opacity-40`}>
                             {delimiter}
                           </span>
                         )}

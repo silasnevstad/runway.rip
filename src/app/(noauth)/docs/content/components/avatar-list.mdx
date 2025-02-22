@@ -40,7 +40,6 @@ related:
 
 <br/>
 <br/>
-<br/>
 <Divider />
 <div id="usage" />
 
@@ -66,17 +65,17 @@ import AvatarList from '@/components/molecules/AvatarList';
 
 ## Props
 
-| **Prop**          | **Type**               | **Default**  | **Description**                                                                                                                                     |
-|-------------------|------------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| avatars           | array                  | `[]`           | Each object can contain <InlineHighlight>src</InlineHighlight>/<InlineHighlight>alt</InlineHighlight> or <InlineHighlight>letter</InlineHighlight>. |
-| direction         | horizontal\|vertical | `horizontal` | Chooses layout direction.                                                                                                                           |
-| overlap           | boolean                | `true`         | If true, applies negative margins (like Slack or GitHub) so the avatars stack.                                                                      |
-| maxVisible        | number                 | `5`            | Max avatars displayed before the last is replaced with <InlineHighlight>+X more</InlineHighlight>.                                                  |
-| sharedAvatarProps | object                 | `{}`           | Common props for every <InlineHighlight>Avatar</InlineHighlight> (e.g. <InlineHighlight>size="sm"</InlineHighlight>).                               |
-| className         | string                 | `""`         | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed)                                                               |
+| **Prop**          | **Type**                   | **Default**    | **Description**                                                                       |
+|-------------------|----------------------------|----------------|---------------------------------------------------------------------------------------|
+| avatars           | array                      | `[]`           | Each object can contain `src`/`alt` or `letter`.                                      |
+| direction         | "horizontal" \| "vertical" | `"horizontal"` | Chooses layout direction.                                                             |
+| overlap           | boolean                    | `true`         | If true, applies negative margins (like Slack or GitHub) so the avatars stack.        |
+| maxVisible        | number                     | `5`            | Max avatars displayed before the last is replaced with `+X more`.                     |
+| sharedAvatarProps | object                     | `{}`           | Common props for every `Avatar` (e.g. `size="sm"`).                                   |
+| className         | string                     | `""`           | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed) |
 
 <Tip>
-    Use <InlineHighlight>sharedAvatarProps</InlineHighlight> to set common props for all avatars.
+    Use `sharedAvatarProps` to set common props for all avatars.
 </Tip>
 
 <br/>
@@ -87,7 +86,7 @@ import AvatarList from '@/components/molecules/AvatarList';
 
 ## Examples
 
-### 1. Horizontal List with Overflow
+### Horizontal List with Overflow
 Set `maxVisible` to limit how many avatars are shown. The rest will be replaced with a "+X more" indicator.
 
 <PreviewCode preview={
@@ -120,7 +119,7 @@ Set `maxVisible` to limit how many avatars are shown. The rest will be replaced 
 
 <br />
 
-### 2. Vertical Stacking
+### Vertical Stacking
 Set `direction="vertical"` to stack avatars in a column. You can also adjust the avatar's size with `sharedAvatarProps`.
 
 <PreviewCode preview={
@@ -149,7 +148,7 @@ Set `direction="vertical"` to stack avatars in a column. You can also adjust the
 
 <br />
 
-### 3. No Overlap & Large Avatars
+### No Overlap & Large Avatars
 
 <PreviewCode preview={
     <AvatarList
@@ -177,9 +176,8 @@ Set `direction="vertical"` to stack avatars in a column. You can also adjust the
     ```
 </PreviewCode>
 
-<br/>
 <Tip>
-    <strong>Tip:</strong> Combine <InlineHighlight>AvatarList</InlineHighlight> with <InlineHighlight>ringColor</InlineHighlight> or <InlineHighlight>status</InlineHighlight> props if you need
+    Combine `AvatarList` with `ringColor` or `status` props if you need
     to highlight or indicate user presence for each avatar.
 </Tip>
 

@@ -9,7 +9,6 @@ import ClientSideCheckbox from "@/app/(noauth)/docs/_components/ClientSideCheckb
 import TutorialGuide from "@/app/(noauth)/docs/_components/TutorialGuide";
 import InlineHighlight from "@/app/(noauth)/docs/_components/InlineHighlight";
 import {
-    InformationCircleIcon,
     ExclamationCircleIcon,
     ExclamationTriangleIcon,
     WrenchIcon,
@@ -29,8 +28,9 @@ import Button from "@/components/atoms/Button";
 import { ButtonIconDemo, ButtonOnClickDemo } from "@/app/(noauth)/docs/_components/demos/ButtonDemo";
 import Card from "@/components/atoms/Card";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
-import { MdQuestionMark } from "react-icons/md";
+import { MdQuestionMark, MdOutlineInfo } from "react-icons/md";
 import { BiCheck } from "react-icons/bi";
+import {FaInfo, FaRegLightbulb} from "react-icons/fa6";
 import DropdownText from "@/components/atoms/DropdownText";
 import FileDrop from "@/components/atoms/FileDrop";
 import FileInput from "@/components/atoms/FileInput";
@@ -114,20 +114,14 @@ export const mdxComponents = {
         </div>
     ),
     Info: ({children}) => (
-        <div className="bg-blue-500/20 rounded-lg border-l-4 rounded-l-none border-blue-500 p-3 pb-2 my-4">
-            <p className="flex items-center text-md text-blue-500 font-semibold">
-                <InformationCircleIcon className="w-5 h-5 inline-block mr-1" />
-                Info
-            </p>
+        <div className="flex items-start gap-2 text-[15px] bg-blue-500/20 rounded-lg border-l-4 rounded-l-none border-blue-500 p-2 my-4">
+            <FaInfo className="w-6 h-6 text-blue-500 inline-block mt-2" />
             {children}
         </div>
     ),
     Tip: ({children}) => (
-        <div className="bg-green-500/20 rounded-lg border-l-4 rounded-l-none border-green-500 p-3 pb-2 my-4">
-            <p className="flex items-center text-md text-green-500 font-semibold">
-                <ExclamationCircleIcon className="w-5 h-5 inline-block mr-1" />
-                Tip
-            </p>
+        <div className="flex items-start gap-2 text-[15px] bg-green-500/20 rounded-lg border-l-4 rounded-l-none border-green-500 p-2 my-4">
+            <FaRegLightbulb className="w-6 h-6 text-green-500 inline-block mt-2" />
             {children}
         </div>
     ),

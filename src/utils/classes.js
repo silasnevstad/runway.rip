@@ -10,7 +10,7 @@ export function getHoverClasses({ background, lift, scale, active, transitionAll
         hoverClasses.push("hover:-translate-y-0.5");
     }
     if (scale) {
-        hoverClasses.push("hover:scale-105");
+        hoverClasses.push("hover:scale-103");
     }
     if (active) {
         hoverClasses.push("active:scale-97");
