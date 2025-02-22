@@ -35,39 +35,39 @@ import { mergeClasses } from "@/utils/styling";
  * ```
  */
 export default function Slider({
-                                   /* Range props */
-                                   min = 0,
-                                   max = 100,
-                                   step = 1,
-                                   defaultValue = 50,
+    /* Range props */
+    min = 0,
+    max = 100,
+    step = 1,
+    defaultValue = 50,
 
-                                   /* Layout & display */
-                                   valuePosition = "top",     // "top" | "bottom" | "left" | "right"
-                                   showValue = true,          // if true, show numeric value near slider
-                                   showLabels = true,         // if true, show numeric min/max labels at sides
-                                   showSides = true,          // toggles the min & max labels
+    /* Layout & display */
+    valuePosition = "top",     // "top" | "bottom" | "left" | "right"
+    showValue = true,          // if true, show numeric value near slider
+    showLabels = true,         // if true, show numeric min/max labels at sides
+    showSides = true,          // toggles the min & max labels
 
-                                   /* Visual configuration */
-                                   collapsible = false,       // if true, slider scales up on hover
-                                   collapsedScale = 0.8,      // how much to scale down when not hovered
-                                   trackColor = "gray",       // tailwind color key for track
-                                   thumbColor = "primary",    // tailwind color key for thumb
-                                   trackBorderRadius = "full",
-                                   thumbBorderRadius = "full",
-                                   inactiveBarHeight = 6,
-                                   activeBarHeight = 6,
-                                   glow = false,              // if true, adds a glow effect around the thumb
+    /* Visual configuration */
+    collapsible = false,       // if true, slider scales up on hover
+    collapsedScale = 0.8,      // how much to scale down when not hovered
+    trackColor = "gray",       // tailwind color key for track
+    thumbColor = "primary",    // tailwind color key for thumb
+    trackBorderRadius = "full",
+    thumbBorderRadius = "full",
+    inactiveBarHeight = 6,
+    activeBarHeight = 6,
+    glow = false,              // if true, adds a glow effect around the thumb
 
-                                   /* Badge above thumb */
-                                   badge = "",                // e.g. "Up to 1M events"
-                                   showBadge = false,
+    /* Badge above thumb */
+    badge = "",                // e.g. "Up to 1M events"
+    showBadge = false,
 
-                                   /* Event handling */
-                                   onChange,
-                                   /* Additional classes */
-                                   className = "",
-                                   ...props
-                               }) {
+    /* Event handling */
+    onChange,
+    /* Additional classes */
+    className = "",
+    ...props
+}) {
     const [value, setValue] = useState(defaultValue);
 
     useEffect(() => {
