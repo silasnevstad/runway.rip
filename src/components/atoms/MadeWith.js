@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import {mergeClasses} from "@/utils/classNames";
+import { mergeClasses } from "@/utils/styling";
 
 
 export default function MadeWith({

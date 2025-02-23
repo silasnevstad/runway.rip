@@ -11,10 +11,19 @@ import InlineHighlight from "@/app/(noauth)/docs/_components/InlineHighlight";
 import {
     ExclamationCircleIcon,
     ExclamationTriangleIcon,
+    QuestionMarkCircleIcon,
     WrenchIcon,
     EnvelopeIcon,
-    CheckCircleIcon
+    CheckCircleIcon,
+    LinkIcon
 } from "@heroicons/react/24/outline";
+import { SparklesIcon } from "@heroicons/react/24/solid";
+import { FaBolt, FaInfo, FaRegLightbulb } from "react-icons/fa6";
+import { FaExclamationCircle } from "react-icons/fa";
+import { MdQuestionMark } from "react-icons/md";
+import { BiCheck } from "react-icons/bi";
+import { LuUpload } from "react-icons/lu";
+
 import TextLink from "@/components/atoms/TextLink";
 import Accordion from "@/components/molecules/Accordion";
 import Avatar from "@/components/atoms/Avatar";
@@ -26,24 +35,19 @@ import Breadcrumb from "@/components/atoms/Breadcrumb";
 import { DocsNav } from "@/app/(noauth)/docs/Nav";
 import Button from "@/components/atoms/Button";
 import { ButtonIconDemo, ButtonOnClickDemo } from "@/app/(noauth)/docs/_components/demos/ButtonDemo";
+import SwitchDemo from "@/app/(noauth)/docs/_components/demos/SwitchDemo";
+import { FileDropDemo } from "@/app/(noauth)/docs/_components/demos/FileDropDemo";
+import { TextLinkIconDemo } from "@/app/(noauth)/docs/_components/demos/TextLinkDemo";
 import Card from "@/components/atoms/Card";
-import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
-import { MdQuestionMark, MdOutlineInfo } from "react-icons/md";
-import { BiCheck } from "react-icons/bi";
-import {FaBolt, FaExclamation, FaInfo, FaRegLightbulb} from "react-icons/fa6";
 import DropdownText from "@/components/atoms/DropdownText";
 import FileDrop from "@/components/atoms/FileDrop";
 import FileInput from "@/components/atoms/FileInput";
 import Switcher from "@/components/atoms/Switcher";
-import SwitchDemo from "@/app/(noauth)/docs/_components/demos/SwitchDemo";
-import {FileDropDemo} from "@/app/(noauth)/docs/_components/demos/FileDropDemo";
-import { LuUpload } from "react-icons/lu";
-import { LinkIcon } from "@heroicons/react/24/outline";
 import Input from "@/components/atoms/Input";
 import Loader from "@/components/atoms/Loader";
 import LineGraph from "@/components/atoms/LineGraph";
 import Slider from "@/components/atoms/Slider";
-import {TextLinkIconDemo} from "@/app/(noauth)/docs/_components/demos/TextLinkDemo";
+
 import Tooltip from "@/components/atoms/Tooltip";
 import SearchBar from "@/components/molecules/SearchBar";
 import ClientSideSearchBar from "@/app/(noauth)/docs/_components/ClientSideSearchBar";
@@ -51,13 +55,13 @@ import PasswordAuthForm from "@/components/auth/PasswordAuthForm";
 import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
 import OAuthButtons from "@/components/auth/OAuthButtons";
 import Alert from "@/components/atoms/Alert";
-import {StandoutCard, TerminalCard, WebsiteCard} from "@/components/atoms/CustomCards";
+import { StandoutCard, TerminalCard, WebsiteCard } from "@/components/atoms/CustomCards";
 import File from "@/components/atoms/File";
 import Indicator from "@/components/atoms/Indicator";
-import { FaExclamationCircle } from "react-icons/fa";
 import {InputIconDemo} from "@/app/(noauth)/docs/_components/demos/InputDemo";
 import TextArea from "@/components/atoms/TextArea";
-import {TextAreaDemo} from "@/app/(noauth)/docs/_components/demos/TextAreaDemo";
+import { TextAreaDemo } from "@/app/(noauth)/docs/_components/demos/TextAreaDemo";
+import StarRating from "@/components/atoms/StarRating";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -134,7 +138,7 @@ export const mdxComponents = {
     ),
     Direction: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-yellow-500/20 rounded-lg border-l-4 rounded-l-none border-yellow-500 p-2 my-4">
-            <FaBolt className="w-6 h-6 text-yellow-500 inline-block mt-2" />
+            <SparklesIcon className="w-6 h-6 text-yellow-500 inline-block mt-2" />
             {children}
         </div>
     ),
@@ -238,6 +242,7 @@ export const mdxComponents = {
     SearchBar: SearchBar,
     ClientSideSearchBar: ClientSideSearchBar,
     Slider: Slider,
+    StarRating: StarRating,
     TextArea: TextArea,
     TextAreaDemo: TextAreaDemo,
 

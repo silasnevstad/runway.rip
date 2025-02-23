@@ -4,10 +4,12 @@ description: "A customizable slider component for selecting values within a rang
 onThisPage:
   - title: "Slider"
     href: "#slider"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
-  - title: "Usage Examples"
-    href: "#usage-examples"
+  - title: "Examples"
+    href: "#examples"
 ---
 
 <div id="slider" />
@@ -15,33 +17,53 @@ onThisPage:
 <br />
 
 <div className="flex w-full justify-center">
-    <div className="flex flex-col w-full max-w-80 justify-center items-center gap-4">
+    <div className="flex flex-col w-full max-w-80 justify-center items-center gap-8">
         <Slider
             min={0}
             max={100}
             step={1}
-            defaultValue={50}
-            valuePosition="top"
+            defaultValue={30}
         />
         <Slider
             min={0}
             max={100}
             step={1}
-            defaultValue={50}
-            valuePosition="left"
-            showValue={true}
+            defaultValue={60}
+            activeTrackColor="red"
+            thumbColor="gray"
+            thumbSize={6}
+            thumbBorderRadius={"full"}
+            activeTrackBorderRadius="lg"
+            valuePosition={""}
+        />
+        <Slider
+            min={0}
+            max={100}
+            step={1}
+            value={50}
+            thumbColor="green"
+            thumbBorderRadius="sm"
+            activeTrackColor="green"
+            activeTrackBorderRadius={"full"}
+            inactiveTrackWidth={2}
+        />
+        <Slider
+            min={0}
+            max={100}
+            step={1}
+            defaultValue={80}
+            activeTrackColor="yellow"
+            activeTrackWidth="2"
+            inactiveTrackWidth="2"
+            showThumb={false}
+        />
+        <Slider
+            min={0}
+            max={100}
+            step={1}
+            defaultValue={30}
             showLabels={true}
-            className="my-4"
-        />
-        <Slider
-            min={0}
-            max={100}
-            step={1}
-            defaultValue={50}
-            valuePosition="right"
-            showValue={true}
-            showLabels={false}
-            className="my-4"
+            valuePosition={"left"}
         />
     </div>
 </div>
@@ -49,100 +71,231 @@ onThisPage:
 
 <br />
 
-The `Slider` component creates a customizable slider input that can be used for single value or range selection. It is a great way to allow users to select values within a specified range.
-
-<Tip>
-    Use the `range` prop to create a range slider with two thumbs.
-</Tip>
-<Warning>
-    The Slider component uses the 'use client' directive, ensuring it's only rendered on the client-side. Be mindful of this when using it in your Next.js application.
-</Warning>
-
-<br/>
-<Divider />
-<br/>
-
-<div id="props" />
-
-## Props
-
-| Prop          | Type    | Default       | Description                                                  |
-|---------------|---------|---------------|--------------------------------------------------------------|
-| min           | number  | 0             | The minimum value of the slider.                             |
-| max           | number  | 100           | The maximum value of the slider.                             |
-| step          | number  | 1             | The step value of the slider.                                |
-| value         | number  | 0             | The value of the slider.                                     |
-| defaultValue  | number  | 0             | The default value of the slider.                             |
-| showValue     | boolean | false         | Whether to show the value of the slider.                     |
-| showLabels    | boolean | true          | Whether to show the labels of the slider.                    |
-| valuePosition | string  | 'left'        | The position of the value. Possible values: 'left', 'right'. |
-| trackColor    | string  | 'primary-500' | The color of the track.                                      |
-| thumbColor    | string  | 'primary-500' | The color of the thumb.                                      |
-
+The `Slider` component creates a highly customizable slider input that can be used to select a value from a range.
 
 <Info>
-    The component also accepts any additional props that can be applied to the ReactSlider component.
+    You can customize, the track (both active and inactive), the thumb, and the labels.
 </Info>
 
 <br/>
 <br/>
 <Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import { Slider } from "@components/atoms/slider";
+
+<Slider
+    min={0}
+    max={100}
+    step={1}
+    defaultValue={30}
+    onChange={(value) => console.log(value)}
+</Slider>
+```
+
 <br/>
+<br/>
+<br/>
+<Divider />
 
-<div id="usage-examples" />
+<div id="props" />
 
-## Usage Examples
+## Props
 
-### Basic Slider
+| Prop                      | Type                                    | Default     | Description                                                                                                                             |
+|---------------------------|-----------------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| min                       | number                                  | `0`         | The minimum value of the slider.                                                                                                        |
+| max                       | number                                  | `100`       | The maximum value of the slider.                                                                                                        |
+| step                      | number                                  | `1`         | The step value of the slider.                                                                                                           |
+| defaultValue              | number                                  | `50`        | The default value of the slider.                                                                                                        |
+| showLabels                | boolean                                 | `false`     | If true, shows the min and max labels.                                                                                                  |
+| valuePosition             | "left" \| "right" \| "follow" \| "none" | `"follow"`  | The position of the value label. Can be "left", "right", "follow" or "" to hide).                                                       |
+| showThumb                 | boolean                                 | `true`      | If true, shows the thumb.                                                                                                               |
+| thumbColor                | string                                  | `"primary"` | The color of the thumb (uses [tailwind.config](/docs/tutorials/config)).                                                                |
+| thumbBorderColor          | string                                  | `"gray"`    | The border color of the thumb (uses [tailwind.config](/docs/tutorials/config)).                                                         |
+| thumbBorderRadius         | string                                  | `"lg"`      | The border radius of the thumb (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component).          |
+| thumbSize                 | string                                  | `"5"`       | The size of the thumb.                                                                                                                  |
+| thumbBorder               | boolean                                 | `true`      | If true, shows the border of the thumb.                                                                                                 |
+| thumbScale                | boolean                                 | `true`      | If true, scales the thumb on hover.                                                                                                     |
+| thumbClassName            | string                                  | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes for the thumb.                                                           |
+| activeTrackColor          | string                                  | `"primary"` | The color of the active track (uses [tailwind.config](/docs/tutorials/config)).                                                         |
+| inactiveTrackColor        | string                                  | `"gray"`    | The color of the inactive track (uses [tailwind.config](/docs/tutorials/config)).                                                       |
+| activeTrackWidth          | string                                  | `"3"`       | The width of the active track.                                                                                                          |
+| inactiveTrackWidth        | string                                  | `"1"`       | The width of the inactive track.                                                                                                        |
+| activeTrackBorderRadius   | string                                  | `"full"`    | The border radius of the active track (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component).   |
+| inactiveTrackBorderRadius | string                                  | `"full"`    | The border radius of the inactive track (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component). |
+| activeTrackClassName      | string                                  | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes for the active track.                                                    |
+| inactiveTrackClassName    | string                                  | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes for the inactive track.                                                  |
+| onChange                  | function                                | -           | The change handler for the slider.                                                                                                      |
+| className                 | string                                  | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes.                                                                         |
+| ...props                  | object                                  | -           | Any other valid HTML attributes for the `input` element.                                                                                | |
+
+<Direction>
+    Looks like a lot of props? Don't worry, they are all optional and have sensible defaults.
+</Direction>
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Basic Sliders
 <PreviewCode preview={
+    <div className="flex flex-col w-full gap-4">
+        <Slider
+            min={0}
+            max={100}
+            value={50}
+            showLabels={false}
+        />
+        <Slider
+            min={0}
+            max={100}
+            value={50}
+            showLabels={false}
+            valuePosition={"left"}
+        />
+        <Slider
+            min={0}
+            max={100}
+            value={50}
+            showLabels={false}
+            valuePosition={"right"}
+        />
+    </div>
+}>
+```javascript
+<div className="flex flex-col w-full gap-4">
     <Slider
         min={0}
         max={100}
         value={50}
         showLabels={false}
     />
-}>
-```javascript
-<Slider
-  min={0}
-  max={100}
-  value={50}
-  showLabels={false}
-  onChange={(value) => console.log(value)}
-/>
+    <Slider
+        min={0}
+        max={100}
+        value={50}
+        showLabels={false}
+        valuePosition={"left"}
+    />
+    <Slider
+        min={0}
+        max={100}
+        value={50}
+        showLabels={false}
+        valuePosition={"right"}
+    />
+</div>
 ```
 </PreviewCode>
 
-### Custom Slider
+<br />
+
+### Slider with Labels
 <PreviewCode preview={
     <Slider
         min={0}
         max={100}
-        step={10}
         value={50}
-        trackColor="red"
-        thumbColor="green"
+        showLabels={true}
     />
 }>
 ```javascript
 <Slider
   min={0}
   max={100}
-  step={10}
   value={50}
-  className="bg-primary-500"
-  trackColor="red"
-  thumbColor="green"
+  showLabels={true}
   onChange={(value) => console.log(value)}
-  showLabels={false}
 />
 ```
 </PreviewCode>
 
-<br/>
-<Tip>
+### Custom Sliders
+<PreviewCode preview={
+    <div className="flex flex-col w-full gap-8">
+        <Slider
+            min={0}
+            max={100}
+            step={10}
+            value={50}
+            thumbColor="red"
+            thumbBorderRadius="full"
+            activeTrackColor="red"
+            inactiveTrackColor="red"
+            activeTrackBorderRadius={"full"}
+        />
+        <Slider
+            min={0}
+            max={100}
+            step={1}
+            value={50}
+            thumbColor="green"
+            thumbBorderRadius="sm"
+            activeTrackColor="green"
+            activeTrackBorderRadius={"sm"}
+            inactiveTrackWidth={2}
+        />
+        <Slider
+            min={0}
+            max={100}
+            step={10}
+            value={50}
+            className="bg-primary-500/20 rounded-full"
+            trackColor="red"
+            thumbColor="green"
+        />
+    </div>
+}>
+```javascript
+<div className="flex flex-col w-full gap-8">
+    <Slider
+        min={0}
+        max={100}
+        step={10}
+        value={50}
+        thumbColor="red"
+        thumbBorderRadius="full"
+        activeTrackColor="red"
+        inactiveTrackColor="red"
+        activeTrackBorderRadius={"full"}
+    />
+    <Slider
+        min={0}
+        max={100}
+        step={1}
+        value={50}
+        thumbColor="green"
+        thumbBorderRadius="sm"
+        activeTrackColor="green"
+        activeTrackBorderRadius={"sm"}
+        inactiveTrackWidth={2}
+    />
+    <Slider
+        min={0}
+        max={100}
+        step={10}
+        value={50}
+        className="bg-primary-500/20 rounded-full"
+        trackColor="red"
+        thumbColor="green"
+    />
+</div>
+```
+</PreviewCode>
+
+<Direction>
     Experiment with different props and styles to create sliders that fit your design needs and use cases.
-</Tip>
+</Direction>
 
 <br/>
 <br/>

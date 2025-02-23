@@ -2,40 +2,39 @@
 import React, { useState, useEffect } from "react";
 import { mergeClasses } from "@/utils/styling";
 
-export default function BetterSlider({
-    // Range
+export default function Slider({
+    // Range configuration
     min = 0,
     max = 100,
     step = 1,
     defaultValue = 50,
 
-    // Show min/max
+    // Whether to show the min and max labels
     showLabels = false,
-    // Show current value
-    showValue = true,
-    valuePosition = "top", // 'top' | 'bottom' | 'left' | 'right'
+    valuePosition = "follow",  // "left", "right", or "follow"
 
-    // Inactive vs. active track
-    inactiveColor = "#999",
-    inactiveThickness = 4,
-    activeColor = "#4287f5",
-    activeThickness = 4,
-    trackBorderRadius = 8,
+    // Thumb styling
+    showThumb = true,
+    thumbColor = "primary",
+    thumbBorderColor = "gray",
+    thumbBorderRadius = "lg",
+    thumbSize = "5",
+    thumbBorder = true,
+    thumbScale = true,
+    thumbClassName = "",
 
-    // Thumb
-    thumbColor = "#4287f5",
-    thumbSize = 16,
-    thumbBorderRadius = "50%",
-    thumbBorderWidth = 0,
-    thumbBorderColor = "#0000",
-    glow = true,
-    collapseOnHover = true,
+    // Track styling
+    activeTrackColor = "primary",
+    inactiveTrackColor = "gray",
+    activeTrackWidth = "3",
+    inactiveTrackWidth = "1",
+    activeTrackBorderRadius = "full",
+    inactiveTrackBorderRadius = "full",
+    activeTrackClassName = "",
+    inactiveTrackClassName = "",
 
-    // Badge
-    badge = "",
-    // Handler
+    // Events
     onChange,
-    // Extra classes
     className = "",
     ...props
 }) {
@@ -45,175 +44,124 @@ export default function BetterSlider({
         setValue(defaultValue);
     }, [defaultValue]);
 
-    const handleChange = (e) => {
-        const newValue = Number(e.target.value);
-        setValue(newValue);
-        onChange?.(newValue);
-    };
+    function handleChange(e) {
+        const val = Number(e.target.value);
+        setValue(val);
+        onChange?.(val);
+    }
 
+    // Percentage of how far along the slider is
     const percentage = ((value - min) / (max - min)) * 100;
 
-    // Optional label and value
-    const renderValue = () => {
-        if (!showValue) return null;
-        return (
-            <div className="text-gray-800 dark:text-gray-200 text-center whitespace-nowrap">
-                {value}
-            </div>
-        );
-    };
+    // Offset to center the thumb (approx half the thumb width, in px)
+    const thumbOffset = 10;
 
-    // Left or right label
-    const labelMin = showLabels ? <span>{min}</span> : null;
-    const labelMax = showLabels ? <span>{max}</span> : null;
-
-    const thumbGlowStyle = glow ? `0 0 8px ${thumbColor}` : "none";
-
-    // CSS variables for the thumb
-    const thumbVarStyle = {
-        "--my-thumb-color": thumbColor,
-        "--my-thumb-size": `${thumbSize}px`,
-        "--my-thumb-radius": thumbBorderRadius,
-        "--my-thumb-border-width": `${thumbBorderWidth}px`,
-        "--my-thumb-border-color": thumbBorderColor,
-        "--my-thumb-shadow": thumbGlowStyle,
-    };
-
-    const rangeInputClasses = mergeClasses(
-        "absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer appearance-none",
-        // WebKit
-        `[&::-webkit-slider-thumb]:appearance-none
-     [&::-webkit-slider-thumb]:border-[20px] 
-     [&::-webkit-slider-thumb]:border-solid 
-     [&::-webkit-slider-thumb]:border-[var(--my-thumb-border-color)]
-     [&::-webkit-slider-thumb]:bg-[#ffffff]
-     [&::-webkit-slider-thumb]:w-[var(--my-thumb-size)]
-     [&::-webkit-slider-thumb]:h-[var(--my-thumb-size)]
-     [&::-webkit-slider-thumb]:rounded-[var(--my-thumb-radius)]
-     [&::-webkit-slider-thumb]:shadow-[var(--my-thumb-shadow)]
-     ${collapseOnHover && "[&:hover::-webkit-slider-thumb]:scale-125"}`,
-        // Firefox
-        `[&::-moz-range-thumb]:border-[var(--my-thumb-border-width)] 
-     [&::-moz-range-thumb]:border-solid 
-     [&::-moz-range-thumb]:border-[var(--my-thumb-border-color)]
-     [&::-moz-range-thumb]:bg-[var(--my-thumb-color)]
-     [&::-moz-range-thumb]:w-[var(--my-thumb-size)]
-     [&::-moz-range-thumb]:h-[var(--my-thumb-size)]
-     [&::-moz-range-thumb]:rounded-[var(--my-thumb-radius)]
-     [&::-moz-range-thumb]:shadow-[var(--my-thumb-shadow)]
-     ${collapseOnHover && "[&:hover::-moz-range-thumb]:scale-125"}`,
-        // MS
-        `[&::-ms-thumb]:border-[var(--my-thumb-border-width)] 
-     [&::-ms-thumb]:border-solid 
-     [&::-ms-thumb]:border-[var(--my-thumb-border-color)]
-     [&::-ms-thumb]:bg-[var(--my-thumb-color)]
-     [&::-ms-thumb]:w-[var(--my-thumb-size)]
-     [&::-ms-thumb]:h-[var(--my-thumb-size)]
-     [&::-ms-thumb]:rounded-[var(--my-thumb-radius)]
-     [&::-ms-thumb]:shadow-[var(--my-thumb-shadow)]
-     ${collapseOnHover && "[&:hover::-ms-thumb]:scale-125"}`
+    // Inactive track style
+    const inactiveTrackStyle = mergeClasses(
+        "absolute top-1/2 -translate-y-1/2",
+        `bg-${inactiveTrackColor}-300 dark:bg-${inactiveTrackColor}-600/50`,
+        `w-full h-${inactiveTrackWidth}`,
+        `rounded-${inactiveTrackBorderRadius}`,
+        inactiveTrackClassName
     );
 
-    const trackStyleInactive = {
-        height: `${inactiveThickness}px`,
-        borderRadius: `${trackBorderRadius}px`,
-        backgroundColor: inactiveColor,
-        width: "100%",
-    };
+    // Active track style
+    const activeTrackStyle = mergeClasses(
+        "absolute top-1/2 -translate-y-1/2",
+        `bg-${activeTrackColor}-500 dark:bg-${activeTrackColor}-600`,
+        `h-${activeTrackWidth}`,
+        `rounded-${activeTrackBorderRadius}`,
+        activeTrackClassName
+    );
 
-    const trackStyleActive = {
-        height: `${activeThickness}px`,
-        borderRadius: `${trackBorderRadius}px`,
-        backgroundColor: activeColor,
-        width: `${percentage}%`,
-    };
+    // Thumb style
+    const thumbStyle = mergeClasses(
+        "absolute top-1/2 -translate-y-1/2",
+        `w-${thumbSize} h-${thumbSize}`,
+        `bg-${thumbColor}-500 rounded-${thumbBorderRadius}`,
+        thumbBorder && `border-2 border-${thumbBorderColor}-100 dark:border-${thumbBorderColor}-900`,
+        "shadow-md transition-transform duration-150",
+        thumbScale && "transform scale-100 hover:scale-110 active:scale-90",
+        thumbClassName
+    );
 
-    const sliderBody = (
-        <div className="flex items-center gap-2 w-full">
-            {showLabels && (
-                <span className="text-sm text-gray-600 dark:text-gray-400 opacity-70">
-                    {labelMin}
+    return (
+        <div className={mergeClasses("flex items-center gap-2 w-full", className)}>
+            {/* LEFT LABEL: show either min or the current value (if valuePosition === "left") */}
+            {showLabels ? (valuePosition === "left" ? (
+                <span className="font-medium text-gray-700 dark:text-gray-200 min-w-[2rem] text-right">
+                    {value}
                 </span>
-            )}
+            ) : (
+                <span className="text-xs text-gray-600 dark:text-gray-400 min-w-[2rem] text-right">
+                    {min}
+                </span>
+            )) : (valuePosition === "left" && (
+                <span className="font-medium text-gray-700 dark:text-gray-200 min-w-[2rem] text-right">
+                    {value}
+                </span>
+            ))}
 
-            <div className="relative flex-1">
+
+
+            {/* SLIDER TRACK + THUMB */}
+            <div className="relative flex-1" style={{ height: "1.8rem" }}>
                 {/* Inactive track */}
+                <div className={inactiveTrackStyle} />
+
+                {/* Active portion */}
                 <div
-                    className="absolute top-1/2 -translate-y-1/2 left-0"
-                    style={trackStyleInactive}
+                    className={activeTrackStyle}
+                    style={{ width: `${percentage}%` }}
                 />
 
-                {/* Active track */}
-                <div
-                    className="absolute top-1/2 -translate-y-1/2 left-0"
-                    style={trackStyleActive}
-                />
+                {/* Thumb */}
+                {showThumb && (
+                    <div
+                        className={thumbStyle}
+                        style={{ left: `calc(${percentage}% - ${thumbOffset}px)` }}
+                    />
+                )}
 
+                {/* Invisible native range input */}
                 <input
+                    {...props}
                     type="range"
                     min={min}
                     max={max}
                     step={step}
                     value={value}
                     onChange={handleChange}
-                    style={thumbVarStyle}
-                    className={rangeInputClasses}
-                    {...props}
+                    className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
                 />
 
-                {/* Optional badge */}
-                {badge && (
+                {/* "Follow" put value above the thumb (valuePosition === "follow") */}
+                {valuePosition === "follow" && (
                     <div
-                        className="absolute px-2 py-1 text-sm whitespace-nowrap rounded-md shadow bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600"
-                        style={{
-                            bottom: `${Math.max(inactiveThickness, activeThickness) + 12}px`,
-                            left: `${percentage}%`,
-                            transform: "translateX(-50%)",
-                            pointerEvents: "none",
-                            zIndex: 10,
-                        }}
+                        className="absolute text-sm
+                       text-gray-700 dark:text-gray-100 font-medium
+                       -translate-y-1/3 -translate-x-1/2 pointer-events-none"
+                        style={{ left: `calc(${percentage}% )`, bottom: "100%" }}
                     >
-                        {badge}
+                        {value}
                     </div>
                 )}
             </div>
 
-            {showLabels && (
-                <span className="text-sm text-gray-600 dark:text-gray-400 opacity-70">
-                  {labelMax}
+            {/* RIGHT LABEL: show either max or the current value (if valuePosition === "right") */}
+            {showLabels ? (valuePosition === "right" ? (
+                <span className="font-medium text-gray-700 dark:text-gray-200 min-w-[2rem]">
+                    {value}
                 </span>
-            )}
-        </div>
-    );
-
-    return (
-        <div className={mergeClasses("flex flex-col w-full gap-2", className)}>
-            {valuePosition === "top" && (
-                <div className="flex flex-col items-center gap-2">
-                    {renderValue()}
-                    {sliderBody}
-                </div>
-            )}
-            {valuePosition === "left" && (
-                <div className="flex items-center gap-2">
-                    {renderValue()}
-                    {sliderBody}
-                </div>
-            )}
-            {valuePosition !== "left" && valuePosition !== "right" &&
-                valuePosition !== "top" && valuePosition !== "bottom" && sliderBody}
-            {valuePosition === "right" && (
-                <div className="flex items-center gap-2">
-                    {sliderBody}
-                    {renderValue()}
-                </div>
-            )}
-            {valuePosition === "bottom" && (
-                <div className="flex flex-col items-center gap-2">
-                    {sliderBody}
-                    {renderValue()}
-                </div>
-            )}
+            ) : (
+                <span className="text-xs text-gray-600 dark:text-gray-400 min-w-[2rem]">
+                    {max}
+                </span>
+            )) : (valuePosition === "right" && (
+                <span className="font-medium text-gray-700 dark:text-gray-200 min-w-[2rem]">
+                    {value}
+                </span>
+            ))}
         </div>
     );
 }
