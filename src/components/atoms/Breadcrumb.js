@@ -2,12 +2,12 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaChevronRight } from "react-icons/fa";
+import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { mergeClasses } from "@/utils/styling";
 
 export default function Breadcrumb({
     sections = [],
-    delimiter = <FaChevronRight />,
+    delimiter = <ChevronRightIcon />,
     isInteractiveLast = false,
     className = "",
     ...props

@@ -68,7 +68,7 @@ export default function Hero({
                             `flex flex-col gap-3 mt-14
                             ${textPosition === "right" ? "items-end" : textPosition === "center" ? "items-center" : "items-start"}`
                         }>
-                            <Button className="w-fit" onClick={() => window.location.href = "#pricing"}>
+                            <Button className="px-6" onClick={() => window.location.href = "#pricing"}>
                                 <RocketLaunchIcon className="w-5 h-5" />
                                 {hero.buttonText}
                             </Button>

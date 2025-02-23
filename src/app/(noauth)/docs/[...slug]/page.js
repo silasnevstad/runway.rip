@@ -1,50 +1,36 @@
-import fs from "fs";
-import path from "path";
-import { notFound } from "next/navigation";
-import { compileMDX } from "next-mdx-remote/rsc";
-import rehypeHighlight from "rehype-highlight";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
+import fs from 'fs/promises';
+import path from 'path';
+import { notFound } from 'next/navigation';
+import { compileMDX } from 'next-mdx-remote/rsc';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 
-import { mdxComponents } from "../_components/mdx-components";
-import DocsPage from "@/app/(noauth)/docs/_components/DocsPage";
+import { mdxComponents } from '@/docs/_components/mdx-components';
+import DocsPage from '@/docs/_components/DocsPage';
 
+const DOCS_DIR = path.join(
+    process.cwd(),
+    'src',
+    'docs',
+    'content'
+);
 
-const DOCS_DIR = path.join(process.cwd(), "src", "app", "(noauth)", "docs", "content");
-
-function getAllMdxFilesRecursively(dir, baseDir = dir) {
-    let result = [];
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-
-    for (const entry of entries) {
-        const fullPath = path.join(dir, entry.name);
-        if (entry.isDirectory()) {
-            result = result.concat(getAllMdxFilesRecursively(fullPath, baseDir));
-        } else if (entry.isFile() && entry.name.endsWith(".mdx")) {
-            const relativePath = path
-                .relative(baseDir, fullPath)
-                .replace(/\.mdx$/, "");
-            const slugArray = relativePath.split(path.sep);
-            result.push(slugArray);
-        }
-    }
-    return result;
-}
-
-export async function generateStaticParams() {
-    const files = getAllMdxFilesRecursively(DOCS_DIR);
-    return files.map((slugArray) => ({ slug: slugArray }));
-}
+// SSR on-demand. No `generateStaticParams`.
+export const dynamic = 'force-dynamic';
+// Or you can do: export const revalidate = 60; // if you want next to cache the HTML
 
 export default async function Page({ params }) {
-    // Build file path from slug
-    const filePath = path.join(DOCS_DIR, ...params.slug) + ".mdx";
-    if (!fs.existsSync(filePath)) {
+    // Build file path
+    const filePath = path.join(DOCS_DIR, ...params.slug) + '.mdx';
+    let source;
+    try {
+        await fs.access(filePath);
+        source = await fs.readFile(filePath, 'utf8');
+    } catch {
         notFound();
     }
 
-    // Read & compile
-    const source = fs.readFileSync(filePath, "utf8");
     const { content, frontmatter } = await compileMDX({
         source,
         components: mdxComponents,
@@ -57,20 +43,14 @@ export default async function Page({ params }) {
         },
     });
 
-    // Grab the optional frontmatter arrays
-    const onThisPage = frontmatter?.onThisPage || [];
-    const relatedDocs = frontmatter?.related || [];
-    const relatedSites = frontmatter?.sites || [];
-
-    // Pass it to our docs shell
     return (
         <DocsPage
-            title={frontmatter?.title ?? "Untitled"}
+            title={frontmatter?.title ?? 'Untitled'}
             description={frontmatter?.description}
             content={content}
-            onThisPage={onThisPage}
-            relatedDocs={relatedDocs}
-            relatedSites={relatedSites}
+            onThisPage={frontmatter?.onThisPage ?? []}
+            relatedDocs={frontmatter?.related ?? []}
+            relatedSites={frontmatter?.sites ?? []}
         />
     );
 }

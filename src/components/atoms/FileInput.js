@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { FiFilePlus } from 'react-icons/fi';
+import { DocumentArrowUpIcon } from "@heroicons/react/24/outline";
 import { mergeClasses } from "@/utils/styling";
 
 const FileInput = ({
@@ -9,7 +9,7 @@ const FileInput = ({
     border = true,
     color = 'green',
     borderRadius = 'lg',
-    icon = <FiFilePlus />,
+    icon = <DocumentArrowUpIcon />,
     className = '',
     buttonClassName = '',
     inputClassName = '',

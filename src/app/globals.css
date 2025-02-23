@@ -21,6 +21,14 @@
     scroll-behavior: smooth;
   }
 
+  .bw-icon {
+    fill: #292929;
+  }
+
+  .dark .bw-icon {
+    fill: #f8f8f8;
+  }
+
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;

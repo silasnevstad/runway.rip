@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
-import { FaArrowDown } from "react-icons/fa";
-import { IoBriefcaseOutline } from "react-icons/io5";
+import { ArrowDownIcon } from "@heroicons/react/24/solid";
 
 import { StandoutCard } from "@/components/atoms/CustomCards";
 import { landingConfig } from "@/config";
@@ -104,7 +103,7 @@ export default function Why() {
                     <p className="text-gray-800 dark:text-gray-100 whitespace-nowrap">
                         <span className="font-semibold">With Runway,</span> there's a better way.
                     </p>
-                    <FaArrowDown className="text-xl animate-bounce" />
+                    <ArrowDownIcon className="text-xl animate-bounce" />
                 </div>
                 <Runway />
             </div>

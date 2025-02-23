@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Bars3Icon } from "@heroicons/react/24/solid";
-import { PiXBold } from "react-icons/pi";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const Sidebar = ({
     children,
@@ -85,7 +84,7 @@ const Sidebar = ({
                         className="absolute top-5 right-5"
                         onClick={toggleSidebar}
                     >
-                        <PiXBold className="text-gray-500 w-5 h-5" />
+                        <XMarkIcon className="text-gray-500 w-5 h-5" />
                     </button>
                 )}
 

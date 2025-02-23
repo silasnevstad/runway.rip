@@ -1,4 +1,4 @@
-import DocsLayout from "./_components/DocsLayout";
+import DocsLayout from "@/docs/_components/DocsLayout";
 
 export const metadata = {
     title: "Docs | Runway",

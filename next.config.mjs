@@ -4,28 +4,27 @@ import createMDX from '@next/mdx'
 const nextConfig = {
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 
+    experimental: {
+        optimizePackageImports: ['icon-library'],
+    },
+
     webpack(config) {
         config.resolve.fallback = {
-
-            // if you miss it, all the other options in fallback, specified
-            // by next.js will be dropped.
             ...config.resolve.fallback,
 
-            fs: false, // the solution
+            fs: false,
         };
 
         return config;
     },
-}
+};
 
-const withMDX = createMDX({
-    extension: /\.(md|mdx)$/,
-    options: {
-        // Add remark/rehype plugins if you want:
-        // remarkPlugins: [...],
-        // rehypePlugins: [...],
-    },
-})
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//     enabled: process.env.ANALYZE === 'true',
+// })
+import withBundleAnalyzer from '@next/bundle-analyzer';
+
+
 
 // Merge MDX config with Next.js config
-export default withMDX(nextConfig)
+export default nextConfig;

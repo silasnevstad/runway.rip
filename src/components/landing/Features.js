@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useState} from "react";
-import {FaCheck} from "react-icons/fa";
+import { CheckIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Card from "@/components/atoms/Card";
 import TextLink from "@/components/atoms/TextLink";
@@ -107,7 +107,7 @@ function FeatureCard({ key, feature, isActive, onClick }) {
                 <ul className="mt-2 space-y-2">
                     {feature.features.map((f, i) => (
                         <li key={i} className="flex items-center gap-2">
-                            <FaCheck className="text-green-500" />
+                            <CheckIcon className="text-green-500" />
                             <p className="text-gray-600">{f}</p>
                         </li>
                     ))}

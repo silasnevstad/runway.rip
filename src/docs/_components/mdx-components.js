@@ -2,42 +2,40 @@ import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import Divider from "@/components/atoms/Divider";
-import Code from "@/app/(noauth)/docs/_components/Code";
-import PreviewCode from "@/app/(noauth)/docs/_components/PreviewCode";
-import ClientSideToggle from "@/app/(noauth)/docs/_components/ClientSideToggle";
-import ClientSideCheckbox from "@/app/(noauth)/docs/_components/ClientSideCheckbox";
-import TutorialGuide from "@/app/(noauth)/docs/_components/TutorialGuide";
-import InlineHighlight from "@/app/(noauth)/docs/_components/InlineHighlight";
+import Code from "@/docs/_components/Code";
+import PreviewCode from "@/docs/_components/PreviewCode";
+import ClientSideToggle from "@/docs/_components/ClientSideToggle";
+import ClientSideCheckbox from "@/docs/_components/ClientSideCheckbox";
+import TutorialGuide from "@/docs/_components/TutorialGuide";
+import InlineHighlight from "@/docs/_components/InlineHighlight";
 import {
     ExclamationCircleIcon,
     ExclamationTriangleIcon,
     QuestionMarkCircleIcon,
     WrenchIcon,
     EnvelopeIcon,
-    CheckCircleIcon,
-    LinkIcon
+    InformationCircleIcon,
+    LightBulbIcon,
+    LinkIcon,
+    CheckIcon,
+    DocumentArrowUpIcon
 } from "@heroicons/react/24/outline";
 import { SparklesIcon } from "@heroicons/react/24/solid";
-import { FaBolt, FaInfo, FaRegLightbulb } from "react-icons/fa6";
-import { FaExclamationCircle } from "react-icons/fa";
-import { MdQuestionMark } from "react-icons/md";
-import { BiCheck } from "react-icons/bi";
-import { LuUpload } from "react-icons/lu";
 
 import TextLink from "@/components/atoms/TextLink";
 import Accordion from "@/components/molecules/Accordion";
 import Avatar from "@/components/atoms/Avatar";
 import CodeBlock from "@/components/atoms/CodeBlock";
 import Badge from "@/components/atoms/Badge";
-import BadgeDemo from "@/app/(noauth)/docs/_components/demos/BadgeDemo";
+import BadgeDemo from "@/docs/_components/demos/BadgeDemo";
 import AvatarList from "@/components/molecules/AvatarList";
 import Breadcrumb from "@/components/atoms/Breadcrumb";
 import { DocsNav } from "@/app/(noauth)/docs/Nav";
 import Button from "@/components/atoms/Button";
-import { ButtonIconDemo, ButtonOnClickDemo } from "@/app/(noauth)/docs/_components/demos/ButtonDemo";
-import SwitchDemo from "@/app/(noauth)/docs/_components/demos/SwitchDemo";
-import { FileDropDemo } from "@/app/(noauth)/docs/_components/demos/FileDropDemo";
-import { TextLinkIconDemo } from "@/app/(noauth)/docs/_components/demos/TextLinkDemo";
+import { ButtonIconDemo, ButtonOnClickDemo } from "@/docs/_components/demos/ButtonDemo";
+import SwitchDemo from "@/docs/_components/demos/SwitchDemo";
+import { FileDropDemo } from "@/docs/_components/demos/FileDropDemo";
+import { TextLinkIconDemo } from "@/docs/_components/demos/TextLinkDemo";
 import Card from "@/components/atoms/Card";
 import DropdownText from "@/components/atoms/DropdownText";
 import FileDrop from "@/components/atoms/FileDrop";
@@ -50,7 +48,7 @@ import Slider from "@/components/atoms/Slider";
 
 import Tooltip from "@/components/atoms/Tooltip";
 import SearchBar from "@/components/molecules/SearchBar";
-import ClientSideSearchBar from "@/app/(noauth)/docs/_components/ClientSideSearchBar";
+import ClientSideSearchBar from "@/docs/_components/ClientSideSearchBar";
 import PasswordAuthForm from "@/components/auth/PasswordAuthForm";
 import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
 import OAuthButtons from "@/components/auth/OAuthButtons";
@@ -58,9 +56,9 @@ import Alert from "@/components/atoms/Alert";
 import { StandoutCard, TerminalCard, WebsiteCard } from "@/components/atoms/CustomCards";
 import File from "@/components/atoms/File";
 import Indicator from "@/components/atoms/Indicator";
-import {InputIconDemo} from "@/app/(noauth)/docs/_components/demos/InputDemo";
+import {InputIconDemo} from "@/docs/_components/demos/InputDemo";
 import TextArea from "@/components/atoms/TextArea";
-import { TextAreaDemo } from "@/app/(noauth)/docs/_components/demos/TextAreaDemo";
+import { TextAreaDemo } from "@/docs/_components/demos/TextAreaDemo";
 import StarRating from "@/components/atoms/StarRating";
 
 const TypesColorMap = {
@@ -85,36 +83,6 @@ export const mdxComponents = {
     ul: ({ children }) => <ul className="list-disc list-inside my-4">{children}</ul>,
     ol: ({ children }) => <ol className="list-decimal list-inside my-4 space-y-6">{children}</ol>,
     li: ({ children }) => <li className="my-1">{children}</li>,
-    Success:  ({ children }) => (
-        <div className="bg-green-100 border border-green-500 text-green-700 p-3 my-4 rounded-lg">
-            <div className="flex items-center mb-2">
-                <CheckCircleIcon className="w-5 h-5 mr-2" />
-                <strong>Success</strong>
-            </div>
-            {children}
-        </div>
-    ),
-    ErrorAlert: ({ children }) => (
-        <div className="bg-red-100 border border-red-500 text-red-700 p-3 my-4 rounded-lg">
-            <div className="flex items-center mb-2">
-                <ExclamationCircleIcon className="w-5 h-5 mr-2" />
-                <strong>Error</strong>
-            </div>
-            {children}
-        </div>
-    ),
-    Callout: ({ title, children }) => (
-        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
-            {title && <h4 className="font-bold text-yellow-700 mb-2">{title}</h4>}
-            <p className="text-yellow-700">{children}</p>
-        </div>
-    ),
-    InfoCallout: ({ title, children }) => (
-        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
-            {title && <h4 className="font-bold text-blue-700 mb-2">{title}</h4>}
-            <p className="text-blue-700">{children}</p>
-        </div>
-    ),
     Required: ({ children }) => (
         <div className="bg-yellow-500/20 rounded-lg border-l-4 rounded-l-none border-yellow-500 p-3 pb-2 my-4">
             <p className="flex items-center text-md text-yellow-500 font-semibold">
@@ -126,17 +94,17 @@ export const mdxComponents = {
     ),
     Info: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-blue-500/20 rounded-lg border-l-4 rounded-l-none border-blue-500 p-2 my-4">
-            <FaInfo className="w-6 h-6 text-blue-500 inline-block mt-2" />
+            <InformationCircleIcon className="w-6 h-6 text-blue-500 inline-block mt-2" />
             {children}
         </div>
     ),
     Tip: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-green-500/20 rounded-lg border-l-4 rounded-l-none border-green-500 p-2 my-4">
-            <FaRegLightbulb className="w-6 h-6 text-green-500 inline-block mt-2" />
+            <LightBulbIcon className="w-6 h-6 text-green-500 inline-block mt-2" />
             {children}
         </div>
     ),
-    Direction: ({children}) => (
+    Callout: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-yellow-500/20 rounded-lg border-l-4 rounded-l-none border-yellow-500 p-2 my-4">
             <SparklesIcon className="w-6 h-6 text-yellow-500 inline-block mt-2" />
             {children}
@@ -150,7 +118,7 @@ export const mdxComponents = {
     ),
     Warning: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-red-500/20 rounded-lg border-l-4 rounded-l-none border-red-500 p-2 my-4">
-            <FaExclamationCircle className="w-8 h-8 text-red-500 inline-block mt-0.5" />
+            <ExclamationCircleIcon className="w-8 h-8 text-red-500 inline-block mt-0.5" />
             {children}
         </div>
     ),
@@ -256,8 +224,7 @@ export const mdxComponents = {
     WrenchIcon: WrenchIcon,
     EnvelopeIcon: EnvelopeIcon,
     QuestionMarkCircleIcon: QuestionMarkCircleIcon,
-    MdQuestionMark: MdQuestionMark,
-    BiCheck: BiCheck,
-    LuUpload: LuUpload,
+    CheckIcon: CheckIcon,
+    DocumentArrowUpIcon: DocumentArrowUpIcon,
     LinkIcon: LinkIcon,
 };

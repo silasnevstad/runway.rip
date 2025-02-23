@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useCallback } from "react";
-import { LuFilePlus } from "react-icons/lu";
+import { DocumentArrowUpIcon } from "@heroicons/react/24/outline";
 import File from "@/components/atoms/File";
 import { mergeClasses, renderIcon } from "@/utils/styling";
 
@@ -9,7 +9,7 @@ const FileDrop = ({
     subtext = "",
     color = "gray",
     activeColor = "primary",
-    icon = <LuFilePlus />,
+    icon = <DocumentArrowUpIcon />,
     borderRadius = "lg",
     borderClass = "border-2 border-dashed",
     className = "",

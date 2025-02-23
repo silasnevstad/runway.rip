@@ -1,16 +1,15 @@
 import React from "react";
 import {
-    AiOutlineFile,
-    AiOutlineFilePdf,
-    AiOutlineFileWord,
-    AiOutlineFileExcel,
-    AiOutlineFileImage,
-    AiOutlineFileZip,
-    AiOutlineFilePpt,
-    AiOutlineFileText,
-} from "react-icons/ai";
-import { FaRegFileVideo, FaRegFileAudio } from "react-icons/fa";
-import { FiX } from "react-icons/fi";
+    DocumentIcon,
+    DocumentTextIcon ,
+    PhotoIcon,
+    VideoCameraIcon,
+    MusicalNoteIcon,
+    ArchiveBoxIcon,
+    PresentationChartBarIcon,
+    DocumentArrowUpIcon,
+    XMarkIcon
+} from "@heroicons/react/24/outline";
 import { mergeClasses } from "@/utils/styling";
 
 const getFileExtension = (filename) => {
@@ -21,42 +20,42 @@ const getFileExtension = (filename) => {
 const getFileIcon = (extension) => {
     switch (extension) {
         case "pdf":
-            return <AiOutlineFilePdf />;
+            return <DocumentIcon />;
         case "doc":
         case "docx":
-            return <AiOutlineFileWord />;
+            return <DocumentTextIcon />;
         case "xls":
         case "xlsx":
-            return <AiOutlineFileExcel />;
+            return <DocumentArrowUpIcon />;
         case "ppt":
         case "pptx":
-            return <AiOutlineFilePpt />;
+            return <PresentationChartBarIcon />;
         case "jpg":
         case "jpeg":
         case "png":
         case "gif":
         case "bmp":
         case "svg":
-            return <AiOutlineFileImage />;
+            return <PhotoIcon />;
         case "mp4":
         case "mov":
         case "avi":
-            return <FaRegFileVideo />;
+            return <VideoCameraIcon />;
         case "mp3":
         case "wav":
         case "flac":
-            return <FaRegFileAudio />;
+            return <MusicalNoteIcon />;
         case "zip":
         case "rar":
         case "7z":
         case "tar":
-            return <AiOutlineFileZip />;
+            return <ArchiveBoxIcon />;
         case "txt":
         case "md":
-            return <AiOutlineFileText />;
+            return <DocumentTextIcon />;
         default:
             // Fallback icon if unknown extension
-            return <AiOutlineFile />;
+            return <DocumentIcon />;
     }
 };
 
@@ -107,7 +106,7 @@ const File = ({
                         onRemove?.();
                     }}
                 >
-                    <FiX className="w-4 h-4 text-red-500" />
+                    <XMarkIcon className="w-4 h-4 text-red-500" />
                 </button>
             )}
 

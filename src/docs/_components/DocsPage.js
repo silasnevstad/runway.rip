@@ -1,7 +1,7 @@
 "use client";
 
 import Breadcrumb from "@/components/atoms/Breadcrumb";
-import {OnThisPage, SidebarSection} from "@/app/(noauth)/docs/_components/RightSidebar";
+import {OnThisPage, SidebarSection} from "@/docs/_components/RightSidebar";
 import {DocsNav} from "@/app/(noauth)/docs/Nav";
 
 export default function DocsPage({

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import TextArea from "@/components/atoms/TextArea";
-import {FaX} from "react-icons/fa6";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 export function TextAreaDemo() {
     const [value, setValue] = useState("");
@@ -32,7 +32,7 @@ export function TextAreaDemo() {
                         className="rounded-xl p-2 text-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-600"
                         onClick={handleClear}
                     >
-                        <FaX className="w-4 h-4" />
+                        <XMarkIcon className="w-4 h-4" />
                     </button>
                 }
                 bottomLeftSlot={

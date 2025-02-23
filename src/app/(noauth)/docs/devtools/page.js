@@ -34,8 +34,8 @@ export default function Page() {
                                 <TextLink href="https://coolors.co">Coolors</TextLink>
                             </li>
                             <li>
-                                <TextLink href="https://react-icons.github.io/react-icons/">
-                                    React Icons
+                                <TextLink href="https://heroicons.com/outline">
+                                    Heroicons
                                 </TextLink>
                             </li>
                             <li>

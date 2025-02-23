@@ -8,7 +8,7 @@ import React, {
     Children,
     cloneElement
 } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
 
 /**
  * Carousel Props
@@ -129,30 +129,20 @@ export default function Carousel({
     }
 }
 
-/**
- * SINGLE-ITEM MODE
- * We measure:
- *   - The container's width
- *   - The child's (slide) width
- *
- * Then we center the active slide: xPos = offset * childWidth + (containerWidth - childWidth) / 2.
- * Because offset=0 => xPos = (containerWidth - childWidth)/2 => truly centered in container.
- * If offset=1 => xPos = childWidth + (containerWidth - childWidth)/2 => one child to the right of center.
- */
 function SingleCarousel({
-                            children,
-                            activeIndex,
-                            setActiveIndex,
-                            itemCount,
-                            goPrev,
-                            goNext,
-                            showArrows,
-                            showIndicators,
-                            infinite,
-                            fadeCenter,
-                            scaleCenter,
-                            sideOpacity
-                        }) {
+    children,
+    activeIndex,
+    setActiveIndex,
+    itemCount,
+    goPrev,
+    goNext,
+    showArrows,
+    showIndicators,
+    infinite,
+    fadeCenter,
+    scaleCenter,
+    sideOpacity
+}) {
     const containerRef = useRef(null);
     const [containerWidth, setContainerWidth] = useState(0);
     const [childWidth, setChildWidth] = useState(0);
@@ -224,13 +214,13 @@ function SingleCarousel({
                         onClick={goPrev}
                         className="absolute top-1/2 left-3 -translate-y-1/2 p-2 bg-gray-100 text-gray-700 rounded-full hover:scale-110 transition-all z-10"
                     >
-                        <FaChevronLeft />
+                        <ChevronLeftIcon />
                     </button>
                     <button
                         onClick={goNext}
                         className="absolute top-1/2 right-3 -translate-y-1/2 p-2 bg-gray-100 text-gray-700 rounded-full hover:scale-110 transition-all z-10"
                     >
-                        <FaChevronRight />
+                        <ChevronRightIcon />
                     </button>
                 </>
             )}
@@ -329,13 +319,13 @@ function MultiCarousel({
                         onClick={goPrev}
                         className="absolute top-1/2 left-3 -translate-y-1/2 p-2 bg-gray-100 text-gray-700 rounded-full hover:scale-110 transition-all z-10"
                     >
-                        <FaChevronLeft />
+                        <ChevronLeftIcon />
                     </button>
                     <button
                         onClick={goNext}
                         className="absolute top-1/2 right-3 -translate-y-1/2 p-2 bg-gray-100 text-gray-700 rounded-full hover:scale-110 transition-all z-10"
                     >
-                        <FaChevronRight />
+                        <ChevronRightIcon />
                     </button>
                 </>
             )}

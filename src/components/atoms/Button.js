@@ -18,7 +18,6 @@ export default function Button({
     loading = false,
     disabled = false,
     href = "",
-    icon = null,
     onClick,
     className = "",
     ...props
@@ -32,8 +31,8 @@ export default function Button({
 
     // Color handling & hover background
     const colorClass = mergeClasses(
-        `bg-${color}-500 text-white`,
-        hoverBg && `hover:bg-${color}-600 dark:hover:bg-${color}-600`
+        `bg-${color}-500 dark:bg-${color}-600 dark:hover:bg-primary-700 text-white`,
+        hoverBg && `hover:bg-${color}-600 dark:hover:bg-${color}-700`
     );
 
     // Merge all classes
@@ -54,7 +53,6 @@ export default function Button({
         <Loader className={`text-${color}-900`} />
     ) : (
         <>
-            {icon && icon}
             {children}
         </>
     );

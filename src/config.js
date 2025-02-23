@@ -1,4 +1,4 @@
-import {FaMagnifyingGlassChart, FaRegCreditCard, FaUserShield} from "react-icons/fa6";
+import { FaMagnifyingGlassChart, FaRegCreditCard, FaUserShield } from "react-icons/fa6";
 import { LuDatabase, LuLayoutDashboard, LuMail } from "react-icons/lu";
 
 const appConfig = {

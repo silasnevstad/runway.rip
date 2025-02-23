@@ -1,3 +1,4 @@
+import Image from "next/image";
 import appConfig from "@/config";
 import TextLink from "@/components/atoms/TextLink";
 import { FaInstagram, FaXTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa6";

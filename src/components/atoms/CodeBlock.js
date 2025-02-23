@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneLight, hybrid } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import atomOneLight from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light';
+import hybrid from 'react-syntax-highlighter/dist/cjs/styles/hljs/hybrid';
 import { useTheme } from "next-themes";
 import { ClipboardIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 

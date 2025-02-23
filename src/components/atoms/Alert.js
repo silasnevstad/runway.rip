@@ -1,6 +1,11 @@
 "use client";
 import React from "react";
-import { MdOutlineInfo, MdOutlineErrorOutline, MdOutlineCheckCircle, MdOutlineWarningAmber } from "react-icons/md";
+import {
+    InformationCircleIcon,
+    ExclamationCircleIcon,
+    CheckCircleIcon,
+    ExclamationTriangleIcon
+} from "@heroicons/react/24/outline";
 import { mergeClasses, getHoverClasses } from "@/utils/styling";
 
 export default function Alert({
@@ -42,19 +47,19 @@ export default function Alert({
     };
 
     const iconStyles = {
-        info: <MdOutlineInfo className={
+        info: <InformationCircleIcon className={
             `w-6 h-6 inline-block mr-1 
             ${variant === "soft" ? "text-blue-700 dark:text-blue-500" : "text-white"}`
         }/>,
-        success: <MdOutlineCheckCircle className={
+        success: <CheckCircleIcon className={
             `w-6 h-6 inline-block mr-1 
             ${variant === "soft" ? "text-green-700 dark:text-green-500" : "text-white"}`
         }/>,
-        warning: <MdOutlineWarningAmber className={
+        warning: <ExclamationTriangleIcon className={
             `w-6 h-6 inline-block mr-1 
             ${variant === "soft" ? "text-yellow-700 dark:text-yellow-500" : "text-white"}`
         }/>,
-        error: <MdOutlineErrorOutline className={
+        error: <ExclamationCircleIcon className={
             `w-6 h-6 inline-block mr-1 
             ${variant === "soft" ? "text-red-700 dark:text-red-500" : "text-white"}`
         }/>,

@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { FiGithub } from "react-icons/fi";
 import { Cog8ToothIcon, RocketLaunchIcon as RocketLaunchIconOutline } from "@heroicons/react/24/outline";
+import { SparklesIcon } from "@heroicons/react/24/solid";
 import { landingConfig } from "@/config";
 import Badge from "@/components/atoms/Badge";
-import {StandoutCard} from "@/components/atoms/CustomCards";
+import { StandoutCard } from "@/components/atoms/CustomCards";
 
 export default function HowItWorks() {
     const { howItWorks } = landingConfig;
@@ -29,7 +29,7 @@ export default function HowItWorks() {
                     {/* 1) Git clone */}
                     <Step
                         number={1}
-                        Icon={FiGithub}
+                        Icon={SparklesIcon}
                         title="Git clone"
                         description="Download the project to your computer."
                         duration="<1"

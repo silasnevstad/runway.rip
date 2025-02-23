@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { CiDesktop } from "react-icons/ci";
-import { IoMoonOutline } from "react-icons/io5";
-import { GoSun } from "react-icons/go";
+import { ComputerDesktopIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "next-themes";
 import Switcher from "@/components/atoms/Switcher";
 import { mergeClasses } from "@/utils/styling";
@@ -25,9 +23,9 @@ export default function ThemeSwitcher({
         <div className={mergeClasses(`flex items-center justify-center`, className)}>
             <Switcher
                 options={[
-                    { value: "light", Icon: <GoSun className="w-4 h-4 text-gray-900 dark:text-gray-100" /> },
-                    { value: "dark", Icon: <IoMoonOutline className="w-4 h-4 text-gray-900 dark:text-gray-100" /> },
-                    { value: "system", Icon: <CiDesktop className="w-4 h-4 text-gray-900 dark:text-gray-100" /> },
+                    { value: "light", Icon: <SunIcon className="w-4 h-4 text-gray-900 dark:text-gray-100" /> },
+                    { value: "dark", Icon: <MoonIcon className="w-4 h-4 text-gray-900 dark:text-gray-100" /> },
+                    { value: "system", Icon: <ComputerDesktopIcon className="w-4 h-4 text-gray-900 dark:text-gray-100" /> },
                 ]}
                 selected={theme}
                 onChange={onChange}
