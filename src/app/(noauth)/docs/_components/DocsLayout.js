@@ -106,7 +106,7 @@ export default function DocsLayout({ children }) {
             <main className="flex-1 h-full flex flex-col">
                 <div className="md:hidden flex items-start gap-2 self-start p-3 w-full">
                     <Image
-                        src="/logo.png"
+                        src="/logo-black.png"
                         alt="runway"
                         width={22}
                         height={22}

@@ -10,7 +10,7 @@ export default function BetterSlider({
     defaultValue = 50,
 
     // Show min/max
-    showLabels = true,
+    showLabels = false,
     // Show current value
     showValue = true,
     valuePosition = "top", // 'top' | 'bottom' | 'left' | 'right'
