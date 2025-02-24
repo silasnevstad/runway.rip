@@ -1,17 +1,15 @@
 'use client';
-
 import { useEffect, useRef, useState } from "react";
-import { ArrowDownIcon } from "@heroicons/react/24/solid";
-
+import { FaInfinity, FaArrowDown } from "react-icons/fa6";
 import { StandoutCard } from "@/components/atoms/CustomCards";
 import { landingConfig } from "@/config";
 
 
-const TimeSpentCard = ({ hours, text }) => (
+const TimeSpentCard = ({ hours, text, infinite = false }) => (
     <div className="flex items-end text-xl font-semibold">
         <div className="flex items-center gap-1">
             <span className="text-gray-700 dark:text-gray-200 text-xl">+</span>
-            <span className="text-red-400 font-semibold text-3xl -ml-1">{hours}</span>
+            <span className="text-red-400 font-semibold text-3xl -ml-1">{infinite ? <FaInfinity /> : hours}</span>
         </div>
         <span className="ml-2">{text}</span>
     </div>
@@ -86,6 +84,7 @@ export default function Why() {
                     <TimeSpentCard hours="2" text="hrs setting up API" />
                     <TimeSpentCard hours="2" text="hrs reading docs" />
                     <TimeSpentCard hours="4" text="hrs chasing bugs" />
+                    <TimeSpentCard infinite text="hrs maintaining code" />
                     <div className="flex items-end text-xl font-semibold mt-4">
                         <div className="flex items-center gap-1">
                             <span className="text-gray-700 dark:text-gray-200 text-xl">=</span>
@@ -103,7 +102,7 @@ export default function Why() {
                     <p className="text-gray-800 dark:text-gray-100 whitespace-nowrap">
                         <span className="font-semibold">With Runway,</span> there's a better way.
                     </p>
-                    <ArrowDownIcon className="text-xl animate-bounce" />
+                    <FaArrowDown className="text-xl animate-bounce" />
                 </div>
                 <Runway />
             </div>

@@ -17,7 +17,7 @@ export default function AvatarsTestimonial({
                 avatars={avatars}
             />
             <div className="flex flex-col gap-1">
-                <StarRating numStars={5} />
+                <StarRating rating={5} />
                 <p className="text-1xl">{text}</p>
             </div>
         </section>
