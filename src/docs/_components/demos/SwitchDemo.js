@@ -4,15 +4,20 @@ import Switcher from "@/components/atoms/Switcher";
 import {useState} from "react";
 
 export default function SwitchDemo({
-    options,
-    shape,
+    options = [],           // { value, name, Icon?, image? }[]
+    color,
+    size ,
+    borderRadius,
     vertical,
+    animate,  // Animate with sliding indicator
+    hover,
+    border,
+    buttonBorder,
+    buttonShadow,
     tooltip,
     tooltipPosition,
-    activeColor,
-    inactiveColor,
-    activeBgColor,
-    inactiveBgColor
+    className,
+    buttonClassName,
 }) {
     const [selectedOption, setSelectedOption] = useState(options[0].value);
 
@@ -22,14 +27,19 @@ export default function SwitchDemo({
                 options={options}
                 selected={selectedOption}
                 onChange={setSelectedOption}
-                shape={shape}
+                color={color}
+                size={size}
+                borderRadius={borderRadius}
                 vertical={vertical}
+                animate={animate}
+                hover={hover}
+                border={border}
+                buttonBorder={buttonBorder}
+                buttonShadow={buttonShadow}
                 tooltip={tooltip}
                 tooltipPosition={tooltipPosition}
-                activeTextColor={activeColor}
-                inactiveTextColor={inactiveColor}
-                activeBgColor={activeBgColor}
-                inactiveBgColor={inactiveBgColor}
+                className={className}
+                buttonClassName={buttonClassName}
             />
         </div>
     );

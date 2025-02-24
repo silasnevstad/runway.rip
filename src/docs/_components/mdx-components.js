@@ -14,13 +14,13 @@ import {
     QuestionMarkCircleIcon,
     WrenchIcon,
     EnvelopeIcon,
-    InformationCircleIcon,
-    LightBulbIcon,
     LinkIcon,
     CheckIcon,
-    DocumentArrowUpIcon
+    DocumentArrowUpIcon,
+    PlusCircleIcon,
+    PaperAirplaneIcon
 } from "@heroicons/react/24/outline";
-import { SparklesIcon } from "@heroicons/react/24/solid";
+import { SparklesIcon, LightBulbIcon, InformationCircleIcon } from "@heroicons/react/24/solid";
 
 import TextLink from "@/components/atoms/TextLink";
 import Accordion from "@/components/molecules/Accordion";
@@ -94,19 +94,19 @@ export const mdxComponents = {
     ),
     Info: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-blue-500/20 rounded-lg border-l-4 rounded-l-none border-blue-500 p-2 my-4">
-            <InformationCircleIcon className="w-6 h-6 text-blue-500 inline-block mt-2" />
+            <InformationCircleIcon className="w-6 h-6 min-w-6 text-blue-500 inline-block mt-2" />
             {children}
         </div>
     ),
     Tip: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-green-500/20 rounded-lg border-l-4 rounded-l-none border-green-500 p-2 my-4">
-            <LightBulbIcon className="w-6 h-6 text-green-500 inline-block mt-2" />
+            <LightBulbIcon className="w-6 h-6 min-w-6 text-green-500 inline-block mt-2" />
             {children}
         </div>
     ),
     Callout: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-yellow-500/20 rounded-lg border-l-4 rounded-l-none border-yellow-500 p-2 my-4">
-            <SparklesIcon className="w-6 h-6 text-yellow-500 inline-block mt-2" />
+            <SparklesIcon className="w-6 h-6 min-w-6 text-yellow-500 inline-block mt-2" />
             {children}
         </div>
     ),
@@ -227,4 +227,6 @@ export const mdxComponents = {
     CheckIcon: CheckIcon,
     DocumentArrowUpIcon: DocumentArrowUpIcon,
     LinkIcon: LinkIcon,
+    PlusCircleIcon: PlusCircleIcon,
+    PaperAirplaneIcon: PaperAirplaneIcon,
 };

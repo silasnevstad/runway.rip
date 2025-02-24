@@ -29,9 +29,11 @@ export default function ThemeSwitcher({
                 ]}
                 selected={theme}
                 onChange={onChange}
-                className="gap-0.5 p-0.5"
                 buttonClassName="p-1.5"
                 buttonBorder
+                size="sm"
+                borderRadius="full"
+                color="gray"
             />
         </div>
     );

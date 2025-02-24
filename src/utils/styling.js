@@ -6,12 +6,6 @@ export const mergeClasses = (...classes) => {
     return twMerge(clsx(...classes));
 };
 
-export const getTailwindColor = (color) => {
-//     get hex color from tailwind.config.js
-
-
-}
-
 export function renderIcon(Icon, onClick, extraClasses) {
     if (!Icon) return null;
 
@@ -20,9 +14,9 @@ export function renderIcon(Icon, onClick, extraClasses) {
         return React.cloneElement(Icon, {
             onClick,
             className: mergeClasses(
+                onClick && "cursor-pointer",
                 Icon.props.className || "",
-                extraClasses,
-                onClick && "cursor-pointer"
+                extraClasses || ""
             ),
         });
     }
@@ -41,7 +35,7 @@ export function renderIcon(Icon, onClick, extraClasses) {
     return null;
 }
 
-export function getHoverClasses({ background, lift, scale, active, transitionAll = true }) {
+export function getHoverClasses({ lift, scale, active, transitionAll = true }) {
     const hoverClasses = [];
 
     if (transitionAll) {
@@ -56,9 +50,6 @@ export function getHoverClasses({ background, lift, scale, active, transitionAll
     }
     if (active) {
         hoverClasses.push("active:scale-97");
-    }
-    if (background) {
-        hoverClasses.push(`hover:bg-${background}`);
     }
 
     return hoverClasses.join(" ");

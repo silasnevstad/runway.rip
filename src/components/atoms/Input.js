@@ -13,9 +13,10 @@ export default function Input({
     id = "",
     label = "",
     labelMode = "none", // "none" | "above" | "float"
-    labelBackground = "bg-white dark:bg-gray-900",
+    labelBackground = "bg-bg-0 dark:bg-bg-900",
     size = "md",
     borderRadius = "md",
+    color = "gray",
     shadow = "",
     leftIcon,
     rightIcon,
@@ -59,7 +60,9 @@ export default function Input({
 
     // Container classes
     const containerClasses = mergeClasses(
-        "relative flex items-center border border-gray-500 dark:border-gray-700",
+        "relative flex items-center",
+        labelMode !== "float" && `bg-${color}-500/5`,
+        `border border-${color}-500 dark:border-${color}-700`,
         borderRadius && `rounded-${borderRadius}`,
         shadow && `shadow-${shadow}`,
         sizeConfig.containerPadding,
@@ -74,14 +77,15 @@ export default function Input({
         sizeConfig.textSize,
         isFloating
             ? `-top-3.5 left-3 px-1 text-${activeColor}-500 text-opacity-80 ${labelBackground} rounded-sm`
-            : `${sizeConfig.paddingNum} top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400`,
+            : `${sizeConfig.paddingNum} top-1/2 -translate-y-1/2 text-${color}-500 dark:text-${color}-400`,
         labelMode === "float" && "pointer-events-none"
     );
 
     // Input classes
     const inputClasses = mergeClasses(
-        "w-full bg-transparent border-none focus:outline-none focus:ring-0 dark:text-gray-100 p-0",
+        `w-full bg-transparent border-none focus:outline-none focus:ring-0 text-${color}-900 dark:text-${color}-100 p-0`,
         sizeConfig.textSize,
+        `placeholder:text-${color}-400 dark:placeholder:text-${color}-600`,
         labelMode === "float" && "placeholder-transparent",
         textClassName
     );
@@ -90,12 +94,12 @@ export default function Input({
     const leftIconRendered = renderIcon(
         leftIcon,
         leftIconOnClick,
-        "h-5 w-5 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+        `h-5 w-5 text-${color}-500 dark:text-${color}-400 hover:text-${color}-600 dark:hover:text-${color}-300`
     );
     const rightIconRendered = renderIcon(
         rightIcon,
         rightIconOnClick,
-        "h-5 w-5 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+        `h-5 w-5 text-${color}-500 dark:text-${color}-400 hover:text-${color}-600 dark:hover:text-${color}-300`
     );
 
     return (
@@ -104,7 +108,7 @@ export default function Input({
             {label && labelMode === "above" && (
                 <label
                     className={mergeClasses(
-                        "block text-gray-700 dark:text-gray-300",
+                        "block text-${color}-700 dark:text-${color}-300",
                         sizeConfig.textSize
                     )}
                 >
@@ -148,9 +152,15 @@ export default function Input({
                         className="ml-1 focus:outline-none cursor-pointer"
                     >
                         {showPassword ? (
-                            <EyeSlashIcon className="h-5 w-5 text-gray-600 dark:text-gray-400 hover:text-gray-500 dark:hover:text-gray-300" />
+                            <EyeSlashIcon className={
+                                `h-5 w-5 text-${color}-600 dark:text-${color}-400 
+                                hover:text-${color}-500 dark:hover:text-${color}-300`
+                            }/>
                         ) : (
-                            <EyeIcon className="h-5 w-5 text-gray-600 dark:text-gray-400 hover:text-gray-500 dark:hover:text-gray-300" />
+                            <EyeIcon className={
+                                `h-5 w-5 text-${color}-600 dark:text-${color}-400 
+                                hover:text-${color}-500 dark:hover:text-${color}-300`
+                            }/>
                         )}
                     </button>
                 )}

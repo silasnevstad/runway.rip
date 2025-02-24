@@ -4,6 +4,8 @@ description: "A text link component that can be used to navigate to other pages.
 onThisPage:
   - title: "TextLink"
     href: "#text-link"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
   - title: "Examples"
@@ -12,19 +14,20 @@ onThisPage:
 
 <div id="text-link" />
 
-<Divider />
-
 <br/>
 
-<div className="flex flex-col items-center justify-center gap-2">
+<div className="flex flex-col items-center gap-0">
     <TextLink href="/docs/components/text-link">
         Default
     </TextLink>
     <TextLink href="/docs/components/text-link" underline>
         Underline
     </TextLink>
-    <TextLink href="/docs/components/text-link" grow>
+    <TextLink href="/docs/components/text-link" scale>
         Grow
+    </TextLink>
+    <TextLink href="/docs/components/text-link" lift>
+        Lift
     </TextLink>
     <TextLink href="/docs/components/text-link" fade>
         Fade
@@ -33,11 +36,33 @@ onThisPage:
 
 <br />
 
-The `TextLink` component is a text link component that can be used to navigate to other pages. It uses the [`Link`](https://nextjs.org/docs/app/api-reference/components/link) component from Next.js to create a link to another page. The `TextLink` component can be customized with different styles and options to fit the design of your application.
+The `TextLink` component is built on top of the [Link](https://nextjs.org/docs/app/api-reference/components/link) component from Next.js.
+It comes with additional features such as hover effects, icon support, and more.
+
+<Callout>
+    If you don't need any of the additional features, you can use Next.js's built-in [`Link`](https://nextjs.org/docs/app/api-reference/components/link) component.
+</Callout>
 
 <br/>
-<Divider />
 <br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import TextLink from "@/components/atoms/TextLink";
+
+<TextLink href="/docs/components/text-link">
+    Go to TextLink
+</TextLink>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
@@ -45,89 +70,86 @@ The `TextLink` component is a text link component that can be used to navigate t
 
 The `TextLink` component accepts the following props:
 
-| Name               | Type      | Default | Description                                               |
-|--------------------|-----------|---------|-----------------------------------------------------------|
-| children           | ReactNode |         | The content of the link.                                  |
-| href               | string    |         | The URL to link to.                                       |
-| className          | string    |         | Additional classes to apply to the link.                  |
-| icon               | Icon      |         | An icon to display next to the link text.                 |
-| grow               | boolean   | `false` | Whether the link should grow to fill the available space. |
-| fade               | boolean   | `false` | Whether the link should fade out on hover.                |
-| underline          | boolean   | `false` | Whether the link should have an underline.                |
-| underlineClassName | string    |         | Additional classes to apply to the underline.             |
-| underlineHeight    | string    | `1px`   | The height of the underline.                              |
-| selected           | boolean   | `false` | Whether the link is selected.                             |
+| Name               | Type    | Default | Description                                                                     |
+|--------------------|---------|---------|---------------------------------------------------------------------------------|
+| href               | string  | -       | The URL to navigate to when the link is clicked.                                |
+| icon               | Icon    | -       | An optional icon to display before the text.                                    |
+| scale              | boolean | `false` | If `true`, the link will grow on hover.                                         |
+| lift               | boolean | `false` | If `true`, the link will lift on hover.                                         |
+| fade               | boolean | `false` | If `true`, the link will fade on hover.                                         |
+| underline          | boolean | `false` | If `true`, the link will be underlined on hover.                                |
+| active             | boolean | `true`  | If `true`, the link will be underlined when active.                             |
+| underlineClassName | string  | `""`    | Additional classes for the underline.                                           |
+| underlineHeight    | number  | `1`     | Height of the underline (in px).                                                |
+| underlineOffset    | number  | `10`    | Offset of the underline (in px).                                                |
+| selected           | boolean | `false` | If `true`, the link will be underlined when selected.                           |
+| className          | string  | `""`    | Additional [Tailwind](https://tailwindcss.com) classes for the container.       |
+| ...props           | object  | -       | Any other valid <code>&lt;a&gt;</code> attributes (e.g. `target`, `rel`, etc.). |
 
 <br/>
-<Divider />
 <br/>
+<br/>
+<Divider />
 
 <div id="examples" />
 
 ## Examples
 
 ### Basic Text Link
+You can use different hover effects (`scale`, `lift`, `fade`, `underline`), colors (`color`), and active states (`active`) to customize the link.
+
 <PreviewCode preview={
-    <TextLink href="/docs" className="text-primary-500 hover:text-primary-600">
-        Go to Docs
-    </TextLink>
+    <div className="flex flex-col items-center gap-4">
+        <TextLink href="/docs/components/text-link" active={false}>
+            Go to TextLink
+        </TextLink>
+        <TextLink href="/docs" scale color="blue">
+            Go to Docs
+        </TextLink>
+        <TextLink href="/docs" scale lift color="green">
+            Go to Docs
+        </TextLink>
+        <TextLink href="/docs" underline color="orange">
+            Go to Docs
+        </TextLink>
+    </div>
 }>
 ```javascript
-<TextLink href="/docs" className="text-primary-500 hover:text-primary-600">
+<TextLink href="/docs/components/text-link" active={false}>
+    Go to TextLink
+</TextLink>
+<TextLink href="/docs" scale color="blue">
+    Go to Docs
+</TextLink>
+<TextLink href="/docs" scale lift color="green">
+    Go to Docs
+</TextLink>
+<TextLink href="/docs" underline color="orange">
     Go to Docs
 </TextLink>
 ```
 </PreviewCode>
+
+<br />
 
 ### Text Link with Icon
 <PreviewCode preview={
     <TextLinkIconDemo />
 }>
 ```javascript
-<TextLink href="/docs/components" className="text-primary-500 hover:text-primary-600">
-    Components
+<TextLink
+    href="/docs/components"
+    icon={<LinkIcon className="w-5 h-5" />}
+    color="red"
+>
+    Link
 </TextLink>
 ```
 </PreviewCode>
 
-### Red Text Link with Grow Effect
-<PreviewCode preview={
-    <TextLink href="/docs/components/text-link" className="text-red-500 hover:text-red-600" grow>
-        Go to TextLink
-    </TextLink>
-}>
-```javascript
-<TextLink href="/docs/components/text-link" className="text-red-500 hover:text-red-600" grow>
-    Go to TextLink
-</TextLink>
-```
-</PreviewCode>
-
-### Green Text Link with Fade Effect
-<PreviewCode preview={
-    <TextLink href="/docs/components/text-link" className="text-green-500 hover:text-green-600" fade>
-        Go to TextLink
-    </TextLink>
-}>
-```javascript
-<TextLink href="/docs/components/text-link" className="text-green-500 hover:text-green-600" fade>
-    Go to TextLink
-</TextLink>
-```
-</PreviewCode>
-
-### Text Link with Underline
-<PreviewCode preview={
-    <TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" underline>
-        Go to TextLink
-    </TextLink>
-}>
-```javascript
-<TextLink href="/docs/components/text-link" className="text-primary-500 hover:text-primary-600" underline>
-    Go to TextLink
-</TextLink>
-```
-</PreviewCode>
-
+<br/>
+<br/>
+<br/>
+<br/>
 <br/>
 <br/>

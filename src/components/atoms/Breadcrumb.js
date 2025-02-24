@@ -80,8 +80,8 @@ export default function Breadcrumb({
                         />
                         {!isLast && (
                             <span className={`text-sm mx-1 flex items-center opacity-40`}>
-                            {delimiter}
-                          </span>
+                                {delimiter}
+                            </span>
                         )}
                     </React.Fragment>
                 );

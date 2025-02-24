@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { QuestionMarkCircleIcon, WrenchIcon, ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
+import { FaDiscord, FaQuestion, FaWrench } from "react-icons/fa6";
 import Sidebar from "@/components/organisms/Sidebar";
 import SearchBar from "@/components/molecules/SearchBar";
 import DocumentationSidebar from "@/docs/_components/DocumentationSidebar";
@@ -61,7 +61,7 @@ export default function DocsLayout({ children }) {
                             className="group w-full flex items-center p-2 rounded-lg hover:bg-bg-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                             onClick={() => openEmailSupport()}
                         >
-                            <QuestionMarkCircleIcon size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
+                            <FaQuestion className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
                             <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">
                                 Help
                             </p>
@@ -69,7 +69,7 @@ export default function DocsLayout({ children }) {
                         <div
                             className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                         >
-                            <ChatBubbleLeftRightIcon size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
+                            <FaDiscord className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
                             <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">
                                 Discord
                             </p>
@@ -78,7 +78,7 @@ export default function DocsLayout({ children }) {
                             className="group w-full flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                             onClick={() => router.push('/docs/devtools')}
                         >
-                            <WrenchIcon size={20} className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
+                            <FaWrench className="text-gray-700 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200" />
                             <p className="ml-2 text-sm font-normal text-gray-600 dark:text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300">
                                 Dev Tools
                             </p>

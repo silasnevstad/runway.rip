@@ -153,7 +153,7 @@ import Input from "@/components/atoms/Input";
     label="Float"
     placeholder="Floating label"
     labelMode="float"
-    labelBackground="dark:bg-bg-900"
+    labelBackground = "bg-bg-0 dark:bg-gray-900"
 />
 ```
 </PreviewCode>
@@ -204,6 +204,7 @@ import { PlusCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
             secure={true}
             placeholder="Password"
             labelMode="float"
+            labelBackground = "bg-bg-0 dark:bg-gray-900"
         />
     </div>
 }>
@@ -240,29 +241,31 @@ import { PlusCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
         <Input
             id="custom"
             label="Custom Input"
-            className="border-red-500 bg-red-500/10"
-            activeColor="red"
+            placeholder="Custom styled input"
             size="sm"
-            placeholder="Custom styled input"
+            color="red"
+            activeColor="red"
+            leftIcon={<PlusCircleIcon className="w-5 h-5" />}
+            className="bg-red-500/10"
         />
         <Input
             id="custom"
             label="Custom Input"
-            className="border-blue-500 dark:border-blue-500 bg-blue-400/50"
-            textClassName="placeholder:text-blue-500 text-blue-500"
-            activeColor="blue"
-            size="md"
             placeholder="Custom styled input"
-        />
-        <Input
-            id="custom"
-            label="Custom Input"
-            className="border-2 border-green-500 dark:border-green-500 bg-green-400/50"
-            textClassName="placeholder:text-green-500 text-green-500"
+            color="green"
             activeColor="green"
+            rightIcon={<PaperAirplaneIcon className="w-5 h-5" />}
+            className="bg-green-500/10"
+        />
+        <Input
+            id="custom"
+            label="Custom Input"
+            placeholder="Custom styled input"
             size="lg"
             borderRadius="full"
-            placeholder="Custom styled input"
+            color="blue"
+            activeColor="blue"
+            className="border-2"
         />
     </div>
 }>
@@ -270,29 +273,31 @@ import { PlusCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
 <Input
     id="custom"
     label="Custom Input"
-    className="border-red-500 bg-red-500/10"
-    activeColor="red"
+    placeholder="Custom styled input"
     size="sm"
-    placeholder="Custom styled input"
+    color="red"
+    activeColor="red"
+    leftIcon={<PlusCircleIcon className="w-5 h-5" />}
+    className="bg-red-500/10"
 />
 <Input
     id="custom"
     label="Custom Input"
-    className="border-blue-500 dark:border-blue-500 bg-blue-400/50"
-    textClassName="placeholder:text-blue-500 text-blue-500"
-    activeColor="blue"
-    size="md"
     placeholder="Custom styled input"
-/>
-<Input
-    id="custom"
-    label="Custom Input"
-    className="border-2 border-green-500 dark:border-green-500 bg-green-400/50"
-    textClassName="placeholder:text-green-500 text-green-500"
+    color="green"
     activeColor="green"
+    rightIcon={<PaperAirplaneIcon className="w-5 h-5" />}
+    className="bg-green-500/10"
+/>
+<Input
+    id="custom"
+    label="Custom Input"
+    placeholder="Custom styled input"
     size="lg"
     borderRadius="full"
-    placeholder="Custom styled input"
+    color="blue"
+    activeColor="blue"
+    className="border-2"
 />
 ```
 </PreviewCode>

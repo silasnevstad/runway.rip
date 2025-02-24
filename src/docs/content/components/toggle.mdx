@@ -4,6 +4,8 @@ description: "A simple toggle switch component"
 onThisPage:
   - title: "Toggle"
     href: "#toggle"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
   - title: "Examples"
@@ -11,8 +13,6 @@ onThisPage:
 ---
 
 <div id="toggle" />
-
-<Divider />
 
 <br />
 
@@ -32,29 +32,56 @@ onThisPage:
 The `Toggle` component is a simple switch that can be toggled on or off. It is commonly used to enable or disable a feature or setting.
 
 <Tip>
-    Use `icon` prop to display an icon inside the toggle switch.
+    Use `showIcon` prop to display an icon inside the toggle switch.
 </Tip>
 
 <br/>
-<Divider />
 <br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Toggle from "@/components/atoms/Toggle";
+
+export default function Example() {
+    const [isToggled, setIsToggled] = useState(false);
+
+    return (
+        <Toggle
+            checked={isToggled}
+            onChange={() => setIsToggled(!isToggled)}
+        />
+    );
+}
+```
+
+
+<br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
+
 ## Props
+
 The Toggle component accepts the following props:
 
-| Name          | Type     | Default   | Description                                                             |
-|---------------|----------|-----------|-------------------------------------------------------------------------|
-| checked       | boolean  | `false`   | Whether the toggle switch is checked or not                             |
-| onChange      | function |           | Callback function to handle the toggle switch change event              |
-| className     | string   |           | Custom CSS classes to apply to the toggle switch                        |
-| label         | string   |           | Label text to display next to the toggle switch                         |
-| labelPosition | string   | `left`    | Position of the label relative to the toggle switch ('left' or 'right') |
-| color         | string   | `primary` | The color scheme of the toggle switch                                   |
-| icon          | boolean  | `false`   | Whether to display an icon inside the toggle switch                     |
-| focus         | boolean  | `false`   | Whether to apply a focus ring effect when the toggle switch is focused  |
-| disabled      | boolean  | `false`   | Whether the toggle switch is disabled or not                            |
-
+| Name          | Type              | Default     | Description                                                                      |
+|---------------|-------------------|-------------|----------------------------------------------------------------------------------|
+| label         | string            | `""`        | The label to display next to the toggle switch.                                  |
+| labelPosition | "left" \| "right" | `"left"`    | The position of the label relative to the toggle switch.                         |
+| color         | string            | `"primary"` | [Tailwind](https://tailwindcss.com) color key used for the toggle switch.        |
+| showIcon      | boolean           | `false`     | If `true`, an icon will be displayed inside the toggle switch.                   |
+| focus         | boolean           | `false`     | If `true`, the toggle switch will be focused when rendered.                      |
+| disabled      | boolean           | `false`     | If `true`, the toggle switch will be disabled.                                   |
+| checked       | boolean           | `false`     | If `true`, the toggle switch will be in the "on" position.                       |
+| onChange      | function          | -           | Callback function called when the toggle switch is toggled.                      |
+| className     | string            | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the container.        |
+| ...props      | object            | -           | Any other valid <code>&lt;input&gt;</code> attributes (e.g. `name`, `id`, etc.). |
 
 <Info>
     The `onChange` prop is required to handle the toggle switch change event.
@@ -67,19 +94,37 @@ The Toggle component accepts the following props:
 ## Examples
 ### Basic Toggle
 <PreviewCode preview={
-    <Toggle checked />
+    <div className="flex flex-col items-center gap-4">
+        <Toggle checked />
+        <Toggle checked color="red" />
+        <Toggle checked color="purple" />
+    </div>
+
 }>
 ```javascript
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
 />
+<Toggle
+    checked={isToggled}
+    onChange={() => setisToggled(!isToggled)}
+    color="red"
+/>
+<Toggle
+    checked={isToggled}
+    onChange={() => setisToggled(!isToggled)}
+    color="purple"
+/>
 ```
 </PreviewCode>
 
 ### Toggle with Label
 <PreviewCode preview={
-    <Toggle checked label="Enable feature" />
+    <div className="flex flex-col items-center gap-4">
+        <Toggle checked label="Enable feature" />
+        <Toggle label="Disable feature" labelPosition="right" />
+    </div>
 }>
 ```javascript
 <Toggle
@@ -87,18 +132,24 @@ The Toggle component accepts the following props:
     onChange={() => setisToggled(!isToggled)}
     label="Enable feature"
 />
+<Toggle
+    checked={isToggled}
+    onChange={() => setisToggled(!isToggled)}
+    label="Disable feature"
+    labelPosition="right"
+/>
 ```
 </PreviewCode>
 
 ### Toggle with Icon
 <PreviewCode preview={
-    <Toggle checked icon />
+    <Toggle checked showIcon />
 }>
 ```javascript
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
-    icon
+    showIcon
 />
 ```
 </PreviewCode>
@@ -123,6 +174,7 @@ The Toggle component accepts the following props:
         color="red"
         icon
         label="Customized toggle"
+        className="bg-gray-500/20 p-1 px-2 rounded-full font-light"
     />
 }>
 ```javascript
@@ -132,9 +184,14 @@ The Toggle component accepts the following props:
     color="red"
     icon
     label="Customized toggle"
+    className="bg-gray-500/20 p-1 px-2 rounded-full font-light"
 />
 ```
 </PreviewCode>
 
+<br/>
+<br/>
+<br/>
+<br/>
 <br/>
 <br/>

@@ -1,6 +1,6 @@
 ---
 title: "Switcher"
-description: "A switch component for toggling between options"
+description: "A component for toggling between options"
 onThisPage:
   - title: "Overview"
     href: "#switch-overview"
@@ -10,63 +10,125 @@ onThisPage:
     href: "#props"
   - title: "Examples"
     href: "#examples"
+related:
+  - title: "ToolTip"
+    href: "/docs/components/tooltip"
 ---
 
 <div id="switch-overview" />
 
 <br/>
 
-<div className="flex gap-4 mb-4 justify-center items-center">
+<div className="flex flex-col gap-4 mb-4 justify-center items-center">
     <SwitchDemo
         options={[
-            { value: "option1", name: "Option 1" },
-            { value: "option2", name: "Option 2" },
-            { value: "option3", name: "Option 3" },
+            { value: "option1", name: "Small" },
+            { value: "option2", name: "Animation" },
+            { value: "option3", name: "Border" },
         ]}
-        shape="rounded-xl"
+        size="sm"
+        borderRadius="full"
+        buttonBorder
+    />
+    <SwitchDemo
+        options={[
+            { value: "option1", name: "Medium" },
+            { value: "option2", name: "Hover me", tooltip: "Tooltip" },
+            { value: "option3", name: "Icons", Icon: <WrenchIcon /> },
+        ]}
+        borderRadius="md"
+        color="gray"
+        animate={false}
+    />
+    <SwitchDemo
+        options={[
+            { value: "option1", name: "Large" },
+            { value: "option2", name: "Green" },
+            { value: "option3", name: "Tooltips", tooltip: "More info" },
+        ]}
+        size="lg"
+        color="green"
+        borderRadius="xl"
+        buttonBorder
+        border
     />
 </div>
+
 <br/>
 
 <div>
-    The `Switch` component provides a segmented control interface
+    The `Switcher` component provides a segmented control interface
     for toggling between multiple options. It supports both horizontal and vertical layouts,
-    customizable colors, hover effects, and optional tooltips.
+    customizable sizes, colors, shapes, and optional tooltips.
 </div>
 
 <br/>
-<Divider />
 <br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import { useState } from "react";
+import Switch from "@/components/atoms/Switch";
+
+const [selected, setSelected] = useState("option1");
+
+<Switch
+    options={[
+        { value: "option1", name: "Option 1" },
+        { value: "option2", name: "Option 2" },
+        { value: "option3", name: "Option 3" }
+    ]}
+    selected={selected}
+    onChange={setSelected}
+/>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
 ## Props
 
-| **Prop**         | **Type**            | **Default**              | **Description**                                                                                                   |
-|------------------|---------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------|
-| options          | array               | -                        | An array of option objects. Each option may contain: `value`, `name`, `Icon`, or `image`.                         |
-| selected         | any                 | -                        | The currently selected option value.                                                                              |
-| onChange         | function            | -                        | Callback fired when an option is selected. Receives the selected option's value.                                    |
-| activeColor      | string              | `"blue"`                 | Text color for the active option (e.g., `"blue"`, `"red"`).                                                       |
-| inactiveColor    | string              | `"gray"`                 | Text color for inactive options.                                                                                  |
-| activeBgColor    | string              | `"blue"`                 | Background color for the active option.                                                                           |
-| inactiveBgColor  | string              | `"gray"`                 | Background color for inactive options.                                                                            |
-| hover            | boolean             | `false`                  | If `true`, applies a hover effect on each option.                                                                 |
-| tooltip          | boolean             | `false`                  | If `true`, shows a tooltip with the option name on hover.                                                         |
-| vertical         | boolean             | `false`                  | If `true`, displays options in a vertical layout.                                                                 |
-| shape            | string              | `"rounded-full"`         | Border radius style for both the container and each option button.                                                |
-| className        | string              | `""`                     | Additional CSS classes for custom styling of the container.                                                       |
+| **Prop**        | **Type**                               | **Default** | **Description**                                                                                                                 |
+|-----------------|----------------------------------------|-------------|---------------------------------------------------------------------------------------------------------------------------------|
+| options         | array                                  | -           | An array of options, `[{ value: string, name: string, tooltip?: string, Icon?: ReactNode, image?: string }]`.                   |
+| selected        | string                                 | -           | The currently selected value.                                                                                                   |
+| onChange        | function                               | -           | Callback function that is called when the selected value changes.                                                               |
+| color           | string                                 | `"gray"`    | The base color (use [tailwind.config](/docs/tutorials/config)).                                                                 |
+| size            | "sm" \| "md" \| "lg"                   | `"md"`      | The size of the switch.                                                                                                         |
+| borderRadius    | string                                 | `"md"`      | The border radius of the switch (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component). |
+| vertical        | boolean                                | `false`     | If `true`, the switch will be displayed vertically.                                                                             |
+| animate         | boolean                                | `true`      | If `true`, the switch will animate with a sliding indicator.                                                                    |
+| hover           | boolean                                | `true`      | If `true`, the switch will have a hover effect.                                                                                 |
+| border          | boolean                                | `false`     | If `true`, the switch will have a border.                                                                                       |
+| buttonBorder    | boolean                                | `false`     | If `true`, the switch will have a border on the buttons.                                                                        |
+| buttonShadow    | boolean                                | `true`      | If `true`, the switch will have a shadow on the buttons.                                                                        |
+| tooltipPosition | "top" \| "right" \| "bottom" \| "left" | `"top"`     | The position of the tooltip (if tooltip is provided).                                                                           |
+| className       | string                                 | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the container.                                                       |
+| buttonClassName | string                                 | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the buttons.                                                         |
+| ...props        | object                                 | -           | Any other valid <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.).                                              |
+
+<Callout>
+    Use `options` to customize the switch with icons, images, and tooltips.
+</Callout>
 
 <br/>
 <br/>
-<Divider />
 <br/>
+<Divider />
 
 <div id="examples" />
 
 ## Examples
 
-### 1. Basic Horizontal Switch
+### Basic Switch
 
 <PreviewCode preview={
     <div className="flex gap-4 mb-4 justify-center items-center">
@@ -94,17 +156,16 @@ onThisPage:
 
 <br />
 
-### 2. Vertical Switch with Tooltips
+### Vertical Switch with Tooltips
 
 <PreviewCode preview={
     <div className="flex gap-4 mb-4 justify-center items-center">
         <SwitchDemo
             options={[
-                { value: "day", name: "Day" },
-                { value: "night", name: "Night" },
+                { value: "day", name: "Day", tooltip: "Daytime" },
+                { value: "night", name: "Night", tooltip: "Nighttime" },
             ]}
             vertical={true}
-            tooltip={true}
             tooltipPosition="left"
         />
     </div>
@@ -113,16 +174,102 @@ onThisPage:
     <div className="flex gap-4 mb-4 justify-center items-center">
         <Switch
             options={[
-                { value: "day", name: "Day" },
-                { value: "night", name: "Night" },
+                { value: "day", name: "Day", tooltip: "Daytime" },
+                { value: "night", name: "Night", tooltip: "Nighttime" },
             ]}
             selected={selected}
             onChange={setSelected}
             vertical={true}
-            tooltip={true}
+            tooltipPosition="left"
         />
     </div>
     ```
 </PreviewCode>
 
 <br/>
+
+### Customized Switch
+
+<PreviewCode preview={
+    <div className="flex flex-col gap-4 justify-center items-center">
+        <SwitchDemo
+            options={[
+                { value: "option1", name: "Small" },
+                { value: "option2", name: "Pill" },
+                { value: "option3", name: "Border" },
+            ]}
+            size="sm"
+            borderRadius="full"
+            buttonBorder
+        />
+        <SwitchDemo
+            options={[
+                { value: "option1", name: "Medium" },
+                { value: "option2", name: "Tooltip", tooltip: "Tooltip" },
+                { value: "option3", name: "Icons", Icon: <WrenchIcon /> },
+            ]}
+            borderRadius="xl"
+            color="orange"
+        />
+        <SwitchDemo
+            options={[
+                { value: "option1", name: "Large" },
+                { value: "option2", name: "Green" },
+                { value: "option3", name: "Tooltips", tooltip: "More info" },
+            ]}
+            size="lg"
+            color="green"
+            borderRadius="xl"
+            buttonBorder
+            border
+        />
+    </div>
+}>
+    ```javascript
+    <div className="flex flex-col gap-4 justify-center items-center">
+        <Switch
+            options={[
+                { value: "option1", name: "Small" },
+                { value: "option2", name: "Pill" },
+                { value: "option3", name: "Border" },
+            ]}
+            selected={selected}
+            onChange={setSelected}
+            size="sm"
+            borderRadius="full"
+            buttonBorder
+        />
+        <Switch
+            options={[
+                { value: "option1", name: "Medium" },
+                { value: "option2", name: "Tooltip", tooltip: "Tooltip" },
+                { value: "option3", name: "Icons", Icon: <WrenchIcon /> },
+            ]}
+            selected={selected}
+            onChange={setSelected}
+            borderRadius="xl"
+            color="orange"
+        />
+        <Switch
+            options={[
+                { value: "option1", name: "Large" },
+                { value: "option2", name: "Green" },
+                { value: "option3", name: "Tooltips", tooltip: "More info" },
+            ]}
+            selected={selected}
+            onChange={setSelected}
+            size="lg"
+            color="green"
+            borderRadius="xl"
+            buttonBorder
+            border
+        />
+    </div>
+    ```
+</PreviewCode>
+
+<br />
+<br />
+<br />
+
+

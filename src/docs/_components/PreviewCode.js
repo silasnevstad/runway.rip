@@ -15,7 +15,8 @@ const PreviewCode = ({ children, preview, border = false }) => {
                 ]}
                 selected={showPreview ? 'preview' : 'code'}
                 onChange={(value) => setShowPreview(value === 'preview')}
-                className="mb-6 self-start text-sm"
+                className="mb-6 self-start text-[13px]"
+                size="sm"
                 borderRadius="lg"
                 animate={true}
             />

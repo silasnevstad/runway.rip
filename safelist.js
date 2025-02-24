@@ -102,9 +102,14 @@ const borderRadiusClasses = [
 
 const darkSafeList = safelist.map((className) => `dark:${className}`);
 
+const hoverSafeList = safelist.map((className) => `hover:${className}`);
+const darkHoverSafeList = hoverSafeList.map((className) => `dark:${className}`);
+
 const allSafelist = [
     ...safelist,
     ...darkSafeList,
+    ...hoverSafeList,
+    ...darkHoverSafeList,
     ...measurements,
     ...topPositionsClasses,
     ...borderRadiusClasses

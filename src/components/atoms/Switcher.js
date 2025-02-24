@@ -1,24 +1,25 @@
 "use client";
-
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Tooltip from "@/components/atoms/Tooltip";
-import { mergeClasses } from "@/utils/styling";
+import { mergeClasses, renderIcon } from "@/utils/styling";
 
 export default function Switcher({
-    className = "",
-    buttonClassName = "",
-    options = [],           // { value, name, Icon?, image? }[]
+    options = [],           // { value, name, Icon?, image?, tooltip? }[]
     selected,
     onChange,
-    hover = true,
-    tooltip = false,
-    tooltipPosition = "top",
+    color = "gray",
+    size = "md",
+    borderRadius = "xl",
     vertical = false,
-    animate = true,
+    animate = true,  // Animate with sliding indicator
+    hover = true,
     border = false,
     buttonBorder = false,
-    borderRadius = "full",
+    buttonShadow = true,
+    tooltipPosition = "top",
+    className = "",
+    buttonClassName = "",
     ...props
 }) {
     const containerRef = useRef(null);
@@ -42,70 +43,95 @@ export default function Switcher({
         }
     }, [selected, options, animate]);
 
+    const sizeStyles = {
+        xs: `p-0.5 text-xs gap-0.5`,
+        sm: `p-0.5 text-sm gap-0.5`,
+        md: `p-1 text-md gap-1`,
+        lg: `p-2 text-lg gap-2`,
+    }
+
     // Container classes
     const containerClasses = mergeClasses(
-        "relative flex p-0.5 gap-1",
+        "relative flex",
         vertical ? "flex-col" : "flex-row",
-        "bg-bg-200 dark:bg-gray-800",
-        border && "border border-bg-300 dark:border-gray-700",
+        `bg-${color}-200/70 dark:bg-${color}-800`,
+        sizeStyles[size] || sizeStyles.md,
         `rounded-${borderRadius}`,
+        border && `border border-${color}-400 dark:border-${color}-700`,
         className
     );
 
     // Sliding indicator classes (when animate = true)
     const indicatorClasses = mergeClasses(
         "absolute z-0 transition-all duration-300 ease-in-out",
-        "bg-gray-50 dark:bg-gray-900",
+        `bg-${color}-50 dark:bg-${color}-900`,
         `rounded-${borderRadius}`,
-        buttonBorder && `border border-bg-300 dark:border-gray-700`
+        vertical && "w-full",
+        buttonShadow && "shadow-md"
+    );
+
+    // Button classes
+    const buttonClasses = (isSelected) => mergeClasses(
+        "relative z-10 flex items-center gap-2 px-4 py-2",
+        "whitespace-nowrap text-center transition-all duration-200 ease-in-out",
+        `rounded-${borderRadius}`,
+        vertical ? "justify-center w-full" : "justify-start",
+        buttonBorder && (isSelected
+            ? `border border-${color}-400 dark:border-${color}-700`
+            : "border border-transparent"),
+        animate
+            ? isSelected
+                ? `bg-transparent text-${color}-900 dark:text-${color}-100`
+                : `bg-transparent text-${color}-600 dark:text-${color}-300`
+            : isSelected
+                ? `bg-${color}-50 dark:bg-${color}-900 text-${color}-800 dark:text-${color}-100`
+                : `bg-transparent text-${color}-600 dark:text-${color}-300`,
+        hover
+            ? animate
+                ? isSelected
+                    ? `hover:bg-${color}-50 dark:hover:bg-${color}-900`
+                    : `hover:bg-${color}-50 dark:hover:bg-${color}-700`
+                : isSelected
+                    ? `bg-${color}-50 dark:bg-${color}-900`
+                    : `hover:bg-${color}-50 dark:hover:bg-${color}-700`
+            : "",
+        buttonClassName
+    );
+
+    // Icon classes
+    const iconClasses = (isSelected) => mergeClasses(
+        "w-4 h-4",
+        isSelected ? `text-${color}-900 dark:text-${color}-100` : `text-${color}-600 dark:text-${color}-300`,
+        `group-hover:text-${color}-900 dark:group-hover:text-${color}-100`,
     );
 
     return (
         <div ref={containerRef} className={containerClasses} {...props}>
             {animate && <div style={indicatorStyle} className={indicatorClasses} />}
             {options.map((option, index) => {
-                const { value, name, Icon, image } = option;
+                const { value, name, Icon, image, tooltip } = option;
                 const key = value ?? index;
+                const hasTooltip = !!tooltip;
                 const isSelected = selected === value;
 
-                const buttonClasses = mergeClasses(
-                    "relative z-10 flex items-center gap-2 px-4 py-2",
-                    "whitespace-nowrap text-center transition-all duration-200 ease-in-out",
-                    `rounded-${borderRadius}`,
-                    vertical ? "justify-center" : "justify-start",
-                    animate
-                        ? isSelected
-                            ? `bg-transparent text-gray-900 dark:text-gray-100 font-medium ${buttonBorder && "border border-gray-400 dark:border-gray-700"}`
-                            : 'bg-transparent text-gray-600 dark:text-gray-300'
-                        : isSelected
-                            ? `bg-gray-50 dark:bg-gray-900 text-gray-800 font-medium ${buttonBorder && "border border-gray-200 dark:border-gray-700"}`
-                            : 'bg-transparent text-gray-600 dark:text-gray-300',
-                    hover && animate && isSelected && 'hover:bg-gray-50 dark:hover:bg-gray-900',
-                    hover && animate && !isSelected && 'hover:bg-gray-50 dark:hover:bg-bg-700',
-                    hover && !animate && 'hover:bg-gray-50 dark:hover:bg-bg-700',
-                    buttonClassName
-                );
-
-                // ----- Button -----
                 const buttonNode = (
                     <button
                         key={key}
                         ref={(el) => {
                             buttonRefs.current[value] = el;
                         }}
-                        className={buttonClasses}
+                        className={buttonClasses(isSelected)}
                         onClick={() => onChange(value)}
                         aria-pressed={isSelected}
                     >
-                        {Icon && Icon}
+                        {Icon && renderIcon(Icon, null, iconClasses(isSelected))}
                         {image && <Image src={image} width={24} height={24} alt={name} />}
                         {name}
                     </button>
                 );
 
-                // ----- Tooltip or plain -----
-                return tooltip ? (
-                    <Tooltip key={key} text={name} position={tooltipPosition} className="z-20">
+                return hasTooltip ? (
+                    <Tooltip key={key} text={tooltip} position={tooltipPosition} color={color}>
                         {buttonNode}
                     </Tooltip>
                 ) : (

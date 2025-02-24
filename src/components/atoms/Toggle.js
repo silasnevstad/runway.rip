@@ -1,43 +1,61 @@
-'use client'
-
+"use client";
 import React from 'react';
 import { mergeClasses } from "@/utils/styling";
 
 const Toggle = ({
+    label = "",
+    labelPosition = "left",  // left or right
+    color = "primary",
+    showIcon = false,
+    focus = false,
+    disabled = false,
     checked = false,
     onChange = () => {},
     className = '',
-    label = '',
-    labelPosition = 'left', // 'left' or 'right'
-    color = 'primary',
-    icon = false,
-    focus = false,
-    disabled = false
 }) => {
+    const containerClasses = mergeClasses(
+        `flex items-center justify-between 
+        ${labelPosition === 'right' ? 'flex-row-reverse' : 'flex-row'} 
+        ${disabled ? 'opacity-50' : ''}`,
+        className
+    );
+
+    const focusClasses = `
+    ${checked ? 'translate-x-5' : 'translate-x-0'} 
+    pointer-events-none inline-block h-5 w-5 
+    transform rounded-full bg-white shadow-sm ring-0 
+    transition duration-200 ease-in-out
+    `;
+
+    const buttonClasses = mergeClasses(
+        `${checked ? `bg-${color}-500` : 'bg-gray-200 dark:bg-gray-700'}`,
+        `relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full`,
+        `border-2 border-transparent transition-colors duration-200 ease-in-out`,
+        `${focus && 'focus:ring-2 focus:ring-${color}-600 focus:ring-offset-2 focus:outline-hidden'}`
+    );
+
     return (
-        <div className={`flex items-center justify-between ${labelPosition === 'right' ? 'flex-row-reverse' : 'flex-row'} ${disabled ? 'opacity-50' : ''}`}>
-            <label htmlFor="toggle" className="font-medium mr-4">{label}</label>
+        <div className={containerClasses}>
+            <label
+                htmlFor="toggle"
+                className={labelPosition === 'right' ? 'ml-3' : 'mr-3'}
+            >
+                {label}
+            </label>
             <button
                 type="button"
                 onClick={onChange}
-                className={
-                    mergeClasses(
-                        `${checked ? `bg-${color}-500` : 'bg-gray-200'}`,
-                        `relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out`,
-                        `${focus && 'focus:ring-2 focus:ring-${color}-600 focus:ring-offset-2 focus:outline-hidden'}`,
-                        className
-                    )
-            }
+                className={buttonClasses}
                 role="switch"
                 aria-checked={checked}
                 disabled={disabled}
             >
                 <span className="sr-only">Use setting</span>
                 <span
-                    className={`${checked ? 'translate-x-5' : 'translate-x-0'} pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out`}
+                    className={focusClasses}
                     aria-hidden="true"
                 >
-                    {icon && (checked ? (
+                    {showIcon && (checked ? (
                         <span
                             className="opacity-60 duration-100 ease-out absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
                             aria-hidden="true">

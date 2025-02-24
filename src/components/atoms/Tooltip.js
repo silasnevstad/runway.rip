@@ -1,13 +1,14 @@
-'use client';
-
+"use client";
 import { useState, useRef } from 'react';
 import { mergeClasses } from '@/utils/styling';
 
 const Tooltip = ({
     children,
     text,
-    className = '',
-    position = 'top',
+    position = "top",
+    color = "gray",
+    className = "",
+    ...props
 }) => {
     const [isVisible, setIsVisible] = useState(false);
     const tooltipRef = useRef(null);
@@ -31,12 +32,19 @@ const Tooltip = ({
             case 'right':
                 return "left-full ml-2 top-1/2 transform -translate-y-1/2";
             default:
-                return "bottom-full mb-2"; // Default to top if no valid position is provided
+                return "bottom-full mb-2"; // Default to top
         }
     };
 
+    const tooltipClasses = mergeClasses(
+        getPositionClasses(),
+        `absolute px-3 py-1`,
+        `bg-${color}-500 dark:bg-${color}-700`,
+        `text-white text-sm rounded-lg shadow-sm whitespace-nowrap z-50`
+    );
+
     return (
-        <div className={mergeClasses("relative flex", className)}>
+        <div className={mergeClasses("relative flex", className)} {...props}>
             <div
                 ref={tooltipRef}
                 onMouseEnter={handleMouseEnter}
@@ -47,10 +55,7 @@ const Tooltip = ({
             </div>
             {isVisible && text && (
                 <div
-                    className={mergeClasses(
-                        getPositionClasses(),
-                        "absolute px-3 py-1 bg-bg-600 dark:bg-bg-900 text-white text-sm rounded-lg shadow-sm whitespace-nowrap"
-                    )}
+                    className={tooltipClasses}
                 >
                     {text}
                 </div>

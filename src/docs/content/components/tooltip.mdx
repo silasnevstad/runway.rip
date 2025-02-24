@@ -4,6 +4,8 @@ description: "A simple tooltip component that displays additional information on
 onThisPage:
   - title: "Overview"
     href: "#tooltip-overview"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
   - title: "Examples"
@@ -12,70 +14,139 @@ onThisPage:
 
 <div id="tooltip-overview" />
 
-<Divider />
-
 <br/>
 
 <div>
-    The `Tooltip` component provides a lightweight and customizable tooltip that appears when hovering over an element. It supports various positions and custom styling through Tailwind CSS classes.
+    <div className="flex gap-5 items-center justify-center">
+        <Tooltip text="This is a tooltip">
+            <Card>
+                Hover me
+            </Card>
+        </Tooltip>
+        <Tooltip text="This is a tooltip" color="primary">
+            <Card>
+                Hover me
+            </Card>
+        </Tooltip>
+    </div>
 </div>
 
-<Info>
-    This component leverages the `mergeClasses` utility to seamlessly combine default classes with any custom class names passed via props.
-</Info>
+<br/>
+
+The `Tooltip` component provides a lightweight and customizable tooltip that appears when hovering over an element.
+It supports various positions and colors.
 
 <br/>
-<Divider />
 <br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Tooltip from "@/components/atoms/Tooltip";
+
+<Tooltip text="This is a tooltip">
+    <div>
+        Hover me
+    </div>
+</Tooltip>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
 
 <div id="props" />
 
 ## Props
 
-| **Prop**   | **Type**    | **Default** | **Description**                                                               |
-|------------|-------------|-------------|-------------------------------------------------------------------------------|
-| children   | ReactNode   | -           | The element that triggers the tooltip on hover.                             |
-| text       | string      | -           | The text content displayed within the tooltip.                              |
-| className  | string      | `""`        | Additional CSS classes for the tooltip container.                           |
-| position   | string      | `"top"`     | Position of the tooltip relative to the children (`top`, `bottom`, `left`, or `right`). |
+| Prop      | Type                                   | Default     | Description                                                                             |
+|-----------|----------------------------------------|-------------|-----------------------------------------------------------------------------------------|
+| text      | string                                 | `""`        | The text to display inside the tooltip.                                                 |
+| position  | "top" \| "bottom" \| "left" \| "right" | `"top"`     | The position of the tooltip relative to the target element.                             |
+| color     | string                                 | `"primary"` | [Tailwind](https://tailwindcss.com) color key used for the toggle switch.               |
+| className | string                                 | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the tooltip.                 |
+| ...props  | object                                 | -           | Any other valid HTML <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.). |
+
 
 <br/>
-<Divider />
 <br/>
+<br/>
+<Divider />
 
 <div id="examples" />
 
 ## Examples
 
-### 1. Basic Tooltip
+### Basic Tooltip
 
 <PreviewCode preview={
     <Tooltip text="This is a tooltip">
-        <button className="px-4 py-2 bg-blue-500 text-white rounded-sm">Hover me</button>
+        <Button>Hover me</Button>
     </Tooltip>
 }>
     ```javascript
     <Tooltip text="This is a tooltip">
-        <button className="px-4 py-2 bg-blue-500 text-white rounded-sm">Hover me</button>
+        <Button>Hover me</Button>
     </Tooltip>
     ```
 </PreviewCode>
 
 <br />
 
-### 2. Tooltip with Custom Position and Styling
+### Tooltip with Custom Position
 
 <PreviewCode preview={
-    <Tooltip text="Tooltip on the right" position="right" className="custom-tooltip-class">
+    <Tooltip text="Tooltip on the right" position="right">
         <span className="underline cursor-pointer">Hover here</span>
     </Tooltip>
 }>
     ```javascript
-    <Tooltip text="Tooltip on the right" position="right" className="custom-tooltip-class">
+    <Tooltip text="Tooltip on the right" position="right">
         <span className="underline cursor-pointer">Hover here</span>
     </Tooltip>
     ```
 </PreviewCode>
 
 <br />
+
+### Tooltips with Different Colors
+<PreviewCode preview={
+    <div className="flex gap-5 items-center justify-center">
+        <Tooltip text="This is a tooltip" color="red">
+            <Card>
+                Hover me for med
+            </Card>
+        </Tooltip>
+        <Tooltip text="This is a tooltip" color="green">
+            <Card>
+                Hover me for green
+            </Card>
+        </Tooltip>
+    </div>
+}>
+    ```javascript
+    <div className="flex gap-5 items-center justify-center">
+        <Tooltip text="This is a tooltip" color="red">
+            <Card>
+                Hover me for red
+            </Card>
+        </Tooltip>
+        <Tooltip text="This is a tooltip" color="green">
+            <Card>
+                Hover me for green
+            </Card>
+        </Tooltip>
+    </div>
+    ```
+</PreviewCode>
+
+
 <br />
+<br />
+<br />
+
+

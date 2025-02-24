@@ -99,17 +99,9 @@ const FileDrop = ({
         className
     );
 
-    // Prepare icon
     const iconClasses = mergeClasses(
         "h-12 w-12 mx-auto mb-3",
         dragOver ? `text-${activeColor}-500` : `text-${color}-500`
-    );
-
-    // Prepare icon
-    const iconRendered = renderIcon(
-        icon,
-        null,
-        iconClasses
     );
 
     return (
@@ -135,7 +127,11 @@ const FileDrop = ({
             {/* If no files yet, show icon + text */}
             {files.length === 0 && (
                 <>
-                    {iconRendered && iconRendered}
+                    {icon && renderIcon(
+                        icon,
+                        null,
+                        iconClasses
+                    )}
                     <p className={`text-center text-md text-${color}-600 dark:text-${color}-400`}>
                         {text}
                     </p>

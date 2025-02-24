@@ -7,17 +7,6 @@ import OAuthSection, { defaultOAuthProviders } from './OAuthSection';
 import appConfig from "@/config";
 
 const AuthForm = ({ mode = 'sign-in' }) => {
-    //
-    // switch (method) {
-    //     case 'magiclink':
-    //         return <PasswordlessAuthForm />;
-    //     case 'oauth':
-    //         return <OAuthSection />;
-    //     case 'password':
-    //     default:
-    //         return <PasswordAuthForm mode={mode} />;
-    // }
-    // we need to go through the appConfig.authMethods and render each appropriate form, they are either magiclink, password or one of the oauth providers
     const authMethods = appConfig.authMethods;
     const oauthProviders = defaultOAuthProviders.filter(provider => authMethods.includes(provider.name));
     const forms = [];
