@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Tooltip from "@/components/atoms/Tooltip";
-import { mergeClasses, renderIcon } from "@/utils/styling";
+import { mergeClasses, renderIcon, BORDER_RADIUS, COLOR_VARIANTS } from "@/utils/styling";
 
 export default function Switcher({
     options = [],           // { value, name, Icon?, image?, tooltip? }[]
@@ -50,22 +50,31 @@ export default function Switcher({
         lg: `p-2 text-lg gap-2`,
     }
 
+    const {
+        bgClasses,
+        highlightBgClasses,
+        borderClasses,
+        textClasses,
+        hoverClasses
+    } = COLOR_VARIANTS[color];
+    const borderRadiusClass = BORDER_RADIUS[borderRadius];
+
     // Container classes
     const containerClasses = mergeClasses(
         "relative flex",
         vertical ? "flex-col" : "flex-row",
-        `bg-${color}-200/70 dark:bg-${color}-800`,
+        bgClasses,
         sizeStyles[size] || sizeStyles.md,
-        `rounded-${borderRadius}`,
-        border && `border border-${color}-400 dark:border-${color}-700`,
+        borderRadiusClass,
+        border && `border ${borderClasses}`,
         className
     );
 
     // Sliding indicator classes (when animate = true)
     const indicatorClasses = mergeClasses(
         "absolute z-0 transition-all duration-300 ease-in-out",
-        `bg-${color}-50 dark:bg-${color}-900`,
-        `rounded-${borderRadius}`,
+        highlightBgClasses,
+        borderRadiusClass,
         vertical && "w-full",
         buttonShadow && "shadow-md"
     );
@@ -74,35 +83,25 @@ export default function Switcher({
     const buttonClasses = (isSelected) => mergeClasses(
         "relative z-10 flex items-center gap-2 px-4 py-2",
         "whitespace-nowrap text-center transition-all duration-200 ease-in-out",
-        `rounded-${borderRadius}`,
+        borderRadiusClass,
         vertical ? "justify-center w-full" : "justify-start",
         buttonBorder && (isSelected
-            ? `border border-${color}-400 dark:border-${color}-700`
+            ? `border ${borderClasses}`
             : "border border-transparent"),
-        animate
-            ? isSelected
-                ? `bg-transparent text-${color}-900 dark:text-${color}-100`
-                : `bg-transparent text-${color}-600 dark:text-${color}-300`
-            : isSelected
-                ? `bg-${color}-50 dark:bg-${color}-900 text-${color}-800 dark:text-${color}-100`
-                : `bg-transparent text-${color}-600 dark:text-${color}-300`,
-        hover
-            ? animate
-                ? isSelected
-                    ? `hover:bg-${color}-50 dark:hover:bg-${color}-900`
-                    : `hover:bg-${color}-50 dark:hover:bg-${color}-700`
-                : isSelected
-                    ? `bg-${color}-50 dark:bg-${color}-900`
-                    : `hover:bg-${color}-50 dark:hover:bg-${color}-700`
-            : "",
+        textClasses,
+        isSelected ? "opacity-100" : "opacity-90",
+        hover ? "hover:opacity-100" : "",
+        isSelected ? `${highlightBgClasses}` : `bg-transparent`,
+        hover && !isSelected ? `${hoverClasses}` : "",
         buttonClassName
     );
 
     // Icon classes
     const iconClasses = (isSelected) => mergeClasses(
         "w-4 h-4",
-        isSelected ? `text-${color}-900 dark:text-${color}-100` : `text-${color}-600 dark:text-${color}-300`,
-        `group-hover:text-${color}-900 dark:group-hover:text-${color}-100`,
+        textClasses,
+        isSelected ? `text-opacity-100` : `text-opacity-90`,
+        `group-hover:text-opacity-100`,
     );
 
     return (

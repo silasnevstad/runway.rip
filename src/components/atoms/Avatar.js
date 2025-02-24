@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { mergeClasses } from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses} from "@/utils/styling";
 
 export default function Avatar({
     src,
@@ -30,14 +30,23 @@ export default function Avatar({
     };
 
     const finalSize = sizeStyles[size] || sizeStyles.md;
+    const {
+        bgClasses,
+        borderClasses,
+        textClasses,
+    } = COLOR_VARIANTS[color];
+    const ringClasses = COLOR_VARIANTS[ringColor].activeBorderClasses;
+    const statusColorClasses = COLOR_VARIANTS[statusColor].activeBgClasses;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius];
 
     const containerClasses = mergeClasses(
         "relative inline-flex justify-center items-center",
         finalSize,
-        borderRadius && `rounded-${borderRadius}`,
-        border && `border-2 border-${color}-500 dark:border-${color}-600`,
-        status && ringColor && `border-2 border-${ringColor}-500 dark:border-${ringColor}-500`,
-        `bg-${color}-200 dark:bg-${color}-800 text-${color}-800 dark:text-${color}-200`,
+        borderRadius && borderRadiusClass,
+        border && `border-2 ${borderClasses}`,
+        status && ringColor && `border-2 ${ringClasses}`,
+        bgClasses,
+        textClasses,
         onClick && "cursor-pointer active:scale-95",
         className
     );
@@ -55,7 +64,7 @@ export default function Avatar({
                     alt={alt}
                     fill
                     sizes="100%"
-                    className={`object-cover ${borderRadius && `rounded-${borderRadius}`}`}
+                    className={`object-cover ${borderRadius && borderRadiusClass}`}
                     onError={handleImageError}
                 />
             ) : (
@@ -65,7 +74,7 @@ export default function Avatar({
                 <span
                     className={mergeClasses(
                         "z-50 absolute w-3 h-3 rounded-full ring-2 ring-white dark:ring-gray-800 bottom-0 right-0 transform translate-x-1/4 translate-y-1/4",
-                        statusColor  && `bg-${statusColor}-400`
+                        statusColorClasses
                     )}
                 />
             )}

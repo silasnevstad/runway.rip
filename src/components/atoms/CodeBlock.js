@@ -28,7 +28,7 @@ const CodeBlock = ({
 
     return (
         <div className={
-            `flex w-full flex-col
+            `flex w-full flex-col 
             ${border && "border  border-bg-200 dark:border-gray-800/30"} 
             rounded-lg`
         }>
