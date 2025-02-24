@@ -4,6 +4,8 @@ description: "A collapsible component that helps you organize and display conten
 onThisPage:
   - title: "Overview"
     href: "#accordion-overview"
+  - title: "Usage"
+    href: "#usage"
   - title: "Props"
     href: "#props"
   - title: "Examples"
@@ -14,8 +16,6 @@ related:
 ---
 
 <div id="accordion-overview" />
-
-<Divider />
 
 <br/>
 
@@ -36,14 +36,37 @@ related:
 
 <br/>
 
-<div>
-    The `Accordion` component displays content in collapsible panels.
-    It's useful for organizing information without overwhelming users.
-</div>
+The `Accordion` component displays content in collapsible panels.
+It's useful for organizing information without overwhelming users.
 
-<Info>
-    `Accordion` leverages <InlineHighlight type="navigation">[DropdownText](/docs/components/dropdown-text)</InlineHighlight> to manage collapsible items.
-</Info>
+<Callout>
+    `Accordion` leverages [`DropdownText`](/docs/components/dropdown-text) to manage collapsible items.
+</Callout>
+
+<br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Accordion from "@/components/atoms/Accordion";
+
+<Accordion
+    items={[
+        {
+            title: 'Overview Item 1',
+            content: 'This is a quick preview of the accordion in action.'
+        },
+        {
+            title: 'Overview Item 2',
+            content: 'You can have multiple items open or restrict to one.'
+        }
+    ]}
+/>
+```
 
 <br/>
 <br/>
@@ -54,29 +77,28 @@ related:
 
 ## Props
 
-| **Name**    | **Type**   | **Default** | **Description**                                                                           |
-|-------------|------------|-------------|-------------------------------------------------------------------------------------------|
-| className   | string     | ''          | Additional CSS classes applied to the root accordion container                            |
-| items       | array      | -           | Array of objects, each containing <InlineHighlight>title</InlineHighlight> & <InlineHighlight>content</InlineHighlight> fields |
-| oneOpen     | boolean    | false       | If true, only one accordion panel can be open at once                                     |
-
-<Info>
-    The <InlineHighlight>items</InlineHighlight> prop is an array of objects. For each panel, define
-    <InlineHighlight>title</InlineHighlight> (string) and <InlineHighlight>content</InlineHighlight> (JSX or string).
-</Info>
+| **Name**  | **Type** | **Default** | **Description**                                                                         |
+|-----------|----------|-------------|-----------------------------------------------------------------------------------------|
+| items     | array    | -           | Array of objects, each containing `title` & `content` fields                            |
+| oneOpen   | boolean  | `false`     | If true, only one accordion panel can be open at once                                   |
+| borders   | boolean  | `true`      | If true, borders are applied to the accordion items                                     |
+| level     | number   | `0`         | Used to automatically indent nested accordions                                          |
+| className | string   | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults)             |
+| ...props  | object   | -           | Any other valid HTML <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.). |
 
 <Tip>
-    <strong>Pro Tip:</strong> Try nesting an Accordion inside another Accordion to create a multi-level collapsible structure for more complex documentation.
+    You can nest an Accordion inside another Accordion to create a multi-level collapsible structure for more complex documentation.
 </Tip>
 
 <br/>
-<Divider />
 <br/>
+<br/>
+<Divider />
 
 <div id="examples" />
 ## Examples
 
-### 1. Basic Accordion
+### Basic Accordion
 
 <PreviewCode preview={
     <div className="flex w-full px-2">
@@ -130,7 +152,7 @@ related:
 
 <br />
 
-### 2. One-Item-Open Accordion
+### One-Item-Open Accordion
 Allows only a single item to be open at a time.
 
 <PreviewCode preview={
@@ -177,26 +199,23 @@ Allows only a single item to be open at a time.
 
 <br />
 
-### 3. Nested Accordion
-Example of a nested structure: each "item" could itself contain an Accordion.
+### Nested Accordion
+Give an item an `items` prop to nest another accordion.
 
 <PreviewCode preview={
     <div className="flex w-full px-2">
         <Accordion
             items={[
                 {
-                    title: "Nested Accordion",
-                    // Optionally include some content before the nested accordion:
+                    title: "Nest Accordion",
                     content: "Content above the nested accordion:",
-                    // The nested items are defined under `items`
                     items: [
                         {
-                            title: "Nested Item 1",
+                            title: "Child Item",
                             content: "Content for nested item 1.",
                         },
                         {
-                            title: "Nested Item 2",
-                            // You can nest arbitrarily deep:
+                            title: "Another Nested Accordion",
                             items: [
                                 {
                                     title: "Grandchild Item",
@@ -243,14 +262,13 @@ Example of a nested structure: each "item" could itself contain an Accordion.
     ```
 </PreviewCode>
 
-<br/>
 <Caution>
     Be mindful of nesting too many layers of accordions. Deep nesting can confuse users or clutter your layout.
 </Caution>
 
 <br />
 
-### 4. Custom Style Accordion
+### Custom Style Accordion
 
 <PreviewCode preview={
     <div className="flex w-full px-2">
@@ -305,5 +323,8 @@ Example of a nested structure: each "item" could itself contain an Accordion.
 </PreviewCode>
 
 <br />
-
+<br />
+<br />
+<br />
+<br />
 <br />

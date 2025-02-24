@@ -51,19 +51,20 @@ import Alert from '@/components/atoms/Alert';
 
 ## Props
 
-| **Prop**  | **Type**                                    | **Default** | **Description**                                                                       |
-|-----------|---------------------------------------------|-------------|---------------------------------------------------------------------------------------|
-| children  | ReactNode                                   | -           | Content to be displayed inside the alert component                                    |
-| severity  | "info" \| "success" \| "warning" \| "error" | `"info"`    | Severity level of the alert component (info, success, warning, error)                 |
-| variant   | "soft" \| "solid"                           | `"soft"`    | Variant style of the alert component                                                  |
-| lift      | boolean                                     | `false`     | Whether to lift the alert component on hover                                          |
-| scale     | boolean                                     | `false`     | If true, gently scales up on hover.                                                   |
-| lift      | boolean                                     | `false`     | If true, lifts on hover.                                                              |
-| active    | boolean                                     | `true`      | If true, the button has an active press-down scale effect.                            |
-| border    | boolean                                     | `false`     | Whether to show a border around the alert component                                   |
-| onClick   | function                                    | -           | Function to call when the alert is clicked                                            |
-| className | string                                      | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed) |
-| ...props  | object                                      | -           | Additional props passed to the alert component                                        |
+| **Prop**  | **Type**                                    | **Default** | **Description**                                                                         |
+|-----------|---------------------------------------------|-------------|-----------------------------------------------------------------------------------------|
+| children  | ReactNode                                   | -           | Content to be displayed inside the alert component                                      |
+| severity  | "info" \| "success" \| "warning" \| "error" | `"info"`    | Severity level of the alert component (info, success, warning, error)                   |
+| variant   | "soft" \| "solid"                           | `"soft"`    | Variant style of the alert component                                                    |
+| lift      | boolean                                     | `false`     | Whether to lift the alert component on hover                                            |
+| scale     | boolean                                     | `false`     | If `true`, gently scales up on hover.                                                   |
+| lift      | boolean                                     | `false`     | If `true`, lifts on hover.                                                              |
+| active    | boolean                                     | `true`      | If `true`, the button has an active press-down scale effect.                            |
+| border    | boolean                                     | `false`     | Whether to show a border around the alert component                                     |
+| onClick   | function                                    | -           | Function to call when the alert is clicked                                              |
+| className | string                                      | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults)             |
+| ...props  | object                                      | -           | Any other valid HTML <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.). |
+
 
 <br/>
 <br/>
