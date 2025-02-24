@@ -17,6 +17,8 @@ export default function Button({
     shadow = false,
     loading = false,
     disabled = false,
+    icon,
+    iconSrc = "",
     href = "",
     onClick,
     className = "",
@@ -53,6 +55,14 @@ export default function Button({
         <Loader className={`text-${color}-900`} />
     ) : (
         <>
+            {icon && icon}
+            {iconSrc && (
+                <Image
+                    src={iconSrc}
+                    alt={children}
+                    className="w-4 h-4"
+                />
+            )}
             {children}
         </>
     );

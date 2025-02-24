@@ -1,13 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { mergeClasses, renderIcon} from "@/utils/styling";
-
-const SIZE_MAP = {
-    sm: { containerPadding: "p-2", textSize: "text-sm", paddingNum: "2" },
-    md: { containerPadding: "p-3", textSize: "text-base", paddingNum: "3" },
-    lg: { containerPadding: "p-4", textSize: "text-lg", paddingNum: "4" },
-};
+import { mergeClasses, renderIcon, SIZE_MAP } from "@/utils/styling";
 
 export default function Input({
     id = "",
@@ -83,7 +77,8 @@ export default function Input({
 
     // Input classes
     const inputClasses = mergeClasses(
-        `w-full bg-transparent border-none focus:outline-none focus:ring-0 text-${color}-900 dark:text-${color}-100 p-0`,
+        `w-full bg-transparent border-none focus:outline-none focus:ring-0`,
+        `text-${color}-900 dark:text-${color}-100 p-0`,
         sizeConfig.textSize,
         `placeholder:text-${color}-400 dark:placeholder:text-${color}-600`,
         labelMode === "float" && "placeholder-transparent",

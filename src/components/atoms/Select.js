@@ -1,0 +1,124 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import { mergeClasses, SIZE_MAP } from "@/utils/styling";
+import FloatingLabelWrapper from "@/components/atoms/FloatingLabelWrapper";
+
+export default function Select({
+    id = "",
+    label = "",
+    labelMode = "none",  // "none" | "inside" | "above" | "float"
+    labelBackground = "bg-bg-0 dark:bg-bg-900",
+    size = "md",
+    borderRadius = "md",
+    color = "gray",
+    shadow = "",
+    focus = true,
+    activeColor = "primary",
+    includeEmptyOption = false,
+
+    // Controlled/uncontrolled value
+    value: controlledValue,
+    onChange,
+
+    // Array of { value, label }
+    options = [],
+
+    className = "",
+    textClassName = "",
+    ...props
+}) {
+    const [internalValue, setInternalValue] = useState(controlledValue || !includeEmptyOption ? options[0]?.value : "");
+    const isControlled = controlledValue !== undefined;
+
+    useEffect(() => {
+        if (isControlled) {
+            setInternalValue(controlledValue);
+        }
+    }, [controlledValue, isControlled]);
+
+    function handleChange(e) {
+        if (!isControlled) {
+            setInternalValue(e.target.value);
+        }
+        onChange?.(e);
+    }
+
+    const [isFocused, setIsFocused] = useState(false);
+    const handleFocus = () => setIsFocused(true);
+    const handleBlur = () => setIsFocused(false);
+
+    const sizeConfig = SIZE_MAP[size] || SIZE_MAP.md;
+
+    const containerClasses = mergeClasses(
+        "relative flex items-center",
+        labelMode !== "float" && `bg-${color}-500/5`,
+        `border border-${color}-500 dark:border-${color}-700`,
+        borderRadius && `rounded-${borderRadius}`,
+        shadow && `shadow-${shadow}`,
+        sizeConfig.containerPadding,
+        focus && `focus-within:border-${activeColor}-500 focus-within:ring-1 focus-within:ring-${activeColor}-500/30`,
+        className
+    );
+
+    // only float if user is focused or has a non-empty value
+    const hasValue = internalValue !== "";
+
+    const selectClasses = mergeClasses(
+        `w-full bg-transparent border-none focus:outline-none focus:ring-0`,
+        `text-${color}-900 dark:text-${color}-100 p-0 -mr-2`,
+        sizeConfig.textSize,
+        labelMode === "float" && "placeholder-transparent",
+        textClassName
+    );
+
+    return (
+        <div className="flex w-full flex-col gap-1">
+            {label && labelMode === "above" && (
+                <label
+                    htmlFor={id}
+                    className={mergeClasses(
+                        `block text-${color}-700 dark:text-${color}-300`,
+                        sizeConfig.textSize
+                    )}
+                >
+                    {label}
+                </label>
+            )}
+
+            <FloatingLabelWrapper
+                id={id}
+                label={label}
+                labelMode={labelMode}
+                labelBackground={labelBackground}
+                color={color}
+                activeColor={color}
+                isFocused={isFocused}
+                hasValue={hasValue}
+                sizeConfig={sizeConfig}
+                containerClasses={containerClasses}
+            >
+                <select
+                    id={id}
+                    className={selectClasses}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    value={internalValue}
+                    onChange={handleChange}
+                    {...props}
+                >
+                    {labelMode === "inside" && (
+                        <option value="" disabled selected>
+                            {label}
+                        </option>
+                    )}
+                    {includeEmptyOption && <option value=""></option>}
+                    {options.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                        </option>
+                    ))}
+                </select>
+            </FloatingLabelWrapper>
+        </div>
+    );
+}

@@ -86,6 +86,21 @@ const safelist = [
                 .flat()
         )
         .flat(),
+
+    // focus-within:border-color-tone
+    // focus-within:border-color-tone/opacity
+    // focus-within:ring-color-tone/opacity
+    ...colors
+        .map((color) =>
+            colorTones.map((tone) => [
+                `focus-within:border-${color}-${tone}`,
+                `focus-within:ring-${color}-${tone}`,
+                ...opacities.map((opacity) => [
+                    `focus-within:border-${color}-${tone}/${opacity}`,
+                    `focus-within:ring-${color}-${tone}/${opacity}`,
+                ]),
+            ]).flat()
+        ).flat()
 ];
 
 const borderRadiusClasses = [

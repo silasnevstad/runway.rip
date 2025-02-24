@@ -60,6 +60,7 @@ import {InputIconDemo} from "@/docs/_components/demos/InputDemo";
 import TextArea from "@/components/atoms/TextArea";
 import { TextAreaDemo } from "@/docs/_components/demos/TextAreaDemo";
 import StarRating from "@/components/atoms/StarRating";
+import Select from "@/components/atoms/Select";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -208,6 +209,7 @@ export const mdxComponents = {
     Loader: Loader,
     LineGraph: LineGraph,
     SearchBar: SearchBar,
+    Select: Select,
     ClientSideSearchBar: ClientSideSearchBar,
     Slider: Slider,
     StarRating: StarRating,

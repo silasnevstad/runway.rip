@@ -2,12 +2,12 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import { FaChevronRight } from "react-icons/fa6";
 import { mergeClasses } from "@/utils/styling";
 
 export default function Breadcrumb({
     sections = [],
-    delimiter = <ChevronRightIcon />,
+    delimiter = <FaChevronRight />,
     isInteractiveLast = false,
     className = "",
     ...props
@@ -45,6 +45,8 @@ export default function Breadcrumb({
         "font-medium flex items-center flex-wrap gap-1",
         className
     );
+
+    const delimiterClasses = "w-5 h-5 flex items-center opacity-40";
 
     // Local component to render a single crumb
     function BreadcrumbItem({ href, title, isLast }) {

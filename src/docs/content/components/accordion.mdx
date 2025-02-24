@@ -28,7 +28,17 @@ related:
             },
             {
                 title: 'Overview Item 2',
-                content: 'You can have multiple items open or restrict to one.'
+                content: 'You can have multiple items open or restrict to one.',
+                items: [
+                    {
+                        title: 'Nested Item 1',
+                        content: 'This is a nested item.'
+                    },
+                    {
+                        title: 'Nested Item 2',
+                        content: 'This is another nested item.'
+                    }
+                ]
             }
         ]}
     />
@@ -58,11 +68,22 @@ import Accordion from "@/components/atoms/Accordion";
     items={[
         {
             title: 'Overview Item 1',
-            content: 'This is a quick preview of the accordion in action.'
+            content: 'Content of item 1.'
         },
         {
             title: 'Overview Item 2',
-            content: 'You can have multiple items open or restrict to one.'
+            content: 'Content of item 2.',
+            // You can also nest accordions
+            items: [
+                {
+                    title: 'Nested Item 1',
+                    content: 'This is a nested item.'
+                },
+                {
+                    title: 'Nested Item 2',
+                    content: 'This is another nested item.'
+                }
+            ]
         }
     ]}
 />

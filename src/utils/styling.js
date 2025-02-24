@@ -66,3 +66,9 @@ export const POSITION_CLASSES = {
     "center-left": "top-1/2 left-0 -translate-x-1/2 -translate-y-1/2",
     center: "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
 };
+
+export const SIZE_MAP = {
+    sm: { containerPadding: "p-2", textSize: "text-sm", paddingNum: "2" },
+    md: { containerPadding: "p-3", textSize: "text-md", paddingNum: "3" },
+    lg: { containerPadding: "p-4", textSize: "text-lg", paddingNum: "4" },
+};
