@@ -53,7 +53,7 @@ export default function Header({
                 </div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center md:space-x-16">
+                <div className="hidden md:flex items-center md:space-x-10">
                     {navLinks.map((navItem, idx) => (
                         <TextLink
                             key={idx}

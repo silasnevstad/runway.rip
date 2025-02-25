@@ -6,7 +6,6 @@ const TextLink = ({
     children,
     href,
     icon = null,
-    color = "gray",
     scale = false,
     lift = false,
     fade = false,
@@ -22,7 +21,7 @@ const TextLink = ({
     const linkClasses = mergeClasses(
         baseStyles,
         getHoverClasses({ lift, scale, active }),
-        `text-${color}-600 dark:text-${color}-400`,
+        `text-gray-900 dark:text-gray-50`,
         fade && "transition-opacity opacity-50 hover:opacity-100",
         underline
             ? "group"
@@ -32,12 +31,12 @@ const TextLink = ({
 
     const iconClasses = mergeClasses(
         "w-4 h-4",
-        underline ? `text-${color}-800 dark:text-${color}-200` : `text-${color}-600 dark:text-${color}-400`
+        underline ? `text-gray-800 dark:text-gray-200` : `text-gray-600 dark:text-gray-400`
     );
 
     const underlineClasses = mergeClasses(
         `absolute w-full left-0 bottom-0`,
-        `bg-${color}-800 dark:bg-${color}-200`,
+        `bg-gray-800 dark:bg-gray-200`,
         "transform origin-left scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100",
         `absolute w-full left-0 bottom-0`,
         underlineClassName

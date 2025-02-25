@@ -13,7 +13,7 @@ export function getHoverClasses({ lift = false, scale = false, active = false })
     if (lift) classes.push("hover:-translate-y-0.5");
     if (scale) classes.push("hover:scale-105");
     if (active) {
-        classes.push("active:scale-95");
+        classes.push("active:scale-97");
     } else {
         classes.push("active:scale-100");
     }
@@ -64,7 +64,7 @@ export const COLOR_VARIANTS = {
             fadeBg: "bg-bg-500/10 dark:bg-bg-500/10",
         },
         solid: {
-            bg: "bg-bg-300 dark:bg-bg-700",
+            bg: "bg-bg-200 dark:bg-bg-700",
             text: "text-bg-900 dark:text-bg-50",
             border: "border border-bg-500 dark:border-bg-600",
             hoverBg: "hover:bg-bg-100 dark:hover:bg-bg-800",
@@ -80,7 +80,7 @@ export const COLOR_VARIANTS = {
     // Gray
     gray: {
         soft: {
-            bg: "bg-gray-400/45 dark:bg-gray-600/25",
+            bg: "bg-gray-400/25 dark:bg-gray-600/25",
             text: "text-gray-900 dark:text-gray-50",
             border: "border border-gray-500 dark:border-gray-700",
             hoverBg: "hover:bg-gray-100 dark:hover:bg-gray-500/20",
@@ -92,7 +92,7 @@ export const COLOR_VARIANTS = {
             fadeBg: "bg-gray-500/10 dark:bg-gray-500/10",
         },
         solid: {
-            bg: "bg-gray-300 dark:bg-gray-700",
+            bg: "bg-gray-200 dark:bg-gray-700",
             text: "text-gray-900 dark:text-gray-50",
             border: "border border-gray-800 dark:border-gray-600",
             hoverBg: "hover:bg-gray-100 dark:hover:bg-gray-800",

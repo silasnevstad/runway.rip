@@ -5,7 +5,7 @@ import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS} from "@/ut
 export default function Card({
     children,
     size = "md",
-    color = "bg",
+    color = "gray",
     variant = "soft",
     borderRadius = "2xl",
     shadow = false,

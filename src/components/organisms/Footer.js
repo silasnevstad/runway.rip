@@ -36,8 +36,10 @@ const Footer = () => {
                     </div>
                     <div className="flex flex-col gap-2 flex-nowrap whitespace-nowrap">
                         <p className="text-md font-semibold opacity-50">Legal</p>
-                        <TextLink href="#" className="text-sm">Privacy Policy</TextLink>
-                        <TextLink href="#" className="text-sm">Terms of Service</TextLink>
+                        <TextLink href="/policies" className="text-sm">Policies</TextLink>
+                        <TextLink href="/policies/privacy" className="text-sm">Privacy Policy</TextLink>
+                        <TextLink href="/policies/terms" className="text-sm">Terms of Service</TextLink>
+                        <TextLink href="/policies/license" className="text-sm">License</TextLink>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import Card from "@/components/atoms/Card";
 import TextLink from "@/components/atoms/TextLink";
 import Carousel from "@/components/molecules/Carousel";
 import { landingConfig, featuresConfig } from "@/config";
+import {FaCheck} from "react-icons/fa6";
 
 export default function Features() {
     const { features } = landingConfig;
@@ -64,8 +65,8 @@ export default function Features() {
                     mode="multi"
                     fadeCenter
                     sideOpacity={0.6}
-                    autoPlay={false}
-                    interval={5000}
+                    autoPlay={true}
+                    interval={7000}
                     showArrows={false}
                     showIndicators={false}
                     margin={4}
@@ -94,6 +95,7 @@ function FeatureCard({ key, feature, isActive, onClick }) {
                 w-[440px] sm:w-[440px] cursor-pointer
             `}
             onClick={onClick}
+            variant="soft"
         >
             <div className="flex items-center gap-2 mb-3">
                 <feature.icon className="text-2xl text-primary-500" />
@@ -107,7 +109,7 @@ function FeatureCard({ key, feature, isActive, onClick }) {
                 <ul className="mt-2 space-y-2">
                     {feature.features.map((f, i) => (
                         <li key={i} className="flex items-center gap-2">
-                            <CheckIcon className="text-green-500" />
+                            <FaCheck className="text-green-500" />
                             <p className="text-gray-600">{f}</p>
                         </li>
                     ))}
