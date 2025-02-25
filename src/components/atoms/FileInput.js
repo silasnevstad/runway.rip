@@ -1,14 +1,15 @@
 "use client";
 import React, { useState } from 'react';
 import { DocumentArrowUpIcon } from "@heroicons/react/24/outline";
-import { mergeClasses } from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses} from "@/utils/styling";
 
 const FileInput = ({
     text = "Choose File",
     placeholder = "No file selected",
-    border = true,
-    color = "green",
+    color = "primary",
+    variant = "solid",
     borderRadius = "lg",
+    border = true,
     icon = <DocumentArrowUpIcon />,
     className = "",
     buttonClassName = "",
@@ -30,20 +31,25 @@ const FileInput = ({
         document.getElementById('hiddenFileInput').click();
     };
 
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.bg.soft;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.lg;
+
     const buttonClasses = mergeClasses(
-        `bg-${color}-600 dark:bg-${color}-400`,
-        `text-white dark:text-gray-900 p-2 cursor-pointer flex items-center px-4 whitespace-nowrap gap-1`,
-        border ? `border-1 border-${color}-700 dark:border-${color}-500` : `border-1 border-${color}-600 dark:border-${color}-800`,
-        borderRadius && `rounded-l-${borderRadius}`,
+        colorSet.bg,
+        colorSet.text,
+        `p-2 cursor-pointer flex items-center px-4 whitespace-nowrap gap-1`,
+        border && `border-1 ${colorSet.border}`,
+        borderRadius && borderRadiusClass,
+        "rounded-r-none",
         buttonClassName
     );
 
     const inputClasses = mergeClasses(
         `flex items-center whitespace-nowrap p-2`,
         `bg-bg-100 dark:bg-bg-900`,
-        border ? `border-1 border-l-0 border-${color}-700 dark:border-${color}-500`
-            : `border-1 border-l-0 border-bg-50/50 dark:border-bg-900`,
-        borderRadius && `rounded-r-${borderRadius}`,
+        border && `border-1 ${colorSet.border}`,
+        borderRadius && borderRadiusClass,
+        "rounded-l-none",
         inputClassName
     );
 
