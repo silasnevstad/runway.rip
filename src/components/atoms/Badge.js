@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { mergeClasses, getHoverClasses } from "@/utils/styling";
+import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS, BADGE_SIZES} from "@/utils/styling";
 
 export default function Badge({
     children,
@@ -16,32 +16,17 @@ export default function Badge({
     className = "",
     ...props
 }) {
-    // Size & shape definitions
-    const sizeShapeStyles = {
-        xs: `rounded-${borderRadius} px-1.5 py-1 text-xs`,
-        sm: `rounded-${borderRadius} px-2 py-1 text-sm`,
-        md: `rounded-${borderRadius} px-3 py-1 text-base`,
-        lg: `rounded-${borderRadius} px-4 py-1.5 text-lg`,
-    };
-
-    // Color & variant definitions
-    const colorStyles = {
-        soft: `bg-${color}-100 dark:bg-${color}-600/25 text-${color}-800 dark:text-${color}-400`,
-        solid: `bg-${color}-600 text-white`,
-    };
-
-    // Border logic
-    const borderStyles = {
-        soft: `border border-${color}-600 dark:border-${color}-600`,
-        solid: `border border-${color}-600`,
-    }
+    const colorSet = COLOR_VARIANTS[color][variant];
+    const borderRadiusClass = BORDER_RADIUS[borderRadius];
 
     // Final classes
     const finalClasses = mergeClasses(
         "inline-flex items-center justify-center font-medium whitespace-nowrap",
-        sizeShapeStyles[size] || sizeShapeStyles.md,
-        colorStyles[variant] || colorStyles.soft,
-        border && (borderStyles[variant] || borderStyles.soft),
+        borderRadiusClass,
+        BADGE_SIZES[size] || BADGE_SIZES.md,
+        colorSet.bg,
+        colorSet.text,
+        border && `border ${colorSet.border}`,
         getHoverClasses({ lift, scale, active }),
         className
     );

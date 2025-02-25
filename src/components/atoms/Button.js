@@ -2,12 +2,14 @@
 import React from "react";
 import Link from "next/link";
 import Loader from "@/components/atoms/Loader";
-import { mergeClasses, getHoverClasses } from "@/utils/styling";
+import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS} from "@/utils/styling";
 
 export default function Button({
     children,
     size = "md",
     color = "primary",
+    borderColor = "gray",
+    variant = "solid",
     borderRadius = "md",
     hoverBg = true,
     scale = false,
@@ -31,19 +33,18 @@ export default function Button({
         lg: `px-5 py-3 text-lg`,
     };
 
-    // Color handling & hover background
-    const colorClass = mergeClasses(
-        `bg-${color}-500 dark:bg-${color}-600 dark:hover:bg-primary-700 text-white`,
-        hoverBg && `hover:bg-${color}-600 dark:hover:bg-${color}-700`
-    );
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.primary.solid;
+    const borderSet = COLOR_VARIANTS[borderColor][variant] || COLOR_VARIANTS.gray.solid;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.lg;
 
-    // Merge all classes
     const finalClasses = mergeClasses(
         "inline-flex items-center justify-center font-medium transition-colors gap-2",
         sizeStyles[size] || sizeStyles.md,
-        colorClass,
-        border && `border border-bg-700 dark:border-bg-500`,
-        borderRadius && `rounded-${borderRadius}`,
+        colorSet.bg,
+        colorSet.text,
+        hoverBg && colorSet.hoverBg,
+        border && `border ${borderSet.border}`,
+        borderRadius && borderRadiusClass,
         shadow && "shadow-md",
         getHoverClasses({ lift, scale, active }),
         disabled || loading ? "cursor-not-allowed opacity-50" : "cursor-pointer",

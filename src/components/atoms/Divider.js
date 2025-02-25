@@ -1,7 +1,8 @@
-import { mergeClasses } from "@/utils/styling";
+import {COLOR_VARIANTS, mergeClasses, MX_MARGIN_SIZES, MY_MARGIN_SIZES} from "@/utils/styling";
 
 const Divider = ({
     color = 'gray',
+    variant = 'solid',
     text = '',
     opacity = 30,
     margin = 2,
@@ -12,20 +13,23 @@ const Divider = ({
     className = '',
     ...props
 }) => {
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.solid;
+
     const baseStyle = !vertical
         ? `w-${height} h-${width}`
         : `w-${width} h-${height}`;
 
     const dividerClass = mergeClasses(
         baseStyle,
-        `bg-${color}-500 dark:bg-${color}-800 opacity-${opacity}`,
-        `${vertical ? `mx-${margin}` : `my-${margin}`}`,
+        colorSet.bg,
+        `opacity-${opacity}`,
+        vertical ? MX_MARGIN_SIZES[margin] : MY_MARGIN_SIZES[margin],
         className
     );
 
     const outerContainerClass = mergeClasses(
         `flex ${vertical ? 'h-full' : 'w-full'} items-center`,
-        `${vertical ? `mx-${margin}` : `my-${margin}`}`,
+        vertical ? MX_MARGIN_SIZES[margin] : MY_MARGIN_SIZES[margin],
     );
 
     return (

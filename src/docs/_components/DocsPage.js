@@ -30,7 +30,7 @@ export default function DocsPage({
                 )}
 
                 {/* The rendered MDX content */}
-                <div className="prose dark:prose-invert w-full">{content}</div>
+                <div className="prose dark:prose-invert w-full pb-96">{content}</div>
             </article>
 
             {/* RIGHT SIDEBAR (large screens only) */}

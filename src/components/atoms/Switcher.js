@@ -8,7 +8,8 @@ export default function Switcher({
     options = [],           // { value, name, Icon?, image?, tooltip? }[]
     selected,
     onChange,
-    color = "gray",
+    color = "bg",
+    variant = "solid",
     size = "md",
     borderRadius = "xl",
     vertical = false,
@@ -50,30 +51,24 @@ export default function Switcher({
         lg: `p-2 text-lg gap-2`,
     }
 
-    const {
-        bgClasses,
-        highlightBgClasses,
-        borderClasses,
-        textClasses,
-        hoverClasses
-    } = COLOR_VARIANTS[color];
-    const borderRadiusClass = BORDER_RADIUS[borderRadius];
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.soft;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.xl;
 
     // Container classes
     const containerClasses = mergeClasses(
         "relative flex",
         vertical ? "flex-col" : "flex-row",
-        bgClasses,
+        colorSet.bg,
         sizeStyles[size] || sizeStyles.md,
         borderRadiusClass,
-        border && `border ${borderClasses}`,
+        border && `border ${colorSet.border}`,
         className
     );
 
     // Sliding indicator classes (when animate = true)
     const indicatorClasses = mergeClasses(
         "absolute z-0 transition-all duration-300 ease-in-out",
-        highlightBgClasses,
+        colorSet.activeBg,
         borderRadiusClass,
         vertical && "w-full",
         buttonShadow && "shadow-md"
@@ -86,20 +81,20 @@ export default function Switcher({
         borderRadiusClass,
         vertical ? "justify-center w-full" : "justify-start",
         buttonBorder && (isSelected
-            ? `border ${borderClasses}`
+            ? `border ${colorSet.border}`
             : "border border-transparent"),
-        textClasses,
+        isSelected ? colorSet.activeText : colorSet.text,
         isSelected ? "opacity-100" : "opacity-90",
         hover ? "hover:opacity-100" : "",
-        isSelected ? `${highlightBgClasses}` : `bg-transparent`,
-        hover && !isSelected ? `${hoverClasses}` : "",
+        isSelected ? `${colorSet.activeBg}` : `bg-transparent`,
+        hover && !isSelected ? `${colorSet.hoverBg} ${colorSet.hoverBorder} ${colorSet.hoverText}` : "",
         buttonClassName
     );
 
     // Icon classes
     const iconClasses = (isSelected) => mergeClasses(
         "w-4 h-4",
-        textClasses,
+        colorSet.text,
         isSelected ? `text-opacity-100` : `text-opacity-90`,
         `group-hover:text-opacity-100`,
     );

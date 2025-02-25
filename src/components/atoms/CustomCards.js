@@ -1,7 +1,7 @@
 "use client";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Card from "@/components/atoms/Card";
-import { mergeClasses } from "@/utils/styling";
+import {BORDER_RADIUS, mergeClasses} from "@/utils/styling";
 
 export const TerminalCard = ({
     children,
@@ -90,9 +90,11 @@ export const StandoutCard = ({
     innerClassName = "",
     ...props
 }) => {
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS["2xl"];
+
     const outerContainerStyles = mergeClasses(
         `relative shadow-md p-1.5`,
-        borderRadius &&`rounded-${borderRadius}`,
+        borderRadiusClass,
         `bg-gray-200/50 dark:bg-gray-800/20`,
         `border-[0.1px] border-gray-200/50 dark:border-gray-800/15`,
         `dark:inset-shadow-sm overflow-hidden shadow-sm`,

@@ -33,7 +33,8 @@ export default function ThemeSwitcher({
                 buttonBorder
                 size="sm"
                 borderRadius="full"
-                color="gray"
+                color="bg"
+                variant="soft"
             />
         </div>
     );

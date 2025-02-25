@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { mergeClasses, getHoverClasses } from "@/utils/styling";
+import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS} from "@/utils/styling";
 
 const Checkbox = ({
     name,
@@ -9,6 +9,7 @@ const Checkbox = ({
     labelPosition = "right", // "left" or "right"
     size = "md",
     color = "primary",
+    variant = "solid",
     borderRadius = "sm",
     border = false,
     lift = false,
@@ -26,6 +27,9 @@ const Checkbox = ({
         lg: "h-5 w-5",
     }
 
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.primary.soft;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.sm;
+
     // Container styles
     const containerClasses = mergeClasses(
         "flex items-center justify-center",
@@ -38,9 +42,10 @@ const Checkbox = ({
     const inputClasses = mergeClasses(
         "checkbox",
         sizeStyles[size] || sizeStyles.md,
-        `text-${color}-500`,
-        border && `border border-${color}-800 dark:border-${color}-200`,
-        borderRadius && `rounded-${borderRadius}`,
+        colorSet.bg,
+        colorSet.text,
+        border && `border ${colorSet.border}`,
+        borderRadius && borderRadiusClass,
         getHoverClasses({ lift, scale, active }),
         className
     );

@@ -1,13 +1,15 @@
 "use client";
 import React from 'react';
-import { mergeClasses, getHoverClasses } from "@/utils/styling";
+import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS} from "@/utils/styling";
 
 export default function Card({
     children,
     size = "md",
     color = "bg",
+    variant = "soft",
     borderRadius = "2xl",
     shadow = false,
+    hoverShadow = false,
     hoverBg = false,
     lift = false,
     scale = false,
@@ -26,17 +28,21 @@ export default function Card({
         lg: "p-8",
     }
 
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.bg.soft;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.xl;
+
     // Merge all classes
     const finalClasses = mergeClasses(
-        `relative bg-${color}-50 dark:bg-${color}-800`,
-        hoverBg && `hover:bg-${color}-100 dark:hover:bg-${color}-900`,
+        colorSet.bg,
+        hoverBg && colorSet.hoverBg,
         sizeStyles[size] || sizeStyles.md,
-        borderRadius && `rounded-${borderRadius}`,
-        border && `border border-${color}-300 dark:border-${color}-700/40`,
-        shadow && "hover:shadow-md",
-        outline && "hover:border-black hover:bg-bg-0 dark:hover:bg-bg-800 dark:hover:border-gray-700",
+        borderRadiusClass,
+        border && `border ${colorSet.border}`,
+        shadow && "shadow-md",
+        hoverShadow && "hover:shadow-md",
+        outline && "hover:border-black hover:bg-bg-0 dark:hover:bg-bg-900 dark:hover:border-gray-700",
         href && "cursor-pointer",
-        onClick && "cursor-pointer",
+        onClick | href && "cursor-pointer active:scale-95",
         getHoverClasses({ lift, scale, active }),
         className
     );

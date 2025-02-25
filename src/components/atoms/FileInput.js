@@ -4,15 +4,15 @@ import { DocumentArrowUpIcon } from "@heroicons/react/24/outline";
 import { mergeClasses } from "@/utils/styling";
 
 const FileInput = ({
-    text = 'Choose File',
-    placeholder = 'No file selected',
+    text = "Choose File",
+    placeholder = "No file selected",
     border = true,
-    color = 'green',
-    borderRadius = 'lg',
+    color = "green",
+    borderRadius = "lg",
     icon = <DocumentArrowUpIcon />,
-    className = '',
-    buttonClassName = '',
-    inputClassName = '',
+    className = "",
+    buttonClassName = "",
+    inputClassName = "",
     onFileChange,
     ...props
 }) => {

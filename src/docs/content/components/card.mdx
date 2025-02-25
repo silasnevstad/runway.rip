@@ -21,20 +21,20 @@ related:
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <Card>
-        <h2>Card Title</h2>
+        <h2 className="font-semibold text-lg">Card Title</h2>
         <p>This is a basic card with default settings.</p>
     </Card>
-    <Card outline>
-        <h2>Outlined Card</h2>
-        <p>This card has an outline effect on hover.</p>
+    <Card color="orange">
+        <h2 className="font-semibold text-lg">Colored Card</h2>
+        <p>This card has a soft orange style.</p>
     </Card>
-    <Card scale hoverBg className="bg-bg-200 dark:bg-bg-800">
-        <h2>Scalable Card</h2>
+    <Card scale>
+        <h2 className="font-semibold text-lg">Scalable Card</h2>
         <p>This card scales up on hover.</p>
     </Card>
-    <Card hoverBg={false} className="bg-primary-300/50 dark:bg-primary-600/20 text-blue-800 dark:text-gray-200" lift>
-        <h2>Custom Styled Card</h2>
-        <p>This card has custom styles.</p>
+    <Card color="primary" variant="soft" className="text-primary-500" lift>
+        <h2 className="font-semibold text-lg">Custom Styled Card</h2>
+        <p>This card has custom styles (color, variant, hover...)</p>
     </Card>
 </div>
 
@@ -78,14 +78,16 @@ import Card from "@/components/atoms/Card";
 | children     | ReactNode            | -           | The content of the card.                                        |
 | size         | "sm" \| "md" \| "lg" | `"md"`      | The size of the card.                                           |
 | color        | string               | `"primary"` | The base color (use [tailwind.config](/docs/tutorials/config)). |
+| variant      | "soft" \| "solid"    | `"solid"`   | The variant of the card.                                        |
 | borderRadius | string               | `"2xl"`     | The border radius of the card.                                  |
+| shadow       | boolean              | `false`     | If true, adds a subtle box-shadow.                              |
+| hoverShadow  | boolean              | `false`     | If true, applies a hover shadow.                                |
 | hoverBg      | boolean              | `false`     | If true, applies a hover background color.                      |
 | scale        | boolean              | `false`     | If true, gently scales up on hover.                             |
 | lift         | boolean              | `false`     | If true, lifts on hover.                                        |
 | active       | boolean              | `false`     | If true, the card has an active press-down scale effect.        |
 | outline      | boolean              | `false`     | If true, adds an outline effect on hover.                       |
 | border       | boolean              | `false`     | If true, adds a border.                                         |
-| shadow       | boolean              | `false`     | If true, adds a subtle box-shadow.                              |
 | href         | string               | `""`        | The URL to navigate to when the card is clicked.                |
 | onClick      | function             | -           | The click handler for the card.                                 |
 | className    | string               | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
@@ -121,66 +123,113 @@ import Card from "@/components/atoms/Card";
 
 <br />
 
-### Card with Hover Outline Effect
+### Card with Hover Effects
+You can add and combine various hover effects using the `hoverBg`, `hoverShadow` `scale`, `lift`, and `outline` props.
+You can also use `active` to enable the press-down scale effect.
+
 <PreviewCode preview={
-    <Card outline>
-        <h2>Outlined Card</h2>
-        <p>This card has an outline effect on hover.</p>
-    </Card>
+    <div className="flexl flex-col space-y-5 items-center">
+        <Card hoverBg hoverShadow>
+            <h2>Card with Background and Shadow</h2>
+            <p>This card changes background color on hover.</p>
+        </Card>
+
+        <Card scale>
+            <h2>Card with Scale Effect</h2>
+            <p>This card scales up on hover.</p>
+        </Card>
+
+        <Card lift hoverShadow>
+            <h2>Card with Lift + Shadow Effect</h2>
+            <p>This card lifts on hover.</p>
+        </Card>
+
+        <Card outline>
+            <h2>Card with Outline Effect</h2>
+            <p>This card has an outline effect on hover.</p>
+        </Card>
+
+        <Card scale active>
+            <h2>Card with Scale and Active Effect</h2>
+            <p>This card scales up on hover and has a press-down effect.</p>
+        </Card>
+    </div>
 }>
 ```javascript
+<Card hoverBg>
+    <h2>Card with Hover Background</h2>
+    <p>This card changes background color on hover.</p>
+</Card>
+
+<Card scale>
+    <h2>Card with Scale Effect</h2>
+    <p>This card scales up on hover.</p>
+</Card>
+
+<Card lift>
+    <h2>Card with Lift Effect</h2>
+    <p>This card lifts on hover.</p>
+</Card>
+
 <Card outline>
-    <h2>Outlined Card</h2>
+    <h2>Card with Outline Effect</h2>
     <p>This card has an outline effect on hover.</p>
 </Card>
-```
-</PreviewCode>
 
-<br />
-
-### Card with Lift and Scale Effects
-Use `lift` and `scale` props to add hover effects. You can also use `active` to enable the press-down scale effect.
-
-<PreviewCode preview={
-    <Card lift scale active>
-        <h2>Card with Lift and Scale</h2>
-        <p>This card lifts and scales on hover.</p>
-    </Card>
-}>
-```javascript
-<Card lift scale active>
-    <h2>Card with Lift and Scale</h2>
-    <p>This card lifts and scales on hover.</p>
-</Card>
-```
-</PreviewCode>
-
-<br />
-
-### Card with Custom Styling
-Add your own styling with the `className` prop for custom colors or advanced styling.
-
-<PreviewCode preview={
-    <Card className="bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200" border={false}>
-        <h2>Custom Styled Card</h2>
-        <p>This card has custom background and text colors.</p>
-    </Card>
-}>
-```javascript
-<Card
-    className="bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200"
-    border={false}
->
-  <h2>Custom Styled Card</h2>
-  <p>This card has custom background and text colors.</p>
+<Card scale active>
+    <h2>Card with Scale and Active Effect</h2>
+    <p>This card scales up on hover and has a press-down effect.</p>
 </Card>
 ```
 </PreviewCode>
 
 <Tip>
-    Experiment with different combinations of props to create cards that fit your design needs.
+    The press-down effect will be enabled in `onClick` or `href` is provided. You can use `active` to enable it manually or disable it.
 </Tip>
 
-<br/>
-<br/>
-<br/>
+<br />
+
+<br />
+
+### Card with Styling
+Use the `color`, `variant`, `borderRadius`, `border`, and `shadow` props to customize the card's appearance.
+
+<PreviewCode preview={
+    <div className="flexl flex-col space-y-5 items-center">
+        <Card color="orange" variant="soft">
+            <h2>Soft Orange Card</h2>
+            <p>This card has a color prop.</p>
+        </Card>
+
+        <Card color="primary" variant="solid" lift>
+            <h2>Custom Styled Card</h2>
+            <p>This card has custom styles.</p>
+        </Card>
+
+        <Card border shadow>
+            <h2>Card with Border and Shadow</h2>
+            <p>This card has a border and shadow.</p>
+        </Card>
+    </div>
+}>
+```javascript
+<Card color="orange" variant="soft">
+    <h2>Soft Orange Card</h2>
+    <p>This card has a color prop.</p>
+</Card>
+
+<Card color="primary" variant="solid" lift>
+    <h2>Custom Styled Card</h2>
+    <p>This card has custom styles.</p>
+</Card>
+
+<Card border shadow>
+    <h2>Card with Border and Shadow</h2>
+    <p>This card has a border and shadow.</p>
+</Card>
+```
+</PreviewCode>
+
+<Tip>
+    Experiment with different combinations of props to create cards that fit your design needs. Or if you want to skip the styling, check out the [`CustomCards`](/docs/components/custom-cards) page for pre-styled custom cards.
+</Tip>

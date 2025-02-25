@@ -1,52 +1,38 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses} from "@/utils/styling";
+import {AVATAR_SIZES, BORDER_RADIUS, COLOR_VARIANTS, mergeClasses} from "@/utils/styling";
 
 export default function Avatar({
     src,
     alt = "",
     letter = "",
     color = "gray",
+    variant = "solid",
     borderRadius = "full",
     size = "md",
     border = true,
     status,
     statusColor = "green",
-    ringColor = "gray",
+    showRing = true,
     onClick,
     className = "",
     ...props
 }) {
     const [imgError, setImgError] = useState(false);
 
-    // Size definitions
-    const sizeStyles = {
-        xs: "w-8 h-8 text-sm",
-        sm: "w-10 h-10 text-base",
-        md: "w-12 h-12 text-base",
-        lg: "w-16 h-16 text-lg",
-        xl: "w-20 h-20 text-xl",
-    };
-
-    const finalSize = sizeStyles[size] || sizeStyles.md;
-    const {
-        bgClasses,
-        borderClasses,
-        textClasses,
-    } = COLOR_VARIANTS[color];
-    const ringClasses = COLOR_VARIANTS[ringColor].activeBorderClasses;
-    const statusColorClasses = COLOR_VARIANTS[statusColor].activeBgClasses;
-    const borderRadiusClass = BORDER_RADIUS[borderRadius];
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.soft;
+    const statusColorSet = COLOR_VARIANTS[statusColor].solid || COLOR_VARIANTS.green.solid;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.full;
 
     const containerClasses = mergeClasses(
         "relative inline-flex justify-center items-center",
-        finalSize,
-        borderRadius && borderRadiusClass,
-        border && `border-2 ${borderClasses}`,
-        status && ringColor && `border-2 ${ringClasses}`,
-        bgClasses,
-        textClasses,
+        AVATAR_SIZES[size] || AVATAR_SIZES.md,
+        border && `border-2 ${colorSet.border}`,
+        status && showRing && `border-2 ${statusColorSet.activeBorder}`,
+        colorSet.bg,
+        colorSet.text,
+        borderRadiusClass,
         onClick && "cursor-pointer active:scale-95",
         className
     );
@@ -74,7 +60,7 @@ export default function Avatar({
                 <span
                     className={mergeClasses(
                         "z-50 absolute w-3 h-3 rounded-full ring-2 ring-white dark:ring-gray-800 bottom-0 right-0 transform translate-x-1/4 translate-y-1/4",
-                        statusColorClasses
+                        statusColorSet.bg
                     )}
                 />
             )}

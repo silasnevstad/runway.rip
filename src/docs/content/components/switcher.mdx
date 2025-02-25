@@ -204,11 +204,19 @@ const [selected, setSelected] = useState("option1");
         <SwitchDemo
             options={[
                 { value: "option1", name: "Medium" },
-                { value: "option2", name: "Tooltip", tooltip: "Tooltip" },
-                { value: "option3", name: "Icons", Icon: <WrenchIcon /> },
+                { value: "option2", name: "Orange" },
             ]}
             borderRadius="xl"
             color="orange"
+        />
+        <SwitchDemo
+            options={[
+                { value: "option1", name: "Medium" },
+                { value: "option2", name: "Purple" },
+                { value: "option3", name: "Icons", Icon: <WrenchIcon /> },
+            ]}
+            borderRadius="xl"
+            color="purple"
         />
         <SwitchDemo
             options={[
@@ -217,7 +225,7 @@ const [selected, setSelected] = useState("option1");
                 { value: "option3", name: "Tooltips", tooltip: "More info" },
             ]}
             size="lg"
-            color="green"
+            color="primary"
             borderRadius="xl"
             buttonBorder
             border
@@ -232,33 +240,38 @@ const [selected, setSelected] = useState("option1");
                 { value: "option2", name: "Pill" },
                 { value: "option3", name: "Border" },
             ]}
-            selected={selected}
-            onChange={setSelected}
             size="sm"
             borderRadius="full"
             buttonBorder
         />
+
         <Switch
             options={[
                 { value: "option1", name: "Medium" },
-                { value: "option2", name: "Tooltip", tooltip: "Tooltip" },
-                { value: "option3", name: "Icons", Icon: <WrenchIcon /> },
+                { value: "option2", name: "Orange" },
             ]}
-            selected={selected}
-            onChange={setSelected}
             borderRadius="xl"
             color="orange"
         />
+
+        <Switch
+            options={[
+                { value: "option1", name: "Medium" },
+                { value: "option2", name: "Purple" },
+                { value: "option3", name: "Icons", Icon: <WrenchIcon /> },
+            ]}
+            borderRadius="xl"
+            color="purple"
+        />
+
         <Switch
             options={[
                 { value: "option1", name: "Large" },
                 { value: "option2", name: "Green" },
                 { value: "option3", name: "Tooltips", tooltip: "More info" },
             ]}
-            selected={selected}
-            onChange={setSelected}
             size="lg"
-            color="green"
+            color="primary"
             borderRadius="xl"
             buttonBorder
             border

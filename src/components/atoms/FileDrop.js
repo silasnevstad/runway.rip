@@ -2,12 +2,13 @@
 import React, { useState, useRef, useCallback } from "react";
 import { DocumentArrowUpIcon } from "@heroicons/react/24/outline";
 import File from "@/components/atoms/File";
-import { mergeClasses, renderIcon } from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, getTextColorClass, mergeClasses, renderIcon} from "@/utils/styling";
 
 const FileDrop = ({
     text = "Drop files here, or click to select",
     subtext = "",
     color = "gray",
+    variant = "soft",
     activeColor = "primary",
     icon = <DocumentArrowUpIcon />,
     borderRadius = "lg",
@@ -88,20 +89,25 @@ const FileDrop = ({
     }, [onDrop]);
 
     // Styling
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.bg.soft;
+    const activeColorSet = COLOR_VARIANTS[activeColor][variant] || COLOR_VARIANTS.primary.soft;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.lg;
+
     const containerClasses = mergeClasses(
         "flex flex-col cursor-pointer",
-        borderRadius && `rounded-${borderRadius}`,
+        borderRadius && borderRadiusClass,
         files.length === 0 ? "p-8" : "p-4",
         borderClass,
         dragOver
-            ? `border-${activeColor}-500/50 bg-${activeColor}-100/5`
-            : `border-${color}-700/50 bg-${color}-900/5 dark:border-${color}-500/50 dark:bg-${color}-50/5`,
+            ? `${activeColorSet.border} ${activeColorSet.bg}`
+            : `${colorSet.border} ${colorSet.bg}`,
+        "bg-opacity-50 dark:bg-opacity-50",
         className
     );
 
     const iconClasses = mergeClasses(
         "h-12 w-12 mx-auto mb-3",
-        dragOver ? `text-${activeColor}-500` : `text-${color}-500`
+        dragOver ? getTextColorClass(activeColor) : getTextColorClass(color)
     );
 
     return (
@@ -132,11 +138,11 @@ const FileDrop = ({
                         null,
                         iconClasses
                     )}
-                    <p className={`text-center text-md text-${color}-600 dark:text-${color}-400`}>
+                    <p className={`text-center text-md ${colorSet.text}`}>
                         {text}
                     </p>
                     {subtext && (
-                        <p className={`text-center text-sm text-${color}-400 dark:text-${color}-600`}>
+                        <p className={`text-center text-sm ${colorSet.text}`}>
                             {subtext}
                         </p>
                     )}
@@ -161,8 +167,8 @@ const FileDrop = ({
                         <button
                             type="button"
                             className={
-                                `text-sm text-${color}-500 dark:text-${color}-600 
-                                hover:underline hover:text-${color}-800 dark:hover:text-${color}-300`
+                                `text-sm ${colorSet.text} 
+                                 hover:underline ${activeColorSet.hoverText}`
                             }
                             onClick={(e) => {
                                 e.stopPropagation();

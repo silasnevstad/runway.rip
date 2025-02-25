@@ -22,8 +22,8 @@ related:
 <div className="flex items-center justify-center">
     <div className="flex items-center flex-col gap-4 mb-8 w-52">
         <Button size={"sm"}>Small Button</Button>
-        <Button color={"red"} lift>Red with Lift Hover</Button>
-        <Button color={"green"} scale>Green Button</Button>
+        <Button color={"red"} lift>Red with Hover</Button>
+        <Button color={"green"} variant={"soft"} scale>Soft Green Button</Button>
         <Button loading>Loading</Button>
     </div>
 </div>
@@ -76,8 +76,8 @@ import Button from "@/components/atoms/Button";
 | shadow       | boolean              | `false`     | If true, adds a subtle box-shadow.                                                                                              |
 | loading      | boolean              | `false`     | If true, shows a spinner instead of children.                                                                                   |
 | disabled     | boolean              | `false`     | If true, disables the button.                                                                                                   |
-| icon         | ReactNode            | -           | If provided, the button will render an icon.                                                                                     |
-| iconSrc     | string               | -           | If provided, the button will render an image as an icon.                                                                        |
+| icon         | ReactNode            | -           | If provided, the button will render an icon.                                                                                    |
+| iconSrc      | string               | -           | If provided, the button will render an image as an icon.                                                                        |
 | href         | string               | `""`        | If provided, the button becomes a `Link` instead of a `button`.                                                                 |
 | onClick      | function             | -           | The click handler for the button.                                                                                               |
 | className    | string               | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes.                                                                 |
@@ -101,16 +101,16 @@ You can use the `Button` component like this:
 
 <PreviewCode preview={
     <div className="flex items-center flex-col gap-4">
-        <Button size={"sm"} border>Small + Border</Button>
+        <Button size={"sm"} variant={"soft"} border>Small + Soft + Border</Button>
         <Button color={"red"} lift>Red + Lift Hover</Button>
         <Button size={"lg"} color={"blue"} scale>Large + Blue</Button>
-        <Button color={"green"} borderRadius={"2xl"}>Green + Rounded</Button>
+        <Button color={"green"} variant={"soft"} borderRadius={"2xl"}>Green + Soft + Rounded</Button>
     </div>
 }>
     ```javascript
     <div className="flex items-center flex-col gap-4">
-        <Button size="sm" border>
-            Small + Border
+        <Button size="sm" variant="soft" border>
+            Small + Soft + Border
         </Button>
         <Button color="red" lift>
             Red + Lift Hover
@@ -118,8 +118,8 @@ You can use the `Button` component like this:
         <Button size="lg" color="blue" scale>
             Large + Blue + Scale Hover
         </Button>
-        <Button color="green" borderRadius="2xl">
-            Green + Rounded
+        <Button color="green" variant="soft" borderRadius="2xl">
+            Green + Soft + Rounded
         </Button>
     </div>
     ```

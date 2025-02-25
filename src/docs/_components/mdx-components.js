@@ -106,7 +106,7 @@ export const mdxComponents = {
         </div>
     ),
     Callout: ({children}) => (
-        <div className="flex items-start gap-2 text-[15px] bg-yellow-500/20 rounded-lg border-l-4 rounded-l-none border-yellow-500 p-2 my-4">
+        <div className="flex items-start gap-2 text-[15px] bg-orange-500/20 rounded-lg border-l-4 rounded-l-none border-orange-500 p-2 my-4">
             <SparklesIcon className="w-6 h-6 min-w-6 text-yellow-500 inline-block mt-2" />
             {children}
         </div>

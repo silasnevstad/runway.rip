@@ -10,7 +10,7 @@ import {
     DocumentArrowUpIcon,
     XMarkIcon
 } from "@heroicons/react/24/outline";
-import { mergeClasses } from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, getTextColorClass, mergeClasses, renderIcon} from "@/utils/styling";
 
 const getFileExtension = (filename) => {
     const parts = filename.toLowerCase().split(".");
@@ -26,7 +26,7 @@ const getFileIcon = (extension) => {
             return <DocumentTextIcon />;
         case "xls":
         case "xlsx":
-            return <DocumentArrowUpIcon />;
+            return <DocumentTextIcon />;
         case "ppt":
         case "pptx":
             return <PresentationChartBarIcon />;
@@ -64,10 +64,11 @@ const File = ({
     name,
     onRemove,
     showRemoveButton = false,
-    color = "bg",
-    iconBg = "primary",
+    color = "gray",
+    variant = "solid",
+    iconColor = "green",
     borderRadius = "lg",
-    border = true,
+    border = false,
     borderColor = "gray",
     showFileType = true,
     showFileSize = true,
@@ -79,13 +80,22 @@ const File = ({
     const extension = getFileExtension(fileName);
     const icon = getFileIcon(extension);
 
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.bg.soft;
+    const iconColorSet = COLOR_VARIANTS[iconColor][variant] || COLOR_VARIANTS.primary.soft;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.lg;
+
     const containerClasses = mergeClasses(
         "group relative flex items-center gap-2 p-2",
-        borderRadius && `rounded-${borderRadius}`,
-        color && `bg-${color}-100 dark:bg-${color}-800`,
-        border && `border border-${borderColor}-600 dark:border-${borderColor}-700`,
+        borderRadius && borderRadiusClass,
+        colorSet.bg,
+        border && `border ${colorSet.border}`,
         className,
-    )
+    );
+
+    const iconClasses = mergeClasses(
+        "p-2 w-10 h-10 rounded-lg text-xl text-white",
+        getTextColorClass(iconColor),
+    );
 
     return (
         <article
@@ -99,7 +109,7 @@ const File = ({
                     className={
                         `hidden group-hover:flex absolute -top-2.5 -right-2.5  
                         text-gray-500 hover:text-gray-700 dark:hover:text-gray-300
-                        bg-${color}-100 dark:bg-${color}-700 rounded-full p-0.5`
+                        ${colorSet.bg} rounded-full p-0.5`
                     }
                     onClick={(e) => {
                         e.stopPropagation();
@@ -112,10 +122,10 @@ const File = ({
 
             {/* Icon with background */}
             <div
-                className={`flex items-center justify-center w-10 h-10 rounded-lg text-xl bg-${iconBg}-500/40 dark:bg-${iconBg}-500/50`}
+                className={`flex items-center rounded-lg ${iconColorSet.bg}`}
                 title={extension}
             >
-                {icon}
+                {renderIcon(icon, null, "p-2 w-10 h-10 rounded-lg text-xl text-white")}
             </div>
 
             {/* File Name & Size */}
