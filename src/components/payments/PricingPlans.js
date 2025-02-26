@@ -8,7 +8,7 @@ import Switcher from "@/components/atoms/Switcher";
 export default function PricingPlans() {
     const { plans } = pricingConfig;
 
-    // We'll let the user toggle "monthly" vs. "yearly". Default "monthly".
+    // Let the user toggle monthly vs. yearly (default monthly)
     // If a plan doesn't have "monthly", it uses the first one in intervals.
     const [activeInterval, setActiveInterval] = useState("monthly");
 

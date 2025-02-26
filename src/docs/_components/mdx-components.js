@@ -70,6 +70,9 @@ import Footer from "@/components/organisms/Footer";
 import Hero from "@/components/landing/Hero";
 import AccountCard from "@/components/auth/AccountCard";
 import WithWithout from "@/components/landing/WithWithout";
+import FeaturesGrid from "@/components/landing/FeaturesGrid";
+import FeaturesCarousel from "@/components/landing/FeaturesCarousel";
+import Pricing from "@/components/landing/Pricing";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -186,7 +189,10 @@ export const mdxComponents = {
     // Sections
     Header: Header,
     Hero: Hero,
+    FeaturesCarousel: FeaturesCarousel,
+    FeaturesGrid: FeaturesGrid,
     WithWithout: WithWithout,
+    Pricing: Pricing,
     Footer: Footer,
 
     // Auth

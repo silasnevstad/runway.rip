@@ -10,9 +10,9 @@ export function mergeClasses(...classLists) {
 
 // getHoverClasses returns hover, active, and lift/scale classes based on the provided options.
 export function getHoverClasses({ lift = false, scale = false, active = false }) {
-    const classes = ["transition-transform duration-200 ease-in-out"];
+    const classes = ["transition-transform duration-200 cubic-bezier-[0.4,0,0.2,1]"];
     if (lift) classes.push("hover:-translate-y-0.5");
-    if (scale) classes.push("hover:scale-[1.1]");
+    if (scale) classes.push("hover:scale-[1.03]");
     if (active) {
         classes.push("active:scale-[0.97]");
     } else {

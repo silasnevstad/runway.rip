@@ -1,14 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { FaCheck } from "react-icons/fa6";
 import Image from "next/image";
 import Card from "@/components/atoms/Card";
 import TextLink from "@/components/atoms/TextLink";
 import Carousel from "@/components/molecules/Carousel";
-import { getTextColorClass } from "@/utils/styling";
 import { landingConfig, featuresConfig } from "@/config";
+import {getTextColorClass} from "@/utils/styling";
 
-export default function FeaturesCarousel({
+
+export default function MyFeaturesCarousel({
     title = "Features",
     subtitle = landingConfig.features.title,
     description = landingConfig.features.subtitle,
@@ -23,6 +24,11 @@ export default function FeaturesCarousel({
     highlightLastFeature = true
 }) {
     const [selectedFeature, setSelectedFeature] = useState(0);
+    const currentTime = new Date()
+    const hours = currentTime.getHours()
+    const ampm = hours >= 12 ? 'PM' : 'AM'
+    const hours12 = `${hours % 12 || 12}`.padStart(2, '0')
+    const minutes = currentTime.getMinutes()
 
     return (
         <section
@@ -32,6 +38,9 @@ export default function FeaturesCarousel({
             <div
                 className="flex flex-col items-center w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6 max-w-prose"
             >
+                <p className="text-lg font-mono text-orange-500 opacity-90 font-normal mb-2">
+                    const launchTime = {hours12}:{minutes + 6} {ampm}
+                </p>
                 {title && (
                     <p className={`text-md font-extrabold  text-center mb-2 ${getTextColorClass(titleColor)}`}>
                         {title}
@@ -55,7 +64,7 @@ export default function FeaturesCarousel({
                     return (
                         <div
                             key={feat.title}
-                            className={`cursor-pointer transform transition-transform duration-200 ease-in-out px-1
+                            className={`cursor-pointer transform transition-transform duration-200 ease-in-out px-2 py-3 rounded-lg
                                  ${isActive ? "scale-105 text-primary-500 dark:text-primary-400" : "text-gray-600 scale-100"}`}
                             onClick={() => setSelectedFeature(index)}
                         >
@@ -101,16 +110,16 @@ export default function FeaturesCarousel({
 }
 
 function FeatureCard({
-    key,
-    feature,
-    isActive,
-    cardColor,
-    cardVariant,
-    cardBorderRadius,
-    cardBorder,
-    highlightLastFeature,
-    onClick,
-}) {
+                         key,
+                         feature,
+                         isActive,
+                         cardColor,
+                         cardVariant,
+                         cardBorderRadius,
+                         cardBorder,
+                         highlightLastFeature,
+                         onClick,
+                     }) {
     return (
         <Card
             key={key}

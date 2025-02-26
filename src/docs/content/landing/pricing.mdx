@@ -1,0 +1,61 @@
+---
+title: "Pricing"
+description: "A pricing component to showcase your product's pricing plans"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "PricingPlans"
+    href: "/docs/components/pricing-plans"
+  - title: "PricingPlanCard"
+    href: "/docs/components/pricing-plan-card"
+---
+
+<div id="overview" />
+
+<br />
+
+The `Pricing` component is a way to showcase your product's pricing plans and allow users to compare and choose the best plan for their needs.
+
+<Callout>
+    It uses [`PricingPlans`](/docs/components/pricing-plans) and [`PricingPlanCard`](/docs/components/pricing-plan-card) components.
+</Callout>
+
+<Info>
+    The `Pricing` component relies on [`pricingConfig`](/docs/tutorials/config) for its data.
+</Info>
+
+<br />
+<br />
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import Pricing from '@/components/landing/Pricing';
+
+<Pricing />
+```
+
+<br />
+<br />
+<br />
+<Divider />
+
+<div id="props" />
+
+## Props
+| Name             | Type    | Default  | Description                                                                                                                                                                                                                                 |
+|------------------|---------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| title            | string  | `""`     | The title of the component.                                                                                                                                                                                                                 |
+| subtitle         | string  | `""`     | The subtitle of the component.                                                                                                                                                                                                              |
+
+That's it, the rest is pulled from [`pricingConfig`](/docs/tutorials/config).

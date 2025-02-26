@@ -1,4 +1,4 @@
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { IoCheckmarkSharp, IoCloseSharp } from "react-icons/io5";
 
 export default function PlanFeatures({ planFeatures, allFeatures }) {
     // Sort so that included features appear first
@@ -17,13 +17,15 @@ export default function PlanFeatures({ planFeatures, allFeatures }) {
                 return (
                     <li key={idx} className="flex items-center gap-3 opacity-70">
                         {included ? (
-                            <CheckIcon className="w-6 h-6 text-green-500" />
+                            <IoCheckmarkSharp className="w-6 h-6 text-green-500" />
                         ) : (
-                            <XMarkIcon className="w-6 h-6 text-red-500 " />
+                            <IoCloseSharp className="w-6 h-6 text-red-500 " />
                         )}
-                        <span className={`text-base font-medium ${included ? "" : "opacity-30 line-through decoration-2"}`}>
-              {feat}
-            </span>
+                        <span
+                            className={`text-base font-medium ${included ? "" : "opacity-30 line-through decoration-2"}`}
+                        >
+                            {feat}
+                        </span>
                     </li>
                 );
             })}

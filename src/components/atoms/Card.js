@@ -26,6 +26,7 @@ export default function Card({
 
     // Merge all classes
     const finalClasses = mergeClasses(
+        "relative",
         colorSet.bg,
         hoverBg && colorSet.hoverBg,
         borderRadiusClass,

@@ -174,8 +174,7 @@ export const featuresConfig = [
     {
         title: "Auth",
         description: "Implement robust user authentication and authorization using Supabase.",
-        features: ["Magic links & Social auth", "Email/password login", "Login/Signup pages", "Protected routes"],
-
+        features: ["Magic links & Social auth", "Email/password login", "Login/Signup pages", "Protected routes", "3+ hours saved"],
         icon: FaUserShield,
         imageSrc: "/logos/supabase.png",
         imageAlt: "Supabase",
@@ -184,7 +183,7 @@ export const featuresConfig = [
     {
         title: "Payments",
         description: "Securely accept payments and manage subscriptions with Stripe integration.",
-        features: ["One time payments", "Subscriptions", "Webhook handling (to update user's account)", "Invoices"],
+        features: ["One time payments", "Subscriptions", "Webhook handling (to update user's account)", "Invoices", "3+ hours saved"],
         icon: FaRegCreditCard,
         imageSrc: "/logos/stripe.png",
         imageAlt: "Stripe",
@@ -192,7 +191,7 @@ export const featuresConfig = [
     },
     {
         title: "Database",
-        features: ["SQL database", "Real-time data sync"],
+        features: ["SQL database", "Real-time data sync", "User database", "3+ hours saved"],
         description: "Harness Supabase’s PostgreSQL DB for real-time data sync.",
         icon: LuDatabase,
         imageSrc: "/logos/supabase.png",
@@ -201,7 +200,7 @@ export const featuresConfig = [
     },
     {
         title: "Email",
-        features: ["Email verification", "Transactional emails", "Newsletters"],
+        features: ["Email verification", "Transactional emails", "Newsletters", "3+ hours saved"],
         description: "Integrate seamless email communication with Resend.",
         icon: LuMail,
         imageSrc: "/logos/resend.png",
@@ -211,14 +210,14 @@ export const featuresConfig = [
     },
     {
         title: "SEO",
-        features: ["Meta tags", "Sitemaps", "Structured data"],
+        features: ["Meta tags", "Sitemaps", "Structured data", "3+ hours saved"],
         description: "Boost your visibility with built-in SEO tools, auto meta tags, etc.",
         icon: FaMagnifyingGlassChart,
         docs: true
     },
     {
         title: "Components",
-        features: ["Pre-built components", "Customizable UI", "Responsive design"],
+        features: ["Pre-built components", "Customizable UI", "Responsive design", "10+ hours saved"],
         description: "Use our library of pre-built, customizable components.",
         icon: LuLayoutDashboard,
         docs: true
