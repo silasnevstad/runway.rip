@@ -59,6 +59,7 @@ export const DocsNav = [
             { title: "FeaturesGrid", href: "/docs/landing/features-grid" },
             { title: "WithWithout", href: "/docs/landing/with-without" },
             { title: "Pricing", href: "/docs/landing/pricing" },
+            { title: "FAQ", href: "/docs/landing/faq" },
             { title: "Footer", href: "/docs/landing/footer" },
         ],
     },

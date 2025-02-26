@@ -29,24 +29,31 @@ export default function Landing() {
         <main className="flex items-center flex-col w-full">
             {/* Header */}
             <Header
-                brand={{
-                    logoSrc: header.logo ? "/logo.png" : "",
-                    logoAlt: "Runway Logo",
-                    appName: appName,
-                    appHref: "/",
-                }}
                 navLinks={[
-                    { label: "Features", href: "#features" },
-                    { label: "Pricing", href: "#pricing" },
-                    { label: "FAQ", href: "#faq" },
+                    { title: "Features", href: "#features" },
+                    { title: "Pricing", href: "#pricing" },
+                    { title: "FAQ", href: "#faq" },
                 ]}
-                background={header.background}
-                sticky={header.sticky}
+                background={"bg-bg-0 dark:bg-bg-900"}
             />
 
             <div className="flex items-center flex-col w-full z-10">
                 {/* Hero Section */}
                 <Hero
+                    textHighlight={{
+                        text: hero.textHighlight.text,
+                        highlight: hero.textHighlight.highlight,
+                        color: hero.textHighlight.color,
+                        fromGradient: hero.textHighlight.fromGradient,
+                        toGradient: hero.textHighlight.toGradient,
+                    }}
+                    description={hero.description}
+                    buttonText={hero.buttonText}
+                    buttonSubText={hero.buttonSubText}
+                    showPromo={hero.promo.show}
+                    promo={hero.promo}
+                    showTrustedBy={hero.trustedBy.show}
+                    trustedBy={hero.trustedBy}
                     textPosition={hero.textPosition}
                     imageSrc={hero.image.src}
                     imageAlt={hero.image.alt}
@@ -54,7 +61,7 @@ export default function Landing() {
 
                 {/* Features Section */}
                 <div className={`-mt-30 flex flex-col items-center w-full pb-28 z-10`}>
-                    {features.show && <FeaturesCarousel />}
+                    <FeaturesCarousel />
                 </div>
 
                 {/* Why Section */}
@@ -73,12 +80,14 @@ export default function Landing() {
                 </div>
 
                 {/* FAQ Section */}
-                <div className={`flex flex-col items-center w-full pt-10 pb-20`}>
+                <div className={`flex flex-col items-center w-full pt-20 mt-20 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-10/12`}>
                     {faq.show && <FAQ />}
                 </div>
             </div>
 
-            <Footer />
+            <Footer
+                border
+            />
         </main>
     );
 }

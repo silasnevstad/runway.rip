@@ -73,6 +73,7 @@ import WithWithout from "@/components/landing/WithWithout";
 import FeaturesGrid from "@/components/landing/FeaturesGrid";
 import FeaturesCarousel from "@/components/landing/FeaturesCarousel";
 import Pricing from "@/components/landing/Pricing";
+import FAQ from "@/components/landing/FAQ";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -193,6 +194,7 @@ export const mdxComponents = {
     FeaturesGrid: FeaturesGrid,
     WithWithout: WithWithout,
     Pricing: Pricing,
+    FAQ: FAQ,
     Footer: Footer,
 
     // Auth

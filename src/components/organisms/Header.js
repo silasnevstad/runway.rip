@@ -13,7 +13,7 @@ import AccountCard from "@/components/auth/AccountCard";
 export default function Header({
     showLogo = true,
     showAppName = true,
-    navLinks = [],  // { name, href, onClick, className }
+    navLinks = [],  // { title, href, onClick, className }
     ctaButton,  // { label, href, className }
     background = "bg-bg-100 dark:bg-bg-800",
     bottomBorder = false,

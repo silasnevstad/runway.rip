@@ -116,12 +116,11 @@ export const landingConfig = {
             show: true,
             text: "Trusted by 200+ people",
             avatars: [
-                {src: "/avatar1.png", alt: "Avatar 1"},
-                {src: "/avatar2.png", alt: "Avatar 2"},
-                {src: "/avatar3.png", alt: "Avatar 3"},
-                {src: "/avatar1.png", alt: "Avatar 1"},
+                { src: "/avatar1.png", alt: "Avatar 1"},
+                { src: "/avatar2.png", alt: "Avatar 2"},
+                { src: "/avatar3.png", alt: "Avatar 3"},
+                { src: "/avatar1.png", alt: "Avatar 1"},
             ],
-            numStars: 4,
         }
     },
     features: {

@@ -42,11 +42,10 @@ export default function Hero({
     trustedBy = {
         text: "Trusted by the best",
         avatars: [
-            "/logos/avatars/airbnb.png",
-            "/logos/avatars/amazon.png",
-            "/logos/avatars/google.png",
-            "/logos/avatars/netflix.png",
-            "/logos/avatars/slack.png",
+            { src: "/avatar1.png", alt: "Avatar 1"},
+            { src: "/avatar2.png", alt: "Avatar 2"},
+            { src: "/avatar3.png", alt: "Avatar 3"},
+            { src: "/avatar1.png", alt: "Avatar 1"},
         ],
     },
     textPosition = "center", // 'left' | 'center' | 'right'
