@@ -4,12 +4,19 @@ import { LuDatabase, LuLayoutDashboard, LuMail } from "react-icons/lu";
 const appConfig = {
     appName: 'Runway',
     appDescription: 'Everything you need to launch your ideas.',
-    domainName: 'runway.rip',
+    url: 'runway.rip',
     socialMedia: {
         twitter: 'https://twitter.com/runway',
         instagram: 'https://instagram.com/runway',
         github: 'https://github.com/runway-app',
         linkedin: ''
+    },
+    legal: {
+        policies: {
+            privacy: '/policies/privacy',
+            terms: '/policies/terms',
+            license: '/policies/license'
+        }
     },
     supportEmail: "Runway Support <support@runway.rip>",
     noReplyEmail: "Runway <noreply@runway.rip>",

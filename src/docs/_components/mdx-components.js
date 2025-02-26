@@ -65,6 +65,8 @@ import Modal from "@/components/atoms/Modal";
 import ModalDemo from "@/docs/_components/demos/ModalDemo";
 import TextHighlight from "@/components/atoms/TextHighlight";
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
+import Header from "@/components/organisms/Header";
+import Footer from "@/components/organisms/Footer";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -178,6 +180,9 @@ export const mdxComponents = {
         </td>
     ),
 
+    // Sections
+    Header: Header,
+    Footer: Footer,
 
     // Components
     Accordion: Accordion,

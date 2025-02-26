@@ -5,6 +5,7 @@ import {
     MapIcon,
     PuzzlePieceIcon,
 } from "@heroicons/react/24/outline";
+import {LuLayoutDashboard} from "react-icons/lu";
 
 export const DocsNav = [
     {
@@ -43,6 +44,18 @@ export const DocsNav = [
             { title: "Emails", href: "/docs/features/emails" },
             { title: "Payments", href: "/docs/features/payments" },
             { title: "Auth", href: "/docs/features/auth" },
+        ],
+    },
+    {
+        title: "Sections",
+        href: "/docs/sections",
+        icon: <LuLayoutDashboard className="w-5 h-5" />,
+        items: [
+            { title: "Header", href: "/docs/sections/header" },
+            { title: "Hero", href: "/docs/sections/hero" },
+            { title: "Why", href: "/docs/sections/why" },
+            { title: "Features", href: "/docs/sections/features" },
+            { title: "Footer", href: "/docs/sections/footer" },
         ],
     },
     {

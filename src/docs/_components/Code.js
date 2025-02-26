@@ -5,7 +5,7 @@ import CodeBlock from "@/components/atoms/CodeBlock";
 const Code = ({ children, className, ...props }) => {
     // This handles inline code
     if (!className) {
-        return <code className="bg-bg-300 dark:bg-bg-800 rounded-sm px-1 py-0.5 dark:border dark:border-gray-800">{children}</code>;
+        return <code className="bg-bg-200 dark:bg-bg-800 rounded-sm px-1 py-0.5 dark:border dark:border-gray-800">{children}</code>;
     }
 
     // This handles code blocks (remove hljs class)

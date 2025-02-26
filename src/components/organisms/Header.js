@@ -1,27 +1,29 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
-import TextLink from "@/components/atoms/TextLink";
 import { useUser } from "@/contexts/UserContext";
+import TextLink from "@/components/atoms/TextLink";
 import Avatar from "@/components/atoms/Avatar";
+import Button from "@/components/atoms/Button";
+import { mergeClasses } from "@/utils/styling";
+import appConfig from "@/config";
 
 export default function Header({
-    brand = {
-        logoSrc: "",
-        logoAlt: "Logo",
-        appName: "AppName",
-        appHref: "/",
-    },
-    navLinks = [],
-    ctaButton, // optional CTA object
-    background = "bg-bg-100 dark:bg-bg-800 border-b border-b-bg-300 dark:border-b-bg-700",
+    showLogo = true,
+    showAppName = true,
+    navLinks = [],  // { name, href, onClick, className }
+    ctaButton,  // { label, href, className }
+    background = "bg-bg-100 dark:bg-bg-800",
+    bottomBorder = false,
     sticky = false,
-    account = false, // optional whether to show account dropdown
+    account = false,
+    className = "",
+    ...props
 }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [username, setUsername] = useState("");
+    const { appName, url } = appConfig;
 
     useEffect(() => {
         if (account) {
@@ -35,21 +37,27 @@ export default function Header({
     // Condition to decide whether to show collapsible mobile menu
     const showCollapsibleMenu = navLinks.length > 2;
 
+    const headerClasses = mergeClasses(
+        `flex justify-center p-4 w-full min-h-14 top-0 z-20`,
+        background,
+        bottomBorder && "border-b border-bg-200 dark:border-bg-700",
+        sticky && "sticky",
+        className
+    );
+
     return (
-        <header
-            className={`flex justify-center p-4 w-full h-14 ${background} ${
-                sticky && "sticky"
-            } top-0 z-20`}
-        >
-            <div className="flex justify-between items-center w-full max-w-7xl px-5 sm:px-8 lg:px-8">
+        <header className={headerClasses} {...props}>
+            <div className="flex justify-between items-center w-full max-w-7xl px-4">
                 {/* Brand Section */}
                 <div className="flex items-center">
-                    {brand.logoSrc && (
-                        <img src={brand.logoSrc} alt={brand.logoAlt} className="h-6 mr-2" />
+                    {showLogo && (
+                        <img src="/logo.png" alt={appName} className="h-7 mr-2" />
                     )}
-                    <Link href={brand.appHref} className="text-2xl font-semibold">
-                        {brand.appName}
-                    </Link>
+                    {showAppName && (
+                        <Link href={url} className="text-2xl font-semibold">
+                            {appName}
+                        </Link>
+                    )}
                 </div>
 
                 {/* Desktop Navigation */}
@@ -60,20 +68,18 @@ export default function Header({
                             href={navItem.href}
                             onClick={navItem.onClick}
                             className={navItem.className}
+                            {...navItem.props}
                         >
-                            {navItem.label}
+                            {navItem.title}
                         </TextLink>
                     ))}
                     {ctaButton && (
-                        <Link
+                        <Button
                             href={ctaButton.href}
-                            className={
-                                ctaButton.className ||
-                                "px-4 py-2 rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors"
-                            }
+                            className={ctaButton.className}
                         >
                             {ctaButton.label}
-                        </Link>
+                        </Button>
                     )}
                     {account && (
                         <div className="relative">

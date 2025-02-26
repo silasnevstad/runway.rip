@@ -1,46 +1,109 @@
-import Image from "next/image";
+import { FaInstagram, FaXTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import appConfig from "@/config";
 import TextLink from "@/components/atoms/TextLink";
-import { FaInstagram, FaXTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import MadeWithTag from "@/components/atoms/MadeWithTag";
 import Divider from "@/components/atoms/Divider";
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
+import { mergeClasses } from "@/utils/styling";
 
-const Footer = () => {
+const defaultNavLinks = [
+    { title: "Pricing", href: "#pricing" },
+    { title: "Documentation", href: "/docs" },
+    { title: "Support", href: "#" },
+];
+
+const defaultLegalLinks = [
+    { title: "Policies", href: "/policies" },
+    { title: "Privacy Policy", href: "/policies/privacy" },
+    { title: "Terms of Service", href: "/policies/terms" },
+    { title: "License", href: "/policies/license" },
+];
+
+const Footer = ({
+    showLogo = true,
+    showAppName = true,
+    showAppDescription = true,
+                    showCopyright = true,
+    showMadeWith = true,
+    showThemeSwitcher = true,
+    showSocials = true,
+    navLinks = defaultNavLinks,  // { title, href, props }
+    legalLinks = defaultLegalLinks,  // { title, href, props }
+    copyrightText = "Copyright © 2025 - All Rights Reserved.",
+
+    // Styling
+    background = "bg-bg-0 dark:bg-bg-900",
+    border = false,
+    rounded = false,
+
+    className = "",
+    ...props
+}) => {
     const { appName, appDescription, socialMedia } = appConfig;
+
+    const footerClasses = mergeClasses(
+        `flex items-center justify-center p-4 pt-5 pb-10 w-full z-50`,
+        background,
+        border && `border-t border-gray-200 dark:border-gray-700`,
+        rounded && `rounded-tr-3xl`,
+        className
+    );
+
     return (
-        <footer className="flex items-center justify-center p-4 w-full bg-bg-0 dark:bg-bg-900 border-t border-gray-200 rounded-tr-3xl dark:border-gray-700 pt-5 pb-10 z-10">
-            <div className="flex max-md:flex-col-reverse max-md:gap-10 w-full max-w-7xl px-5 sm:px-8 lg:px-8 justify-between p-8">
-                <div className="flex flex-col text-left items-start">
-                    <h1 className="text-2xl font-semibold">{appName}</h1>
-                    <p className="text-gray-500">{appDescription}</p>
-                    <p className="text-gray-500 mb-2">Copyright © 2024. All Rights Reserved.</p>
-                    <MadeWithTag style="vertical" />
-                    <ThemeSwitcher className="mt-4" />
+        <footer className={footerClasses} {...props}>
+            <div className="flex max-md:flex-col max-md:items-center max-md:gap-10 w-full max-w-7xl px-5 sm:px-8 lg:px-8 justify-between p-8">
+                <div className="flex flex-col text-center items-center md:text-left md:items-start">
+                    <div className="flex items-center mb-2">
+                        {showLogo && <img src="/logo.png" alt={appName} className="h-6 mr-2" />}
+                        {showAppName && <h1 className="text-2xl font-semibold">{appName}</h1>}
+                    </div>
+                    {showAppDescription && <p className="text-gray-500 text-sm">{appDescription}</p>}
+                    {showCopyright && <p className="text-gray-500 text-sm">{copyrightText}</p>}
+                    {showThemeSwitcher && <ThemeSwitcher className="mt-2" />}
+                    {showMadeWith && <MadeWithTag style="vertical" className="mt-4" />}
                 </div>
-                <div className="flex max-xl:pr-10 max-sm:gap-10 gap-3">
-                    <div className="flex flex-col gap-3 opacity-80">
-                        {socialMedia.instagram && <TextLink href={socialMedia.instagram} grow><FaInstagram className="text-2xl" /></TextLink>}
-                        {socialMedia.twitter && <TextLink href={socialMedia.twitter} grow><FaXTwitter className="text-2xl" /></TextLink>}
-                        {socialMedia.github &&  <TextLink href={socialMedia.github} grow><FaGithub className="text-2xl" /></TextLink>}
-                        {socialMedia.linkedin &&  <TextLink href={socialMedia.linkedin} grow><FaLinkedinIn className="text-2xl" /></TextLink>}
-                    </div>
+                <div className="flex max-sm:flex-col gap-5 max-sm:gap-10 max-sm:items-center">
+                    {showSocials && (
+                        <div className="flex flex-col max-sm:flex-row gap-3 opacity-80">
+                            {socialMedia.instagram && <TextLink href={socialMedia.instagram} grow><FaInstagram className="text-2xl" /></TextLink>}
+                            {socialMedia.twitter && <TextLink href={socialMedia.twitter} grow><FaXTwitter className="text-2xl" /></TextLink>}
+                            {socialMedia.github &&  <TextLink href={socialMedia.github} grow><FaGithub className="text-2xl" /></TextLink>}
+                            {socialMedia.linkedin &&  <TextLink href={socialMedia.linkedin} grow><FaLinkedinIn className="text-2xl" /></TextLink>}
+                        </div>
+                    )}
 
-                    <Divider vertical opacity={40} height={"1/2"} />
+                    <Divider vertical opacity={40} height={"1/2"} className="max-sm:hidden" />
 
-                    <div className="flex flex-col gap-2 mr-5">
-                        <p className="text-md font-semibold opacity-50">Links</p>
-                        <TextLink href="#pricing" className="text-sm">Pricing</TextLink>
-                        <TextLink href="/docs" className="text-sm">Documentation</TextLink>
-                        <TextLink href="#" className="text-sm">Support</TextLink>
-                    </div>
-                    <div className="flex flex-col gap-2 flex-nowrap whitespace-nowrap">
-                        <p className="text-md font-semibold opacity-50">Legal</p>
-                        <TextLink href="/policies" className="text-sm">Policies</TextLink>
-                        <TextLink href="/policies/privacy" className="text-sm">Privacy Policy</TextLink>
-                        <TextLink href="/policies/terms" className="text-sm">Terms of Service</TextLink>
-                        <TextLink href="/policies/license" className="text-sm">License</TextLink>
-                    </div>
+                    {navLinks.length > 0 && (
+                        <div className="flex flex-col gap-2 max-sm:items-center max-sm:text-center">
+                            <p className="text-md font-semibold opacity-50 mb-1">Links</p>
+                            {navLinks.map((link, idx) => (
+                                <TextLink
+                                    key={idx}
+                                    href={link.href}
+                                    className="text-sm max-sm:text-center"
+                                    {...link.props}
+                                >
+                                    {link.title}
+                                </TextLink>
+                            ))}
+                        </div>
+                    )}
+                    {legalLinks.length > 0 && (
+                        <div className="flex flex-col gap-2 max-sm:items-center max-sm:text-center">
+                            <p className="text-md font-semibold opacity-50 mb-1">Legal</p>
+                            {legalLinks.map((link, idx) => (
+                                <TextLink
+                                    key={idx}
+                                    href={link.href}
+                                    className="text-sm max-sm:text-center"
+                                    {...link.props}
+                                >
+                                    {link.title}
+                                </TextLink>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </footer>

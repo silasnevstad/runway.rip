@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import {mergeClasses} from "@/utils/styling";
 
 const Stripe = (style) => {
     switch (style) {
@@ -18,11 +19,19 @@ const Stripe = (style) => {
 }
 
 const MadeWithTag = ({
-    style = 'track', // 'vertical', 'horizontal', 'track'
+    style = "vertical",
+    className = "",
 }) => {
+    const finalClasses = mergeClasses(
+        `relative flex justify-center items-center`,
+        `px-2.5 py-1.5 rounded-lg dark:bg-bg-900`,
+        `border border-gray-300 dark:border-gray-800`,
+        `hover:scale-103 transition-transform duration-200 ease-in-out cursor-pointer`,
+        className
+    );
+
     return (
-        <Link href="https://runway.rip" className="relative flex justify-center items-center px-2.5 py-1.5 dark:bg-bg-900 rounded-lg border border-gray-300 dark:border-gray-800
-            hover:scale-103 transition-transform duration-200 ease-in-out cursor-pointer">
+        <Link href="https://runway.rip" className={finalClasses}>
             <span className="z-10 mr-1 opacity-50 text-sm font-medium">Built with</span>
             <p className="z-10 text-primary-500 font-semibold">Runway</p>
             {Stripe(style)}
