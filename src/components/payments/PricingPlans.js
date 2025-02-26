@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import PlanCard from "@/components/payments/PlanCard";
+import PricingCard from "@/components/payments/PricingCard";
 import { pricingConfig } from "@/config";
 import Switcher from "@/components/atoms/Switcher";
 
-export default function PricingPlans() {
+export default function PricingPlans({
+    cardBackground = "bg-bg-50 dark:bg-gray-900",
+}) {
     const { plans } = pricingConfig;
 
     // Let the user toggle monthly vs. yearly (default monthly)
@@ -55,12 +57,12 @@ export default function PricingPlans() {
                 {plans.map((plan) => {
                     const interval = getIntervalForPlan(plan);
                     return (
-                        <PlanCard
+                        <PricingCard
                             key={plan.type}
                             plan={plan}
                             interval={interval}
                             allFeatures={allFeatures}
-                            userId="some-user-id"
+                            backgroundColor={cardBackground}
                         />
                     );
                 })}

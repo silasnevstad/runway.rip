@@ -74,6 +74,9 @@ import FeaturesGrid from "@/components/landing/FeaturesGrid";
 import FeaturesCarousel from "@/components/landing/FeaturesCarousel";
 import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
+import PricingCard from "@/components/payments/PricingCard";
+import PricingPlans from "@/components/payments/PricingPlans";
+import CheckoutButton from "@/components/payments/CheckoutButton";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -212,6 +215,7 @@ export const mdxComponents = {
     ButtonIconDemo: ButtonIconDemo,
     ButtonOnClickDemo: ButtonOnClickDemo,
     Card: Card,
+    CheckoutButton: CheckoutButton,
     TerminalCard: TerminalCard,
     WebsiteCard: WebsiteCard,
     StandoutCard: StandoutCard,
@@ -244,6 +248,8 @@ export const mdxComponents = {
     TextAreaDemo: TextAreaDemo,
     TextHighlight: TextHighlight,
     ThemeSwitcher: ThemeSwitcher,
+    PricingCard: PricingCard,
+    PricingPlans: PricingPlans,
 
     PasswordAuthForm: PasswordAuthForm,
     PasswordlessAuthForm: PasswordlessAuthForm,

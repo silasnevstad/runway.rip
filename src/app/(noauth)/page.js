@@ -10,17 +10,10 @@ import Why from "@/components/landing/Why";
 import appConfig, { landingConfig } from "@/config";
 
 export default function Landing() {
-    const { appName } = appConfig;
     const {
-        header,
         hero,
         why,
-        who,
-        how,
-        whoAndHow,
         howItWorks,
-        features,
-        examples,
         pricing,
         faq
     } = landingConfig;
@@ -75,12 +68,12 @@ export default function Landing() {
                 </div>
 
                 {/* Pricing Section */}
-                <div className={`flex flex-col items-center w-full pb-10 mt-30 z-10`}>
+                <div className={`flex flex-col items-center pb-10 mt-30 z-10 w-3/6 max-2xl:w-4/6 max-xl:w-5/6 max-lg:w-5/6 max-md:w-4/6 max-sm:5/6 max-sm:gap-0`}>
                     {pricing.show && <Pricing />}
                 </div>
 
                 {/* FAQ Section */}
-                <div className={`flex flex-col items-center w-full pt-20 mt-20 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-10/12`}>
+                <div className={`flex flex-col items-center pt-20 mt-20 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-10/12`}>
                     {faq.show && <FAQ />}
                 </div>
             </div>

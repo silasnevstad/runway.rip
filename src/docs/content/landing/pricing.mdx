@@ -9,25 +9,33 @@ onThisPage:
   - title: "Props"
     href: "#props"
 related:
+  - title: "Payments"
+    href: "/docs/tutorials/payments"
   - title: "PricingPlans"
     href: "/docs/components/pricing-plans"
-  - title: "PricingPlanCard"
-    href: "/docs/components/pricing-plan-card"
+  - title: "CheckoutButton"
+    href: "/docs/components/checkout-button"
 ---
 
 <div id="overview" />
 
 <br />
 
+<div className="flex flex-col w-full items-center justify-center gap-8">
+    <Pricing cardBackground={"bg-bg-100 dark:bg-bg-800"}/>
+</div>
+
+<br />
+
 The `Pricing` component is a way to showcase your product's pricing plans and allow users to compare and choose the best plan for their needs.
 
-<Callout>
-    It uses [`PricingPlans`](/docs/components/pricing-plans) and [`PricingPlanCard`](/docs/components/pricing-plan-card) components.
-</Callout>
+<Caution>
+    This relies on [`pricingConfig`](/docs/tutorials/config) for its data so you have to configure [payments](/docs/tutorials/payments) first.
+</Caution>
 
-<Info>
-    The `Pricing` component relies on [`pricingConfig`](/docs/tutorials/config) for its data.
-</Info>
+<Tip>
+    Want a much more simple, minimalistic flow? You can simply use [`CheckoutButton`](/docs/components/checkout-button) to create a checkout button for your product.
+</Tip>
 
 <br />
 <br />
@@ -43,6 +51,8 @@ import Pricing from '@/components/landing/Pricing';
 <Pricing />
 ```
 
+
+
 <br />
 <br />
 <br />
@@ -51,9 +61,10 @@ import Pricing from '@/components/landing/Pricing';
 <div id="props" />
 
 ## Props
-| Name             | Type    | Default  | Description                                                                                                                                                                                                                                 |
-|------------------|---------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| title            | string  | `""`     | The title of the component.                                                                                                                                                                                                                 |
-| subtitle         | string  | `""`     | The subtitle of the component.                                                                                                                                                                                                              |
+| Name           | Type   | Default | Description                                                                        |
+|----------------|--------|---------|------------------------------------------------------------------------------------|
+| title          | string | `""`    | The title of the component.                                                        |
+| subtitle       | string | `""`    | The subtitle of the component.                                                     |
+| cardBackground | string | `"bg-bg-50 dark:bg-bg-900"`  | The background color of the cards (see [tailwind.config](/docs/tutorials/config)). |
 
 That's it, the rest is pulled from [`pricingConfig`](/docs/tutorials/config).

@@ -1,17 +1,15 @@
 "use client";
-
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import Button from "@/components/atoms/Button";
-import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-export default function PlanCTA({
+export default function CheckoutButton({
+    children,
     planType,
     intervalName,
-    buttonLabel = "Get Started",
-    userId // optional user ID to send to metadata
+    ...props
 }) {
     const handleCheckout = async () => {
         try {
@@ -23,7 +21,6 @@ export default function PlanCTA({
                     data: {
                         planType,
                         intervalName,
-                        // userId // optional
                     }
                 })
             });
@@ -43,9 +40,8 @@ export default function PlanCTA({
     };
 
     return (
-        <Button onClick={handleCheckout} className="font-bold text-md">
-            <RocketLaunchIcon className="w-5 h-5" />
-            {buttonLabel}
+        <Button onClick={handleCheckout} className="font-bold text-md" {...props}>
+            {children}
         </Button>
     );
 }

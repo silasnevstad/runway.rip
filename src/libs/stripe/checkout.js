@@ -39,7 +39,6 @@ export async function createCheckoutSession({
                 quantity: 1
             }
         ],
-        // Determine if this is "payment" or "subscription"
         mode: plan.mode,
         success_url: successUrl,
         cancel_url: cancelUrl,

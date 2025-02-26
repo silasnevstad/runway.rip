@@ -53,7 +53,10 @@ export default function Button({
 
     // Loading vs. normal content
     const content = loading ? (
-        <Loader className={`text-${color}-900`} />
+        <>
+            <Loader className={`text-${color}-900`} />
+            {children}
+        </>
     ) : (
         <>
             {icon && icon}
