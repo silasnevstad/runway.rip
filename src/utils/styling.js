@@ -26,8 +26,13 @@ export function renderIcon(icon, iconSrc, extraClasses) {
     if (icon) {
         return typeof icon === "string" ? (
             <Image src={iconSrc} alt="" className={extraClasses} />
-        ) : (
-            React.cloneElement(icon, { className: mergeClasses(icon.props.className, extraClasses) })
+        ) : (React.isValidElement(icon) ? (
+                React.cloneElement(icon, { className: mergeClasses(
+                    icon?.props?.className,
+                    extraClasses
+                )})) : null
+
+
         );
     }
     return null;
