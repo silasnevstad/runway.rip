@@ -198,6 +198,7 @@ export const featuresConfig = [
         description: "Integrate seamless email communication with Resend.",
         icon: LuMail,
         imageSrc: "/logos/resend.png",
+        imageClassName: "rounded-lg bg-black",
         imageAlt: "Resend",
         imageHref: "https://resend.com"
     },

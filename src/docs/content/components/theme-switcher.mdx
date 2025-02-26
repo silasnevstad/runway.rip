@@ -1,0 +1,159 @@
+---
+title: "Theme Switcher"
+description: "A Switch component for toggling between light, dark and system themes"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "Switcher"
+    href: "/docs/components/switcher"
+sites:
+  - title: "next-themes"
+    href: "https://github.com/pacocoursey/next-themes"
+---
+
+<div id="overview" />
+
+<br/>
+
+<div className="flex flex-col items-center gap-0">
+    <ThemeSwitcher />
+</div>
+
+<br />
+
+The `ThemeSwitcher` component allows users to toggle between light, dark, and system themes.
+It's built using the [`Switcher`](/docs/components/switcher) component with [next-themes](https://github.com/pacocoursey/next-themes) for theme management.
+
+<Callout>
+    Since it uses the [`Switcher`](/docs/components/switcher) you can customize the `color`, `size`, and all the other props.
+</Callout>
+
+<br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+Since Runway already has [next-themes](https://github.com/pacocoursey/next-themes) set up in combination with
+[Tailwind](https://tailwindcss.com), using the `ThemeSwitcher` is super easy:
+
+```javascript
+import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
+
+<ThemeSwitcher />
+```
+
+<Tip>
+    Throughout your app, use <code>dark:</code> to apply styles in dark mode. i.e. <code>bg-white dark:bg-black</code>
+</Tip>
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="props" />
+
+## Props
+
+The `TextLink` component accepts the following props:
+
+| Name         | Type                        | Default  | Description                                                                                                              |
+|--------------|-----------------------------|----------|--------------------------------------------------------------------------------------------------------------------------|
+| color        | string                      | `gray`   | The color of the `Switcher` (see [tailwind.config](/docs/tutorials/config)).                                             |
+| variant      | "soft" \| "solid"           | `soft`   | The variant of the `Switcher`.                                                                                           |
+| size         | "xs" \|"sm" \| "md" \| "lg" | `sm`     | The size of the `Switcher`.                                                                                              |
+| borderRadius | string                      | `"full"` | [Tailwind](https://tailwindcss.com) border-radius class (e.g. `"none"`, `"xs"`, `"sm"`, `"md"`, `"lg"`, `"full"`, etc.). |
+| buttonBorder | boolean                     | `true`   | If true, the `Switcher` will have a border around selected button.                                                       |
+| border       | boolean                     | `false`  | If true, the `Switcher` will have a border.                                                                              |
+| vertical     | boolean                     | `false`  | If true, the `Switcher` will be displayed vertically.                                                                    |
+| system       | boolean                     | `true`   | If true, the `Switcher` will include a system theme option.                                                              |
+| className    | string                      | `""`     | Additional [Tailwind](https://tailwindcss.com) classes for the `Switcher`.                                               |
+
+<Info>
+    The `ThemeSwitcher` component uses the [`Switcher`](/docs/components/switcher) component.
+</Info>
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Default Theme Switcher
+Just drop it in your app and you're good to go!
+
+<PreviewCode
+    preview={
+        <ThemeSwitcher />
+    }
+>
+    ```javascript
+    <ThemeSwitcher />
+    ```
+</PreviewCode>
+
+<br />
+
+### Custom Theme Switcher
+You can customize the `color`, `size`, and all the other props.
+
+<PreviewCode
+    preview={
+        <ThemeSwitcher
+            color="orange"
+            size="lg"
+            variant="soft"
+            borderRadius="md"
+            border={true}
+        />
+    }
+>
+    ```javascript
+    <ThemeSwitcher
+        color="orange"
+        size="lg"
+        variant="soft"
+        borderRadius="md"
+        border={true}
+    />
+    ```
+</PreviewCode>
+
+<br />
+
+### Custom Theme Switcher with No System Option
+<PreviewCode
+    preview={
+        <ThemeSwitcher
+            color="primary"
+            size="lg"
+            variant="solid"
+            borderRadius="md"
+            system={false}
+        />
+    }
+>
+    ```javascript
+    <ThemeSwitcher
+        color="red"
+        size="lg"
+        variant="solid"
+        borderRadius="md"
+        system={false}
+    />
+    ```
+</PreviewCode>
+

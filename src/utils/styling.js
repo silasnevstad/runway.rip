@@ -101,10 +101,10 @@ export const COLOR_VARIANTS = {
     // Bg
     bg: {
         soft: {
-            bg: "bg-bg-400/45 dark:bg-bg-600/25",
+            bg: "bg-bg-400/45 dark:bg-bg-600/20",
             text: "text-bg-900 dark:text-bg-50",
             border: "border border-bg-500 dark:border-bg-700",
-            hoverBg: "hover:bg-bg-100 dark:hover:bg-bg-500/20",
+            hoverBg: "hover:bg-bg-100 dark:hover:bg-bg-700/20",
             hoverText: "",
             hoverBorder: "hover:border-bg-500/10 dark:hover:border-bg-600/10",
             activeBg: "bg-bg-50 dark:bg-bg-900",
@@ -113,7 +113,7 @@ export const COLOR_VARIANTS = {
             fadeBg: "bg-bg-500/10 dark:bg-bg-500/10",
         },
         solid: {
-            bg: "bg-bg-200 dark:bg-bg-800",
+            bg: "bg-bg-200 dark:bg-bg-700",
             text: "text-bg-900 dark:text-bg-50",
             border: "border border-bg-500 dark:border-bg-600",
             hoverBg: "hover:bg-bg-100 dark:hover:bg-bg-800",
@@ -129,10 +129,10 @@ export const COLOR_VARIANTS = {
     // Gray
     gray: {
         soft: {
-            bg: "bg-gray-400/25 dark:bg-gray-600/25",
+            bg: "bg-gray-400/25 dark:bg-gray-600/20",
             text: "text-gray-900 dark:text-gray-50",
             border: "border border-gray-500 dark:border-gray-700",
-            hoverBg: "hover:bg-gray-100 dark:hover:bg-gray-500/20",
+            hoverBg: "hover:bg-gray-100 dark:hover:bg-gray-700/20",
             hoverText: "hover:text-gray-800 dark:hover:text-gray-300",
             hoverBorder: "hover:border-gray-500/10 dark:hover:border-gray-600/10",
             activeBg: "bg-gray-50 dark:bg-gray-900",
@@ -417,6 +417,7 @@ export const COLOR_VARIANTS = {
 
 export const BORDER_RADIUS = {
     "": "rounded-none",
+    "none": "rounded-none",
     "2xs": "rounded-[0.125rem]",
     xs: "rounded-[0.1875rem]",
     sm: "rounded-[0.25rem]",

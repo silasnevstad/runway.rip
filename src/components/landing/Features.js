@@ -96,7 +96,7 @@ function FeatureCard({ key, feature, isActive, onClick }) {
             `}
             onClick={onClick}
             variant="solid"
-            color="bg"
+            color="gray"
         >
             <div className="flex items-center gap-2 mb-3">
                 <feature.icon className="text-2xl text-primary-500" />
@@ -128,7 +128,7 @@ function FeatureCard({ key, feature, isActive, onClick }) {
                         alt={feature.imageAlt}
                         width={30}
                         height={30}
-                        className="rounded-lg"
+                        className={`rounded-lg ${feature.imageClassName}`}
                     />
                     <p className="text-gray-600 underline">{feature.imageAlt}</p>
                 </div>

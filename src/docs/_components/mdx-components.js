@@ -64,6 +64,7 @@ import Select from "@/components/atoms/Select";
 import Modal from "@/components/atoms/Modal";
 import ModalDemo from "@/docs/_components/demos/ModalDemo";
 import TextHighlight from "@/components/atoms/TextHighlight";
+import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -221,6 +222,7 @@ export const mdxComponents = {
     TextArea: TextArea,
     TextAreaDemo: TextAreaDemo,
     TextHighlight: TextHighlight,
+    ThemeSwitcher: ThemeSwitcher,
 
     PasswordAuthForm: PasswordAuthForm,
     PasswordlessAuthForm: PasswordlessAuthForm,

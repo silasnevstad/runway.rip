@@ -18,6 +18,8 @@ const PreviewCode = ({ children, preview, border = false }) => {
                 className="mb-6 self-start text-[13px]"
                 size="sm"
                 borderRadius="lg"
+                variant="soft"
+                color="bg"
                 animate={true}
             />
             {showPreview ?

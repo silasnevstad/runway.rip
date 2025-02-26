@@ -3,13 +3,25 @@ import { useEffect, useState } from "react";
 import { ComputerDesktopIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "next-themes";
 import Switcher from "@/components/atoms/Switcher";
-import { mergeClasses } from "@/utils/styling";
 
 export default function ThemeSwitcher({
+    color = "bg",
+    variant = "soft",
+    size = "sm",
+    borderRadius = "full",
+    buttonBorder = true,
+    border = false,
+    vertical = false,
+    system = true,
     className = "",
 }) {
     const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
+    const options = [
+        { value: "light", Icon: <SunIcon className="w-4 h-4" /> },
+        { value: "dark", Icon: <MoonIcon className="w-4 h-4" /> },
+    ];
+    if (system) options.push({ value: "system", Icon: <ComputerDesktopIcon className="w-4 h-4" /> });
 
     useEffect(() => setMounted(true), []);
 
@@ -20,21 +32,20 @@ export default function ThemeSwitcher({
     if (!mounted) return null;
 
     return (
-        <div className={mergeClasses(`flex items-center justify-center`, className)}>
+        <div className="flex items-center justify-center">
             <Switcher
-                options={[
-                    { value: "light", Icon: <SunIcon className="w-4 h-4 text-gray-900 dark:text-gray-100" /> },
-                    { value: "dark", Icon: <MoonIcon className="w-4 h-4 text-gray-900 dark:text-gray-100" /> },
-                    { value: "system", Icon: <ComputerDesktopIcon className="w-4 h-4 text-gray-900 dark:text-gray-100" /> },
-                ]}
+                options={options}
                 selected={theme}
                 onChange={onChange}
                 buttonClassName="p-1.5"
-                buttonBorder
-                size="sm"
-                borderRadius="full"
-                color="bg"
-                variant="soft"
+                buttonBorder={buttonBorder}
+                border={border}
+                vertical={vertical}
+                size={size}
+                borderRadius={borderRadius}
+                color={color}
+                variant={variant}
+                className={className}
             />
         </div>
     );

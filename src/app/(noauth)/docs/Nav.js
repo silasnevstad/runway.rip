@@ -81,7 +81,7 @@ export const DocsNav = [
             { title: "TextArea", href: "/docs/components/textarea" },
             { title: "TextHighlight", href: "/docs/components/text-highlight" },
             { title: "TextLink", href: "/docs/components/text-link" },
-            // { title: "Timeline", href: "/docs/components/timeline" },
+            { title: "ThemeSwitcher", href: "/docs/components/theme-switcher" },
             { title: "Toggle", href: "/docs/components/toggle" },
             { title: "Tooltip", href: "/docs/components/tooltip" },
         ],

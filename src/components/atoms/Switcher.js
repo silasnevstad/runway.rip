@@ -94,7 +94,7 @@ export default function Switcher({
     // Icon classes
     const iconClasses = (isSelected) => mergeClasses(
         "w-4 h-4",
-        colorSet.text,
+        isSelected ? colorSet.activeText : colorSet.text,
         isSelected ? `text-opacity-100` : `text-opacity-90`,
         `group-hover:text-opacity-100`,
     );
