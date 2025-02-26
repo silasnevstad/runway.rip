@@ -1,5 +1,4 @@
 "use client";
-
 import React, {
     useState,
     useEffect,
@@ -10,26 +9,7 @@ import React, {
 } from "react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
 
-/**
- * Carousel Props
- * ---------------
- * - mode: "single" | "multi"
- * - children: the slides
- *
- * - currentIndex?: number (controlled index from parent)
- * - onChange?: (index: number) => void (callback when index changes)
- * - infinite?: boolean (wrap around)
- * - autoPlay?: boolean
- * - interval?: number (ms for autoPlay)
- * - showArrows?: boolean
- * - showIndicators?: boolean
- *
- * - fadeCenter?: boolean (fade/scale the active slide)
- * - scaleCenter?: number (scale factor for the active slide)
- * - sideOpacity?: number (opacity for non-active slides)
- *
- * - margin?: number (only used in multi mode, sets `mx-${margin}` for gap)
- */
+
 export default function Carousel({
     mode = "single",
     children,
@@ -43,7 +23,7 @@ export default function Carousel({
     fadeCenter = false,
     scaleCenter = 1.0,
     sideOpacity = 0.6,
-    margin = 2
+    margin = 10
 }) {
     const itemCount = Children.count(children);
 
@@ -65,7 +45,7 @@ export default function Carousel({
     const goNext = useCallback(() => {
         if (itemCount < 2) return;
         if (infinite) {
-            setActiveIndex((activeIndex + 1) % itemCount); // (activeIndex + 1) % itemCount = 1, 2, 3, 0, 1, 2, 3, 0, ...
+            setActiveIndex((activeIndex + 1) % itemCount);
         } else {
             setActiveIndex((activeIndex + 1) % itemCount);
         }
@@ -275,20 +255,26 @@ function MultiCarousel({
     }, [children]);
 
     // translateX
-    const translateX = -(activeIndex * itemWidth) - (activeIndex * margin * 8) - (itemWidth / 2);
+    const translateX = -(activeIndex * itemWidth) - (activeIndex * margin * 2) - (itemWidth / 2);
 
     const slides = Children.map(children, (child, i) => {
         const isCenter = i === activeIndex;
-        const style = isCenter
-            ? { transform: `scale(${scaleCenter})`, transition: "transform 0.3s ease" }
-            : fadeCenter
-                ? { opacity: sideOpacity }
-                : {};
+        let style = {
+            margin: `0 ${margin}px`,
+        }
+        if (fadeCenter && !isCenter) {
+            style.opacity = sideOpacity;
+        }
+        if (isCenter) {
+            style.transform = `scale(${scaleCenter})`;
+            style.transition = "transform 0.3s ease";
+        }
+
 
         return (
             <div
                 key={i}
-                className={`carousel-item flex-shrink-0 mx-${margin}`}
+                className={`carousel-item flex-shrink-0`}
                 style={style}
             >
                 {cloneElement(child, { isActive: isCenter })}

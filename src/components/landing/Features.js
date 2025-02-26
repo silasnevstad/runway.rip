@@ -69,7 +69,7 @@ export default function Features() {
                     interval={7000}
                     showArrows={false}
                     showIndicators={false}
-                    margin={4}
+                    margin={10}
                 >
                     {featuresConfig.map((feat, idx) => (
                         <FeatureCard
