@@ -1,0 +1,63 @@
+---
+title: "Account Card"
+description: "A card to display user account information in a compact format"
+onThisPage:
+  - title: "Overview"
+    href: "#account-card-overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+related:
+  - title: "Avatar"
+    href: "/docs/components/avatar-list"
+  - title: "Card"
+    href: "/docs/components/card"
+---
+
+<div id="account-card-overview" />
+
+<br/>
+
+The `AccountCard` component is a lightweight, compact card designed to display user account information.
+
+<Caution>
+    This component can only be used inside `/app/(auth)` pages since it uses the [`UserProvider`](/docs/features/auth).
+</Caution>
+
+<br />
+<br />
+<br />
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```javascript
+import AccountCard from '@/components/auth/AccountCard';
+
+<AccountCard />
+```
+
+<br />
+<br />
+<br />
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Name         | Type              | Default   | Description                                                                                           |
+|--------------|-------------------|-----------|-------------------------------------------------------------------------------------------------------|
+| color        | string            | `"gray"`  | The base color (use [tailwind.config](/docs/tutorials/config)).                                       |
+| variant      | "soft" \| "solid" | `"solid"` | The variant of the component.                                                                         |
+| borderRadius | string            | `"full"`  | The border radius of the component (using [Tailwind](https://tailwindcss.com) border radius classes). |
+| className    | string            | `""`      | Additional [Tailwind](https://tailwindcss.com) utility classes.                                       |
+| ...props     | object            | -         | Any other valid HTML attributes for the `Card` component.                                             |
+
+<Info>
+    The `AccountCard` the [`Card`](/docs/components/card) and [`Avatar`](/docs/components/avatar) components.
+</Info>
+

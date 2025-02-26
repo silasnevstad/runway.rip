@@ -1,15 +1,14 @@
 "use client";
-
 import React, {useState} from "react";
-import { CheckIcon } from "@heroicons/react/24/solid";
+import { FaCheck } from "react-icons/fa6";
 import Image from "next/image";
 import Card from "@/components/atoms/Card";
 import TextLink from "@/components/atoms/TextLink";
 import Carousel from "@/components/molecules/Carousel";
 import { landingConfig, featuresConfig } from "@/config";
-import {FaCheck} from "react-icons/fa6";
 
-export default function Features() {
+
+export default function FeaturesCarousel() {
     const { features } = landingConfig;
     const [selectedFeature, setSelectedFeature] = useState(0);
     const currentTime = new Date()

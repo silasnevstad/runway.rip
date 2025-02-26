@@ -8,6 +8,7 @@ import Avatar from "@/components/atoms/Avatar";
 import Button from "@/components/atoms/Button";
 import { mergeClasses } from "@/utils/styling";
 import appConfig from "@/config";
+import AccountCard from "@/components/auth/AccountCard";
 
 export default function Header({
     showLogo = true,
@@ -82,15 +83,7 @@ export default function Header({
                         </Button>
                     )}
                     {account && (
-                        <div className="relative">
-                            <button
-                                onClick={toggleDropdown}
-                                className="flex items-center space-x-2"
-                            >
-                                <Avatar src="/avatar1.png" alt="User Avatar" size="sm" />
-                                <span className="text-sm font-semibold">{username}</span>
-                            </button>
-                        </div>
+                        <AccountCard />
                     )}
                 </div>
 

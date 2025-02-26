@@ -1,36 +1,80 @@
 "use client";
-
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { RocketLaunchIcon } from "@heroicons/react/24/solid";
+import { GiftIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/atoms/Button";
 import TextHighlight from "@/components/atoms/TextHighlight";
-import { landingConfig } from "@/config";
 import MadeWith from "@/components/atoms/MadeWith";
-import { GiftIcon } from "@heroicons/react/24/outline";
 import AvatarsTestimonial from "@/components/organisms/testimonials/Avatars";
+import {getTextColorClass, mergeClasses} from "@/utils/styling";
+
+const layoutDirection = {
+    left: "flex-row",
+    center: "flex-col",
+    right: "flex-row-reverse",
+};
+
+const alignment = {
+    left: "items-start text-left",
+    center: "items-center text-center",
+    right: "items-end text-right",
+};
 
 export default function Hero({
-    textPosition = "center",
+    textHighlight = {
+        text: "Most engaging hook ever!",
+        highlight: "ever!",
+        color: "",
+        fromGradient: "primary",
+        toGradient: "purple",
+    },
+    description = "Your app description",
+    buttonText = "Get started",
+    buttonSubText = "",
+    showPromo = true,
+    promo = {
+        price: 50,
+        text: "off for first 1000 users (12 left)",
+    },
+    showTrustedBy = true,
+    trustedBy = {
+        text: "Trusted by the best",
+        avatars: [
+            "/logos/avatars/airbnb.png",
+            "/logos/avatars/amazon.png",
+            "/logos/avatars/google.png",
+            "/logos/avatars/netflix.png",
+            "/logos/avatars/slack.png",
+        ],
+    },
+    textPosition = "center", // 'left' | 'center' | 'right'
     imageSrc = "",
     imageAlt = "",
     backgroundGlow = "",
-    glowOpacity = .5,
+    glowOpacity = 0.5,
     glowSize = "30%",
-    glowBlur = 100
+    glowBlur = 100,
+    className = "",
 }) {
-    const { hero } = landingConfig;
+    const router = useRouter();
+
+    const containerClasses = mergeClasses(
+        "relative flex w-full min-h-screen h-full justify-center py-16 px-9 sm:px-6 lg:px-8",
+        textPosition !== "center" && "max-w-7xl",
+        className
+    );
+
+    const directionClasses = layoutDirection[textPosition] || layoutDirection.center;
+    const alignmentClasses = alignment[textPosition] || alignment.center;
 
     return (
-        <section
-            className={
-            `relative flex w-full min-h-screen h-full justify-center
-            ${textPosition !== "center" && "max-w-7xl"}
-            py-16 px-9 sm:px-6 lg:px-8`
-        }>
+        <section className={containerClasses}>
+            {/* Background Glow */}
             {backgroundGlow && (
                 <div
-                    className={`absolute inset-0 -z-10 pointer-events-none text-${backgroundGlow}-500`}
+                    className={`absolute inset-0 z-10 pointer-events-none ${getTextColorClass(backgroundGlow)}`}
                     style={{
                         backgroundImage: `radial-gradient(circle, currentColor 0%, transparent ${glowSize})`,
                         filter: `blur(${glowBlur}px)`,
@@ -40,63 +84,58 @@ export default function Hero({
             )}
 
             <div className="w-full z-10 mt-10">
-                <div className={
-                    `flex gap-10 items-center
-                    ${textPosition === "right" ? "flex-row-reverse" : textPosition === "center" ? "flex-col" : "flex-row"}`
-                }>
+                <div className={`flex gap-10 items-center ${directionClasses}`}>
                     {/* Text Content */}
-                    <div className={
-                        `w-full flex flex-col gap-4 max-w-3xl
-                        ${textPosition === "center" ? "items-center" : textPosition === "right" ? "items-end" : "items-start"}`
-                    }>
-                        {/* Made With Logos */}
+                    <div className={`w-full flex flex-col gap-4 max-w-3xl ${alignmentClasses}`}>
                         <MadeWith />
 
                         <TextHighlight
-                            className={`text-${textPosition} mt-6`}
-                            text={hero.textHighlight.text}
-                            highlight={hero.textHighlight.highlight}
-                            fromGradient={hero.textHighlight.fromGradient}
-                            toGradient={hero.textHighlight.toGradient}
+                            className={`mt-6 ${alignmentClasses}`}
+                            text={textHighlight.text}
+                            highlight={textHighlight.highlight}
+                            color={textHighlight.color}
+                            fromGradient={textHighlight.fromGradient}
+                            toGradient={textHighlight.toGradient}
                         />
 
-                        <p className={`text-lg opacity-60 font-semibold max-w-[45ch] text-${textPosition}`}>
-                            {hero.description}
+                        <p className="text-lg opacity-60 font-semibold max-w-[45ch]">
+                            {description}
                         </p>
 
-                        <div className={
-                            `flex flex-col gap-3 mt-14
-                            ${textPosition === "right" ? "items-end" : textPosition === "center" ? "items-center" : "items-start"}`
-                        }>
-                            <Button className="px-12" onClick={() => window.location.href = "#pricing"}>
+                        <div className={`flex flex-col gap-3 mt-14 ${alignmentClasses}`}>
+                            <Button
+                                className="px-12"
+                                onClick={() => router.push("#pricing")}
+                            >
                                 <RocketLaunchIcon className="w-5 h-5" />
-                                {hero.buttonText}
+                                {buttonText}
                             </Button>
-                            {hero.buttonSubText && (
-                                <p className="text-sm opacity-60 font-semibold">{hero.buttonSubText}</p>
+                            {buttonSubText && (
+                                <p className="text-sm opacity-60 font-semibold">{buttonSubText}</p>
                             )}
-                            {hero.promo.show && (
-                                <p className="flex items-center text-sm opacity-100 font-semibold">
+                            {showPromo && (
+                                <p className="flex items-center text-sm font-semibold">
                                     <GiftIcon className="w-5 h-5 mr-1 text-green-500" />
-                                    <span className="text-green-500 mr-1">{hero.promo.price}$</span> {hero.promo.text}
+                                    <span className="text-green-500 mr-1">{promo.price}$</span>
+                                    {promo.text}
                                 </p>
                             )}
                         </div>
 
-                        {hero.trustedBy.show && (
+                        {showTrustedBy && (
                             <div className="mt-10">
                                 <AvatarsTestimonial
-                                    text={hero.trustedBy.text}
-                                    avatars={hero.trustedBy.avatars}
+                                    text={trustedBy.text}
+                                    avatars={trustedBy.avatars}
                                 />
                             </div>
                         )}
                     </div>
 
-                    {/* Right Column (Image or Placeholder) */}
+                    {/* Image Section */}
                     <div className="w-full lg:w-1/2 flex justify-center">
                         {imageSrc && (
-                            <div className="relative w-full h-full max-w-lg aspect-[16/9]">
+                            <div className="relative w-full max-w-lg aspect-[16/9]">
                                 <Image src={imageSrc} alt={imageAlt} fill />
                             </div>
                         )}

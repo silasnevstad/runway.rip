@@ -15,6 +15,10 @@ related:
     href: "/docs/components/text-link"
   - title: "Button"
     href: "/docs/components/button"
+  - title: "AccountCard"
+    href: "/docs/components/auth/account-card"
+  - title: "AccountDropdown"
+    href: "/docs/components/auth/account-dropdown"
   - title: "Config"
     href: "/docs/tutorials/config"
 ---
@@ -68,7 +72,7 @@ The component automatically pulls the **logo** and **app name** from [config.js]
 import the component and use it like this:
 
 ```javascript
-import Header from '@/components/sections/Header';
+import Header from '@/components/organisms/Header';
 
 <Header
     navLinks={[
@@ -127,6 +131,11 @@ Since `Header` uses [`TextLink`](/docs/components/text-link) and [`Button`](/doc
 <Info>
     The `sticky` prop is disabled by default, so the header will scroll with the page. To make it sticky, set the `sticky` prop to `true`.
 </Info>
+
+<Caution>
+    The `account` prop can only be used under `/app/(auth)` pages since it uses the [`UserProvider`](/docs/features/auth).
+    It uses the [`AccountCard`](/docs/components/auth/account-card) and [`AccountDropdown`](/docs/components/auth/account-dropdown) components.
+</Caution>
 
 <br/>
 <br/>

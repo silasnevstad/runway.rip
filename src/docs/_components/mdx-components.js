@@ -53,7 +53,7 @@ import PasswordAuthForm from "@/components/auth/PasswordAuthForm";
 import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
 import OAuthButtons from "@/components/auth/OAuthButtons";
 import Alert from "@/components/atoms/Alert";
-import { StandoutCard, TerminalCard, WebsiteCard } from "@/components/atoms/CustomCards";
+import { StandoutCard, TerminalCard, WebsiteCard } from "@/components/molecules/CustomCards";
 import File from "@/components/atoms/File";
 import Indicator from "@/components/atoms/Indicator";
 import {InputIconDemo} from "@/docs/_components/demos/InputDemo";
@@ -67,6 +67,9 @@ import TextHighlight from "@/components/atoms/TextHighlight";
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
 import Header from "@/components/organisms/Header";
 import Footer from "@/components/organisms/Footer";
+import Hero from "@/components/landing/Hero";
+import AccountCard from "@/components/auth/AccountCard";
+import WithWithout from "@/components/landing/WithWithout";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -182,7 +185,12 @@ export const mdxComponents = {
 
     // Sections
     Header: Header,
+    Hero: Hero,
+    WithWithout: WithWithout,
     Footer: Footer,
+
+    // Auth
+    AccountCard: AccountCard,
 
     // Components
     Accordion: Accordion,

@@ -4,7 +4,7 @@ import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS} from "@/ut
 
 export default function Card({
     children,
-    padding = "24",  // in px
+    padding = 24,  // in px
     color = "gray",
     variant = "soft",
     borderRadius = "2xl",

@@ -24,7 +24,7 @@ export const TerminalCard = ({
     const bodyStyles = `p-3 font-mono -mt-2`;
 
     return (
-        <Card className={mergeClasses(containerStyles, className)} {...props}>
+        <Card className={mergeClasses(containerStyles, className)} padding={0} {...props}>
             <div className={headerStyles}>
                 <span className="inline-block w-3 h-3 bg-red-500 rounded-full" />
                 <span className="inline-block w-3 h-3 bg-yellow-500 rounded-full" />
@@ -58,7 +58,7 @@ export const WebsiteCard = ({
     `;
 
     return (
-        <Card className={mergeClasses(containerStyles, className)} {...props}>
+        <Card className={mergeClasses(containerStyles, className)} padding={0} {...props}>
             <div className={headerStyles}>
                 <div className="flex items-center gap-1.5">
                     <span className="inline-block w-3 h-3 bg-red-500 rounded-full" />
@@ -93,7 +93,7 @@ export const StandoutCard = ({
     const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS["2xl"];
 
     const outerContainerStyles = mergeClasses(
-        `relative shadow-md p-1.5`,
+        `relative shadow-md`,
         borderRadiusClass,
         `bg-gray-200/50 dark:bg-gray-800/20`,
         `border-[0.1px] border-gray-200/50 dark:border-gray-800/15`,
@@ -106,7 +106,7 @@ export const StandoutCard = ({
     `;
 
     return (
-        <Card className={mergeClasses(outerContainerStyles, outerClassName)} border={false} {...props}>
+        <Card className={mergeClasses(outerContainerStyles, outerClassName)} padding={6} border={false} {...props}>
             <div className={mergeClasses(innerContainerStyles, innerClassName)}>
                 {children}
             </div>

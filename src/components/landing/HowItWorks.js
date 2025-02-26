@@ -5,7 +5,7 @@ import { Cog8ToothIcon, RocketLaunchIcon as RocketLaunchIconOutline } from "@her
 import { SparklesIcon } from "@heroicons/react/24/solid";
 import { landingConfig } from "@/config";
 import Badge from "@/components/atoms/Badge";
-import { StandoutCard } from "@/components/atoms/CustomCards";
+import { StandoutCard } from "@/components/molecules/CustomCards";
 
 export default function HowItWorks() {
     const { howItWorks } = landingConfig;

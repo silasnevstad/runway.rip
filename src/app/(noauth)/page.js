@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "@/components/organisms/Footer";
 import Header from "@/components/organisms/Header";
 import Hero from "@/components/landing/Hero";
-import Features from "@/components/landing/Features";
+import FeaturesCarousel from "@/components/landing/FeaturesCarousel";
 import HowItWorks from "@/components/landing/HowItWorks";
 import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
@@ -54,7 +54,7 @@ export default function Landing() {
 
                 {/* Features Section */}
                 <div className={`-mt-30 flex flex-col items-center w-full pb-28 z-10`}>
-                    {features.show && <Features />}
+                    {features.show && <FeaturesCarousel />}
                 </div>
 
                 {/* Why Section */}

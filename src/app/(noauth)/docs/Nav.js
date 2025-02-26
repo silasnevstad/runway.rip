@@ -5,7 +5,9 @@ import {
     MapIcon,
     PuzzlePieceIcon,
 } from "@heroicons/react/24/outline";
-import {LuLayoutDashboard} from "react-icons/lu";
+import { IoExtensionPuzzleOutline } from "react-icons/io5";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { TbUserShield } from "react-icons/tb";
 
 export const DocsNav = [
     {
@@ -53,15 +55,24 @@ export const DocsNav = [
         items: [
             { title: "Header", href: "/docs/sections/header" },
             { title: "Hero", href: "/docs/sections/hero" },
+            { title: "WithWithout", href: "/docs/sections/with-without" },
             { title: "Why", href: "/docs/sections/why" },
             { title: "Features", href: "/docs/sections/features" },
             { title: "Footer", href: "/docs/sections/footer" },
         ],
     },
     {
+        title: "Auth",
+        href: "/docs/auth",
+        icon: <TbUserShield className="w-5 h-5" />,
+        items: [
+            { title: "AccountCard", href: "/docs/auth/account-card" },
+        ],
+    },
+    {
         title: "Components",
         href: "/docs/components",
-        icon: <PuzzlePieceIcon className="w-5 h-5" />,
+        icon: <IoExtensionPuzzleOutline className="w-5 h-5" />,
         items: [
             { title: "Accordion", href: "/docs/components/accordion" },
             { title: "Alert", href: "/docs/components/alert" },

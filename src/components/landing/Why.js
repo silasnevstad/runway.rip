@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from "react";
 import { FaInfinity, FaArrowDown } from "react-icons/fa6";
-import { StandoutCard } from "@/components/atoms/CustomCards";
+import { StandoutCard } from "@/components/molecules/CustomCards";
 import { landingConfig } from "@/config";
 
 
