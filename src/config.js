@@ -2,9 +2,12 @@ import { FaMagnifyingGlassChart, FaRegCreditCard, FaUserShield } from "react-ico
 import { LuDatabase, LuLayoutDashboard, LuMail } from "react-icons/lu";
 
 const appConfig = {
+    // General
     appName: 'Runway',
     appDescription: 'Everything you need to launch your ideas.',
-    url: 'runway.rip',
+    domain: 'runway.rip',
+
+    // Links
     socialMedia: {
         twitter: 'https://twitter.com/runway',
         instagram: 'https://instagram.com/runway',
@@ -18,8 +21,15 @@ const appConfig = {
             license: '/policies/license'
         }
     },
-    supportEmail: "Runway Support <support@runway.rip>",
-    noReplyEmail: "Runway <noreply@runway.rip>",
+
+    // Email
+    subdomain: "mail",
+    supportEmail: "Runway Support <support@mail.runway.rip>",
+    adminEmail: "Silas at Runway <silas@mail.runway.rip>",
+    noReplyEmail: "Runway <noreply@mail.runway.rip>",
+    forwardRepliesTo: "silas.nevstad@gmail.com",
+
+    // Auth
     authMethods: ['magiclink', 'google', 'github'],             // password, magiclink, google, github, apple, facebook
     protectedRoutes: [
         '/private',
@@ -32,8 +42,15 @@ const appConfig = {
 export const pricingConfig = {
     plans: [
         {
-            type: "starter",
-            mode: "payment", // One-time purchase
+            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
+            intervals: [
+                {
+                    label: "",
+                    oldPrice: 99,
+                    price: 49,
+                    priceId: "price_1Pr8LGGjMg6waABSg1bjDLEQ"
+                }
+            ],
             title: "Starter",
             description: "",
             subText: "Pay once, use forever.",
@@ -46,20 +63,18 @@ export const pricingConfig = {
                 "Auth",
                 "Email Service",
                 "Lifetime updates",
-            ],
-            intervals: [
-                {
-                    name: "one_time",
-                    label: "",
-                    oldPrice: 99,
-                    price: 49,
-                    priceId: "price_XXX"
-                }
             ]
         },
         {
-            type: "pro",
             mode: "payment", // One-time purchase
+            intervals: [
+                {
+                    label: "",
+                    oldPrice: 149,
+                    price: 99,
+                    priceId: "price_1Pr8LfGjMg6waABSu7URa9qT"
+                }
+            ],
             title: "All-in",
             description: "",
             subText: "Pay once, use forever.",
@@ -73,15 +88,6 @@ export const pricingConfig = {
                 "Email Service",
                 "SEO tools",
                 "Lifetime updates",
-            ],
-            intervals: [
-                {
-                    name: "one_time",
-                    label: "",
-                    oldPrice: 149,
-                    price: 99,
-                    priceId: "price_XXX"
-                }
             ]
         }
     ]
@@ -246,7 +252,6 @@ export const faqConfig = [
 export const pricingSubscriptionConfig = {
     plans: [
         {
-            type: "starter",
             mode: "subscription", // Recurring
             title: "Starter",
             description: "Get started with the basics.",
@@ -281,7 +286,6 @@ export const pricingSubscriptionConfig = {
             ]
         },
         {
-            type: "pro",
             mode: "subscription", // Recurring
             title: "Pro",
             description: "Unlock the full potential of Runway.",

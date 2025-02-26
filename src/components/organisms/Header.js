@@ -24,7 +24,7 @@ export default function Header({
 }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [username, setUsername] = useState("");
-    const { appName, url } = appConfig;
+    const { appName, domain } = appConfig;
 
     useEffect(() => {
         if (account) {
@@ -55,7 +55,7 @@ export default function Header({
                         <img src="/logo.png" alt={appName} className="h-7 mr-2" />
                     )}
                     {showAppName && (
-                        <Link href={url} className="text-2xl font-semibold">
+                        <Link href={domain} className="text-2xl font-semibold">
                             {appName}
                         </Link>
                     )}

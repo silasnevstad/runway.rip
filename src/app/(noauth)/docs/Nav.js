@@ -29,7 +29,6 @@ export const DocsNav = [
             { title: "Stripe Setup", href: "/docs/tutorials/stripe" },
             { title: "Supabase Setup", href: "/docs/tutorials/supabase" },
             { title: "User authentication", href: "/docs/tutorials/authentication" },
-            { title: "Payments", href: "/docs/tutorials/payments" },
             { title: "One Time Payments", href: "/docs/tutorials/one-time-payments" },
             { title: "Subscriptions", href: "/docs/tutorials/subscriptions" },
             { title: "Domain", href: "/docs/tutorials/domain-setup" },

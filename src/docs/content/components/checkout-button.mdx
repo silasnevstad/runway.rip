@@ -23,7 +23,7 @@ related:
 
 <div className="flex items-center justify-center">
     <div className="flex items-center flex-col gap-4 mb-8 w-52">
-        <CheckoutButton planType={"monthly"} intervalName={"month"} color="green" variant="soft">Monthly</CheckoutButton>
+        <CheckoutButton mode={"one-time"} priceId={"priceId_asd"} color="green" variant="soft" disabled>Monthly</CheckoutButton>
     </div>
 </div>
 
@@ -37,7 +37,7 @@ It's built on top of the [`Button`](/docs/components/button) component so you ca
 </Callout>
 
 <Caution>
-    Requires [payments](/docs/tutorials/payments) to be configured.
+    Requires [payments](/docs/features/payments) to be configured.
 </Caution>
 
 <br/>
@@ -50,19 +50,20 @@ It's built on top of the [`Button`](/docs/components/button) component so you ca
 
 ```jsx
 import CheckoutButton from "@/components/payments/CheckoutButton";
+import { pricingConfig } from "@/config";
 
 <CheckoutButton
-  planType="starter"
-  intervalName="monthly"
+  mode="payment"
+  priceId={pricingConfig.plans[0].intervals[0].priceId}
 >
-    Subcribe Now
+    Buy Now
 </CheckoutButton>
 
 <CheckoutButton
-  planType="pro"
-  intervalName="one_time"
+    mode="subscription"
+    priceId={pricingConfig.plans[0].intervals[0].priceId}
 >
-    Subcribe Now
+    Subscribe Now
 </CheckoutButton>
 ```
 
@@ -75,11 +76,11 @@ import CheckoutButton from "@/components/payments/CheckoutButton";
 
 ## Props
 
-| Name         | Type   | Default | Description                                                                      |
-|--------------|--------|---------|----------------------------------------------------------------------------------|
-| planType     | string | `""`    | The type of plan to subscribe to.                                                |
-| intervalName | string | `""`    | The interval name for the plan.                                                  |
-| ...props     | object | `""`    | All other props are passed to the [`Button`](/docs/components/button) component. |
+| Name     | Type   | Default | Description                                                                      |
+|----------|--------|---------|----------------------------------------------------------------------------------|
+| mode     | string | `""`    | The mode of the checkout session, either `payment` or `subscription`.            |
+| priceId  | string | `""`    | The [Stripe](https://stripe.com) price ID.                                       |
+| ...props | object | `""`    | All other props are passed to the [`Button`](/docs/components/button) component. |
 
 <Tip>
     Since `CheckoutButton` is built on top of the [`Button`](/docs/components/button) component, you can pass any prop that it accepts to customize the button

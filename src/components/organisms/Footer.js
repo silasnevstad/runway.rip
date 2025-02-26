@@ -65,10 +65,10 @@ const Footer = ({
                 <div className="flex max-sm:flex-col gap-5 max-sm:gap-10 max-sm:items-center">
                     {showSocials && (
                         <div className="flex flex-col max-sm:flex-row gap-3 opacity-80">
-                            {socialMedia.instagram && <TextLink href={socialMedia.instagram} grow><FaInstagram className="text-2xl" /></TextLink>}
-                            {socialMedia.twitter && <TextLink href={socialMedia.twitter} grow><FaXTwitter className="text-2xl" /></TextLink>}
-                            {socialMedia.github &&  <TextLink href={socialMedia.github} grow><FaGithub className="text-2xl" /></TextLink>}
-                            {socialMedia.linkedin &&  <TextLink href={socialMedia.linkedin} grow><FaLinkedinIn className="text-2xl" /></TextLink>}
+                            {socialMedia.instagram && <TextLink href={socialMedia.instagram} scale><FaInstagram className="text-2xl" /></TextLink>}
+                            {socialMedia.twitter && <TextLink href={socialMedia.twitter} scale><FaXTwitter className="text-2xl" /></TextLink>}
+                            {socialMedia.github &&  <TextLink href={socialMedia.github} scale><FaGithub className="text-2xl" /></TextLink>}
+                            {socialMedia.linkedin &&  <TextLink href={socialMedia.linkedin} scale><FaLinkedinIn className="text-2xl" /></TextLink>}
                         </div>
                     )}
 

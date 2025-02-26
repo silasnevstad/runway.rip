@@ -11,7 +11,7 @@ export function getSEOTags(options = {}) {
         canonicalUrlRelative = "/",
     } = options;
 
-    const siteUrl = `https://${appConfig.url}`;
+    const siteUrl = `https://${appConfig.domain}`;
 
     return {
         title,

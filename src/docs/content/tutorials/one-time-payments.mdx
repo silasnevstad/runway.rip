@@ -1,92 +1,83 @@
 ---
 title: "One-Time Payments Tutorial"
-description: "A step-by-step guide to setting up one-time payments using Stripe Checkout in this boilerplate."
+description: "Setting up one-time payments using Stripe."
 onThisPage:
-  - title: "Introduction"
-    href: "#introduction"
-  - title: "Environment Setup"
-    href: "#environment-setup"
+  - title: "Overview"
+    href: "#overview"
+  - title: "Setup"
+    href: "#setup"
   - title: "Creating a Checkout Session"
     href: "#creating-a-checkout-session"
   - title: "Testing Your Payment"
     href: "#testing-your-payment"
   - title: "Additional Tips"
     href: "#additional-tips"
+related:
+  - title: "Stripe Setup"
+    href: "/docs/features/payments"
+  - title: "Pricing"
+    href: "/docs/landing/pricing"
+  - title: "CheckoutButton"
+    href: "/docs/components/checkout-button"
+sites:
+  - title: "Stripe"
+    href: "https://stripe.com"
 ---
 
-<div id="introduction" />
+<div id="overview" />
 
-<Divider />
+First, if you haven't already, set up [Stripe](/docs/features/payments) in your app.
+<br />
 
-This tutorial walks you through setting up one-time payments using Stripe Checkout. I’ve done the heavy lifting so you can quickly integrate payments into your project without reinventing the wheel.
+<div id="setup" />
+
+Nice, now you've completed that, we're pretty much done already!
+All that's left is deciding how you want to showcase your product's pricing plans and testing before going live.
 
 <br />
 
-## Environment Setup
+You can either use the [`Pricing`](/docs/landing/pricing) component to show all pricing plans.
 
-<div id="environment-setup" />
+```javascript
+import Pricing from "@/components/landing/Pricing";
 
-1. **Stripe Account:**
-Create an account on [Stripe](https://stripe.com/). Once logged in, navigate to [API Keys](https://dashboard.stripe.com/apikeys) to retrieve your keys.
-
-2. **Configure Environment Variables:**
-In your **.env.local** file, add:
-
-```bash
-STRIPE_SECRET_KEY=sk_live_...
-STRIPE_PUBLIC_KEY=pk_live_...
+<Pricing />
 ```
 
+<Callout>
+    Easy as that! [`Pricing`](/docs/landing/pricing) pulls everything it needs from [`pricingConfig`](/docs/tutorials/config).
+</Callout>
+
 <br />
 
-## Creating a Checkout Session
+Or, if you want a simpler flow use the [`CheckoutButton`](/docs/components/checkout-button) component to create a checkout button for your product.
 
-<div id="creating-a-checkout-session" />
+```javascript
+import CheckoutButton from "@/components/payments/CheckoutButton";
+import { pricingConfig } from "@/config";
 
-We use an API endpoint to create Checkout Sessions. This function is defined in our libs/stripe/checkout.js. For one-time payments, set the mode to "payment".
-
-```jsx
-// Example usage:
-const session = await createCheckoutSession({
-    planType: "starter",  // or "pro"
-    mode: "payment",
-    successUrl: "https://your-app.com/thank-you",
-    cancelUrl: "https://your-app.com/",
-});
+<CheckoutButton
+  mode="payment"
+  priceId={pricingConfig.plans[0].intervals[0].priceId}
+>
+    Buy Now
+</CheckoutButton>
 ```
 
-The returned session ID is then used on the client to redirect your customer to Stripe’s secure payment page.
+<Caution>
+    Have to provide your own `mode` and `priceId` props.
+</Caution>
 
 <br />
 
-## Testing Your Payment
+
+## Testing
 
 <div id="testing-your-payment" />
 
-- **Test Card:**
-Use the test card number [4242 4242 4242 4242](https://stripe.com/docs/testing) for a successful payment.
+Now that you have everything set up, it's time to test your payment flow before going live.
 
-- **Verify:**
-Ensure that your webhook endpoint logs the payment events correctly.
+1. Make sure you have the Test mode API keys in your `.env.local` file.
 
-<br />
+2. Open `http://localhost:3000` in your browser.
 
-## Additional Tips
-
-<div id="additional-tips" />
-
-<Tip>
-    Customize the Checkout Session by adding metadata or adjusting tax settings directly in the session options.
-</Tip>
-
-<Caution>
-    Always secure your API keys and webhook secret in your environment variables.
-</Caution>
-
-<Warning>
-    In production, double-check your [Stripe Dashboard](https://dashboard.stripe.com/) settings, such as authorized domains and redirect URLs.
-</Warning>
-
-<Divider />
-
-That’s it for one-time payments! With this setup, you’re ready to accept single payments in your app—without the hassle of custom payment forms.

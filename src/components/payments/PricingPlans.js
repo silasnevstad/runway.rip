@@ -54,11 +54,11 @@ export default function PricingPlans({
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {plans.map((plan) => {
+                {plans.map((plan, index) => {
                     const interval = getIntervalForPlan(plan);
                     return (
                         <PricingCard
-                            key={plan.type}
+                            key={index}
                             plan={plan}
                             interval={interval}
                             allFeatures={allFeatures}

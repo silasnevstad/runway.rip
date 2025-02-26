@@ -141,7 +141,7 @@ export const mdxComponents = {
     ),
     Divider: Divider,
     a: ({ href, children }) => (
-        <Link href={href} className="text-green-500 hover:text-green-700 underline">
+        <Link href={href} className="text-green-500 dark:text-green-600 hover:text-green-700 underline">
             {children}
         </Link>
     ),

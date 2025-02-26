@@ -1,109 +1,234 @@
 ---
-title: "Stripe Payments Overview"
-description: "An overview of the Stripe payment system in this boilerplate, covering one-time payments, subscriptions, tax handling, and webhook events."
+title: "Stripe"
+description: "Setting up Stripe for payments."
 onThisPage:
-  - title: "Overview"
-    href: "#overview"
-  - title: "One-Time Payments"
-    href: "#one-time-payments"
-  - title: "Subscriptions"
-    href: "#subscriptions"
-  - title: "Tax Handling"
-    href: "#tax-handling"
-  - title: "Webhook Event Handling"
-    href: "#webhook-event-handling"
-  - title: "Security & Best Practices"
-    href: "#security-best-practices"
+  - title: "Environment Setup"
+    href: "#environment-setup"
+  - title: "Stripe Configuration"
+    href: "#stripe-configuration"
+  - title: "Create Products"
+    href: "#create-products"
+  - title: "Webhook Setup"
+    href: "#webhook-setup"
+  - title: "Next Steps"
+    href: "#next-steps"
+related:
+  - title: "Payments"
+    href: "/docs/tutorials/payments"
+  - title: "Pricing"
+    href: "/docs/landing/pricing"
+  - title: "CheckoutButton"
+    href: "/docs/components/checkout-button"
+sites:
+  - title: "Stripe"
+    href: "https://stripe.com"
 ---
 
-<div id="overview" />
+Need payments or subscriptions? Lets set up Stripe ⬇︎
 
-<Divider />
+<br />
 
-This boilerplate comes with a full Stripe integration that’s designed to be optimal, modular, and production‑ready. Whether you need to accept one‑time payments or manage subscriptions, everything is pre-configured with tax handling, webhook event processing, and secure practices.
+## Environment Setup
 
-## One-Time Payments
+<div id="environment-setup" />
 
-<div id="one-time-payments" />
+1. Create a [Stripe](https://stripe.com/login) account and go to [API Keys](https://dashboard.stripe.com/apikeys) to retrieve your keys.
 
-For single payments, a Checkout Session is created in “payment” mode. Your customers will be redirected to a secure, Stripe‑hosted payment page.
+2. Copy them into `.env.local`:
 
-```jsx
-// Creating a one-time Checkout Session:
-await createCheckoutSession({
-planType: "starter",
-mode: "payment",
-successUrl: "https://your-app.com/thank-you",
-cancelUrl: "https://your-app.com/",
-});
-```
+    ```.env.local
+    STRIPE_PUBLISHABLE_KEY=pk_live_...
+    STRIPE_SECRET_KEY=sk_live_...
+    ```
 
-<Info>
-    The Checkout Session automatically enables tax calculation, so you don’t need to worry about handling taxes manually.
-</Info>
 
-## Subscriptions
+<br />
 
-<div id="subscriptions" />
+<div id="stripe-configuration" />
 
-Subscriptions work similarly—simply set the mode to “subscription” and the same session logic applies.
+## Stripe Configuration
 
-```jsx
-// Creating a subscription Checkout Session:
-await createCheckoutSession({
-planType: "pro",
-mode: "subscription",
-successUrl: "https://your-app.com/thank-you",
-cancelUrl: "https://your-app.com/",
-});
-```
-
-This setup allows you to handle recurring billing without additional complexity.
-
-## Tax Handling
-
-<div id="tax-handling" />
-
-Stripe Checkout includes automatic tax calculation when you enable it in the session. The boilerplate sets `automatic_tax: { enabled: true }` so tax is computed based on the customer’s location.
-
-<InlineHighlight>
-    Tip: If you need advanced tax reporting, refer to Stripe Tax documentation and adjust your dashboard settings accordingly.
-</InlineHighlight>
-
-## Webhook Event Handling
-
-<div id="webhook-event-handling" />
-
-Webhooks are critical for processing asynchronous payment events. The webhook endpoint in this boilerplate listens for events such as:
-- **checkout.session.completed**: When a payment or subscription is successfully completed.
-- **checkout.session.expired**: When a session expires.
-- **invoice.payment_failed** and **invoice.payment_succeeded**: To track invoice outcomes.
-
-```jsx
-// Example webhook processing:
-await handleStripeWebhookEvent(event);
-```
-
-<Info>
-    Customize event handlers in libs/stripe/webhookHandlers.js to fit your business logic.
-</Info>
-
-## Security & Best Practices
-
-<div id="security-best-practices" />
+1. Under [Business details](https://dashboard.stripe.com/settings/business-details), add your URL, support email, and legal policy URLs.
 
 <Tip>
-    Store your Stripe API keys and webhook secret in environment variables. Never expose them in client-side code.
+    You can use your own email or setup your domain email following the [Domain](/docs/tutorials/domain) tutorial.
 </Tip>
 
+2. Go to [Branding](https://dashboard.stripe.com/settings/branding) and customize your branding (logo & colors, etc.).
+
+3. In [Customer emails](https://dashboard.stripe.com/settings/emails) and turn on emails for 'successful payments' and 'refunds'.
+
+4. Go to [Customer Portal](https://dashboard.stripe.com/settings/billing/portal) and turn on 'Customer portal link'.
+
+<Callout>
+    If you want you can add your own [custom domain](https://dashboard.stripe.com/settings/custom-domains) for for the checkout, customer portal, and hosted invoices.
+    It's 10$/month and definitely not required but it does look more professional.
+</Callout>
+
+<br />
+
+<div id="create-products" />
+
+## Create Products
+
+You have to repeat the following steps for both Test and Live mode. First, create products and a webhook in Test mode,
+test them, and then repeat the steps in Live mode.
+
+1. Turn ON Test Mode.
+
+2. Go to [Product catalog](https://dashboard.stripe.com/test/products) and click on [+ Create product](https://dashboard.stripe.com/test/products?active=true&create=product&source=product_list).
+
+3. Fill in the product details and select either `Recurring` or `One-off` for the pricing.
+
+4. Copy the price ID (`price_1N...`) into `src/config.js`.
+
+    ```javascript
+    export const pricingConfig = {
+        plans: [
+            {
+                mode: "payment", // One-time purchase
+                intervals: [
+                    {
+                        priceId: "COPY PRICE ID HERE"
+                    }
+                ]
+            },
+            {
+                mode: "subscription", // Recurring
+                intervals: [
+                    {
+                        name: "monthly",
+                        label: "Monthly",
+                        priceId: "COPY MONTHLY PRICE ID HERE"
+                    },
+                    {
+                        name: "yearly",
+                        label: "Yearly",
+                        priceId: "COPY YEARLY PRICE ID HERE"
+                    }
+                ]
+            }
+        ]
+    };
+    ```
+
+    <Tip>
+        In `src/config.js`, I have provided a sample configuration for both one-time and recurring payments, select the one that fits your product.
+        You can simply have one plan if you want.
+    </Tip>
+
+5. Optionally, tweak the `pricingConfig` object in `src/config.js` to match your product (used for [`Pricing`](/docs/landing/pricing) component).
+If you are going for a simple flow, you can skip this step and only change the price IDs.
+
+    ```javascript
+    export const pricingConfig = {
+        plans: [
+            {
+                mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
+                title: "Starter",
+                description: "",
+                subText: "Pay once, use forever.",
+                isPopular: false,
+                features: [
+                    "NextJS boilerplate",
+                ],
+                intervals: [
+                    {
+                        label: "",
+                        oldPrice: 99,
+                        price: 49,
+                        priceId: "price_XXX"
+                    }
+                ]
+            },
+            {
+                mode: "subscription", // Recurring
+                title: "Pro",
+                description: "Unlock the full potential of Runway.",
+                isPopular: true,
+                features: [
+                    "NextJS boilerplate",
+                    "Lifetime updates",
+                ],
+                intervals: [
+                    {
+                        name: "monthly",
+                        label: "Monthly",
+                        oldPrice: 49,
+                        price: 29,
+                        discountLabel: "Save 40%",
+                        priceId: "price_monthly_xxx"
+                    },
+                    {
+                        name: "yearly",
+                        label: "Yearly",
+                        oldPrice: 399,
+                        price: 299,
+                        discountLabel: "Save 50%",
+                        priceId: "price_yearly_xxx"
+                    }
+                ]
+            }
+        ]
+    };
+    ```
+
+    <Callout>
+        The [`Pricing`](/docs/landing/pricing) component will automatically pull everything it needs from the `pricingConfig` object.
+    </Callout>
+
+<br />
+
+<div id="webhook-setup" />
+
+## Webhook Setup
+
+Now we need to set up webhooks to listen for events from Stripe.
+
+1. Go to [Webhooks](https://dashboard.stripe.com/test/workbench/webhooks) and click on [+ Add endpoint](https://dashboard.stripe.com/test/workbench/webhooks/create).
+
+2. Select these events to listen to:
+
+    - `checkout.session.completed`
+    - `checkout.session.expired`
+
+    If you are using subscriptions, also select:
+    - `customer.subscription.deleted`
+    - `invoice.paid`
+    - `invoice.payment_failed`
+
+3. Select 'Webhook endpoint' as destination type.
+
+4. Paste this URL as the endpoint URL (replace `YOURDOMAIN.COM` with your domain):
+
+    ```plaintext
+    http://YOURDOMAIN.COM/api/stripe/webhooks
+    ```
+
+    <Tip>
+        Don't have a domain? Check out [Domain](/docs/tutorials/domain) tutorial.
+    </Tip>
+
+5. Create the endpoint and copy the signing secret (`whsec_...`) into `.env.local`:
+
+    ```.env.local
+    STRIPE_WEBHOOK_SECRET=whsec_...
+    ```
+
 <Caution>
-    Always verify webhook signatures to ensure events are truly from Stripe.
+    Make sure you test everything Test mode before going to Live mode. You can use the test card number 4242 4242 4242 4242 for a successful payment.
 </Caution>
 
-<Warning>
-    Double-check your success and cancel URLs in production to avoid misdirected payments.
-</Warning>
+<br />
 
-<Divider />
+<div id="next-steps" />
 
-This complete payment system lets you focus on building your app while I’ve done the heavy lifting on Stripe integration.
+## Next Steps
+Now you are all set up to start accepting payments with Stripe!
+
+Check out the [One-time payments](/docs/tutorials/one-time-payments) or [Subscriptions](/docs/tutorials/subscriptions) tutorials to get started.
+
+
+
+
+

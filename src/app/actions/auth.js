@@ -34,7 +34,7 @@ export async function resetPassword(formData) {
 
     const supabase = createClient();
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: process.env.NEXT_PUBLIC_URL + '/account/update-password',
+        redirectTo: process.env.WEBSITE_URL + '/account/update-password',
     });
     if (error) {
         return { errors: { email: error.message } };
@@ -70,7 +70,7 @@ export async function passwordlessSignin(formData) {
     const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-            emailRedirectTo: process.env.NEXT_PUBLIC_URL + '/auth/confirm',
+            emailRedirectTo: process.env.WEBSITE_URL + '/auth/confirm',
         },
     });
     if (error) {
@@ -87,7 +87,7 @@ export async function signinWithOAuth(provider) {
     const supabase = createClient();
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider,
-        options: { redirectTo: process.env.NEXT_PUBLIC_URL + '/auth/callback' },
+        options: { redirectTo: process.env.WEBSITE_URL + '/auth/callback' },
     });
     if (error) {
         return { errors: { provider: error.message } };

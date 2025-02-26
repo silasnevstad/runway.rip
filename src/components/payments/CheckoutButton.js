@@ -3,24 +3,24 @@ import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import Button from "@/components/atoms/Button";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
 
 export default function CheckoutButton({
     children,
-    planType,
-    intervalName,
+    mode,
+    priceId,
     ...props
 }) {
     const handleCheckout = async () => {
         try {
             const stripe = await stripePromise;
-            const response = await fetch("/api/checkout_sessions", {
+            const response = await fetch("/api/create-checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     data: {
-                        planType,
-                        intervalName,
+                        mode,
+                        priceId,
                     }
                 })
             });
