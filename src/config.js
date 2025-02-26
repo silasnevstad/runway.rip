@@ -94,7 +94,9 @@ export const landingConfig = {
         },
         textHighlight: {
             text: "Code less, launch faster.",
-            highlight: "launch faster."
+            highlight: "launch faster.",
+            fromGradient: "primary",
+            toGradient: "purple",
         },
         description: "Everything you need in a Next.js boilerplate, so you can focus on innovation instead of configuration.",
         buttonText: "Get Started",

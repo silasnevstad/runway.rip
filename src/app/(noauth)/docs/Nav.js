@@ -79,6 +79,7 @@ export const DocsNav = [
             { title: "StarRating", href: "/docs/components/star-rating" },
             { title: "Switcher", href: "/docs/components/switcher" },
             { title: "TextArea", href: "/docs/components/textarea" },
+            { title: "TextHighlight", href: "/docs/components/text-highlight" },
             { title: "TextLink", href: "/docs/components/text-link" },
             // { title: "Timeline", href: "/docs/components/timeline" },
             { title: "Toggle", href: "/docs/components/toggle" },

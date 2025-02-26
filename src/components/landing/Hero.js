@@ -56,8 +56,8 @@ export default function Hero({
                             className={`text-${textPosition} mt-6`}
                             text={hero.textHighlight.text}
                             highlight={hero.textHighlight.highlight}
-                            gradientColors={["primary", "purple"]}
-                            highlightClassName={`from-primary-600`}
+                            fromGradient={hero.textHighlight.fromGradient}
+                            toGradient={hero.textHighlight.toGradient}
                         />
 
                         <p className={`text-lg opacity-60 font-semibold max-w-[45ch] text-${textPosition}`}>

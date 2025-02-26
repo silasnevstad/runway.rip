@@ -49,6 +49,54 @@ export function getTextColorClass(color) {
     return colorClasses[color] || "";
 }
 
+export function getBgColorClass(color) {
+    const colorClasses = {
+        gray: "bg-gray-500",
+        bg: "bg-bg-500",
+        primary: "bg-primary-500",
+        red: "bg-red-500",
+        green: "bg-green-500",
+        blue: "bg-blue-500",
+        yellow: "bg-yellow-500",
+        orange: "bg-orange-500",
+        purple: "bg-purple-500",
+        pink: "bg-pink-500",
+    };
+    return colorClasses[color] || "";
+}
+
+export function getFromColorClass(color) {
+    const colorClasses = {
+        gray: "from-gray-500",
+        bg: "from-bg-500",
+        primary: "from-primary-500",
+        red: "from-red-500",
+        green: "from-green-500",
+        blue: "from-blue-500",
+        yellow: "from-yellow-500",
+        orange: "from-orange-500",
+        purple: "from-purple-500",
+        pink: "from-pink-500",
+    };
+    return colorClasses[color] || "";
+}
+
+export function getToColorClass(color) {
+    const colorClasses = {
+        gray: "to-gray-500",
+        bg: "to-bg-500",
+        primary: "to-primary-500",
+        red: "to-red-500",
+        green: "to-green-500",
+        blue: "to-blue-500",
+        yellow: "to-yellow-500",
+        orange: "to-orange-500",
+        purple: "to-purple-500",
+        pink: "to-pink-500",
+    };
+    return colorClasses[color] || "";
+}
+
 export const COLOR_VARIANTS = {
     // Bg
     bg: {

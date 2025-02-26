@@ -63,6 +63,7 @@ import StarRating from "@/components/atoms/StarRating";
 import Select from "@/components/atoms/Select";
 import Modal from "@/components/atoms/Modal";
 import ModalDemo from "@/docs/_components/demos/ModalDemo";
+import TextHighlight from "@/components/atoms/TextHighlight";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -219,6 +220,7 @@ export const mdxComponents = {
     StarRating: StarRating,
     TextArea: TextArea,
     TextAreaDemo: TextAreaDemo,
+    TextHighlight: TextHighlight,
 
     PasswordAuthForm: PasswordAuthForm,
     PasswordlessAuthForm: PasswordlessAuthForm,
