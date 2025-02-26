@@ -13,6 +13,8 @@ onThisPage:
 related:
   - title: "Input"
     href: "/docs/components/input"
+  - title: "Modal"
+    href: "/docs/components/modal"
 ---
 
 <div id="searchbar-overview" />
@@ -33,7 +35,7 @@ related:
 </div>
 
 <Info>
-    It leverages the [`Input`](/docs/components/input) component.
+    It leverages the [`Input`](/docs/components/input) component and the [`Modal`](/docs/components/modal) component when the `modalSearch` prop is set to `true`.
 </Info>
 
 <br/>
@@ -83,6 +85,13 @@ import SearchBar from "@/components/atoms/SearchBar";
 | inputClassName     | string   | `""`          | Additional [Tailwind](https://tailwindcss.com) classes for the input.                                                     |
 | textClassName      | string   | `""`          | Additional [Tailwind](https://tailwindcss.com) classes for the text.                                                      |
 | ...props           | object   | -             | Any other valid <code>&lt;input&gt;</code>  attributes (e.g. `type`, `name`, etc.).                                       |
+
+[//]: # (    sections,
+[//]: # (    query,
+[//]: # (    onSelectItem,
+[//]: # (    renderItem,
+[//]: # (    isModal,
+[//]: # (    firstDisplayed,)
 
 <Tip>
     The `items` prop should be an array of objects, where each object represents a section. Each section object should have a `title` and an optional `items` array. The `items` array should contain objects with `title` and `href` properties.

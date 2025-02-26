@@ -87,7 +87,7 @@ export default function Switcher({
         isSelected ? "opacity-100" : "opacity-90",
         hover ? "hover:opacity-100" : "",
         isSelected ? `${colorSet.activeBg}` : `bg-transparent`,
-        hover && !isSelected ? `${colorSet.hoverBg} ${colorSet.hoverBorder} ${colorSet.hoverText}` : "",
+        hover && !isSelected ? `${colorSet.hoverBg} ${colorSet.hoverBorder}` : "",
         buttonClassName
     );
 

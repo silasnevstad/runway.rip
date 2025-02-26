@@ -103,10 +103,11 @@ const [hasAgreed, setHasAgreed] = useState(false);
 | size          | "sm" \| "md" \| "lg" | `"md"`      | The size of the checkbox.                                        |
 | color         | string               | `"primary"` | The base color (from [tailwind.config](/docs/tutorials/config)). |
 | borderRadius  | string               | `"md"`      | The border radius of the checkbox.                               |
+| borderColor   | string               | `"gray"`    | The border color of the checkbox.                                |
+| border        | boolean              | `false`     | If true, adds a border.                                          |
 | scale         | boolean              | `false`     | If true, gently scales up on hover.                              |
 | lift          | boolean              | `false`     | If true, lifts on hover.                                         |
 | active        | boolean              | `true`      | If true, the checkbox has an active press-down scale effect.     |
-| border        | boolean              | `false`     | If true, adds a border.                                          |
 | disabled      | boolean              | `false`     | Whether the checkbox is disabled.                                |
 | checked       | boolean              | `false`     | If true, the checkbox is checked.                                |
 | onChange      | function             | -           | The change handler for the checkbox.                             |
@@ -225,7 +226,6 @@ const [hasAgreed, setHasAgreed] = useState(false);
         name="hover"
         label="Hover me"
         lift
-        scale
     />
 }>
 ```javascript

@@ -41,7 +41,7 @@ function SectionList({
 
     const styleMap = {
         inline: {
-            container: "absolute z-50 w-full bg-bg-0 dark:bg-gray-900 border border-gray-500 dark:border-gray-700 rounded-t-none border-t-0 rounded-lg mt-0 shadow-lg max-h-60 overflow-y-auto",
+            container: "absolute z-50 w-full bg-bg-0 dark:bg-gray-900 border border-gray-800 dark:border-gray-600 rounded-t-none border-t-0 rounded-lg mt-0 shadow-lg max-h-60 overflow-y-auto",
             sectionTitle: "cursor-pointer mx-1 my-1 px-1 py-1 rounded-lg font-sm font-medium hover:bg-gray-200/50 dark:hover:bg-gray-800",
             item: "cursor-pointer mx-1 my-1 px-1 py-1 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-800",
         },
@@ -228,7 +228,7 @@ export default function SearchBar({
                     )}
                     textClassName={textClassName}
                     size={size}
-                    focus={false} // turn off default focus styling from Input
+                    focus={false}
                     {...props}
                 />
 
@@ -291,9 +291,8 @@ export default function SearchBar({
                         onChange={handleSearch}
                         onKeyDown={handleKeyDown}
                         placeholder={modalPlaceholder}
-                        className="bg-bg-100 dark:bg-gray-800"
+                        className="text-lg md:text-xl bg-bg-100 dark:bg-gray-800"
                         textClassName={textClassName}
-                        textSize="text-lg md:text-xl"
                         focus={false}
                         autoFocus
                     />

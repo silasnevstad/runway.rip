@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { mergeClasses, SIZE_MAP } from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses, SIZE_MAP} from "@/utils/styling";
 import FloatingLabelWrapper from "@/components/atoms/FloatingLabelWrapper";
 
 export default function Select({
@@ -8,12 +8,15 @@ export default function Select({
     label = "",
     labelMode = "none",  // "none" | "inside" | "above" | "float"
     labelBackground = "bg-bg-0 dark:bg-bg-900",
+
+    // Styling
     size = "md",
     borderRadius = "md",
     color = "gray",
-    shadow = "",
-    focus = true,
+    variant = "soft",
     activeColor = "primary",
+    shadow = false,
+    focus = true,
     includeEmptyOption = false,
 
     // Controlled/uncontrolled value
@@ -43,30 +46,33 @@ export default function Select({
         onChange?.(e);
     }
 
+    // Focus state
     const [isFocused, setIsFocused] = useState(false);
     const handleFocus = () => setIsFocused(true);
     const handleBlur = () => setIsFocused(false);
 
+    // Styling
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.soft;
+    const activeColorSet = COLOR_VARIANTS[activeColor][variant] || COLOR_VARIANTS.primary.soft;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.md;
     const sizeConfig = SIZE_MAP[size] || SIZE_MAP.md;
 
     const containerClasses = mergeClasses(
         "relative flex items-center",
-        labelMode !== "float" && `bg-${color}-500/5`,
-        `border border-${color}-500 dark:border-${color}-700`,
-        borderRadius && `rounded-${borderRadius}`,
-        shadow && `shadow-${shadow}`,
+        variant === "soft" && labelMode !== "float" && colorSet.fadeBg,
+        `border ${colorSet.border}`,
+        borderRadius && borderRadiusClass,
+        shadow && "shadow-md",
+        focus && activeColorSet.focusWithin,
         sizeConfig.containerPadding,
-        focus && `focus-within:border-${activeColor}-500 focus-within:ring-1 focus-within:ring-${activeColor}-500/30`,
         className
     );
 
-    // only float if user is focused or has a non-empty value
-    const hasValue = internalValue !== "";
-
     const selectClasses = mergeClasses(
-        `w-full bg-transparent border-none focus:outline-none focus:ring-0`,
-        `text-${color}-900 dark:text-${color}-100 p-0 -mr-2`,
+        "w-full bg-transparent border-none focus:outline-none focus:ring-0 p-0",
+        colorSet.text,
         sizeConfig.textSize,
+        colorSet.placeholder,
         labelMode === "float" && "placeholder-transparent",
         textClassName
     );
@@ -77,7 +83,8 @@ export default function Select({
                 <label
                     htmlFor={id}
                     className={mergeClasses(
-                        `block text-${color}-700 dark:text-${color}-300`,
+                        `block`,
+                        colorSet.text,
                         sizeConfig.textSize
                     )}
                 >
@@ -93,7 +100,7 @@ export default function Select({
                 color={color}
                 activeColor={color}
                 isFocused={isFocused}
-                hasValue={hasValue}
+                hasValue={internalValue !== ""}
                 sizeConfig={sizeConfig}
                 containerClasses={containerClasses}
             >

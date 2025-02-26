@@ -29,8 +29,8 @@ onThisPage:
             max={100}
             step={1}
             defaultValue={60}
-            activeTrackColor="red"
-            thumbColor="gray"
+            color="red"
+            inactiveColor="gray"
             thumbSize={6}
             thumbBorderRadius={"full"}
             activeTrackBorderRadius="lg"
@@ -41,9 +41,8 @@ onThisPage:
             max={100}
             step={1}
             value={50}
-            thumbColor="green"
+            color="green"
             thumbBorderRadius="sm"
-            activeTrackColor="green"
             activeTrackBorderRadius={"full"}
             inactiveTrackWidth={2}
         />
@@ -52,7 +51,7 @@ onThisPage:
             max={100}
             step={1}
             defaultValue={80}
-            activeTrackColor="yellow"
+            color="yellow"
             activeTrackWidth="2"
             inactiveTrackWidth="2"
             showThumb={false}
@@ -114,16 +113,16 @@ import { Slider } from "@components/atoms/slider";
 | defaultValue              | number                                  | `50`        | The default value of the slider.                                                                                                        |
 | showLabels                | boolean                                 | `false`     | If true, shows the min and max labels.                                                                                                  |
 | valuePosition             | "left" \| "right" \| "follow" \| "none" | `"follow"`  | The position of the value label. Can be "left", "right", "follow" or "" to hide).                                                       |
+| color                     | string                                  | `"primary"` | The color of the slider (uses [tailwind.config](/docs/tutorials/config)).                                                               |
+| inactiveColor             | string                                  | `"gray"`    | The color of the inactive track (uses [tailwind.config](/docs/tutorials/config)).                                                       |
+| variant                   | "solid" \| "soft"                       | `"solid"`   | The variant of the slider.                                                                                                              |
 | showThumb                 | boolean                                 | `true`      | If true, shows the thumb.                                                                                                               |
-| thumbColor                | string                                  | `"primary"` | The color of the thumb (uses [tailwind.config](/docs/tutorials/config)).                                                                |
 | thumbBorderColor          | string                                  | `"gray"`    | The border color of the thumb (uses [tailwind.config](/docs/tutorials/config)).                                                         |
 | thumbBorderRadius         | string                                  | `"lg"`      | The border radius of the thumb (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component).          |
 | thumbSize                 | string                                  | `"5"`       | The size of the thumb.                                                                                                                  |
 | thumbBorder               | boolean                                 | `true`      | If true, shows the border of the thumb.                                                                                                 |
 | thumbScale                | boolean                                 | `true`      | If true, scales the thumb on hover.                                                                                                     |
 | thumbClassName            | string                                  | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes for the thumb.                                                           |
-| activeTrackColor          | string                                  | `"primary"` | The color of the active track (uses [tailwind.config](/docs/tutorials/config)).                                                         |
-| inactiveTrackColor        | string                                  | `"gray"`    | The color of the inactive track (uses [tailwind.config](/docs/tutorials/config)).                                                       |
 | activeTrackWidth          | string                                  | `"3"`       | The width of the active track.                                                                                                          |
 | inactiveTrackWidth        | string                                  | `"1"`       | The width of the inactive track.                                                                                                        |
 | activeTrackBorderRadius   | string                                  | `"full"`    | The border radius of the active track (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component).   |
@@ -228,10 +227,9 @@ import { Slider } from "@components/atoms/slider";
             max={100}
             step={10}
             value={50}
-            thumbColor="red"
+            color="red"
+            inactiveColor="red"
             thumbBorderRadius="full"
-            activeTrackColor="red"
-            inactiveTrackColor="red"
             activeTrackBorderRadius={"full"}
         />
         <Slider
@@ -239,9 +237,8 @@ import { Slider } from "@components/atoms/slider";
             max={100}
             step={1}
             value={50}
-            thumbColor="green"
+            color="green"
             thumbBorderRadius="sm"
-            activeTrackColor="green"
             activeTrackBorderRadius={"sm"}
             inactiveTrackWidth={2}
         />
@@ -250,9 +247,9 @@ import { Slider } from "@components/atoms/slider";
             max={100}
             step={10}
             value={50}
-            className="bg-primary-500/20 rounded-full"
             trackColor="red"
             thumbColor="green"
+            activeTrackWidth={5}
         />
     </div>
 }>
@@ -263,10 +260,9 @@ import { Slider } from "@components/atoms/slider";
         max={100}
         step={10}
         value={50}
-        thumbColor="red"
+        color="red"
+        inactiveColor="red"
         thumbBorderRadius="full"
-        activeTrackColor="red"
-        inactiveTrackColor="red"
         activeTrackBorderRadius={"full"}
     />
     <Slider
@@ -274,9 +270,8 @@ import { Slider } from "@components/atoms/slider";
         max={100}
         step={1}
         value={50}
-        thumbColor="green"
+        color="green"
         thumbBorderRadius="sm"
-        activeTrackColor="green"
         activeTrackBorderRadius={"sm"}
         inactiveTrackWidth={2}
     />
@@ -285,9 +280,9 @@ import { Slider } from "@components/atoms/slider";
         max={100}
         step={10}
         value={50}
-        className="bg-primary-500/20 rounded-full"
         trackColor="red"
         thumbColor="green"
+        activeTrackWidth={5}
     />
 </div>
 ```

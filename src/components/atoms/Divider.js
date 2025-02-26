@@ -1,13 +1,12 @@
-import {COLOR_VARIANTS, mergeClasses, MX_MARGIN_SIZES, MY_MARGIN_SIZES} from "@/utils/styling";
+import { COLOR_VARIANTS, mergeClasses, WIDTH_SIZES, HEIGHT_SIZES } from "@/utils/styling";
 
 const Divider = ({
     color = 'gray',
     variant = 'solid',
     text = '',
     opacity = 30,
-    margin = 2,
+    margin = 10, // in px
     width = 0.5,
-    height = 'full',
     vertical = false,
     noWrap = true,
     className = '',
@@ -16,31 +15,33 @@ const Divider = ({
     const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.solid;
 
     const baseStyle = !vertical
-        ? `w-${height} h-${width}`
-        : `w-${width} h-${height}`;
+        ? `w-full ${HEIGHT_SIZES[width]}`
+        : `${WIDTH_SIZES[width]} h-full`;
 
     const dividerClass = mergeClasses(
         baseStyle,
         colorSet.bg,
-        `opacity-${opacity}`,
-        vertical ? MX_MARGIN_SIZES[margin] : MY_MARGIN_SIZES[margin],
         className
     );
 
     const outerContainerClass = mergeClasses(
         `flex ${vertical ? 'h-full' : 'w-full'} items-center`,
-        vertical ? MX_MARGIN_SIZES[margin] : MY_MARGIN_SIZES[margin],
     );
+
+    const dividerStyle = {
+        margin: vertical ? `0 ${margin}px` : `${margin}px 0`,
+        opacity: opacity / 100,
+    }
 
     return (
         text ? (
             <div className={outerContainerClass} {...props} aria-label={text}>
-                <div className={dividerClass}></div>
+                <div className={dividerClass} style={dividerStyle}></div>
                 <p className={`text-gray-600 dark:text-gray-400 px-5 ${noWrap && 'whitespace-nowrap'}`}>{text}</p>
-                <div className={dividerClass}></div>
+                <div className={dividerClass} style={dividerStyle}></div>
             </div>
         ) : (
-            <div className={dividerClass} {...props}></div>
+            <div className={dividerClass} {...props} style={dividerStyle}></div>
         )
     );
 };

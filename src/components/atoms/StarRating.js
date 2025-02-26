@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { StarIcon } from "@heroicons/react/24/solid";
+import { getTextColorClass } from "@/utils/styling";
 
 export default function StarRating({
     totalStars = 5,
@@ -9,16 +10,12 @@ export default function StarRating({
     responsive = false,
     color = "yellow",
     initialRating = 0,
-    className = "",
     ...props
 }) {
     // Uncontrolled internal state only used if 'rating' is not provided externally
     const [internalRating, setInternalRating] = useState(initialRating);
-    // State for hovered rating (used only if responsive is true)
     const [hoveredRating, setHoveredRating] = useState(null);
-    // If `rating` prop is passed in, that means parent is controlling
     const currentRating = rating !== undefined ? rating : internalRating;
-    // Display rating is either the hovered rating or the current rating
     const displayRating = hoveredRating !== null ? hoveredRating : currentRating;
 
     const handleMouseEnter = (index) => {
@@ -38,7 +35,6 @@ export default function StarRating({
         if (onRatingChange) {
             onRatingChange(newRating);
         } else {
-            // Otherwise, store the rating in internal state (uncontrolled scenario)
             setInternalRating(newRating);
         }
     };
@@ -55,7 +51,7 @@ export default function StarRating({
                     `h-6 w-6
                     transition duration-200 ease-in-out
                     ${responsive ? 'cursor-pointer hover:scale-105' : ''}
-                    ${filled ? `text-${color}-400` : 'text-gray-400 dark:text-gray-700'}`
+                    ${filled ? getTextColorClass(color) : 'text-gray-400 dark:text-gray-700'}`
                 }
                 aria-hidden="true"
             />

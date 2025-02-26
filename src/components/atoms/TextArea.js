@@ -1,37 +1,34 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { mergeClasses } from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses} from "@/utils/styling";
 
 export default function TextArea({
-    /* Label & messages */
+    // Label and helper/error text
     label = "",
     helperText = "",
     error = "",
 
-    /* Numeric padding for container (in px) */
+    // Styling
     padding = 8,
-
-    /* Font & border styling */
-    textSize = "md",
     borderRadius = "md",
     focus = true,
     activeColor = "primary",
 
-    /* Auto-grow behavior */
+    // Auto-grow configuration
     autoGrow = true,
     minRows = 2,
     maxRows = 8,
 
-    /* Slots */
+    // Slots
     topRightSlot,     // Renders to the right of the text area
     bottomLeftSlot,   // Below, on the left
     bottomRightSlot,  // Below, on the right
 
-    /* Controlled/uncontrolled value */
+    // Controlled/uncontrolled value
     value: controlledValue,
     onChange,
 
-    /* Tailwind classes, etc. */
+    // Other props
     className = "",
     ...props
 }) {
@@ -74,24 +71,22 @@ export default function TextArea({
         }
     }, [internalValue, autoGrow, minRows, maxRows]);
 
-    // Styles for the outer container
+    // Styling
+    const activeColorSet = COLOR_VARIANTS[activeColor].soft;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.md;
+
     const containerClasses = mergeClasses(
-        "border border-gray-300 dark:border-gray-700 rounded",
-        `rounded-${borderRadius}`,
-        focus &&
-        `focus-within:border-${activeColor}-500 
-       focus-within:ring-1 focus-within:ring-${activeColor}-500/30`,
+        "border border-gray-300 dark:border-gray-700",
+        borderRadiusClass,
+        focus && activeColorSet.focusWithin,
         className
     );
 
-    // TextArea classes
     const textAreaClasses = mergeClasses(
         "w-full bg-transparent border-none focus:outline-none focus:ring-0 dark:text-gray-100 resize-none p-0",
-        `text-${textSize}`,
         "items-start justify-start text-left border"
     );
 
-    // Error styling
     const isErrored = Boolean(error);
     const labelColorClasses = isErrored
         ? "text-red-600 dark:text-red-400"
@@ -102,11 +97,10 @@ export default function TextArea({
 
     return (
         <div className="flex w-full flex-col gap-1">
-            {/* Label */}
             {label && (
                 <label
                     htmlFor={props.id}
-                    className={mergeClasses("block font-medium", `text-${textSize}`, labelColorClasses)}
+                    className={mergeClasses("block font-medium", labelColorClasses)}
                 >
                     {label}
                 </label>
@@ -145,7 +139,6 @@ export default function TextArea({
                 )}
             </div>
 
-            {/* Error or helper text */}
             {isErrored ? (
                 <p className={mergeClasses("mt-1 text-sm", messageColorClasses)}>
                     {error}

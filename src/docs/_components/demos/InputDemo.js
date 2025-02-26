@@ -4,18 +4,16 @@ import Input from "@/components/atoms/Input";
 
 export function InputIconDemo() {
     return (
-        <div className="flex flex-wrap gap-4 items-center">
-            <Input
-                label="Left Icon"
-                placeholder="Left Icon"
-                labelMode="none"
-                leftIcon={<PlusCircleIcon className="w-5 h-5" />}
-                leftIconOnClick={() => alert("Left icon clicked!")}
-                rightIcon={<PaperAirplaneIcon className="w-5 h-5" />}
-                rightIconOnClick={() => alert("Right icon clicked!")}
-                focus={false}
-                shadow
-            />
-        </div>
+        <Input
+            label="Left Icon"
+            placeholder="Input with buttons"
+            labelMode="none"
+            leftIcon={<PlusCircleIcon />}
+            leftIconOnClick={() => alert("Left icon clicked!")}
+            rightIcon={<PaperAirplaneIcon />}
+            rightIconOnClick={() => alert("Right icon clicked!")}
+            focus={false}
+            shadow
+        />
     );
 }

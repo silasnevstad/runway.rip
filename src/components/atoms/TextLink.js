@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
-import { mergeClasses, renderIcon, getHoverClasses } from "@/utils/styling";
+import { mergeClasses, renderIcon, getHoverClasses, getTextColorClass } from "@/utils/styling";
 
 const TextLink = ({
     children,
     href,
+    color = "gray",
     icon = null,
     scale = false,
     lift = false,
@@ -15,13 +16,14 @@ const TextLink = ({
     underlineHeight = 1,
     underlineOffset = 0,
     className = "",
+    ...props
 }) => {
     const baseStyles = "relative flex items-center gap-1 cursor-pointer";
 
     const linkClasses = mergeClasses(
         baseStyles,
+        getTextColorClass(color),
         getHoverClasses({ lift, scale, active }),
-        `text-gray-900 dark:text-gray-50`,
         fade && "transition-opacity opacity-50 hover:opacity-100",
         underline
             ? "group"
@@ -31,7 +33,7 @@ const TextLink = ({
 
     const iconClasses = mergeClasses(
         "w-4 h-4",
-        underline ? `text-gray-800 dark:text-gray-200` : `text-gray-600 dark:text-gray-400`
+        getTextColorClass(color)
     );
 
     const underlineClasses = mergeClasses(
@@ -43,7 +45,7 @@ const TextLink = ({
     );
 
     return (
-        <Link href={href} className={linkClasses}>
+        <Link href={href} className={linkClasses} {...props}>
             {icon && renderIcon(icon, null, mergeClasses(iconClasses))}
             <span className="relative">
                 {children}

@@ -11,10 +11,11 @@ const Checkbox = ({
     color = "primary",
     variant = "solid",
     borderRadius = "sm",
+    borderColor = "gray",
     border = false,
     lift = false,
     scale = false,
-    active = true,
+    active = false,
     disabled = false,
     checked = false,
     onChange,
@@ -28,11 +29,12 @@ const Checkbox = ({
     }
 
     const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.primary.soft;
+    const borderSet = COLOR_VARIANTS[borderColor][variant] || COLOR_VARIANTS.gray.soft;
     const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.sm;
 
     // Container styles
     const containerClasses = mergeClasses(
-        "flex items-center justify-center",
+        "flex items-center justify-center overflow-visible",
         labelPosition === "left" ? "flex-row-reverse" : "flex-row",
         disabled && "opacity-50",
         className
@@ -40,11 +42,12 @@ const Checkbox = ({
 
     // Input checkbox styles:
     const inputClasses = mergeClasses(
-        "checkbox",
+        "checkbox appearance-none cursor-pointer origin-center",
+        "transition-transform duration-200 ease-in-out",
         sizeStyles[size] || sizeStyles.md,
-        colorSet.bg,
+        checked ? colorSet.bg : colorSet.fadeBg,
         colorSet.text,
-        border && `border ${colorSet.border}`,
+        border && `border ${borderSet.border}`,
         borderRadius && borderRadiusClass,
         getHoverClasses({ lift, scale, active }),
         className

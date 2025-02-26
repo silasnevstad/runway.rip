@@ -61,6 +61,8 @@ import TextArea from "@/components/atoms/TextArea";
 import { TextAreaDemo } from "@/docs/_components/demos/TextAreaDemo";
 import StarRating from "@/components/atoms/StarRating";
 import Select from "@/components/atoms/Select";
+import Modal from "@/components/atoms/Modal";
+import ModalDemo from "@/docs/_components/demos/ModalDemo";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -208,6 +210,8 @@ export const mdxComponents = {
     InputIconDemo: InputIconDemo,
     Loader: Loader,
     LineGraph: LineGraph,
+    Modal: Modal,
+    ModalDemo: ModalDemo,
     SearchBar: SearchBar,
     Select: Select,
     ClientSideSearchBar: ClientSideSearchBar,

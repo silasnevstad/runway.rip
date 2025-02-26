@@ -2,7 +2,7 @@
 title: "TextArea"
 description: "A flexible multi-line text input with auto-grow, label, helper/error messages, and slot support."
 onThisPage:
-  - title: "TextArea"
+  - title: "Overview"
     href: "#textarea"
   - title: "Usage"
     href: "#usage"
@@ -58,13 +58,7 @@ export default function Example() {
             id="feedback"
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            label="Your Feedback"
-            showLabel
             placeholder="Write your thoughts here..."
-            autoGrow
-            minRows={3}
-            maxRows={10}
-            helperText="Let us know what you think!"
         />
     );
 }
@@ -79,24 +73,26 @@ export default function Example() {
 
 ## Props
 
-| Prop         | Type     | Default     | Description                                                                                                            |
-|--------------|----------|-------------|------------------------------------------------------------------------------------------------------------------------|
-| id           | string   | -           | An identifier for the `<textarea>`.                                                                                    |
-| label        | string   | `""`        | Label text displayed above the textarea (when `showLabel` is `true`).                                                  |
-| helperText   | string   | `""`        | Shows a helper message below the text area if no error is set.                                                         |
-| error        | string   | `""`        | When present, displays an error message in a red color (overrides `helperText`).                                       |
-| padding      | number   | `8`         | Numeric padding for container (in px).                                                                                 |
-| textSize     | string   | `"md"`      | [Tailwind](https://tailwindcss.com) text size class (e.g. `"xs"`, `"sm"`, `"md"`, `"lg"`, etc.).                       |
-| borderRadius | string   | `"md"`      | [Tailwind](https://tailwindcss.com) border-radius class (e.g. `"none"`, `"sm"`, `"md"`, `"lg"`, `"full"`, etc.).       |
-| focus        | boolean  | `true`      | If `true`, a focus ring/border is applied based on the `activeColor`.                                                  |
-| activeColor  | string   | `"primary"` | [Tailwind](https://tailwindcss.com) color key used for the focus ring and border (`focus-within:border-*`).            |
-| autoGrow     | boolean  | `true`      | Automatically adjusts height to fit content, respecting `minRows` and `maxRows`.                                       |
-| minRows      | number   | `2`         | Minimum number of rows the textarea can display.                                                                       |
-| maxRows      | number   | `8`         | Maximum number of rows the textarea can grow to before scrolling appears.                                              |
-| value        | string   | -           | Controlled value of the textarea. If set, the component operates in controlled mode; otherwise it uses internal state. |
-| onChange     | function | -           | Callback fired on change, receiving the `event`.                                                                       |
-| className    | string   | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the container.                                              |
-| ...props     | object   | -           | Any other valid <code>&lt;textarea&gt;</code> attributes (e.g. `placeholder`, `disabled`, etc.).                       |
+| Prop            | Type      | Default     | Description                                                                                                            |
+|-----------------|-----------|-------------|------------------------------------------------------------------------------------------------------------------------|
+| id              | string    | -           | An identifier for the `<textarea>`.                                                                                    |
+| label           | string    | `""`        | Label text displayed above the textarea (when `showLabel` is `true`).                                                  |
+| helperText      | string    | `""`        | Shows a helper message below the text area if no error is set.                                                         |
+| error           | string    | `""`        | When present, displays an error message in a red color (overrides `helperText`).                                       |
+| padding         | number    | `8`         | Numeric padding for container (in px).                                                                                 |
+| borderRadius    | string    | `"md"`      | [Tailwind](https://tailwindcss.com) border-radius class (e.g. `"none"`, `"sm"`, `"md"`, `"lg"`, `"full"`, etc.).       |
+| focus           | boolean   | `true`      | If `true`, a focus ring/border is applied based on the `activeColor`.                                                  |
+| activeColor     | string    | `"primary"` | [Tailwind](https://tailwindcss.com) color key used for the focus ring and border (`focus-within:border-*`).            |
+| autoGrow        | boolean   | `true`      | Automatically adjusts height to fit content, respecting `minRows` and `maxRows`.                                       |
+| minRows         | number    | `2`         | Minimum number of rows the textarea can display.                                                                       |
+| maxRows         | number    | `8`         | Maximum number of rows the textarea can grow to before scrolling appears.                                              |
+| topRightSlot    | ReactNode | -           | Custom content (e.g. buttons, icons) in the top-right corner of the textarea.                                          |
+| bottomRightSlot | ReactNode | -           | Custom content (e.g. buttons, icons) in the bottom-right corner of the textarea.                                       |
+| bottomLeftSlot  | ReactNode | -           | Custom content (e.g. buttons, icons) in the bottom-left corner of the textarea.                                        |
+| value           | string    | -           | Controlled value of the textarea. If set, the component operates in controlled mode; otherwise it uses internal state. |
+| onChange        | function  | -           | Callback fired on change, receiving the `event`.                                                                       |
+| className       | string    | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the container.                                              |
+| ...props        | object    | -           | Any other valid <code>&lt;textarea&gt;</code> attributes (e.g. `placeholder`, `disabled`, etc.).                       |
 
 <Info>
     `TextArea` supports all standard HTML <code>&lt;textarea&gt;</code> attributes.
@@ -181,15 +177,12 @@ export function Example() {
                 value={value}
                 onChange={handleChange}
                 bottomRightSlot={
-                    <button
-                        className="rounded-md px-2 py-1 text-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
-                        onClick={handleClear}
-                    >
+                    <button onClick={handleClear}>
                         Clear
                     </button>
                 }
                 bottomLeftSlot={
-                    <span className="text-xs text-gray-400">
+                    <span>
                         {numWords} words
                     </span>
                 }
@@ -217,14 +210,14 @@ export function Example() {
                 label="Small"
                 placeholder="Small text"
                 borderRadius="sm"
-                textSize="sm"
+                className="text-sm"
             />
             <TextArea
                 id="largeTextArea"
                 label="Large"
                 placeholder="Large text"
                 borderRadius="xl"
-                textSize="lg"
+                className="text-lg"
             />
         </div>
     }
@@ -234,15 +227,16 @@ export function Example() {
         id="smallTextArea"
         label="Small"
         placeholder="Small text"
-        size="sm"
         borderRadius="sm"
+        className="text-sm"
     />
+
     <TextArea
         id="largeTextArea"
         label="Large"
         placeholder="Large text"
-        size="lg"
-        borderRadius="full"
+        borderRadius="xl"
+        className="text-lg"
     />
     ```
 </PreviewCode>

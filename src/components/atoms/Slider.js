@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { mergeClasses } from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses} from "@/utils/styling";
 
 export default function Slider({
     // Range configuration
@@ -13,9 +13,11 @@ export default function Slider({
     showLabels = false,
     valuePosition = "follow",  // "left", "right", or "follow"
 
-    // Thumb styling
+    // Styling
+    color = "primary",
+    inactiveColor = "gray",
+    variant = "solid",
     showThumb = true,
-    thumbColor = "primary",
     thumbBorderColor = "gray",
     thumbBorderRadius = "lg",
     thumbSize = "5",
@@ -23,9 +25,6 @@ export default function Slider({
     thumbScale = true,
     thumbClassName = "",
 
-    // Track styling
-    activeTrackColor = "primary",
-    inactiveTrackColor = "gray",
     activeTrackWidth = "3",
     inactiveTrackWidth = "1",
     activeTrackBorderRadius = "full",
@@ -50,27 +49,32 @@ export default function Slider({
         onChange?.(val);
     }
 
-    // Percentage of how far along the slider is
+    // Styling
     const percentage = ((value - min) / (max - min)) * 100;
-
-    // Offset to center the thumb (approx half the thumb width, in px)
     const thumbOffset = 10;
+
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.primary.soft;
+    const inactiveTrackColor = COLOR_VARIANTS[inactiveColor][variant] || COLOR_VARIANTS.gray.soft;
+    const thumbBorderColorSet = COLOR_VARIANTS[thumbBorderColor][variant] || COLOR_VARIANTS.gray.soft;
+    const thumbBorderRadiusClass = BORDER_RADIUS[thumbBorderRadius] || BORDER_RADIUS.lg;
+    const activeTrackBorderRadiusClass = BORDER_RADIUS[activeTrackBorderRadius] || BORDER_RADIUS.full;
+    const inactiveTrackBorderRadiusClass = BORDER_RADIUS[inactiveTrackBorderRadius] || BORDER_RADIUS.full;
 
     // Inactive track style
     const inactiveTrackStyle = mergeClasses(
         "absolute top-1/2 -translate-y-1/2",
-        `bg-${inactiveTrackColor}-300 dark:bg-${inactiveTrackColor}-600/50`,
+        inactiveTrackColor.bg,
         `w-full h-${inactiveTrackWidth}`,
-        `rounded-${inactiveTrackBorderRadius}`,
+        inactiveTrackBorderRadiusClass,
         inactiveTrackClassName
     );
 
     // Active track style
     const activeTrackStyle = mergeClasses(
         "absolute top-1/2 -translate-y-1/2",
-        `bg-${activeTrackColor}-500 dark:bg-${activeTrackColor}-600`,
+        colorSet.bg,
         `h-${activeTrackWidth}`,
-        `rounded-${activeTrackBorderRadius}`,
+        activeTrackBorderRadiusClass,
         activeTrackClassName
     );
 
@@ -78,8 +82,9 @@ export default function Slider({
     const thumbStyle = mergeClasses(
         "absolute top-1/2 -translate-y-1/2",
         `w-${thumbSize} h-${thumbSize}`,
-        `bg-${thumbColor}-500 rounded-${thumbBorderRadius}`,
-        thumbBorder && `border-2 border-${thumbBorderColor}-100 dark:border-${thumbBorderColor}-900`,
+        thumbBorderRadiusClass,
+        colorSet.activeBg,
+        thumbBorder && `border-2 ${thumbBorderColorSet.border}`,
         "shadow-md transition-transform duration-150",
         thumbScale && "transform scale-100 hover:scale-110 active:scale-90",
         thumbClassName

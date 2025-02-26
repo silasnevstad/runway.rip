@@ -8,8 +8,8 @@ const Stripe = (style) => {
             return <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-full border-t-4 border-dashed border-primary-500 opacity-20 dark:border-gray-600 z-0"></div>
         case 'track':
             return <>
-                <div className="absolute top-1 left-0 w-full border-t-4 border-dashed border-primary-500 opacity-20 dark:border-gray-600 z-0"></div>
-                <div className="absolute bottom-1 left-0 w-full border-b-4 border-dashed border-primary-500 opacity-20 dark:border-gray-600 z-0"></div>
+                <div className="absolute top-0 left-0 w-full border-t-4 border-dashed border-primary-500 opacity-20 dark:border-gray-600 z-0"></div>
+                <div className="absolute bottom-0 left-0 w-full border-b-4 border-dashed border-primary-500 opacity-20 dark:border-gray-600 z-0"></div>
             </>
         default:
             return <div

@@ -1,18 +1,24 @@
 "use client";
 import React from 'react';
-import { mergeClasses } from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses} from "@/utils/styling";
 
 const Toggle = ({
     label = "",
     labelPosition = "left",  // left or right
     color = "primary",
+    inactiveColor = "gray",
+    variant = "solid",
+    borderRadius = "full",
     showIcon = false,
-    focus = false,
     disabled = false,
     checked = false,
-    onChange = () => {},
+    onChange,
     className = '',
 }) => {
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.primary.soft;
+    const inactiveColorSet = COLOR_VARIANTS[inactiveColor][variant] || COLOR_VARIANTS.gray.soft;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.md;
+
     const containerClasses = mergeClasses(
         `flex items-center justify-between 
         ${labelPosition === 'right' ? 'flex-row-reverse' : 'flex-row'} 
@@ -22,16 +28,17 @@ const Toggle = ({
 
     const focusClasses = `
     ${checked ? 'translate-x-5' : 'translate-x-0'} 
+    ${borderRadiusClass}
     pointer-events-none inline-block h-5 w-5 
-    transform rounded-full bg-white shadow-sm ring-0 
+    transform bg-white shadow-sm ring-0 
     transition duration-200 ease-in-out
     `;
 
     const buttonClasses = mergeClasses(
-        `${checked ? `bg-${color}-500` : 'bg-gray-200 dark:bg-gray-700'}`,
-        `relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full`,
+        checked ? colorSet.bg : inactiveColorSet.bg,
+        borderRadiusClass,
+        `relative inline-flex h-6 w-11 shrink-0 cursor-pointer`,
         `border-2 border-transparent transition-colors duration-200 ease-in-out`,
-        `${focus && 'focus:ring-2 focus:ring-${color}-600 focus:ring-offset-2 focus:outline-hidden'}`
     );
 
     return (

@@ -2,7 +2,7 @@
 title: "Input"
 description: "A customizable input component with icon support, password toggle, and more."
 onThisPage:
-  - title: "Input"
+  - title: "Overview"
     href: "#input"
   - title: "Usage"
     href: "#usage"
@@ -19,20 +19,23 @@ related:
 
 <br />
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <Input
-        id="example"
-        label="With Floating Label"
-        placeholder="Example"
-        labelBackground="bg-bg-0 dark:bg-gray-900"
-        labelMode="float"
-    />
-    <Input
-        id="Password"
-        label="Password"
-        placeholder="Password"
-        secure={true}
-    />
+<div className="flex w-full items-center justify-center">
+    <div className="flex flex-col items-center gap-5">
+        <Input
+            label="Floating Label"
+            placeholder="Example"
+            labelMode="float"
+            labelBackground="bg-bg-0 dark:bg-gray-900"
+        />
+        <InputIconDemo />
+        <Input
+            placeholder="Styled Input"
+            borderRadius="2xl"
+            color="primary"
+            variant="soft"
+            activeColor="primary"
+        />
+    </div>
 </div>
 
 <br />
@@ -171,9 +174,9 @@ import { PlusCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
     label="Left Icon"
     placeholder="Left Icon"
     labelMode="none"
-    leftIcon={<PlusCircleIcon className="w-5 h-5" />}
+    leftIcon={<PlusCircleIcon />}
     leftIconOnClick={() => alert("Left icon clicked!")}
-    rightIcon={<PaperAirplaneIcon className="w-5 h-5" />}
+    rightIcon={<PaperAirplaneIcon />}
     rightIconOnClick={() => alert("Right icon clicked!")}
     focus={false}
 />
@@ -245,8 +248,8 @@ import { PlusCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
             size="sm"
             color="red"
             activeColor="red"
-            leftIcon={<PlusCircleIcon className="w-5 h-5" />}
-            className="bg-red-500/10"
+            variant="soft"
+            leftIcon={<PlusCircleIcon />}
         />
         <Input
             id="custom"
@@ -254,8 +257,8 @@ import { PlusCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
             placeholder="Custom styled input"
             color="green"
             activeColor="green"
-            rightIcon={<PaperAirplaneIcon className="w-5 h-5" />}
-            className="bg-green-500/10"
+            variant="soft"
+            rightIcon={<PaperAirplaneIcon  />}
         />
         <Input
             id="custom"

@@ -1,19 +1,18 @@
-'use client';
-
+"use client";
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function Modal({
+    children,
     isOpen,
     onClose,
-    children,
     fade = true,
-    blur = false,
+    blur = true,
     closeOnOutsideClick = true,
     showCloseButton = true,
-    backdropClassName = '',
-    contentClassName = '',
+    className = "",
+    ...props
 }) {
     const backdropRef = useRef(null);
 
@@ -59,11 +58,12 @@ export default function Modal({
             ref={backdropRef}
             onMouseDown={handleBackdropClick}
             className={[
-                'fixed inset-0 z-[9999] flex items-center justify-center', // big z-index
+                'fixed inset-0 z-[9999] flex items-center justify-center',
                 fade ? 'bg-black/50' : '',
                 blur ? 'backdrop-blur' : '',
-                backdropClassName,
+                className,
             ].join(' ')}
+            {...props}
         >
             {showCloseButton && (
                 <button
@@ -73,14 +73,8 @@ export default function Modal({
                     <XMarkIcon className="h-8 w-8" />
                 </button>
             )}
-            {/*<div*/}
-            {/*    className={[*/}
-            {/*        'relative bg-bg-100 dark:bg-gray-800 rounded-lg shadow-lg p-4 max-w-lg w-full mx-4',*/}
-            {/*        contentClassName,*/}
-            {/*    ].join(' ')}*/}
-            {/*>*/}
-                {children}
-            {/*</div>*/}
+
+            {children}
         </div>,
         document.body
     );

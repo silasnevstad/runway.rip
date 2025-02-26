@@ -1,12 +1,15 @@
 import React from "react";
-import { mergeClasses, POSITION_CLASSES } from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses, POSITION_CLASSES} from "@/utils/styling";
 
 export default function Indicator({
     children,
+    content = "",
     color = "primary",
+    variant = "solid",
     position = "top-right",
     size = "md",
-    content = "",
+    borderRadius = "full",
+    border = false,
     ping = false,
     pingScale = 0.1,
     className = "",
@@ -25,13 +28,32 @@ export default function Indicator({
         lg: "w-6 h-6",
     };
 
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.primary.solid;
     const positionClass = POSITION_CLASSES[position] ?? POSITION_CLASSES["top-right"];
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.full;
 
     // For dots (no text), fix the container size; for text, let it auto-size.
     const containerSize = content ? "" : dotSizeClasses[size] || dotSizeClasses.md;
     const contentSize = content
         ? textSizeClasses[size] || textSizeClasses.md
         : "h-full w-full";
+
+    const finalClasses = mergeClasses(
+        "relative inline-flex items-center justify-center whitespace-nowrap",
+        colorSet.activeBg,
+        colorSet.text,
+        borderRadiusClass,
+        border && `border ${colorSet.border}`,
+        contentSize,
+        className
+    );
+
+    const pingClasses = mergeClasses(
+        "absolute inline-flex h-full w-full animate-ping",
+        colorSet.activeBg,
+        borderRadiusClass,
+        "scale-75"
+    );
 
     return (
         <div className="relative">
@@ -41,21 +63,10 @@ export default function Indicator({
                     {ping && (
                         <span
                             style={{ transform: `scale(${pingScale})` }}
-                            className={mergeClasses(
-                        "absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping",
-                                `bg-${color}-400`,
-                                "scale-75"
-                            )}
+                            className={pingClasses}
                         />
                     )}
-                    <span
-                        className={mergeClasses(
-                            "relative inline-flex items-center justify-center rounded-full text-white whitespace-nowrap",
-                            `bg-${color}-500`,
-                            contentSize,
-                            className
-                        )}
-                    >
+                    <span className={finalClasses}>
                         {content}
                     </span>
                 </span>

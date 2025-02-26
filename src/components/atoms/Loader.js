@@ -1,5 +1,5 @@
 import React from 'react';
-import { mergeClasses } from "@/utils/styling";
+import { getTextColorClass, mergeClasses } from "@/utils/styling";
 
 const Loader = ({
     type = "spinner",  // 'spinner' or 'dots'
@@ -7,10 +7,11 @@ const Loader = ({
     className = "",
     ...props
 }) => {
+    const textColorClass = getTextColorClass(color);
     if (type === 'spinner') {
         return (
             <svg
-                className={mergeClasses(`animate-spin h-6 w-6 text-${color}-500`, className)}
+                className={mergeClasses(`animate-spin h-6 w-6 ${textColorClass}`, className)}
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +24,7 @@ const Loader = ({
     } else if (type === 'dots') {
         return (
             <div
-                className={mergeClasses(`flex space-x-1 text-${color}-500`, className)}
+                className={mergeClasses(`flex space-x-1 ${textColorClass}`, className)}
                 {...props}
             >
                 <div className="bg-current rounded-full w-2 h-2 animate-bounce1"></div>

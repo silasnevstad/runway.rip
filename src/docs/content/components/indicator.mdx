@@ -73,15 +73,20 @@ import Indicator from "@/components/atoms/Indicator";
 
 ## Props
 
-| **Prop**         | **Type** | **Default** | **Description**                                                 |
-|------------------|----------|-------------|-----------------------------------------------------------------|
-| color            | string   | `"bg"`      | The base color (use [tailwind.config](/docs/tutorials/config)). |
-| position         | string   | `"top-right"` | The position of the indicator.                                  |
-| size             | string   | `"md"`      | The size of the indicator.                                      |
-| content          | string   | `""`        | The content of the indicator.                                   |
-| ping             | boolean  | `false`     | If true, the indicator will have a ping effect.                 |
-| className        | string   | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
-| ...props         | object   | -           | Any other valid HTML attributes.                                |
+| Prop         | Type      | Default       | Description                                                     |
+|--------------|-----------|---------------|-----------------------------------------------------------------|
+| children     | ReactNode | -             | The content that the indicator will be attached to.             |
+| content      | string    | `""`          | The content of the indicator.                                   |
+| color        | string    | `"bg"`        | The base color (use [tailwind.config](/docs/tutorials/config)). |
+| variant      | string    | `"solid"`     | The variant of the indicator.                                   |
+| position     | string    | `"top-right"` | The position of the indicator.                                  |
+| size         | string    | `"md"`        | The size of the indicator.                                      |
+| borderRadius | string    | `"full"`      | The border radius of the indicator.                             |
+| border       | boolean   | `false`       | If true, the indicator will have a border.                      |
+| ping         | boolean   | `false`       | If true, the indicator will have a ping effect.                 |
+| pingScale    | number    | `0.1`         | The scale of the ping effect.                                   |
+| className    | string    | `""`          | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| ...props     | object    | -             | Any other valid HTML attributes.                                |
 
 <br/>
 <br/>
@@ -158,9 +163,11 @@ You can further customize the `Indicator` component by changing its color, size,
 
         <Indicator
             color="yellow"
+            variant="soft"
             content="Alert"
-            size="lg"
-            position="center"
+            size="md"
+            borderRadius="lg"
+            border
         >
             <Card borderRadius="lg" className="px-4 py-2">
                 Indicator
@@ -193,9 +200,11 @@ You can further customize the `Indicator` component by changing its color, size,
 
         <Indicator
             color="yellow"
+            variant="soft"
             content="Alert"
-            size="lg"
-            position="center"
+            size="md"
+            borderRadius="lg"
+            border
         >
             <Card borderRadius="lg" className="px-4 py-2">
                 Indicator

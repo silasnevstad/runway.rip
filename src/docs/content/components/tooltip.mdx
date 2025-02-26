@@ -28,6 +28,11 @@ onThisPage:
                 Hover me
             </Card>
         </Tooltip>
+        <Tooltip text="This is a tooltip" color="green" variant="soft" border>
+            <Card>
+                Hover me
+            </Card>
+        </Tooltip>
     </div>
 </div>
 
@@ -63,14 +68,17 @@ import Tooltip from "@/components/atoms/Tooltip";
 
 ## Props
 
-| Prop      | Type                                   | Default     | Description                                                                             |
-|-----------|----------------------------------------|-------------|-----------------------------------------------------------------------------------------|
-| text      | string                                 | `""`        | The text to display inside the tooltip.                                                 |
-| position  | "top" \| "bottom" \| "left" \| "right" | `"top"`     | The position of the tooltip relative to the target element.                             |
-| color     | string                                 | `"primary"` | [Tailwind](https://tailwindcss.com) color key used for the toggle switch.               |
-| className | string                                 | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the tooltip.                 |
-| ...props  | object                                 | -           | Any other valid HTML <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.). |
-
+| Prop         | Type                                   | Default     | Description                                                                             |
+|--------------|----------------------------------------|-------------|-----------------------------------------------------------------------------------------|
+| children     | ReactNode                              | -           | The element that triggers the tooltip on hover.                                         |
+| text         | string                                 | `""`        | The text to display inside the tooltip.                                                 |
+| position     | "top" \| "bottom" \| "left" \| "right" | `"top"`     | The position of the tooltip relative to the target element.                             |
+| color        | string                                 | `"primary"` | [Tailwind](https://tailwindcss.com) color key used for the toggle switch.               |
+| variant      | "solid" \| "soft"                      | `"solid"`   | The variant of the tooltip.                                                             |
+| borderRadius | string                                 | `"lg"`      | The border radius of the tooltip.                                                       |
+| border       | boolean                                | `false`     | Whether to add a border to the tooltip.                                                 |
+| className    | string                                 | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the tooltip.                 |
+| ...props     | object                                 | -           | Any other valid HTML <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.). |
 
 <br/>
 <br/>
@@ -116,9 +124,9 @@ import Tooltip from "@/components/atoms/Tooltip";
 ### Tooltips with Different Colors
 <PreviewCode preview={
     <div className="flex gap-5 items-center justify-center">
-        <Tooltip text="This is a tooltip" color="red">
+        <Tooltip text="This is a tooltip" color="red" variant="soft">
             <Card>
-                Hover me for med
+                Hover me for soft red
             </Card>
         </Tooltip>
         <Tooltip text="This is a tooltip" color="green">
@@ -130,9 +138,9 @@ import Tooltip from "@/components/atoms/Tooltip";
 }>
     ```javascript
     <div className="flex gap-5 items-center justify-center">
-        <Tooltip text="This is a tooltip" color="red">
+        <Tooltip text="This is a tooltip" color="red" variant="soft">
             <Card>
-                Hover me for red
+                Hover me for soft red
             </Card>
         </Tooltip>
         <Tooltip text="This is a tooltip" color="green">

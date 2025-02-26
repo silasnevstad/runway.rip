@@ -23,10 +23,10 @@ onThisPage:
     <TextLink href="/docs/components/text-link" underline>
         Underline
     </TextLink>
-    <TextLink href="/docs/components/text-link" scale>
+    <TextLink href="/docs/components/text-link" scale color="green">
         Grow
     </TextLink>
-    <TextLink href="/docs/components/text-link" lift>
+    <TextLink href="/docs/components/text-link" lift color="orange">
         Lift
     </TextLink>
     <TextLink href="/docs/components/text-link" fade>
@@ -70,21 +70,22 @@ import TextLink from "@/components/atoms/TextLink";
 
 The `TextLink` component accepts the following props:
 
-| Name               | Type    | Default | Description                                                                     |
-|--------------------|---------|---------|---------------------------------------------------------------------------------|
-| href               | string  | -       | The URL to navigate to when the link is clicked.                                |
-| icon               | Icon    | -       | An optional icon to display before the text.                                    |
-| scale              | boolean | `false` | If `true`, the link will grow on hover.                                         |
-| lift               | boolean | `false` | If `true`, the link will lift on hover.                                         |
-| fade               | boolean | `false` | If `true`, the link will fade on hover.                                         |
-| underline          | boolean | `false` | If `true`, the link will be underlined on hover.                                |
-| active             | boolean | `true`  | If `true`, the link will be underlined when active.                             |
-| underlineClassName | string  | `""`    | Additional classes for the underline.                                           |
-| underlineHeight    | number  | `1`     | Height of the underline (in px).                                                |
-| underlineOffset    | number  | `10`    | Offset of the underline (in px).                                                |
-| selected           | boolean | `false` | If `true`, the link will be underlined when selected.                           |
-| className          | string  | `""`    | Additional [Tailwind](https://tailwindcss.com) classes for the container.       |
-| ...props           | object  | -       | Any other valid <code>&lt;a&gt;</code> attributes (e.g. `target`, `rel`, etc.). |
+| Name               | Type      | Default | Description                                                                     |
+|--------------------|-----------|---------|---------------------------------------------------------------------------------|
+| children           | ReactNode | -       | The content of the link.                                                        |
+| href               | string    | -       | The URL to navigate to when the link is clicked.                                |
+| color              | string    | `gray`  | The color of the link (see [tailwind.config](/docs/tutorials/config)).          |
+| icon               | Icon      | -       | An optional icon to display before the text.                                    |
+| scale              | boolean   | `false` | If `true`, the link will grow on hover.                                         |
+| lift               | boolean   | `false` | If `true`, the link will lift on hover.                                         |
+| fade               | boolean   | `false` | If `true`, the link will fade on hover.                                         |
+| underline          | boolean   | `false` | If `true`, the link will be underlined on hover.                                |
+| active             | boolean   | `true`  | If `true`, the link will be underlined when active.                             |
+| underlineClassName | string    | `""`    | Additional classes for the underline.                                           |
+| underlineHeight    | number    | `1`     | Height of the underline (in px).                                                |
+| underlineOffset    | number    | `10`    | Offset of the underline (in px).                                                |
+| className          | string    | `""`    | Additional [Tailwind](https://tailwindcss.com) classes for the container.       |
+| ...props           | object    | -       | Any other valid <code>&lt;a&gt;</code> attributes (e.g. `target`, `rel`, etc.). |
 
 <br/>
 <br/>

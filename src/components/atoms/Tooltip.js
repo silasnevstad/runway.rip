@@ -1,12 +1,15 @@
 "use client";
 import { useState, useRef } from 'react';
-import { mergeClasses } from '@/utils/styling';
+import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses} from '@/utils/styling';
 
 const Tooltip = ({
     children,
     text,
     position = "top",
     color = "gray",
+    variant = "solid",
+    borderRadius = "lg",
+    border = false,
     className = "",
     ...props
 }) => {
@@ -36,11 +39,17 @@ const Tooltip = ({
         }
     };
 
+    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.solid;
+    const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.lg;
+
     const tooltipClasses = mergeClasses(
         getPositionClasses(),
         `absolute px-3 py-1`,
-        `bg-${color}-500 dark:bg-${color}-700`,
-        `text-white text-sm rounded-lg shadow-sm whitespace-nowrap z-50`
+        colorSet.bg,
+        colorSet.text,
+        borderRadiusClass,
+        border && colorSet.border,
+        `text-sm shadow-sm whitespace-nowrap z-50`
     );
 
     return (
