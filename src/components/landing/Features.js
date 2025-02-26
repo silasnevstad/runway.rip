@@ -64,12 +64,12 @@ export default function Features() {
                     onChange={(i) => setSelectedFeature(i)}
                     mode="multi"
                     fadeCenter
-                    sideOpacity={0.6}
+                    sideOpacity={0.4}
                     autoPlay={true}
-                    interval={7000}
+                    interval={5000}
                     showArrows={false}
                     showIndicators={false}
-                    margin={10}
+                    margin={20}
                 >
                     {featuresConfig.map((feat, idx) => (
                         <FeatureCard
@@ -91,11 +91,12 @@ function FeatureCard({ key, feature, isActive, onClick }) {
             key={key}
             className={
                 `relative flex flex-col items-start text-start transition-all
-                ${isActive ? "shadow-xl" : "shadow-md opacity-90"}
+                ${isActive ? "shadow-xl" : "shadow-md"}
                 w-[440px] sm:w-[440px] cursor-pointer
             `}
             onClick={onClick}
-            variant="soft"
+            variant="solid"
+            color="bg"
         >
             <div className="flex items-center gap-2 mb-3">
                 <feature.icon className="text-2xl text-primary-500" />
@@ -117,7 +118,10 @@ function FeatureCard({ key, feature, isActive, onClick }) {
             )}
 
             {feature.imageSrc && (
-                <div className="absolute bottom-3 right-3 flex items-center gap-2 mt-2 text-sm">
+                <div
+                    className="absolute bottom-3 right-3 flex items-center gap-2 mt-2 text-sm"
+                    onClick={() => window.open(feature.imageHref, "_blank")}
+                >
                     <p className="text-gray-600">with</p>
                     <Image
                         src={feature.imageSrc}

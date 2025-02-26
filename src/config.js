@@ -171,7 +171,8 @@ export const featuresConfig = [
 
         icon: FaUserShield,
         imageSrc: "/logos/supabase.png",
-        imageAlt: "Supabase"
+        imageAlt: "Supabase",
+        imageHref: "https://supabase.com"
     },
     {
         title: "Payments",
@@ -179,7 +180,8 @@ export const featuresConfig = [
         features: ["One time payments", "Subscriptions", "Webhook handling (to update user's account)", "Invoices"],
         icon: FaRegCreditCard,
         imageSrc: "/logos/stripe.png",
-        imageAlt: "Stripe"
+        imageAlt: "Stripe",
+        imageHref: "https://stripe.com"
     },
     {
         title: "Database",
@@ -187,15 +189,17 @@ export const featuresConfig = [
         description: "Harness Supabase’s PostgreSQL DB for real-time data sync.",
         icon: LuDatabase,
         imageSrc: "/logos/supabase.png",
-        imageAlt: "Supabase"
+        imageAlt: "Supabase",
+        imageHref: "https://supabase.com"
     },
     {
         title: "Email",
         features: ["Email verification", "Transactional emails", "Newsletters"],
-        description: "Integrate seamless email communication with Mailgun.",
+        description: "Integrate seamless email communication with Resend.",
         icon: LuMail,
-        imageSrc: "/logos/mailgun.png",
-        imageAlt: "Mailgun"
+        imageSrc: "/logos/resend.png",
+        imageAlt: "Resend",
+        imageHref: "https://resend.com"
     },
     {
         title: "SEO",

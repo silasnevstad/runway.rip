@@ -73,25 +73,25 @@ import Card from "@/components/atoms/Card";
 
 ## Props
 
-| Prop         | Type                 | Default     | Description                                                     |
-|--------------|----------------------|-------------|-----------------------------------------------------------------|
-| children     | ReactNode            | -           | The content of the card.                                        |
-| size         | "sm" \| "md" \| "lg" | `"md"`      | The size of the card.                                           |
-| color        | string               | `"primary"` | The base color (use [tailwind.config](/docs/tutorials/config)). |
-| variant      | "soft" \| "solid"    | `"solid"`   | The variant of the card.                                        |
-| borderRadius | string               | `"2xl"`     | The border radius of the card.                                  |
-| shadow       | boolean              | `false`     | If true, adds a subtle box-shadow.                              |
-| hoverShadow  | boolean              | `false`     | If true, applies a hover shadow.                                |
-| hoverBg      | boolean              | `false`     | If true, applies a hover background color.                      |
-| scale        | boolean              | `false`     | If true, gently scales up on hover.                             |
-| lift         | boolean              | `false`     | If true, lifts on hover.                                        |
-| active       | boolean              | `false`     | If true, the card has an active press-down scale effect.        |
-| outline      | boolean              | `false`     | If true, adds an outline effect on hover.                       |
-| border       | boolean              | `false`     | If true, adds a border.                                         |
-| href         | string               | `""`        | The URL to navigate to when the card is clicked.                |
-| onClick      | function             | -           | The click handler for the card.                                 |
-| className    | string               | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
-| ...props     | object               | -           | Any other valid HTML attributes for the card.                   |
+| Prop         | Type              | Default     | Description                                                     |
+|--------------|-------------------|-------------|-----------------------------------------------------------------|
+| children     | ReactNode         | -           | The content of the card.                                        |
+| padding      | number            | `25`        | The padding of the card (in px).                                |
+| color        | string            | `"primary"` | The base color (use [tailwind.config](/docs/tutorials/config)). |
+| variant      | "soft" \| "solid" | `"solid"`   | The variant of the card.                                        |
+| borderRadius | string            | `"2xl"`     | The border radius of the card.                                  |
+| shadow       | boolean           | `false`     | If true, adds a subtle box-shadow.                              |
+| hoverShadow  | boolean           | `false`     | If true, applies a hover shadow.                                |
+| hoverBg      | boolean           | `false`     | If true, applies a hover background color.                      |
+| scale        | boolean           | `false`     | If true, gently scales up on hover.                             |
+| lift         | boolean           | `false`     | If true, lifts on hover.                                        |
+| active       | boolean           | `false`     | If true, the card has an active press-down scale effect.        |
+| outline      | boolean           | `false`     | If true, adds an outline effect on hover.                       |
+| border       | boolean           | `false`     | If true, adds a border.                                         |
+| href         | string            | `""`        | The URL to navigate to when the card is clicked.                |
+| onClick      | function          | -           | The click handler for the card.                                 |
+| className    | string            | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes. |
+| ...props     | object            | -           | Any other valid HTML attributes for the card.                   |
 
 <Info>
     Apply your own styling with the `className` prop for custom colors or advanced styling.

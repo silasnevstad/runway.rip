@@ -4,7 +4,7 @@ import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS} from "@/ut
 
 export default function Card({
     children,
-    size = "md",
+    padding = "24",  // in px
     color = "gray",
     variant = "soft",
     borderRadius = "2xl",
@@ -21,21 +21,13 @@ export default function Card({
     className = "",
     ...props
 }) {
-    // Size definitions
-    const sizeStyles = {
-        sm: "p-4",
-        md: "p-6",
-        lg: "p-8",
-    }
-
     const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.bg.soft;
     const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.xl;
 
     // Merge all classes
     const finalClasses = mergeClasses(
-        colorSet.bg,
+        colorSet.activeBg,
         hoverBg && colorSet.hoverBg,
-        sizeStyles[size] || sizeStyles.md,
         borderRadiusClass,
         border && `border ${colorSet.border}`,
         shadow && "shadow-md",
@@ -50,6 +42,7 @@ export default function Card({
     return (
         <div
             className={finalClasses}
+            style={{ padding: `${padding}px` }}
             onClick={href ? () => window.location.href = href : onClick}
             {...props}
             aria-label={children}

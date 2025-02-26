@@ -6,7 +6,8 @@ import {useState} from "react";
 export default function SwitchDemo({
     options = [],           // { value, name, Icon?, image? }[]
     color,
-    size ,
+    variant,
+    size,
     borderRadius,
     vertical,
     animate,  // Animate with sliding indicator
@@ -28,6 +29,7 @@ export default function SwitchDemo({
                 selected={selectedOption}
                 onChange={setSelectedOption}
                 color={color}
+                variant={variant}
                 size={size}
                 borderRadius={borderRadius}
                 vertical={vertical}
