@@ -98,3 +98,13 @@ export async function signinWithOAuth(provider) {
 
     redirect('/error');
 }
+
+export async function signout() {
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+        await supabase.auth.signOut();
+    }
+    revalidatePath('/', 'layout');
+    redirect('/');
+}
