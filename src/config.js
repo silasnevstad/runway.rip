@@ -40,7 +40,7 @@ const appConfig = {
     // Waitlist / Pre-Launch Mode:
     // When waitlistMode is enabled and the environment is production (ENV === 'production'),
     // all routes not specified in waitlistAllowedRoutes will be redirected to waitlistRedirect.
-    waitlistMode: false,
+    waitlistMode: true,
     waitlistAllowedRoutes: ['/waitlist', '/docs'],
     waitlistRedirect: '/waitlist',
 };
