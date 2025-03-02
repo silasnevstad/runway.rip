@@ -30,9 +30,6 @@ export async function updateSession(request) {
         data: { user },
     } = await supabase.auth.getUser();
 
-    // log if user is authenticated or not
-    console.log('User is authenticated:', !!user);
-
     // ------------------------------------------------------------------
     // WAITLIST MODE:
     // If waitlist mode is enabled (appConfig.waitlistMode === true) and we're running

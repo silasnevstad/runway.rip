@@ -1,114 +1,184 @@
 ---
-title: "Supabase Database Operations"
-description: "An overview of how to interact with your Supabase database using our utility functions for fetching, inserting, updating, upserting, deleting data, and calling functions (RPC)."
+title: "Supabase Tables for Profiles & Leads"
+description: "Learn how to create and configure the Profiles and Leads tables in Supabase for authentication, subscription handling, and waitlist signups."
 onThisPage:
-  - title: "Overview"
-    href: "#overview"
-  - title: "Fetching Data"
-    href: "#fetching-data"
-  - title: "Inserting Data"
-    href: "#inserting-data"
-  - title: "Updating & Upserting Data"
-    href: "#updating-upserting-data"
-  - title: "Deleting Data"
-    href: "#deleting-data"
-  - title: "Calling Functions"
-    href: "#calling-functions"
-  - title: "Filters & Best Practices"
-    href: "#filters-best-practices"
+  - title: "Profiles Table Setup"
+    href: "#profiles-table-setup"
+  - title: "Leads Table Setup"
+    href: "#leads-table-setup"
+  - title: "Row Level Security (RLS)"
+    href: "#row-level-security"
+  - title: "Next Steps"
+    href: "#next-steps"
+related:
+  - title: "Authentication"
+    href: "/docs/features/auth"
+sites:
+  - title: "Supabase"
+    href: "https://supabase.com"
 ---
 
-<div id="overview" />
+# Supabase Tables for Profiles & Leads
 
-<Divider />
+In this guide, you'll learn how to set up two essential tables in your Supabase database:
 
-This boilerplate includes a set of modular, reusable utility functions to perform common database operations with Supabase. Whether you need to fetch data, insert new records, update or delete existing ones, or even call custom Postgres functions (RPC), these utilities make it easy.
+- **Profiles** – Used to extend the authenticated user with additional data such as subscription details, customer IDs, and access flags.
+- **Leads** – Used to capture email addresses from users joining your waitlist or mailing list.
 
-## Fetching Data
+Follow the steps below to create these tables and apply security best practices using Row Level Security (RLS).
 
-<div id="fetching-data" />
+<br />
+<div id="profiles-table-setup" />
 
-Use the **fetchData** function to run SELECT queries on your tables. For example, to get all rows from a table named "characters":
+## Profiles Table Setup
 
-```jsx
-const { data, error } = await fetchData("characters", "*", { name: "Harry" });
-``` 
+The **profiles** table stores additional information about your authenticated users. This is particularly useful for handling subscriptions and other user-specific metadata.
 
-<Info>
-    You can pass filters as an object to narrow down your results. Experiment with different filters to optimize your queries.
-</Info>
+```sql
+-- Create the profiles table in the public schema.
+CREATE TABLE public.profiles (
+id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+name TEXT,
+email TEXT,
+image TEXT,
+customer_id TEXT,
+price_id TEXT,
+subscription_id TEXT,
+subscription_status TEXT,
+has_access BOOLEAN DEFAULT false,
+created_at TIMESTAMPTZ DEFAULT (now() AT TIME ZONE 'UTC'),
+updated_at TIMESTAMPTZ DEFAULT (now() AT TIME ZONE 'UTC')
+);
+```
 
-## Inserting Data
+Next, create a function and trigger to automatically update the `updated_at` timestamp on any changes:
 
-<div id="inserting-data" />
+```sql
+-- Create a function to update the updated_at column.
+CREATE OR REPLACE FUNCTION update_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+NEW.updated_at = (now() AT TIME ZONE 'UTC');
+RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+```
 
-Insert new records using the **insertData** function. It supports both single and multiple record insertions.
+```sql
+-- Create a trigger that invokes the function before each update.
+CREATE TRIGGER update_profiles_updated_at
+BEFORE UPDATE ON public.profiles
+FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+```
 
-```jsx
-await insertData("countries", { id: 1, name: "Mordor" });
-``` 
+Optionally, if you want to automatically add a profile when a new user signs up, create the following function and trigger:
 
-<InlineHighlight>
-    Tip: Ensure your object keys match your table columns.
-</InlineHighlight>
+```sql
+-- Create a function to automatically add a new profile on user signup.
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS TRIGGER AS $$
+BEGIN
+INSERT INTO public.profiles (id, email, name, image, created_at, updated_at)
+VALUES (
+NEW.id,
+NEW.email,
+COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name'),
+NEW.raw_user_meta_data->>'avatar_url',
+(now() AT TIME ZONE 'UTC'),
+(now() AT TIME ZONE 'UTC')
+);
+RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+```
 
-## Updating & Upserting Data
+```sql
+-- Create a trigger on auth.users to invoke the above function after a new user is inserted.
+CREATE TRIGGER on_auth_user_created
+AFTER INSERT ON auth.users
+FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
+```
 
-<div id="updating-upserting-data" />
+<br />
+<div id="leads-table-setup" />
 
-**Updating Data:**  
-Use **updateData** with filters to change existing records.
+## Leads Table Setup
 
-```jsx
-await updateData("instruments", { name: "piano" }, { id: 1 });
-``` 
+The **leads** table is designed to capture email addresses for your waitlist or mailing list. This table is intentionally open for insertions—even from unauthenticated users.
 
-**Upserting Data:**  
-The **upsertData** function inserts a record if it doesn’t exist or updates it if it does.
+```sql
+-- Create the leads table to store waitlist signups.
+CREATE TABLE public.leads (
+id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+email TEXT NOT NULL,
+created_at TIMESTAMPTZ DEFAULT timezone('utc', now()) NOT NULL
+);
+```
 
-```jsx
-await upsertData("instruments", { id: 1, name: "piano" });
-``` 
+Enable Row Level Security on the leads table:
 
-## Deleting Data
+```sql
+-- Enable RLS for the leads table.
+ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
+```
 
-<div id="deleting-data" />
+Finally, create a policy that allows anyone to insert their email into the leads table:
 
-Delete records safely with **deleteData**. Always include filters to avoid removing unintended rows.
+```sql
+-- Create a policy to allow public insertions into leads.
+CREATE POLICY insert_lead ON public.leads
+FOR INSERT
+TO public
+WITH CHECK (true);
+```
 
-```jsx
-await deleteData("countries", { id: 1 });
-``` 
+<br />
+<div id="row-level-security" />
 
-<Warning>
-    Always include appropriate filters when performing DELETE operations.
-</Warning>
+## Row Level Security (RLS)
 
-## Calling Functions (RPC)
+For security, ensure that RLS is enabled and properly configured on both tables. The profiles table policies below ensure that users can only read, update, insert, or delete their own profiles.
 
-<div id="calling-functions" />
+```sql
+-- Enable RLS for the profiles table.
+ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 
-Call custom Postgres functions using **callFunction**. For example, if you have a simple "hello_world" function:
+-- Policy: Allow users to read their own profile.
+CREATE POLICY read_own_profile_data ON public.profiles
+FOR SELECT
+USING (auth.uid() = id);
 
-```jsx
-const { data, error } = await callFunction("hello_world");
-console.log(data); // "Hello world"
-``` 
+-- Policy: Allow users to update their own profile.
+CREATE POLICY update_own_profile_data ON public.profiles
+FOR UPDATE
+USING (auth.uid() = id);
 
-## Filters & Best Practices
+-- Policy: Allow users to insert their own profile.
+CREATE POLICY insert_own_profile_data ON public.profiles
+FOR INSERT
+WITH CHECK (auth.uid() = id);
 
-<div id="filters-best-practices" />
+-- Policy: Allow users to delete their own profile.
+CREATE POLICY delete_own_profile_data ON public.profiles
+FOR DELETE
+USING (auth.uid() = id);
+```
 
-Filters let you narrow down your queries. For example, to fetch only rows where "name" equals "Leia":
+<Tip>
+    Enabling RLS and setting up precise policies is crucial for protecting your users’ data. Review your policies regularly to ensure they meet your security requirements.
+</Tip>
 
-```jsx
-const { data, error } = await fetchData("characters", "*", { name: "Leia" });
-``` 
+<br />
+<div id="next-steps" />
 
-<InlineHighlight>
-    Tip: Chain filters as needed, but test your queries to ensure they’re efficient.
-</InlineHighlight>
+## Next Steps
 
-<Divider />
+Once you’ve created these tables and applied the necessary security policies, your Supabase database is ready to support both extended user profiles and a public mailing list for waitlist signups. You can now:
 
-These utilities are designed to simplify your database interactions so you can focus on building great features without re-inventing common CRUD operations.
+- Integrate these tables with your authentication flows.
+- Use your existing subscription handlers (like those in `libs/stripe/subscriptionHandlers.js`) to update profile data.
+- Build front-end components (e.g., waitlist forms) that interact directly with these tables via the Supabase client.
+
+By following these steps, you ensure a secure and robust setup for managing user data and leads—giving you a strong foundation for your project.
+
+Happy coding!
