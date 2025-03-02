@@ -37,7 +37,7 @@ export default function DocsPage({
             {(onThisPage?.length || relatedDocs?.length || relatedSites?.length) && (
                 <aside className="hidden lg:block w-44 shrink-0">
                     {/* Use sticky so it stays in place while scrolling */}
-                    <div className="fixed top-18 space-y-4">
+                    <div className="fixed top-22 space-y-4">
                         {onThisPage?.length > 0 && <OnThisPage items={onThisPage} />}
                         {relatedDocs?.length > 0 && <SidebarSection title="Related Docs" items={relatedDocs} />}
                         {relatedSites?.length > 0 && <SidebarSection title="Related Sites" items={relatedSites} />}

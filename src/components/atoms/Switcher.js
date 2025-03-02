@@ -103,7 +103,7 @@ export default function Switcher({
         <div ref={containerRef} className={containerClasses} {...props}>
             {animate && <div style={indicatorStyle} className={indicatorClasses} />}
             {options.map((option, index) => {
-                const { value, name, Icon, image, tooltip } = option;
+                const { value, name, Icon, image, imageClassName, tooltip } = option;
                 const key = value ?? index;
                 const hasTooltip = !!tooltip;
                 const isSelected = selected === value;
@@ -119,7 +119,7 @@ export default function Switcher({
                         aria-pressed={isSelected}
                     >
                         {Icon && renderIcon(Icon, null, iconClasses(isSelected))}
-                        {image && <Image src={image} width={24} height={24} alt={name} />}
+                        {image && <Image src={image} width={24} height={24} alt={name} className={imageClassName} />}
                         {name}
                     </button>
                 );

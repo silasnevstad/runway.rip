@@ -1,12 +1,12 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const Sidebar = ({
     children,
-    width = "64",
+    width = "md", // sm, md, lg
     bgColor = "bg-bg-0 dark:bg-bg-900",
+    border = true,
     onToggle,
 }) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -46,13 +46,19 @@ const Sidebar = ({
         bottomChild = children[2] || null;
     }
 
+    const widthClasses = {
+        sm: "w-48",
+        md: "w-64",
+        lg: "w-72",
+    }
+
     const sidebarClasses = `
+    flex flex-col     overflow-x-hidden
     ${isMobile ? "fixed left-0 top-0 h-full z-50 transition-transform" : "relative h-full shrink-0"}
     ${bgColor}
-    w-${width}
-    overflow-x-hidden
+    ${widthClasses[width] || widthClasses.md}
+    ${border ? "border-r border-gray-200 dark:border-gray-800" : ""}
     ${isMobile ? (isOpen ? "translate-x-0" : "-translate-x-full") : ""}
-    flex flex-col
     `;
 
     const buttonBaseClasses = `

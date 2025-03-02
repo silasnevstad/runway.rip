@@ -24,20 +24,46 @@ export async function updateSession(request) {
         }
     );
 
-    // Must call getUser() to re-validate and refresh tokens.
-    const { data: { user } } = await supabase.auth.getUser();
+    // Refresh the user's session (this call revalidates and updates the auth token).
+    // IMPORTANT: Do not remove or change this call as it ensures that the session remains valid.
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
 
-    // If route is in protectedRoutes, ensure we have a user.
-    // (Alternatively, you can match route by checking request.nextUrl.pathname)
+    // ------------------------------------------------------------------
+    // WAITLIST MODE:
+    // If waitlist mode is enabled (appConfig.waitlistMode === true) and we're running
+    // in production (process.env.ENV === 'production'), redirect all requests to the
+    // waitlist page unless the requested route is allowed (per appConfig.waitlistAllowedRoutes).
+    // ------------------------------------------------------------------
     if (
-        !user &&
-        !appConfig.publicRoutes.some((r) => request.nextUrl.pathname.startsWith(r))
+        process.env.ENV === 'production' &&
+        appConfig.waitlistMode &&
+        !appConfig.waitlistAllowedRoutes.some((route) =>
+            request.nextUrl.pathname.startsWith(route)
+        )
     ) {
-        // redirect to login if no user
+        const url = request.nextUrl.clone();
+        url.pathname = appConfig.waitlistRedirect;
+        return NextResponse.redirect(url);
+    }
+
+    // ------------------------------------------------------------------
+    // PROTECTED ROUTES:
+    // For routes defined in appConfig.protectedRoutes, ensure that an authenticated user exists.
+    // If the user is not logged in, redirect them to the login page.
+    // ------------------------------------------------------------------
+    if (
+        appConfig.protectedRoutes.some((route) =>
+            request.nextUrl.pathname.startsWith(route)
+        ) &&
+        !user
+    ) {
         const url = request.nextUrl.clone();
         url.pathname = '/login';
         return NextResponse.redirect(url);
     }
 
+    // If none of the conditions above are met, simply return the updated response.
     return supabaseResponse;
 }

@@ -18,9 +18,9 @@ export default function DocsLayout({ children }) {
     };
 
     return (
-        <div className="flex h-screen overflow-y-hidden w-full bg-bg-100 dark:bg-bg-900">
+        <div className="flex h-screen overflow-y-hidden w-full bg-bg-100 dark:bg-gray-900">
             {/* Left Sidebar */}
-            <Sidebar width="56" bgColor="bg-bg-50 dark:bg-bg-900">
+            <Sidebar width="64" bgColor="bg-bg-50 dark:bg-gray-900">
                 <div className="flex flex-col">
                     <div
                         className="flex items-start gap-2 self-start cursor-pointer"
@@ -55,7 +55,7 @@ export default function DocsLayout({ children }) {
 
                 <DocumentationSidebar />
 
-                <div className="flex flex-col border-t border-r border-gray-200 dark:border-gray-800 w-full">
+                <div className="flex flex-col border-t border-gray-200 dark:border-gray-800 w-full">
                     <div className="flex flex-col items-start justify-center p-2 px-4 gap-1 mb-2">
                         <div
                             className="group w-full flex items-center p-2 rounded-lg hover:bg-bg-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
@@ -122,7 +122,7 @@ export default function DocsLayout({ children }) {
                     className={mergeClasses(
                         "max-w-full h-full px-5 py-6 md:py-8 md:pl-10",
                         "overflow-y-auto",
-                        "bg-bg-0 dark:bg-gray-900",
+                        "bg-bg-0 dark:bg-bg-900",
                         "max-md:rounded-t-2xl max-[430px]:mx-0 max-md:mx-2"
                     )}
                 >

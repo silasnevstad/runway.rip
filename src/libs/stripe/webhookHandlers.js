@@ -1,5 +1,5 @@
 import { handleSubscriptionCreated, handleSubscriptionUpdated, handleSubscriptionDeleted } from "./subscriptionHandlers";
-import {sendSupportEmail, sendNoReplyEmail, sendThankYouEmail} from "@/libs/resend/resend";
+import { sendThankYouEmail } from "@/libs/resend/resend";
 
 /*
 Common Stripe events:
@@ -19,6 +19,14 @@ async function handleCheckoutSessionCompleted(session) {
     const userFirstName = session.customer_details?.first_name;
     if (userEmail && userFirstName) {
         await sendThankYouEmail({ userEmail, userFirstName });
+    }
+}
+
+async function handleCheckoutSessionExpired(session) {
+    const userEmail = session.customer_details?.email;
+    if (userEmail) {
+        console.log("Checkout session expired for user:", userEmail);
+
     }
 }
 

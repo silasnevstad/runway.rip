@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { EmailTemplate, OrderConfirmationTemplate, ThankYouEmailTemplate } from "@/libs/resend/templates";
+import { EmailTemplate, ThankYouEmailTemplate } from "@/libs/resend/templates";
 import appConfig from "@/config";
 
 if (!process.env.RESEND_API_KEY) {
@@ -8,33 +8,14 @@ if (!process.env.RESEND_API_KEY) {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function sendEmail({ to, from, subject, message, tags }) {
+export async function sendEmail({ to, from, subject, message, tags, replyTo }) {
     return await resend.emails.send({
         from,
         to: Array.isArray(to) ? to : [to],
         subject,
         react: EmailTemplate({ message }),
         tags,
-    });
-}
-
-export async function sendSupportEmail({ to, subject, message }) {
-    return sendEmail({
-        to,
-        from: appConfig.noReplyEmail,
-        subject,
-        message,
-        tags: ['support']
-    });
-}
-
-export async function sendNoReplyEmail({ to, subject, message }) {
-    return sendEmail({
-        to,
-        from: appConfig.noReplyEmail,
-        subject,
-        message,
-        tags: ['no-reply']
+        replyTo: replyTo
     });
 }
 
@@ -44,6 +25,15 @@ export async function sendThankYouEmail({to, firstName}) {
         to: Array.isArray(to) ? to : [to],
         subject: 'Thank you for your order!',
         react: ThankYouEmailTemplate({ firstName }),
+    });
+}
+
+export async function sendAbandonedCartEmail({ to, cartItems }) {
+    return await resend.emails.send({
+        from: appConfig.noReplyEmail,
+        to: Array.isArray(to) ? to : [to],
+        subject: 'You left something behind!',
+        react: EmailTemplate({ message: `You have items in your cart: ${cartItems.join(', ')}` }),
     });
 }
 

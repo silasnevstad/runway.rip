@@ -30,13 +30,19 @@ const appConfig = {
     forwardRepliesTo: "silas.nevstad@gmail.com",
 
     // Auth
-    authMethods: ['magiclink', 'google', 'github'],             // password, magiclink, google, github, apple, facebook
+    authMethods: ['magiclink', 'google', 'github'],
     protectedRoutes: [
-        '/private',
+        '/dashboard',
         '/account',
     ],
-    afterLoginPath: '/account',                                 // Where to send a user after successful login
-    publicRoutes: ['/login', '/sign-up', '/auth', '/error'],
+    afterLoginPath: '/account',
+
+    // Waitlist / Pre-Launch Mode:
+    // When waitlistMode is enabled and the environment is production (ENV === 'production'),
+    // all routes not specified in waitlistAllowedRoutes will be redirected to waitlistRedirect.
+    waitlistMode: true,
+    waitlistAllowedRoutes: ['/waitlist', '/docs'],
+    waitlistRedirect: '/waitlist',
 };
 
 export const pricingConfig = {
