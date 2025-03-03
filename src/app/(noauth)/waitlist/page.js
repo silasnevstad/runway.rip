@@ -1,8 +1,6 @@
 import Button from "@/components/atoms/Button";
-import TextLink from "@/components/atoms/TextLink";
 import TextHighlight from "@/components/atoms/TextHighlight";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import React from "react";
 import {landingConfig} from "@/config";
 import WaitlistForm from "@/components/molecules/WaitlistForm";
@@ -29,7 +27,7 @@ export default function WaitlistPage() {
                     A fully-loaded NextJS boilerplate to build your SaaS, AI tool, or web app and start monetizing in days, not weeks.
                 </p>
             </div>
-            <div className="flex flex-col gap-4 mt-20">
+            <div className="flex flex-col gap-4 mt-20 max-w-80 w-80">
                 <WaitlistForm />
                 <Button href="/docs" variant="soft" color="green">
                     Docs

@@ -41,8 +41,7 @@ export async function addLead(email) {
     // You could also use your generic insertData() if preferred:
     const { data, error } = await supabase.from('leads').insert({ email });
     if (error) {
-        console.error("Error inserting lead:", error);
-        throw new Error(error.message);
+        return { error: error };
     }
     return data;
 }

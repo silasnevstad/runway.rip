@@ -1,8 +1,8 @@
 "use client";
 import { useState } from 'react';
-import { createClient } from '@/utils/supabase/client';
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
+import { addLead } from "@/libs/supabase/db";
 
 export default function WaitlistForm({
     color = 'primary',
@@ -17,11 +17,11 @@ export default function WaitlistForm({
         setLoading(true);
         setFeedback('');
         try {
-            // Create a client instance (this will use your SUPABASE_URL and SUPABASE_ANON_KEY)
-            const supabase = createClient();
-            const { data, error } = await supabase.from('leads').insert({ email });
-            if (error) {
-                throw error;
+            const { error } = await addLead(email);
+            console.log(error, error?.code);
+            if (error.code === '23505') {
+                setFeedback('You are already on the waitlist!');
+                return;
             }
             setFeedback('Thanks for joining our waitlist!');
             setEmail('');
