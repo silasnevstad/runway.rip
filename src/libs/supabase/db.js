@@ -38,9 +38,5 @@ export async function callFunction(functionName, args = {}) {
 
 // addLead adds a new lead to the leads table (for waiting list)
 export async function addLead(email) {
-    const { data, error } = await supabase.from('leads').insert({ email });
-    if (error) {
-        return { error: error };
-    }
-    return data;
+    return supabase.from('leads').insert({email});
 }

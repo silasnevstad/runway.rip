@@ -17,13 +17,12 @@ export default function WaitlistForm({
         setLoading(true);
         setFeedback('');
         try {
-            const { error } = await addLead(email);
+            const { data, error } = await addLead(email);
             console.log(error, error?.code);
-            if (error.code === '23505') {
+            if (error && error.code === '23505') {
                 setFeedback('You are already on the waitlist!');
                 return;
-            }
-            if (error) {
+            } else if (error) {
                 setFeedback(`Error: ${error.message}`);
                 return;
             }
