@@ -2,11 +2,11 @@ import { Resend } from 'resend';
 import { EmailTemplate, ThankYouEmailTemplate } from "@/libs/resend/templates";
 import appConfig from "@/config";
 
-if (!process.env.RESEND_API_KEY) {
-    throw new Error('🚧 Missing RESEND_API_KEY environment variable');
+if (!process.env.NEXT_PUBLIC_RESEND_API_KEY) {
+    throw new Error('🚧 Missing NEXT_PUBLIC_RESEND_API_KEY environment variable');
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 export async function sendEmail({ to, from, subject, message, tags, replyTo }) {
     return await resend.emails.send({

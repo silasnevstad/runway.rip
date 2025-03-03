@@ -53,10 +53,10 @@ Choose between either [Resend](https://resend.com) or [Mailgun](https://www.mail
 
             3. Verify your domain by adding the DNS records provided by Resend to your domain's DNS settings.
 
-            4. Go to [API Keys](https://resend.com/api-keys) in the sidebar and click **Create API Key**. Add this to the `.env.local` file as `RESEND_API_KEY`.
+            4. Go to [API Keys](https://resend.com/api-keys) in the sidebar and click **Create API Key**. Add this to the `.env.local` file as `NEXT_PUBLIC_RESEND_API_KEY`.
 
                 ```.env.local
-                RESEND_API_KEY=re_...
+                NEXT_PUBLIC_RESEND_API_KEY=re_...
                 ```
 
             <br />
@@ -112,16 +112,16 @@ Choose between either [Resend](https://resend.com) or [Mailgun](https://www.mail
                     This could take up to 48 hours but usually happens within a few minutes.
                 </Info>
 
-            4. Navigate to [API Security](https://app.mailgun.com/settings/api_security) and click **Add new Key**, then add this to the `.env.local` as `MAILGUN_API_KEY`.
+            4. Navigate to [API Security](https://app.mailgun.com/settings/api_security) and click **Add new Key**, then add this to the `.env.local` as `NEXT_PUBLIC_MAILGUN_API_KEY`.
 
                 ```.env.local
-                MAILGUN_API_KEY=4dc...
+                NEXT_PUBLIC_MAILGUN_API_KEY=4dc...
                 ```
 
-            5. Add the domain you verified to the `.env.local` as `MAILGUN_DOMAIN`.
+            5. Add the domain you verified to the `.env.local` as `NEXT_PUBLIC_MAILGUN_DOMAIN`.
 
                 ```.env.local
-                MAILGUN_DOMAIN=mail.yourdomain.com
+                NEXT_PUBLIC_MAILGUN_DOMAIN=mail.yourdomain.com
                 ```
 
             And you're done!

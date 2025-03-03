@@ -37,8 +37,8 @@ Need payments or subscriptions? Lets set up Stripe ⬇︎
 2. Copy them into `.env.local`:
 
     ```.env.local
-    STRIPE_PUBLISHABLE_KEY=pk_live_...
-    STRIPE_SECRET_KEY=sk_live_...
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
+    NEXT_PUBLIC_STRIPE_SECRET_KEY=sk_live_...
     ```
 
 
@@ -212,7 +212,7 @@ Now we need to set up webhooks to listen for events from Stripe.
 5. Create the endpoint and copy the signing secret (`whsec_...`) into `.env.local`:
 
     ```.env.local
-    STRIPE_WEBHOOK_SECRET=whsec_...
+    NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET=whsec_...
     ```
 
 <Caution>

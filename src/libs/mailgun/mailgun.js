@@ -3,13 +3,13 @@ const formData = require("form-data");
 const Mailgun = require("mailgun.js");
 const mailgun = new Mailgun(formData);
 
-if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
-    throw new Error('🚧 Missing MAILGUN_API_KEY or MAILGUN_DOMAIN environment variable');
+if (!process.env.NEXT_PUBLIC_MAILGUN_API_KEY || !process.env.NEXT_PUBLIC_MAILGUN_DOMAIN) {
+    throw new Error('🚧 Missing NEXT_PUBLIC_MAILGUN_API_KEY or NEXT_PUBLIC_MAILGUN_DOMAIN environment variable');
 }
 
 const mg = mailgun.client({
     username: 'api',
-    key: process.env.MAILGUN_API_KEY,
+    key: process.env.NEXT_PUBLIC_MAILGUN_API_KEY,
     // If using EU infrastructure, uncomment the following:
     // url: 'https://api.eu.mailgun.net'
 });
@@ -39,7 +39,7 @@ export async function sendMailgunEmail({ to, from, subject, text, html, tags, at
         attachment: attachments,
     };
 
-    return await mg.messages.create(process.env.MAILGUN_DOMAIN, data);
+    return await mg.messages.create(process.env.NEXT_PUBLIC_MAILGUN_DOMAIN, data);
 }
 
 export default mg;
