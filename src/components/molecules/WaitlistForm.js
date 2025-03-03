@@ -25,6 +25,7 @@ export default function WaitlistForm({
             }
             if (error) {
                 setFeedback(`Error: ${error.message}`);
+                return;
             }
             setFeedback('Thanks for joining our waitlist!');
             setEmail('');
