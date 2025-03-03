@@ -23,6 +23,9 @@ export default function WaitlistForm({
                 setFeedback('You are already on the waitlist!');
                 return;
             }
+            if (error) {
+                setFeedback(`Error: ${error.message}`);
+            }
             setFeedback('Thanks for joining our waitlist!');
             setEmail('');
         } catch (err) {
