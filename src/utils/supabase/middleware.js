@@ -43,6 +43,7 @@ export async function updateSession(request) {
             request.nextUrl.pathname.startsWith(route)
         )
     ) {
+        console.log('Redirecting to waitlist page');
         const url = request.nextUrl.clone();
         url.pathname = appConfig.waitlistRedirect;
         return NextResponse.redirect(url);
