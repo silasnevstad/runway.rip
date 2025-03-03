@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import AuthInputField from './AuthInputField';
+import AuthInputField from "@/components/auth/AuthInputField";
 
 const AuthFormFields = ({ type, state }) => {
     return (

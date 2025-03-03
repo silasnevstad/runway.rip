@@ -1,9 +1,8 @@
-'use client';
-
+"use client";
 import React from 'react';
-import PasswordAuthForm from './PasswordAuthForm';
-import PasswordlessAuthForm from './PasswordlessAuthForm';
-import OAuthSection, { defaultOAuthProviders } from './OAuthSection';
+import PasswordAuthForm from "@/components/auth/PasswordAuthForm";
+import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
+import OAuthSection, { defaultOAuthProviders } from "@/components/auth/OAuthSection";
 import appConfig from "@/config";
 
 const AuthForm = ({ mode = 'sign-in' }) => {

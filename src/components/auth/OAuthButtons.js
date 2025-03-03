@@ -1,8 +1,7 @@
-'use client';
-
+"use client";
 import React from 'react';
-import OAuthButton from './OAuthButton';
 import Divider from '@/components/atoms/Divider';
+import OAuthButton from "@/components/auth/OAuthButton";
 import { signinWithOAuth } from '@/app/actions/auth';
 
 const OAuthButtons = ({ providers = [] }) => {

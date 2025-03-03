@@ -2,8 +2,8 @@
 import React from 'react';
 import { useFormState } from 'react-dom';
 import { passwordSignin, passwordSignup } from '@/app/actions/auth';
-import AuthFormFields from './AuthFormFields';
-import LoadingButton from './LoadingButton';
+import AuthFormFields from "@/components/auth/AuthFormFields";
+import LoadingButton from "@/components/auth/LoadingButton";
 
 const PasswordAuthForm = ({ mode = 'sign-in' }) => {
     const [state, action] = useFormState(mode === 'sign-in' ? passwordSignin : passwordSignup);

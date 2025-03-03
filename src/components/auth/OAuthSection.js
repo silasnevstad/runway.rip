@@ -1,6 +1,6 @@
-'use client'
+"use client";
 import React from 'react';
-import OAuthButtons from './OAuthButtons';
+import OAuthButtons from "@/components/auth/OAuthButtons";
 import appConfig from "@/config";
 
 export const defaultOAuthProviders = [
