@@ -7,6 +7,15 @@ if (!supabaseUrl || !supabaseAnonKey) {
     throw new Error("Supabase URL and anon key must be set in your environment variables.");
 }
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// add CORS options
+const corsOptions = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+}
+const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    global: {
+        headers: corsOptions,
+    },
+});
 
 export { supabase };
