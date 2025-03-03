@@ -1,14 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
-import { useUser } from "@/contexts/UserContext";
 import TextLink from "@/components/atoms/TextLink";
-import Avatar from "@/components/atoms/Avatar";
 import Button from "@/components/atoms/Button";
-import { mergeClasses } from "@/utils/styling";
-import appConfig from "@/config";
 import AccountCard from "@/components/auth/AccountCard";
+import { mergeClasses } from "@/utils/styling";
+import { useUser } from "@/contexts/UserContext";
+import appConfig from "@/config";
 
 export default function Header({
     showLogo = true,
@@ -52,7 +52,10 @@ export default function Header({
                 {/* Brand Section */}
                 <div className="flex items-center">
                     {showLogo && (
-                        <img src="/logo.png" alt={appName} className="h-7 mr-2" />
+                        <>
+                            <Image src="/logo.png" alt={appName} className="h-7 mr-2 block dark:hidden" />
+                            <Image src="/logo-white.png" alt={appName} className="h-7 mr-2 hidden dark:block" />
+                        </>
                     )}
                     {showAppName && (
                         <Link href={domain} className="text-2xl font-semibold">
