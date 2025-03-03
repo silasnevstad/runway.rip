@@ -1,14 +1,57 @@
+import { NextResponse } from 'next/server';
 import { updateSession } from '@/utils/supabase/middleware';
+import appConfig from '@/config';
 
 export async function middleware(request) {
-    return updateSession(request);
+    const { user, supabaseResponse } = await updateSession(request);
+
+    const { pathname } = request.nextUrl;
+
+    // ------------------------------------------------------------------
+    // WAITLIST MODE:
+    // If waitlist mode is enabled (appConfig.waitlistMode === true) and we're running
+    // in production (process.env.ENV === 'production'), redirect all requests to the
+    // waitlist page unless the requested route is allowed (per appConfig.waitlistAllowedRoutes).
+    // ------------------------------------------------------------------
+    const isProduction = process.env.ENV === 'production';
+    if (appConfig.waitlistMode && isProduction) {
+        const isAllowed = appConfig.waitlistAllowedRoutes.some((allowedPath) =>
+            pathname.startsWith(allowedPath)
+        );
+
+        if (!isAllowed) {
+            const url = request.nextUrl.clone();
+            url.pathname = appConfig.waitlistRedirect;
+            return NextResponse.redirect(url);
+        }
+    }
+
+    // ------------------------------------------------------------------
+    // PROTECTED ROUTES:
+    // For routes defined in appConfig.protectedRoutes, ensure that an authenticated user exists.
+    // If the user is not logged in, redirect them to the login page.
+    // ------------------------------------------------------------------
+    const isProtectedRoute = appConfig.protectedRoutes.some((protectedPath) =>
+        pathname.startsWith(protectedPath)
+    );
+    if (isProtectedRoute && !user) {
+        const url = request.nextUrl.clone();
+        url.pathname = '/login';
+        return NextResponse.redirect(url);
+    }
+
+    return supabaseResponse;
 }
 
 export const config = {
     matcher: [
-        // The matcher below ensures the middleware runs for all routes except:
-        // - Next.js internals (like _next/static and _next/image)
-        // - Favicon and typical public image files.
-        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|gif)).*)',
+        /*
+         * Match all request paths except:
+         *   - _next/static & _next/image (Next.js internals)
+         *   - favicon.ico
+         *   - manifest.json
+         *   - any files ending with .svg, .png, .jpg, .jpeg, .gif, .webp
+         */
+        '/((?!_next/static|_next/image|favicon.ico|manifest\\.json|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
 };

@@ -1,4 +1,4 @@
-import stripe from "./stripe";
+import stripe from "@/libs/stripe/stripe";
 
 export async function createCheckoutSession({
     mode,

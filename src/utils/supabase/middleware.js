@@ -30,41 +30,6 @@ export async function updateSession(request) {
         data: { user },
     } = await supabase.auth.getUser();
 
-    // ------------------------------------------------------------------
-    // WAITLIST MODE:
-    // If waitlist mode is enabled (appConfig.waitlistMode === true) and we're running
-    // in production (process.env.ENV === 'production'), redirect all requests to the
-    // waitlist page unless the requested route is allowed (per appConfig.waitlistAllowedRoutes).
-    // ------------------------------------------------------------------
-    if (
-        process.env.ENV === 'production' &&
-        appConfig.waitlistMode &&
-        !appConfig.waitlistAllowedRoutes.some((route) =>
-            request.nextUrl.pathname.startsWith(route)
-        )
-    ) {
-        console.log('Sorry! We are currently in waitlist mode.');
-        const url = request.nextUrl.clone();
-        url.pathname = appConfig.waitlistRedirect;
-        return NextResponse.redirect(url);
-    }
-
-    // ------------------------------------------------------------------
-    // PROTECTED ROUTES:
-    // For routes defined in appConfig.protectedRoutes, ensure that an authenticated user exists.
-    // If the user is not logged in, redirect them to the login page.
-    // ------------------------------------------------------------------
-    if (
-        appConfig.protectedRoutes.some((route) =>
-            request.nextUrl.pathname.startsWith(route)
-        ) &&
-        !user
-    ) {
-        const url = request.nextUrl.clone();
-        url.pathname = '/login';
-        return NextResponse.redirect(url);
-    }
-
-    // If none of the conditions above are met, simply return the updated response.
-    return supabaseResponse;
+    // Return the user plus the base NextResponse with updated cookies.
+    return { user, supabaseResponse };
 }

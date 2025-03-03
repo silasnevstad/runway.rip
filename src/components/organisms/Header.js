@@ -53,8 +53,8 @@ export default function Header({
                 <div className="flex items-center">
                     {showLogo && (
                         <>
-                            <Image src="/logo.png" alt={appName} className="h-7 mr-2 block dark:hidden" />
-                            <Image src="/logo-white.png" alt={appName} className="h-7 mr-2 hidden dark:block" />
+                            <Image src="/logo.png" alt={appName} className="mr-2 block dark:hidden" width={30} height={30} />
+                            <Image src="/logo-white.png" alt={appName} className="mr-2 hidden dark:block" width={30} height={30} />
                         </>
                     )}
                     {showAppName && (

@@ -1,4 +1,4 @@
-import { supabase } from "./config";
+import { supabase } from "@/libs/supabase/config";
 
 export async function fetchData(table, columns = "*", filters = {}) {
     let query = supabase.from(table).select(columns);

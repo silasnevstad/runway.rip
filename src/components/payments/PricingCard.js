@@ -1,8 +1,8 @@
 import React from "react";
 import Badge from "@/components/atoms/Badge";
-import PlanFeatures from "./PlanFeatures";
-import PlanPrice from "./PlanPrice";
-import CheckoutButton from "./CheckoutButton";
+import PlanFeatures from "@/components/payments/PlanFeatures";
+import PlanPrice from "@/components/payments/PlanPrice";
+import CheckoutButton from "@/components/payments/CheckoutButton";
 import {RocketLaunchIcon} from "@heroicons/react/24/solid";
 
 export default function PricingCard({

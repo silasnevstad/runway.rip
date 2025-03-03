@@ -1,18 +1,9 @@
-import { handleSubscriptionCreated, handleSubscriptionUpdated, handleSubscriptionDeleted } from "./subscriptionHandlers";
+import {
+    handleSubscriptionCreated,
+    handleSubscriptionUpdated,
+    handleSubscriptionDeleted
+} from "@/libs/stripe/subscriptionHandlers";
 import { sendThankYouEmail } from "@/libs/resend/resend";
-
-/*
-Common Stripe events:
-  - checkout.session.completed
-  - checkout.session.expired
-  - customer.created
-  - customer.subscription.created
-  - customer.subscription.updated
-  - customer.subscription.deleted
-  - invoice.created, invoice.finalized, invoice.finalization_failed, invoice.paid,
-    invoice.payment_failed, invoice.payment_action_required
-  - payment_intent.created, payment_intent.succeeded
-*/
 
 async function handleCheckoutSessionCompleted(session) {
     const userEmail = session.customer_details?.email;
