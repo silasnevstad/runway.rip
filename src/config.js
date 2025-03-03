@@ -38,7 +38,7 @@ const appConfig = {
     afterLoginPath: '/account',
 
     // Waitlist / Pre-Launch Mode:
-    // When waitlistMode is enabled and the environment is production (ENV === 'production'),
+    // When waitlistMode is enabled and the environment is production (NODE_ENV === 'production'),
     // all routes not specified in waitlistAllowedRoutes will be redirected to waitlistRedirect.
     waitlistMode: true,
     waitlistAllowedRoutes: ['/waitlist', '/docs'],

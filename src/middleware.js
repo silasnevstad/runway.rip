@@ -10,10 +10,10 @@ export async function middleware(request) {
     // ------------------------------------------------------------------
     // WAITLIST MODE:
     // If waitlist mode is enabled (appConfig.waitlistMode === true) and we're running
-    // in production (process.env.ENV === 'production'), redirect all requests to the
+    // in production (process.env.NODE_ENV === 'production'), redirect all requests to the
     // waitlist page unless the requested route is allowed (per appConfig.waitlistAllowedRoutes).
     // ------------------------------------------------------------------
-    const isProduction = process.env.ENV === 'production';
+    const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production';
     if (appConfig.waitlistMode && isProduction) {
         const isAllowed = appConfig.waitlistAllowedRoutes.some((allowedPath) =>
             pathname.startsWith(allowedPath)
