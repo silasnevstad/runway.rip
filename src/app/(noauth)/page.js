@@ -68,9 +68,9 @@ export default function Landing() {
                 </div>
 
                 {/* Pricing Section */}
-                <div className={`flex flex-col items-center pb-10 mt-30 z-10 w-3/6 max-2xl:w-4/6 max-xl:w-5/6 max-lg:w-5/6 max-md:w-4/6 max-sm:5/6 max-sm:gap-0`}>
-                    {pricing.show && <Pricing />}
-                </div>
+                {/*<div className={`flex flex-col items-center pb-10 mt-30 z-10 w-3/6 max-2xl:w-4/6 max-xl:w-5/6 max-lg:w-5/6 max-md:w-4/6 max-sm:5/6 max-sm:gap-0`}>*/}
+                {/*    {pricing.show && <Pricing />}*/}
+                {/*</div>*/}
 
                 {/* FAQ Section */}
                 <div className={`flex flex-col items-center pt-20 mt-20 w-3/5 max-xl:w-4/6 max-lg:w-4/5 max-sm:w-10/12`}>
