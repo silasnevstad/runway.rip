@@ -12,7 +12,7 @@ export default function DocsPage({
     relatedSites,
 }) {
     return (
-        <div className="w-full flex flex-col lg:flex-row min-h-screen justify-start mx-auto px-4">
+        <div className="w-full h-full flex flex-col lg:flex-row min-h-screen lg:justify-center justify-start mx-auto px-4">
             {/* MAIN COLUMN */}
             <article className="flex-1 min-w-0 max-w-[700px] lg:mr-12">
                 <Breadcrumb sections={DocsNav} className="mb-2 md:mb-4 lg:mb-8" />
