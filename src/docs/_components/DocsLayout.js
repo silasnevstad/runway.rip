@@ -99,7 +99,7 @@ export default function DocsLayout({ children }) {
             </aside>
 
             {/* Main content area */}
-            <main className="flex-1 h-full flex flex-col max-w-screen">
+            <main className="flex-1 h-full flex flex-col min-w-0 max-w-screen">
                 <div className="md:hidden flex items-start gap-2 self-start p-3 w-full">
                     <Image
                         src="/logo-black.png"
