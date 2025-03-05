@@ -1,0 +1,91 @@
+---
+title: "ToastProvider"
+description: "A component to manage toast notifications"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+related:
+  - title: "Toast"
+    href: "/docs/components/toast"
+---
+
+<div id="overview" />
+
+<br/>
+
+<div className="flex flex-col w-full items-center justify-center gap-8">
+</div>
+
+<br />
+
+The `ToastProvider` component manages the state of toast notifications and displays them when needed. Simply wrap your application with the `ToastProvider` component to enable toast notifications.
+
+<Info>
+    This uses the [`Toast`](/docs/components/toast) component to display the toast notifications.
+</Info>
+
+<br />
+<br />
+<Divider />
+<div id="usage" />
+
+## Usage
+
+To enable toast notifications, wrap your application (or part of it) with the `ToastProvider`. Then, within any descendant component, use the `useToast` hook to trigger notifications.
+
+For example:
+
+```layout.js
+import { ToastProvider } from "@/contexts/ToastProvider";
+
+export default function Layout({ children }) {
+    return (
+        <ToastProvider>
+            {children}
+        </ToastProvider>
+    );
+}
+```
+
+<br />
+
+Then, in any component:
+
+```page.js
+"use client";
+import { useToast } from "@/contexts/ToastProvider";
+
+export default function Page() {
+    const { addToast } = useToast();
+
+    return (
+        <button onClick={() => addToast("This is a toast notification!")}>
+            Show Toast
+        </button>
+    );
+}
+```
+
+<br />
+<br />
+<br />
+
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Name                 | Type                                                                                            | Default     | Description                                                                                   |
+|----------------------|-------------------------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------------------------|
+| children             | node                                                                                            | -           | The content of the toast provider.                                                            |
+| autoDismiss          | boolean                                                                                         | true        | If true, the toast will automatically dismiss after a timeout.                                |
+| autoDismissTimeout   | number                                                                                          | 5000        | The time in milliseconds before the toast will be automatically dismissed.                    |
+| newestOnTop          | boolean                                                                                         | false       | If true, the newest toast will be displayed on top.                                           |
+| placement            | "top-right" \| "top-center" \| "top-left" \| "bottom-right" \| "bottom-center" \| "bottom-left" | "top-right" | The placement of the toast. Can be "top-right", "top-left", "bottom-right", or "bottom-left". |
+| portalTargetSelector | string                                                                                          | -           | Optional CSS selector for the portal target. Defaults to body.                                |
+| transitionDuration   | number                                                                                          | 500         | The duration in milliseconds for the toast transition.                                        |

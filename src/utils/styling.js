@@ -10,7 +10,7 @@ export function mergeClasses(...classLists) {
 
 // getHoverClasses returns hover, active, and lift/scale classes based on the provided options.
 export function getHoverClasses({ lift = false, scale = false, active = false }) {
-    const classes = ["transition-transform duration-200 cubic-bezier-[0.4,0,0.2,1]"];
+    const classes = ["transition-all duration-200 ease-in-out"];
     if (lift) classes.push("hover:-translate-y-0.5");
     if (scale) classes.push("hover:scale-[1.03]");
     if (active) {
@@ -151,13 +151,14 @@ export const COLOR_VARIANTS = {
             bg: "bg-gray-200 dark:bg-gray-800",
             text: "text-gray-900 dark:text-gray-50",
             border: "border border-gray-800 dark:border-gray-600",
-            hoverBg: "hover:bg-gray-100 dark:hover:bg-gray-800",
-            hoverText: "hover:text-gray-800 dark:hover:text-gray-300",
+            hoverBg: "hover:bg-gray-100 dark:hover:bg-gray-900",
+            hoverText: "hover:text-gray-800 group-hover:text-gray-800 dark:hover:text-gray-200 dark:group-hover:text-gray-200",
             hoverBorder: "",
             activeBg: "bg-gray-50 dark:bg-gray-900",
             activeText: "",
             activeBorder: "border-gray-500 dark:border-gray-500",
             fadeBg: "bg-gray-500/10 dark:bg-gray-500/10",
+            fadeText: "text-gray-700 dark:text-gray-500",
             focusWithin: "focus-within:border-gray-500 focus-within:ring-1 focus-within:ring-gray-500/30",
             placeholder: "placeholder:text-gray-500/50",
         },

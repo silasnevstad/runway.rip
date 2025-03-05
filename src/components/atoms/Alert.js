@@ -6,7 +6,7 @@ import {
     CheckCircleIcon,
     ExclamationTriangleIcon
 } from "@heroicons/react/24/outline";
-import { mergeClasses, getHoverClasses, COLOR_VARIANTS } from "@/utils/styling";
+import { mergeClasses, getHoverClasses } from "@/utils/styling";
 
 export default function Alert({
     children,

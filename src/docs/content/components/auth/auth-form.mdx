@@ -1,0 +1,39 @@
+---
+title: "AuthForm"
+description: "A form component to handle user authentication"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "AuthInputField"
+    href: "/docs/components/auth/auth-input-field"
+  - title: "OAuthButton"
+    href: "/docs/components/auth/oauth-button"
+---
+
+<div id="overview" />
+
+<br/>
+
+<div className="flex flex-col w-full items-center justify-center gap-8">
+</div>
+
+<br />
+
+The `AuthForm` component is a form component that handles user authentication.
+
+It **automatically retrieves** the authentication methods from the [config.js](/docs/tutorials/config) file and displays the
+appropriate form fields. It supports **email/password**, **magiclink** and **OAuth** authentication methods.
+
+<Callout>
+    It uses [`AuthInput`](/docs/components/auth/auth-input) and [`OAuthButton`](/docs/components/auth/oauth-button) components for the form fields and OAuth buttons respectively.
+</Callout>
+
+<br/>
+

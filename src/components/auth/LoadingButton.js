@@ -1,11 +1,8 @@
-'use client'
-
+"use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Button from '@/components/atoms/Button';
-import { useFormStatus } from 'react-dom';
 
-export default function LoadingButton({ mode = 'sign-in' }) {
-    const { pending } = useFormStatus();
+export default function LoadingButton({ mode = 'sign-in', pending }) {
     const [message, setMessage] = useState('');
     const wasPending = useRef(false);
 

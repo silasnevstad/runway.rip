@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import {BORDER_RADIUS, COLOR_VARIANTS, mergeClasses, renderIcon, SIZE_MAP} from "@/utils/styling";
+import {BORDER_RADIUS, COLOR_VARIANTS, getTextColorClass, mergeClasses, renderIcon, SIZE_MAP} from "@/utils/styling";
 import FloatingLabelWrapper from "@/components/atoms/FloatingLabelWrapper";
 
 export default function Input({
     id = "",
     label = "",
-    labelMode = "none", // "none" | "above" | "float"
+    labelMode = "above", // "none" | "above" | "float"
     labelBackground = "bg-bg-0 dark:bg-bg-900",
     size = "md",
     borderRadius = "md",
@@ -97,7 +97,7 @@ export default function Input({
                 <label
                     htmlFor={id}
                     className={mergeClasses(
-                        `block text-${color}-700 dark:text-${color}-300`,
+                        `block ${getTextColorClass(color)} opacity-70`,
                         sizeConfig.textSize
                     )}
                 >
@@ -130,7 +130,7 @@ export default function Input({
                     value={internalValue}
                     onChange={handleChange}
                     autoComplete={props.autoComplete || "off"}
-                    placeholder={labelMode === "float" ? label : props.placeholder}
+                    placeholder={labelMode === "float" ? "" : props.placeholder}
                 />
 
                 {/* Password toggle */}

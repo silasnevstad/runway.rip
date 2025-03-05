@@ -4,9 +4,9 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 import appConfig from '@/config';
-import { SignupFormSchema, LoginFormSchema } from '@/app/lib/definitions';
+import { SignupFormSchema, LoginFormSchema, PasswordlessFormSchema } from '@/app/lib/definitions';
 
-export async function passwordSignup(formData) {
+export async function passwordSignup(prevState, formData) {
     const validatedFields = SignupFormSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
@@ -26,7 +26,7 @@ export async function passwordSignup(formData) {
     redirect(appConfig.afterLoginPath);
 }
 
-export async function resetPassword(formData) {
+export async function resetPassword(prevState, formData) {
     const email = formData.get('email');
     if (!email) {
         return { errors: { email: 'Email is required.' } };
@@ -42,7 +42,7 @@ export async function resetPassword(formData) {
     return { message: 'Check your email for a password reset link.' };
 }
 
-export async function passwordSignin(formData) {
+export async function passwordSignin(prevState, formData) {
     const validatedFields = LoginFormSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
@@ -61,11 +61,14 @@ export async function passwordSignin(formData) {
     redirect(appConfig.afterLoginPath);
 }
 
-export async function passwordlessSignin(formData) {
-    const email = formData.get('email');
-    if (!email) {
-        return { errors: { email: 'Email is required.' } };
+export async function passwordlessSignin(prevState, formData) {
+    const validatedFields = PasswordlessFormSchema.safeParse({
+        email: formData.get('email'),
+    });
+    if (!validatedFields.success) {
+        return { errors: validatedFields.error.flatten().fieldErrors };
     }
+    const { email } = validatedFields.data;
     const supabase = createClient();
     const { error } = await supabase.auth.signInWithOtp({
         email,

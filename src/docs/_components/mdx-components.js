@@ -77,6 +77,9 @@ import FAQ from "@/components/landing/FAQ";
 import PricingCard from "@/components/payments/PricingCard";
 import PricingPlans from "@/components/payments/PricingPlans";
 import CheckoutButton from "@/components/payments/CheckoutButton";
+import AuthInput from "@/components/auth/AuthInput";
+// import ToastDemo from "@/docs/_components/demos/ToastDemo";
+import Toast from "@/components/atoms/Toast";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -190,7 +193,7 @@ export const mdxComponents = {
         </td>
     ),
 
-    // Sections
+    // Landing
     Header: Header,
     Hero: Hero,
     FeaturesCarousel: FeaturesCarousel,
@@ -202,6 +205,10 @@ export const mdxComponents = {
 
     // Auth
     AccountCard: AccountCard,
+    AuthInput: AuthInput,
+    PasswordAuthForm: PasswordAuthForm,
+    PasswordlessAuthForm: PasswordlessAuthForm,
+    OAuthButtons: OAuthButtons,
 
     // Components
     Accordion: Accordion,
@@ -247,13 +254,11 @@ export const mdxComponents = {
     TextArea: TextArea,
     TextAreaDemo: TextAreaDemo,
     TextHighlight: TextHighlight,
+    Toast: Toast,
+    // ToastDemo: ToastDemo,
     ThemeSwitcher: ThemeSwitcher,
     PricingCard: PricingCard,
     PricingPlans: PricingPlans,
-
-    PasswordAuthForm: PasswordAuthForm,
-    PasswordlessAuthForm: PasswordlessAuthForm,
-    OAuthButtons: OAuthButtons,
 
     DocsNav: DocsNav,
 
@@ -266,4 +271,4 @@ export const mdxComponents = {
     LinkIcon: LinkIcon,
     PlusCircleIcon: PlusCircleIcon,
     PaperAirplaneIcon: PaperAirplaneIcon,
-};
+}

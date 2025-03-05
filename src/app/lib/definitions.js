@@ -14,3 +14,7 @@ export const SignupFormSchema = z.object({
         message: 'Passwords do not match',
         path: ['confirmPassword'],
     });
+
+export const PasswordlessFormSchema = z.object({
+    email: z.string().email({ message: 'Please enter a valid email.' }).trim(),
+});

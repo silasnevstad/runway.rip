@@ -1,6 +1,7 @@
 import appConfig from "@/config";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from 'next-themes'
+import { ToastProvider } from "@/contexts/ToastProvider";
 import { getSEOTags } from "@/libs/seo";
 import './globals.css';
 
@@ -21,7 +22,9 @@ export default function RootLayout({ children }) {
             </head>
             <body className={inter.className}>
                 <ThemeProvider enableSystem={true} defaultTheme={'system'} attribute="class">
-                    {children}
+                    <ToastProvider>
+                        {children}
+                    </ToastProvider>
                 </ThemeProvider>
             </body>
         </html>

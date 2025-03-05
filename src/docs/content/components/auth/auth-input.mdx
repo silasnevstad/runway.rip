@@ -1,0 +1,38 @@
+---
+title: "AuthInput"
+description: "A form component to handle user authentication"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "Input"
+    href: "/docs/components/atoms/input"
+---
+
+<div id="overview" />
+
+<br/>
+
+<div className="flex flex-col w-full items-center justify-center gap-8">
+    <AuthInput
+        label="Email"
+        name="email"
+        type="email"
+    />
+    <AuthInput
+        label="Password"
+        name="password"
+        type="password"
+        error="Invalid password"
+    />
+</div>
+
+<br />
+
+The `AuthInput` component is a input component that handles user authentication. It is used in the [`AuthForm`](/docs/components/auth/auth-form) component to handle user authentication.

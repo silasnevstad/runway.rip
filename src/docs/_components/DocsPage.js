@@ -1,8 +1,9 @@
-"use client";
-
+import React, {Suspense} from "react";
 import Breadcrumb from "@/components/atoms/Breadcrumb";
-import {OnThisPage, SidebarSection} from "@/docs/_components/RightSidebar";
-import {DocsNav} from "@/app/(noauth)/docs/Nav";
+import { OnThisPage, SidebarSection } from "@/docs/_components/RightSidebar";
+import { DocsNav } from "@/app/(noauth)/docs/Nav";
+import {mdxComponents} from "@/docs/_components/mdx-components";
+import {MDXRemote} from "next-mdx-remote";
 
 export default function DocsPage({
     title,
@@ -30,7 +31,12 @@ export default function DocsPage({
                 )}
 
                 {/* The rendered MDX content */}
-                <div className="prose dark:prose-invert w-full pb-96">{content}</div>
+                <div className="prose dark:prose-invert w-full pb-96">
+                    {React.isValidElement(content) && (() => {
+                        const MDXContent = content.type;
+                        return <MDXContent {...content.props} />;
+                    })()}
+                </div>
             </article>
 
             {/* RIGHT SIDEBAR (large screens only) */}

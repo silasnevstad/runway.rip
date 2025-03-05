@@ -18,9 +18,9 @@ export default function DocsLayout({ children }) {
     };
 
     return (
-        <div className="flex h-screen overflow-y-hidden w-full bg-bg-100 dark:bg-gray-900">
+        <div className="flex h-screen overflow-y-hidden w-full bg-bg-100 dark:bg-bg-800">
             {/* Left Sidebar */}
-            <Sidebar width="64" bgColor="bg-bg-50 dark:bg-gray-900">
+            <Sidebar width="64" bgColor="bg-bg-50 dark:bg-bg-800">
                 <div className="flex flex-col">
                     <div
                         className="flex items-start gap-2 self-start cursor-pointer"

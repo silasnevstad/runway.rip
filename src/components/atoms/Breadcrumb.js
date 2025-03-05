@@ -46,8 +46,6 @@ export default function Breadcrumb({
         className
     );
 
-    const delimiterClasses = "w-5 h-5 flex items-center opacity-40";
-
     // Local component to render a single crumb
     function BreadcrumbItem({ href, title, isLast }) {
         if (isLast && !isInteractiveLast) {
@@ -81,7 +79,7 @@ export default function Breadcrumb({
                             isLast={isLast}
                         />
                         {!isLast && (
-                            <span className={`text-sm mx-1 flex items-center opacity-40`}>
+                            <span className="text-sm mx-1 flex items-center opacity-40">
                                 {delimiter}
                             </span>
                         )}
