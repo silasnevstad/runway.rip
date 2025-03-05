@@ -7,7 +7,6 @@ const TextHighlight = ({
     color = "primary",
     fromGradient = "",
     toGradient = "",
-    textSize = "text-7xl/18", // text size / line height
     className = "",
 }) => {
     const regex = new RegExp(`(${highlight})`, 'gi');
@@ -16,7 +15,7 @@ const TextHighlight = ({
     const highlightClass = `${getBgColorClass(color)} text-gray-100 dark:text-gray-900 px-2 whitespace-nowrap rounded-xs `;
 
     return (
-        <h1 className={mergeClasses(`z-1 ${textSize} font-bold max-w-prose text-center`, className)}>
+        <h1 className={mergeClasses(`z-1 text-5xl/15 sm:text-5xl/16 md:text-6xl/16 lg:text-7xl/18 font-bold max-w-prose text-center`, className)}>
             {parts.map((part, index) =>
                 regex.test(part) ? (
                     <span

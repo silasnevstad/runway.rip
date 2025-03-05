@@ -18,7 +18,7 @@ export default function DocsLayout({ children }) {
     };
 
     return (
-        <div className="flex h-screen overflow-y-hidden w-full bg-bg-100 dark:bg-bg-800">
+        <div className="flex h-screen overflow-y-hidden w-full bg-bg-100 dark:bg-gray-900">
             {/* Left Sidebar */}
             <Sidebar width="64" bgColor="bg-bg-50 dark:bg-bg-800">
                 <div className="flex flex-col">
@@ -88,7 +88,7 @@ export default function DocsLayout({ children }) {
                 </div>
             </Sidebar>
 
-            {/* A "floating" search bar in the top-right (desktop only) */}
+            {/* Floating search bar (desktop only) */}
             <aside className="fixed top-5 right-5 flex max-lg:hidden">
                 <SearchBar
                     modalPlaceholder="Search docs"
@@ -99,7 +99,7 @@ export default function DocsLayout({ children }) {
             </aside>
 
             {/* Main content area */}
-            <main className="flex-1 h-full flex flex-col">
+            <main className="flex-1 h-full flex flex-col max-w-screen">
                 <div className="md:hidden flex items-start gap-2 self-start p-3 w-full">
                     <Image
                         src="/logo-black.png"
@@ -120,10 +120,10 @@ export default function DocsLayout({ children }) {
 
                 <div
                     className={mergeClasses(
-                        "max-w-full h-full px-5 py-6 md:py-8 md:pl-10",
+                        "max-w-full h-full max-[430px]:px-2 px-3 sm:px-5 py-6 md:py-8 md:pl-10",
                         "overflow-y-auto",
-                        "bg-bg-0 dark:bg-bg-900",
-                        "max-md:rounded-t-2xl max-[430px]:mx-0 max-md:mx-2"
+                        "bg-bg-0 dark:bg-bg-950",
+                        "max-md:rounded-t-xl mx-2 md:mx-0"
                     )}
                 >
                     {children}

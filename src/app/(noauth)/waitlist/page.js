@@ -19,9 +19,9 @@ export default function WaitlistPage() {
                 <TextHighlight
                     text={landingConfig.hero.textHighlight.text}
                     highlight={landingConfig.hero.textHighlight.highlight}
-                    // gradientColors={["primary", "purple"]}
+                    // fromGradient="primary"
+                    // toGradient="purple"
                     className={`text-${landingConfig.hero.textPosition} mt-6`}
-                    // highlightClassName={`from-primary-600`}
                 />
                 <p className="text-lg opacity-60 font-semibold max-w-[50ch] mt-4">
                     A fully-loaded NextJS boilerplate to build your SaaS, AI tool, or web app and start monetizing in days, not weeks.

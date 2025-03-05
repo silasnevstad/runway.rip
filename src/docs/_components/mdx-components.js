@@ -173,7 +173,7 @@ export const mdxComponents = {
     },
     table: ({ children }) => (
         <div className="w-full overflow-x-auto">
-            <table className="table-auto w-full border-collapse">
+            <table className="table-auto min-w-max border-collapse">
                 {children}
             </table>
         </div>

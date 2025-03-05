@@ -1,9 +1,7 @@
-import React, {Suspense} from "react";
+import React from "react";
 import Breadcrumb from "@/components/atoms/Breadcrumb";
 import { OnThisPage, SidebarSection } from "@/docs/_components/RightSidebar";
 import { DocsNav } from "@/app/(noauth)/docs/Nav";
-import {mdxComponents} from "@/docs/_components/mdx-components";
-import {MDXRemote} from "next-mdx-remote";
 
 export default function DocsPage({
     title,
@@ -14,7 +12,7 @@ export default function DocsPage({
     relatedSites,
 }) {
     return (
-        <div className="w-full h-full flex flex-col lg:flex-row min-h-screen justify-center mx-auto px-4">
+        <div className="w-full flex flex-col lg:flex-row min-h-screen justify-start mx-auto px-4">
             {/* MAIN COLUMN */}
             <article className="flex-1 min-w-0 max-w-[700px] lg:mr-12">
                 <Breadcrumb sections={DocsNav} className="mb-2 md:mb-4 lg:mb-8" />
@@ -25,7 +23,7 @@ export default function DocsPage({
                     </h1>
                 )}
                 {description && (
-                    <p className="text-lg text-gray-800 dark:text-gray-200 mb-6">
+                    <p className="text-[17px] text-gray-800 dark:text-gray-200 mb-6">
                         {description}
                     </p>
                 )}
@@ -42,7 +40,6 @@ export default function DocsPage({
             {/* RIGHT SIDEBAR (large screens only) */}
             {(onThisPage?.length || relatedDocs?.length || relatedSites?.length) && (
                 <aside className="hidden lg:block w-44 shrink-0">
-                    {/* Use sticky so it stays in place while scrolling */}
                     <div className="fixed top-22 space-y-4">
                         {onThisPage?.length > 0 && <OnThisPage items={onThisPage} />}
                         {relatedDocs?.length > 0 && <SidebarSection title="Related Docs" items={relatedDocs} />}
