@@ -1,5 +1,11 @@
 import AuthForm from "@/components/auth/AuthForm";
 import TextLink from "@/components/atoms/TextLink";
+import {getSEOTags} from "@/libs/seo";
+
+export const metadata = getSEOTags({
+    title: "Sign Up | Runway",
+    canonicalUrlRelative: "/signup",
+});
 
 export default function SignUpPage() {
     return (
@@ -10,7 +16,7 @@ export default function SignUpPage() {
             </div>
             <div className="flex flex-col items-center justify-center w-full max-w-md p-4">
                 <div className="flex flex-col items-center justify-center w-full max-w-md p-4 rounded-lg">
-                    <AuthForm mode={"sign-up"} />
+                    <AuthForm mode={"signup"} />
                 </div>
             </div>
             <div className="absolute top-8 right-8 flex flex-col items-end opacity-90 hover:opacity-100">

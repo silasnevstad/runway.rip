@@ -97,7 +97,7 @@ export default function Hero({
                             toGradient={textHighlight.toGradient}
                         />
 
-                        <p className="text-lg opacity-60 font-semibold max-w-[45ch]">
+                        <p className="text-lg font-semibold max-w-[45ch]">
                             {description}
                         </p>
 

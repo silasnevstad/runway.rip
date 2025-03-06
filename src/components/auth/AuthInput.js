@@ -29,7 +29,6 @@ const AuthInput = ({
                 secure={secure}
                 {...props}
             />
-
         </div>
     );
 };

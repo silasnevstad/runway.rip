@@ -1,18 +1,16 @@
 "use client";
 import React from 'react';
-import { useUser } from "@/contexts/UserContext";
 import { signout } from "@/app/actions/auth";
 import Button from "@/components/atoms/Button";
+import AccountCard from "@/components/auth/AccountCard";
 
 const UserForm = () => {
-    const { user } = useUser();
-
-    console.log(user);
-
     return (
-        <div className="flex flex-row gap-10 justify-between w-3/5 mt-10">
+        <div className="flex flex-col items-center gap-10 mt-10">
+            <AccountCard />
             <Button
-                variant="primary"
+                variant="soft"
+                size="sm"
                 onClick={async () => {
                     await signout();
                 }}

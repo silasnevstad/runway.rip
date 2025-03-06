@@ -37,6 +37,6 @@ export async function callFunction(functionName, args = {}) {
 }
 
 // addLead adds a new lead to the leads table (for waiting list)
-export async function addLead(email) {
+export async function addWaitlist(email) {
     return supabase.from('leads').insert({email});
 }

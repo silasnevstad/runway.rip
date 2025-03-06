@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaInfinity, FaArrowDown } from "react-icons/fa6";
 import { StandoutCard } from "@/components/molecules/CustomCards";
 import { landingConfig } from "@/config";
+import {getBgColorClass} from "@/utils/styling";
 
 
 const TimeSpentCard = ({ hours, text, infinite = false }) => (
@@ -45,7 +46,7 @@ function Runway({ vertical = false, dashSize = 40, gapSize = 28, color = "primar
             {Array.from({ length: numDashes }).map((_, index) => (
                 <div
                     key={index}
-                    className={`bg-${color}-500/60 dark:bg-${color}-500/40`}
+                    className={`${getBgColorClass(color)} rounded-xs opacity-80 dark:opacity-60`}
                     style={{
                         width: vertical ? "8px" : `${dashSize}px`,
                         height: vertical ? `${dashSize}px` : "8px",

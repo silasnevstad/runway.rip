@@ -15,7 +15,7 @@ const PasswordlessAuthForm = () => {
 
     // any time the state changes, check if there are any errors
     useEffect(() => {
-        if (state?.errors) {
+        if (state.errors && state.errors.message) {
             addToast(state.errors.message || "An error occurred. Please try again.", {
                 severity: "error",
             });
@@ -23,7 +23,7 @@ const PasswordlessAuthForm = () => {
     }, [state, addToast]);
 
     return (
-        <form className="flex flex-col w-full gap-2" action={action}>
+        <form className="flex flex-col w-full gap-4" action={action}>
             <Input
                 id="email"
                 label="Email"

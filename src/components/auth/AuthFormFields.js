@@ -22,7 +22,7 @@ const AuthFormFields = ({ type, state }) => {
                         : state?.errors.password
                 }
             />
-            {type === 'sign-up' && (
+            {type === 'signup' && (
                 <AuthInput
                     label="Confirm Password"
                     name="confirmPassword"

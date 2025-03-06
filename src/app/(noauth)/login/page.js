@@ -1,5 +1,11 @@
 import AuthForm from "@/components/auth/AuthForm";
 import TextLink from "@/components/atoms/TextLink";
+import { getSEOTags } from "@/libs/seo";
+
+export const metadata = getSEOTags({
+    title: "Login | Runway",
+    canonicalUrlRelative: "/login",
+});
 
 export default function LoginPage() {
     return (
@@ -15,7 +21,7 @@ export default function LoginPage() {
             </div>
             <div className="absolute top-8 right-8 flex flex-col items-end opacity-90 hover:opacity-100">
                 <p className="opacity-60 text-sm">New around here?</p>
-                <TextLink href="/sign-up" className="text-primary-500 hover:opacity-100">
+                <TextLink href="/signup" className="text-primary-500 hover:opacity-100">
                     Create an account
                 </TextLink>
             </div>

@@ -1,122 +1,72 @@
 ---
-title: "Authentication Features"
-description: "A full overview of the authentication system in this Next.js + Supabase boilerplate, including password-based, passwordless, and OAuth logins."
+title: "Authentication"
+description: "Secure and ready-to-use auth system that handles password-based, magic link, and social logins."
 onThisPage:
   - title: "Overview"
     href: "#overview"
-  - title: "Password-Based"
-    href: "#password-based-auth"
-  - title: "Passwordless"
-    href: "#passwordless-auth"
-  - title: "Social & OAuth"
-    href: "#social-oauth-logins"
+  - title: "Config"
+    href: "config"
+related:
+  - title: "Supabase Setup"
+    href: "/docs/tutorials/supabase"
+  - title: "Config"
+    href: "/docs/tutorials/config"
+  - title: "AccountCard"
+    href: "/docs/components/auth/account-card"
+  - title: "PasswordAuthForm"
+    href: "/docs/components/auth/password-auth-form"
+  - title: "PasswordlessAuthForm"
+    href: "/docs/components/auth/passwordless-auth-form"
+  - title: "OAuthButtons"
+    href: "/docs/components/auth/oauth-buttons"
 ---
 
 <div id="overview" />
 
-<Divider />
-
 <br/>
 
-Here, you get a secure and ready-to-use auth system that handles password-based, passwordless, and social logins.
-<div className="flex my-2" />
-It's built with [Supabase](https://supabase.com/docs/guides/auth), offering a flexible and secure way to manage user authentication.
-<div className="flex my-4" />
-<Info>
-    All sensitive operations run exclusively on the server so your credentials and secret logic stay hidden.
-</Info>
-<div className="flex my-8" />
+Let's walk through the authentication system! Follow [Supabase Setup](/docs/tutorials/supabase) first to get your project set up.
 
-- **[Password-Based Auth](#password-based-auth)** (the traditional email/password flow)
-- **[Passwordless Auth](#passwordless-auth)** (magic links / OTP)
-- **[Social & OAuth Logins](#social-oauth-logins)** (with support for multiple providers)
+Simply plug the auth methods you want into [`appConfig`](/docs/tutorials/config) and the `/signup` and `/login` pages will
+automatically adjust to your choices.
+
+```config.js
+const appConfig = {
+    // Auth
+    authMethods: ['magiclink', 'google'],
+};
+```
 
 <br />
 
-## Password-Based Auth
+You can also add the `protectedRoutes` key to specify which routes require authentication:
+
+```config.js
+const appConfig = {
+    // Auth
+    protectedRoutes: [
+        '/dashboard',
+        '/account'
+    ]
+};
+```
+
+<br />
+<br />
+
+## Config
 
 <div id="password-based-auth" />
 
-This is the classic login method. Users provide an email and password. The system validates inputs (using) and processes sign-ups or sign-ins securely on the server.
-
-<PreviewCode preview={
-    <div className="flex w-full px-2">
-        <PasswordAuthForm mode={'sign-in'} />
-    </div>
-}>
-    ```javascript
-    <PasswordAuthForm mode={'sign-in'} />
-    ```
-</PreviewCode>
-
-<Callout title="Note!">
-    All inputs are **validated** and all emails are **verified**.
-</Callout>
-
-<br/>
-<Divider />
-<br/>
-
-## Passwordless Auth
-
-<div id="passwordless-auth" />
-
-For a frictionless experience, users can log in without a password. They simply enter their email, and a magic link or OTP is sent:
-
-<PreviewCode preview={
-    <div className="flex w-full px-2">
-        <PasswordlessAuthForm />
-    </div>
-}>
-    ```javascript
-    <PasswordlessAuthForm />
-    ```
-</PreviewCode>
+| Key               | Description                                                                                           |
+|-------------------|-------------------------------------------------------------------------------------------------------|
+| `authMethods`     | A list of authentication methods to enable (`password`, `magiclink`, `google`, `apple`, or `github`). |
+| `protectedRoutes` | An array of routes that require authentication.                                                       |
+| `afterLoginPath`  | The path to redirect to after a successful login.                                                     |
+| `afterSignupPath` | The path to redirect to after a successful signup.                                                    |
 
 <Info>
-    No passwords to remember means less friction and a smoother user experience.
+    The `afterLoginPath` and `afterSignupPath` keys are used to redirect users after they log in or sign up (no need to change them).
 </Info>
 
-<br/>
-<Divider />
-<br/>
-
-## Social & OAuth Logins
-
-<div id="social-oauth-logins" />
-
-Social login allows users to authenticate using their existing accounts (Google, Facebook, Apple, GitHub, etc.). This flow is unified so you can easily switch providers without changing your core code.
-
-<PreviewCode preview={
-    <div className="flex w-full px-2">
-        <OAuthButtons providers={[
-            { name: 'google', logoSrc: '/logos/google.png', logoAlt: 'Google' },
-            { name: 'github', logoSrc: '/logos/github.png', logoAlt: 'GitHub' },
-        ]} />
-    </div>
-}>
-    ```javascript
-    const providers = [
-        { name: 'google', logoSrc: '/logos/google.png', logoAlt: 'Google' },
-        // { name: 'facebook', logoSrc: '/logos/facebook.png', logoAlt: 'Facebook' },
-        // { name: 'apple', logoSrc: '/logos/apple.png', logoAlt: 'Apple' },
-        { name: 'github', logoSrc: '/logos/github.png', logoAlt: 'GitHub' },
-    ];
-
-    <OAuthButtons providers={providers} />
-    ```
-</PreviewCode>
-
-<Tip>
-    Customize the OAuth buttons by simply adjusting the provider’s name and logo—supporting as many providers as you need.
-</Tip>
-
-<br/>
-<Divider />
-<br/>
-
-
-Enjoy the freedom to pick the authentication method that fits your project best!
-
-<br/>
-<br/>
+That's it! You're all set up with a secure and ready-to-use authentication system.

@@ -1,41 +1,37 @@
 "use client";
-
-import { useState } from "react";
-import DropdownText from "@/components/atoms/DropdownText";
+import React, { useState } from "react";
+import DropdownItem from "@/components/atoms/DropdownItem";
 import { mergeClasses } from "@/utils/styling";
 
-const Accordion = ({
+export default function Accordion({
     className,
     items,
     oneOpen = false,
-    borders = true,
-    level = 0, // level is used to automatically indent nested accordions.
-}) => {
+    level = 0,
+    dropdownProps = {},
+}) {
     const [openIndexes, setOpenIndexes] = useState([]);
 
     const toggleItem = (index) => {
-        setOpenIndexes((prevIndexes) => {
+        setOpenIndexes((prev) => {
             if (oneOpen) {
-                return prevIndexes.includes(index) ? [] : [index];
-            } else {
-                return prevIndexes.includes(index)
-                    ? prevIndexes.filter((i) => i !== index)
-                    : [...prevIndexes, index];
+                return prev.includes(index) ? [] : [index];
             }
+            return prev.includes(index)
+                ? prev.filter((i) => i !== index)
+                : [...prev, index];
         });
     };
 
     return (
         <div
-            // Compute margin and width dynamically based on the nesting level.
             style={{
                 marginLeft: `${level * 20}px`,
-                width: `calc(100% - ${level * 20}px)`,
+                width: `calc(100% - ${level * 20}px)`
             }}
             className={mergeClasses("flex flex-col", className)}
         >
             {items.map((item, index) => {
-                // If the item has nested `items`, render a nested Accordion.
                 let content;
                 if (item.items) {
                     content = (
@@ -44,28 +40,26 @@ const Accordion = ({
                             <Accordion
                                 items={item.items}
                                 oneOpen={oneOpen}
-                                borders={borders}
                                 level={level + 1}
+                                dropdownProps={dropdownProps}
                             />
                         </>
                     );
                 } else {
                     content = item.content;
                 }
-
                 return (
-                    <DropdownText
+                    <DropdownItem
                         key={index}
-                        title={item.title}
-                        content={content}
+                        header={item.title}
                         isOpen={openIndexes.includes(index)}
                         onToggle={() => toggleItem(index)}
-                        border={index < items.length - 1 && borders}
-                    />
+                        {...dropdownProps}
+                    >
+                        {content}
+                    </DropdownItem>
                 );
             })}
         </div>
     );
-};
-
-export default Accordion;
+}

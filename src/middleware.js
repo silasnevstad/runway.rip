@@ -8,9 +8,23 @@ export async function middleware(request) {
     const { pathname } = request.nextUrl;
 
     // ------------------------------------------------------------------
+    // PROTECTED ROUTES:
+    // For routes defined in appConfig.protectedRoutes, we ensure that an authenticated user exists.
+    // If the user is not logged in, redirect them to the login page.
+    // ------------------------------------------------------------------
+    const isProtectedRoute = appConfig.protectedRoutes.some((protectedPath) =>
+        pathname.startsWith(protectedPath)
+    );
+    if (isProtectedRoute && !user) {
+        const url = request.nextUrl.clone();
+        url.pathname = '/login';
+        return NextResponse.redirect(url);
+    }
+
+    // ------------------------------------------------------------------
     // WAITLIST MODE:
     // If waitlist mode is enabled (appConfig.waitlistMode === true) and we're running
-    // in production (process.env.NODE_ENV === 'production'), redirect all requests to the
+    // in production (process.env.NODE_ENV === 'production'), we redirect all requests to the
     // waitlist page unless the requested route is allowed (per appConfig.waitlistAllowedRoutes).
     // ------------------------------------------------------------------
     const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production';
@@ -24,20 +38,6 @@ export async function middleware(request) {
             url.pathname = appConfig.waitlistRedirect;
             return NextResponse.redirect(url);
         }
-    }
-
-    // ------------------------------------------------------------------
-    // PROTECTED ROUTES:
-    // For routes defined in appConfig.protectedRoutes, ensure that an authenticated user exists.
-    // If the user is not logged in, redirect them to the login page.
-    // ------------------------------------------------------------------
-    const isProtectedRoute = appConfig.protectedRoutes.some((protectedPath) =>
-        pathname.startsWith(protectedPath)
-    );
-    if (isProtectedRoute && !user) {
-        const url = request.nextUrl.clone();
-        url.pathname = '/login';
-        return NextResponse.redirect(url);
     }
 
     return supabaseResponse;

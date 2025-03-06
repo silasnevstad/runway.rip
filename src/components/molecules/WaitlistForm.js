@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
-import { addLead } from "@/libs/supabase/db";
+import { addWaitlist } from "@/libs/supabase/db";
 
 export default function WaitlistForm({
     color = 'primary',
@@ -17,7 +17,7 @@ export default function WaitlistForm({
         setLoading(true);
         setFeedback('');
         try {
-            const { data, error } = await addLead(email);
+            const { data, error } = await addWaitlist(email);
             console.log(error, error?.code);
             if (error && error.code === '23505') {
                 setFeedback('You are already on the waitlist!');

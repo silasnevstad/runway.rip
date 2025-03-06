@@ -1,4 +1,4 @@
-import appConfig from "@/config"; // your existing config.js
+import appConfig from "@/config";
 
 /**
  * Returns default SEO metadata.
@@ -25,7 +25,7 @@ export function getSEOTags(options = {}) {
             type: "website",
             images: [
                 {
-                    url: `${siteUrl}/logo.png`, // adjust this default image as needed
+                    url: `${siteUrl}/logo.png`,
                     width: 1200,
                     height: 630,
                     alt: title,
@@ -37,20 +37,30 @@ export function getSEOTags(options = {}) {
             site: appConfig.socialMedia.twitter || "",
             title,
             description,
-            images: [`${siteUrl}/og-image.png`],
+            images: [`${siteUrl}/logo.png`],
         },
     };
 }
 
 /**
  * Renders JSON‑LD schema tags.
- * Pass an object (or array) of schema data.
+ * Uses default schema data if none is provided.
  */
-export function renderSchemaTags(schemaData) {
+export function getSchemaTags({ schemaData = {} }) {
+    const defaultSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: appConfig.appName,
+        url: `https://${appConfig.domain}`,
+        logo: `https://${appConfig.domain}/logo.png`,
+    };
+
+    const schema = { ...defaultSchema, ...schemaData };
+
     return (
         <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
     );
 }

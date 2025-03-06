@@ -5,7 +5,7 @@ import { updateData } from "@/libs/supabase/db";
  * Updates the user’s profile with subscription details.
  */
 export async function handleSubscriptionCreated(subscription) {
-    const { id, status, items } = subscription;
+    const { id, status, items, customer } = subscription;
     const priceId = items.data[0]?.price?.id;
     // Determine access based on subscription status
     const hasAccess = status === "active" || status === "trialing";
@@ -17,7 +17,7 @@ export async function handleSubscriptionCreated(subscription) {
             subscription_status: status,
             has_access: hasAccess,
         },
-        { customer_id: subscription.customer }
+        { customer_id: customer }
     );
     if (error) {
         console.error("Error updating subscription on creation:", error);
@@ -30,7 +30,7 @@ export async function handleSubscriptionCreated(subscription) {
  * Handle a subscription updated event.
  */
 export async function handleSubscriptionUpdated(subscription) {
-    const { id, status, items } = subscription;
+    const { id, status, items, customer } = subscription;
     const priceId = items.data[0]?.price?.id;
     const hasAccess = status === "active" || status === "trialing";
     const { error } = await updateData(
@@ -41,7 +41,7 @@ export async function handleSubscriptionUpdated(subscription) {
             subscription_status: status,
             has_access: hasAccess,
         },
-        { customer_id: subscription.customer }
+        { customer_id: customer }
     );
     if (error) {
         console.error("Error updating subscription on update:", error);
@@ -54,7 +54,7 @@ export async function handleSubscriptionUpdated(subscription) {
  * Handle a subscription deleted event.
  */
 export async function handleSubscriptionDeleted(subscription) {
-    const { id } = subscription;
+    const { id, customer } = subscription;
     const { error } = await updateData(
         "profiles",
         {
@@ -63,7 +63,7 @@ export async function handleSubscriptionDeleted(subscription) {
             subscription_status: "deleted",
             has_access: false,
         },
-        { customer_id: subscription.customer }
+        { customer_id: customer }
     );
     if (error) {
         console.error("Error updating subscription on deletion:", error);

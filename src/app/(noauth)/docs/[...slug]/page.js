@@ -7,9 +7,7 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { mdxComponents } from "@/docs/_components/mdx-components";
 import DocsPage from "@/docs/_components/DocsPage";
-import Breadcrumb from "@/components/atoms/Breadcrumb";
-import {DocsNav} from "@/app/(noauth)/docs/Nav";
-import {OnThisPage, SidebarSection} from "@/docs/_components/RightSidebar";
+import { getSEOTags } from "@/libs/seo";
 
 const DOCS_DIR = path.join(process.cwd(), "src", "docs", "content");
 
@@ -36,8 +34,41 @@ export async function generateStaticParams() {
 
 export const dynamicParams = true;
 
+async function getFrontmatter(filePath) {
+    if (!fs.existsSync(filePath)) {
+        return null;
+    }
+    const source = fs.readFileSync(filePath, "utf8");
+    const { frontmatter } = await compileMDX({
+        source,
+        components: mdxComponents,
+        options: {
+            parseFrontmatter: true,
+            mdxOptions: {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [rehypeHighlight, rehypeSlug],
+            },
+        },
+    });
+    return frontmatter;
+}
+
+// Dynamically generate metadata based on MDX frontmatter
+export async function generateMetadata({ params }) {
+    const { slug } = params;
+    const filePath = path.join(DOCS_DIR, ...slug) + ".mdx";
+    const frontmatter = await getFrontmatter(filePath);
+
+    // Use frontmatter values if available, fallback otherwise.
+    return getSEOTags({
+        title: frontmatter?.title || "Runway Documentation",
+        description: frontmatter?.description,
+        canonicalUrlRelative: `/docs/${slug.join("/")}`,
+    });
+}
+
 export default async function Page({ params }) {
-    const { slug } = await params;
+    const { slug } = params;
     const filePath = path.join(DOCS_DIR, ...slug) + ".mdx";
 
     if (!fs.existsSync(filePath)) {
@@ -74,4 +105,3 @@ export default async function Page({ params }) {
         />
     );
 }
-

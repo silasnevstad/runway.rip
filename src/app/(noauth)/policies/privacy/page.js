@@ -1,4 +1,10 @@
 import TextLink from "@/components/atoms/TextLink";
+import { getSEOTags } from "@/libs/seo";
+
+export const metadata = getSEOTags({
+    title: "Privacy Policy | Runway",
+    canonicalUrlRelative: "/policies/privacy",
+});
 
 export default function PrivacyPolicy() {
     return (

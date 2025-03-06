@@ -35,7 +35,6 @@ const NavItem = ({ item, pathname, level }) => {
     const isActive =
         pathname === item.href || (item.items && pathname.startsWith(item.href));
     const hasChildren = item.items && item.items.length > 0;
-    const indentStyle = { marginLeft: `${(level + 1) * 0}rem` };
 
     if (hasChildren) {
         return (
@@ -53,21 +52,22 @@ const NavItem = ({ item, pathname, level }) => {
                         </span>
                     }
                     initialOpen={pathname.startsWith(item.href)}
-                    className={`w-full text-left ${isActive ? "bg-bg-200 dark:bg-gray-900" : ""}`}
+                    className="w-full py-2"
+                    border={false}
                 >
-                    <ul>
+                    <div className="flex flex-col w-full h-full">
                         {item.items.map((child) => (
                             <NavItem key={child.href} item={child} pathname={pathname} level={level + 1} />
                         ))}
-                    </ul>
+                    </div>
                 </DropdownItem>
             </li>
         );
     }
 
     return (
-        <li
-            className={`group p-1 pl-2 py-2 rounded-md mb-[1px] transition-colors hover:bg-bg-200 dark:hover:bg-gray-900 ${
+        <div
+            className={`w-full group p-1 pl-2 py-2 rounded-md mb-[1px] transition-colors hover:bg-bg-200 dark:hover:bg-gray-900 ${
                 isActive ? "bg-bg-200 dark:bg-gray-900" : "border-l-none border-gray-500 dark:border-gray-800"
             }`}
         >
@@ -84,7 +84,7 @@ const NavItem = ({ item, pathname, level }) => {
                     {item.title}
                 </span>
             </Link>
-        </li>
+        </div>
     );
 };
 

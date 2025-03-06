@@ -68,7 +68,7 @@ export default function FeaturesCarousel({
                 })}
             </div>
 
-            <div className="w-full overflow-hidden">
+            <div className="w-full">
                 <Carousel
                     currentIndex={selectedFeature}
                     onChange={(i) => setSelectedFeature(i)}
@@ -116,9 +116,9 @@ function FeatureCard({
             key={key}
             className={
                 `relative flex flex-col items-start text-start transition-all
-                ${isActive ? "shadow-xl" : "shadow-md"}
+                ${isActive ? "shadow-xl dark:shadow-2xl" : "shadow-md"}
                 w-[440px] sm:w-[440px] cursor-pointer
-                bg-bg-0 dark:bg-bg-800 border-bg-200 dark:border-gray-800/50
+                bg-bg-0 dark:bg-bg-900 border-bg-200 dark:border-gray-800/50
             `}
             color={cardColor}
             variant={cardVariant}

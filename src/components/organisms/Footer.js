@@ -23,7 +23,7 @@ const Footer = ({
     showLogo = true,
     showAppName = true,
     showAppDescription = true,
-                    showCopyright = true,
+    showCopyright = true,
     showMadeWith = true,
     showThemeSwitcher = true,
     showSocials = true,
@@ -72,10 +72,10 @@ const Footer = ({
                         </div>
                     )}
 
-                    <Divider vertical opacity={40} height={"1/2"} className="max-sm:hidden" />
+                    <Divider vertical className="max-sm:hidden" />
 
                     {navLinks.length > 0 && (
-                        <div className="flex flex-col gap-2 max-sm:items-center max-sm:text-center">
+                        <div className="flex flex-col gap-2 max-sm:items-center max-sm:text-center mr-10">
                             <p className="text-md font-semibold opacity-50 mb-1">Links</p>
                             {navLinks.map((link, idx) => (
                                 <TextLink

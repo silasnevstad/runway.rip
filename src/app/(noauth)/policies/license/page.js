@@ -1,4 +1,10 @@
 import TextLink from "@/components/atoms/TextLink";
+import {getSEOTags} from "@/libs/seo";
+
+export const metadata = getSEOTags({
+    title: "License Agreement | Runway",
+    canonicalUrlRelative: "/policies/license",
+});
 
 export default function LicenseAgreement() {
     return (

@@ -1,8 +1,11 @@
 import Card from "@/components/atoms/Card";
+import {getSEOTags} from "@/libs/seo";
 
-export const metadata = {
-    title: "Docs | Runway",
-};
+export const metadata = getSEOTags({
+    title: "Documentation | Runway",
+    canonicalUrlRelative: "/docs",
+});
+
 
 const TutorialCard = ({ className, title, description, href }) => {
     return (

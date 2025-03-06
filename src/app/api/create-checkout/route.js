@@ -3,11 +3,8 @@ import { createCheckoutSession } from "@/libs/stripe/checkout";
 
 export async function POST(req) {
     try {
-        console.log("Creating checkout session");
         const { data } = await req.json();
         const { mode, priceId } = data;
-        console.log("Mode:", mode);
-        console.log("Price ID:", priceId);
         const origin = req.headers.get("origin");
         const session = await createCheckoutSession({
             mode,

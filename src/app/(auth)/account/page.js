@@ -1,9 +1,15 @@
 import UserForm from "@/app/(auth)/account/UserForm";
+import { getSEOTags } from "@/libs/seo";
+
+export const metadata = getSEOTags({
+    title: "Account | Runway",
+    canonicalUrlRelative: "/account",
+});
+
 
 export default function Account() {
     return (
-        <div className="flex flex-col w-full h-full items-center">
-            <h1 className="text-4xl font-bold mt-10">Account</h1>
+        <div className="flex w-full h-full items-center justify-center">
             <UserForm />
         </div>
     )

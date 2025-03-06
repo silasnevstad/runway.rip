@@ -22,18 +22,18 @@ export function getHoverClasses({ lift = false, scale = false, active = false })
 }
 
 // renderIcon renders an icon (either as React component or ) and apply extraClasses.
-export function renderIcon(icon, iconSrc, extraClasses) {
+export function renderIcon({ icon, iconSrc, alt = 'icon', onClick, extraClasses = '' }) {
     if (icon) {
-        return typeof icon === "string" ? (
-            <Image src={iconSrc} alt="" className={extraClasses} />
-        ) : (React.isValidElement(icon) ? (
-                React.cloneElement(icon, { className: mergeClasses(
-                    icon?.props?.className,
-                    extraClasses
-                )})) : null
-
-
-        );
+        if (React.isValidElement(icon)) {
+            return React.cloneElement(icon, {
+                className: mergeClasses(icon.props.className, extraClasses),
+            });
+        }
+        // If not a valid element, assume it's a component and render it
+        const IconComponent = icon;
+        return <IconComponent className={extraClasses} />;
+    } else if (iconSrc) {
+        return <Image src={iconSrc} alt={alt} className={extraClasses} />;
     }
     return null;
 }
@@ -50,6 +50,22 @@ export function getTextColorClass(color) {
         orange: "text-orange-500",
         purple: "text-purple-500",
         pink: "text-pink-500",
+    };
+    return colorClasses[color] || "";
+}
+
+export function getBorderColorClass(color) {
+    const colorClasses = {
+        gray: "border-gray-500",
+        bg: "border-bg-500",
+        primary: "border-primary-500",
+        red: "border-red-500",
+        green: "border-green-500",
+        blue: "border-blue-500",
+        yellow: "border-yellow-500",
+        orange: "border-orange-500",
+        purple: "border-purple-500",
+        pink: "border-pink-500",
     };
     return colorClasses[color] || "";
 }
@@ -102,6 +118,21 @@ export function getToColorClass(color) {
     return colorClasses[color] || "";
 }
 
+export function getTextSize(size) {
+    switch (size) {
+        case "xs":
+            return "text-xs";
+        case "sm":
+            return "text-sm";
+        case "md":
+            return "text-md";
+        case "lg":
+            return "text-lg";
+        case "xl":
+            return "text-xl";
+    }
+}
+
 export const COLOR_VARIANTS = {
     // Bg
     bg: {
@@ -136,7 +167,7 @@ export const COLOR_VARIANTS = {
         soft: {
             bg: "bg-gray-400/25 dark:bg-gray-600/20",
             text: "text-gray-900 dark:text-gray-50",
-            border: "border border-gray-500 dark:border-gray-700",
+            border: "border-gray-500 dark:border-gray-700",
             hoverBg: "hover:bg-gray-100 dark:hover:bg-gray-700/20",
             hoverText: "hover:text-gray-800 dark:hover:text-gray-300",
             hoverBorder: "hover:border-gray-500/10 dark:hover:border-gray-600/10",
@@ -150,7 +181,7 @@ export const COLOR_VARIANTS = {
         solid: {
             bg: "bg-gray-200 dark:bg-gray-800",
             text: "text-gray-900 dark:text-gray-50",
-            border: "border border-gray-800 dark:border-gray-600",
+            border: "border-gray-800 dark:border-gray-600",
             hoverBg: "hover:bg-gray-100 dark:hover:bg-gray-900",
             hoverText: "hover:text-gray-800 group-hover:text-gray-800 dark:hover:text-gray-200 dark:group-hover:text-gray-200",
             hoverBorder: "",
@@ -168,7 +199,7 @@ export const COLOR_VARIANTS = {
     primary: {
         soft: {
             bg: "bg-primary-400/45 dark:bg-primary-600/20",
-            text: "text-primary-900 dark:text-primary-200",
+            text: "text-primary-900 dark:text-primary-100",
             border: "border-primary-500 dark:border-primary-800",
             hoverBg: "hover:bg-primary-300 dark:hover:bg-primary-700/20",
             hoverText: "hover:text-primary-800 dark:hover:text-primary-300",
@@ -440,6 +471,8 @@ export const BORDER_RADIUS = {
 };
 
 export const WIDTH_SIZES = {
+    0.1: "w-[1px]",
+    0.5: "w-0.5",
     1: "w-1",
     2: "w-2",
     3: "w-3",
@@ -450,6 +483,8 @@ export const WIDTH_SIZES = {
 };
 
 export const HEIGHT_SIZES = {
+    0.1: "h-[1px]",
+    0.5: "h-0.5",
     1: "h-1",
     2: "h-2",
     3: "h-3",
@@ -460,11 +495,11 @@ export const HEIGHT_SIZES = {
 }
 
 export const AVATAR_SIZES = {
-    xs: "w-8 h-8 text-xs",
-    sm: "w-10 h-10 text-sm",
-    md: "w-12 h-12 text-md",
-    lg: "w-16 h-16 text-lg",
-    xl: "w-20 h-20 text-xl",
+    xs: "w-5 h-5 text-xs",
+    sm: "w-8 h-8 text-sm",
+    md: "w-10 h-10 text-md",
+    lg: "w-12 h-12 text-lg",
+    xl: "w-16 h-16 text-xl",
 };
 
 export const BADGE_SIZES = {

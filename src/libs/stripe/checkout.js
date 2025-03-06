@@ -1,23 +1,25 @@
 import stripe from "@/libs/stripe/stripe";
 
 export async function createCheckoutSession({
+    customerId,
     mode,
-    priceId, // "monthly", "yearly", "one_time", etc.
+    priceId,
     successUrl,
     cancelUrl,
-    metadata = {}
+    metadata = {},
 }) {
     return await stripe.checkout.sessions.create({
+        customer: customerId,
         line_items: [
             {
                 price: priceId,
-                quantity: 1
-            }
+                quantity: 1,
+            },
         ],
-        mode: mode,
+        mode,
         success_url: successUrl,
         cancel_url: cancelUrl,
         automatic_tax: { enabled: true },
-        metadata
+        metadata,
     });
 }

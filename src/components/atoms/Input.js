@@ -7,12 +7,13 @@ import FloatingLabelWrapper from "@/components/atoms/FloatingLabelWrapper";
 export default function Input({
     id = "",
     label = "",
-    labelMode = "above", // "none" | "above" | "float"
+    labelMode = "above", // options: "none", "above", "float"
     labelBackground = "bg-bg-0 dark:bg-bg-900",
     size = "md",
-    borderRadius = "md",
+    borderRadius = "lg",
     color = "gray",
     variant = "solid",
+    border = true,
     shadow = false,
     leftIcon,
     rightIcon,
@@ -61,7 +62,7 @@ export default function Input({
     const containerClasses = mergeClasses(
         "relative flex items-center",
         variant === "soft" && colorSet.fadeBg,
-        `border ${colorSet.border}`,
+        border && `border ${colorSet.border}`,
         borderRadius && borderRadiusClass,
         shadow && "shadow-md",
         focus && activeColorSet.focusWithin,
@@ -79,16 +80,16 @@ export default function Input({
     );
 
     const iconClasses = `h-5 w-5 ${colorSet.text} opacity-50 hover:opacity-80 active:scale-97`;
-    const leftIconRendered = renderIcon(
-        leftIcon,
-        leftIconOnClick,
-        iconClasses
-    );
-    const rightIconRendered = renderIcon(
-        rightIcon,
-        rightIconOnClick,
-        iconClasses
-    );
+    const leftIconRendered = renderIcon({
+        icon: leftIcon,
+        onClick: leftIconOnClick,
+        extraClasses: iconClasses
+    });
+    const rightIconRendered = renderIcon({
+        icon: rightIcon,
+        onClick: rightIconOnClick,
+        extraClasses: iconClasses
+    });
 
     return (
         <div className="flex w-full flex-col gap-1">

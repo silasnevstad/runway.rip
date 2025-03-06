@@ -1,4 +1,10 @@
 import TextLink from "@/components/atoms/TextLink";
+import { getSEOTags } from "@/libs/seo";
+
+export const metadata = getSEOTags({
+    title: "Terms and Conditions | Runway",
+    canonicalUrlRelative: "/policies/terms",
+});
 
 export default function TermsOfService() {
     return (

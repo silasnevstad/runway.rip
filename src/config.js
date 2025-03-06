@@ -30,16 +30,18 @@ const appConfig = {
     forwardRepliesTo: "silas.nevstad@gmail.com",
 
     // Auth
-    authMethods: ['magiclink', 'google', 'github'],
+    authMethods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
     protectedRoutes: [
         '/dashboard',
         '/account',
     ],
     afterLoginPath: '/account',
+    afterSignupPath: '/confirm-email',  // This is only need if
 
     // Waitlist / Pre-Launch Mode:
-    // When waitlistMode is enabled and the environment is production (NODE_ENV === 'production'),
-    // all routes not specified in waitlistAllowedRoutes will be redirected to waitlistRedirect.
+    // When enabled and the environment is production (NODE_ENV === 'production'), all routes not specified
+    // in waitlistAllowedRoutes will be redirected to waitlistRedirect. This is useful for when you are still
+    // building your app and want to collect emails before launch.
     waitlistMode: true,
     waitlistAllowedRoutes: ['/waitlist', '/docs'],
     waitlistRedirect: '/waitlist',

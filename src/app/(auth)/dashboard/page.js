@@ -1,3 +1,10 @@
+import { getSEOTags } from "@/libs/seo";
+
+export const metadata = getSEOTags({
+    title: "Dashboard | Runway",
+    canonicalUrlRelative: "/dashboard",
+});
+
 export default function Dashboard() {
     return (
         <div className="flex flex-col w-full h-full justify-center items-center">

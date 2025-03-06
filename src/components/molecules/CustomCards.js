@@ -1,7 +1,9 @@
 "use client";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Card from "@/components/atoms/Card";
-import {BORDER_RADIUS, mergeClasses} from "@/utils/styling";
+import { BORDER_RADIUS, mergeClasses } from "@/utils/styling";
+import { MdAirplanemodeActive } from "react-icons/md";
+import React from "react";
 
 export const TerminalCard = ({
     children,
@@ -111,5 +113,95 @@ export const StandoutCard = ({
                 {children}
             </div>
         </Card>
+    );
+}
+
+export const DeparturesCard = ({
+    title = "Departures",
+    className = "",
+}) => {
+    // get 24 hour time
+    const currentTime = new Date();
+    const hours = currentTime.getHours();
+    const minutes = currentTime.getMinutes();
+
+    const getTimeMinutesLater = (minutesLater) => {
+        const newMinutes = minutes + minutesLater;
+        // return `${newMinutes < 60 ? hours : hours + 1}:${newMinutes < 60 ? newMinutes : newMinutes - 60} ${ampm}`;
+        // also format the hours and minutes with a 0
+        const newHours = newMinutes < 60 ? hours : hours + 1;
+        const newMinutesFormatted = newMinutes < 60 ? newMinutes : newMinutes - 60;
+        return `${newHours < 10 ? "0" + newHours : newHours}:${newMinutesFormatted < 10 ? "0" + newMinutesFormatted : newMinutesFormatted}`;
+    }
+
+    const outerContainerStyles = mergeClasses(
+        "relative flex flex-col px-4 py-6 min-w-40 rounded-lg font-mono",
+        "bg-bg-100 dark:bg-bg-900 border-2 border-bg-500 dark:border-bg-800 shadow-xl",
+        className
+    )
+
+    return (
+        <div className={outerContainerStyles}>
+            <div className="absolute -top-10 left-5 w-2 h-10 bg-bg-500 dark:bg-bg-800" />
+            <div className="absolute -top-10 right-5 w-2 h-10 bg-bg-500 dark:bg-bg-800" />
+            <h3 className="flex items-center text-lg font-semibold text-yellow-500">
+                <MdAirplanemodeActive className="w-6 h-6 mr-2 text-bg-900 bg-yellow-500 rounded-lg p-0.5" />
+                {title}
+            </h3>
+            <div className="grid grid-cols-3 gap-x-5 gap-y-1.5 mt-4">
+                <p className="text-xs font-semibold opacity-50 text-yellow-500">TIME</p>
+                <p className="text-xs font-semibold opacity-50 text-yellow-500">DESTINATION</p>
+                <p className="text-xs font-semibold opacity-50 text-yellow-500">STATUS</p>
+
+                <div className="flex flex-row items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <p className="text-sm font-semibold">{getTimeMinutesLater(2)}</p>
+                </div>
+                <p className="text-sm font-semibold text-yellow-500">Auth</p>
+                <p className="text-sm font-semibold">On Time</p>
+
+                <div className="flex flex-row items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <p className="text-sm font-semibold">{getTimeMinutesLater(4)}</p>
+                </div>
+                <p className="text-sm font-semibold text-yellow-500">Payments</p>
+                <p className="text-sm font-semibold">On Time</p>
+
+                <div className="flex flex-row items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <p className="text-sm font-semibold">{getTimeMinutesLater(6)}</p>
+                </div>
+                <p className="text-sm font-semibold text-yellow-500">Landing Page</p>
+                <p className="text-sm font-semibold">On Time</p>
+
+                <div className="flex flex-row items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <p className="text-sm font-semibold">{getTimeMinutesLater(8)}</p>
+                </div>
+                <p className="text-sm font-semibold text-yellow-500">Emails</p>
+                <p className="text-sm font-semibold">On Time</p>
+
+                <div className="flex flex-row items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <p className="text-sm font-semibold">{getTimeMinutesLater(10)}</p>
+                </div>
+                <p className="text-sm font-semibold text-yellow-500">SEO</p>
+                <p className="text-sm font-semibold">On Time</p>
+
+                <div className="flex flex-row items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <p className="text-sm font-semibold">{getTimeMinutesLater(11)}</p>
+                </div>
+                <p className="text-sm font-semibold text-yellow-500">Analytics</p>
+                <p className="text-sm font-semibold">On Time</p>
+
+                <div className="flex flex-row items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <p className="text-sm font-semibold">{getTimeMinutesLater(12)}</p>
+                </div>
+                <p className="text-sm font-semibold text-yellow-500">Components</p>
+                <p className="text-sm font-semibold">On Time</p>
+            </div>
+        </div>
     );
 }

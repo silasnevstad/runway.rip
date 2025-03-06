@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import {AVATAR_SIZES, BORDER_RADIUS, COLOR_VARIANTS, mergeClasses} from "@/utils/styling";
+import { AVATAR_SIZES, BORDER_RADIUS, COLOR_VARIANTS, mergeClasses } from "@/utils/styling";
 
 export default function Avatar({
     src,
@@ -38,7 +38,7 @@ export default function Avatar({
     );
 
     const fallbackLetter = letter || (alt?.[0]?.toUpperCase() ?? "?");
-    const showImage = src && !imgError;
+    const showImage = src && !imgError && src !== "undefined";
 
     const handleImageError = () => setImgError(true);
 

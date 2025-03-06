@@ -1,16 +1,16 @@
 ---
-title: "Supabase Tables for Profiles & Leads"
-description: "Learn how to create and configure the Profiles and Leads tables in Supabase for authentication, subscription handling, and waitlist signups."
+title: "Database"
+description: "Set up your database tables for profiles, waitlist and more"
 onThisPage:
-  - title: "Profiles Table Setup"
+  - title: "Profiles Table"
     href: "#profiles-table-setup"
-  - title: "Leads Table Setup"
-    href: "#leads-table-setup"
-  - title: "Row Level Security (RLS)"
-    href: "#row-level-security"
-  - title: "Next Steps"
-    href: "#next-steps"
+  - title: "Waitlist Table"
+    href: "#waitlist-table-setup"
+  - title: "Feedback Table"
+    href: "#feedback-table-setup"
 related:
+  - title: "Supabase Setup"
+    href: "/docs/tutorials/supabase"
   - title: "Authentication"
     href: "/docs/features/auth"
 sites:
@@ -18,167 +18,201 @@ sites:
     href: "https://supabase.com"
 ---
 
-# Supabase Tables for Profiles & Leads
+Let's set up your database tables!
 
-In this guide, you'll learn how to set up two essential tables in your Supabase database:
+I'll walk you through creating tables for **Profiles**, **Waitlist**, and **Feedback** but feel free to customize these or
+add more tables as needed.
 
 - **Profiles** – Used to extend the authenticated user with additional data such as subscription details, customer IDs, and access flags.
-- **Leads** – Used to capture email addresses from users joining your waitlist or mailing list.
+- **Waitlist** – Used to capture email addresses from users joining your waitlist or mailing list.
+- **Feedback** – Used to collect feedback from users about your product or service.
 
-Follow the steps below to create these tables and apply security best practices using Row Level Security (RLS).
+<Callout>
+    If you haven't yet, check out the [Supabase Setup](/docs/tutorials/supabase) guide to get your project set up.
+</Callout>
+
 
 <br />
 <div id="profiles-table-setup" />
 
-## Profiles Table Setup
+## Profiles Table
 
-The **profiles** table stores additional information about your authenticated users. This is particularly useful for handling subscriptions and other user-specific metadata.
+The **profiles** table stores additional information about your authenticated users.
+This is particularly useful for handling subscriptions and other user-specific metadata.
 
-```sql
--- Create the profiles table in the public schema.
-CREATE TABLE public.profiles (
-id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
-name TEXT,
-email TEXT,
-image TEXT,
-customer_id TEXT,
-price_id TEXT,
-subscription_id TEXT,
-subscription_status TEXT,
-has_access BOOLEAN DEFAULT false,
-created_at TIMESTAMPTZ DEFAULT (now() AT TIME ZONE 'UTC'),
-updated_at TIMESTAMPTZ DEFAULT (now() AT TIME ZONE 'UTC')
+1. Go to your [Supabase dashboard](https://supabase.com/dashboard/project/cpnazmlhikivzgcemgzp) and navigate to the SQL editor.
+
+```SQL Editor
+-- Create profiles table with explicit UTC timestamps and unique email
+CREATE TABLE IF NOT EXISTS public.profiles (
+  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  name TEXT,
+  email TEXT UNIQUE NOT NULL,
+  image TEXT,
+  customer_id TEXT,
+  price_id TEXT,
+  has_access BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT timezone('utc', now()),
+  updated_at TIMESTAMPTZ DEFAULT timezone('utc', now())
 );
-```
 
-Next, create a function and trigger to automatically update the `updated_at` timestamp on any changes:
+-- Optionally, create indexes on customer_id and price_id if you plan on querying by these columns
+CREATE INDEX IF NOT EXISTS idx_profiles_customer_id ON public.profiles(customer_id);
+CREATE INDEX IF NOT EXISTS idx_profiles_price_id ON public.profiles(price_id);
 
-```sql
--- Create a function to update the updated_at column.
-CREATE OR REPLACE FUNCTION update_updated_at()
+-- Function to update the updated_at timestamp
+CREATE OR REPLACE FUNCTION public.fn_set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
-NEW.updated_at = (now() AT TIME ZONE 'UTC');
-RETURN NEW;
+  NEW.updated_at = timezone('utc', now());
+  RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-```
 
-```sql
--- Create a trigger that invokes the function before each update.
-CREATE TRIGGER update_profiles_updated_at
+-- Trigger to update updated_at before any update on profiles
+DROP TRIGGER IF EXISTS trg_set_updated_at ON public.profiles;
+CREATE TRIGGER trg_set_updated_at
 BEFORE UPDATE ON public.profiles
-FOR EACH ROW EXECUTE FUNCTION update_updated_at();
-```
+FOR EACH ROW
+EXECUTE FUNCTION public.fn_set_updated_at();
 
-Optionally, if you want to automatically add a profile when a new user signs up, create the following function and trigger:
-
-```sql
--- Create a function to automatically add a new profile on user signup.
-CREATE OR REPLACE FUNCTION public.handle_new_user()
+-- Function to handle new user signup: inserts a new profile from auth.users data
+CREATE OR REPLACE FUNCTION public.fn_handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-INSERT INTO public.profiles (id, email, name, image, created_at, updated_at)
-VALUES (
-NEW.id,
-NEW.email,
-COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name'),
-NEW.raw_user_meta_data->>'avatar_url',
-(now() AT TIME ZONE 'UTC'),
-(now() AT TIME ZONE 'UTC')
-);
-RETURN NEW;
+  INSERT INTO public.profiles (id, email, name, image, created_at, updated_at)
+  VALUES (
+    NEW.id,
+    NEW.email,
+    COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name'),
+    NEW.raw_user_meta_data->>'avatar_url',
+    timezone('utc', now()),
+    timezone('utc', now())
+  );
+  RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
-```
 
-```sql
--- Create a trigger on auth.users to invoke the above function after a new user is inserted.
-CREATE TRIGGER on_auth_user_created
+-- Trigger to call the new user handler after a new user signs up
+DROP TRIGGER IF EXISTS trg_handle_new_user ON auth.users;
+CREATE TRIGGER trg_handle_new_user
 AFTER INSERT ON auth.users
-FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
+FOR EACH ROW
+EXECUTE FUNCTION public.fn_handle_new_user();
+
+-- Enable Row Level Security on profiles
+ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+
+-- Policies: Ensure that users can only access (read, update, insert, delete) their own profiles
+CREATE POLICY p_read_own_profile ON public.profiles
+FOR SELECT
+USING (id = auth.uid());
+
+CREATE POLICY p_update_own_profile ON public.profiles
+FOR UPDATE
+USING (id = auth.uid());
+
+CREATE POLICY p_insert_own_profile ON public.profiles
+FOR INSERT
+WITH CHECK (id = auth.uid());
+
+CREATE POLICY p_delete_own_profile ON public.profiles
+FOR DELETE
+USING (id = auth.uid());
 ```
 
 <br />
-<div id="leads-table-setup" />
 
-## Leads Table Setup
+<Info>
+    This look like a lot, but let's break it down:
+    - We create a `profiles` table with columns for `id`, `name`, `email`, `image`, `customer_id`, `price_id`, `has_access`, `created_at`, and `updated_at`.
+    - We create indexes on `customer_id` and `price_id` for faster querying.
+    - We create a function to update the `updated_at` timestamp.
+    - We create a trigger to automatically update the `updated_at` timestamp on any changes.
+    - We create a function to automatically add a profile when a new user signs up.
+    - We create a trigger to invoke the above function after a new user is inserted.
+    - We enable [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) on the `profiles` table.
+    - We create [policies](https://www.postgresql.org/docs/current/sql-createpolicy.html) to ensure that users can only access their own profiles.
+</Info>
 
-The **leads** table is designed to capture email addresses for your waitlist or mailing list. This table is intentionally open for insertions—even from unauthenticated users.
+<br />
+<br />
+<div id="waitlist-table-setup" />
+<Divider />
 
-```sql
--- Create the leads table to store waitlist signups.
-CREATE TABLE public.leads (
-id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-email TEXT NOT NULL,
-created_at TIMESTAMPTZ DEFAULT timezone('utc', now()) NOT NULL
+## Waitlist Table (Optional)
+
+The **waitlist** table is designed to capture email addresses for your waitlist or mailing list. This table is intentionally open for insertions—even from unauthenticated users.
+
+1. Run this query in the [SQL editor](https://supabase.com/dashboard/):
+
+```SQL Editor
+-- Create the waitlist table for email subscriptions
+CREATE TABLE public.waitlist (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  email text UNIQUE NOT NULL,
+  full_name text,
+  created_at TIMESTAMPTZ DEFAULT timezone('utc', now()),
 );
-```
 
-Enable Row Level Security on the leads table:
+-- Enable Row Level Security for the waitlist table
+ALTER TABLE public.waitlist ENABLE ROW LEVEL SECURITY;
 
-```sql
--- Enable RLS for the leads table.
-ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
-```
-
-Finally, create a policy that allows anyone to insert their email into the leads table:
-
-```sql
--- Create a policy to allow public insertions into leads.
-CREATE POLICY insert_lead ON public.leads
+-- Policy to allow public insertion (no authentication needed)
+CREATE POLICY waitlist_insert_policy ON public.waitlist
 FOR INSERT
-TO public
 WITH CHECK (true);
 ```
 
-<br />
-<div id="row-level-security" />
-
-## Row Level Security (RLS)
-
-For security, ensure that RLS is enabled and properly configured on both tables. The profiles table policies below ensure that users can only read, update, insert, or delete their own profiles.
-
-```sql
--- Enable RLS for the profiles table.
-ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
-
--- Policy: Allow users to read their own profile.
-CREATE POLICY read_own_profile_data ON public.profiles
-FOR SELECT
-USING (auth.uid() = id);
-
--- Policy: Allow users to update their own profile.
-CREATE POLICY update_own_profile_data ON public.profiles
-FOR UPDATE
-USING (auth.uid() = id);
-
--- Policy: Allow users to insert their own profile.
-CREATE POLICY insert_own_profile_data ON public.profiles
-FOR INSERT
-WITH CHECK (auth.uid() = id);
-
--- Policy: Allow users to delete their own profile.
-CREATE POLICY delete_own_profile_data ON public.profiles
-FOR DELETE
-USING (auth.uid() = id);
-```
+<Info>
+    Here we are:
+    - Creating a `waitlist` table with columns for `id`, `email`, `full_name`, and `created_at`.
+    - Enabling [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) on the `waitlist` table.
+    - Creating a [policy](https://www.postgresql.org/docs/current/sql-createpolicy.html) to allow public insertions into the `waitlist` table.
+</Info>
 
 <Tip>
-    Enabling RLS and setting up precise policies is crucial for protecting your users’ data. Review your policies regularly to ensure they meet your security requirements.
+    Enabling RLS and setting up precise policies is crucial for protecting your users’ data.
 </Tip>
 
 <br />
-<div id="next-steps" />
+<br />
+<div id="feedback-table-setup" />
+<Divider />
 
-## Next Steps
+## Feedback Table (Optional)
 
-Once you’ve created these tables and applied the necessary security policies, your Supabase database is ready to support both extended user profiles and a public mailing list for waitlist signups. You can now:
+The **feedback** table is used to collect feedback from users about your product or service. This table can be used to store feedback forms, ratings, and comments.
 
-- Integrate these tables with your authentication flows.
-- Use your existing subscription handlers (like those in `libs/stripe/subscriptionHandlers.js`) to update profile data.
-- Build front-end components (e.g., waitlist forms) that interact directly with these tables via the Supabase client.
+```SQL Editor
+-- Create the feedback table for user feedback
+CREATE TABLE public.feedback (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES public.profiles(id) ON DELETE SET NULL,
+  message text NOT NULL,
+  rating integer CHECK (rating BETWEEN 1 AND 5),
+  created_at timestamptz DEFAULT (now() AT TIME ZONE 'UTC')
+);
 
-By following these steps, you ensure a secure and robust setup for managing user data and leads—giving you a strong foundation for your project.
+-- Enable Row Level Security for the feedback table
+ALTER TABLE public.feedback ENABLE ROW LEVEL SECURITY;
+
+-- Policies to restrict feedback access to the owning user
+CREATE POLICY feedback_insert_policy ON public.feedback
+FOR INSERT
+WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY feedback_select_policy ON public.feedback
+FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY feedback_update_policy ON public.feedback
+FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY feedback_delete_policy ON public.feedback
+FOR DELETE USING (auth.uid() = user_id);
+```
+
+<br />
+<br />
 
 Happy coding!

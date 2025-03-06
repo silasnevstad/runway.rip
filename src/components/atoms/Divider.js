@@ -14,9 +14,9 @@ const Divider = ({
 }) => {
     const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.solid;
 
-    const baseStyle = !vertical
-        ? `w-full ${HEIGHT_SIZES[width]}`
-        : `${WIDTH_SIZES[width]} h-full`;
+    const baseStyle = vertical
+        ? `${WIDTH_SIZES[width]} h-full`
+        : `w-full ${HEIGHT_SIZES[width]}`;
 
     const dividerClass = mergeClasses(
         baseStyle,
@@ -37,11 +37,16 @@ const Divider = ({
         text ? (
             <div className={outerContainerClass} {...props} aria-label={text}>
                 <div className={dividerClass} style={dividerStyle}></div>
-                <p className={`text-gray-600 dark:text-gray-400 px-5 ${noWrap && 'whitespace-nowrap'}`}>{text}</p>
+                <p
+                    className={`text-gray-600 dark:text-gray-400 px-5 ${noWrap && 'whitespace-nowrap'}`}
+                    style={{ opacity: opacity * 1.8 / 100 }}
+                >
+                    {text}
+                </p>
                 <div className={dividerClass} style={dividerStyle}></div>
             </div>
         ) : (
-            <div className={dividerClass} {...props} style={dividerStyle}></div>
+            <div className={dividerClass} style={dividerStyle} {...props}></div>
         )
     );
 };

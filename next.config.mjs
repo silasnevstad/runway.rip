@@ -6,6 +6,16 @@ const nextConfig = {
         optimizePackageImports: ['icon-library'],
     },
 
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com',
+                pathname: '/**',
+            },
+        ],
+    },
+
     webpack(config) {
         config.resolve.fallback = {
             ...config.resolve.fallback,

@@ -91,7 +91,7 @@ const DropdownText = ({
                 leaveFrom="max-h-[1000px] opacity-100"
                 leaveTo="max-h-0 opacity-0"
             >
-                <div className="mt-2 transition-opacity duration-100 delay-200">
+                <div className="mt-2 transition-opacity duration-100 delay-200 w-full">
                     {typeof content === "string" ? (
                         <p className="text-lg">{content}</p>
                     ) : (

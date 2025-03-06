@@ -118,7 +118,7 @@ export default function Switcher({
                         onClick={() => onChange(value)}
                         aria-pressed={isSelected}
                     >
-                        {Icon && renderIcon(Icon, null, iconClasses(isSelected))}
+                        {Icon && renderIcon({icon: Icon, extraClasses: iconClasses(isSelected)})}
                         {image && <Image src={image} width={24} height={24} alt={name} className={imageClassName} />}
                         {name}
                     </button>

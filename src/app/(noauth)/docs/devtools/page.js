@@ -1,8 +1,10 @@
 import TextLink from "@/components/atoms/TextLink";
+import {getSEOTags} from "@/libs/seo";
 
-export const metadata = {
-    title: "Docs | Runway",
-};
+export const metadata = getSEOTags({
+    title: "Dev Tools | Runway Documentation",
+    canonicalUrlRelative: "/docs/devtools",
+});
 
 export default function Page() {
     return (
