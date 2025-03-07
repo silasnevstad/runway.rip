@@ -42,7 +42,7 @@ const appConfig = {
     // When enabled and the environment is production (NODE_ENV === 'production'), all routes not specified
     // in waitlistAllowedRoutes will be redirected to waitlistRedirect. This is useful for when you are still
     // building your app and want to collect emails before launch.
-    waitlistMode: true,
+    waitlistMode: false,
     waitlistAllowedRoutes: ['/waitlist', '/docs'],
     waitlistRedirect: '/waitlist',
 };
