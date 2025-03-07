@@ -30,6 +30,9 @@ export default function Page() {
                                 <TextLink href="https://www.unsplash.com/">Unsplash</TextLink>
                             </li>
                             <li>
+                                <TextLink href="https://www.manypixels.co/gallery">ManyPixels</TextLink>
+                            </li>
+                            <li>
                                 <TextLink href="https://www.remove.bg/">Remove.bg</TextLink>
                             </li>
                             <li>
@@ -38,6 +41,11 @@ export default function Page() {
                             <li>
                                 <TextLink href="https://heroicons.com/outline">
                                     Heroicons
+                                </TextLink>
+                            </li>
+                            <li>
+                                <TextLink href="https://react-icons.github.io/react-icons/">
+                                    React Icons
                                 </TextLink>
                             </li>
                             <li>
