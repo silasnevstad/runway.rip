@@ -148,7 +148,7 @@ export const COLOR_VARIANTS = {
         soft: {
             bg: "bg-bg-400/45 dark:bg-bg-600/20",
             text: "text-bg-900 dark:text-bg-50",
-            border: "border border-bg-500 dark:border-gray-800",
+            border: "border-bg-500 dark:border-gray-800",
             hoverBg: "hover:bg-bg-100 dark:hover:bg-bg-700/20",
             hoverText: "",
             hoverBorder: "hover:border-bg-500/10 dark:hover:border-bg-600/10",
@@ -160,7 +160,7 @@ export const COLOR_VARIANTS = {
         solid: {
             bg: "bg-bg-200 dark:bg-bg-700",
             text: "text-bg-900 dark:text-bg-50",
-            border: "border border-bg-500 dark:border-bg-600",
+            border: "border-bg-500 dark:border-bg-600",
             hoverBg: "hover:bg-bg-100 dark:hover:bg-bg-800",
             hoverText: "",
             hoverBorder: "",
@@ -190,7 +190,7 @@ export const COLOR_VARIANTS = {
         solid: {
             bg: "bg-gray-200 dark:bg-gray-800",
             text: "text-gray-900 dark:text-gray-50",
-            border: "border-gray-800 dark:border-gray-600",
+            border: "border-gray-500 dark:border-gray-600",
             hoverBg: "hover:bg-gray-100 dark:hover:bg-gray-900",
             hoverText: "hover:text-gray-800 group-hover:text-gray-800 dark:hover:text-gray-200 dark:group-hover:text-gray-200",
             hoverBorder: "",
@@ -210,7 +210,7 @@ export const COLOR_VARIANTS = {
             bg: "bg-primary-400/45 dark:bg-primary-600/20",
             text: "text-primary-900 dark:text-primary-100",
             border: "border-primary-500 dark:border-primary-800",
-            hoverBg: "hover:bg-primary-300 dark:hover:bg-primary-700/20",
+            hoverBg: "hover:bg-primary-300/45 dark:hover:bg-primary-700/20",
             hoverText: "hover:text-primary-800 dark:hover:text-primary-300",
             hoverBorder: "hover:border-primary-400/5 dark:hover:border-primary-600/5",
             activeBg: "bg-primary-400 dark:bg-primary-900",

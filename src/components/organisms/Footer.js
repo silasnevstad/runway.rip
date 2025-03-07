@@ -26,7 +26,7 @@ const Footer = ({
     showCopyright = true,
     showMadeWith = true,
     showThemeSwitcher = true,
-    showSocials = true,
+    showSocials = false,
     navLinks = defaultNavLinks,  // { title, href, props }
     legalLinks = defaultLegalLinks,  // { title, href, props }
     copyrightText = "Copyright © 2025 - All Rights Reserved.",
@@ -62,7 +62,7 @@ const Footer = ({
                     {showThemeSwitcher && <ThemeSwitcher className="mt-2" />}
                     {showMadeWith && <MadeWithTag style="vertical" className="mt-4" />}
                 </div>
-                <div className="flex max-sm:flex-col gap-12 max-sm:gap-10 max-sm:items-center">
+                <div className="flex max-sm:flex-col gap-14 max-sm:gap-10 max-sm:items-center">
                     {showSocials && (
                         <div className="flex flex-col max-sm:flex-row gap-3 opacity-80">
                             {socialMedia.instagram && <TextLink href={socialMedia.instagram} scale><FaInstagram className="text-2xl" /></TextLink>}
@@ -83,6 +83,8 @@ const Footer = ({
                                     href={link.href}
                                     className="text-sm max-sm:text-center"
                                     {...link.props}
+                                    underline
+                                    underlineClassName="hover:opacity-50 opacity-50"
                                 >
                                     {link.title}
                                 </TextLink>
@@ -98,6 +100,8 @@ const Footer = ({
                                     href={link.href}
                                     className="text-sm max-sm:text-center"
                                     {...link.props}
+                                    underline
+                                    underlineClassName="hover:opacity-50 opacity-50"
                                 >
                                     {link.title}
                                 </TextLink>

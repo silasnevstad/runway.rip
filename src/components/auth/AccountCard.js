@@ -47,7 +47,7 @@ export default function AccountCard({
         >
             <Avatar src={avatarSrc} alt={displayName} size={size} className={borderRadiusClass} />
             <div className="pr-2">
-                <p className={`${getTextSize(size)} text-gray-500 dark:text-gray-400`}>{displayName}</p>
+                <p className={`${getTextSize(size)} text-gray-700 dark:text-gray-400`}>{displayName}</p>
             </div>
         </Card>
     );

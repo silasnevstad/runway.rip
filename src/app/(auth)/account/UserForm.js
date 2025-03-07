@@ -1,23 +1,31 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { signout } from "@/app/actions/auth";
 import Button from "@/components/atoms/Button";
 import AccountCard from "@/components/auth/AccountCard";
 import { createBillingPortalSession } from "@/libs/stripe/portal";
-import {useUser} from "@/contexts/UserContext";
-import {redirect} from "next/navigation";
+import { useUser } from "@/contexts/UserContext";
 
 const UserForm = () => {
     const { user } = useUser();
+    const [billingPortalUrl, setBillingPortalUrl] = useState(null);
 
-    const handleBillingPortal = async () => {
-        console.log('user', user);
-        const url = await createBillingPortalSession({ customerId: user.profile.customer_id, returnUrl: window.location.href });
-
-        if (url) {
-            redirect(url);
+    useEffect(() => {
+        const fetchBillingPortalUrl = async () => {
+            if (user?.profile?.customer_id) {
+                const url = await createBillingPortalSession({
+                    customerId: user.profile.customer_id,
+                    returnUrl: window.location.href
+                });
+                setBillingPortalUrl(url);
+            }
+            else {
+                setBillingPortalUrl(null);
+            }
         }
-    }
+
+        fetchBillingPortalUrl();
+    }, [user]);
 
     return (
         <div className="flex flex-col items-center gap-10 mt-10">
@@ -25,7 +33,7 @@ const UserForm = () => {
             <Button
                 variant="soft"
                 size="sm"
-                onClick={handleBillingPortal}
+                href={billingPortalUrl}
             >
                 Manage Subscription
             </Button>
