@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import stripe from '@/libs/stripe/stripe';
-import { supabase } from "@/libs/supabase/config";
 
 export async function POST(req) {
     try {
@@ -11,8 +10,8 @@ export async function POST(req) {
             email,
         });
 
-        return new NextResponse.json({ customer });
+        return NextResponse.json({ status: '200', customer_id: customer.id });
     } catch (error) {
-        return new NextResponse(error.message, { status: 400 });
+        return NextResponse.json({ status: '400', error: error.message });
     }
 }
