@@ -45,6 +45,11 @@ const appConfig = {
     waitlistMode: false,
     waitlistAllowedRoutes: ['/waitlist', '/docs'],
     waitlistRedirect: '/waitlist',
+
+    // Payment Integration Options
+    // Set to true to enable integration with Supabase profiles (creates & tracks Stripe customers)
+    useCustomerIntegration: true,
+    afterCheckoutPath: '/thank-you',
 };
 
 export const pricingConfig = {
@@ -56,7 +61,7 @@ export const pricingConfig = {
                     label: "",
                     oldPrice: 99,
                     price: 49,
-                    priceId: "price_1Pr8LGGjMg6waABSg1bjDLEQ"
+                    priceId: "price_1QzuhUGjMg6waABSeUThW8Mw"  // "price_1Pr8LGGjMg6waABSg1bjDLEQ"
                 }
             ],
             title: "Starter",
@@ -80,7 +85,7 @@ export const pricingConfig = {
                     label: "",
                     oldPrice: 149,
                     price: 99,
-                    priceId: "price_1Pr8LfGjMg6waABSu7URa9qT"
+                    priceId: "price_1QzuhyGjMg6waABScXMOVTDF" // "price_1Pr8LfGjMg6waABSu7URa9qT"
                 }
             ],
             title: "All-in",

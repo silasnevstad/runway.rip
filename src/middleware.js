@@ -47,11 +47,12 @@ export const config = {
     matcher: [
         /*
          * Match all request paths except:
+         *   - /api/* (API routes)
          *   - _next/static & _next/image (Next.js internals)
          *   - favicon.ico
          *   - manifest.json
          *   - any files ending with .svg, .png, .jpg, .jpeg, .gif, .webp
          */
-        '/((?!_next/static|_next/image|favicon.ico|manifest\\.json|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+        '/((?!api|_next/static|_next/image|favicon.ico|manifest\\.json|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
 };

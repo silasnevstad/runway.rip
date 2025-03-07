@@ -16,6 +16,5 @@ export async function GET(request) {
         }
     }
 
-    // If there's any issue, redirect to a generic error
     redirect('/error');
 }

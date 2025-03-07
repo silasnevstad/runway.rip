@@ -19,7 +19,13 @@ export async function passwordSignup(prevState, formData) {
 
     const supabase = await createClient();
     const { email, password } = validatedFields.data;
-    const { data: signupData, error } = await supabase.auth.signUp({ email, password });
+    const { data: signupData, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            redirectTo: process.env.WEBSITE_URL + "/auth/confirm",
+        }
+    });
     if (error) {
         return { errors: { email: error.message } };
     }

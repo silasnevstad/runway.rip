@@ -9,6 +9,8 @@ export default function CheckoutButton({
     children,
     mode,
     priceId,
+    customerId,
+    customerEmail,
     ...props
 }) {
     const handleCheckout = async () => {
@@ -18,21 +20,15 @@ export default function CheckoutButton({
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    data: {
-                        mode,
-                        priceId,
-                    }
-                })
+                    data: { mode, priceId, customerId, customerEmail },
+                }),
             });
-
-            if (!response.ok) {
-                throw new Error("Error creating checkout session");
-            }
+            if (!response.ok) throw new Error("Error creating checkout session");
 
             const { sessionId } = await response.json();
             const result = await stripe.redirectToCheckout({ sessionId });
             if (result.error) {
-                console.error(result.error.message);
+                console.error("Stripe redirect error:", result.error.message);
             }
         } catch (err) {
             console.error("Checkout error:", err);
