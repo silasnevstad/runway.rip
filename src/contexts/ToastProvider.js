@@ -110,13 +110,13 @@ const POSITION_STYLES = {
 
 // ToastContainer renders a group of toasts with transitions.
 const ToastContainer = ({
-                            toasts,
-                            removeToast,
-                            autoDismiss,
-                            autoDismissTimeout,
-                            placement,
-                            transitionDuration,
-                        }) => {
+    toasts,
+    removeToast,
+    autoDismiss,
+    autoDismissTimeout,
+    placement,
+    transitionDuration,
+}) => {
     const containerStyle = {
         position: "fixed",
         zIndex: 10000,
@@ -130,29 +130,19 @@ const ToastContainer = ({
 
     return (
         <div style={containerStyle}>
-            {/*<TransitionGroup>*/}
-                {toasts.map((toast) => (
-                    // <CSSTransition
-                    //     key={toast.id}
-                    //     timeout={transitionDuration}
-                    //     classNames="toast"
-                    //     onExited={() => removeToast(toast.id)}
-                    // >
-                        <ToastWrapper
-                            key={toast.id}
-                            toast={toast}
-                            autoDismiss={autoDismiss}
-                            autoDismissTimeout={autoDismissTimeout}
-                            transitionDuration={transitionDuration}
-                        />
-                    // </CSSTransition>
-                ))}
-            {/*</TransitionGroup>*/}
+            {toasts.map((toast) => (
+                <ToastWrapper
+                    key={toast.id}
+                    toast={toast}
+                    autoDismiss={autoDismiss}
+                    autoDismissTimeout={autoDismissTimeout}
+                    transitionDuration={transitionDuration}
+                />
+            ))}
         </div>
     );
 };
 
-// ToastWrapper handles auto-dismiss pause on hover.
 const ToastWrapper = ({ toast, autoDismiss, autoDismissTimeout, transitionDuration }) => {
     const { removeToast } = useToast();
     const [isHovered, setIsHovered] = useState(false);

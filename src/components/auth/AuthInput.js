@@ -5,8 +5,8 @@ import {getTextColorClass, mergeClasses} from "@/utils/styling";
 
 const AuthInput = ({
     color = "gray",
-    variant = "soft",
-    labelMode = "above",
+    variant = "solid",
+    labelMode = "float",
     label,
     name,
     type = "text",

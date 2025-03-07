@@ -19,7 +19,6 @@ const OAuthButtons = ({ providers = [] }) => {
 
     return (
         <div className="flex flex-col w-full gap-2">
-            <Divider text="OR" margin={30} />
             <div className="flex flex-col gap-3">
                 {providers.map((provider) => (
                     <OAuthButton

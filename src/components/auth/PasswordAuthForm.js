@@ -30,7 +30,7 @@ const PasswordAuthForm = ({ mode = 'sign-in' }) => {
     }, [state, addToast]);
 
     return (
-        <form className="flex flex-col w-full gap-4" action={action}>
+        <form className="flex flex-col w-full gap-5" action={action}>
             <AuthInput
                 label="Email"
                 name="email"

@@ -4,9 +4,11 @@ import { passwordlessSignin } from '@/app/actions/auth';
 import { useToast } from "@/contexts/ToastProvider";
 import LoadingButton from "@/components/auth/LoadingButton";
 import Input from "@/components/atoms/Input";
+import AuthInput from "@/components/auth/AuthInput";
 
 const initialState = {
     errors: {},
+    message: null,
 }
 
 const PasswordlessAuthForm = () => {
@@ -20,11 +22,14 @@ const PasswordlessAuthForm = () => {
                 severity: "error",
             });
         }
+        if (state.message) {
+            addToast(state.message, { severity: "info" });
+        }
     }, [state, addToast]);
 
     return (
         <form className="flex flex-col w-full gap-4" action={action}>
-            <Input
+            <AuthInput
                 id="email"
                 label="Email"
                 name="email"

@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Divider from "@/components/atoms/Divider";
 import PasswordAuthForm from "@/components/auth/PasswordAuthForm";
 import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
 import OAuthSection, { defaultOAuthProviders } from "@/components/auth/OAuthSection";
@@ -16,6 +17,9 @@ const AuthForm = ({ mode = 'sign-in' }) => {
         forms.push(<PasswordAuthForm key="password" mode={mode} />);
     }
     if (oauthProviders.length > 0) {
+        if (forms.length > 0) {
+            forms.push(<Divider key="divider" text="OR" margin={30}/>);
+        }
         forms.push(<OAuthSection key="oauth" providers={oauthProviders} />);
     }
     return (

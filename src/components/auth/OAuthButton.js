@@ -14,9 +14,9 @@ const OAuthButton = ({ provider, logoSrc, logoAlt, onClick }) => {
             <Image
                 src={logoSrc}
                 alt={logoAlt || `${provider} Icon`}
-                width={20}
-                height={20}
-                className="w-5 h-5"
+                width={22}
+                height={22}
+                className="mr-0.5"
             />
             Continue with {provider.charAt(0).toUpperCase() + provider.slice(1)}
         </Button>

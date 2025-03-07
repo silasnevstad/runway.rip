@@ -54,6 +54,15 @@ export function getTextColorClass(color) {
     return colorClasses[color] || "";
 }
 
+export function getFadedTextColorClass(color) {
+    const colorClasses = {
+        gray: "text-gray-600 dark:text-gray-600",
+        bg: "text-bg-600 dark:text-bg-600",
+        primary: "text-primary-400 dark:text-primary-600",
+    };
+    return colorClasses[color] || "";
+}
+
 export function getBorderColorClass(color) {
     const colorClasses = {
         gray: "border-gray-500",
@@ -139,7 +148,7 @@ export const COLOR_VARIANTS = {
         soft: {
             bg: "bg-bg-400/45 dark:bg-bg-600/20",
             text: "text-bg-900 dark:text-bg-50",
-            border: "border border-bg-500 dark:border-bg-700",
+            border: "border border-bg-500 dark:border-gray-800",
             hoverBg: "hover:bg-bg-100 dark:hover:bg-bg-700/20",
             hoverText: "",
             hoverBorder: "hover:border-bg-500/10 dark:hover:border-bg-600/10",

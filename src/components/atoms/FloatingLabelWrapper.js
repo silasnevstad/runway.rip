@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { mergeClasses } from "@/utils/styling";
+import { getFadedTextColorClass, mergeClasses } from "@/utils/styling";
 
 export default function FloatingLabelWrapper({
     id,
@@ -9,7 +9,6 @@ export default function FloatingLabelWrapper({
     labelBackground = "bg-bg-0 dark:bg-bg-900",
     sizeConfig,
     color = "gray",
-    activeColor = "primary",
     isFocused = false,
     hasValue = false,
     containerClasses = "",
@@ -28,8 +27,8 @@ export default function FloatingLabelWrapper({
         "absolute cursor-text transition-all duration-200",
         sizeConfig?.textSize,
         isFloating
-            ? `-top-3.5 left-3 px-1 text-${activeColor}-500 text-opacity-80 ${labelBackground} rounded-sm`
-            : `${sizeConfig?.paddingNum} top-1/2 -translate-y-1/2 text-${color}-500 dark:text-${color}-400`,
+            ? `-top-3 left-3 px-1 text-sm ${getFadedTextColorClass(color)} ${labelBackground} rounded-sm`
+            : `${sizeConfig?.paddingNum} top-1/2 -translate-y-1/2 ${getFadedTextColorClass(color)}`,
         "pointer-events-none"
     );
 

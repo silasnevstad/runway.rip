@@ -19,7 +19,7 @@ export default function LoginPage() {
                     <AuthForm mode="sign-in"/>
                 </div>
             </div>
-            <div className="sm:absolute top-8 right-8 flex flex-col sm:items-center items-end opacity-90 hover:opacity-100">
+            <div className="sm:absolute top-8 right-8 flex flex-col items-center sm:items-end opacity-90 hover:opacity-100">
                 <p className="opacity-60 text-sm">New around here?</p>
                 <TextLink href="/signup" className="text-primary-500 hover:opacity-100">
                     Create an account
