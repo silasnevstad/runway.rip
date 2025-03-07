@@ -76,9 +76,9 @@ export default function Landing({schemaData = {}}) {
                     </div>
 
                     {/* Pricing Section */}
-                    <div className={`flex flex-col items-center w-full pb-10 pt-30 z-10 bg-bg-50 dark:bg-bg-800`}>
-                        {pricing.show && <Pricing />}
-                    </div>
+                    {/*<div className={`flex flex-col items-center w-full pb-10 pt-30 z-10 bg-bg-50 dark:bg-bg-800`}>*/}
+                    {/*    {pricing.show && <Pricing />}*/}
+                    {/*</div>*/}
 
                     <div className={`flex flex-col items-center w-full pt-9 z-10 pb-10`}>
                         <DeparturesCard />
