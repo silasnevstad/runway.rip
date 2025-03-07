@@ -12,6 +12,6 @@ export async function POST(req) {
         // Return the expected JSON structure
         return NextResponse.json({ status: '200', customer_id: customer.id });
     } catch (error) {
-        return NextResponse.json({ status: '400', error: error.message }, { status: 400 });
+        return NextResponse.json({ status: '400', error: error.message });
     }
 }
