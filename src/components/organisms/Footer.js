@@ -62,7 +62,7 @@ const Footer = ({
                     {showThemeSwitcher && <ThemeSwitcher className="mt-2" />}
                     {showMadeWith && <MadeWithTag style="vertical" className="mt-4" />}
                 </div>
-                <div className="flex max-sm:flex-col gap-5 max-sm:gap-10 max-sm:items-center">
+                <div className="flex max-sm:flex-col gap-12 max-sm:gap-10 max-sm:items-center">
                     {showSocials && (
                         <div className="flex flex-col max-sm:flex-row gap-3 opacity-80">
                             {socialMedia.instagram && <TextLink href={socialMedia.instagram} scale><FaInstagram className="text-2xl" /></TextLink>}
@@ -72,10 +72,10 @@ const Footer = ({
                         </div>
                     )}
 
-                    <Divider vertical className="max-sm:hidden" />
+                    {/*<Divider vertical className="max-sm:hidden" />*/}
 
                     {navLinks.length > 0 && (
-                        <div className="flex flex-col gap-2 max-sm:items-center max-sm:text-center mr-10">
+                        <div className="flex flex-col gap-2 max-sm:items-center max-sm:text-center">
                             <p className="text-md font-semibold opacity-50 mb-1">Links</p>
                             {navLinks.map((link, idx) => (
                                 <TextLink
