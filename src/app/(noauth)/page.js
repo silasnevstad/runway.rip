@@ -3,12 +3,14 @@ import Footer from "@/components/organisms/Footer";
 import Header from "@/components/organisms/Header";
 import Hero from "@/components/landing/Hero";
 import FeaturesCarousel from "@/components/landing/FeaturesCarousel";
-import HowItWorks from "@/components/landing/HowItWorks";
-import FAQ from "@/components/landing/FAQ";
 import Why from "@/components/landing/Why";
+import HowItWorks from "@/components/landing/HowItWorks";
+import Pricing from "@/components/landing/Pricing";
+import FAQ from "@/components/landing/FAQ";
+import { DeparturesCard } from "@/components/molecules/CustomCards";
+import { getSchemaTags } from "@/libs/seo";
 import { landingConfig } from "@/config";
-import {DeparturesCard} from "@/components/molecules/CustomCards";
-import {getSchemaTags} from "@/libs/seo";
+
 
 export default function Landing({schemaData = {}}) {
     const {
