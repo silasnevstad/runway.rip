@@ -136,14 +136,14 @@ export const DeparturesCard = ({
 
     const outerContainerStyles = mergeClasses(
         "relative flex flex-col px-4 py-6 min-w-40 rounded-lg font-mono",
-        "bg-bg-100 dark:bg-bg-900 border-2 border-bg-500 dark:border-bg-800 shadow-xl",
+        "bg-bg-100 dark:bg-bg-900 border-2 border-bg-100 dark:border-bg-800 shadow-lg dark:shadow-2xl",
         className
     )
 
     return (
         <div className={outerContainerStyles}>
-            <div className="absolute -top-10 left-5 w-2 h-10 bg-bg-500 dark:bg-bg-800" />
-            <div className="absolute -top-10 right-5 w-2 h-10 bg-bg-500 dark:bg-bg-800" />
+            <div className="absolute -top-10 left-5 w-2 h-10 bg-bg-100 dark:bg-bg-800" />
+            <div className="absolute -top-10 right-5 w-2 h-10 bg-bg-100 dark:bg-bg-800" />
             <h3 className="flex items-center text-lg font-semibold text-yellow-500">
                 <MdAirplanemodeActive className="w-6 h-6 mr-2 text-bg-900 bg-yellow-500 rounded-lg p-0.5" />
                 {title}

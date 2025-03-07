@@ -37,7 +37,7 @@ export default function Landing({schemaData = {}}) {
 
                 <div className="flex items-center flex-col w-full z-10">
                     {/* Hero Section */}
-                    <div className="w-full h-full bg-bg-50 dark:bg-bg-800">
+                    <div className="w-full h-full bg-bg-0 dark:bg-bg-800">
                         <Hero
                             textHighlight={{
                                 text: hero.textHighlight.text,
@@ -61,17 +61,17 @@ export default function Landing({schemaData = {}}) {
 
 
                     {/* Features Section */}
-                    <div className={`-mt-30 flex flex-col items-center w-full pb-28 z-10 bg-bg-50 dark:bg-bg-800`}>
+                    <div className={`-mt-30 flex flex-col items-center w-full pb-28 z-10 bg-bg-0 dark:bg-bg-800`}>
                         <FeaturesCarousel />
                     </div>
 
                     {/* Why Section */}
-                    <div className={`flex flex-col items-center w-full z-10  pt-28 pb-28 sm:pb-32`}>
+                    <div className={`flex flex-col items-center w-full z-10  pt-28 pb-28 sm:pb-32 bg-bg-50 dark:bg-bg-900`}>
                         {why.show && <Why />}
                     </div>
 
                     {/* How It Works Section */}
-                    <div className={`flex flex-col items-center w-full pb-40`}>
+                    <div className={`flex flex-col items-center w-full pb-40 bg-bg-50 dark:bg-bg-900`}>
                         {howItWorks.show && <HowItWorks />}
                     </div>
 
