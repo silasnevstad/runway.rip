@@ -9,9 +9,9 @@ import { sendThankYouEmail } from "@/libs/resend/resend";
  * Handle checkout session completed event.
  */
 async function handleCheckoutSessionCompleted(session) {
-    const { email, first_name: userFirstName } = session.customer_details || {};
-    if (email && userFirstName) {
-        await sendThankYouEmail({ userEmail: email, userFirstName });
+    const { email } = session.customer_details || {};
+    if (email) {
+        await sendThankYouEmail({ userEmail: email });
     }
 }
 

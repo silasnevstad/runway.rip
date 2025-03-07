@@ -14,10 +14,10 @@ export const WelcomeEmailTemplate = ({ firstName }) => (
     </div>
 );
 
-export const ThankYouEmailTemplate = ({ firstName }) => (
+export const ThankYouEmailTemplate = () => (
     <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px', color: '#333' }}>
-        <h1>Thank You, {firstName}!</h1>
-        <p>Thank you for your recent payment. We appreciate your support!</p>
+        <h1>Thank you for your purchase!</h1>
+        <p>We appreciate your business.</p>
     </div>
 );
 

@@ -19,12 +19,12 @@ export async function sendEmail({ to, from, subject, message, tags, replyTo }) {
     });
 }
 
-export async function sendThankYouEmail({to, firstName}) {
+export async function sendThankYouEmail({to}) {
     return await resend.emails.send({
         from: appConfig.noReplyEmail,
         to: Array.isArray(to) ? to : [to],
         subject: 'Thank you for your order!',
-        react: ThankYouEmailTemplate({ firstName }),
+        react: ThankYouEmailTemplate(),
     });
 }
 
