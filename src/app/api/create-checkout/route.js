@@ -15,6 +15,15 @@ export async function POST(req) {
 
         // Optionally include customer details if available.
         const { customerId, customerEmail } = data;
+
+        // If mode is subscription, customerId is required.
+        if (mode === "subscription" && !customerId) {
+            return NextResponse.json(
+                { error: "Missing required customer ID for subscription." },
+                { status: 400 }
+            );
+        }
+
         const origin = req.headers.get("origin");
         const session = await createCheckoutSession({
             mode,
