@@ -2,6 +2,7 @@
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import Button from "@/components/atoms/Button";
+import { useUser } from "@/contexts/UserContext";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -9,10 +10,16 @@ export default function CheckoutButton({
     children,
     mode,
     priceId,
-    customerId,
-    customerEmail,
+    customerId: overrideCustomerId,
+    customerEmail: overrideCustomerEmail,
     ...props
 }) {
+    const { user } = useUser();
+
+    // Automatically use user context if no overrides are provided.
+    const customerId = overrideCustomerId ?? user?.profile?.customer_id;
+    const customerEmail = overrideCustomerEmail ?? user?.email;
+
     const handleCheckout = async () => {
         try {
             const stripe = await stripePromise;
@@ -23,8 +30,9 @@ export default function CheckoutButton({
                     data: { mode, priceId, customerId, customerEmail },
                 }),
             });
-            if (!response.ok) throw new Error("Error creating checkout session");
-
+            if (!response.ok) {
+                throw new Error("Error creating checkout session");
+            }
             const { sessionId } = await response.json();
             const result = await stripe.redirectToCheckout({ sessionId });
             if (result.error) {
