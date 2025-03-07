@@ -6,12 +6,13 @@ export async function POST(req) {
     try {
         const { email } = await req.json();
 
-        // Create a new Stripe customer using only email
-        const customer = await stripe.customers.create({ email });
+        // Create a new Stripe customer
+        const customer = await stripe.customers.create({
+            email,
+        });
 
-        // Return the expected JSON structure
-        return NextResponse.json({ status: '200', customer_id: customer.id });
+        return new NextResponse.json({ customer });
     } catch (error) {
-        return NextResponse.json({ status: '400', error: error.message });
+        return new NextResponse(error.message, { status: 400 });
     }
 }
