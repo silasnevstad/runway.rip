@@ -25,10 +25,6 @@ Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com
 
 **Mailgun** is a more traditional email service that offers a powerful API, great performance and has a <span className="underline">workaround to reroute emails</span>.
 
-<Callout>
-    Don't have a domain yet? Check out the [Domain](/docs/tutorials/domain) guide first. 🔗
-</Callout>
-
 <br />
 <br />
 
@@ -43,13 +39,23 @@ Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com
             ## Setup
             1. Sign up for a [Resend](https://resend.com) account.
 
+                <div className="my-5" />
+
             2. Go to the [Domains](https://resend.com/domains) in the sidebar and click **Add Domain**. Add your domain (i.e. mail.yourdomain.com).
 
                 <Tip>
                     It's recommend to use a subdomain for your email service, such as mail.yourdomain.com.
                 </Tip>
 
+                <div className="my-5" />
+
             3. Verify your domain by adding the DNS records provided by Resend to your domain's DNS settings.
+
+                <Info>
+                    Will take ~15 minutes to verify.
+                </Info>
+
+                <div className="my-5" />
 
             4. Go to [API Keys](https://resend.com/api-keys) in the sidebar and click **Create API Key**. Add this to the `.env.local` file as `NEXT_PUBLIC_RESEND_API_KEY`.
 
@@ -57,10 +63,18 @@ Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com
                 NEXT_PUBLIC_RESEND_API_KEY=re_...
                 ```
 
-            <Callout>
-                You can also connect [Resend's](https://resend.com) SMTP service to your [Supabase](https://supabase.com),
-                so that magic links and other emails are sent from your domain.
-            </Callout>
+                <div className="my-5" />
+
+            5. (Optional) If you want your auth emails to be sent from your domain, go to [SMTP Settings](https://resend.com/settings/smtp) and copy the SMTP settings.
+
+                Add this to the [SMTP settings](https://supabase.com/dashboard/project/cpnazmlhikivzgcemgzp/auth/smtp) in [Supabase](https://supabase.co) along with the other details.
+
+                ```txt
+                Host: smtp.resend.com
+                Port: 465
+                Username: resend
+                Password: YOUR_API_KEY
+                ```
 
             <br />
 
@@ -82,10 +96,6 @@ Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com
             });
             ```
 
-            <Tip>
-                Since [Resend](https://resend.com) does not support receiving emails, you can add your own email to `replyTo` to receive replies.
-            </Tip>
-
             <br />
             <br />
 
@@ -95,6 +105,10 @@ Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com
 
             Unfortunately, Resend does not support receiving emails.
 
+            <Tip>
+                Add your own email to `replyTo` to receive replies.
+            </Tip>
+
         </div>
 
         <div id="mailgun">
@@ -103,11 +117,19 @@ Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com
             ## Setup
             1. Sign up for a [Mailgun](https://signup.mailgun.com/new/signup) account.
 
+                <div className="my-5" />
+
             2. Go to [Domains](https://app.mailgun.com/mg/sending/domains) and click [**Add New Domain**](https://app.mailgun.com/mg/sending/new-domain).
 
                 <Tip>
                     It's recommend to use a subdomain for your email service, such as mail.yourdomain.com.
                 </Tip>
+
+                <Caution>
+                    If you are using EU infrastructure, go to `libs/mailgun/mailgun.js` and uncomment the line.
+                </Caution>
+
+                <div className="my-5" />
 
             3. Complete the DNS verification process by adding the DNS records provided by Mailgun to your domain's DNS settings.
 
@@ -115,11 +137,15 @@ Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com
                     This could take up to 48 hours but usually happens within a few minutes.
                 </Info>
 
+                <div className="my-5" />
+
             4. Navigate to [API Security](https://app.mailgun.com/settings/api_security) and click **Add new Key**, then add this to the `.env.local` as `NEXT_PUBLIC_MAILGUN_API_KEY`.
 
                 ```.env.local
                 NEXT_PUBLIC_MAILGUN_API_KEY=4dc...
                 ```
+
+                <div className="my-5" />
 
             5. Add the domain you verified to the `.env.local` as `NEXT_PUBLIC_MAILGUN_DOMAIN`.
 
@@ -127,7 +153,19 @@ Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com
                 NEXT_PUBLIC_MAILGUN_DOMAIN=mail.yourdomain.com
                 ```
 
-            And you're done!
+                <div className="my-5" />
+
+
+            6. (Optional) If you want your auth emails to be sent from your domain, go to [Domain Settings](https://app.mailgun.com/mg/sending/_/settings?tab=smtp), then click **Reset Password** and choose **Automatic**.
+
+                Copy the password from the modal in the bottom right corner and add it to the [SMTP settings](https://supabase.com/dashboard/project/cpnazmlhikivzgcemgzp/auth/smtp) in [Supabase](https://supabase.co) along with the other details.
+
+                ```txt
+                Host: smtp.mailgun.org
+                Port: 587
+                Username: postmaster@mail.yourdomain.com
+                Password: THE ONE YOU COPIED
+                ```
 
             <br />
 

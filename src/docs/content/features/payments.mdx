@@ -1,5 +1,5 @@
 ---
-title: "Stripe"
+title: "Payments"
 description: "Setting up Stripe for payments."
 onThisPage:
   - title: "Environment Setup"
@@ -13,8 +13,12 @@ onThisPage:
   - title: "Next Steps"
     href: "#next-steps"
 related:
-  - title: "Payments"
-    href: "/docs/tutorials/payments"
+  - title: "Config"
+    href: "/docs/features/config"
+  - title: "One-time payments"
+    href: "/docs/tutorials/one-time-payments"
+  - title: "Subscriptions"
+    href: "/docs/tutorials/subscriptions"
   - title: "Pricing"
     href: "/docs/landing/pricing"
   - title: "CheckoutButton"
@@ -24,9 +28,8 @@ sites:
     href: "https://stripe.com"
 ---
 
-Need payments or subscriptions? Lets set up Stripe ⬇︎
+Need payments? Lets set up Stripe ⬇︎
 
-<br />
 
 ## Environment Setup
 
@@ -36,9 +39,9 @@ Need payments or subscriptions? Lets set up Stripe ⬇︎
 
 2. Copy them into `.env.local`:
 
-    ```.env.local
-    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
-    NEXT_PUBLIC_STRIPE_SECRET_KEY=sk_live_...
+ ```.env.local
+ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
+ NEXT_PUBLIC_STRIPE_SECRET_KEY=sk_live_...
     ```
 
 
@@ -51,7 +54,7 @@ Need payments or subscriptions? Lets set up Stripe ⬇︎
 1. Under [Business details](https://dashboard.stripe.com/settings/business-details), add your URL, support email, and legal policy URLs.
 
 <Tip>
-    You can use your own email or setup your domain email following the [Domain](/docs/tutorials/domain) tutorial.
+    You can use your own email or setup your domain email following the [Email](/docs/features/emails) tutorial.
 </Tip>
 
 2. Go to [Branding](https://dashboard.stripe.com/settings/branding) and customize your branding (logo & colors, etc.).
@@ -80,7 +83,7 @@ test them, and then repeat the steps in Live mode.
 
 3. Fill in the product details and select either `Recurring` or `One-off` for the pricing.
 
-4. Copy the price ID (`price_1N...`) into `src/config.js`.
+4. Copy the price ID (`price_1N...`) into [`config.js`](/docs/features/config#payments).
 
     ```js
     export const pricingConfig = {
@@ -107,75 +110,75 @@ test them, and then repeat the steps in Live mode.
                         priceId: "COPY YEARLY PRICE ID HERE"
                     }
                 ]
-            }
+           }
         ]
     };
     ```
 
     <Tip>
-        In `src/config.js`, I have provided a sample configuration for both one-time and recurring payments, select the one that fits your product.
+        In [`config.js`](/docs/features/config#payments), I have provided a sample configuration for both one-time and recurring payments, select the one that fits your product.
         You can simply have one plan if you want.
     </Tip>
 
-5. Optionally, tweak the `pricingConfig` object in `src/config.js` to match your product (used for [`Pricing`](/docs/landing/pricing) component).
-If you are going for a simple flow, you can skip this step and only change the price IDs.
+5. Tweak the [`pricingConfig`](/docs/features/config#payments) object in [`config.js`](/docs/features/config) to match your product.
+For more info checkout [pricing config documentation](/docs/features/config#payments).
 
-    ```js
-    export const pricingConfig = {
+     ```js
+     export const pricingConfig = {
         plans: [
-            {
+             {
                 mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
-                title: "Starter",
-                description: "",
-                subText: "Pay once, use forever.",
-                isPopular: false,
-                features: [
-                    "NextJS boilerplate",
-                ],
-                intervals: [
-                    {
-                        label: "",
-                        oldPrice: 99,
-                        price: 49,
-                        priceId: "price_XXX"
-                    }
-                ]
-            },
-            {
-                mode: "subscription", // Recurring
-                title: "Pro",
-                description: "Unlock the full potential of Runway.",
-                isPopular: true,
-                features: [
-                    "NextJS boilerplate",
-                    "Lifetime updates",
-                ],
-                intervals: [
-                    {
-                        name: "monthly",
-                        label: "Monthly",
-                        oldPrice: 49,
-                        price: 29,
-                        discountLabel: "Save 40%",
-                        priceId: "price_monthly_xxx"
-                    },
-                    {
-                        name: "yearly",
-                        label: "Yearly",
-                        oldPrice: 399,
-                        price: 299,
-                        discountLabel: "Save 50%",
-                        priceId: "price_yearly_xxx"
-                    }
-                ]
-            }
-        ]
-    };
+                 title: "Starter",
+                 description: "",
+                 subText: "Pay once, use forever.",
+                 isPopular: false,
+                 features: [
+                     "NextJS boilerplate",
+                 ],
+                 intervals: [
+                     {
+                         label: "",
+                         oldPrice: 99,
+                         price: 49,
+                         priceId: "price_XXX"
+                     }
+                 ]
+             },
+             {
+                 mode: "subscription", // Recurring
+                 title: "Pro",
+                 description: "Unlock the full potential of Runway.",
+                 isPopular: true,
+                 features: [
+                     "NextJS boilerplate",
+                     "Lifetime updates",
+                 ],
+                 intervals: [
+                     {
+                         name: "monthly",
+                         label: "Monthly",
+                         oldPrice: 49,
+                         price: 29,
+                         discountLabel: "Save 40%",
+                         priceId: "price_monthly_xxx"
+                     },
+                     {
+                         name: "yearly",
+                         label: "Yearly",
+                         oldPrice: 399,
+                         price: 299,
+                         discountLabel: "Save 50%",
+                         priceId: "price_yearly_xxx"
+                     }
+                 ]
+             }
+         ]
+     };
     ```
 
-    <Callout>
-        The [`Pricing`](/docs/landing/pricing) component will automatically pull everything it needs from the `pricingConfig` object.
-    </Callout>
+<Callout>
+    The [`Pricing`](/docs/landing/pricing) component will automatically pull everything it needs from the [`pricingConfig`](/docs/features/config#payments) object.
+</Callout>
 
 <br />
 
@@ -183,19 +186,19 @@ If you are going for a simple flow, you can skip this step and only change the p
 
 ## Webhook Setup
 
-Now we need to set up webhooks to listen for events from Stripe.
+Now we need to set up webhooks to listen for events from Stripe. This is skippable if you are not using subscriptions or don't need to listen for events from Stripe.
 
 1. Go to [Webhooks](https://dashboard.stripe.com/test/workbench/webhooks) and click on [+ Add endpoint](https://dashboard.stripe.com/test/workbench/webhooks/create).
 
 2. Select these events to listen to:
 
-    - `checkout.session.completed`
-    - `checkout.session.expired`
+     - `checkout.session.completed`
+     - `checkout.session.expired`
 
     If you are using subscriptions, also select:
-    - `customer.subscription.deleted`
-    - `invoice.paid`
-    - `invoice.payment_failed`
+     - `customer.subscription.deleted`
+     - `customer.subscription.created`
+     - `customer.subscription.updated`
 
 3. Select 'Webhook endpoint' as destination type.
 
@@ -205,19 +208,15 @@ Now we need to set up webhooks to listen for events from Stripe.
     http://YOURDOMAIN.COM/api/stripe/webhooks
     ```
 
-    <Tip>
-        Don't have a domain? Check out [Domain](/docs/tutorials/domain) tutorial.
-    </Tip>
-
 5. Create the endpoint and copy the signing secret (`whsec_...`) into `.env.local`:
 
     ```.env.local
     NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET=whsec_...
     ```
 
-<Caution>
-    Make sure you test everything Test mode before going to Live mode. You can use the test card number 4242 4242 4242 4242 for a successful payment.
-</Caution>
+<Callout>
+    This webhook will listen for events from Stripe and update the user's access in the database.
+</Callout>
 
 <br />
 
