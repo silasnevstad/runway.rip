@@ -9,7 +9,6 @@ import React, {
 } from "react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
 
-
 export default function Carousel({
     mode = "single",
     children,
