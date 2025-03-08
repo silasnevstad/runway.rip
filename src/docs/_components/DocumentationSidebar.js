@@ -42,7 +42,7 @@ const NavItem = ({ item, pathname, level }) => {
                 <DropdownItem
                     header={
                         <span
-                            className={`text-[13px] transition-colors group-hover:text-gray-800 dark:group-hover:text-gray-200 ${
+                            className={`text-[13px] pl-2 transition-colors group-hover:text-gray-800 dark:group-hover:text-gray-200 ${
                                 isActive
                                     ? "text-gray-800 dark:text-gray-100 font-semibold"
                                     : "text-gray-700 dark:text-gray-500"
@@ -79,7 +79,7 @@ const NavItem = ({ item, pathname, level }) => {
                         : "text-gray-700 dark:text-gray-500"
                 }`}
             >
-                <span className={level > 0 ? "ml-2" : ""}>
+                <span className={level > 0 ? "" : ""}>
                     {item.icon}
                     {item.title}
                 </span>

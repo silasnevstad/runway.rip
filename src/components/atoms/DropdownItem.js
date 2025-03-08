@@ -35,7 +35,6 @@ export default function DropdownItem({
     // Animation state for height and content opacity.
     const contentRef = useRef(null);
     const [containerHeight, setContainerHeight] = useState(0);
-    const [showContent, setShowContent] = useState(open);
 
     // Toggle open state.
     const toggle = (e) => {
@@ -50,17 +49,16 @@ export default function DropdownItem({
 
     // Color settings.
     const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.soft;
-    const activeColorSet = COLOR_VARIANTS[activeColor][variant] || COLOR_VARIANTS.primary.soft;
 
     const outerContainerClass = mergeClasses(
-        "w-96 py-4 px-2 transition-all duration-300", // Increased duration for a slower transition.
+        "w-96 py-4 transition-all duration-300", // Increased duration for a slower transition.
         hoverBg && colorSet.hoverBg,
         border && `${BORDER_CLASSES[borderStyle]} ${open ? getBorderColorClass(activeColor) : getBorderColorClass(color)}`,
         className
     );
 
     const innerContainerClass = mergeClasses(
-        "group relative flex justify-between items-center w-full max-w-prose cursor-pointer mt-2"
+        "group relative flex justify-between items-center w-full max-w-prose cursor-pointer"
     );
 
     const buttonClass = mergeClasses(
@@ -91,17 +89,9 @@ export default function DropdownItem({
     // Update height and content visibility on open/close.
     useEffect(() => {
         if (open) {
-            // Measure the content's height and animate expansion.
             const height = contentRef.current?.scrollHeight || 0;
             setContainerHeight(height);
-            // Delay showing the text until after expansion.
-            const timer = setTimeout(() => {
-                setShowContent(true);
-            }, 300); // Match this with the height transition duration.
-            return () => clearTimeout(timer);
         } else {
-            // Hide content immediately then collapse.
-            setShowContent(false);
             setContainerHeight(0);
         }
     }, [open, children]);
@@ -118,20 +108,19 @@ export default function DropdownItem({
                 {icon}
             </button>
             {/* Animated collapsible content container */}
-            {open && <div
+            <div
                 className={innerContainerClass}
                 style={{
                     height: containerHeight,
                     overflow: "hidden",
-                    transition: "height 200ms ease",
+                    transition: "height 300ms ease",
+                    marginTop: open ? "5px" : "0px",
                 }}
             >
-                <div
-                    ref={contentRef}
-                >
+                <div ref={contentRef} className="flex flex-col w-full">
                     {children}
                 </div>
-            </div>}
+            </div>
         </div>
     );
 }
