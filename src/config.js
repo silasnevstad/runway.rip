@@ -188,8 +188,8 @@ export const landingConfig = {
     },
     howItWorks: {
         show: true,
-        title: "Get started in seconds",
-        subtitle: "Focus on what matters most",
+        title: "Launch in minutes.",
+        subtitle: "",
     },
     pricing: {
         title: "Pricing",

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Cog8ToothIcon, RocketLaunchIcon as RocketLaunchIconOutline } from "@heroicons/react/24/outline";
-import { SparklesIcon } from "@heroicons/react/24/solid";
+import { LuGithub } from "react-icons/lu";
 import { landingConfig } from "@/config";
 import Badge from "@/components/atoms/Badge";
 import { StandoutCard } from "@/components/molecules/CustomCards";
@@ -29,7 +29,7 @@ export default function HowItWorks() {
                     {/* 1) Git clone */}
                     <Step
                         number={1}
-                        Icon={SparklesIcon}
+                        Icon={LuGithub}
                         title="Git clone"
                         description="Download the project to your computer."
                         duration="<1"
@@ -58,8 +58,8 @@ export default function HowItWorks() {
 
 function Step({ number, Icon, title, description, duration, tags }) {
     return (
-        <div className="flex flex-row gap-4 items-center">
-            <div className="relative group p-3 rounded-2xl hover:bg-primary-500/90 z-10">
+        <div className="flex flex-row gap-4 items-center group">
+            <div className="relative p-3 rounded-2xl group-hover:bg-primary-500/90 z-10">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-semibold text-gray-500/10 dark:text-gray-500/5 group-hover:hidden z-0">
                     {number}
                 </div>
