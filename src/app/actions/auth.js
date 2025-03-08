@@ -49,7 +49,8 @@ export async function passwordSignin(prevState, formData) {
     if (error) {
         return { errors: { email: error.message } };
     }
-    revalidatePath("/", "layout");
+
+    revalidatePath(appConfig.afterSignupPath, "layout");
     redirect(appConfig.afterLoginPath);
 }
 
@@ -92,7 +93,7 @@ export async function signinWithOAuth(provider) {
         redirect(data.url);
     }
 
-    redirect("/error");
+    return { errors: { provider: "Unknown error during OAuth signin." } };
 }
 
 export async function signout() {

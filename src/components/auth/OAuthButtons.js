@@ -7,10 +7,15 @@ import { useToast } from "@/contexts/ToastProvider";
 const OAuthButtons = ({ providers = [] }) => {
     const { addToast } = useToast();
 
-    const handleOAuth = async (provider) => {
-        const { errors } = await signinWithOAuth(provider);
-        if (errors && errors.message) {
-            addToast(errors.message, { severity: "error" });
+    const handleOAuth = async (providerName) => {
+        const { errors } = await signinWithOAuth(providerName);
+        if (errors) {
+            Object.values(errors).forEach((error) => {
+                if (error) {
+                    const message = Array.isArray(error) ? error.join(', ') : error;
+                    addToast(message, { severity: "error" });
+                }
+            });
         }
     };
 
@@ -25,7 +30,7 @@ const OAuthButtons = ({ providers = [] }) => {
                         provider={provider.name}
                         logoSrc={provider.logoSrc}
                         logoAlt={provider.logoAlt}
-                        onClick={handleOAuth}
+                        onClick={() => handleOAuth(provider.name)}
                     />
                 ))}
             </div>
