@@ -19,11 +19,11 @@ export async function passwordSignup(prevState, formData) {
 
     const supabase = await createClient();
     const { email, password } = validatedFields.data;
-    const { data: signupData, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-            redirectTo: process.env.WEBSITE_URL + appConfig.afterSignupPath,
+            emailRedirectTo: process.env.WEBSITE_URL + appConfig.afterSignupPath,
         }
     });
     if (error) {
@@ -32,22 +32,6 @@ export async function passwordSignup(prevState, formData) {
 
     revalidatePath("/", "layout");
     redirect(appConfig.afterSignupPath);
-}
-
-export async function resetPassword(prevState, formData) {
-    const email = formData.get("email");
-    if (!email) {
-        return { errors: { email: 'Email is required.' } };
-    }
-
-    const supabase = await createClient();
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: process.env.WEBSITE_URL + "/account/update-password",
-    });
-    if (error) {
-        return { errors: { email: error.message } };
-    }
-    return { message: 'Check your email for a password reset link.' };
 }
 
 export async function passwordSignin(prevState, formData) {
@@ -81,7 +65,7 @@ export async function passwordlessSignin(prevState, formData) {
     const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-            emailRedirectTo: process.env.WEBSITE_URL + "/auth/confirm",
+            emailRedirectTo: process.env.WEBSITE_URL + appConfig.afterLoginPath,
         },
     });
     if (error) {
