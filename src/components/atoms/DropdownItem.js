@@ -1,9 +1,10 @@
 "use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDownIcon, PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
+
 import { COLOR_VARIANTS, getBorderColorClass, getTextColorClass, mergeClasses, renderIcon } from "@/utils/styling";
 
-// Border classes dictionary.
 const BORDER_CLASSES = {
     top: "border-t",
     bottom: "border-b",

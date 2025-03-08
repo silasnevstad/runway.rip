@@ -8,8 +8,6 @@ onThisPage:
     href: "#usage"
   - title: "Props"
     href: "#props"
-  - title: "Examples"
-    href: "#examples"
 related:
   - title: "Button"
     href: "/docs/components/button"
@@ -21,34 +19,8 @@ related:
 
 <div id="overview" />
 
-<br />
-
 <div className="flex flex-col w-full items-center justify-center gap-8">
-    <Hero
-        textHighlight={{ text: "Welcome to my site", highlight: "my Site" }}
-        description="This is a description of my site."
-        buttonText="Get Started"
-        buttonSubText="It's free"
-        showPromo={true}
-        promo={{ price: 0, text: "Free" }}
-        showTrustedBy={true}
-        trustedBy={{
-            text: "Trusted by",
-            avatars: [
-                { src: "/images/avatars/avatar1.png", alt: "Avatar 1" },
-                { src: "/images/avatars/avatar2.png", alt: "Avatar 2" },
-                { src: "/images/avatars/avatar3.png", alt: "Avatar 3" },
-            ],
-        }}
-        textPosition="left"
-        imageSrc="/images/hero-image.png"
-        imageAlt="Hero Image"
-        className="min-h-96 py-0"
-        backgroundGlow="primary"
-    />
 </div>
-
-<br />
 
 The `Hero` component is a hero section that can include an **image**, **title** ([`TextHightlight`](/docs/components/text-highlight)),
 **description**, **call-to-action button**, **promo section**, and **trusted by section**.
@@ -89,8 +61,6 @@ import Hero from '@/components/landing/Hero';
 | description    | string  | `""`                                                                       | The description text.                                                                            |
 | buttonText     | string  | `""`                                                                       | The text for the call-to-action button.                                                          |
 | buttonSubText  | string  | `""`                                                                       | The subtext for the call-to-action button.                                                       |
-| showPromo      | boolean | `false`                                                                    | Whether to show the promo section.                                                               |
-| promo          | object  | `{ price: 0, text: "" }`                                                   | The promo text.                                                                                  |
 | showTrustedBy  | boolean | `false`                                                                    | Whether to show the trusted by section.                                                          |
 | trustedBy      | object  | `{ text: "", avatars: [] }`                                                | The trusted by section.                                                                          |
 | textPosition   | string  | `"left"`                                                                   | The position of the text.                                                                        |
@@ -106,123 +76,3 @@ import Hero from '@/components/landing/Hero';
 <Info>
     The `Hero` component uses the [`TextLink`](/docs/components/text-link) and [`Button`](/docs/components/button) components.
 </Info>
-
-<br />
-<br />
-<br />
-<Divider />
-
-<div id="examples" />
-## Examples
-
-### Hero with Image
-<PreviewCode preview={
-    <Hero
-        textHighlight={{ text: "Welcome to my site", highlight: "my Site" }}
-        description="This is a description of my site."
-        buttonText="Get Started"
-        buttonSubText="It's free"
-        showPromo={true}
-        promo={{ price: 0, text: "Free" }}
-        showTrustedBy={true}
-        trustedBy={{
-            text: "Trusted by",
-            avatars: [
-                { src: "/images/avatars/avatar1.png", alt: "Avatar 1" },
-                { src: "/images/avatars/avatar2.png", alt: "Avatar 2" },
-                { src: "/images/avatars/avatar3.png", alt: "Avatar 3" },
-            ],
-        }}
-        textPosition="left"
-        imageSrc="/images/hero-image.png"
-        imageAlt="Hero Image"
-        className="min-h-96 py-0"
-    />
-}>
-```js
-<Hero
-    textHighlight={{ text: "Welcome to", highlight: "My Site" }}
-    description="This is a description of my site."
-    buttonText="Get Started"
-    buttonSubText="It's free"
-    showPromo={true}
-    promo={{ price: 0, text: "Free" }}
-    showTrustedBy={true}
-    trustedBy={{
-        text: "Trusted by",
-        avatars: [
-            { src: "/images/avatars/avatar1.png", alt: "Avatar 1" },
-            { src: "/images/avatars/avatar2.png", alt: "Avatar 2" },
-            { src: "/images/avatars/avatar3.png", alt: "Avatar 3" },
-        ],
-    }}
-    textPosition="left"
-    imageSrc="/images/hero-image.png"
-    imageAlt="Hero Image"
-    className="min-h-96 py-0" // to remove the default padding (just for this example)
-/>
-```
-</PreviewCode>
-
-### Minimal Hero
-<PreviewCode preview={
-    <Hero
-        textHighlight={{ text: "Welcome to my site", highlight: "my site" }}
-        description="This is a description of my site."
-        buttonText="Get Started"
-        showPromo={false}
-        showTrustedBy={false}
-        textPosition="center"
-        className="min-h-96 py-0"
-    />
-}>
-```js
-<Hero
-    textHighlight={{ text: "Welcome to", highlight: "My Site" }}
-    description="This is a description of my site."
-    buttonText="Get Started"
-    showPromo={false}
-    showTrustedBy={false}
-    textPosition="center"
-    className="min-h-96 py-0" // to remove the default padding (just for this example)
-/>
-```
-</PreviewCode>
-
-### Custom Hero with Glow and Gradient Effects
-<PreviewCode preview={
-    <Hero
-        textHighlight={{ text: "Welcome to my site", highlight: "my site", fromGradient: "primary", toGradient: "purple" }}
-        description="This is a description of my site."
-        buttonText="Get Started"
-        showPromo={false}
-        showTrustedBy={false}
-        textPosition="center"
-        className="min-h-96 py-0"
-        backgroundGlow="primary"
-        glowOpacity={0.5}
-        glowSize="30%"
-        glowBlur={100}
-    />
-}>
-    ```js
-    <Hero
-        textHighlight={{
-            text: "Welcome to my site",
-            highlight: "my site",
-            fromGradient: "primary",
-            toGradient: "purple"
-        }}
-        description="This is a description of my site."
-        buttonText="Get Started"
-        showPromo={false}
-        showTrustedBy={false}
-        textPosition="center"
-        backgroundGlow="blue"
-        glowOpacity={0.5}
-        glowSize="30%"
-        glowBlur={100}
-        className="min-h-96 py-0" // to remove the default padding (just for this example)
-    />
-    ```
-</PreviewCode>
