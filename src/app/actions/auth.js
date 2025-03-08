@@ -30,7 +30,7 @@ export async function passwordSignup(prevState, formData) {
         return { errors: { email: error.message } };
     }
 
-    revalidatePath("/", "layout");
+    revalidatePath(appConfig.afterSignupPath, "layout");
     redirect(appConfig.afterSignupPath);
 }
 
@@ -50,7 +50,7 @@ export async function passwordSignin(prevState, formData) {
         return { errors: { email: error.message } };
     }
 
-    revalidatePath(appConfig.afterSignupPath, "layout");
+    revalidatePath(appConfig.afterLoginPath, "layout");
     redirect(appConfig.afterLoginPath);
 }
 

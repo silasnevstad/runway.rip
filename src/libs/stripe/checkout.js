@@ -1,4 +1,5 @@
 import stripe from "@/libs/stripe/stripe";
+import {pricingConfig} from "@/config";
 
 /**
  * Create a Stripe Checkout Session.
@@ -43,7 +44,7 @@ export async function createCheckoutSession({
         }
 
         // Optionally add discounts here, e.g.:
-        sessionParams.discounts = [{ coupon: "LAUNCH" }];
+        sessionParams.discounts = [{ coupon: pricingConfig.promo.code }];
 
         const session = await stripe.checkout.sessions.create(sessionParams);
         return session;

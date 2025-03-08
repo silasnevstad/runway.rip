@@ -37,7 +37,6 @@ import SwitchDemo from "@/docs/_components/demos/SwitchDemo";
 import { FileDropDemo } from "@/docs/_components/demos/FileDropDemo";
 import { TextLinkIconDemo } from "@/docs/_components/demos/TextLinkDemo";
 import Card from "@/components/atoms/Card";
-import DropdownText from "@/components/atoms/DropdownText";
 import FileDrop from "@/components/atoms/FileDrop";
 import FileInput from "@/components/atoms/FileInput";
 import Switcher from "@/components/atoms/Switcher";
@@ -100,9 +99,13 @@ export const mdxComponents = {
     h2: ({ children }) => <h2 className="text-2xl xl:text-3xl font-semibold mt-6 mb-3">{children}</h2>,
     h3: ({ children }) => <h3 className="text-xl xl:text-2xl font-medium mt-8 mb-2">{children}</h3>,
     p: ({ children }) => <p className="my-2 leading-relaxed">{children}</p>,
-    ul: ({ children }) => <ul className="list-disc list-inside my-4">{children}</ul>,
-    ol: ({ children }) => <ol className="list-decimal list-inside my-4 space-y-6">{children}</ol>,
-    li: ({ children }) => <li className="my-1">{children}</li>,
+    ul: ({ children }) => (
+        <ul className="list-disc list-inside my-1.5 mb-2 pl-4 [&_ul]:list-[square] [&_ul]:pl-4">
+            {children}
+        </ul>
+    ),
+    ol: ({ children }) => <ol className="list-decimal list-inside">{children}</ol>,
+    li: ({ children }) => <li className="my-1.5 ">{children}</li>,
     Required: ({ children }) => (
         <div className="bg-yellow-500/20 rounded-lg border-l-4 rounded-l-none border-yellow-500 p-3 pb-2 my-4">
             <p className="flex items-center text-md text-yellow-500 font-semibold">
@@ -228,7 +231,6 @@ export const mdxComponents = {
     StandoutCard: StandoutCard,
     Checkbox: ClientSideCheckbox,
     CodeBlock: CodeBlock,
-    DropdownText: DropdownText,
     File: File,
     FileDrop: FileDrop,
     FileDropDemo: FileDropDemo,

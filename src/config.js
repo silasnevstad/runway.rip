@@ -8,14 +8,6 @@ const appConfig = {
     appName: 'Runway',
     appDescription: 'Everything you need to launch your ideas.',
     domain: 'runway.rip',
-
-    // Links
-    socialMedia: {
-        twitter: 'https://twitter.com/runway',
-        instagram: 'https://instagram.com/runway',
-        github: 'https://github.com/runway-app',
-        linkedin: ''
-    },
     legal: {
         policies: {
             privacy: '/policies/privacy',
@@ -23,13 +15,12 @@ const appConfig = {
             license: '/policies/license'
         }
     },
-
-    // Email
-    subdomain: "mail",
-    supportEmail: "Runway Support <support@mail.runway.rip>",
-    adminEmail: "Silas at Runway <silas@mail.runway.rip>",
-    noReplyEmail: "Runway <noreply@mail.runway.rip>",
-    forwardRepliesTo: "silas.nevstad@gmail.com",
+    socialMedia: {
+        twitter: 'https://twitter.com/runway',
+        instagram: 'https://instagram.com/runway',
+        github: 'https://github.com/runway-app',
+        linkedin: ''
+    },
 
     // Auth
     authMethods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
@@ -40,6 +31,10 @@ const appConfig = {
     afterLoginPath: '/account',
     afterSignupPath: '/confirm-email',  // This is only need if
 
+    // Email
+    supportEmail: "Runway Support <support@mail.runway.rip>",
+    noReplyEmail: "Runway <noreply@mail.runway.rip>",
+
     // Waitlist / Pre-Launch Mode:
     // When enabled and the environment is production (NODE_ENV === 'production'), all routes not specified
     // in waitlistAllowedRoutes will be redirected to waitlistRedirect. This is useful for when you are still
@@ -48,9 +43,9 @@ const appConfig = {
     waitlistAllowedRoutes: ['/waitlist', '/docs'],
     waitlistRedirect: '/waitlist',
 
-    // Payment Integration Options
+    // Payment Integration
     // Set to true to enable integration with Supabase profiles (creates & tracks Stripe customers)
-    useCustomerIntegration: true,
+    requiredCustomerId: true,
     afterCheckoutPath: '/account',
 };
 

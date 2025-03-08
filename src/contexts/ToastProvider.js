@@ -8,7 +8,6 @@ import React, {
     useEffect,
 } from "react";
 import { createPortal } from "react-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Toast from "@/components/atoms/Toast";
 import { v4 as uuidv4 } from "uuid";
 
