@@ -78,7 +78,7 @@ export default function Hero({
                 />
             )}
 
-            <div className="w-full z-10 -mt-20">
+            <div className="w-full z-10 -mt-30">
                 <div className={`flex gap-10 items-center ${directionClasses}`}>
                     {/* Text Content */}
                     <div className={`w-full flex flex-col gap-4 max-w-3xl ${alignmentClasses}`}>

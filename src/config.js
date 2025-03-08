@@ -1,5 +1,7 @@
 import { FaMagnifyingGlassChart, FaRegCreditCard, FaUserShield } from "react-icons/fa6";
 import { LuDatabase, LuLayoutDashboard, LuMail } from "react-icons/lu";
+import { Cog8ToothIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
+import { LuGithub } from "react-icons/lu";
 
 const appConfig = {
     // General
@@ -49,7 +51,7 @@ const appConfig = {
     // Payment Integration Options
     // Set to true to enable integration with Supabase profiles (creates & tracks Stripe customers)
     useCustomerIntegration: true,
-    afterCheckoutPath: '/thank-you',
+    afterCheckoutPath: '/account',
 };
 
 export const pricingConfig = {
@@ -60,14 +62,14 @@ export const pricingConfig = {
         code: "LAUNCH",
     },
     plans: [
-        {
+        {  // Starter Plan
             mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
             intervals: [
                 {
                     label: "",
                     oldPrice: 99,
                     price: 49,
-                    priceId: "price_1QzuhUGjMg6waABSeUThW8Mw"  // "price_1Pr8LGGjMg6waABSg1bjDLEQ"
+                    priceId: "price_1QzuhUGjMg6waABSeUThW8Mw"  // COPY YOUR PRICE ID IN HERE
                 }
             ],
             title: "Starter",
@@ -84,14 +86,14 @@ export const pricingConfig = {
                 "Lifetime updates",
             ]
         },
-        {
-            mode: "payment", // One-time purchase
+        { // Pro Plan
+            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
             intervals: [
                 {
                     label: "",
                     oldPrice: 149,
                     price: 99,
-                    priceId: "price_1QzuhyGjMg6waABScXMOVTDF" // "price_1Pr8LfGjMg6waABSu7URa9qT"
+                    priceId: "price_1QzuhyGjMg6waABScXMOVTDF" // COPY YOUR PRICE ID IN HERE
                 }
             ],
             title: "All-in",
@@ -114,29 +116,38 @@ export const pricingConfig = {
 
 export const landingConfig = {
     header: {
-        background: "border-b-none bg-bg-0 dark:bg-bg-900 mx-sm:bg-bg-50/80 mx-sm:dark:bg-bg-900/10",
         sticky: false,
-        logo: true,
+        background: "bg-bg-0 dark:bg-bg-900",
+        showLogo: true,
+        showAppName: true,
+        navLinks: [
+            { title: "Features", href: "#features" },
+            { title: "Pricing", href: "#pricing" },
+            { title: "FAQ", href: "#faq" },
+        ],
+        // Uncomment to enable
+        // ctaButton: {
+        //     label: 'Get Started',
+        //     href: '/get-started',
+        // },
     },
+
     hero: {
-        textPosition: "center",
-        image: {
-            // src: "/hero.png",
-            alt: "Hero Image"
-        },
         textHighlight: {
             text: "Code less, launch faster.",
-            highlight: "launch faster.",
+            highlight: "launch faster.", // If you want no highlight, set to ""
+            // Either use the gradients or the color.
             fromGradient: "primary",
             toGradient: "purple",
+            // color: "primary"
+        },
+        textPosition: "left",
+        image: {
+            src: "/images/hero.svg",
+            alt: "Hero Image"
         },
         description: "A complete Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
         buttonText: "Get Started",
-        promo: {
-            show: true,
-            price: 50,
-            text: "off for first 1000 users (12 left)",
-        },
         trustedBy: {
             show: false,
             text: "Trusted by 200+ people",
@@ -148,57 +159,94 @@ export const landingConfig = {
             ],
         }
     },
+
     features: {
         show: true,
+        type: "carousel", // "carousel" or "grid"
         title: "Tired of starting from scratch?",
         subtitle: "Tired of having to set up auth, payments, databases, components, SEO,... the list goes on. Runway has everything you need to launch your ideas.",
     },
-    what: {
+
+    withWithouts: {
         show: false,
-        title: "What is Runway?",
-        subtitle: "A complete Next.js boilerplate",
-        description: `As a solo-prenuer, who is tired of having to re-implement the same features (auth, payments, emails, components...) everytime I create a new project, I created Runway to help launch faster (by taking care of the headaches once and for all).`,
-        imageSrc: "/images/rocket-boy.svg",
-        imageAlt: "Rocket Launch",
+        title: "Tired of spending hours configuring and maintaining?",
+        withoutTitle: "Without Runway",
+        withTitle: "With Runway",
     },
+
     why: {
         show: true,
         title: "Save endless hours of headaches and get right to business",
     },
-    who: {
-        show: true,
-        title: "Who's this for?",
-        subtitle: "For developers, designers, and entrepreneurs.",
-        description: "For developers, designers, and entrepreneurs. Anyone who wants to build and launch a web app quickly and skip out on all the tedious hassle.",
-    },
-    how: {
-        show: true,
-        title: "How this works?",
-        subtitle: "Get started in seconds.",
-        description: "It's a NextJS boilerplate that includes everything you need to build and launch your web app. With Runway, you can get started in seconds and start monetizing your project in hours, not weeks.",
-    },
-    whoAndHow: {
-        show: true,
-        whoTitle: "Who's this for?",
-        whoSubtitle: "For developers, designers, and entrepreneurs.",
-        whoText: "For developers, designers, and entrepreneurs. Anyone who wants to build and launch a web app quickly and skip out on all the tedious hassle.",
-        howTitle: "How this works?",
-        howSubtitle: "Get started in seconds.",
-        howText: "It's a NextJS boilerplate that includes everything you need to build and launch your web app. With Runway, you can get started in seconds and start monetizing your project in hours, not weeks.",
-    },
+
     howItWorks: {
         show: true,
         title: "Launch in minutes.",
         subtitle: "",
+        description: "",
     },
+
+    what: {
+        show: false,
+        position: "left",
+        title: "What is Runway?",
+        subtitle: "A complete Next.js boilerplate",
+        description: "Runway is a...",
+        imageSrc: "/images/rocket-boy.svg",
+        imageAlt: "Rocket Launch",
+    },
+
+    who: {
+        show: false,
+        position: "right",
+        title: "Who's this for?",
+        subtitle: "For developers, designers, and entrepreneurs.",
+        description: "Anyone who wants to build...",
+        // include imageSrc, imageAlt if you want to show an image
+    },
+
+    how: {
+        show: false,
+        position: "left",
+        title: "How this works?",
+        subtitle: "Get started in seconds.",
+        description: "It works by...",
+        // include imageSrc, imageAlt if you want to show an image
+    },
+
     pricing: {
+        show: true,
         title: "Pricing",
         subtitle: "Save hours of headaches and get right to business!",
-        show: true
+        // Scroll down to see the pricingConfig
     },
+
     faq: {
         show: true,
         title: "Frequently Asked Questions",
+        // Scroll down to see the FAQs
+    },
+
+    footer: {
+        background: "bg-bg-0 dark:bg-bg-900",
+        showLogo: true,
+        showAppName: true,
+        showAppDescription: true,
+        showCopyright: true,
+        showMadeWith: true,
+        showThemeSwitcher: true,
+        showSocials: false,
+        showBorder: true,
+        navLinks: [
+            { title: "Pricing", href: "#pricing" },
+            { title: "Documentation", href: "/docs" },
+            { title: "Support", href: "#" },
+        ],
+        legalLinks: [
+            { title: "Privacy Policy", href: "/policies/privacy" },
+            { title: "Terms of Service", href: "/policies/terms" },
+            { title: "License", href: "/policies/license" },
+        ],
     }
 };
 
@@ -254,7 +302,55 @@ export const featuresConfig = [
         icon: LuLayoutDashboard,
         docs: true
     }
-]
+];
+
+export const withWithoutsConfig = {
+    withouts: [
+        "Manually configure authentication",
+        "Spend hours creating components",
+        "Read through endless documentation",
+        "Setup payments and subscriptions",
+        "Manage your own database",
+        "Spend hours on SEO",
+        "Setup email sending",
+        "Spend hours creating landing pages",
+    ],
+    withs: [
+        "Authentication already configured",
+        "Payments and subscriptions ready to go",
+        "50+ components ready to use",
+        "Database already setup",
+        "SEO optimized",
+        "Email setup",
+        "Landing page ready",
+        "Login and signup pages ready",
+    ],
+};
+
+export const landingSteps = [
+    {
+        title: "Git clone",
+        description: "Download the project to your computer.",
+        duration: "<1 min",
+        tags: [],
+        icon: LuGithub,
+    },
+    {
+        title: "Customize",
+        description: "Set up and personalize the boilerplate.",
+        duration: "~5 min",
+        tags: [],
+        icon: Cog8ToothIcon,
+    },
+    {
+        title: "Deploy",
+        description: "Share your project with the world.",
+        duration: "~5 min",
+        tags: [],
+        icon: RocketLaunchIcon,
+    }
+];
+
 
 export const faqConfig = [
     {
@@ -275,6 +371,7 @@ export const faqConfig = [
     }
 ];
 
+// NOT NEEDED (JUST FOR EXAMPLE)
 // Example of subscription pricing config
 export const pricingSubscriptionConfig = {
     plans: [

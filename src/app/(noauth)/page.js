@@ -11,36 +11,42 @@ import { DeparturesCard } from "@/components/molecules/CustomCards";
 import { getSchemaTags } from "@/libs/seo";
 import { landingConfig } from "@/config";
 import ImageSection from "@/components/landing/ImageSection";
-import {RocketLaunchIcon} from "@heroicons/react/24/solid";
+import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 import Pricing from "@/components/landing/Pricing";
+import FeaturesGrid from "@/components/landing/FeaturesGrid";
+import WithWithout from "@/components/landing/WithWithout";
 
 
 export default function Landing({schemaData = {}}) {
     const {
+        header,
         hero,
+        features,
+        withWithouts,
         what,
+        who,
+        how,
         why,
         howItWorks,
         pricing,
-        faq
+        faq,
+        footer
     } = landingConfig;
 
     return (
         <>
             {getSchemaTags({})}
             <main className="flex items-center flex-col w-full">
-                {/* Header */}
                 <Header
-                    navLinks={[
-                        { title: "Features", href: "#features" },
-                        { title: "Pricing", href: "#pricing" },
-                        { title: "FAQ", href: "#faq" },
-                    ]}
-                    background={"bg-bg-0 dark:bg-bg-900"}
+                    navLinks={header.navLinks}
+                    background={header.background}
+                    sticky={header.sticky}
+                    showLogo={header.showLogo}
+                    showAppName={header.showAppName}
+                    ctaButton={header.ctaButton}
                 />
 
                 <div className="flex items-center flex-col w-full z-10">
-                    {/* Hero Section */}
                     <Hero
                         textHighlight={{
                             text: hero.textHighlight.text,
@@ -59,9 +65,17 @@ export default function Landing({schemaData = {}}) {
                         imageAlt={hero.image.alt}
                     />
 
-                    <div className={`-mt-30 flex flex-col items-center w-full pb-30 z-10`}>
-                        <FeaturesCarousel />
-                    </div>
+                    {features.show && (
+                        <div className={`-mt-30 flex flex-col items-center w-full pb-30 z-10`}>
+                            {features.type === "grid" ? <FeaturesGrid /> : <FeaturesCarousel />}
+                        </div>
+                    )}
+
+                    {withWithouts.show && (
+                        <div className={`flex flex-col items-center w-full z-10 pt-30 pb-28 sm:pb-32 bg-bg-50 dark:bg-bg-800`}>
+                            <WithWithout />
+                        </div>
+                    )}
 
                     {why.show && (
                         <div className={`flex flex-col items-center w-full z-10  pt-30 pb-28 sm:pb-32 bg-bg-50 dark:bg-bg-800`}>
@@ -75,13 +89,6 @@ export default function Landing({schemaData = {}}) {
                         </div>
                     )}
 
-                    {/*Pricing Section*/}
-                    {pricing.show && (
-                        <div className={`flex flex-col items-center w-full pb-10 pt-30 z-10`}>
-                            <Pricing />
-                        </div>
-                    )}
-
                     {what.show && (
                         <div className={`flex flex-col items-center w-full pt-9 z-10 pb-10`}>
                             <ImageSection
@@ -90,8 +97,41 @@ export default function Landing({schemaData = {}}) {
                                 title={what.title}
                                 subtitle={what.subtitle}
                                 description={what.description}
-                                position="right"
+                                position={what.position}
                             />
+                        </div>
+                    )}
+
+                    {who.show && (
+                        <div className={`flex flex-col items-center w-full pt-9 z-10 pb-10`}>
+                            <ImageSection
+                                image={who.imageSrc}
+                                alt={who.imageAlt}
+                                title={who.title}
+                                subtitle={who.subtitle}
+                                description={who.description}
+                                position={who.position}
+                            />
+                        </div>
+                    )}
+
+                    {how.show && (
+                        <div className={`flex flex-col items-center w-full pt-9 z-10 pb-10`}>
+                            <ImageSection
+                                image={how.imageSrc}
+                                alt={how.imageAlt}
+                                title={how.title}
+                                subtitle={how.subtitle}
+                                description={how.description}
+                                position={how.position}
+                            />
+                        </div>
+                    )}
+
+                    {/*Pricing Section*/}
+                    {pricing.show && (
+                        <div className={`flex flex-col items-center w-full pb-10 pt-30 z-10`}>
+                            <Pricing />
                         </div>
                     )}
 
@@ -122,7 +162,17 @@ export default function Landing({schemaData = {}}) {
                 </div>
 
                 <Footer
-                    border
+                    background={footer.background}
+                    border={footer.showBorder}
+                    showLogo={footer.showLogo}
+                    showAppName={footer.showAppName}
+                    showAppDescription={footer.showAppDescription}
+                    showCopyright={footer.showCopyright}
+                    showMadeWith={footer.showMadeWith}
+                    showThemeSwitcher={footer.showThemeSwitcher}
+                    showSocials={footer.showSocials}
+                    navLinks={footer.navLinks}
+                    legalLinks={footer.legalLinks}
                 />
             </main>
         </>

@@ -55,7 +55,7 @@ async function getFrontmatter(filePath) {
 
 // Dynamically generate metadata based on MDX frontmatter
 export async function generateMetadata({ params }) {
-    const { slug } = params;
+    const { slug } = await params;
     const filePath = path.join(DOCS_DIR, ...slug) + ".mdx";
     const frontmatter = await getFrontmatter(filePath);
 
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-    const { slug } = params;
+    const { slug } = await params;
     const filePath = path.join(DOCS_DIR, ...slug) + ".mdx";
 
     if (!fs.existsSync(filePath)) {

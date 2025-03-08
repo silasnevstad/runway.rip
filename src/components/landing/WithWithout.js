@@ -1,31 +1,13 @@
 import { IoCheckmarkSharp, IoCloseSharp } from "react-icons/io5";
 import Card from "@/components/atoms/Card";
-
+import { landingConfig, withWithoutsConfig } from "@/config";
 
 export default function WithWithout({
-    title = "Tired of spending hours configuring and maintaining?",
-    withoutTitle = "Without Runway",
-    withTitle = "With Runway",
-    withouts = [
-        "Manually configure authentication",
-        "Spend hours creating components",
-        "Read through endless documentation",
-        "Setup payments and subscriptions",
-        "Manage your own database",
-        "Spend hours on SEO",
-        "Setup email sending",
-        "Spend hours creating landing pages",
-    ],
-    withs = [
-        "Authentication already configured",
-        "Payments and subscriptions ready to go",
-        "50+ components ready to use",
-        "Database already setup",
-        "SEO optimized",
-        "Email setup",
-        "Landing page ready",
-        "Login and signup pages ready",
-    ],
+    title = landingConfig.withWithouts.title,
+    withoutTitle = landingConfig.withWithouts.withoutTitle,
+    withTitle = landingConfig.withWithouts.withTitle,
+    withouts = withWithoutsConfig.withouts,
+    withs = withWithoutsConfig.withs,
     cardBorderRadius = "lg",
     cardBorder = false,
 }) {

@@ -5,7 +5,7 @@ import { landingConfig, pricingConfig } from "@/config";
 import {GiftIcon} from "@heroicons/react/24/outline";
 
 export default function Pricing({
-    title = "Pricing",
+    title = landingConfig.pricing.title,
     subtitle = landingConfig.pricing.subtitle,
     cardBackground = "bg-bg-50 dark:bg-gray-900",
 }) {

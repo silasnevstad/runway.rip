@@ -41,7 +41,7 @@ export default function FeaturesGrid({
                 {features.map((feature, index) => (
                     <Card
                         key={index}
-                        className="flex flex-col items-center justify-start bg-bg-0 dark:bg-bg-800 border-bg-200 dark:border-gray-800/50"
+                        className="flex flex-col items-start text-left justify-start bg-bg-0 dark:bg-bg-800 border-bg-200 dark:border-gray-800/50"
                         padding={24}
                         color={cardColor}
                         variant={cardVariant}
@@ -50,14 +50,11 @@ export default function FeaturesGrid({
                         scale
                         shadow
                     >
-                        <div className="flex flex-col items-center w-full gap-2 mb-3">
-                            <feature.icon className="text-3xl text-primary-500" />
-                            <h3 className="text-lg font-bold">{feature.title}</h3>
-                        </div>
+                        <feature.icon className="self-center text-6xl text-primary-500 my-5" />
+                        <h3 className="text-lg font-bold">{feature.title}</h3>
                         {feature.description && (
-                            <p className="max-w-prose mb-3 text-center text-[15px] opacity-80">{feature.description}</p>
+                            <p className="max-w-prose mb-3 text-left text-[15px] opacity-80">{feature.description}</p>
                         )}
-
                         {feature.features && (
                             <ul className="mt-2 space-y-2">
                                 {feature.features.map((f, i) => (

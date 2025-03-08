@@ -1,22 +1,9 @@
 import { FaInstagram, FaXTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa6";
-import appConfig from "@/config";
+import appConfig, {landingConfig} from "@/config";
 import TextLink from "@/components/atoms/TextLink";
 import MadeWithTag from "@/components/atoms/MadeWithTag";
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
 import { mergeClasses } from "@/utils/styling";
-
-const defaultNavLinks = [
-    { title: "Pricing", href: "#pricing" },
-    { title: "Documentation", href: "/docs" },
-    { title: "Support", href: "#" },
-];
-
-const defaultLegalLinks = [
-    { title: "Policies", href: "/policies" },
-    { title: "Privacy Policy", href: "/policies/privacy" },
-    { title: "Terms of Service", href: "/policies/terms" },
-    { title: "License", href: "/policies/license" },
-];
 
 const Footer = ({
     showLogo = true,
@@ -26,8 +13,8 @@ const Footer = ({
     showMadeWith = true,
     showThemeSwitcher = true,
     showSocials = false,
-    navLinks = defaultNavLinks,  // { title, href, props }
-    legalLinks = defaultLegalLinks,  // { title, href, props }
+    navLinks = landingConfig.footer.navLinks,  // { title, href, props }
+    legalLinks = landingConfig.footer.legalLinks, // { title, href, props }
     copyrightText = "Copyright © 2025 - All Rights Reserved.",
 
     // Styling
