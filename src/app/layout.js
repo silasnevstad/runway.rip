@@ -1,10 +1,13 @@
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+
 import UserProvider from "@/contexts/UserProvider";
 import { ToastProvider } from "@/contexts/ToastProvider";
 import { getSEOTags } from "@/libs/seo";
+import { FathomAnalytics } from "@/libs/fathom/fathom";
 import appConfig from "@/config";
 import "./globals.css";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +24,7 @@ export default function RootLayout({ children }) {
                 <script defer src="https://cloud.umami.is/script.js" data-website-id="2f7ce85f-381c-479a-918f-b5b011147caa"></script>
             </head>
             <body className={inter.className}>
+                <FathomAnalytics />
                 <ThemeProvider enableSystem={true} defaultTheme={'system'} attribute="class">
                     <UserProvider>
                         <ToastProvider>
