@@ -1,13 +1,15 @@
 "use client";
+
 import React from "react";
+import { GiftIcon } from "@heroicons/react/24/outline";
+
 import PricingPlans from "@/components/payments/PricingPlans";
 import { landingConfig, pricingConfig } from "@/config";
-import {GiftIcon} from "@heroicons/react/24/outline";
+
 
 export default function Pricing({
     title = landingConfig.pricing.title,
     subtitle = landingConfig.pricing.subtitle,
-    cardBackground = "bg-bg-50 dark:bg-gray-900",
 }) {
     return (
         <section
@@ -29,7 +31,7 @@ export default function Pricing({
                     </p>
                 )}
                 <div className="flex flex-col items-center max-sm:gap-0 mt-8">
-                    <PricingPlans cardBackground={cardBackground} />
+                    <PricingPlans />
                 </div>
             </div>
         </section>

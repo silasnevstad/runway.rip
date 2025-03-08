@@ -1,4 +1,5 @@
 import { IoCheckmarkSharp, IoCloseSharp } from "react-icons/io5";
+
 import Card from "@/components/atoms/Card";
 import { landingConfig, withWithoutsConfig } from "@/config";
 
@@ -31,7 +32,9 @@ export default function WithWithout({
                     border={cardBorder}
                     shadow
                 >
-                    <h3 className="flex-1 text-xl font-semibold mb-6 text-red-500 dark:text-red-400">{withoutTitle}</h3>
+                    <h3 className="flex-1 text-xl font-semibold mb-6 text-red-500 dark:text-red-400">
+                        {withoutTitle}
+                    </h3>
                     <div className="flex flex-col gap-1">
                         {withouts.map((item, index) => (
                             <div key={index} className="flex items-start">
@@ -52,7 +55,9 @@ export default function WithWithout({
                     border={cardBorder}
                     shadow
                 >
-                    <h3 className="flex-1 text-xl font-semibold mb-6 text-green-600 dark:text-green-600">{withTitle}</h3>
+                    <h3 className="flex-1 text-xl font-semibold mb-6 text-green-600 dark:text-green-600">
+                        {withTitle}
+                    </h3>
                     <div className="flex flex-col gap-1">
                         {withs.map((item, index) => (
                             <div key={index} className="flex items-start">

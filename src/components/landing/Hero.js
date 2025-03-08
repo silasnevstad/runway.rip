@@ -1,15 +1,17 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 import { GiftIcon } from "@heroicons/react/24/outline";
+
 import Button from "@/components/atoms/Button";
 import TextHighlight from "@/components/atoms/TextHighlight";
 import MadeWith from "@/components/atoms/MadeWith";
 import AvatarsTestimonial from "@/components/organisms/testimonials/Avatars";
-import {getTextColorClass, mergeClasses} from "@/utils/styling";
-import {pricingConfig} from "@/config";
+import { getTextColorClass, mergeClasses } from "@/utils/styling";
+import { pricingConfig } from "@/config";
 
 const layoutDirection = {
     left: "flex-row",
@@ -66,7 +68,6 @@ export default function Hero({
 
     return (
         <section className={containerClasses}>
-            {/* Background Glow */}
             {backgroundGlow && (
                 <div
                     className={`absolute inset-0 z-10 pointer-events-none ${getTextColorClass(backgroundGlow)}`}

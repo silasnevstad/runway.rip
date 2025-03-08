@@ -1,23 +1,24 @@
 import React from "react";
-import Footer from "@/components/organisms/Footer";
+
 import Header from "@/components/organisms/Header";
 import Hero from "@/components/landing/Hero";
 import FeaturesCarousel from "@/components/landing/FeaturesCarousel";
+import FeaturesGrid from "@/components/landing/FeaturesGrid";
 import Why from "@/components/landing/Why";
+import WithWithout from "@/components/landing/WithWithout";
 import HowItWorks from "@/components/landing/HowItWorks";
-import Button from "@/components/atoms/Button";
+import ImageSection from "@/components/landing/ImageSection";
+import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
-import { DeparturesCard } from "@/components/molecules/CustomCards";
+import Footer from "@/components/organisms/Footer";
 import { getSchemaTags } from "@/libs/seo";
 import { landingConfig } from "@/config";
-import ImageSection from "@/components/landing/ImageSection";
+
+import Button from "@/components/atoms/Button";
+import { DeparturesCard } from "@/components/molecules/CustomCards";
 import { RocketLaunchIcon } from "@heroicons/react/24/solid";
-import Pricing from "@/components/landing/Pricing";
-import FeaturesGrid from "@/components/landing/FeaturesGrid";
-import WithWithout from "@/components/landing/WithWithout";
 
-
-export default function Landing({schemaData = {}}) {
+export default function LandingPage() {
     const {
         header,
         hero,
@@ -128,7 +129,6 @@ export default function Landing({schemaData = {}}) {
                         </div>
                     )}
 
-                    {/*Pricing Section*/}
                     {pricing.show && (
                         <div className={`flex flex-col items-center w-full pb-10 pt-30 z-10`}>
                             <Pricing />
@@ -137,7 +137,10 @@ export default function Landing({schemaData = {}}) {
 
                     {faq.show && (
                         <div className={`flex flex-col items-center mt-40 mb-30 xl:w-3/5 lg:w-4/6 md:w-4/5 w-10/12`}>
-                             <FAQ />
+                             <FAQ
+                                title={faq.title}
+                                subtitle={faq.subtitle}
+                            />
                         </div>
                     )}
 

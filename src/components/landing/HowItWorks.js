@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+
 import Badge from "@/components/atoms/Badge";
 import { StandoutCard } from "@/components/molecules/CustomCards";
 import { landingConfig, landingSteps } from "@/config";
@@ -36,8 +37,6 @@ export default function HowItWorks({
                 </div>
 
                 <StandoutCard innerClassName="flex flex-col md:flex-col gap-10 text-left shadow-md">
-                    {/* 1) Git clone */}
-                    {/* loop through steps and inex*/}
                     {steps && steps.map((step, index) => (
                         <Step
                             key={index}

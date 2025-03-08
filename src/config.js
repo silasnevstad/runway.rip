@@ -224,6 +224,7 @@ export const landingConfig = {
     faq: {
         show: true,
         title: "Frequently Asked Questions",
+        subtitle: "",
         // Scroll down to see the FAQs
     },
 

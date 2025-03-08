@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaInfinity, FaArrowDown } from "react-icons/fa6";
 import { StandoutCard } from "@/components/molecules/CustomCards";
 import { landingConfig } from "@/config";
-import {getBgColorClass} from "@/utils/styling";
+import { getBgColorClass } from "@/utils/styling";
 
 
 const TimeSpentCard = ({ hours, text, infinite = false }) => (

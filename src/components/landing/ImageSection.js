@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { mergeClasses } from "@/utils/styling";
+
+import {getTextColorClass, mergeClasses} from "@/utils/styling";
 
 export default function ImageSection({
     image,
@@ -10,14 +11,11 @@ export default function ImageSection({
     title,
     subtitle,
     description,
-    children,
+    activeColor = 'primary',
     position = 'right',
+    children,
     className,
     imageClassName,
-    textContainerClassName,
-    titleClassName,
-    subtitleClassName,
-    descriptionClassName,
     ...props
 }) {
     return (
@@ -45,28 +43,19 @@ export default function ImageSection({
                         )}
                     </div>
 
-                <div className={mergeClasses('flex-1 flex flex-col gap-3 max-w-[50ch]', textContainerClassName)}>
+                <div className="flex-1 flex flex-col gap-3 max-w-[50ch]">
                     {subtitle && (
-                        <p className={mergeClasses(
-                            'text-xl text-primary-500 opacity-90',
-                            subtitleClassName
-                        )}>
+                        <p className={`text-xl opacity-90 ${getTextColorClass(activeColor)}`}>
                             {subtitle}
                         </p>
                     )}
                     {title && (
-                        <h2 className={mergeClasses(
-                            'text-5xl font-semibold text-gray-800 dark:text-gray-100 mb-2',
-                            titleClassName
-                        )}>
+                        <h2 className="text-5xl font-semibold text-gray-800 dark:text-gray-100 mb-2">
                             {title}
                         </h2>
                     )}
                     {description && (
-                        <p className={mergeClasses(
-                            'text-base leading-relaxed text-gray-600 dark:text-gray-500',
-                            descriptionClassName
-                        )}>
+                        <p className="text-base leading-relaxed text-gray-600 dark:text-gray-500">
                             {description}
                         </p>
                     )}

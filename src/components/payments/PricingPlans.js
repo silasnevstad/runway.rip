@@ -5,9 +5,7 @@ import PricingCard from "@/components/payments/PricingCard";
 import { pricingConfig } from "@/config";
 import Switcher from "@/components/atoms/Switcher";
 
-export default function PricingPlans({
-    cardBackground = "bg-bg-50 dark:bg-gray-900",
-}) {
+export default function PricingPlans() {
     const { plans } = pricingConfig;
 
     // Let the user toggle monthly vs. yearly (default monthly)
@@ -62,7 +60,6 @@ export default function PricingPlans({
                             plan={plan}
                             interval={interval}
                             allFeatures={allFeatures}
-                            backgroundColor={cardBackground}
                         />
                     );
                 })}

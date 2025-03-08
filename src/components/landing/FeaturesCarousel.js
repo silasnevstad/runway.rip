@@ -1,7 +1,9 @@
 "use client";
+
 import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import Image from "next/image";
+
 import Card from "@/components/atoms/Card";
 import TextLink from "@/components/atoms/TextLink";
 import Carousel from "@/components/molecules/Carousel";

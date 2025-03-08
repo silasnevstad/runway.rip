@@ -9,13 +9,12 @@ export default function PricingCard({
     plan,
     interval, // the chosen interval object for this plan
     allFeatures,
-    backgroundColor = "bg-bg-50 dark:bg-gray-900",
 }) {
     const { title, description, subText, features, isPopular, mode } = plan;
 
     return (
         <div
-            className={`relative flex flex-col gap-4 p-8 rounded-2xl ${backgroundColor} shadow-sm w-80 lg:w-96 ${
+            className={`relative flex flex-col gap-4 p-8 rounded-2xl bg-bg-50 dark:bg-gray-900 shadow-sm w-80 lg:w-96 ${
                 isPopular ? "border-2 border-primary-400" : ""
             }`}
         >
