@@ -32,7 +32,7 @@ const appConfig = {
     forwardRepliesTo: "silas.nevstad@gmail.com",
 
     // Auth
-    authMethods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
+    authMethods: ['magiclink', 'google', 'github'],  // options: password, magiclink, google, apple, github
     protectedRoutes: [
         '/dashboard',
         '/account',
