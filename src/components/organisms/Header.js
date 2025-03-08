@@ -1,13 +1,14 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
+
 import TextLink from "@/components/atoms/TextLink";
 import Button from "@/components/atoms/Button";
 import AccountCard from "@/components/auth/AccountCard";
 import { mergeClasses } from "@/utils/styling";
-import { useUser } from "@/contexts/UserContext";
 import appConfig from "@/config";
 
 export default function Header({

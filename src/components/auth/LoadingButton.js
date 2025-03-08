@@ -1,5 +1,7 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+
+import React from 'react';
+
 import Button from '@/components/atoms/Button';
 
 export default function LoadingButton({ mode = 'sign-in', pending }) {
@@ -14,6 +16,17 @@ export default function LoadingButton({ mode = 'sign-in', pending }) {
         }
     };
 
+    const getLoadingLabel = () => {
+        switch (mode) {
+            case 'signup':
+                return 'Signing Up...';
+            case 'magiclink':
+                return 'Sending Magic Link...';
+            default:
+                return 'Signing In...';
+        }
+    }
+
     return (
         <Button
             type="submit"
@@ -22,7 +35,7 @@ export default function LoadingButton({ mode = 'sign-in', pending }) {
             disabled={pending}
             loading={pending}
         >
-            {pending ? 'Loading...' : getButtonLabel()}
+            {pending ? getLoadingLabel() : getButtonLabel()}
         </Button>
     );
 }

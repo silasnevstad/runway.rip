@@ -9,7 +9,7 @@ import { GiftIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/atoms/Button";
 import TextHighlight from "@/components/atoms/TextHighlight";
 import MadeWith from "@/components/atoms/MadeWith";
-import AvatarsTestimonial from "@/components/organisms/testimonials/Avatars";
+import AvatarsTestimonial from "@/components/organisms/AvatarsTestimonial";
 import { getTextColorClass, mergeClasses } from "@/utils/styling";
 import { pricingConfig } from "@/config";
 

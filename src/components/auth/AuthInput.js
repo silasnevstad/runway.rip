@@ -1,7 +1,9 @@
 "use client";
+
 import React from 'react';
+
 import Input from '@/components/atoms/Input';
-import {getTextColorClass, mergeClasses} from "@/utils/styling";
+import { mergeClasses } from "@/utils/styling";
 
 const AuthInput = ({
     color = "gray",

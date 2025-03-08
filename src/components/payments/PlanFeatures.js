@@ -1,7 +1,7 @@
 import { IoCheckmarkSharp, IoCloseSharp } from "react-icons/io5";
 
 export default function PlanFeatures({ planFeatures, allFeatures }) {
-    // Sort so that included features appear first
+    // Sort to show included features first
     const sortedFeatures = [...allFeatures].sort((a, b) => {
         const inPlanA = planFeatures.includes(a);
         const inPlanB = planFeatures.includes(b);

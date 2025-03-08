@@ -374,23 +374,16 @@ export const faqConfig = [
 
 // NOT NEEDED (JUST FOR EXAMPLE)
 // Example of subscription pricing config
-export const pricingSubscriptionConfig = {
+export const pricingSubcriptionConfig = {
+    promo: {
+        show: true,
+        price: 50,
+        text: "off for first 1000 users (12 left)",
+        code: "LAUNCH",
+    },
     plans: [
-        {
+        {  // Starter Plan
             mode: "subscription", // Recurring
-            title: "Starter",
-            description: "Get started with the basics.",
-            subText: "Pay monthly or yearly.",
-            isPopular: false,
-            features: [
-                "NextJS boilerplate",
-                "Component library",
-                "Database",
-                "Payments",
-                "Auth",
-                "Email Service",
-                "Lifetime updates",
-            ],
             intervals: [
                 {
                     name: "monthly",
@@ -408,13 +401,11 @@ export const pricingSubscriptionConfig = {
                     discountLabel: "Save 50%",
                     priceId: "price_yearly_xxx"
                 }
-            ]
-        },
-        {
-            mode: "subscription", // Recurring
-            title: "Pro",
-            description: "Unlock the full potential of Runway.",
-            isPopular: true,
+            ],
+            title: "Starter",
+            description: "",
+            subText: "Pay monthly or yearly.",
+            isPopular: false,
             features: [
                 "NextJS boilerplate",
                 "Component library",
@@ -422,9 +413,11 @@ export const pricingSubscriptionConfig = {
                 "Payments",
                 "Auth",
                 "Email Service",
-                "SEO tools",
                 "Lifetime updates",
             ],
+        },
+        { // Pro Plan
+            mode: "subscription", // "payment" (One-time purchase) or "subscription" (Recurring)
             intervals: [
                 {
                     name: "monthly",
@@ -442,9 +435,30 @@ export const pricingSubscriptionConfig = {
                     discountLabel: "Save 50%",
                     priceId: "price_yearly_xxx"
                 }
+            ],
+            title: "All-in",
+            description: "",
+            subText: "Pay once, use forever.",
+            isPopular: true,
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "SEO tools",
+                "Lifetime updates",
             ]
         }
     ]
 };
+
+// LEAVE UNTOUCHED, UNLESS YOU WANT TO ADD MORE
+export const availableOAuthProviders = [
+    { name: 'google', logoSrc: '/logos/google.png', logoAlt: 'Google' },
+    { name: 'apple', logoSrc: '/logos/apple.png', logoAlt: 'Apple' },
+    { name: 'github', logoSrc: '/logos/github.png', logoAlt: 'GitHub' },
+];
 
 export default appConfig;

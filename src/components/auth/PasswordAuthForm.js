@@ -1,9 +1,11 @@
 "use client";
-import React, {useActionState, useEffect} from 'react';
+
+import React, { useActionState, useEffect } from 'react';
+
+import AuthInput from "@/components/auth/AuthInput";
 import LoadingButton from "@/components/auth/LoadingButton";
 import { passwordSignin, passwordSignup } from '@/app/actions/auth';
-import {useToast} from "@/contexts/ToastProvider";
-import AuthInput from "@/components/auth/AuthInput";
+import { useToast } from "@/contexts/ToastProvider";
 
 const initialState = {
     errors: {

@@ -1,14 +1,16 @@
 "use client";
+
 import React from 'react';
+
 import Divider from "@/components/atoms/Divider";
 import PasswordAuthForm from "@/components/auth/PasswordAuthForm";
 import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
-import OAuthSection, { defaultOAuthProviders } from "@/components/auth/OAuthSection";
-import appConfig from "@/config";
+import OAuthButtons from "@/components/auth/OAuthButtons";
+import appConfig, { availableOAuthProviders } from "@/config";
 
 const AuthForm = ({ mode = 'sign-in' }) => {
     const authMethods = appConfig.authMethods;
-    const oauthProviders = defaultOAuthProviders.filter(provider => authMethods.includes(provider.name));
+    const oauthProviders = availableOAuthProviders.filter(provider => authMethods.includes(provider.name));
     const forms = [];
     if (authMethods.includes('magiclink')) {
         forms.push(<PasswordlessAuthForm key="magiclink" />);
@@ -20,7 +22,7 @@ const AuthForm = ({ mode = 'sign-in' }) => {
         if (forms.length > 0) {
             forms.push(<Divider key="divider" text="OR" margin={30}/>);
         }
-        forms.push(<OAuthSection key="oauth" providers={oauthProviders} />);
+        forms.push(<OAuthButtons key="oauth" providers={oauthProviders} />);
     }
     return (
         <div className="flex flex-col w-full gap-2">

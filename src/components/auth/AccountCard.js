@@ -3,11 +3,12 @@
 import React, {useEffect, useState} from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { FaRegCreditCard, FaRegCircleUser, FaRightFromBracket } from "react-icons/fa6";
-import { useUser } from "@/contexts/UserContext";
+
 import Avatar from "@/components/atoms/Avatar";
 import Button from "@/components/atoms/Button";
-import { BORDER_RADIUS, getTextSize, mergeClasses } from "@/utils/styling";
+import { useUser } from "@/contexts/UserContext";
 import { createBillingPortalSession } from "@/libs/stripe/portal";
+import { BORDER_RADIUS, getTextSize, mergeClasses } from "@/utils/styling";
 
 export default function AccountCard({
     size = "sm",
@@ -52,7 +53,7 @@ export default function AccountCard({
         bg && "bg-bg-50 dark:bg-gray-900 border border-transparent",
         bg && dropdownOpen && "border border-bg-200 dark:border-gray-800/50",
         className,
-    )
+    );
 
     return (
         <div className="relative">

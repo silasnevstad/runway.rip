@@ -1,6 +1,8 @@
 "use client";
+
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
+
 import Button from "@/components/atoms/Button";
 import { useUser } from "@/contexts/UserContext";
 

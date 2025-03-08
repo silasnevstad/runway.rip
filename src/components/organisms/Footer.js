@@ -1,9 +1,10 @@
 import { FaInstagram, FaXTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa6";
-import appConfig, {landingConfig} from "@/config";
+
 import TextLink from "@/components/atoms/TextLink";
 import MadeWithTag from "@/components/atoms/MadeWithTag";
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
 import { mergeClasses } from "@/utils/styling";
+import appConfig, { landingConfig } from "@/config";
 
 const Footer = ({
     showLogo = true,
@@ -17,7 +18,6 @@ const Footer = ({
     legalLinks = landingConfig.footer.legalLinks, // { title, href, props }
     copyrightText = "Copyright © 2025 - All Rights Reserved.",
 
-    // Styling
     background = "bg-bg-0 dark:bg-bg-900",
     border = false,
     rounded = false,
@@ -59,9 +59,6 @@ const Footer = ({
                             {socialMedia.linkedin &&  <TextLink href={socialMedia.linkedin} scale><FaLinkedinIn className="text-2xl" /></TextLink>}
                         </div>
                     )}
-
-                    {/*<Divider vertical className="max-sm:hidden" />*/}
-
                     {navLinks.length > 0 && (
                         <div className="flex flex-col gap-2 max-sm:items-center max-sm:text-center">
                             <p className="text-md font-semibold opacity-50 mb-1">Links</p>

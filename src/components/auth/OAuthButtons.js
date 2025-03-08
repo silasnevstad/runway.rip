@@ -1,6 +1,5 @@
 "use client";
 import React from 'react';
-import Divider from '@/components/atoms/Divider';
 import OAuthButton from "@/components/auth/OAuthButton";
 import { signinWithOAuth } from '@/app/actions/auth';
 import { useToast } from "@/contexts/ToastProvider";

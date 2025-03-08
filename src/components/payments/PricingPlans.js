@@ -34,7 +34,6 @@ export default function PricingPlans() {
 
     return (
         <div className="flex flex-col gap-8 w-full">
-
             {/* Only show a toggle if at least one plan has multiple intervals. */}
             {hasIntervalToggle && (
                 <div className="flex items-center justify-center">
@@ -46,7 +45,9 @@ export default function PricingPlans() {
                         selected={activeInterval}
                         onChange={handleToggle}
                         className="justify-center"
-                        shape="rounded-md"
+                        color="bg"
+                        variant="soft"
+                        borderRadius="4xl"
                     />
                 </div>
             )}

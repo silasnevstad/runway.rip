@@ -7,7 +7,7 @@ import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 
 export default function PricingCard({
     plan,
-    interval, // the chosen interval object for this plan
+    interval,
     allFeatures,
 }) {
     const { title, description, subText, features, isPopular, mode } = plan;
@@ -41,6 +41,7 @@ export default function PricingCard({
                     <RocketLaunchIcon className="w-5 h-5" />
                     {mode === "subscription" ? "Subscribe" : "Buy Now"}
                 </CheckoutButton>
+
                 {subText && (
                     <p className="text-sm font-semibold opacity-40 text-center">
                         {subText}
