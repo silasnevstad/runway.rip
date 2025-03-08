@@ -1,6 +1,7 @@
 "use client";
 
 import React, {useEffect, useState} from "react";
+import { useRouter } from "next/navigation";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { FaRegCreditCard, FaRegCircleUser, FaRightFromBracket } from "react-icons/fa6";
 
@@ -10,6 +11,7 @@ import { useUser } from "@/contexts/UserContext";
 import { createBillingPortalSession } from "@/libs/stripe/portal";
 import { signout } from "@/app/actions/auth";
 import { BORDER_RADIUS, getTextSize, mergeClasses } from "@/utils/styling";
+
 
 export default function AccountCard({
     size = "sm",
@@ -25,6 +27,7 @@ export default function AccountCard({
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [billingPortalUrl, setBillingPortalUrl] = useState(null);
     const { user } = useUser();
+    const router = useRouter();
 
     useEffect(() => {
         const createBillingPortalUrl = async () => {
@@ -55,6 +58,11 @@ export default function AccountCard({
         bg && dropdownOpen && "border border-bg-200 dark:border-gray-800/50",
         className,
     );
+
+    const handleLogout = async () => {
+        await signout();
+        router.refresh();
+    };
 
     return (
         <div className="relative">
@@ -101,9 +109,7 @@ export default function AccountCard({
                         </Button>
                     )}
                     <Button
-                        onClick={async () => {
-                            await signout();
-                        }}
+                        onClick={handleLogout}
                         variant="soft"
                         color="gray"
                         className="text-left justify-start py-1.5 m-1 mt-0 text-sm bg-bg-50 dark:bg-gray-900"

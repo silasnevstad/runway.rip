@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-
-import { UserProvider } from "@/contexts/UserContext";
+import UserProvider from "@/contexts/UserProvider";
 import { ToastProvider } from "@/contexts/ToastProvider";
 import { getSEOTags } from "@/libs/seo";
 import appConfig from "@/config";

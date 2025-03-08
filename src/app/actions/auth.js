@@ -101,7 +101,4 @@ export async function signout() {
     if (error) {
         return { errors: { signout: error.message } };
     }
-
-    revalidatePath("/", "layout");
-    redirect("/");
 }
