@@ -135,7 +135,7 @@ export const mdxComponents = {
     ),
     Caution: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-orange-500/20 rounded-lg border-l-4 rounded-l-none border-orange-500 p-2 my-4">
-            <ExclamationTriangleIcon className="w-6 h-6 text-orange-500 inline-block mt-2" />
+            <ExclamationTriangleIcon className="w-6 h-6 min-w-6  text-orange-500 inline-block mt-2" />
             {children}
         </div>
     ),
@@ -147,7 +147,7 @@ export const mdxComponents = {
     ),
     Divider: Divider,
     a: ({ href, children }) => (
-        <Link href={href} className="text-green-500 dark:text-green-600 hover:text-green-700 underline">
+        <Link href={href} className="text-green-600 dark:text-green-600 hover:text-green-700 underline">
             {children}
         </Link>
     ),
@@ -164,19 +164,10 @@ export const mdxComponents = {
     InlineHighlight: InlineHighlight,
     code: Code,
     PreviewCode: PreviewCode,
-    TutorialGuide: ({ options, children }) => {
-        const [firstPage, secondPage] = React.Children.toArray(children);
-        return (
-            <TutorialGuide
-                options={options}
-                firstPage={firstPage}
-                secondPage={secondPage}
-            />
-        );
-    },
+    TutorialGuide: TutorialGuide,
     table: ({ children }) => (
         <div className="w-full overflow-x-auto">
-            <table className="table-auto min-w-max border-collapse">
+            <table className="table-auto min-w-full border-collapse">
                 {children}
             </table>
         </div>

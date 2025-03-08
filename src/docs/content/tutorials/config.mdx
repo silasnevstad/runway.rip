@@ -12,11 +12,11 @@ onThisPage:
     href: "#payments"
   - title: "Landing"
     href: "#landing"
+  - title: "Color Theme"
+    href: "#color-theme"
 ---
 
 <div id="overview" />
-
-<br/>
 
 The `config.js` file is the heart of your application. It handles everything from your app's name, to which auth methods
 to use, to your payment configuration, and even the content of your landing page.
@@ -28,12 +28,13 @@ to use, to your payment configuration, and even the content of your landing page
     - [Auth](#auth)
     - [Emails](#emails)
     - [Waitlist Mode](#waitlist)
-    - [Payment Integration](#payment-integration)
+    - [Customer Tracking](#customer-tracking)
 - [Payments](#payments)
 - [Landing Page](#landing)
     - [Features](#features)
     - [FAQs](#faqs)
     - [Withs & Withouts](#with-withouts)
+- [Color Theme](#color-theme)
 
 
 <Callout>
@@ -49,7 +50,13 @@ to use, to your payment configuration, and even the content of your landing page
 
 The `AppConfig` object is the core of your application. I've split it up into a couple sections:
 
-<div className="my-15"/>
+- [General](#general)
+- [Auth](#auth)
+- [Emails](#emails)
+- [Waitlist Mode](#waitlist)
+- [Customer Tracking](#customer-tracking)
+
+<div className="my-10"/>
 
 <div id="general" />
 ### General
@@ -77,6 +84,14 @@ const appConfig = {
     }
 };
 ```
+
+| Key               | Description                                                                                           |
+|-------------------|-------------------------------------------------------------------------------------------------------|
+| `appName`         | The name of your app.                                                                                 |
+| `appDescription`  | A short description of your app.                                                                      |
+| `domain`          | The domain of your app.                                                                                |
+| `legal`           | An object containing the legal policies of your app.                                                  |
+| `socialMedia`     | An object containing the social media links of your app.                                              |
 
 <div className="my-5"/>
 
@@ -108,14 +123,18 @@ const appConfig = {
 };
 ```
 
+| Key               | Description                                                                                           |
+|-------------------|-------------------------------------------------------------------------------------------------------|
+| `authMethods`     | A list of authentication methods to enable (`password`, `magiclink`, `google`, `apple`, or `github`). |
+| `protectedRoutes` | An array of routes that require authentication.                                                       |
+| `afterLoginPath`  | The path to redirect to after a successful login.                                                     |
+| `afterSignupPath` | The path to redirect to after a successful signup.                                                    |
+
 <div className="my-5"/>
 
 Simply **add the auth methods** you want to use to the `authMethods` array (any combination works).
 
 Then **remember to add the routes you want to protect** to the `protectedRoutes` array (the middleware will take care of the rest).
-
-`afterLoginPath` is where the user will be redirected after logging in. The `afterSignupPath` is where the user will be
-redirected after they sign up. They can both be left untouched.
 
 <br />
 <div id="emails" />
@@ -131,6 +150,11 @@ const appConfig = {
     noReplyEmail: "Runway <noreply@mail.runway.rip>"
 };
 ```
+
+| Key               | Description                                                                                           |
+|-------------------|-------------------------------------------------------------------------------------------------------|
+| `supportEmail`    | The email address for support.                                                                        |
+| `noReplyEmail`    | The email address for no-reply emails.                                                                |
 
 <div className="my-5"/>
 
@@ -151,6 +175,12 @@ const appConfig = {
 };
 ```
 
+| Key                     | Description                                                                       |
+|-------------------------|-----------------------------------------------------------------------------------|
+| `waitlistMode`          | If true, the app will be in waitlist mode.                                        |
+| `waitlistAllowedRoutes` | An array of routes that are allowed to be accessed without being on the waitlist. |
+| `waitlistRedirect`      | The path to redirect to if the user is not on the waitlist.                       |
+
 <div className="my-5"/>
 
 If you want to enable the waitlist mode, set `waitlistMode` to `true`. This will redirect all routes not specified in
@@ -161,18 +191,23 @@ If you want to enable the waitlist mode, set `waitlistMode` to `true`. This will
 </Tip>
 
 <br />
-<div id="payment-integration" />
-### Payment Integration
+<div id="customer-tracking" />
+### Customer Tracking
 
 <div className="my-5"/>
 
 ```config.js
 const appConfig = {
-    // Payment Integration
+    // Customer Tracking
     requiredCustomerId: true,
     afterCheckoutPath: '/account'
 };
 ```
+
+| Key                  | Description                                                               |
+|----------------------|---------------------------------------------------------------------------|
+| `requiredCustomerId` | If true, the app will require a customer ID to create a checkout session. |
+| `afterCheckoutPath`  | The path to redirect to after a successful checkout.                      |
 
 <div className="my-5"/>
 
@@ -183,8 +218,6 @@ const appConfig = {
 <Caution>
     Setting up [Supabase Auth](/docs/features/auth) is required to track your customers.
 </Caution>
-
-`afterCheckoutPath` is where the user will be redirected after checking out. It can be left untouched.
 
 <br />
 <br />
@@ -234,6 +267,16 @@ export const pricingConfig = {
     ]
 };
 ```
+
+| Key           | Description                                                                                                            |
+|---------------|------------------------------------------------------------------------------------------------------------------------|
+| `mode`        | The mode of the plan (`payment` or `subscription`).                                                                    |
+| `intervals`   | An array of intervals for the plan, providing [Stripe](https://stripe.com) price IDs (only one for one-time payments). |
+| `title`       | The title of the plan.                                                                                                 |
+| `description` | A short description of the plan.                                                                                       |
+| `subText`     | A subtext for the plan.                                                                                                |
+| `isPopular`   | If true, the plan will be highlighted as popular.                                                                      |
+| `features`    | An array of features included in the plan.                                                                             |
 
 <div className="my-5"/>
 
@@ -317,9 +360,149 @@ export const pricingConfig = {
 <div id="landing" />
 ## Landing Page
 
-The `landingConfig` object is used to configure your landing page. It is used by the [`Hero`](/docs/components/landing/hero),
-[`Features`](/docs/components/landing/features), [`Pricing`](/docs/components/landing/pricing), [`Faqs`](/docs/components/landing/faqs),
-[`WithWithouts`](/docs/components/landing/with-withouts), and [`Testimonials`](/docs/components/landing/testimonials) components.
+The `landingConfig` object is used to configure and customize your landing page. It is used by the [`Hero`](/docs/components/landing/hero),
+[`Features`](/docs/components/landing/features), [`Pricing`](/docs/components/landing/pricing), [`Faqs`](/docs/components/landing/faqs), etc.
+
+It's quite lengthy, so I'll let you explore it yourself. But here's a quick overview:
+
+```config.js
+export const landingConfig = {
+    header: {
+        sticky: false,
+        background: "bg-bg-0 dark:bg-bg-900",
+        showLogo: true,
+        showAppName: true,
+        navLinks: [
+            { title: "Features", href: "#features" },
+            { title: "Pricing", href: "#pricing" },
+            { title: "FAQ", href: "#faq" },
+        ],
+        ctaButton: {
+            label: 'Get Started',
+            href: '/get-started',
+        },
+    },
+    hero: {
+        textHighlight: {
+            text: "Code less, launch faster.",
+            highlight: "launch faster.",
+            fromGradient: "primary",
+            toGradient: "purple",
+        },
+        textPosition: "center",
+        image: {
+            src: "/images/hero.svg",
+            alt: "Hero Image"
+        },
+        description: "A complete Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
+        buttonText: "Get Started",
+    },
+    features: {
+        show: true,
+        type: "carousel", // "carousel" or "grid"
+    },
+    faq: {
+        show: true,
+    },
+    ...
+};
+```
+
+| Key            | Description                                                     |
+|----------------|-----------------------------------------------------------------|
+| `header`       | An object containing the header configuration.                  |
+| `hero`         | An object containing the hero section configuration.            |
+| `features`     | An object containing the features section configuration.        |
+| `withWithouts` | An object containing the with & withouts section configuration. |
+| `what`         | An object containing the what section configuration.            |
+| `who`          | An object containing the who section configuration.             |
+| `how`          | An object containing the how section configuration.             |
+| `faq`          | An object containing the FAQ section configuration.             |
+
+<div className="my-5"/>
+
+Walk through the `landingConfig` and customize it to your liking.
+
+<br />
+<div id="features" />
+### Features
+
+Add your own features to the `featuresConfig` object.
+
+```config.js
+export const featuresConfig = [
+    {
+        title: "Auth",
+        description: "Implement robust user auth...",
+        features: ["Magic links & Social auth",...],
+        icon: FaUserShield,
+    },
+    ...
+];
+```
+
+<br />
+<div id="faqs" />
+### FAQs
+
+The `faqsConfig` object is used to configure the FAQs section.
+
+```config.js
+export const faqConfig = [
+    {
+        title: "What is the refund policy?",
+        content: "We offer..."
+    },
+    ...
+];
+```
+
+<br />
+<div id="with-withouts" />
+### With & Withouts
+
+The `withWithoutConfig` object is used to configure the [WithWithouts](/docs/components/landing/with-withouts) section.
+
+```config.js
+export const withWithoutConfig = {
+    with: [
+        "Everything",
+        ...
+    ],
+    without: [
+        "Nothing",
+        ...
+    ],
+};
+```
+
+<br />
+<br />
+<Divider />
+<div id="color-theme" />
+## Color Theme
+
+To change the colors of your app, go into `globals.css`, scroll down and change the `--color-` variables.
+
+I recommend you change `primary` and `bg`, the rest use normal Tailwind colors (`red`, `blue`, `green`, etc).
+
+```css
+@theme {
+  --color-primary-0: #fdfdfd;
+  --color-primary-50: #f0f1ff;
+  ...
+}
+```
+
+<Info>
+    [Tailwind](https://tailwindcss.com) uses tones of colors, so you can use any of them, i.e. `text-primary-100`, `bg-primary-600`, etc.
+</Info>
+
+
+
+
+
+
 
 
 

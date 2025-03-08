@@ -3,22 +3,28 @@ import {
     handleSubscriptionUpdated,
     handleSubscriptionDeleted,
 } from "@/libs/stripe/subscriptionHandlers";
-import { sendThankYouEmail } from "@/libs/resend/resend";
 
 /**
  * Handle checkout session completed event.
  */
 async function handleCheckoutSessionCompleted(session) {
-    const { email } = session.customer_details || {};
-    if (email) {
-        await sendThankYouEmail({ userEmail: email });
-    }
+    // For example:
+    // const { email } = session.customer_details || {};
+    // if (email) {
+    //     await sendThankYouEmail({ userEmail: email });
+    // }
+    console.log("Checkout session completed for:", session.customer_details?.email);
 }
 
 /**
  * Handle checkout session expired event.
  */
 async function handleCheckoutSessionExpired(session) {
+    // For example:
+    // const { email } = session.customer_details || {};
+    // if (email) {
+    //     await sendExpirationEmail({ userEmail: email });
+    // }
     console.log("Checkout session expired for:", session.customer_details?.email);
 }
 

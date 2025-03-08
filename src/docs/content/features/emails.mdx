@@ -17,11 +17,9 @@ sites:
     href: "https://mailgun.com"
 ---
 
-<Divider />
-
 <div id="choose-email-provider" />
 
-Choose between either [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com).
+Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com), or use both.
 
 **Resend** is a modern email service that offers a simple API, great performance but <span className="underline">cannot receive emails</span>.
 
@@ -58,6 +56,11 @@ Choose between either [Resend](https://resend.com) or [Mailgun](https://www.mail
                 ```.env.local
                 NEXT_PUBLIC_RESEND_API_KEY=re_...
                 ```
+
+            <Callout>
+                You can also connect [Resend's](https://resend.com) SMTP service to your [Supabase](https://supabase.com),
+                so that magic links and other emails are sent from your domain.
+            </Callout>
 
             <br />
 
@@ -146,11 +149,6 @@ Choose between either [Resend](https://resend.com) or [Mailgun](https://www.mail
                 attachments
             });
             ```
-
-            <Callout>
-                You can also connect [Resend's](https://resend.com) SMTP service to your [Supabase](https://supabase.com),
-                so that magic links and other emails are sent from your domain.
-            </Callout>
 
             <br />
             <br />

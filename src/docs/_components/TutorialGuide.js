@@ -2,8 +2,15 @@
 import React, { useState } from 'react';
 import Switcher from "@/components/atoms/Switcher";
 
-const TutorialGuide = ({ options, firstPage, secondPage }) => {
+const TutorialGuide = ({ options, children }) => {
+    const childArray = React.Children.toArray(children).filter(child =>
+        React.isValidElement(child)
+    );
     const [selectedOption, setSelectedOption] = useState(options[0].value);
+
+    // Find the index of the current option.
+    const selectedIndex = options.findIndex(option => option.value === selectedOption);
+    const selectedChild = childArray[selectedIndex];
 
     return (
         <div className="flex flex-col items-start">
@@ -14,7 +21,7 @@ const TutorialGuide = ({ options, firstPage, secondPage }) => {
                 hover={true}
                 shape="rounded-xl"
             />
-            {selectedOption === options[0].value ? firstPage : secondPage}
+            {selectedChild}
         </div>
     );
 };

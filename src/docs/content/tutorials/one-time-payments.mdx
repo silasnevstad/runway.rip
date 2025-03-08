@@ -4,14 +4,6 @@ description: "Setting up one-time payments using Stripe."
 onThisPage:
   - title: "Overview"
     href: "#overview"
-  - title: "Setup"
-    href: "#setup"
-  - title: "Creating a Checkout Session"
-    href: "#creating-a-checkout-session"
-  - title: "Testing Your Payment"
-    href: "#testing-your-payment"
-  - title: "Additional Tips"
-    href: "#additional-tips"
 related:
   - title: "Stripe Setup"
     href: "/docs/features/payments"
@@ -26,58 +18,39 @@ sites:
 
 <div id="overview" />
 
-First, if you haven't already, set up [Stripe](/docs/features/payments) in your app.
-<br />
+1. Set up [Stripe](/docs/features/payments) in your app.
 
-<div id="setup" />
+2. If you don't care about storing the user's status/access, set [`appConfig.requiredCustomerId`](/docs/tutorials/config#customer-tracking) to `false`
+(e.g. if not using auth and purely using [Stripe](https://stripe.com/dashboard/) to manage your customers).
 
-Nice, now you've completed that, we're pretty much done already!
-All that's left is deciding how you want to showcase your product's pricing plans and testing before going live.
+    <Caution>
+        If you do want to store the user's status/access, make sure you have set up [Auth](/docs/tutorials/authentication) and [profiles table](/docs/features/db#profiles) (ensure you have the `handle_new_user` function to create Stripe customers on sign up).
+    </Caution>
 
-<br />
+3. By default, the landing page will now show a [`Pricing`](/docs/landing/pricing) component. Place or modify this however you like:
 
-You can either use the [`Pricing`](/docs/landing/pricing) component to show all pricing plans.
+     ```javascript
+     import Pricing from "@/components/landing/Pricing";
+     <Pricing />
+     ```
 
-```javascript
-import Pricing from "@/components/landing/Pricing";
+    Or simply use the [`CheckoutButton`](/docs/components/checkout-button) component to create a checkout button for your product.
 
-<Pricing />
-```
-
-<Callout>
-    Easy as that! [`Pricing`](/docs/landing/pricing) pulls everything it needs from [`pricingConfig`](/docs/tutorials/config).
-</Callout>
-
-<br />
-
-Or, if you want a simpler flow use the [`CheckoutButton`](/docs/components/checkout-button) component to create a checkout button for your product.
-
-```javascript
-import CheckoutButton from "@/components/payments/CheckoutButton";
-import { pricingConfig } from "@/config";
-
-<CheckoutButton
-  mode="payment"
-  priceId={pricingConfig.plans[0].intervals[0].priceId}
->
-    Buy Now
-</CheckoutButton>
-```
-
-<Caution>
-    Have to provide your own `mode` and `priceId` props.
-</Caution>
+     ```javascript
+     import CheckoutButton from "@/components/payments/CheckoutButton";
+     <CheckoutButton
+       mode="subscription"
+       priceId="price_1N..."
+     >
+         Subscribe Now
+     </CheckoutButton>
+     ```
 
 <br />
 
+And you're done!
 
-## Testing
-
-<div id="testing-your-payment" />
-
-Now that you have everything set up, it's time to test your payment flow before going live.
-
-1. Make sure you have the Test mode API keys in your `.env.local` file.
-
-2. Open `http://localhost:3000` in your browser.
+<Tip>
+    Remember to test everything in Test mode before going to Live mode. You can use the test card number 4242 4242 4242 4242 for a successful payment.
+</Tip>
 

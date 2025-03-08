@@ -84,7 +84,7 @@ export default function FeedbackForm() {
 | rating         | number                      | `undefined` | The current rating if you want to control the component externally. If provided, the component becomes controlled.                   |
 | onRatingChange | (newRating: number) => void | `undefined` | Callback that fires when the user selects a new rating. Use this to control the rating from outside the component.                   |
 | responsive     | boolean                     | `false`     | Enables hover & click interactivity. If false, the stars will only reflect the static rating and will not respond to hover or click. |
-| color          | string                      | `"yellow"`  | The base color for filled stars (uses [tailwind.config](/docs/tutorials/config)).                                                    |
+| color          | string                      | `"yellow"`  | The base color for filled stars (uses [tailwind.config](/docs/tutorials/config#color-theme)).                                                    |
 | initialRating  | number                      | `0`         | If the component is used in an uncontrolled fashion (no `rating` prop), this sets the initial rating.                                |
 | className      | string                      | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the container.                                                            |
 | ...props       | object                      | -           | Any other valid `<div>` attributes (e.g. `role`, `aria-*`, etc.).                                                                    |

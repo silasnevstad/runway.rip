@@ -26,14 +26,12 @@ export const DocsNav = [
         icon: <MapIcon className="w-4 h-4" />,
         items: [
             { title: "Launch in 5 minutes", href: "/docs/tutorials/launch-in-5-minutes" },
-            { title: "Config", href: "/docs/tutorials/config" },
-            { title: "Stripe Setup", href: "/docs/tutorials/stripe" },
-            { title: "Supabase Setup", href: "/docs/tutorials/supabase" },
             { title: "User authentication", href: "/docs/tutorials/authentication" },
             { title: "One Time Payments", href: "/docs/tutorials/one-time-payments" },
             { title: "Subscriptions", href: "/docs/tutorials/subscriptions" },
-            { title: "Domain", href: "/docs/tutorials/domain-setup" },
-            { title: "Emails", href: "/docs/tutorials/email-setup" },
+            { title: "Stripe", href: "/docs/tutorials/stripe" },
+            { title: "Supabase", href: "/docs/tutorials/supabase" },
+            { title: "Config", href: "/docs/tutorials/config" },
         ],
     },
     {
