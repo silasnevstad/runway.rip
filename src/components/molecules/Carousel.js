@@ -224,7 +224,6 @@ function SingleCarousel({
 /**
  * MULTI-ITEM MODE
  * We do the simpler approach: measure one item’s width, shift by activeIndex * itemWidth.
- * Optionally fade/scale the center item if fadeCenter is true (the “activeIndex”).
  */
 function MultiCarousel({
     children,

@@ -114,7 +114,7 @@ export const DocsNav = [
                     { title: "Breadcrumb", href: "/docs/components/breadcrumb" },
                     { title: "Button", href: "/docs/components/button" },
                     { title: "Card", href: "/docs/components/card" },
-                    { title: "Carousel", href: "/docs/components/carousel" },
+                    // { title: "Carousel", href: "/docs/components/carousel" },
                     { title: "Checkbox", href: "/docs/components/checkbox" },
                     { title: "CheckoutButton", href: "/docs/components/checkout-button" },
                     { title: "CodeBlock", href: "/docs/components/code-block" },

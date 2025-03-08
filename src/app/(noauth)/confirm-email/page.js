@@ -18,7 +18,7 @@ export default function Page() {
                     Please check your email and click on the link to confirm your email.
                 </p>
             </div>
-            <Button href={appConfig.afterLoginPath} variant="solid" lift size="sm">
+            <Button href="/login" variant="solid" lift size="sm">
                 Continue
             </Button>
         </main>

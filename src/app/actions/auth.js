@@ -23,7 +23,7 @@ export async function passwordSignup(prevState, formData) {
         email,
         password,
         options: {
-            redirectTo: process.env.WEBSITE_URL + "/auth/confirm",
+            redirectTo: process.env.WEBSITE_URL + appConfig.afterSignupPath,
         }
     });
     if (error) {

@@ -8,6 +8,7 @@ import Avatar from "@/components/atoms/Avatar";
 import Button from "@/components/atoms/Button";
 import { useUser } from "@/contexts/UserContext";
 import { createBillingPortalSession } from "@/libs/stripe/portal";
+import { signout } from "@/app/actions/auth";
 import { BORDER_RADIUS, getTextSize, mergeClasses } from "@/utils/styling";
 
 export default function AccountCard({
@@ -100,7 +101,9 @@ export default function AccountCard({
                         </Button>
                     )}
                     <Button
-                        href="/logout"
+                        onClick={async () => {
+                            await signout();
+                        }}
                         variant="soft"
                         color="gray"
                         className="text-left justify-start py-1.5 m-1 mt-0 text-sm bg-bg-50 dark:bg-gray-900"
