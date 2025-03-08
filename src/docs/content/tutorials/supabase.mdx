@@ -10,26 +10,16 @@ onThisPage:
 
 1. Create a [Supabase](https://supabase.com/sign-up) account.
 
-2. Create a [new project](http://database.new).
+2. Create a [new project](http://database.new) and find your project `URL` and `anon public` API key.
 
-3. Get your project `URL` and `anon public` API key, they should look something like this:
-
-    ```plaintext
-    https://<project-id>.supabase.co
-    ```
-
-    ```plaintext
-    eyXXX.eyXXX.C-UIPXXX
-    ```
-
-4. Copy them into `.env.local`:
+3. Copy them into `.env.local`:
 
     ```.env.local
     NEXT_PUBLIC_SUPABASE_URL=https://<project-id>.supabase.co
     NEXT_PUBLIC_SUPABASE_ANON_KEY=eyXXX.eyXXX.C-UIPXXX
     ```
 
-5. Head to [Email Templates](https://supabase.com/dashboard/project/_/auth/templates) and depending on the auth methods you're using,
+4. Head to [Email Templates](https://supabase.com/dashboard/project/_/auth/templates) and depending on the auth methods you're using,
 update the appropriate templates:
 
     - If you are using magic link auth, update the `Magic Link` template.
@@ -49,11 +39,11 @@ update the appropriate templates:
         Our `/auth/confirm` route will handle the confirmation and redirect the user to the appropriate page.
     </Info>
 
-6. If using [Resend](/docs/features/emails#resend), you can also update the [SMTP Settings](https://supabase.com/dashboard/project/cpnazmlhikivzgcemgzp/auth/smtp) to use Resend's SMTP service.
+5. If using [Resend](/docs/features/emails#resend), you can also update the [SMTP Settings](https://supabase.com/dashboard/project/cpnazmlhikivzgcemgzp/auth/smtp) to use Resend's SMTP service.
 You can find your SMTP in the [Settings](https://resend.com/settings/smtp) of your Resend project.
 
     <Tip>
         This will allow you to send magic links and other emails from your domain.
     </Tip>
 
-7. Going to production? Update your [Site URL](https://supabase.com/dashboard/project/_/auth/url-configuration) to your production URL.
+6. Going to production? Update your [Site URL](https://supabase.com/dashboard/project/_/auth/url-configuration) to your production URL.

@@ -3,8 +3,10 @@ title: "Project Structure"
 related:
   - title: "Installation"
     href: "/docs/installation"
-  - title: "Configuration"
-    href: "/docs/configuration"
+  - title: "Launch in 5 Minutes"
+    href: "/docs/tutorials/launch-in-5-minutes"
+  - title: "Config"
+    href: "/docs/tutorials/config"
 sites:
   - title: "Next.js Project Structure"
     href: "https://nextjs.org/docs/getting-started/project-structure"
@@ -24,14 +26,12 @@ onThisPage:
 ---
 
 
-<div>
-    Runway follows a typical [Next.js](http://nextjs.org) project structure with some custom organization.
+Runway follows a typical [Next.js](http://nextjs.org) App router project structure with some custom organization.
 
-    If you're unfamiliar with Next.js, I recommend checking out their
-    [project structure documentation](https://nextjs.org/docs/getting-started/project-structure) for a solid foundation.
+If you're unfamiliar with Next.js, I recommend checking out their
+[project structure documentation](https://nextjs.org/docs/getting-started/project-structure).
 
-    Lets walk through the key elements of the Runway project structure
-</div>
+Let's briefly go over the key parts of our project structure.
 
 <br />
 <Divider />
@@ -42,21 +42,22 @@ onThisPage:
 
 At the root of the project, you'll find these key elements:
 
-| Folder/File                     | Description                                |
-|---------------------------------|--------------------------------------------|
-| [`src/`](#src-folder-structure) | Contains all the application source code   |
-| `public/`                       | Stores static assets to be served directly |
-| `.env.local`                    | Holds local environment variables          |
-| `package.json`                  | Lists project dependencies and scripts     |
+| Folder/File                     | Description                                               |
+|---------------------------------|-----------------------------------------------------------|
+| [`src/`](#src-folder-structure) | Contains all the application source code                  |
+| `public/`                       | Stores static assets to be served directly                |
+| `.env.local`                    | Holds local environment variables                         |
+| `tailwind.config.js`            | Configuration for [Tailwind CSS](https://tailwindcss.com) |
+| `.gitignore`                    | Specifies files and directories to ignore in Git          |
+| `package.json`                  | Lists project dependencies and scripts                    |
+| `README.md`                     | Provides project documentation                            |
 
 The `src` folder contains all of our application code, while `public` is for static assets. The `.env.local` file stores all
 our local environment variables (API keys, etc.).
 
-<br />
-
-<Warning>
+<Caution>
     Never commit your `.env.local` file to version control. It contains sensitive information like API keys and should be kept private.
-</Warning>
+</Caution>
 
 <br />
 <br />
@@ -69,7 +70,7 @@ Inside the `src` folder, we organize our code into several directories:
 
 | Path                                  | Description                                                     |
 |---------------------------------------|-----------------------------------------------------------------|
-| [`app`](#app-directory-structure)     | Contains the Next.js 13+ App Router structure                   |
+| [`app`](#app-directory-structure)     | Contains the Next.js App Router structure                       |
 | [`components`](#components-directory) | Houses React components organized by atomic design              |
 | `contexts`                            | Stores React context providers for global state management      |
 | `libs`                                | Contains shared libraries and utilities (e.g., Stripe, Mailgun) |
@@ -78,12 +79,8 @@ Inside the `src` folder, we organize our code into several directories:
 This structure allows for a modular approach to development, separating concerns and making it easier to find and
 maintain different parts of the application.
 
-Check out the [Components](/docs/components) documentation for more information on the atomic design methodology.
-
-<br />
-
 <Info>
-    The `src` folder is optional in Next.js, but it's a good practice for keeping your project root clean and organized.
+    The `src` folder is optional in Next.js, however, I prefer the added organization it provides.
 </Info>
 
 <br />
@@ -104,7 +101,7 @@ The `app` directory is the heart of our Next.js application, structured as follo
 | `auth`                          | Holds authentication-related files and logic                           |
 | `lib`                           | Stores library files specific to the app directory                     |
 
-This structure leverages [Next.js 13's app router](https://nextjs.org/docs/app), allowing for easy organization of authenticated and public routes.
+This structure leverages [Next.js app router](https://nextjs.org/docs/app), allowing for easy organization of authenticated and public routes.
 
 <Tip>
     Use route groups (folders starting with parentheses) to organize your routes without affecting the URL structure.
@@ -117,12 +114,16 @@ This structure leverages [Next.js 13's app router](https://nextjs.org/docs/app),
 
 The `(noauth)` directory contains our public-facing pages:
 
-| Path       | Description                                             |
-|------------|---------------------------------------------------------|
-| `docs`     | Documentation pages for users and developers            |
-| `login`    | The user login page                                     |
-| `policies` | Legal pages such as privacy policy and terms of service |
-| `signup`  | The user registration page                              |
+| Path            | Description                                             |
+|-----------------|---------------------------------------------------------|
+| `login`         | The user login page                                     |
+| `signup`        | The user registration page                              |
+| `confirm-email` | The email confirmation page for new users               |
+| `policies`      | Legal pages such as privacy policy and terms of service |
+| `waitlist`      | A page for users to join a waitlist if applicable       |
+| `layout.js`     | The layout applied to all public pages                  |
+| `page.js`       | The landing page of the application (`/`)               |
+
 
 <br />
 
@@ -131,10 +132,8 @@ The `(noauth)` directory contains our public-facing pages:
 
 The `(auth)` directory contains our authenticated pages, add as many as needed.
 
-<br />
-
 <Info>
-    Runway automatically redirects users to the login page if they try to access an authenticated route without being logged in.
+    Our middleware automatically redirects users to the login page if they try to access an authenticated route without being logged in.
 </Info>
 
 <br />
@@ -151,10 +150,11 @@ We use the atomic design methodology to organize our React components:
 | `atoms`     | Basic building blocks like buttons, inputs, and labels          |
 | `molecules` | Slightly more complex components composed of atoms              |
 | `organisms` | Large, complex components often composed of molecules and atoms |
+| `landing`   | Components specific to the landing page                         |
+| `auth`      | Components related to authentication                            |
+| `payments`  | Components related to payments and subscriptions                |
 
 This structure promotes reusability and maintainability of our UI components.
-
-<br />
 
 <Tip>
     When creating new components, consider their reusability. If a component is used in multiple places, it might belong in the `atoms` or `molecules` directory.
@@ -201,14 +201,6 @@ These conventions allow for intuitive and powerful routing capabilities within o
     Use `loading.js` to create seamless loading experiences for your users. It's automatically used by Next.js for route segments.
 </Tip>
 
-<Warning>
+<Caution>
     Be cautious when using `route.js` in the same directory as `page.js`. They can conflict and lead to unexpected behavior.
-</Warning>
-
-
-<br />
-
-This structure allows for a clear separation of concerns, making it easier to navigate and maintain the project as it
-grows. For more detailed information on specific parts of the project, refer to the related documentation pages.
-
-<br />
+</Caution>

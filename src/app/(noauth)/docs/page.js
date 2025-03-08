@@ -28,8 +28,10 @@ export default function DocsIndexPage() {
                 </div>
                 <div className="flex flex-col gap-4 mb-6 w-full">
                     <h2 className="text-2xl font-semibold">Recommended Tutorials</h2>
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                        <TutorialCard title="Launch in 5 minutes" description="Get started with Runway" href="/docs/launch-in-5-minutes" />
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        <TutorialCard title="Installing" description="Get Runway up and running locally" href="/docs/installation" />
+                        <TutorialCard title="Launch in 5 minutes" description="Get started with Runway" href="/docs/tutorial/launch-in-5-minutes" />
+                        <TutorialCard title="Config.js" description="Configure the app to your needs" href="/docs/tutorial/config" />
                     </div>
                 </div>
             </div>

@@ -188,35 +188,31 @@ Now we need to set up webhooks to listen for events from Stripe. This is skippab
 
 2. Select these events to listen to:
 
- - `checkout.session.completed`
- - `checkout.session.expired`
+     - `checkout.session.completed`
+     - `checkout.session.expired`
 
-If you are using subscriptions, also select:
- - `customer.subscription.deleted`
- - `invoice.paid`
- - `invoice.payment_failed`
+    If you are using subscriptions, also select:
+     - `customer.subscription.deleted`
+     - `customer.subscription.created`
+     - `customer.subscription.updated`
 
 3. Select 'Webhook endpoint' as destination type.
 
 4. Paste this URL as the endpoint URL (replace `YOURDOMAIN.COM` with your domain):
 
- ```plaintext
- http://YOURDOMAIN.COM/api/stripe/webhooks
+    ```plaintext
+    http://YOURDOMAIN.COM/api/stripe/webhooks
     ```
-
-<Tip>
-    Don't have a domain? Check out [Domain](/docs/tutorials/domain) tutorial.
-</Tip>
 
 5. Create the endpoint and copy the signing secret (`whsec_...`) into `.env.local`:
 
- ```.env.local
- NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET=whsec_...
+    ```.env.local
+    NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET=whsec_...
     ```
 
-<Caution>
-    Make sure you test everything Test mode before going to Live mode. You can use the test card number 4242 4242 4242 4242 for a successful payment.
-</Caution>
+<Callout>
+    This webhook will listen for events from Stripe and update the user's access in the database.
+</Callout>
 
 <br />
 

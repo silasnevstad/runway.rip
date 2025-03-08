@@ -1,67 +1,58 @@
 ---
 title: "Installation"
-description: "Learn how to install and set up the project"
+description: "Get your app up and running in minutes"
 related:
+  - title: "Launch in 5 Minutes"
+    href: "/docs/tutorials/launch-in-5-minutes"
   - title: "Project Structure"
     href: "/docs/project-structure"
 onThisPage:
-  - title: "System Requirements"
-    href: "#system-requirements"
-  - title: "Set up the project"
-    href: "#set-up-the-project"
+  - title: "Getting Started"
+    href: "#download"
+  - title: "Next Steps"
+    href: "#next-steps"
 ---
 
-Once you're done, you can check out the [Launch in 5 Minutes](/docs/tutorials/launch-in-5-minutes) tutorial to learn how to deploy your project in minutes.
+<div id="download" />
 
-Let's get started! 🚀
+[//]: # (### Getting Started)
 
-<br/>
-
-<div id="system-requirements" />
-### System Requirements
-
-<ul className="ml-0.5 list-disc list-inside flex flex-col text-sm">
-    <li>
-        [Node.js (version 14 or higher)](https://nodejs.org/en/)
-    </li>
-    <li>
-        [npm (version 6 or higher)](https://www.npmjs.com/) or [yarn (version 1.22 or higher)](https://yarnpkg.com/)
-    </li>
-</ul>
-
-<br/>
-<br/>
-
-<div id="set-up-the-project" />
-### Set up the project
-
-Follow these steps to get Runway.js up and running on your local machine:
-
-1. Clone the repository and install dependencies:
+1. Open your terminal and run the following commands:
 
     ```bash
-    `git clone git@github.com:silasnevstad/runway-js.git`
-    `cd runway-js`
-    `npm install`
+    git clone https://github.com/silasnevstad/runway-js.git [YOUR-PROJECT-NAME]
+    cd [YOUR-PROJECT-NAME]
+    npm install
+    git remote remove origin
     ```
 
-    <Info>
-        If you prefer using Yarn, you can replace `npm install` with `yarn install`.
-    </Info>
-    <br />
+    <Caution>
+        Runway requires [Node.js](https://nodejs.org/en/) version 18 or higher.
+        Type `node -v` to check your version.
+    </Caution>
+    <div className="my-10"/>
+
 2. Rename `.env.example` to `.env.local`
     ```bash
-    `mv .env.example .env.local`
+    mv .env.example .env.local
     ```
 
-<Caution>
-    Make sure to add your own environment variables to `.env.local` before running the project.
-</Caution>
+    <Tip>
+        For now you can leave the `.env.local` file as is. We'll configure it in the next steps.
+    </Tip>
+    <div className="my-10"/>
+
+3. Open [`http://localhost:3000`](http://localhost:3000) in your browser.
 
 <br />
+<br />
+<div id="next-steps" />
+### Next Steps
 
-3. Open <InlineHighlight type="navigation">http://localhost:3000</InlineHighlight> and done!
+Next, I recommend you spend a second going over the [Project Structure](/docs/project-structure).
 
-<br />
-<br />
-<br />
+Or, if you're ready to get started, check out the following tutorials:
+- [Launch in 5 minutes](/docs/tutorials/config)
+- [Configure your app](/docs/tutorials/config)
+- [Set up authentication](/docs/tutorials/authentication)
+
