@@ -1,13 +1,12 @@
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+
 import { UserProvider } from "@/contexts/UserContext";
 import { ToastProvider } from "@/contexts/ToastProvider";
 import { getSEOTags } from "@/libs/seo";
 import appConfig from "@/config";
 import "./globals.css";
 
-
-// 💡 Load your font(s)...
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = getSEOTags({

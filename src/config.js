@@ -141,10 +141,10 @@ export const landingConfig = {
             toGradient: "purple",
             // color: "primary"
         },
-        textPosition: "left",
+        textPosition: "center",
         image: {
-            src: "/images/hero.svg",
-            alt: "Hero Image"
+            // src: "/images/hero.svg",
+            // alt: "Hero Image"
         },
         description: "A complete Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
         buttonText: "Get Started",
