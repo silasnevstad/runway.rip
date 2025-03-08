@@ -1,0 +1,173 @@
+---
+title: "Launch ASAP"
+description: "Get your app in front of your customers in minutes."
+related:
+  - title: "Installation"
+    href: "/docs/installation"
+  - title: "Project Structure"
+    href: "/docs/project-structure"
+  - title: "Config"
+    href: "/docs/features/config"
+  - title: "Auth"
+    href: "/docs/features/auth"
+  - title: "Payments"
+    href: "/docs/features/payments"
+  - title: "Deployment"
+    href: "/docs/tutorials/deployment"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Setting Up Your Landing Page"
+    href: "#setting-up-your-landing-page"
+  - title: "Customizing Your Copy"
+    href: "#customizing-your-copy"
+  - title: "Next Steps"
+    href: "#next-steps"
+---
+
+<div id="overview" />
+
+Before you begin, make sure you’ve completed the [installation](/docs/installation) guide so your project is up and running.
+
+Runway is wired to pull in settings from [`config.js`](/docs/features/config).
+That means you only need to focus on updating your config to change the app’s behavior, style, and copy.
+
+<br />
+
+1. Open **`src/config.js`** and update the common settings to reflect your app’s details. At a minimum, update:
+
+    - **App Information:**
+    Modify `appName`, `appDescription`, and `domain` to match your app.
+
+    ```js
+    const appConfig = {
+        // General
+        appName: 'Your App Name',
+        appDescription: 'Your App Description',
+        domain: 'yourdomain.com',
+        legal: { policies: { privacy: '/policies/privacy', terms: '/policies/terms', license: '/policies/license' } },
+        socialMedia: { twitter: '', instagram: '', github: '', linkedin: '' }
+    };
+    ```
+
+    <Info>
+        - `socialMedia` can be left empty if you don't want social links.
+        - The `legal.policies` already point to the default policies. You can update them later.
+        **If you do not want policies delete the `/policies` folder.**
+        - These settings are used all over the app (SEO, footer, etc.)
+    </Info>
+
+    <br />
+
+2. Decide whether you want to enable [authentication](/docs/features/auth) and [payments](/docs/features/payments):
+
+    ```js
+    const appConfig = {
+        // Auth
+        auth: {
+            // add any of ['password', 'magiclink', 'google', 'github', 'apple']
+            methods: [],
+            protectedRoutes: ['/dashboard', '/account'],
+            afterLoginPath: '/account',
+            afterSignupPath: '/confirm-email'
+        },
+
+        // Payment
+        payment: {
+            // Set to false if you don't need payments now.
+            enabled: true,
+            requiredCustomerId: true,
+            afterCheckoutPath: '/account'
+        }
+    };
+    ```
+
+    Add the auth methods you want to use (`['password', 'magiclink', 'google', 'github', 'apple']`).
+
+    <Info>
+        - The `afterLoginPath` and `afterSignupPath` keys are used to redirect users after they log in or sign up (no need to change them).
+        - The `protectedRoutes` key is used to protect routes that require authentication.
+    </Info>
+
+    <div className="my-4" />
+
+    <Callout>
+        If you’re not ready for full auth/payments, you might use waitlist mode to start collecting leads.
+
+        ```js
+        waitlist: {
+            enabled: true,
+            allowedRoutes: ['/waitlist', '/docs'],
+            redirect: '/waitlist'
+        },
+        ```
+
+        You need to setup [Supbase](/docs/tutorials/supabase) and [waitlist table](/docs/features/db#waitlist-table) to use this feature.
+    </Callout>
+
+    <br />
+
+3. Customize the landing page, `(noauth)/page.js`. Your landing page is powered by the `landingConfig` object in [`config.js`](/docs/features/config#landing).
+
+    This object controls every section of your landing page without you needing to touch any component code.
+
+    <Tip>
+        Feel free to start from scratch my just deleting `/src/app/(noauth)/page.js`.
+        You can use the Runway's components to build your own page.
+    </Tip>
+
+    For example:
+
+    - **Hero Section:**
+    Update the headline, description, and call-to-action button.
+
+    ```js
+    export const landingConfig = {
+        hero: {
+            textHighlight: {
+                text: "Code less, launch faster.",
+                highlight: "launch faster.",
+                fromGradient: "primary",
+                toGradient: "purple"
+            },
+            textPosition: "center",
+            description: "A complete Next.js boilerplate to help you focus on innovation.",
+            buttonText: "Get Started",
+            buttonHref: "#pricing",
+            image: { ... },
+            trustedBy: { show: false }
+        }
+    };
+    ```
+
+    <div className="my-6" />
+
+    - **Features Section:**
+    Add or remove features as needed.
+
+    ```js
+    export const featuresConfig = [
+        {
+            title: "Auth",
+            description: "Implement user auth...",
+            features: ["Magic links & Social auth",...],
+            icon: FaUserShield,
+        },
+        ...
+    ];
+    ```
+
+    <div className="my-6" />
+
+    Adjust the copy and visibility of other sections as needed (`faq`, `pricing`, `cta`, `withWithouts`, etc.)
+
+    <Callout>
+        Play around with different layouts and content to find what works best for you.
+    </Callout>
+
+
+<br />
+
+Run `npm run dev` and visit [`http://localhost:3000`](http://localhost:3000) to see your live landing page.
+
+Once you're happy, it's time to deploy your app. Check out the [Deployment](/docs/tutorials/deployment) guide for more details.

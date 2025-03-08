@@ -54,7 +54,7 @@ export default function Button({
         border && `border ${borderSet.border}`,
         borderRadius && borderRadiusClass,
         shadow && "shadow-md",
-        getHoverClasses({ lift, scale, active }),
+        getHoverClasses({ lift, scale, active, rotate: true}),
         disabled || loading ? "cursor-not-allowed opacity-50" : "cursor-pointer",
         className
     );

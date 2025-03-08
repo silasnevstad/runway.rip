@@ -71,7 +71,7 @@ The `Checkbox` component provides a customizable checkbox input with various sty
 
 ## Usage
 
-```javascript
+```js
 import Checkbox from '@/components/atoms/checkbox';
 
 const [hasAgreed, setHasAgreed] = useState(false);
@@ -101,7 +101,7 @@ const [hasAgreed, setHasAgreed] = useState(false);
 | labelPosition | "left" \| "right"    | `"right"`   | The position of the label relative to the checkbox.              |
 | helperText    | string               | -           | Additional helper text for the checkbox.                         |
 | size          | "sm" \| "md" \| "lg" | `"md"`      | The size of the checkbox.                                        |
-| color         | string               | `"primary"` | The base color (from [tailwind.config](/docs/tutorials/config#color-theme)). |
+| color         | string               | `"primary"` | The base color (from [tailwind.config](/docs/features/config#color-theme)). |
 | borderRadius  | string               | `"md"`      | The border radius of the checkbox.                               |
 | borderColor   | string               | `"gray"`    | The border color of the checkbox.                                |
 | border        | boolean              | `false`     | If true, adds a border.                                          |
@@ -136,7 +136,7 @@ const [hasAgreed, setHasAgreed] = useState(false);
         checked
     />
 }>
-```javascript
+```js
 <Checkbox
     id="terms"
     name="terms"
@@ -157,7 +157,7 @@ const [hasAgreed, setHasAgreed] = useState(false);
         labelPosition="left"
     />
 }>
-```javascript
+```js
 <Checkbox
   id="newsletter"
   name="newsletter"
@@ -182,7 +182,7 @@ const [hasAgreed, setHasAgreed] = useState(false);
         checked
     />
 }>
-```javascript
+```js
 <Checkbox
     color="purple"
     id="darkMode"
@@ -206,7 +206,7 @@ const [hasAgreed, setHasAgreed] = useState(false);
         helperText="Keep me logged in"
     />
 }>
-```javascript
+```js
 <Checkbox
   id="rememberMe"
   name="rememberMe"
@@ -228,7 +228,7 @@ const [hasAgreed, setHasAgreed] = useState(false);
         lift
     />
 }>
-```javascript
+```js
 <Checkbox
   id="hover"
   name="hover"
@@ -250,7 +250,7 @@ const [hasAgreed, setHasAgreed] = useState(false);
         disabled
     />
 }>
-```javascript
+```js
 <Checkbox
   id="disabled"
   name="disabled"

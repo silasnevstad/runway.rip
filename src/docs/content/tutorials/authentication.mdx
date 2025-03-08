@@ -10,7 +10,7 @@ related:
   - title: "Supabase Setup"
     href: "/docs/tutorials/supabase"
   - title: "Config"
-    href: "/docs/tutorials/config"
+    href: "/docs/features/config"
   - title: "PasswordAuthForm"
     href: "/docs/components/auth/password-auth-form"
   - title: "PasswordlessAuthForm"
@@ -23,12 +23,14 @@ related:
 
 1. Set up your [Supabase](/docs/tutorials/supabase).
 
-2. Simply plug the auth methods you want into [`appConfig`](/docs/tutorials/config#auth) and the `/signup` and `/login` pages will
+2. Simply plug the auth methods you want into [`appConfig`](/docs/features/config#auth) and the `/signup` and `/login` pages will
 automatically adjust to your choices.
 
     ```config.js
     const appConfig = {
-        authMethods: ['magiclink', 'google'],
+        auth: {
+            methods: ['magiclink', 'google'],
+        }
     };
     ```
 
@@ -40,10 +42,12 @@ automatically adjust to your choices.
 
     ```config.js
     const appConfig = {
-        protectedRoutes: [
-            '/dashboard',
-            '/account'
-        ]
+        auth: {
+            protectedRoutes: [
+                '/dashboard',
+                '/account'
+            ]
+       }
     };
     ```
 
@@ -137,4 +141,9 @@ Easy as that! You're all set up with a secure and ready-to-use authentication sy
     </div>
 </TutorialGuide>
 
+<Caution>
+    Going to production?
+    Make sure to update your [Site URL](https://supabase.com/dashboard/project/_/auth/url-configuration) to your production URL.
+    Then add `https://yourdomain.com/**` and `http://localhost:3000/**` to [Redirect URLs].
+</Caution>
 

@@ -9,15 +9,21 @@ export function mergeClasses(...classLists) {
 }
 
 // getHoverClasses returns hover, active, and lift/scale classes based on the provided options.
-export function getHoverClasses({ lift = false, scale = false, active = false }) {
+export function getHoverClasses({
+    lift = false,
+    scale = false,
+    active = false,
+    rotate = false,
+}) {
     const classes = ["transition-all duration-200 ease-in-out"];
     if (lift) classes.push("hover:-translate-y-0.5");
-    if (scale) classes.push("hover:scale-[1.03]");
+    if (scale) classes.push("hover:scale-[1.03] rotate-[0.02deg]");
     if (active) {
         classes.push("active:scale-[0.97]");
     } else {
         classes.push("active:scale-none");
     }
+    if (rotate) classes.push("hover:rotate-15");
     return classes.join(" ");
 }
 

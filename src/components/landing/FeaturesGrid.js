@@ -12,7 +12,7 @@ export default function FeaturesGrid({
     subtitle = landingConfig.features.title,
     description = landingConfig.features.subtitle,
     features = featuresConfig,
-    titleColor = "primary",
+    titleColor = landingConfig.features.titleColor,
     cardBorderRadius = "lg",
     cardBorder = true,
     cardColor = "bg",
@@ -24,21 +24,25 @@ export default function FeaturesGrid({
             id="features"
             className="flex flex-col items-center w-full"
         >
-            {title && (
-                <p className={`text-md font-extrabold  text-center mb-2 ${getTextColorClass(titleColor)}`}>
-                    {title}
-                </p>
-            )}
-            {subtitle && (
-                <p className="max-w-3xl text-4xl font-extrabold text-gray-800 dark:text-gray-100 text-center mb-4">
-                    {subtitle}
-                </p>
-            )}
-            {description && (
-                <p className="max-w-4xl text-base font-normal text-gray-600 dark:text-gray-400 text-center mb-14">
-                    {description}
-                </p>
-            )}
+            <div
+                className="flex flex-col items-center max-w-prose px-4"
+            >
+                {title && (
+                    <p className={`text-md font-extrabold  text-center mb-2 ${getTextColorClass(titleColor)}`}>
+                        {title}
+                    </p>
+                )}
+                {subtitle && (
+                    <p className="max-w-3xl text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
+                        {subtitle}
+                    </p>
+                )}
+                {description && (
+                    <p className="max-w-4xl text-base font-normal text-gray-800 dark:text-gray-400 text-center mb-14">
+                        {description}
+                    </p>
+                )}
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-screen-xl px-4">
                 {features.map((feature, index) => (
                     <Card
@@ -52,7 +56,7 @@ export default function FeaturesGrid({
                         scale
                         shadow
                     >
-                        <feature.icon className="self-center text-6xl text-primary-500 my-5" />
+                        <feature.icon className="self-center text-6xl text-primary-600 dark:text-primary-500 my-5" />
                         <h3 className="text-lg font-bold">{feature.title}</h3>
                         {feature.description && (
                             <p className="max-w-prose mb-3 text-left text-[15px] opacity-80">{feature.description}</p>

@@ -1,7 +1,8 @@
 import { getSEOTags } from "@/libs/seo";
+import appConfig from "@/config";
 
 export const metadata = getSEOTags({
-    title: "Dashboard | Runway",
+    title: `Dashboard | ${appConfig.appName}`,
     canonicalUrlRelative: "/dashboard",
 });
 

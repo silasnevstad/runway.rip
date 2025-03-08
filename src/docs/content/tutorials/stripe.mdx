@@ -79,9 +79,9 @@ test them, and then repeat the steps in Live mode.
 
 3. Fill in the product details and select either `Recurring` or `One-off` for the pricing.
 
-4. Copy the price ID (`price_1N...`) into [`config.js`](/docs/tutorials/config#payments).
+4. Copy the price ID (`price_1N...`) into [`config.js`](/docs/features/config#payments).
 
-    ```javascript
+    ```js
     export const pricingConfig = {
         plans: [
             {
@@ -112,14 +112,14 @@ test them, and then repeat the steps in Live mode.
     ```
 
     <Tip>
-        In [`config.js`](/docs/tutorials/config#payments), I have provided a sample configuration for both one-time and recurring payments, select the one that fits your product.
+        In [`config.js`](/docs/features/config#payments), I have provided a sample configuration for both one-time and recurring payments, select the one that fits your product.
         You can simply have one plan if you want.
     </Tip>
 
-5. Tweak the [`pricingConfig`](/docs/tutorials/config#payments) object in [`config.js`](/docs/tutorials/config) to match your product.
-For more info checkout [pricing config documentation](/docs/tutorials/config#payments).
+5. Tweak the [`pricingConfig`](/docs/features/config#payments) object in [`config.js`](/docs/features/config) to match your product.
+For more info checkout [pricing config documentation](/docs/features/config#payments).
 
-     ```javascript
+     ```js
      export const pricingConfig = {
         plans: [
              {
@@ -173,7 +173,7 @@ For more info checkout [pricing config documentation](/docs/tutorials/config#pay
     ```
 
 <Callout>
-    The [`Pricing`](/docs/landing/pricing) component will automatically pull everything it needs from the [`pricingConfig`](/docs/tutorials/config#payments) object.
+    The [`Pricing`](/docs/landing/pricing) component will automatically pull everything it needs from the [`pricingConfig`](/docs/features/config#payments) object.
 </Callout>
 
 <br />

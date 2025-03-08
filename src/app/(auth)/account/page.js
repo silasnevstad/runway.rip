@@ -1,8 +1,9 @@
 import UserForm from "@/app/(auth)/account/UserForm";
 import { getSEOTags } from "@/libs/seo";
+import appConfig from "@/config";
 
 export const metadata = getSEOTags({
-    title: "Account | Runway",
+    title: `Account | ${appConfig.appName}`,
     canonicalUrlRelative: "/account",
 });
 

@@ -3,11 +3,11 @@
 import React from "react";
 
 import Accordion from "@/components/molecules/Accordion";
-import { faqConfig } from "@/config";
+import { faqConfig, landingConfig } from "@/config";
 
 export default function FAQ({
-    title = "Frequently Asked Questions",
-    subtitle = "Have a question? We have an answer.",
+    title = landingConfig.faq.title,
+    subtitle = landingConfig.faq.subtitle,
 }) {
     return (
         <section

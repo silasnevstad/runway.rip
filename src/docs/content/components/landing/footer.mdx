@@ -14,7 +14,7 @@ related:
   - title: "TextLink"
     href: "/docs/components/text-link"
   - title: "Config"
-    href: "/docs/tutorials/config"
+    href: "/docs/features/config"
 ---
 
 <div id="overview" />
@@ -28,7 +28,7 @@ related:
 <br />
 
 The `Footer` component is a customizable footer that can include a **logo**, **app name**, **description**, **social media buttons**,
-(all pulled from [config.js](/docs/tutorials/config)), as well as **navigation** and **legal links**.
+(all pulled from [config.js](/docs/features/config)), as well as **navigation** and **legal links**.
 
 <Callout>
     It uses [`TextLink`](/docs/components/text-link) components for its links so you can pass any prop to it.
@@ -48,10 +48,10 @@ pass them in as props.
 
 ## Usage
 
-The component automatically pulls the **logo** and **app name** from [config.js](/docs/tutorials/config) if they are defined, so you can simply
+The component automatically pulls the **logo** and **app name** from [config.js](/docs/features/config) if they are defined, so you can simply
 import the component and use it like this:
 
-```javascript
+```js
 import Footer from '@/components/organisms/Header';
 
 <Footer
@@ -63,7 +63,7 @@ import Footer from '@/components/organisms/Header';
 <br/>
 
 Since `Footer` uses the `TextLink` component, you can pass any prop to it. For example:
-```javascript
+```js
 {
     title: "Documentation",
     href: "/docs"
@@ -92,7 +92,7 @@ Since `Footer` uses the `TextLink` component, you can pass any prop to it. For e
 | navLinks          | array   | `[]`                                        | Array of navigation links. Each link is an object with `title`, `href`, and optional `props`. |
 | legalLinks        | array   | `[]`                                        | Array of legal links. Each link is an object with `title`, `href`, and optional `props`.      |
 | copyrightText     | string  | `"Copyright © 2025 - All Rights Reserved."` | Copyright text.                                                                               |
-| background        | string  | `"bg-bg-0 dark:bg-bg-900"`                  | Background color (use [tailwind.config](/docs/tutorials/config#color-theme)).                             |
+| background        | string  | `"bg-bg-0 dark:bg-bg-900"`                  | Background color (use [tailwind.config](/docs/features/config#color-theme)).                             |
 | border            | boolean | `false`                                     | If true, a border will be displayed.                                                          |
 | rounded           | boolean | `true`                                      | If true, the footer will have rounded top corners (can change side).                          |
 | className         | string  | `""`                                        | Additional [Tailwind](https://tailwindcss.com) utility classes.                               |
@@ -111,7 +111,7 @@ Since `Footer` uses the `TextLink` component, you can pass any prop to it. For e
 <PreviewCode preview={
     <Footer />
 }>
-```javascript
+```js
 <Footer />
 ```
 </PreviewCode>
@@ -125,7 +125,7 @@ Since `Footer` uses the `TextLink` component, you can pass any prop to it. For e
         showSocials={false}
     />
 }>
-```javascript
+```js
 <Footer
     showDescription={false}
     showSocials={false}
@@ -149,7 +149,7 @@ Since `Footer` uses the `TextLink` component, you can pass any prop to it. For e
         ]}
     />
 }>
-```javascript
+```js
 <Footer
     navLinks={[
         { title: 'Documentation', href: '/docs' },
@@ -173,7 +173,7 @@ Since `Footer` uses the `TextLink` component, you can pass any prop to it. For e
         legalLinks={[]}
     />
 }>
-```javascript
+```js
 <Footer
     navLinks={[]}
     legalLinks={[]}
@@ -190,7 +190,7 @@ Since `Footer` uses the `TextLink` component, you can pass any prop to it. For e
         rounded={true}
     />
 }>
-```javascript
+```js
 <Footer
     border={true}
     rounded={true}

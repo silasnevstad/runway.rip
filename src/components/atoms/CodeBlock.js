@@ -33,7 +33,7 @@ const CodeBlock = ({
             {(copy || showLanguage) && (
                 <div className="flex items-center justify-between p-2.5 pr-3 bg-bg-100 dark:bg-bg-800 rounded-t-lg border-b border-bg-200 dark:border-gray-800/40">
                     {showLanguage ? (
-                        <p className="text-xs font-medium opacity-50">{language}</p>
+                        <p className="text-xs font-mono opacity-50">{language}</p>
                     ) : (
                         <p></p>
                     )}

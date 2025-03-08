@@ -23,30 +23,35 @@ const appConfig = {
     },
 
     // Auth
-    authMethods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
-    protectedRoutes: [
-        '/dashboard',
-        '/account',
-    ],
-    afterLoginPath: '/account',
-    afterSignupPath: '/confirm-email',  // This is only need if
+    auth: {
+        methods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
+        protectedRoutes: [
+            '/dashboard',
+            '/account',
+        ],
+        afterLoginPath: '/account',
+        afterSignupPath: '/confirm-email',  // This is only need if
+    },
+
 
     // Email
-    supportEmail: "Runway Support <support@mail.runway.rip>",
-    noReplyEmail: "Runway <noreply@mail.runway.rip>",
+    emails: {
+        support: "Runway Support <support@mail.runway.rip>",
+        noReply: "Runway <noreply@mail.runway.rip>",
+    },
 
     // Waitlist / Pre-Launch Mode:
-    // When enabled and the environment is production (NODE_ENV === 'production'), all routes not specified
-    // in waitlistAllowedRoutes will be redirected to waitlistRedirect. This is useful for when you are still
-    // building your app and want to collect emails before launch.
-    waitlistMode: true,
-    waitlistAllowedRoutes: ['/waitlist', '/docs'],
-    waitlistRedirect: '/waitlist',
+    waitlist: {
+        enabled: true,
+        allowedRoutes: ['/waitlist', '/docs'],
+        redirect: '/waitlist'
+    },
 
-    // Payment Integration
-    // Set to true to enable integration with Supabase profiles (creates & tracks Stripe customers)
-    requiredCustomerId: true,
-    afterCheckoutPath: '/account',
+    payment: {
+        enabled: true,
+        requiredCustomerId: true,
+        afterCheckoutPath: '/account',
+    },
 };
 
 export const pricingConfig = {
@@ -143,6 +148,7 @@ export const landingConfig = {
         },
         description: "A complete Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
         buttonText: "Get Started",
+        buttonHref: "#pricing",
         trustedBy: {
             show: false,
             text: "Trusted by 200+ people",
@@ -160,6 +166,7 @@ export const landingConfig = {
         type: "carousel", // "carousel" or "grid"
         title: "Tired of starting from scratch?",
         subtitle: "Tired of having to set up auth, payments, databases, components, SEO,... the list goes on. Runway has everything you need to launch your ideas.",
+        titleColor: "primary",
     },
 
     withWithouts: {
@@ -223,6 +230,14 @@ export const landingConfig = {
         // Scroll down to see the FAQs
     },
 
+    cta: {
+        show: true,
+        title: "Get Runway, launch, and go!",
+        subtitle: "Stop waiting and start building your project today.",
+        buttonText: "Launch",
+        buttonHref: "#pricing",
+    },
+
     footer: {
         background: "bg-bg-0 dark:bg-bg-900",
         showLogo: true,
@@ -233,6 +248,7 @@ export const landingConfig = {
         showThemeSwitcher: true,
         showSocials: false,
         showBorder: true,
+        rounded: true,
         navLinks: [
             { title: "Pricing", href: "#pricing" },
             { title: "Documentation", href: "/docs" },

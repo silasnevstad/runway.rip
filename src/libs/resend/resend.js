@@ -21,7 +21,7 @@ export async function sendEmail({ to, from, subject, message, tags, replyTo }) {
 
 export async function sendThankYouEmail({to}) {
     return await resend.emails.send({
-        from: appConfig.noReplyEmail,
+        from: appConfig.emails.noReply,
         to: Array.isArray(to) ? to : [to],
         subject: 'Thank you for your order!',
         react: ThankYouEmailTemplate(),
@@ -30,7 +30,7 @@ export async function sendThankYouEmail({to}) {
 
 export async function sendAbandonedCartEmail({ to, cartItems }) {
     return await resend.emails.send({
-        from: appConfig.noReplyEmail,
+        from: appConfig.emails.noReply,
         to: Array.isArray(to) ? to : [to],
         subject: 'You left something behind!',
         react: EmailTemplate({ message: `You have items in your cart: ${cartItems.join(', ')}` }),

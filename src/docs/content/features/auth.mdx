@@ -10,7 +10,7 @@ related:
   - title: "Supabase Setup"
     href: "/docs/tutorials/supabase"
   - title: "Config"
-    href: "/docs/tutorials/config"
+    href: "/docs/features/config"
   - title: "AccountCard"
     href: "/docs/components/auth/account-card"
   - title: "PasswordAuthForm"
@@ -27,13 +27,15 @@ related:
 
 Let's walk through the authentication system! Follow [Supabase Setup](/docs/tutorials/supabase) first to get your project set up.
 
-Simply plug the auth methods you want into [`appConfig`](/docs/tutorials/config) and the `/signup` and `/login` pages will
+Simply plug the auth methods you want into [`appConfig`](/docs/features/config) and the `/signup` and `/login` pages will
 automatically adjust to your choices.
 
 ```config.js
 const appConfig = {
     // Auth
-    authMethods: ['magiclink', 'google'],
+    auth: {
+        methods: ['magiclink', 'google'],
+    }
 };
 ```
 

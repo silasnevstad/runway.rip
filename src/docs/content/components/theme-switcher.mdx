@@ -46,7 +46,7 @@ It's built using the [`Switcher`](/docs/components/switcher) component with [nex
 Since Runway already has [next-themes](https://github.com/pacocoursey/next-themes) set up in combination with
 [Tailwind](https://tailwindcss.com), using the `ThemeSwitcher` is super easy:
 
-```javascript
+```js
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
 
 <ThemeSwitcher />
@@ -69,7 +69,7 @@ The `TextLink` component accepts the following props:
 
 | Name         | Type                        | Default  | Description                                                                                                              |
 |--------------|-----------------------------|----------|--------------------------------------------------------------------------------------------------------------------------|
-| color        | string                      | `gray`   | The color of the `Switcher` (see [tailwind.config](/docs/tutorials/config#color-theme)).                                             |
+| color        | string                      | `gray`   | The color of the `Switcher` (see [tailwind.config](/docs/features/config#color-theme)).                                             |
 | variant      | "soft" \| "solid"           | `soft`   | The variant of the `Switcher`.                                                                                           |
 | size         | "xs" \|"sm" \| "md" \| "lg" | `sm`     | The size of the `Switcher`.                                                                                              |
 | borderRadius | string                      | `"full"` | [Tailwind](https://tailwindcss.com) border-radius class (e.g. `"none"`, `"xs"`, `"sm"`, `"md"`, `"lg"`, `"full"`, etc.). |
@@ -100,7 +100,7 @@ Just drop it in your app and you're good to go!
         <ThemeSwitcher />
     }
 >
-    ```javascript
+    ```js
     <ThemeSwitcher />
     ```
 </PreviewCode>
@@ -121,7 +121,7 @@ You can customize the `color`, `size`, and all the other props.
         />
     }
 >
-    ```javascript
+    ```js
     <ThemeSwitcher
         color="orange"
         size="lg"
@@ -146,7 +146,7 @@ You can customize the `color`, `size`, and all the other props.
         />
     }
 >
-    ```javascript
+    ```js
     <ThemeSwitcher
         color="red"
         size="lg"

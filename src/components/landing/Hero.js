@@ -11,7 +11,7 @@ import TextHighlight from "@/components/atoms/TextHighlight";
 import MadeWith from "@/components/atoms/MadeWith";
 import AvatarsTestimonial from "@/components/organisms/AvatarsTestimonial";
 import { getTextColorClass, mergeClasses } from "@/utils/styling";
-import { pricingConfig } from "@/config";
+import {landingConfig, pricingConfig} from "@/config";
 
 const layoutDirection = {
     left: "flex-row",
@@ -27,29 +27,21 @@ const alignment = {
 
 export default function Hero({
     textHighlight = {
-        text: "Most engaging hook ever!",
-        highlight: "ever!",
-        color: "",
-        fromGradient: "primary",
-        toGradient: "purple",
+        text: landingConfig.hero.textHighlight.text,
+        highlight: landingConfig.hero.textHighlight.highlight,
+        color: landingConfig.hero.textHighlight.color,
+        fromGradient: landingConfig.hero.textHighlight.fromGradient,
+        toGradient: landingConfig.hero.textHighlight.toGradient,
     },
-    description = "Your app description",
-    buttonText = "Get started",
-    buttonSubText = "",
-    showTrustedBy = true,
-    trustedBy = {
-        text: "Trusted by the best",
-        avatars: [
-            { src: "/avatar1.png", alt: "Avatar 1"},
-            { src: "/avatar2.png", alt: "Avatar 2"},
-            { src: "/avatar3.png", alt: "Avatar 3"},
-            { src: "/avatar1.png", alt: "Avatar 1"},
-        ],
-    },
-    textPosition = "center", // 'left' | 'center' | 'right'
-    imageSrc = "",
-    imageAlt = "",
-    backgroundGlow = "",
+    description = landingConfig.hero.description,
+    buttonText = landingConfig.hero.buttonText,
+    buttonSubText = landingConfig.hero.buttonSubText,
+    showTrustedBy = landingConfig.hero.trustedBy.show,
+    trustedBy = landingConfig.hero.trustedBy,
+    textPosition = landingConfig.hero.textPosition, // 'left' | 'center' | 'right'
+    imageSrc = landingConfig.hero.image.src,
+    imageAlt = landingConfig.hero.image.alt,
+    backgroundGlowColor = "",
     glowOpacity = 0.5,
     glowSize = "30%",
     glowBlur = 100,
@@ -68,9 +60,9 @@ export default function Hero({
 
     return (
         <section className={containerClasses}>
-            {backgroundGlow && (
+            {backgroundGlowColor && (
                 <div
-                    className={`absolute inset-0 z-10 pointer-events-none ${getTextColorClass(backgroundGlow)}`}
+                    className={`absolute inset-0 z-10 pointer-events-none ${getTextColorClass(backgroundGlowColor)}`}
                     style={{
                         backgroundImage: `radial-gradient(circle, currentColor 0%, transparent ${glowSize})`,
                         filter: `blur(${glowBlur}px)`,

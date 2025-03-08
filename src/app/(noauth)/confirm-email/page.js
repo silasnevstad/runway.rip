@@ -4,7 +4,7 @@ import appConfig from "@/config";
 import { getSEOTags } from "@/libs/seo";
 
 export const metadata = getSEOTags({
-    title: "Confirm Email | Runway",
+    title: `Confirm Email | ${appConfig.appName}`,
     canonicalUrlRelative: "/confirm-email",
 });
 

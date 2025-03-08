@@ -53,7 +53,7 @@ The `Input` component creates a customizable text input field with various featu
 
 ## Usage
 
-```javascript
+```js
 import Input from "@/components/atoms/Input";
 
 <Input
@@ -87,7 +87,7 @@ import Input from "@/components/atoms/Input";
 | rightIconOnClick | function                     | -                           | The function to call when the right icon is clicked.                                                                                                                                                             |
 | secure           | boolean                      | `false`                     | If true, the input is a password field with a visibility toggle (automatically adds a right icon to toggle visibility).                                                                                          |
 | focus            | boolean                      | `true`                      | If true, applies a focus effect.                                                                                                                                                                                 |
-| activeColor      | string                       | `"primary"`                 | The base color (uses [tailwind.config](/docs/tutorials/config#color-theme)).                                                                                                                                                  |
+| activeColor      | string                       | `"primary"`                 | The base color (uses [tailwind.config](/docs/features/config#color-theme)).                                                                                                                                                  |
 | value            | controlledValue              | -                           | The controlled value of the input.                                                                                                                                                                               |
 | onChange         | function                     | -                           | The function to call when the input value changes.                                                                                                                                                               |
 | className        | string                       | `""`                        | Additional [Tailwind](https://tailwindcss.com) utility classes.                                                                                                                                                  |
@@ -136,7 +136,7 @@ import Input from "@/components/atoms/Input";
         />
     </div>
 }>
-```javascript
+```js
 <Input
     id="none"
     label="None"
@@ -164,7 +164,7 @@ import Input from "@/components/atoms/Input";
 <PreviewCode preview={
     <InputIconDemo />
 }>
-```javascript
+```js
 import { PlusCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 <Input
@@ -208,7 +208,7 @@ import { PlusCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
         />
     </div>
 }>
-```javascript
+```js
 <Input
     id="password"
     label="Password"
@@ -269,7 +269,7 @@ import { PlusCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
         />
     </div>
 }>
-```javascript
+```js
 <Input
     id="custom"
     label="Custom Input"

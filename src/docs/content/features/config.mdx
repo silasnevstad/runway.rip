@@ -111,24 +111,24 @@ point to the right place).
 ```config.js
 const appConfig = {
     // Auth
-    // options: password, magiclink, google, apple, github
-    authMethods: ['password', 'google', 'github'],
-    protectedRoutes: [
-        '/dashboard',
-        '/account'
-    ],
-    afterLoginPath: '/account',
-    // This is only need if you use password method
-    afterSignupPath: '/confirm-email'
+    auth: {
+        methods: ['password', 'google', 'github'],
+        protectedRoutes: [
+            '/dashboard',
+            '/account',
+        ],
+        afterLoginPath: '/account',
+        afterSignupPath: '/confirm-email',
+    },
 };
 ```
 
-| Key               | Description                                                                                           |
-|-------------------|-------------------------------------------------------------------------------------------------------|
-| `authMethods`     | A list of authentication methods to enable (`password`, `magiclink`, `google`, `apple`, or `github`). |
-| `protectedRoutes` | An array of routes that require authentication.                                                       |
-| `afterLoginPath`  | The path to redirect to after a successful login.                                                     |
-| `afterSignupPath` | The path to redirect to after a successful signup.                                                    |
+| Key                    | Description                                                                                           |
+|------------------------|-------------------------------------------------------------------------------------------------------|
+| `auth.methods`         | A list of authentication methods to enable (`password`, `magiclink`, `google`, `apple`, or `github`). |
+| `auth.protectedRoutes` | An array of routes that require authentication.                                                       |
+| `auth.afterLoginPath`  | The path to redirect to after a successful login.                                                     |
+| `auth.afterSignupPath` | The path to redirect to after a successful signup.                                                    |
 
 <div className="my-5"/>
 
@@ -146,15 +146,17 @@ Then **remember to add the routes you want to protect** to the `protectedRoutes`
 ```config.js
 const appConfig = {
     // Email
-    supportEmail: "Runway Support <support@mail.runway.rip>",
-    noReplyEmail: "Runway <noreply@mail.runway.rip>"
+    emails: {
+        support: "Runway Support <support@mail.runway.rip>",
+        noReply: "Runway <noreply@mail.runway.rip>"
+    }
 };
 ```
 
-| Key               | Description                                                                                           |
-|-------------------|-------------------------------------------------------------------------------------------------------|
-| `supportEmail`    | The email address for support.                                                                        |
-| `noReplyEmail`    | The email address for no-reply emails.                                                                |
+| Key              | Description                            |
+|------------------|----------------------------------------|
+| `emails.support` | The email address for support.         |
+| `emails.noReply` | The email address for no-reply emails. |
 
 <div className="my-5"/>
 
@@ -169,22 +171,24 @@ Pretty self-explanatory. Just change the emails to your own.
 ```config.js
 const appConfig = {
     // Waitlist / Pre-Launch Mode:
-    waitlistMode: true,
-    waitlistAllowedRoutes: ['/waitlist', '/docs'],
-    waitlistRedirect: '/waitlist'
+    waitlist: {
+        enabled: true,
+        allowedRoutes: ['/waitlist', '/docs'],
+        redirect: '/waitlist'
+    }
 };
 ```
 
-| Key                     | Description                                                                       |
-|-------------------------|-----------------------------------------------------------------------------------|
-| `waitlistMode`          | If true, the app will be in waitlist mode.                                        |
-| `waitlistAllowedRoutes` | An array of routes that are allowed to be accessed without being on the waitlist. |
-| `waitlistRedirect`      | The path to redirect to if the user is not on the waitlist.                       |
+| Key                      | Description                                                                       |
+|--------------------------|-----------------------------------------------------------------------------------|
+| `waitlist.enabled`       | If true, the app will be in waitlist mode.                                        |
+| `waitlist.allowedRoutes` | An array of routes that are allowed to be accessed without being on the waitlist. |
+| `waitlist.redirect`      | The path to redirect to if the user is not on the waitlist.                       |
 
 <div className="my-5"/>
 
-If you want to enable the waitlist mode, set `waitlistMode` to `true`. This will redirect all routes not specified in
-`waitlistAllowedRoutes` to `waitlistRedirect`.
+If you want to enable the waitlist mode, set `waitlist.enabled` to `true`. This will redirect all routes not specified in
+`waitlist.allowedRoutes` to `waitlist.redirect`.
 
 <Tip>
     This is useful for when you are still building your app and want to collect emails before launch.
@@ -199,15 +203,17 @@ If you want to enable the waitlist mode, set `waitlistMode` to `true`. This will
 ```config.js
 const appConfig = {
     // Customer Tracking
-    requiredCustomerId: true,
-    afterCheckoutPath: '/account'
+    payment: {
+        requiredCustomerId: true,
+        afterCheckoutPath: '/account',
+    },
 };
 ```
 
 | Key                  | Description                                                               |
 |----------------------|---------------------------------------------------------------------------|
-| `requiredCustomerId` | If true, the app will require a customer ID to create a checkout session. |
-| `afterCheckoutPath`  | The path to redirect to after a successful checkout.                      |
+| `payment.requiredCustomerId` | If true, the app will require a customer ID to create a checkout session. |
+| `payment.afterCheckoutPath`  | The path to redirect to after a successful checkout.                      |
 
 <div className="my-5"/>
 

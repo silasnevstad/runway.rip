@@ -71,7 +71,7 @@ related:
 
 ## Usage
 
-```javascript
+```js
 import { useState } from "react";
 import Switch from "@/components/atoms/Switch";
 
@@ -102,7 +102,7 @@ const [selected, setSelected] = useState("option1");
 | options         | array                                  | -           | An array of options, `[{ value: string, name: string, tooltip?: string, Icon?: ReactNode, image?: string }]`.                   |
 | selected        | string                                 | -           | The currently selected value.                                                                                                   |
 | onChange        | function                               | -           | Callback function that is called when the selected value changes.                                                               |
-| color           | string                                 | `"gray"`    | The base color (use [tailwind.config](/docs/tutorials/config#color-theme)).                                                                 |
+| color           | string                                 | `"gray"`    | The base color (use [tailwind.config](/docs/features/config#color-theme)).                                                                 |
 | size            | "sm" \| "md" \| "lg"                   | `"md"`      | The size of the switch.                                                                                                         |
 | borderRadius    | string                                 | `"md"`      | The border radius of the switch (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component). |
 | vertical        | boolean                                | `false`     | If `true`, the switch will be displayed vertically.                                                                             |
@@ -141,7 +141,7 @@ const [selected, setSelected] = useState("option1");
         />
     </div>
 }>
-    ```javascript
+    ```js
     <div className="flex gap-4 mb-4 justify-center items-center">
         <Switch
             options={[
@@ -171,7 +171,7 @@ const [selected, setSelected] = useState("option1");
         />
     </div>
 }>
-    ```javascript
+    ```js
     <div className="flex gap-4 mb-4 justify-center items-center">
         <Switch
             options={[
@@ -235,7 +235,7 @@ const [selected, setSelected] = useState("option1");
         />
     </div>
 }>
-    ```javascript
+    ```js
     <div className="flex flex-col gap-4 justify-center items-center">
         <Switch
             options={[

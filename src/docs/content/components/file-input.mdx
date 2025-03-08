@@ -35,7 +35,7 @@ onThisPage:
 
 ## Usage
 
-```javascript
+```js
 import FileInput from "@/components/atoms/FileInput";
 
 <FileInput
@@ -55,7 +55,7 @@ import FileInput from "@/components/atoms/FileInput";
 |-----------------|-----------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | text            | string    | `"Drop files here, or click to select"` | The text to display in the component.                                                                     |
 | placeholder     | string    | `"No file selected"`                    | The placeholder text to display when no file is selected.                                                 |
-| color           | string    | `"gray"`                                | The base color (uses [tailwind.config](/docs/tutorials/config#color-theme)).                                           |
+| color           | string    | `"gray"`                                | The base color (uses [tailwind.config](/docs/features/config#color-theme)).                                           |
 | borderRadius    | string    | `"lg"`                                  | The border radius of the component (uses [Tailwind](https://tailwindcss.com/docs/border-radius) classes). |
 | border          | boolean   | `true`                                  | If true, a border is displayed around the component.                                                      |
 | icon            | ReactNode | `<FiFilePlus />`                        | The icon to display in the component.                                                                     |
@@ -81,7 +81,7 @@ import FileInput from "@/components/atoms/FileInput";
         <FileInput />
     </div>
 }>
-    ```javascript
+    ```js
     <FileInput />
     ```
 </PreviewCode>
@@ -100,7 +100,7 @@ import FileInput from "@/components/atoms/FileInput";
         />
     </div>
 }>
-    ```javascript
+    ```js
     <FileInput
         text="Select Document"
         placeholder="No document chosen"

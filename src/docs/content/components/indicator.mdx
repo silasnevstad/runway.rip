@@ -50,7 +50,7 @@ onThisPage:
 
 ## Usage
 
-```javascript
+```js
 import Indicator from "@/components/atoms/Indicator";
 
 <Indicator color="red" content="3+">
@@ -77,7 +77,7 @@ import Indicator from "@/components/atoms/Indicator";
 |--------------|-----------|---------------|-----------------------------------------------------------------|
 | children     | ReactNode | -             | The content that the indicator will be attached to.             |
 | content      | string    | `""`          | The content of the indicator.                                   |
-| color        | string    | `"bg"`        | The base color (uses [tailwind.config](/docs/tutorials/config#color-theme)). |
+| color        | string    | `"bg"`        | The base color (uses [tailwind.config](/docs/features/config#color-theme)). |
 | variant      | string    | `"solid"`     | The variant of the indicator.                                   |
 | position     | string    | `"top-right"` | The position of the indicator.                                  |
 | size         | string    | `"md"`        | The size of the indicator.                                      |
@@ -121,7 +121,7 @@ Wrap your desired component with the `Indicator` component. Then, style or add c
         </Indicator>
     </div>
 }>
-    ```javascript
+    ```js
     <div className="flex gap-5 justify-center items-center">
         <Indicator>
             <Card borderRadius="sm" className="px-4 py-2">
@@ -186,7 +186,7 @@ You can further customize the `Indicator` component by changing its color, size,
         </Indicator>
     </div>
 }>
-    ```javascript
+    ```js
     <div className="flex flex-col gap-8 justify-center items-center">
         <Indicator
             color="blue"

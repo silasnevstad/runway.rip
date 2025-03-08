@@ -17,7 +17,7 @@ export async function POST(req) {
         const { customerId, customerEmail } = data;
 
         // If mode is subscription or customer integration is used, customerId is required
-        if ((mode === "subscription" || appConfig.requiredCustomerId) && !customerId) {
+        if ((mode === "subscription" || appConfig.payment.requiredCustomerId) && !customerId) {
             return NextResponse.json(
                 { error: "Missing required customer ID for subscription." },
                 { status: 400 }
@@ -30,7 +30,7 @@ export async function POST(req) {
             priceId,
             customerId: customerId || null,
             customerEmail: customerEmail || null,
-            successUrl: `${origin}${appConfig.afterCheckoutPath}`,
+            successUrl: `${origin}${appConfig.payment.afterCheckoutPath}`,
             cancelUrl: `${origin}/`,
         });
         return NextResponse.json({ sessionId: session.id });

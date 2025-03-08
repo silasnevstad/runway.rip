@@ -68,7 +68,7 @@ You can customize the **text position**, **background glow**, and **image**.
 
 ## Usage
 
-```javascript
+```js
 import Hero from '@/components/landing/Hero';
 
 <Hero />
@@ -96,7 +96,7 @@ import Hero from '@/components/landing/Hero';
 | textPosition   | string  | `"left"`                                                                   | The position of the text.                                                                        |
 | imageSrc       | string  | `""`                                                                       | The source of the image.                                                                         |
 | imageAlt       | string  | `""`                                                                       | The alt text for the image.                                                                      |
-| backgroundGlow | string  | `""`                                                                       | The color of the background glow, see [tailwind.config](/docs/tutorials/config#tailwind-config). |
+| backgroundGlow | string  | `""`                                                                       | The color of the background glow, see [tailwind.config](/docs/features/config#tailwind-config). |
 | glowOpacity    | number  | `0.5`                                                                      | The opacity of the background glow.                                                              |
 | glowSize       | string  | `"30%"`                                                                    | The size of the background glow.                                                                 |
 | glowBlur       | number  | `100`                                                                      | The blur of the background glow.                                                                 |
@@ -139,7 +139,7 @@ import Hero from '@/components/landing/Hero';
         className="min-h-96 py-0"
     />
 }>
-```javascript
+```js
 <Hero
     textHighlight={{ text: "Welcome to", highlight: "My Site" }}
     description="This is a description of my site."
@@ -176,7 +176,7 @@ import Hero from '@/components/landing/Hero';
         className="min-h-96 py-0"
     />
 }>
-```javascript
+```js
 <Hero
     textHighlight={{ text: "Welcome to", highlight: "My Site" }}
     description="This is a description of my site."
@@ -205,7 +205,7 @@ import Hero from '@/components/landing/Hero';
         glowBlur={100}
     />
 }>
-    ```javascript
+    ```js
     <Hero
         textHighlight={{
             text: "Welcome to my site",

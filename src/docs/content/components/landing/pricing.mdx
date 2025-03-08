@@ -30,7 +30,7 @@ related:
 The `Pricing` component is a way to showcase your product's pricing plans and allow users to compare and choose the best plan for their needs.
 
 <Caution>
-    This relies on [`pricingConfig`](/docs/tutorials/config) for its data so you have to configure [payments](/docs/tutorials/payments) first.
+    This relies on [`pricingConfig`](/docs/features/config) for its data so you have to configure [payments](/docs/tutorials/payments) first.
 </Caution>
 
 <Tip>
@@ -45,7 +45,7 @@ The `Pricing` component is a way to showcase your product's pricing plans and al
 
 ## Usage
 
-```javascript
+```js
 import Pricing from '@/components/landing/Pricing';
 
 <Pricing />
@@ -65,6 +65,6 @@ import Pricing from '@/components/landing/Pricing';
 |----------------|--------|---------|------------------------------------------------------------------------------------|
 | title          | string | `""`    | The title of the component.                                                        |
 | subtitle       | string | `""`    | The subtitle of the component.                                                     |
-| cardBackground | string | `"bg-bg-50 dark:bg-bg-900"`  | The background color of the cards (see [tailwind.config](/docs/tutorials/config#color-theme)). |
+| cardBackground | string | `"bg-bg-50 dark:bg-bg-900"`  | The background color of the cards (see [tailwind.config](/docs/features/config#color-theme)). |
 
-That's it, the rest is pulled from [`pricingConfig`](/docs/tutorials/config).
+That's it, the rest is pulled from [`pricingConfig`](/docs/features/config).

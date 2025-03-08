@@ -66,7 +66,7 @@ import Button from "@/components/atoms/Button";
 |--------------|----------------------|-------------|---------------------------------------------------------------------------------------------------------------------------------|
 | children     | ReactNode            | -           | The content of the button.                                                                                                      |
 | size         | "sm" \| "md" \| "lg" | `"md"`      | The size of the button.                                                                                                         |
-| color        | string               | `"primary"` | The base color (uses [tailwind.config](/docs/tutorials/config#color-theme)).                                                                 |
+| color        | string               | `"primary"` | The base color (uses [tailwind.config](/docs/features/config#color-theme)).                                                                 |
 | borderRadius | string               | `"md"`      | The border radius of the button (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component). |
 | hoverBg      | boolean              | `true`      | If true, applies a hover background color.                                                                                      |
 | scale        | boolean              | `false`     | If true, gently scales up on hover.                                                                                             |
@@ -107,7 +107,7 @@ You can use the `Button` component like this:
         <Button color={"green"} variant={"soft"} borderRadius={"2xl"}>Green + Soft + Rounded</Button>
     </div>
 }>
-    ```javascript
+    ```js
     <div className="flex items-center flex-col gap-4">
         <Button size="sm" variant="soft" border>
             Small + Soft + Border
@@ -138,7 +138,7 @@ When `disabled` or `loading` is set, the button cannot be clicked, `loading` als
         </Button>
     </div>
 }>
-    ```javascript
+    ```js
     <div className="flex flex-col gap-4">
         <Button disabled>
             Disabled
@@ -158,7 +158,7 @@ Pass a React icon component (`icon`) or an external image (`iconSrc`).
 <PreviewCode preview={
     <ButtonIconDemo />
 }>
-    ```javascript
+    ```js
     <div className="flex flex-wrap gap-4 items-center">
         <Button
             icon={() => <ClipboardIcon className="w-5 h-5" />}
@@ -187,7 +187,7 @@ If you pass an `href` prop, the button renders as a Next.js `Link`.
         </Button>
     </div>
 }>
-    ```javascript
+    ```js
     <div className="flex flex-wrap gap-4">
         <Button href="/docs" variant="underline">
             Go to Docs
@@ -218,7 +218,7 @@ Using [Tailwind](https://tailwindcss.com) utility classes, you can create a cust
         </Button>
     </div>
 }>
-    ```javascript
+    ```js
     <Button
         className="bg-primary-900/20 dark:bg-primary-500/20 text-primary-500 hover:text-white"
     >

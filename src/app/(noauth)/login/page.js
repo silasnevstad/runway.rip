@@ -1,9 +1,10 @@
 import AuthForm from "@/components/auth/AuthForm";
 import TextLink from "@/components/atoms/TextLink";
 import { getSEOTags } from "@/libs/seo";
+import appConfig from "@/config";
 
 export const metadata = getSEOTags({
-    title: "Login | Runway",
+    title: `Login | ${appConfig.appName}`,
     canonicalUrlRelative: "/login",
 });
 

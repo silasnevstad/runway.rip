@@ -17,7 +17,7 @@ export default function FeaturesCarousel({
     features = featuresConfig,
     autoPlay = true,
     interval = 5000,
-    titleColor = "primary",
+    titleColor = landingConfig.features.titleColor,
     cardBorderRadius = "5xl",
     cardBorder = true,
     cardColor = "bg",
@@ -40,12 +40,12 @@ export default function FeaturesCarousel({
                     </p>
                 )}
                 {subtitle && (
-                    <p className="max-w-3xl text-4xl font-extrabold text-gray-800 dark:text-gray-100 text-center mb-4">
+                    <p className="max-w-3xl text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
                         {subtitle}
                     </p>
                 )}
                 {description && (
-                    <p className="max-w-4xl text-base font-normal text-gray-600 dark:text-gray-400 text-center mb-8">
+                    <p className="max-w-4xl text-base font-normal text-gray-800 dark:text-gray-400 text-center mb-8">
                         {description}
                     </p>
                 )}
@@ -58,7 +58,7 @@ export default function FeaturesCarousel({
                         <div
                             key={feat.title}
                             className={`cursor-pointer transform transition-transform duration-200 ease-in-out px-1
-                                 ${isActive ? "scale-105 text-primary-500 dark:text-primary-400" : "text-gray-600 scale-100"}`}
+                                 ${isActive ? "scale-105 text-primary-600 dark:text-primary-400" : "dark:text-gray-800 text-gray-600 scale-100"}`}
                             onClick={() => setSelectedFeature(index)}
                         >
                             <div className="flex flex-col items-center gap-2">

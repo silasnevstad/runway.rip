@@ -1,8 +1,9 @@
 import TextLink from "@/components/atoms/TextLink";
 import {getSEOTags} from "@/libs/seo";
+import appConfig from "@/config";
 
 export const metadata = getSEOTags({
-    title: "License Agreement | Runway",
+    title: `License Agreement | ${appConfig.appName}`,
     canonicalUrlRelative: "/policies/license",
 });
 

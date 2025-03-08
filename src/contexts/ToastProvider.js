@@ -62,6 +62,16 @@ export function ToastProvider({
         setToasts([]);
     }, []);
 
+    // Global API error listener: add toast on error events
+    useEffect(() => {
+        const handleApiError = (e) => {
+            addToast(e.detail.message, { type: e.detail.type });
+        };
+
+        window.addEventListener("apiError", handleApiError);
+        return () => window.removeEventListener("apiError", handleApiError);
+    }, [addToast]);
+
     const contextValue = { addToast, removeToast, updateToast, removeAllToasts, toasts };
 
     // Determine the portal target (defaults to document.body).

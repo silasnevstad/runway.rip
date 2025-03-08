@@ -37,7 +37,7 @@ The `TextHighlight` component is a text component useful when needing to make so
 
 ## Usage
 
-```javascript
+```js
 import TextHighlight from "@/components/atoms/TextHighlight";
 
 <TextHighlight highlight="highlight">
@@ -58,9 +58,9 @@ import TextHighlight from "@/components/atoms/TextHighlight";
 |--------------|--------|-----------------|--------------------------------------------------------------------------------------------------------------------|
 | text         | string | -               | The text to display.                                                                                               |
 | highlight    | string | -               | The text to highlight.                                                                                             |
-| color        | string | `"gray"`        | The color of the text (see [tailwind.config](/docs/tutorials/config#color-theme)).                                             |
-| fromGradient | string | `""`            | The color of the gradient from which the text will be highlighted (see [tailwind.config](/docs/tutorials/config#color-theme)). |
-| toGradient   | string | `""`            | The color of the gradient to which the text will be highlighted (see [tailwind.config](/docs/tutorials/config#color-theme)).   |
+| color        | string | `"gray"`        | The color of the text (see [tailwind.config](/docs/features/config#color-theme)).                                             |
+| fromGradient | string | `""`            | The color of the gradient from which the text will be highlighted (see [tailwind.config](/docs/features/config#color-theme)). |
+| toGradient   | string | `""`            | The color of the gradient to which the text will be highlighted (see [tailwind.config](/docs/features/config#color-theme)).   |
 | textSize     | string | `"text-7xl/18"` | The text size and line height of the text.                                                                         |
 | className    | string | `""`            | Additional [Tailwind](https://tailwindcss.com) classes for the container.                                          |
 | ...props     | object | -               | Any other valid <code>&lt;a&gt;</code> attributes (e.g. `target`, `rel`, etc.).                                    |
@@ -82,7 +82,7 @@ You can customize the `color` and `textSize` of the text.
         <TextHighlight text="Text highlight" highlight="Text highlight" color="red" textSize="text-5xl/10" />
     </div>
 }>
-    ```javascript
+    ```js
     <TextHighlight
         text="Text highlight"
         highlight="Text highlight"
@@ -102,7 +102,7 @@ You can customize the `fromGradient` and `toGradient` of the text.
         <TextHighlight text="Text highlight" highlight="Text highlight" fromGradient="red" toGradient="blue" />
     </div>
 }>
-    ```javascript
+    ```js
     <TextHighlight
         text="Text highlight"
         highlight="Text highlight"

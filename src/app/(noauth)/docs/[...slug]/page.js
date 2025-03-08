@@ -61,7 +61,7 @@ export async function generateMetadata({ params }) {
 
     // Use frontmatter values if available, fallback otherwise.
     return getSEOTags({
-        title: frontmatter?.title || "Runway Documentation",
+        title: `${frontmatter?.title} | Runway Documentation` || "Runway Documentation",
         description: frontmatter?.description,
         canonicalUrlRelative: `/docs/${slug.join("/")}`,
     });

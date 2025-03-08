@@ -24,15 +24,14 @@ update the appropriate templates:
 
     - If you are using magic link auth, update the `Magic Link` template.
     - If you are using email/password auth, update the `Confirm Signup` template.
+    - If you are using social auth, no changes are needed.
 
-    Update the &lt;a&gt; with the following:
+    Update the &lt;a&gt; with the following href:
 
     ```plaintext
     <a
         href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next={{ .RedirectTo }}"
     >
-        Confirm your email
-    </a>
     ```
 
     <Info>
@@ -47,3 +46,4 @@ You can find your SMTP in the [Settings](https://resend.com/settings/smtp) of yo
     </Tip>
 
 6. Going to production? Update your [Site URL](https://supabase.com/dashboard/project/_/auth/url-configuration) to your production URL.
+Then add `https://yourdomain.com/**` and `http://localhost:3000/**` to [Redirect URLs].

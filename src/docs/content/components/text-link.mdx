@@ -51,7 +51,7 @@ It comes with additional features such as hover effects, icon support, and more.
 
 ## Usage
 
-```javascript
+```js
 import TextLink from "@/components/atoms/TextLink";
 
 <TextLink href="/docs/components/text-link">
@@ -74,7 +74,7 @@ The `TextLink` component accepts the following props:
 |--------------------|-----------|---------|---------------------------------------------------------------------------------|
 | children           | ReactNode | -       | The content of the link.                                                        |
 | href               | string    | -       | The URL to navigate to when the link is clicked.                                |
-| color              | string    | `gray`  | The color of the link (see [tailwind.config](/docs/tutorials/config#color-theme)).          |
+| color              | string    | `gray`  | The color of the link (see [tailwind.config](/docs/features/config#color-theme)).          |
 | icon               | Icon      | -       | An optional icon to display before the text.                                    |
 | scale              | boolean   | `false` | If `true`, the link will grow on hover.                                         |
 | lift               | boolean   | `false` | If `true`, the link will lift on hover.                                         |
@@ -115,7 +115,7 @@ You can use different hover effects (`scale`, `lift`, `fade`, `underline`), colo
         </TextLink>
     </div>
 }>
-```javascript
+```js
 <TextLink href="/docs/components/text-link" active={false}>
     Go to TextLink
 </TextLink>
@@ -137,7 +137,7 @@ You can use different hover effects (`scale`, `lift`, `fade`, `underline`), colo
 <PreviewCode preview={
     <TextLinkIconDemo />
 }>
-```javascript
+```js
 <TextLink
     href="/docs/components"
     icon={<LinkIcon className="w-5 h-5" />}

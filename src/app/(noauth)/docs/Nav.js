@@ -25,13 +25,16 @@ export const DocsNav = [
         href: "/docs/tutorials",
         icon: <MapIcon className="w-4 h-4" />,
         items: [
-            { title: "Launch in 5 minutes", href: "/docs/tutorials/launch-in-5-minutes" },
+            { title: "Launch ASAP", href: "/docs/tutorials/launch-asap" },
             { title: "User authentication", href: "/docs/tutorials/authentication" },
             { title: "One Time Payments", href: "/docs/tutorials/one-time-payments" },
             { title: "Subscriptions", href: "/docs/tutorials/subscriptions" },
+            { title: "Creating Pages", href: "/docs/tutorials/creating-pages" },
+            { title: "API Routes", href: "/docs/tutorials/api-routes" },
             { title: "Stripe", href: "/docs/tutorials/stripe" },
             { title: "Supabase", href: "/docs/tutorials/supabase" },
-            { title: "Config", href: "/docs/tutorials/config" },
+
+            { title: "Deployment", href: "/docs/tutorials/deployment" },
         ],
     },
     {
@@ -44,6 +47,7 @@ export const DocsNav = [
             { title: "Emails", href: "/docs/features/emails" },
             { title: "Payments", href: "/docs/features/payments" },
             { title: "Auth", href: "/docs/features/auth" },
+            { title: "Config", href: "/docs/features/config" },
         ],
     },
     // {

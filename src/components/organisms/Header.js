@@ -9,16 +9,16 @@ import TextLink from "@/components/atoms/TextLink";
 import Button from "@/components/atoms/Button";
 import AccountCard from "@/components/auth/AccountCard";
 import { mergeClasses } from "@/utils/styling";
-import appConfig from "@/config";
+import appConfig, {landingConfig} from "@/config";
 
 export default function Header({
-    showLogo = true,
-    showAppName = true,
-    navLinks = [],  // { title, href, onClick, className }
-    ctaButton,  // { label, href, className, props }
-    background = "bg-bg-100 dark:bg-bg-800",
+    showLogo = landingConfig.header.showLogo,
+    showAppName = landingConfig.header.showAppName,
+    navLinks = landingConfig.header.navLinks,  // { title, href, onClick, className }
+    ctaButton = landingConfig.header.ctaButton,  // { label, href, className, props }
+    background = landingConfig.header.background,
+    sticky = landingConfig.header.sticky,
     bottomBorder = false,
-    sticky = false,
     account = true,
     accountCardProps = {},
     className = "",

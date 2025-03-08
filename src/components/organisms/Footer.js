@@ -7,20 +7,20 @@ import { mergeClasses } from "@/utils/styling";
 import appConfig, { landingConfig } from "@/config";
 
 const Footer = ({
-    showLogo = true,
-    showAppName = true,
-    showAppDescription = true,
-    showCopyright = true,
-    showMadeWith = true,
-    showThemeSwitcher = true,
-    showSocials = false,
+    showLogo = landingConfig.footer.showLogo,
+    showAppName = landingConfig.footer.showAppName,
+    showAppDescription = landingConfig.footer.showAppDescription,
+    showCopyright = landingConfig.footer.showCopyright,
+    showMadeWith = landingConfig.footer.showMadeWith,
+    showThemeSwitcher = landingConfig.footer.showThemeSwitcher,
+    showSocials = landingConfig.footer.showSocials,
     navLinks = landingConfig.footer.navLinks,  // { title, href, props }
     legalLinks = landingConfig.footer.legalLinks, // { title, href, props }
     copyrightText = "Copyright © 2025 - All Rights Reserved.",
 
-    background = "bg-bg-0 dark:bg-bg-900",
-    border = false,
-    rounded = false,
+    background = landingConfig.footer.background,
+    border = landingConfig.footer.showBorder,
+    rounded = landingConfig.footer.rounded,
 
     className = "",
     ...props

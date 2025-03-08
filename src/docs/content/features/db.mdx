@@ -5,7 +5,7 @@ onThisPage:
   - title: "Profiles Table"
     href: "#profiles"
   - title: "Waitlist Table"
-    href: "#waitlist-table-setup"
+    href: "#waitlist-table"
 related:
   - title: "Supabase Setup"
     href: "/docs/tutorials/supabase"
@@ -197,7 +197,7 @@ This is particularly useful for handling subscriptions and other user-specific m
     - We created a `profiles` table with columns for `id`, `name`, `email`, `image`, `customer_id`, `price_id`, `subscription_id`, `subscription_status`, `has_access`, `created_at`, and `updated_at`.
     - We create a function to update the `updated_at` timestamp.
     - We create a trigger to automatically update the `updated_at` timestamp on any changes.
-    - We create a function to automatically add a profile when a new user signs up (if using payments, it also creates a Stripe customer and adds the `customer_id`).
+    - We create a function to automatically add a profile when a new user signs up (if using payments, it also creates a [Stripe](https://stripe.com) customer and adds the `customer_id`).
     - We create a trigger to invoke the above function after a new user is inserted.
     - We enable [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) on the `profiles` table.
     - We create [policies](https://www.postgresql.org/docs/current/sql-createpolicy.html) to ensure that users can only access their own profiles.
@@ -205,7 +205,7 @@ This is particularly useful for handling subscriptions and other user-specific m
 
 <br />
 <br />
-<div id="waitlist-table-setup" />
+<div id="waitlist-table" />
 <Divider />
 
 ## Waitlist Table (Optional)

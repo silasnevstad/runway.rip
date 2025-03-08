@@ -6,7 +6,7 @@ onThisPage:
     href: "#overview"
   - title: "Default SEO Configuration"
     href: "#default-seo-configuration"
-  - title: "Customizing SEO on Specific Pages"
+  - title: "Customizing SEO"
     href: "#customizing-seo-on-specific-pages"
   - title: "Structured Data & Rich Snippets"
     href: "#structured-data--rich-snippets"
@@ -27,7 +27,7 @@ sites:
 
 SEO—short for search engine optimization—is crucial for getting your site noticed on the web.
 
-All the default SEO settings live in the [**config.js**](/docs/tutorials/config) file. Open it up and update these values:
+All the default SEO settings live in the [**config.js**](/docs/features/config) file. Open it up and update these values:
 
 ```config.js
 const appConfig = {
@@ -37,16 +37,15 @@ const appConfig = {
 }
 ```
 
-These values are used as SEO tags across your site automatically, thanks to the integration in the root `/layout.js` file.
+These values are used as SEO tags across your site automatically, thanks to `getSEOTags` and the integration in the root `/layout.js` file.
 
 <br />
 <br />
 
 ## Customizing SEO on Specific Pages
 
-If you want to tailor SEO for a specific page without redoing all the tags, it's super simple.
-
-Just import the SEO helper and pass your custom values. For instance, here's the SEO for the `/policies/terms` page:
+Just import `getSEOTags` from `"@/libs/seo"` and pass your custom values.
+For instance, here's the SEO for the `/policies/terms` page:
 
 ```/app/policies/terms/page.js
 import { getSEOTags } from "@/libs/seo";
@@ -66,7 +65,7 @@ export default function TermsAndConditions() {
 ```
 
 <Info>
-    This is already setup for all the pages in the `/app` directory.
+    Runway already has this setup for all the pages in the `/app` directory.
 </Info>
 
 <br />
@@ -104,10 +103,12 @@ Just update the `siteUrl` in `next-sitemap.config.js` to match your domain:
 
 ```next-sitemap.config.js
 module.exports = {
-    siteUrl: "https://runway.rip",
+    siteUrl: "https://yourdomain.com",
     generateRobotsTxt: true,
 };
 ```
+
+<div className="my-4" />
 
 Then update your **package.json** to run next-sitemap after your build script:
 
@@ -116,6 +117,13 @@ Then update your **package.json** to run next-sitemap after your build script:
     "postbuild": "next-sitemap"
 }
 ```
+
+<Info>
+    Sitemaps and robots.txt files are crucial for optimizing your website's crawling and indexing by search engines.
+</Info>
+
+<br />
+<br />
 
 ## Google Search Console
 

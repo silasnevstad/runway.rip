@@ -55,7 +55,7 @@ It comes with animation and hover effects that can be customized to fit your des
 
 ## Usage
 
-```javascript
+```js
 import Card from "@/components/atoms/Card";
 
 <Card>
@@ -77,7 +77,7 @@ import Card from "@/components/atoms/Card";
 |--------------|-------------------|-------------|-----------------------------------------------------------------|
 | children     | ReactNode         | -           | The content of the card.                                        |
 | padding      | number            | `24`        | The padding of the card (in px).                                |
-| color        | string            | `"primary"` | The base color (uses [tailwind.config](/docs/tutorials/config#color-theme)). |
+| color        | string            | `"primary"` | The base color (uses [tailwind.config](/docs/features/config#color-theme)). |
 | variant      | "soft" \| "solid" | `"solid"`   | The variant of the card.                                        |
 | borderRadius | string            | `"2xl"`     | The border radius of the card.                                  |
 | shadow       | boolean           | `false`     | If true, adds a subtle box-shadow.                              |
@@ -113,7 +113,7 @@ import Card from "@/components/atoms/Card";
         <p>This is a basic card with default settings.</p>
     </Card>
 }>
-```javascript
+```js
 <Card>
     <h2>Card Title</h2>
     <p>This is a basic card with default settings.</p>
@@ -155,7 +155,7 @@ You can also use `active` to enable the press-down scale effect.
         </Card>
     </div>
 }>
-```javascript
+```js
 <Card hoverBg>
     <h2>Card with Hover Background</h2>
     <p>This card changes background color on hover.</p>
@@ -212,7 +212,7 @@ Use the `color`, `variant`, `borderRadius`, `border`, and `shadow` props to cust
         </Card>
     </div>
 }>
-```javascript
+```js
 <Card color="orange" variant="soft">
     <h2>Soft Orange Card</h2>
     <p>This card has a color prop.</p>

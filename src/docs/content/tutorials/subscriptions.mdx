@@ -31,14 +31,14 @@ sites:
 
 3. By default, the landing page will now show a [`Pricing`](/docs/landing/pricing) component. Place or modify this however you like:
 
-    ```javascript
+    ```js
     import Pricing from "@/components/landing/Pricing";
     <Pricing />
     ```
 
     Or simply use the [`CheckoutButton`](/docs/components/checkout-button) component to create a checkout button for your product.
 
-    ```javascript
+    ```js
     import CheckoutButton from "@/components/payments/CheckoutButton";
     <CheckoutButton
       mode="subscription"
@@ -51,21 +51,25 @@ sites:
 4. Our webhook `api/webhooks/stripe` listens to [Stripe](https://stripe.com) events and automatically handles updating the user's access in the database.
 
     <Info>
-        We've created a `customerId` for each user and use `has_access`, `price_id`, etc. in the database to track the user's subscription status.
+        We've created a `customerId` for each user and use `has_access`, `price_id`, etc. in the [**profiles table**](/docs/tutorials/database#profiles) to track the user's subscription status.
     </Info>
 
 5. Add your own logic to `webhookHandlers.js` or `subscriptionHandlers.js`, like sending abandoned checkout emails, etc.
 
 6. Use the [`AccountCard`](/docs/components/auth/account-card) component to let users manage their subscription.
 
-    ```javascript
+    ```js
     import AccountCard from "@/components/auth/AccountCard";
     <AccountCard />
     ```
 
 <br />
 
-And you're done! 🙂
+And you're done!
+
+<Tip>
+    Remember to test everything in Test mode before going to Live mode. You can use the test card number 4242 4242 4242 4242 for a successful payment.
+</Tip>
 
 
 

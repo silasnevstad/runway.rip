@@ -41,7 +41,7 @@ The `CodeBlock` component is a customizable code block that can be used to displ
 <div id="usage" />
 ## Usage
 
-```javascript
+```js
 import CodeBlock from "@/components/atoms/CodeBlock";
 
 <CodeBlock language="javascript">
@@ -94,7 +94,7 @@ print("Hello, World!")
 `}
     </CodeBlock>
 }>
-```javascript
+```js
 <CodeBlock language="python">
     {`print("Hello, World!")`}
 </CodeBlock>
@@ -113,7 +113,7 @@ function add(a, b) {
 `}
     </CodeBlock>
 }>
-```javascript
+```js
 <CodeBlock language="javascript" showLineNumbers startingLineNumber={5}>
     {`function add(a, b) {
         return a + b;
@@ -135,7 +135,7 @@ interface User {
 `}
     </CodeBlock>
 }>
-```javascript
+```js
 <CodeBlock language="typescript" copy>
     {`interface User {
         name: string;
@@ -159,7 +159,7 @@ public class HelloWorld {
 `}
     </CodeBlock>
 }>
-```javascript
+```js
 <CodeBlock language="java" showLanguage>
     {`public class HelloWorld {
         public static void main(String[] args) {
@@ -184,7 +184,7 @@ public class HelloWorld {
 }`}
     </CodeBlock>
 }>
-```javascript
+```js
 <CodeBlock
     language="javascript"
     showLanguage

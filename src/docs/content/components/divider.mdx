@@ -42,7 +42,7 @@ The `Divider` component is a simple horizontal or vertical line that separates c
 
 ## Usage
 
-```javascript
+```js
 import Divider from '@/components/atoms/Divider';
 
 <Divider />
@@ -65,7 +65,7 @@ The Divider component accepts the following props:
 
 | Name      | Type    | Default     | Description                                                                                      |
 |-----------|---------|-------------|--------------------------------------------------------------------------------------------------|
-| color     | string  | `"primary"` | The base color (uses [tailwind.config](/docs/tutorials/config#color-theme)).                                  |
+| color     | string  | `"primary"` | The base color (uses [tailwind.config](/docs/features/config#color-theme)).                                  |
 | text      | string  | `""`        | Text to display in the divider.                                                                  |
 | opacity   | number  | `100`       | Opacity of the divider (0-100).                                                                  |
 | margin    | number  | `2`         | The margin around the divider (in px).                                                           |
@@ -89,7 +89,7 @@ The Divider component accepts the following props:
 <PreviewCode preview={
     <Divider />
 }>
-```javascript
+```js
 <Divider />
 ```
 </PreviewCode>
@@ -102,7 +102,7 @@ The Divider component accepts the following props:
         <span>Text on the right</span>
     </div>
 }>
-```javascript
+```js
 <div className="flex items-center">
     <span>Text on the left</span>
     <Divider vertical />
@@ -115,7 +115,7 @@ The Divider component accepts the following props:
 <PreviewCode preview={
     <Divider text="With Text" noWrap={true} />
 }>
-```javascript
+```js
 <Divider text="With Text" noWrap={true} />
 ```
 </PreviewCode>
@@ -124,7 +124,7 @@ The Divider component accepts the following props:
 <PreviewCode preview={
     <Divider color="purple" opacity={30} margin="1" width="1" />
 }>
-```javascript
+```js
 <Divider color="purple" opacity={30} margin="1" width="1" />
 ```
 </PreviewCode>

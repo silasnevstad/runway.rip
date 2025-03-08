@@ -42,7 +42,7 @@ The `Toggle` component is a simple switch that can be toggled on or off. It is c
 
 ## Usage
 
-```javascript
+```js
 import Toggle from "@/components/atoms/Toggle";
 
 export default function Example() {
@@ -73,8 +73,8 @@ The Toggle component accepts the following props:
 |---------------|-------------------|-------------|------------------------------------------------------------------------------------------------|
 | label         | string            | `""`        | The label to display next to the toggle switch.                                                |
 | labelPosition | "left" \| "right" | `"left"`    | The position of the label relative to the toggle switch.                                       |
-| color         | string            | `"primary"` | Color used for the toggle switch (see [tailwind.config](/docs/tutorials/config#color-theme)).              |
-| inactiveColor | string            | `"gray"`    | Inactive color used for the toggle switch (see [tailwind.config](/docs/tutorials/config#color-theme)).     |
+| color         | string            | `"primary"` | Color used for the toggle switch (see [tailwind.config](/docs/features/config#color-theme)).              |
+| inactiveColor | string            | `"gray"`    | Inactive color used for the toggle switch (see [tailwind.config](/docs/features/config#color-theme)).     |
 | variant       | "solid" \| "soft" | `"solid"`   | The variant of the toggle switch.                                                              |
 | borderRadius  | string            | `"full"`    | [Tailwind](https://tailwindcss.com) border-radius class (e.g. `"none"`, `"sm"`, `"md"`, etc.). |
 | showIcon      | boolean           | `false`     | If `true`, an icon will be displayed inside the toggle switch.                                 |
@@ -102,7 +102,7 @@ The Toggle component accepts the following props:
     </div>
 
 }>
-```javascript
+```js
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
@@ -127,7 +127,7 @@ The Toggle component accepts the following props:
         <Toggle label="Disable feature" labelPosition="right" />
     </div>
 }>
-```javascript
+```js
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
@@ -146,7 +146,7 @@ The Toggle component accepts the following props:
 <PreviewCode preview={
     <Toggle checked showIcon />
 }>
-```javascript
+```js
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
@@ -159,7 +159,7 @@ The Toggle component accepts the following props:
 <PreviewCode preview={
     <Toggle checked disabled />
 }>
-```javascript
+```js
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}
@@ -178,7 +178,7 @@ The Toggle component accepts the following props:
         className="bg-gray-500/20 p-1 px-2 rounded-full font-light"
     />
 }>
-```javascript
+```js
 <Toggle
     checked={isToggled}
     onChange={() => setisToggled(!isToggled)}

@@ -2,13 +2,13 @@ import Button from "@/components/atoms/Button";
 import TextHighlight from "@/components/atoms/TextHighlight";
 import Image from "next/image";
 import React from "react";
-import {landingConfig} from "@/config";
+import appConfig, {landingConfig} from "@/config";
 import WaitlistForm from "@/components/molecules/WaitlistForm";
 import MadeWith from "@/components/atoms/MadeWith";
 import { getSEOTags } from "@/libs/seo";
 
 export const metadata = getSEOTags({
-    title: "Waitlist | Runway",
+    title: `Waitlist | ${appConfig.appName}`,
     canonicalUrlRelative: "/waitlist",
 });
 

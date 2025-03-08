@@ -1,5 +1,6 @@
 import React from "react";
 import Breadcrumb from "@/components/atoms/Breadcrumb";
+import MadeWithTag from "@/components/atoms/MadeWithTag";
 import { OnThisPage, SidebarSection } from "@/docs/_components/RightSidebar";
 import { DocsNav } from "@/app/(noauth)/docs/Nav";
 
@@ -47,6 +48,11 @@ export default function DocsPage({
                     </div>
                 </aside>
             )}
+
+            {/* BOTTOM RIGHT MADE WITH TAG */}
+            <div className="fixed bottom-6 right-6">
+                <MadeWithTag />
+            </div>
         </div>
     );
 }

@@ -84,7 +84,7 @@ The `Slider` component creates a highly customizable slider input that can be us
 
 ## Usage
 
-```javascript
+```js
 import { Slider } from "@components/atoms/slider";
 
 <Slider
@@ -113,11 +113,11 @@ import { Slider } from "@components/atoms/slider";
 | defaultValue              | number                                  | `50`        | The default value of the slider.                                                                                                        |
 | showLabels                | boolean                                 | `false`     | If true, shows the min and max labels.                                                                                                  |
 | valuePosition             | "left" \| "right" \| "follow" \| "none" | `"follow"`  | The position of the value label. Can be "left", "right", "follow" or "" to hide).                                                       |
-| color                     | string                                  | `"primary"` | The color of the slider (uses [tailwind.config](/docs/tutorials/config#color-theme)).                                                               |
-| inactiveColor             | string                                  | `"gray"`    | The color of the inactive track (uses [tailwind.config](/docs/tutorials/config#color-theme)).                                                       |
+| color                     | string                                  | `"primary"` | The color of the slider (uses [tailwind.config](/docs/features/config#color-theme)).                                                               |
+| inactiveColor             | string                                  | `"gray"`    | The color of the inactive track (uses [tailwind.config](/docs/features/config#color-theme)).                                                       |
 | variant                   | "solid" \| "soft"                       | `"solid"`   | The variant of the slider.                                                                                                              |
 | showThumb                 | boolean                                 | `true`      | If true, shows the thumb.                                                                                                               |
-| thumbBorderColor          | string                                  | `"gray"`    | The border color of the thumb (uses [tailwind.config](/docs/tutorials/config#color-theme)).                                                         |
+| thumbBorderColor          | string                                  | `"gray"`    | The border color of the thumb (uses [tailwind.config](/docs/features/config#color-theme)).                                                         |
 | thumbBorderRadius         | string                                  | `"lg"`      | The border radius of the thumb (uses [Tailwind](https://tailwindcss.com/docs/border-radius) border radius to shape component).          |
 | thumbSize                 | string                                  | `"5"`       | The size of the thumb.                                                                                                                  |
 | thumbBorder               | boolean                                 | `true`      | If true, shows the border of the thumb.                                                                                                 |
@@ -171,7 +171,7 @@ import { Slider } from "@components/atoms/slider";
         />
     </div>
 }>
-```javascript
+```js
 <div className="flex flex-col w-full gap-4">
     <Slider
         min={0}
@@ -208,7 +208,7 @@ import { Slider } from "@components/atoms/slider";
         showLabels={true}
     />
 }>
-```javascript
+```js
 <Slider
   min={0}
   max={100}
@@ -253,7 +253,7 @@ import { Slider } from "@components/atoms/slider";
         />
     </div>
 }>
-```javascript
+```js
 <div className="flex flex-col w-full gap-8">
     <Slider
         min={0}

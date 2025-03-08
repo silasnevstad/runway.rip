@@ -18,7 +18,7 @@ related:
   - title: "AccountCard"
     href: "/docs/components/auth/account-card"
   - title: "Config"
-    href: "/docs/tutorials/config"
+    href: "/docs/features/config"
 ---
 
 <div id="overview" />
@@ -51,7 +51,7 @@ related:
 
 <br />
 
-The `Header` component is a customizable header that can include a **logo**, **app name** (both pulled from [config.js](/docs/tutorials/config)), **navigation links**, and a **call-to-action button**.
+The `Header` component is a customizable header that can include a **logo**, **app name** (both pulled from [config.js](/docs/features/config)), **navigation links**, and a **call-to-action button**.
 It is designed to be responsive and can adapt to different screen sizes automatically (dropdown menu on mobile).
 
 <Callout>
@@ -66,10 +66,10 @@ It is designed to be responsive and can adapt to different screen sizes automati
 
 ## Usage
 
-The component automatically pulls the **logo** and **app name** from [config.js](/docs/tutorials/config) if they are defined, so you can simply
+The component automatically pulls the **logo** and **app name** from [config.js](/docs/features/config) if they are defined, so you can simply
 import the component and use it like this:
 
-```javascript
+```js
 import Header from '@/components/organisms/Header';
 
 <Header
@@ -88,7 +88,7 @@ import Header from '@/components/organisms/Header';
 <br/>
 
 Since `Header` uses [`TextLink`](/docs/components/text-link) and [`Button`](/docs/components/button) components, you can pass any prop that they accept to customize the header, for example:
-```javascript
+```js
 // For nav links
 {
     title: 'Home',
@@ -119,7 +119,7 @@ Since `Header` uses [`TextLink`](/docs/components/text-link) and [`Button`](/doc
 | showAppName  | boolean | `true`                       | If true, the app name will be displayed.                                                     |
 | navLinks     | array   | `[]`                         | Array of navigation links. Each link is an object with `name`, `href`, and optional `props`. |
 | ctaButton    | object  | `null`                       | Call-to-action button. An object with `label`, `href`, and optional `props`.                 |
-| background   | string  | `"bg-bg-100 dark:bg-bg-800"` | Background color (use [tailwind.config](/docs/tutorials/config#color-theme)).                            |
+| background   | string  | `"bg-bg-100 dark:bg-bg-800"` | Background color (use [tailwind.config](/docs/features/config#color-theme)).                            |
 | bottomBorder | boolean | `false`                      | If true, a bottom border will be displayed.                                                  |
 | sticky       | boolean | `false`                      | If true, the header will be sticky.                                                          |
 | account      | boolean | `false`                      | If true, the account button will be displayed.                                               |
@@ -158,7 +158,7 @@ Since `Header` uses [`TextLink`](/docs/components/text-link) and [`Button`](/doc
         }}
     />
 }>
-```javascript
+```js
 <Header
     navLinks={[
         { title: 'Home', href: '/' },
@@ -190,7 +190,7 @@ Since `Header` uses [`TextLink`](/docs/components/text-link) and [`Button`](/doc
         }}
     />
 }>
-```javascript
+```js
 <Header
     showAppName={false}
     navLinks={[
@@ -223,7 +223,7 @@ Since `Header` uses [`TextLink`](/docs/components/text-link) and [`Button`](/doc
         }}
     />
 }>
-```javascript
+```js
 <Header
     navLinks={[
         { title: 'Home', href: '/', props: { underline: true } },
@@ -260,7 +260,7 @@ Since `Header` uses [`TextLink`](/docs/components/text-link) and [`Button`](/doc
         }}
     />
 }>
-```javascript
+```js
 <Header
     background="bg-primary-500/20 dark:bg-primary-500/20"
     navLinks={[
