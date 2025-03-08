@@ -11,7 +11,7 @@ export default function Avatar({
     variant = "solid",
     borderRadius = "full",
     size = "md",
-    border = true,
+    border = false,
     status,
     statusColor = "green",
     showRing = true,

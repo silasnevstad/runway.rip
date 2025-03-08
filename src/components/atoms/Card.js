@@ -5,6 +5,8 @@ import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS} from "@/ut
 export default function Card({
     children,
     padding = 24,  // in px
+    paddingX, // in px
+    paddingY, // in px
     color = "gray",
     variant = "soft",
     borderRadius = "2xl",
@@ -40,10 +42,20 @@ export default function Card({
         className
     );
 
+    // cleverly creat the style, by default use padding, but if paddingX or paddingY is set, use them, sometimes only one of them is set
+    // and we need to use the other one from padding
+    const style = {
+        padding: (paddingX || paddingY) ? 0 : padding,
+        paddingLeft: paddingX || padding,
+        paddingRight: paddingX || padding,
+        paddingTop: paddingY || padding,
+        paddingBottom: paddingY || padding,
+    };
+
     return (
         <div
+            style={style}
             className={finalClasses}
-            style={{ padding: `${padding}px` }}
             onClick={href ? () => window.location.href = href : onClick}
             {...props}
             aria-label={children}

@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Loader from "@/components/atoms/Loader";
-import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS} from "@/utils/styling";
+import {mergeClasses, getHoverClasses, COLOR_VARIANTS, BORDER_RADIUS, renderIcon} from "@/utils/styling";
 
 export default function Button({
     children,
@@ -26,7 +26,6 @@ export default function Button({
     className = "",
     ...props
 }) {
-    // Tailwind sizing
     const sizeStyles = {
         xs: `px-2 py-1 text-xs`,
         sm: `px-3 py-1.5 text-sm`,
@@ -34,6 +33,13 @@ export default function Button({
         lg: `px-5 py-3 text-lg`,
         xl: `px-6 py-4 text-xl`,
     };
+    const iconSizes = {
+        xs: "w-3 h-3",
+        sm: "w-4 h-4",
+        md: "w-5 h-5",
+        lg: "w-6 h-6",
+        xl: "w-7 h-7",
+    }
 
     const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.primary.solid;
     const borderSet = COLOR_VARIANTS[borderColor][variant] || COLOR_VARIANTS.gray.solid;
@@ -53,6 +59,11 @@ export default function Button({
         className
     );
 
+    const iconClasses = `
+        ${iconSizes[size] || iconSizes.md}
+        ${colorSet.text}
+    `;
+
     // Loading vs. normal content
     const content = loading ? (
         <>
@@ -61,7 +72,7 @@ export default function Button({
         </>
     ) : (
         <>
-            {icon && icon}
+            {icon && renderIcon({icon: icon, extraClasses: iconClasses})}
             {iconSrc && (
                 <Image
                     src={iconSrc}

@@ -3,7 +3,7 @@ export default function PlanPrice({ interval }) {
     const { oldPrice, price, discountLabel, label } = interval;
 
     return (
-        <div className="flex flex-col items-start gap-1">
+        <div className="flex flex-col items-start gap-1 my-2">
             <div className="flex items-end gap-2">
                 {oldPrice && (
                     <p className="text-xl font-bold opacity-40 line-through">

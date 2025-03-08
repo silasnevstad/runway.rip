@@ -118,6 +118,7 @@ export const StandoutCard = ({
 
 export const DeparturesCard = ({
     title = "Departures",
+    isHanging = false,
     className = "",
 }) => {
     // get 24 hour time
@@ -142,8 +143,12 @@ export const DeparturesCard = ({
 
     return (
         <div className={outerContainerStyles}>
-            <div className="absolute -top-10 left-5 w-2 h-10 bg-bg-100 dark:bg-bg-800" />
-            <div className="absolute -top-10 right-5 w-2 h-10 bg-bg-100 dark:bg-bg-800" />
+            {isHanging && (
+                <>
+                    <div className="absolute -top-10 left-5 w-2 h-10 bg-bg-100 dark:bg-bg-800" />
+                    <div className="absolute -top-10 right-5 w-2 h-10 bg-bg-100 dark:bg-bg-800" />
+                </>
+            )}
             <h3 className="flex items-center text-lg font-semibold text-yellow-500">
                 <MdAirplanemodeActive className="w-6 h-6 mr-2 text-bg-900 bg-yellow-500 rounded-lg p-0.5" />
                 {title}
@@ -151,56 +156,56 @@ export const DeparturesCard = ({
             <div className="grid grid-cols-3 gap-x-5 gap-y-1.5 mt-4">
                 <p className="text-xs font-semibold opacity-50 text-yellow-500">TIME</p>
                 <p className="text-xs font-semibold opacity-50 text-yellow-500">DESTINATION</p>
-                <p className="text-xs font-semibold opacity-50 text-yellow-500">STATUS</p>
+                <p className="text-xs font-semibold opacity-50 text-yellow-500">DURATION</p>
 
                 <div className="flex flex-row items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <p className="text-sm font-semibold">{getTimeMinutesLater(2)}</p>
                 </div>
                 <p className="text-sm font-semibold text-yellow-500">Auth</p>
-                <p className="text-sm font-semibold">On Time</p>
+                <p className="text-sm font-semibold">~1 min</p>
 
                 <div className="flex flex-row items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <p className="text-sm font-semibold">{getTimeMinutesLater(4)}</p>
                 </div>
                 <p className="text-sm font-semibold text-yellow-500">Payments</p>
-                <p className="text-sm font-semibold">On Time</p>
+                <p className="text-sm font-semibold">~5 min</p>
 
                 <div className="flex flex-row items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <p className="text-sm font-semibold">{getTimeMinutesLater(6)}</p>
                 </div>
                 <p className="text-sm font-semibold text-yellow-500">Landing Page</p>
-                <p className="text-sm font-semibold">On Time</p>
+                <p className="text-sm font-semibold">~2 min</p>
 
                 <div className="flex flex-row items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <p className="text-sm font-semibold">{getTimeMinutesLater(8)}</p>
                 </div>
                 <p className="text-sm font-semibold text-yellow-500">Emails</p>
-                <p className="text-sm font-semibold">On Time</p>
+                <p className="text-sm font-semibold">~2 min</p>
 
                 <div className="flex flex-row items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <p className="text-sm font-semibold">{getTimeMinutesLater(10)}</p>
                 </div>
                 <p className="text-sm font-semibold text-yellow-500">SEO</p>
-                <p className="text-sm font-semibold">On Time</p>
+                <p className="text-sm font-semibold">~1 min</p>
 
                 <div className="flex flex-row items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <p className="text-sm font-semibold">{getTimeMinutesLater(11)}</p>
                 </div>
                 <p className="text-sm font-semibold text-yellow-500">Analytics</p>
-                <p className="text-sm font-semibold">On Time</p>
+                <p className="text-sm font-semibold">~1 min</p>
 
                 <div className="flex flex-row items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                     <p className="text-sm font-semibold">{getTimeMinutesLater(12)}</p>
                 </div>
                 <p className="text-sm font-semibold text-yellow-500">Components</p>
-                <p className="text-sm font-semibold">On Time</p>
+                <p className="text-sm font-semibold">~1 min</p>
             </div>
         </div>
     );

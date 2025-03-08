@@ -40,7 +40,7 @@ export default function HowItWorks() {
                         Icon={Cog8ToothIcon}
                         title="Customize"
                         description="Adjust and personalize the project."
-                        duration="~10"
+                        duration="~5"
                     />
                     {/* 3) Deploy */}
                     <Step

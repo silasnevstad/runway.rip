@@ -15,7 +15,7 @@ export default function PricingCard({
 
     return (
         <div
-            className={`relative flex flex-col gap-4 px-6 py-8 rounded-2xl ${backgroundColor} shadow-sm w-80 lg:w-88 ${
+            className={`relative flex flex-col gap-4 p-8 rounded-2xl ${backgroundColor} shadow-sm w-80 lg:w-96 ${
                 isPopular ? "border-2 border-primary-400" : ""
             }`}
         >
@@ -30,9 +30,11 @@ export default function PricingCard({
             <h3 className={`text-xl font-bold ${isPopular ? "text-primary-500" : ""}`}>
                 {title}
             </h3>
+
             {description && <p className="text-base opacity-70">{description}</p>}
 
             <PlanPrice interval={interval} />
+
             <PlanFeatures planFeatures={features} allFeatures={allFeatures} />
 
             <div className="flex flex-col gap-2 mt-auto">

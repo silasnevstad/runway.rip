@@ -30,7 +30,7 @@ export default function FeaturesCarousel({
             className="flex flex-col items-center w-full"
         >
             <div
-                className="flex flex-col items-center w-4/5 max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6 max-w-prose"
+                className="flex flex-col items-center max-w-prose px-4"
             >
                 {title && (
                     <p className={`text-md font-extrabold  text-center mb-2 ${getTextColorClass(titleColor)}`}>
@@ -49,7 +49,7 @@ export default function FeaturesCarousel({
                 )}
             </div>
 
-            <div className="grid grid-cols-3 sm:grid-cols-6 max-w-5xl w-full gap-0 mx-auto px-4 py-6 mb-4">
+            <div className="grid grid-cols-3 sm:grid-cols-6 max-w-2xl md:max-2xl xl:max-w-3xl w-full gap-y-6 gap-x-0 mx-auto px-4 py-6 mb-4">
                 {features.map((feat, index) => {
                     const isActive = selectedFeature === index;
                     return (
@@ -68,7 +68,7 @@ export default function FeaturesCarousel({
                 })}
             </div>
 
-            <div className="w-full">
+            <div className="w-full overflow-hidden">
                 <Carousel
                     currentIndex={selectedFeature}
                     onChange={(i) => setSelectedFeature(i)}

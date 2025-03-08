@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import PricingPlans from "@/components/payments/PricingPlans";
-import { landingConfig } from "@/config";
+import { landingConfig, pricingConfig } from "@/config";
+import {GiftIcon} from "@heroicons/react/24/outline";
 
 export default function Pricing({
     title = "Pricing",
@@ -17,10 +18,17 @@ export default function Pricing({
                 <h3 className="text-2xl font-bold text-center text-primary-500">
                     {title}
                 </h3>
-                <h2 className="text-5xl font-black max-w-[20ch] text-center mb-16 text-bg-800 dark:text-gray-100">
+                <h2 className="text-5xl font-black max-w-[20ch] text-center text-bg-800 dark:text-gray-100">
                     {subtitle}
                 </h2>
-                <div className="flex flex-col items-center max-sm:gap-0">
+                {pricingConfig.promo.show && (
+                    <p className="flex items-center font-semibold mt-2 opacity-90">
+                        <GiftIcon className="w-5 h-5 mr-1 text-green-500" />
+                        <span className="text-green-500 mr-1">{pricingConfig.promo.price}$</span>
+                        {pricingConfig.promo.text}
+                    </p>
+                )}
+                <div className="flex flex-col items-center max-sm:gap-0 mt-8">
                     <PricingPlans cardBackground={cardBackground} />
                 </div>
             </div>

@@ -14,24 +14,17 @@ export default function Header({
     showLogo = true,
     showAppName = true,
     navLinks = [],  // { title, href, onClick, className }
-    ctaButton,  // { label, href, className }
+    ctaButton,  // { label, href, className, props }
     background = "bg-bg-100 dark:bg-bg-800",
     bottomBorder = false,
     sticky = false,
-    account = false,
+    account = true,
+    accountCardProps = {},
     className = "",
     ...props
 }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [username, setUsername] = useState("");
     const { appName, domain } = appConfig;
-
-    useEffect(() => {
-        if (account) {
-            const { user } = useUser();
-            setUsername(user?.username);
-        }
-    }, [account]);
 
     const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
@@ -81,12 +74,13 @@ export default function Header({
                         <Button
                             href={ctaButton.href}
                             className={ctaButton.className}
+                            {...ctaButton.props}
                         >
                             {ctaButton.label}
                         </Button>
                     )}
                     {account && (
-                        <AccountCard />
+                        <AccountCard {...accountCardProps} />
                     )}
                 </div>
 

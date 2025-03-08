@@ -27,13 +27,13 @@ export default function ImageSection({
         >
             <div
                 className={mergeClasses(
-                    'flex flex-col gap-8 items-center justify-center w-full',
+                    'flex flex-col gap-10 sm:gap-20 items-center justify-center w-full',
                     position === 'right' && 'md:flex-row-reverse',
                     position === 'left' && 'md:flex-row',
                     position === 'center' && 'md:flex-col'
                 )}
             >
-                    <div className="flex-1 flex items-center justify-center">
+                    <div className="flex-1 flex items-center justify-center max-w-[50ch]">
                         {image && (
                             <Image
                                 src={image}
@@ -45,7 +45,7 @@ export default function ImageSection({
                         )}
                     </div>
 
-                <div className={mergeClasses('flex-1 flex flex-col gap-3 max-w-prose', textContainerClassName)}>
+                <div className={mergeClasses('flex-1 flex flex-col gap-3 max-w-[50ch]', textContainerClassName)}>
                     {subtitle && (
                         <p className={mergeClasses(
                             'text-xl text-primary-500 opacity-90',

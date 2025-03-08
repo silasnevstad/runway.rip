@@ -8,3 +8,14 @@ export async function createBillingPortalSession({ customerId, returnUrl, flowDa
     });
     return session.url;
 }
+
+export const createBillingPortalUrl = async (user) => {
+    if (user?.profile?.customer_id) {
+        return await createBillingPortalSession({
+            customerId: user.profile.customer_id,
+            returnUrl: window.location.href
+        });
+    } else {
+        return null;
+    }
+}

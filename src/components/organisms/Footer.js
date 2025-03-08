@@ -2,7 +2,6 @@ import { FaInstagram, FaXTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa6
 import appConfig from "@/config";
 import TextLink from "@/components/atoms/TextLink";
 import MadeWithTag from "@/components/atoms/MadeWithTag";
-import Divider from "@/components/atoms/Divider";
 import ThemeSwitcher from "@/components/molecules/ThemeSwitcher";
 import { mergeClasses } from "@/utils/styling";
 
@@ -42,9 +41,9 @@ const Footer = ({
     const { appName, appDescription, socialMedia } = appConfig;
 
     const footerClasses = mergeClasses(
-        `flex items-center justify-center p-4 pt-5 pb-10 w-full z-50`,
+        `flex items-center justify-center p-4 pt-10 pb-14 w-full z-50`,
         background,
-        border && `border-t border-gray-200 dark:border-gray-700`,
+        border && `border-t border-gray-200 dark:border-gray-900`,
         rounded && `rounded-tr-3xl`,
         className
     );
@@ -53,16 +52,18 @@ const Footer = ({
         <footer className={footerClasses} {...props}>
             <div className="flex max-md:flex-col max-md:items-center max-md:gap-10 w-full max-w-7xl px-5 sm:px-8 lg:px-8 justify-between p-8">
                 <div className="flex flex-col text-center items-center md:text-left md:items-start">
-                    <div className="flex items-center mb-2">
-                        {showLogo && <img src="/logo.png" alt={appName} className="h-6 mr-2" />}
-                        {showAppName && <h1 className="text-2xl font-semibold">{appName}</h1>}
-                    </div>
+                    {(showLogo || showAppName) && (
+                        <div className="flex items-center mb-4">
+                            {showLogo && <img src="/logo.png" alt={appName} className="h-6 mr-2" />}
+                            {showAppName && <h1 className="text-2xl font-semibold">{appName}</h1>}
+                        </div>
+                    )}
                     {showAppDescription && <p className="text-gray-500 text-sm">{appDescription}</p>}
                     {showCopyright && <p className="text-gray-500 text-sm">{copyrightText}</p>}
-                    {showThemeSwitcher && <ThemeSwitcher className="mt-2" />}
+                    {showThemeSwitcher && <ThemeSwitcher className="mt-4" />}
                     {showMadeWith && <MadeWithTag style="vertical" className="mt-4" />}
                 </div>
-                <div className="flex max-sm:flex-col gap-14 max-sm:gap-10 max-sm:items-center">
+                <div className="flex max-sm:flex-col gap-16 max-sm:gap-10 max-sm:items-center">
                     {showSocials && (
                         <div className="flex flex-col max-sm:flex-row gap-3 opacity-80">
                             {socialMedia.instagram && <TextLink href={socialMedia.instagram} scale><FaInstagram className="text-2xl" /></TextLink>}

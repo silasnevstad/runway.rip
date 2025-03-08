@@ -121,7 +121,7 @@ export default function DocsLayout({ children }) {
                 <div
                     className={mergeClasses(
                         "max-w-full h-full max-[430px]:px-2 px-3 sm:px-5 py-6 md:py-8 md:pl-10",
-                        "overflow-y-auto",
+                        "overflow-y-auto small-scrollbar",
                         "bg-bg-0 dark:bg-bg-950",
                         "max-md:rounded-t-xl mx-2 md:mx-0"
                     )}

@@ -1,51 +1,34 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { signout } from "@/app/actions/auth";
-import Button from "@/components/atoms/Button";
-import AccountCard from "@/components/auth/AccountCard";
-import { createBillingPortalSession } from "@/libs/stripe/portal";
+import React from 'react';
 import { useUser } from "@/contexts/UserContext";
+import Card from "@/components/atoms/Card";
 
 const UserForm = () => {
     const { user } = useUser();
-    const [billingPortalUrl, setBillingPortalUrl] = useState(null);
 
-    useEffect(() => {
-        const fetchBillingPortalUrl = async () => {
-            if (user?.profile?.customer_id) {
-                const url = await createBillingPortalSession({
-                    customerId: user.profile.customer_id,
-                    returnUrl: window.location.href
-                });
-                setBillingPortalUrl(url);
-            }
-            else {
-                setBillingPortalUrl(null);
-            }
-        }
-
-        fetchBillingPortalUrl();
-    }, [user]);
+    const displayName = user?.profile?.name || user?.user_metadata?.full_name;
 
     return (
         <div className="flex flex-col items-center gap-10 mt-10">
-            <AccountCard />
-            <Button
-                variant="soft"
-                size="sm"
-                href={billingPortalUrl}
-            >
-                Manage Subscription
-            </Button>
-            <Button
-                variant="soft"
-                size="sm"
-                onClick={async () => {
-                    await signout();
-                }}
-            >
-                Sign Out
-            </Button>
+            <div className="flex flex-col items-center gap-4">
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Account</h1>
+            </div>
+
+            <Card className="w-full max-w-md shadow-md rounded-lg p-6 gap-3">
+                {user?.email && (
+                    <>
+                        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">Email</p>
+                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{user?.email}</p>
+                    </>
+                )}
+
+                {displayName && (
+                    <>
+                        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 mt-3">Display Name</p>
+                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{displayName}</p>
+                    </>
+                )}
+            </Card>
         </div>
     );
 };

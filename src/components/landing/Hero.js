@@ -9,6 +9,7 @@ import TextHighlight from "@/components/atoms/TextHighlight";
 import MadeWith from "@/components/atoms/MadeWith";
 import AvatarsTestimonial from "@/components/organisms/testimonials/Avatars";
 import {getTextColorClass, mergeClasses} from "@/utils/styling";
+import {pricingConfig} from "@/config";
 
 const layoutDirection = {
     left: "flex-row",
@@ -33,11 +34,6 @@ export default function Hero({
     description = "Your app description",
     buttonText = "Get started",
     buttonSubText = "",
-    showPromo = true,
-    promo = {
-        price: 50,
-        text: "off for first 1000 users (12 left)",
-    },
     showTrustedBy = true,
     trustedBy = {
         text: "Trusted by the best",
@@ -60,7 +56,7 @@ export default function Hero({
     const router = useRouter();
 
     const containerClasses = mergeClasses(
-        "relative flex w-full min-h-screen h-full justify-center py-16 px-9 sm:px-6 lg:px-8",
+        "relative flex w-full min-h-screen h-full justify-center items-center px-9 sm:px-6 lg:px-8",
         textPosition !== "center" && "max-w-7xl",
         className
     );
@@ -82,7 +78,7 @@ export default function Hero({
                 />
             )}
 
-            <div className="w-full z-10 mt-10">
+            <div className="w-full z-10 -mt-20">
                 <div className={`flex gap-10 items-center ${directionClasses}`}>
                     {/* Text Content */}
                     <div className={`w-full flex flex-col gap-4 max-w-3xl ${alignmentClasses}`}>
@@ -112,11 +108,11 @@ export default function Hero({
                             {buttonSubText && (
                                 <p className="text-sm opacity-60 font-semibold">{buttonSubText}</p>
                             )}
-                            {showPromo && (
+                            {pricingConfig.promo.show && (
                                 <p className="flex items-center text-sm font-semibold">
                                     <GiftIcon className="w-5 h-5 mr-1 text-green-500" />
-                                    <span className="text-green-500 mr-1">{promo.price}$</span>
-                                    {promo.text}
+                                    <span className="text-green-500 mr-1">{pricingConfig.promo.price}$</span>
+                                    {pricingConfig.promo.text}
                                 </p>
                             )}
                         </div>

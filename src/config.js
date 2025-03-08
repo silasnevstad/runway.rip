@@ -53,6 +53,12 @@ const appConfig = {
 };
 
 export const pricingConfig = {
+    promo: {
+        show: true,
+        price: 50,
+        text: "off for first 1000 users (12 left)",
+        code: "LAUNCH",
+    },
     plans: [
         {
             mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
@@ -124,7 +130,7 @@ export const landingConfig = {
             fromGradient: "primary",
             toGradient: "purple",
         },
-        description: "Everything you need in a Next.js boilerplate, so you can focus on innovation instead of configuration.",
+        description: "A complete Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
         buttonText: "Get Started",
         promo: {
             show: true,
@@ -132,7 +138,7 @@ export const landingConfig = {
             text: "off for first 1000 users (12 left)",
         },
         trustedBy: {
-            show: true,
+            show: false,
             text: "Trusted by 200+ people",
             avatars: [
                 { src: "/avatar1.png", alt: "Avatar 1"},
@@ -147,6 +153,14 @@ export const landingConfig = {
         title: "Tired of starting from scratch?",
         subtitle: "Tired of having to set up auth, payments, databases, components, SEO,... the list goes on. Runway has everything you need to launch your ideas.",
     },
+    what: {
+        show: false,
+        title: "What is Runway?",
+        subtitle: "A complete Next.js boilerplate",
+        description: `As a solo-prenuer, who is tired of having to re-implement the same features (auth, payments, emails, components...) everytime I create a new project, I created Runway to help launch faster (by taking care of the headaches once and for all).`,
+        imageSrc: "/images/rocket-boy.svg",
+        imageAlt: "Rocket Launch",
+    },
     why: {
         show: true,
         title: "Save endless hours of headaches and get right to business",
@@ -155,13 +169,13 @@ export const landingConfig = {
         show: true,
         title: "Who's this for?",
         subtitle: "For developers, designers, and entrepreneurs.",
-        text: "For developers, designers, and entrepreneurs. Anyone who wants to build and launch a web app quickly and skip out on all the tedious hassle.",
+        description: "For developers, designers, and entrepreneurs. Anyone who wants to build and launch a web app quickly and skip out on all the tedious hassle.",
     },
     how: {
         show: true,
         title: "How this works?",
         subtitle: "Get started in seconds.",
-        text: "It's a NextJS boilerplate that includes everything you need to build and launch your web app. With Runway, you can get started in seconds and start monetizing your project in hours, not weeks.",
+        description: "It's a NextJS boilerplate that includes everything you need to build and launch your web app. With Runway, you can get started in seconds and start monetizing your project in hours, not weeks.",
     },
     whoAndHow: {
         show: true,
@@ -179,7 +193,7 @@ export const landingConfig = {
     },
     pricing: {
         title: "Pricing",
-        subtitle: "Use Runway to save hours of coding and launch faster.",
+        subtitle: "Save hours of headaches and get right to business!",
         show: true
     },
     faq: {
