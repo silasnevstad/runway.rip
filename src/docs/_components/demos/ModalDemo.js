@@ -10,8 +10,6 @@ export default function ModalDemo({
     blur,
     closeOnOutsideClick,
     showCloseButton,
-    backdropClassName,
-    contentClassName,
 }) {
     const [isMounted, setIsMounted] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -36,8 +34,6 @@ export default function ModalDemo({
                 blur={blur}
                 closeOnOutsideClick={closeOnOutsideClick}
                 showCloseButton={showCloseButton}
-                backdropClassName={backdropClassName}
-                contentClassName={contentClassName}
             >
                 {children}
             </Modal>

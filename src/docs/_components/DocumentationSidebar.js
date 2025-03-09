@@ -42,7 +42,7 @@ const NavItem = ({ item, pathname, level }) => {
                 <DropdownItem
                     header={
                         <span
-                            className={`text-[13px] pl-2 transition-colors group-hover:text-gray-800 dark:group-hover:text-gray-200 ${
+                            className={`text-[13px] pl-2 py-2 transition-colors group-hover:text-gray-800 dark:group-hover:text-gray-200 ${
                                 isActive
                                     ? "text-gray-800 dark:text-gray-100 font-semibold"
                                     : "text-gray-700 dark:text-gray-500"
@@ -52,7 +52,7 @@ const NavItem = ({ item, pathname, level }) => {
                         </span>
                     }
                     initialOpen={pathname.startsWith(item.href)}
-                    className="w-full py-2"
+                    className="w-full py-0"
                     border={false}
                 >
                     <div className="flex flex-col w-full h-full">
