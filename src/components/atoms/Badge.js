@@ -12,6 +12,7 @@ export default function Badge({
     lift = false,
     scale = false,
     active = false,
+    hoverBg = true,
     onClick,
     className = "",
     ...props
@@ -26,6 +27,7 @@ export default function Badge({
         BADGE_SIZES[size] || BADGE_SIZES.md,
         colorSet.bg,
         colorSet.text,
+        hoverBg && colorSet.hoverBg,
         border && `border ${colorSet.border}`,
         getHoverClasses({ lift, scale, active }),
         className
