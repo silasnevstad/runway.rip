@@ -11,7 +11,7 @@ import FAQ from "@/components/landing/FAQ";
 import CTA from "@/components/landing/CTA";
 import Footer from "@/components/organisms/Footer";
 import { getSchemaTags } from "@/libs/seo";
-import { landingConfig } from "@/config";
+import appConfig, { landingConfig } from "@/config";
 
 // Customize a section with padding and background color
 const SectionWrapper = ({ show = true, className = "", children }) => {
