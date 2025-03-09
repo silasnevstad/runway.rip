@@ -23,7 +23,7 @@ const FileInput = ({
         const selectedFile = event.target.files[0];
         if (selectedFile) {
             setFile(selectedFile);
-            onFileChange(selectedFile);
+            onFileChange?.(selectedFile);
         }
     };
 

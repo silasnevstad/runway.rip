@@ -83,6 +83,7 @@ import Toast from "@/components/atoms/Toast";
 import CTA from "@/components/landing/CTA";
 import OAuthButton from "@/components/auth/OAuthButton";
 import DropdownItem from "@/components/atoms/DropdownItem";
+import {FileInputDemo} from "@/docs/_components/demos/FileInputDemo";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -239,6 +240,7 @@ export const mdxComponents = {
     FileDrop: FileDrop,
     FileDropDemo: FileDropDemo,
     FileInput: FileInput,
+    FileInputDemo: FileInputDemo,
     Indicator: Indicator,
     Switch: Switcher,
     SwitchDemo: SwitchDemo,
