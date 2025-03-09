@@ -20,7 +20,7 @@ export const metadata = getSEOTags({
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en">
             <head>
                 <script defer src="https://cloud.umami.is/script.js" data-website-id="2f7ce85f-381c-479a-918f-b5b011147caa"></script>
             </head>

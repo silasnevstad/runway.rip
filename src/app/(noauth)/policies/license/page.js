@@ -26,19 +26,23 @@ export default function LicenseAgreement() {
                     <h2 className="text-md font-bold text-gray-600 dark:text-gray-500">
                         TL;DR;
                     </h2>
-                    <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
-                        Personal License: Build unlimited projects as an individual.
-                        Team License: Build unlimited projects as a team.
-                    </p>
+                    <div className="flex flex-col gap-2 mt-2 text-[16px] text-gray-900 dark:text-gray-400">
+                        <span>
+                            • <strong>Personal License</strong>: Build unlimited projects for personal or client work (internal use only).
+                        </span>
+                        <span>
+                            • Redistribution, resale, public sharing, or any form of external distribution is strictly prohibited.
+                        </span>
+                    </div>
                 </section>
 
                 <section className="mt-6">
                     <p className="text-[17px] text-gray-900 dark:text-gray-400">
-                        This License Agreement ("Agreement") is a legal agreement between you, the user ("Licensee") and
-                        Runway for Next.js ("Licensor"), represented by Silas Nevstad, for the use of the Runway for Next.js
-                        boilerplate ("Product") available at <a href="/" className="text-primary-500 hover:underline">https://runway.rip</a>
-                        ("Website"). By downloading, accessing, or using the Product, Licensee agrees to be bound by the
-                        terms and conditions of this Agreement.
+                        This License Agreement (“Agreement”) is a binding legal agreement between you, the Licensee, and
+                        Runway (“Licensor”), represented by Silas Nevstad, regarding the use of the Runway boilerplate ("Product")
+                        available at <a href="/" className="text-primary-500 hover:underline">https://runway.rip</a> ("Website").
+                        By downloading, accessing, or using the Product, Licensee agrees to be bound by the terms and conditions
+                        of this Agreement.
                     </p>
                 </section>
 
@@ -51,9 +55,10 @@ export default function LicenseAgreement() {
                         1.1 Personal License:
                     </h3>
                     <p className="text-[17px] text-gray-900 dark:text-gray-400">
-                        Subject to the terms and conditions of this Agreement, upon purchase, Runway grants Licensee a non‑exclusive, non‑transferable,
-                        and non‑sublicensable Personal License to use Runway for Next.js to create unlimited projects for personal
-                        or commercial use.
+                        Subject to the terms and conditions of this Agreement, upon purchase, Licensor grants Licensee a
+                        non‑exclusive, non‑transferable, and non‑sublicensable Personal license to use the Product solely
+                        to create unlimited projects  and develop applications or websites for for personal or commercial use.
+                        Such use is limited to internal business activities only.
                     </p>
                 </section>
 
@@ -63,10 +68,11 @@ export default function LicenseAgreement() {
                         2. Restrictions
                     </h2>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
-                        You shall not:
-                        <br />– Resell or redistribute the Runway for Next.js boilerplate as a standalone product.
-                        <br />– Remove, alter, or obscure any copyright, trademark, or other proprietary notices.
-                        <br />– Use the Product in violation of any applicable laws or third‑party rights.
+                        Licensee shall not, and may not permit any third party to:
+                        <br />– Resell, redistribute, share, post online, or otherwise disseminate the Product or any substantial part thereof.
+                        <br />– Modify, create derivative works from, or reverse-engineer the Product if such modifications result in sharing or commercial resale.
+                        <br />– Remove, alter, or obscure any copyright or proprietary notices included in the Product.
+                        <br />– Use the Product in any manner that violates applicable laws or infringes on third-party rights.
                         <br />– Sub-license, rent, lease, or transfer the Product or any rights granted herein.
                     </p>
                 </section>
@@ -77,7 +83,8 @@ export default function LicenseAgreement() {
                         3. Ownership and Intellectual Property
                     </h2>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
-                        Runway for Next.js retains all ownership and intellectual property rights in and to the Product. This Agreement does not transfer any ownership rights to you.
+                        Licensor retains all ownership, title, and intellectual property rights in and to the Product.
+                        No rights other than the limited license expressly granted herein are transferred to Licensee.
                     </p>
                 </section>
 
@@ -87,7 +94,7 @@ export default function LicenseAgreement() {
                         4. Refunds
                     </h2>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
-                        Due to the nature of digital products, all sales of Runway for Next.js are final. No refunds or exchanges will be provided once access is granted.
+                        Due to the digital nature of the Product, all sales are final. No refunds or exchanges will be provided once access is granted.
                     </p>
                 </section>
 
@@ -97,10 +104,14 @@ export default function LicenseAgreement() {
                         5. Disclaimer and Limitation of Liability
                     </h2>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
-                        THE PRODUCT IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NONINFRINGEMENT.
+                        THE PRODUCT IS PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. LICENSOR DISCLAIMS
+                        ALL WARRANTIES, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+                        PURPOSE, AND NONINFRINGEMENT.
                     </p>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
-                        TO THE MAXIMUM EXTENT PERMITTED BY LAW, RUNWAY FOR NEXT.JS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATING TO THE USE OR INABILITY TO USE THE PRODUCT. Our total liability shall not exceed the purchase price of the Product.
+                        TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR SHALL NOT BE LIABLE FOR
+                        ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR IN CONNECTION WITH
+                        THE USE OR INABILITY TO USE THE PRODUCT, EVEN IF RUNWAY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
                     </p>
                 </section>
 
@@ -110,7 +121,8 @@ export default function LicenseAgreement() {
                         6. Termination
                     </h2>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
-                        We reserve the right to terminate your license immediately if you breach any term of this Agreement. Upon termination, you must cease all use of the Product and destroy all copies in your possession.
+                        Licensor may terminate your license immediately if you breach any term of this Agreement.
+                        Upon termination, you must immediately cease using the Product and destroy all copies.
                     </p>
                 </section>
 
@@ -120,22 +132,38 @@ export default function LicenseAgreement() {
                         7. Governing Law and Dispute Resolution
                     </h2>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
-                        This Agreement shall be governed by and construed in accordance with the laws of Massachusetts. Any dispute arising out of or in connection with this Agreement shall be subject to the exclusive jurisdiction of the courts located in Massachusetts.
+                        This Agreement shall be governed by and construed in accordance with the laws of the Commonwealth of Massachusetts.
+                        Any dispute, controversy, or claim arising out of or relating to this Agreement shall be subject to the exclusive
+                        jurisdiction of the courts located in Boston, Massachusetts.
+                    </p>
+                </section>
+
+                {/* 8. Amendments & Updates */}
+                <section className="mt-6">
+                    <h2 className="text-md font-semibold text-gray-600 dark:text-gray-500">
+                        8. Entire Agreement
+                    </h2>
+                    <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
+                        Licensor reserves the right to update or modify this Agreement at any time. Any such modifications
+                        will be posted on the official Website (https://runway.rip) and will become effective [30] days after
+                        notice is provided via the Website and/or to your registered email address. Continued use of the
+                        Product after such changes constitutes your acceptance of the updated terms.
                     </p>
                 </section>
 
                 {/* 8. Entire Agreement */}
                 <section className="mt-6">
                     <h2 className="text-md font-semibold text-gray-600 dark:text-gray-500">
-                        8. Entire Agreement
+                        9. Entire Agreement
                     </h2>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
-                        This Agreement constitutes the entire agreement between you and Runway for Next.js regarding the Product and supersedes all prior or contemporaneous agreements, representations, and understandings.
+                        This Agreement constitutes the entire agreement between you and Licensor regarding the Product and
+                        supersedes all prior or contemporaneous agreements, representations, or understandings.
                     </p>
                 </section>
 
                 <p className="mt-8 text-md text-gray-600 dark:text-gray-500">
-                    Last updated: February 18, 2025
+                    Last updated: March 9th, 2025
                 </p>
             </div>
         </div>

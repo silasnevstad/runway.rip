@@ -34,6 +34,7 @@ export const DocsNav = [
             // { title: "Stripe", href: "/docs/tutorials/stripe" },
             { title: "Supabase", href: "/docs/tutorials/supabase" },
             { title: "Policies", href: "/docs/tutorials/policies" },
+            { title: "Bonus", href: "/docs/tutorials/bonus" },
             { title: "Deployment", href: "/docs/tutorials/deployment" },
         ],
     },

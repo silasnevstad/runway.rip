@@ -2,10 +2,10 @@
 title: "Bonus"
 description: "Some extra components and tricks to make your app stand out"
 onThisPage:
-  - title: "ScrollBar"
-    href: "#scrollbar"
   - title: "Text Selection"
     href: "#text-selection"
+  - title: "ScrollBar"
+    href: "#scrollbar"
   - title: "TopLoader"
     href: "#toploader"
 related:
@@ -13,22 +13,91 @@ related:
     href: "https://www.npmjs.com/package/nextjs-toploader"
 ---
 
-To make your app stand out, here are some extra components and tricks I like to use.
+To make your app **stand out**, here are some **extra components** and **tricks** I like to use.
 
+<div id="text-selection" />
+
+## Text Selection
+
+To add a custom text selection color, open `src/app/globals.css` and add the following styles.
+
+```globals.css
+@layer utilities {
+  ::selection {
+    background: var(--color-primary-300);
+    color: var(--color-bg-900);
+  }
+
+  .dark ::selection {
+    background: var(--color-primary-300);
+    color: var(--color-bg-900);
+  }
+}
+```
+
+<Tip>
+    Tweak the `background` and `color` properties to your liking (see [color config](/docs/features/config#color-theme)).
+</Tip>
+
+<br />
 <br />
 
 <div id="scrollbar" />
 
 ## ScrollBar
 
-I've already customized the scrollbar for Runway, but if you want to further customize it, open `src/app/globals.css` and add your own styles.
+Open `src/app/globals.css` and add `-webkit-scrollbar` styles:
+
+<Callout>
+    Runway already styles the scrollbar for you, so just tweak as you like.
+</Callout>
 
 ```globals.css
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+@layer utilities {
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--color-bg-100);
+    }
+
+    ...
 }
 ```
 
+<br />
+<br />
 
+<div id="toploader" />
+## Top Loader
+
+To create a top loader (a sleek loading bar on page loads), we use the [`nextjs-toploader`](https://www.npmjs.com/package/nextjs-toploader) package and the `TopLoader` component.
+
+Add the following code to `src/app/layout.js`:
+```layout.js
+import TopLoader from '@/components/TopLoader';
+
+export default function RootLayout({ children }) {
+    return (
+        <html lang="en">
+            <body className={inter.className}>
+                <TopLoader/>
+                <ThemeProvider enableSystem={true} defaultTheme={'system'} attribute="class">
+                    <UserProvider>
+                        <ToastProvider>
+                            {children}
+                        </ToastProvider>
+                    </UserProvider>
+                </ThemeProvider>
+            </body>
+        </html>
+    );
+}
+```
+
+<Tip>
+    To customize the top loader, open `src/components/atoms/TopLoader.js` and change the props of the `TopLoader` component.
+</Tip>
