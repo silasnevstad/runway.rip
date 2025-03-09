@@ -31,7 +31,12 @@ export default function TermsOfService() {
                         1. Introduction
                     </h2>
                     <p className="mt-2 text-base text-gray-900 dark:text-gray-400">
-                        By using Runway for Next.js (the “Product”), you (“Licensee” or “User”) confirm your acceptance of, and agree to be bound by, these Terms and Conditions (“Agreement”). This Agreement governs your access to and use of the Product, including the associated website where it is sold.
+                        Runway (“Licensor”), represented by Silas Nevstad, regarding the use of the Runway boilerplate ("Product")
+                        available at <a href="/" className="text-primary-500 hover:underline">https://runway.rip</a> ("Website").
+
+                        By using the Runway boilerplate (the “Product”), you (“Licensee” or “User”) confirm your acceptance of,
+                        and agree to be bound by, these Terms and Conditions (“Agreement”). This Agreement governs your access
+                        to and use of the Product, including the associated website where it is sold.
                     </p>
                 </section>
 
@@ -41,7 +46,8 @@ export default function TermsOfService() {
                         2. Agreement to Terms
                     </h2>
                     <p className="mt-2 text-base text-gray-900 dark:text-gray-400">
-                        This Agreement takes effect on the date you first access or download the Product. If you do not agree with any part of these terms, you must not use the Product.
+                        This Agreement takes effect on the date you first access or download the Product. If you do not
+                        agree with any part of these terms, you must not use the Product.
                     </p>
                 </section>
 
@@ -55,7 +61,8 @@ export default function TermsOfService() {
                         3.1 License Grant:
                     </h3>
                     <p className="text-base text-gray-900 dark:text-gray-400">
-                        Upon purchase, you are granted a non‑exclusive, non‑transferable, and non‑sublicensable license to use Runway for Next.js to build, host, and manage your own websites or applications.
+                        Upon purchase, you are granted a non‑exclusive, non‑transferable, and non‑sublicensable Personal license
+                        to use Runway for Next.js to build, host, and manage your own websites or applications.
                     </p>
 
                     <h3 className="mt-3 text-sm font-medium text-gray-700 dark:text-gray-400">
@@ -126,7 +133,7 @@ export default function TermsOfService() {
                 </section>
 
                 <p className="mt-8 text-sm text-gray-600 dark:text-gray-500">
-                    Last updated: February 18, 2025
+                    Last updated: March 9, 2025
                 </p>
             </div>
         </div>
