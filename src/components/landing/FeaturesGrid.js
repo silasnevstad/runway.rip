@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-
 import { FaCheck } from "react-icons/fa6";
+
 import Card from "@/components/atoms/Card";
 import { featuresConfig, landingConfig } from "@/config";
-import { getTextColorClass } from "@/utils/styling";
+import { getTextColorClass, mergeClasses } from "@/utils/styling";
 
 export default function FeaturesGrid({
     title = "Features",
@@ -18,6 +18,7 @@ export default function FeaturesGrid({
     cardColor = "bg",
     cardVariant = "soft",
     highlightLastFeature = true,
+    gridClassName = "",
 }) {
     return (
         <section
@@ -43,7 +44,7 @@ export default function FeaturesGrid({
                     </p>
                 )}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-screen-xl px-4">
+            <div className={mergeClasses("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-screen-xl px-4", gridClassName)}>
                 {features.map((feature, index) => (
                     <Card
                         key={index}

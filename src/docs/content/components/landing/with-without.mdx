@@ -48,16 +48,12 @@ import WithWithout from '@/components/WithWithout';
 
 ## Props
 
-| Name             | Type    | Default                                                  | Description                                                                                      |
-|------------------|---------|----------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| title            | string  | `"Tired of spending hours configuring and maintaining?"` | The title of the component.                                                                      |
-| withoutTitle     | string  | `"Without Runway"`                                       | The title of the component when the `without` prop is true.                                      |
-| withTitle        | string  | `"With Runway"`                                          | The title of the component when the `without` prop is false.                                     |
-| withouts         | array   | -                                                        | The list of items to display when the `without` prop is true.                                    |
-| withs            | array   | -                                                        | The list of items to display when the `without` prop is false.                                   |
-| cardBorderRadius | string  | `"lg"`                                                   | The border radius of the card (using [Tailwind](https://tailwindcss.com) border radius classes). |
-| cardBorder       | boolean | `false`                                                  | If true, a border will be displayed on the card.                                                 |
-| without          | boolean | `false`                                                  | If true, the component will display the `without` title and list.                                |
-| with             | boolean | `false`                                                  | If true, the component will display the `with` title and list.                                   |
-| cardBorderRadius | string  | `"lg"`                                                   | The border radius of the card (using [Tailwind](https://tailwindcss.com) border radius classes). |
-| cardBorder       | boolean | `false`                                                  | If true, a border will be displayed on the cards.                                                |
+| Name             | Type    | Default                                                  | Description                                                                                                                  |
+|------------------|---------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| title            | string  | `"Tired of spending hours configuring and maintaining?"` | The title of the component.                                                                                                  |
+| withoutTitle     | string  | `"Without Runway"`                                       | The title of the component when the `without` prop is true.                                                                  |
+| withTitle        | string  | `"With Runway"`                                          | The title of the component when the `without` prop is false.                                                                 |
+| withouts         | array   | `withWithoutsConfig.withouts`                            | The list of items to display when the `without` prop is true, see [config](/docs/features/config#landing-page) for more details.  |
+| withs            | array   | `withWithoutsConfig.see`                                 | The list of items to display when the `without` prop is false, see [config](/docs/features/config#landing-page) for more details. |
+| cardBorderRadius | string  | `"lg"`                                                   | The border radius of the card (using [Tailwind](https://tailwindcss.com) border radius classes).                             |
+| cardBorder       | boolean | `false`                                                  | If true, a border will be displayed on the card.                                                                             |

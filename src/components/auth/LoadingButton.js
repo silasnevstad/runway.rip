@@ -7,7 +7,7 @@ import Button from '@/components/atoms/Button';
 export default function LoadingButton({ mode = 'sign-in', pending }) {
     const getButtonLabel = () => {
         switch (mode) {
-            case 'signup':
+            case 'sign-up':
                 return 'Sign Up';
             case 'magiclink':
                 return 'Send Magic Link';
@@ -18,7 +18,7 @@ export default function LoadingButton({ mode = 'sign-in', pending }) {
 
     const getLoadingLabel = () => {
         switch (mode) {
-            case 'signup':
+            case 'sign-up':
                 return 'Signing Up...';
             case 'magiclink':
                 return 'Sending Magic Link...';

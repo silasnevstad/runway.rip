@@ -11,29 +11,63 @@ onThisPage:
   - title: "Examples"
     href: "#examples"
 related:
-  - title: "AuthInputField"
+  - title: "AuthInput"
     href: "/docs/components/auth/auth-input-field"
   - title: "OAuthButton"
     href: "/docs/components/auth/oauth-button"
+  - title: "ToastProvider"
+    href: "/docs/components/toast"
+  - title: "Auth Set up"
+    href: "/docs/tutorial/authentication"
 ---
 
 <div id="overview" />
 
-<br/>
+<Caution>
+    Requires [`Auth`](/docs/tutorial/authentication) to be set up.
+</Caution>
 
-<div className="flex flex-col w-full items-center justify-center gap-8">
-</div>
+The `AuthForm` component is a form component that handles user authentication. It can handle password-based, magic link,
+and OAuth methods.
 
-<br />
-
-The `AuthForm` component is a form component that handles user authentication.
-
-It **automatically retrieves** the authentication methods from the [config.js](/docs/features/config) file and displays the
-appropriate form fields. It supports **email/password**, **magiclink** and **OAuth** authentication methods.
+It creates `PasswordlessAuthForm`, `PasswordAuthForm`, and `OAuthButtons` components based on the methods available in the
+[config.js](/docs/features/config#auth) file.
 
 <Callout>
-    It uses [`AuthInput`](/docs/components/auth/auth-input) and [`OAuthButton`](/docs/components/auth/oauth-button) components for the form fields and OAuth buttons respectively.
+    The auth forms use [`ToastProvider`](/docs/components/toast) component to display toast messages.
 </Callout>
+
+<br/>
+<br/>
+<Divider />
+<div id="usage" />
+## Usage
+
+```javascript
+import AuthForm from '@/components/auth/AuthForm';
+
+<AuthForm />
+```
+
+<Info>
+    Runway uses the `AuthForm` component on the `/login` and `/signup` pages.
+</Info>
+
+<br/>
+<br/>
+<br/>
+<Divider />
+<div id="props" />
+## Props
+
+| Name | Type   | Default     | Description                                          |
+|------|--------|-------------|------------------------------------------------------|
+| mode | string | `"sign-in"` | The mode of the form, can be `sign-in` or `sign-up`. |
+
+
+<Info>
+    It uses [`AuthInput`](/docs/components/auth/auth-input) and [`OAuthButton`](/docs/components/auth/oauth-button) components for the form fields and OAuth buttons respectively.
+</Info>
 
 <br/>
 

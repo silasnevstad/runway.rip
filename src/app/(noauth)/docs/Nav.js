@@ -91,6 +91,7 @@ export const DocsNav = [
                     { title: "FeaturesGrid", href: "/docs/components/landing/features-grid" },
                     { title: "WithWithout", href: "/docs/components/landing/with-without" },
                     { title: "Pricing", href: "/docs/components/landing/pricing" },
+                    { title: "CTA", href: "/docs/components/landing/cta" },
                     { title: "FAQ", href: "/docs/components/landing/faq" },
                     { title: "Footer", href: "/docs/components/landing/footer" },
                 ],
@@ -104,8 +105,6 @@ export const DocsNav = [
                     { title: "AuthForm", href: "/docs/components/auth/auth-form" },
                     { title: "AuthInput", href: "/docs/components/auth/auth-input" },
                     { title: "OAuthButton", href: "/docs/components/auth/oauth-button" },
-                    { title: "PasswordAuthForm", href: "/docs/components/auth/password-auth-form" },
-                    { title: "PasswordlessAuthForm", href: "/docs/components/auth/passwordless-auth-form" },
                 ],
             },
             // {

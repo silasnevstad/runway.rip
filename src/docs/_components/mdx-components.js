@@ -80,6 +80,8 @@ import CheckoutButton from "@/components/payments/CheckoutButton";
 import AuthInput from "@/components/auth/AuthInput";
 // import ToastDemo from "@/docs/_components/demos/ToastDemo";
 import Toast from "@/components/atoms/Toast";
+import CTA from "@/components/landing/CTA";
+import OAuthButton from "@/components/auth/OAuthButton";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -201,6 +203,7 @@ export const mdxComponents = {
     FeaturesGrid: FeaturesGrid,
     WithWithout: WithWithout,
     Pricing: Pricing,
+    CTA: CTA,
     FAQ: FAQ,
     Footer: Footer,
 
@@ -210,6 +213,7 @@ export const mdxComponents = {
     PasswordAuthForm: PasswordAuthForm,
     PasswordlessAuthForm: PasswordlessAuthForm,
     OAuthButtons: OAuthButtons,
+    OAuthButton: OAuthButton,
 
     // Components
     Accordion: Accordion,

@@ -22,7 +22,7 @@ related:
 <br/>
 
 <div className="flex flex-col w-full items-center justify-center gap-8">
-    <Footer showSocials={false}/>
+    <Footer showSocials={false} />
 </div>
 
 <br />
@@ -54,21 +54,25 @@ import the component and use it like this:
 ```js
 import Footer from '@/components/organisms/Header';
 
-<Footer
-    showDescription={false}
-    showSocials={false}
-/>
+<Footer/>
 ```
 
 <br/>
 
-Since `Footer` uses the `TextLink` component, you can pass any prop to it. For example:
+Since `Footer` uses the `TextLink` component for links, you can pass any prop to it. For example:
 ```js
-{
-    title: "Documentation",
-    href: "/docs"
-    props: { underline: true, fade: true }
-}
+<Footer
+    navLinks={[
+        {
+            title: "Documentation",
+            href: "/docs",
+            props: {
+                underline: true,
+                fade: true 
+            }
+        }
+    ]}
+/>
 ```
 
 <br/>
@@ -80,23 +84,23 @@ Since `Footer` uses the `TextLink` component, you can pass any prop to it. For e
 
 ## Props
 
-| Name              | Type    | Default                                     | Description                                                                                   |
-|-------------------|---------|---------------------------------------------|-----------------------------------------------------------------------------------------------|
-| showLogo          | boolean | `true`                                      | If true, the logo will be displayed.                                                          |
-| showAppName       | boolean | `true`                                      | If true, the app name will be displayed.                                                      |
-| showDescription   | boolean | `true`                                      | If true, the app description will be displayed.                                               |
-| showCopyright     | boolean | `true`                                      | If true, the copyright text will be displayed.                                                |
-| showMadeWith      | boolean | `true`                                      | If true, the `MadeWith` text will be displayed.                                               |
-| showThemeSwitcher | boolean | `true`                                      | If true, the `ThemeSwitcher` will be displayed.                                               |
-| showSocials       | boolean | `true`                                      | If true, the social media buttons will be displayed.                                          |
-| navLinks          | array   | `[]`                                        | Array of navigation links. Each link is an object with `title`, `href`, and optional `props`. |
-| legalLinks        | array   | `[]`                                        | Array of legal links. Each link is an object with `title`, `href`, and optional `props`.      |
-| copyrightText     | string  | `"Copyright © 2025 - All Rights Reserved."` | Copyright text.                                                                               |
-| background        | string  | `"bg-bg-0 dark:bg-bg-900"`                  | Background color (use [tailwind.config](/docs/features/config#color-theme)).                             |
-| border            | boolean | `false`                                     | If true, a border will be displayed.                                                          |
-| rounded           | boolean | `true`                                      | If true, the footer will have rounded top corners (can change side).                          |
-| className         | string  | `""`                                        | Additional [Tailwind](https://tailwindcss.com) utility classes.                               |
-| ...props          | object  | -                                           | Any other valid HTML attributes for the <code>&lt;footer&gt;</code> element.                  |
+| Name               | Type    | Default                                     | Description                                                                                   |
+|--------------------|---------|---------------------------------------------|-----------------------------------------------------------------------------------------------|
+| showLogo           | boolean | `true`                                      | If true, the logo will be displayed.                                                          |
+| showAppName        | boolean | `true`                                      | If true, the app name will be displayed.                                                      |
+| showAppDescription | boolean | `true`                                      | If true, the app description will be displayed.                                               |
+| showCopyright      | boolean | `true`                                      | If true, the copyright text will be displayed.                                                |
+| showMadeWith       | boolean | `true`                                      | If true, the `MadeWith` text will be displayed.                                               |
+| showThemeSwitcher  | boolean | `true`                                      | If true, the `ThemeSwitcher` will be displayed.                                               |
+| showSocials        | boolean | `true`                                      | If true, the social media buttons will be displayed.                                          |
+| navLinks           | array   | `[]`                                        | Array of navigation links. Each link is an object with `title`, `href`, and optional `props`. |
+| legalLinks         | array   | `[]`                                        | Array of legal links. Each link is an object with `title`, `href`, and optional `props`.      |
+| copyrightText      | string  | `"Copyright © 2025 - All Rights Reserved."` | Copyright text.                                                                               |
+| background         | string  | `"bg-bg-0 dark:bg-bg-900"`                  | Background color (use [tailwind.config](/docs/features/config#color-theme)).                  |
+| border             | boolean | `false`                                     | If true, a border will be displayed.                                                          |
+| rounded            | boolean | `true`                                      | If true, the footer will have rounded top corners (can change side).                          |
+| className          | string  | `""`                                        | Additional [Tailwind](https://tailwindcss.com) utility classes.                               |
+| ...props           | object  | -                                           | Any other valid HTML attributes for the <code>&lt;footer&gt;</code> element.                  |
 
 <br/>
 <br/>
@@ -121,13 +125,13 @@ Since `Footer` uses the `TextLink` component, you can pass any prop to it. For e
 ### Custom Footer
 <PreviewCode preview={
     <Footer
-        showDescription={false}
+        showAppDescription={false}
         showSocials={false}
     />
 }>
 ```js
 <Footer
-    showDescription={false}
+    showAppDescription={false}
     showSocials={false}
 />
 ```

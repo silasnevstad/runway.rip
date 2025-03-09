@@ -1,0 +1,54 @@
+---
+title: "OAuthButton"
+description: "A component to display an OAuth button"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+related:
+  - title: "AuthForm"
+    href: "/docs/components/auth/auth-form"
+  - title: "Button"
+    href: "/docs/components/button"
+  - title: "Auth Set up"
+    href: "/docs/tutorial/authentication"
+---
+
+<div id="overview" />
+
+The `OAuthButton` component is a button component that can be used to display an OAuth button. It uses the [`Button`](/docs/components/button) component for the button and `/public/logos` for the logos.
+
+<br />
+<br />
+<Divider />
+<div id="usage" />
+## Usage
+
+```javascript
+import OAuthButton from '@/components/auth/OAuthButton';
+
+<OAuthButton />
+```
+
+<Info>
+    [`AuthForm`](/docs/components/auth/auth-form) takes care of all this automatically and uses the `OAuthButton` component to display the OAuth buttons.
+</Info>
+
+<br />
+<br />
+<br />
+<Divider />
+<div id="props" />
+## Props
+
+| Name     | Type   | Default | Description                                                            |
+|----------|--------|---------|------------------------------------------------------------------------|
+| provider | string | `""`    | The provider of the OAuth button (one of `google`, `github`, `apple`). |
+| logoSrc  | string | `""`    | The src of the logo.                                                   |
+| logoAlt  | string | `""`    | The alt of the logo.                                                   |
+| onClick  | func   | `null`  | The onClick handler of the button.                                     |
+
+[//]: # (provider, logoSrc, logoAlt, onClick)

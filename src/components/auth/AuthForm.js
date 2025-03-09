@@ -8,7 +8,7 @@ import PasswordlessAuthForm from "@/components/auth/PasswordlessAuthForm";
 import OAuthButtons from "@/components/auth/OAuthButtons";
 import appConfig, { availableOAuthProviders } from "@/config";
 
-const AuthForm = ({ mode = 'sign-in' }) => {
+const AuthForm = ({ mode = "sign-in" }) => {
     const authMethods = appConfig.auth.methods;
     const oauthProviders = availableOAuthProviders.filter(provider => authMethods.includes(provider.name));
     const forms = [];

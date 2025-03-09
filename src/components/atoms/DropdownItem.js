@@ -59,7 +59,7 @@ export default function DropdownItem({
     );
 
     const innerContainerClass = mergeClasses(
-        "group relative flex justify-between items-center w-full max-w-prose cursor-pointer"
+        "relative flex justify-between items-center w-full max-w-prose cursor-pointer"
     );
 
     const buttonClass = mergeClasses(

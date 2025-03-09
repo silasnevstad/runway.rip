@@ -29,10 +29,42 @@ related:
         label="Password"
         name="password"
         type="password"
-        error="Invalid password"
     />
 </div>
 
 <br />
 
-The `AuthInput` component is a input component that handles user authentication. It is used in the [`AuthForm`](/docs/components/auth/auth-form) component to handle user authentication.
+The `AuthInput` component is essentially just a wrapper around the [`Input`](/docs/components/atoms/input) component. It's
+useful for differentiating between different types of inputs in an authentication form and for showing errors if you don't
+want [`ToastProvider`](/docs/components/toast-provider) to be used.
+
+<br />
+<br />
+<Divider />
+<div id="usage" />
+## Usage
+
+```javascript
+import AuthInput from '@/components/auth/AuthInput';
+
+<AuthInput
+    label="Email"
+    name="email"
+    type="email"
+/>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
+<div id="props" />
+## Props
+
+| Name        | Type    | Default | Description                                                                 |
+|-------------|---------|---------|-----------------------------------------------------------------------------|
+| error       | string  | `""`    | The error message to display.                                               |
+
+<Info>
+    Besides the props listed above, it also accepts all the props of the [`Input`](/docs/components/atoms/input) component.
+</Info>

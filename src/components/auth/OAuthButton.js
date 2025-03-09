@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Button from '@/components/atoms/Button';
 
 const OAuthButton = ({ provider, logoSrc, logoAlt, onClick }) => {
+    if (!provider) return null;
     return (
         <Button
             onClick={() => onClick(provider)}

@@ -17,9 +17,7 @@ related:
 
 <div id="overview" />
 
-<br />
-
-<div className="flex flex-col w-full items-center justify-center gap-8">
+<div className="max-md:hidden flex flex-col w-full items-center justify-center gap-8">
     <FeaturesCarousel />
 </div>
 
@@ -56,7 +54,7 @@ import FeaturesCarousel from '@/components/landing/FeaturesCarousel';
 | title                | string  | `""`             | The title of the component.                                                                                                                                                                                                                 |
 | subtitle             | string  | `""`             | The subtitle of the component.                                                                                                                                                                                                              |
 | description          | string  | `""`             | The description of the component.                                                                                                                                                                                                           |
-| features             | array   | `featuresConfig` | The list of features to display, each feature is an object with `title`, `description`, `icon`, `imageSrc`, `imageAlt`, and `imageHref` properties. By default its pulled from config, see [docs](/docs/features/config) for more details. |
+| features             | array   | `featuresConfig` | The list of features to display, each feature is an object with `title`, `description`, `icon`, `imageSrc`, `imageAlt`, and `imageHref` properties. By default its pulled from config, see [docs](/docs/features/config#landing-page) for more details. |
 | autoPlay             | boolean | `true`           | If true, the carousel will autoplay.                                                                                                                                                                                                        |
 | interval             | number  | `5000`           | The interval between slides in milliseconds.                                                                                                                                                                                                |
 | cardColor            | string  | `"bg"`           | The base color (uses [tailwind.config](/docs/features/config#color-theme)).                                                                                                                                                                             |

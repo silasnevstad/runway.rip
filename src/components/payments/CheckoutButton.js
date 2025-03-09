@@ -5,6 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 import Button from "@/components/atoms/Button";
 import { useUser } from "@/contexts/UserContext";
+import appConfig from "@/config";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -23,6 +24,10 @@ export default function CheckoutButton({
     const customerEmail = overrideCustomerEmail ?? user?.email;
 
     const handleCheckout = async () => {
+        if (!appConfig.payment.enabled) {
+            console.error("🚧 Payments (appConfig.payment) are not enabled.");
+            return;
+        }
         try {
             const stripe = await stripePromise;
             const response = await fetch("/api/create-checkout", {
