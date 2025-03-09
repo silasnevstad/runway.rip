@@ -3,6 +3,8 @@ import {getSEOTags} from "@/libs/seo";
 import Badge from "@/components/atoms/Badge";
 import Switcher from "@/components/atoms/Switcher";
 import Input from "@/components/atoms/Input";
+import MadeWithTag from "@/components/atoms/MadeWithTag";
+import React from "react";
 
 export const metadata = getSEOTags({
     title: "Documentation | Runway",
@@ -37,6 +39,10 @@ export default function DocsIndexPage() {
                         <TutorialCard title="Config.js" description="Configure the app to your needs" href="/docs/tutorial/config" />
                     </div>
                 </div>
+            </div>
+
+            <div className="fixed bottom-6 right-6">
+                <MadeWithTag />
             </div>
         </div>
     );
