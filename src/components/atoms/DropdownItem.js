@@ -63,6 +63,7 @@ export default function DropdownItem({
     );
 
     const buttonClass = mergeClasses(
+        "font-semibold text-left w-full",
         open ? getTextColorClass(activeColor) : getTextColorClass(color),
         "group flex justify-between items-center w-full cursor-pointer"
     );

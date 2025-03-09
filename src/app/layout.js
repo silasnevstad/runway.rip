@@ -7,6 +7,7 @@ import { getSEOTags } from "@/libs/seo";
 import { FathomAnalytics } from "@/libs/fathom/fathom";
 import appConfig from "@/config";
 import "./globals.css";
+import TopLoader from "@/components/atoms/TopLoader";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
             </head>
             <body className={inter.className}>
                 <FathomAnalytics />
+                <TopLoader/>
                 <ThemeProvider enableSystem={true} defaultTheme={'system'} attribute="class">
                     <UserProvider>
                         <ToastProvider>
