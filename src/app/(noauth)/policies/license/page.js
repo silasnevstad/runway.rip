@@ -57,7 +57,7 @@ export default function LicenseAgreement() {
                     <p className="text-[17px] text-gray-900 dark:text-gray-400">
                         Subject to the terms and conditions of this Agreement, upon purchase, Licensor grants Licensee a
                         non‑exclusive, non‑transferable, and non‑sublicensable Personal license to use the Product solely
-                        to create unlimited projects  and develop applications or websites for for personal or commercial use.
+                        to create unlimited projects  and develop applications or websites for personal or commercial use.
                         Such use is limited to internal business activities only.
                     </p>
                 </section>
@@ -111,7 +111,7 @@ export default function LicenseAgreement() {
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
                         TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR SHALL NOT BE LIABLE FOR
                         ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR IN CONNECTION WITH
-                        THE USE OR INABILITY TO USE THE PRODUCT, EVEN IF RUNWAY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+                        THE USE OR INABILITY TO USE THE PRODUCT, EVEN IF LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
                     </p>
                 </section>
 
