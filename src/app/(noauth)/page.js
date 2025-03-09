@@ -85,7 +85,7 @@ export default function LandingPage() {
                     <FAQ />
                 </SectionWrapper>
 
-                <SectionWrapper show={landingConfig.cta.show} className="pt-30 pb-28 sm:pb-32 bg-bg-0 dark:bg-bg-800">
+                <SectionWrapper show={landingConfig.cta.show} className="pt-30 pb-28 sm:pb-32">
                     <CTA />
                 </SectionWrapper>
 
