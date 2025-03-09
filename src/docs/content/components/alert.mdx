@@ -18,9 +18,9 @@ onThisPage:
 
 <div className="flex flex-col justify-center items-center gap-5">
     <Alert lift>This is an info message.</Alert>
-    <Alert severity="success" hover>This is a success message.</Alert>
-    <Alert severity="warning" hover>This is a warning message.</Alert>
-    <Alert severity="error" hover>This is a danger message.</Alert>
+    <Alert severity="success" lift>This is a success message.</Alert>
+    <Alert severity="warning" scale>This is a warning message.</Alert>
+    <Alert severity="error" scale>This is a danger message.</Alert>
 </div>
 
 <br/>
@@ -64,7 +64,6 @@ import Alert from '@/components/atoms/Alert';
 | onClick   | function                                    | -           | Function to call when the alert is clicked                                              |
 | className | string                                      | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults)             |
 | ...props  | object                                      | -           | Any other valid HTML <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.). |
-
 
 <br/>
 <br/>

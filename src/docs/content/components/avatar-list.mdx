@@ -67,14 +67,15 @@ import AvatarList from '@/components/molecules/AvatarList';
 
 ## Props
 
-| **Prop**          | **Type**                   | **Default**    | **Description**                                                                       |
-|-------------------|----------------------------|----------------|---------------------------------------------------------------------------------------|
-| avatars           | array                      | `[]`           | Each object can contain `src`/`alt` or `letter`.                                      |
-| direction         | "horizontal" \| "vertical" | `"horizontal"` | Chooses layout direction.                                                             |
-| overlap           | boolean                    | `true`         | If true, applies negative margins (like Slack or GitHub) so the avatars stack.        |
-| maxVisible        | number                     | `5`            | Max avatars displayed before the last is replaced with `+X more`.                     |
-| sharedAvatarProps | object                     | `{}`           | Common props for every `Avatar` (e.g. `size="sm"`).                                   |
-| className         | string                     | `""`           | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed) |
+| **Prop**          | **Type**                   | **Default**    | **Description**                                                                         |
+|-------------------|----------------------------|----------------|-----------------------------------------------------------------------------------------|
+| avatars           | array                      | `[]`           | Each object can contain `src`/`alt` or `letter`.                                        |
+| direction         | "horizontal" \| "vertical" | `"horizontal"` | Chooses layout direction.                                                               |
+| overlap           | boolean                    | `true`         | If true, applies negative margins (like Slack or GitHub) so the avatars stack.          |
+| maxVisible        | number                     | `5`            | Max avatars displayed before the last is replaced with `+X more`.                       |
+| sharedAvatarProps | object                     | `{}`           | Common props for every `Avatar` (e.g. `size="sm"`).                                     |
+| className         | string                     | `""`           | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed)   |
+| ...props          | object                     | -              | Any other valid HTML <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.). |
 
 <Tip>
     Use `sharedAvatarProps` to set common props for all avatars.

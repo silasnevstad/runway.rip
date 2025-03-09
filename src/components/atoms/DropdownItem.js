@@ -30,12 +30,11 @@ export default function DropdownItem({
     className = "",
     ...props
 }) {
-    // Internal state and controlled behavior.
     const [isOpen, setIsOpen] = useState(initialOpen);
     const controlled = isOpenProp !== undefined;
     const open = controlled ? isOpenProp : isOpen;
 
-    // Animation state for height and content opacity.
+    // Ref and state for animated container height.
     const contentRef = useRef(null);
     const [containerHeight, setContainerHeight] = useState(0);
 
@@ -50,18 +49,17 @@ export default function DropdownItem({
         onClick && onClick(e);
     };
 
-    // Color settings.
     const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.soft;
 
     const outerContainerClass = mergeClasses(
-        "w-full h-full py-4 transition-all duration-300", // Increased duration for a slower transition.
+        "w-full py-4",
         hoverBg && colorSet.hoverBg,
         border && `${BORDER_CLASSES[borderStyle]} ${open ? getBorderColorClass(activeColor) : getBorderColorClass(color)}`,
         className
     );
 
     const innerContainerClass = mergeClasses(
-        "relative flex justify-between items-center w-full h-full max-w-prose cursor-pointer"
+        "relative flex justify-between items-center w-full max-w-prose cursor-pointer"
     );
 
     const buttonClass = mergeClasses(
@@ -89,7 +87,7 @@ export default function DropdownItem({
         );
     }
 
-    // Update height and content visibility on open/close.
+    // Update height of collapsible container.
     useEffect(() => {
         if (open) {
             const height = contentRef.current?.scrollHeight || 0;
@@ -110,14 +108,13 @@ export default function DropdownItem({
                 {header}
                 {icon}
             </button>
-            {/* Animated collapsible content container */}
+            {/* Collapsible content container */}
             <div
                 className={innerContainerClass}
                 style={{
                     height: containerHeight,
                     overflow: "hidden",
                     transition: "height 300ms ease",
-                    marginTop: open ? "5px" : "0px",
                 }}
             >
                 <div ref={contentRef} className="flex flex-col w-full">

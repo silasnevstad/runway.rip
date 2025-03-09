@@ -54,7 +54,7 @@ export default function AvatarList({
                         <Avatar
                             key={index}
                             alt={letter}
-                            fallbackLetter={letter}
+                            letter={letter}
                             className={marginClass}
                             {...sharedAvatarProps}
                         />

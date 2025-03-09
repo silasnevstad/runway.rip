@@ -77,12 +77,13 @@ import Avatar from '@/components/atoms/avatar';
 | alt          | string                               | `""`        | Image alt text                                                                        |
 | letter       | string                               | -           | Letter to display                                                                     |
 | color        | string                               | `"gray"`    | Avatar color (from [tailwind.config](/docs/tutorial/config))                          |
+| variant      | "solid" \| "soft"                    | `"solid"`   | Avatar variant (from [tailwind.config](/docs/tutorial/config))                        |
 | borderRadius | string                               | `"full"`    | The tailwind-friendly rounding for corners (e.g. `"md"`, `"full"`, etc)               |
 | size         | "xs" \| "sm" \| "md" \| "lg" \| "xl" | `"md"`      | Avatar size                                                                           |
 | border       | boolean                              | `true`      | Whether to show a border                                                              |
 | status       | string                               | -           | A status indicator (e.g. 'online')                                                    |
 | statusColor  | string                               | `"green"`   | Status color (from [tailwind.config](/docs/tutorial/config))                          |
-| ringColor    | string                               | `"gray"`    | Border color when status is provided (from [tailwind.config](/docs/tutorial/config))  |
+| showRing     | boolean                              | `true`      | Whether to show a ring around the avatar                                              |
 | onClick      | function                             | -           | Click handler                                                                         |
 | className    | string                               | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed) |
 | ...props     | object                               | -           | Additional props for the image element                                                |
@@ -184,7 +185,7 @@ You can add a status indicator to show if the user is online, busy, etc.
             status="Offline"
             statusColor="red"
             borderRadius="sm"
-            ringColor="red"
+            showRing={true}
         />
         <Avatar
             src="/avatar3.png"
@@ -219,7 +220,7 @@ You can add a status indicator to show if the user is online, busy, etc.
 </PreviewCode>
 
 <Tip>
-    Add a `ringColor` for more emphasis.
+    Add a `showRing` for more emphasis.
 </Tip>
 
 <br />
