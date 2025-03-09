@@ -1,0 +1,60 @@
+---
+title: "PricingCard"
+description: "A component to display a pricing card"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+related:
+  - title: "PricingPlans"
+    href: "/docs/components/payments/pricing-plans"
+  - title: "CheckoutButton"
+    href: "/docs/components/payments/checkout-button"
+  - title: "Pricing"
+    href: "/docs/components/landing/pricing"
+---
+<div id="overview" />
+
+The `PricingCard` component is a card component that can be used to display a pricing plan. You can provide custom props,
+or by default it will use the data from [`pricingConfig`](/docs/features/config#payments).
+
+<Info>
+    It uses the [`Badge`](/docs/components/card) and [`CheckoutButton`](/docs/components/payments/checkout-button) components.
+</Info>
+
+<br />
+<br />
+<Divider />
+<div id="usage" />
+## Usage
+
+```javascript
+import PricingCard from '@/components/payments/PricingCard';
+
+<PricingCard
+    plan = {}
+    interval = {}
+    allFeatures = []
+/>
+```
+
+<Callout>
+    [`PricingPlans`](/docs/components/payments/pricing-plans) uses the `PricingCard` component along with [`pricingConfig`](/docs/features/config#payments) to display the pricing plans.
+</Callout>
+
+<br />
+<br />
+<br />
+<Divider />
+<div id="props" />
+## Props
+
+| Name           | Type   | Default | Description                                                                        |
+|----------------|--------|---------|------------------------------------------------------------------------------------|
+| plan           | object | `null`  | The plan object from [`pricingConfig`](/docs/features/config#payments).            |
+| interval       | string | `""`    | The interval of the plan, either `month` or `year`.                                |
+| allFeatures    | array  | `[]`    | The list of all features to display.                                               |
+

@@ -1,0 +1,42 @@
+---
+title: "PricingPlans"
+description: "A component to display your pricing plans"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+related:
+  - title: "Pricing"
+    href: "/docs/components/landing/pricing"
+  - title: "CheckoutButton"
+    href: "/docs/components/payments/checkout-button"
+  - title: "PricingCard"
+    href: "/docs/components/payments/pricing-card"
+---
+
+<div id="overview" />
+
+The `PricingPlans` component is a component that can be used to display your pricing plans. It uses the [`pricingConfig`](/docs/features/config#payments).
+If you have [subscriptions](/docs/tutorials/subscriptions) with intervals, it will show a [`Switcher`](/docs/components/switcher) to switch between the intervals.
+
+<Info>
+    It uses the [`PricingCard`](/docs/components/payments/pricing-card) component to display the pricing plans.
+</Info>
+
+<br />
+<br />
+<Divider />
+<div id="usage" />
+
+## Usage
+
+```javascript
+import PricingPlans from '@/components/payments/PricingPlans';
+
+<PricingPlans />
+```
+
+<Info>
+    [`Pricing`](/docs/components/landing/pricing) uses the `PricingPlans` component to display the pricing plans on the landing page.
+</Info>

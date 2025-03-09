@@ -82,6 +82,7 @@ import AuthInput from "@/components/auth/AuthInput";
 import Toast from "@/components/atoms/Toast";
 import CTA from "@/components/landing/CTA";
 import OAuthButton from "@/components/auth/OAuthButton";
+import DropdownItem from "@/components/atoms/DropdownItem";
 
 const TypesColorMap = {
     string: 'text-green-500',
@@ -233,6 +234,7 @@ export const mdxComponents = {
     StandoutCard: StandoutCard,
     Checkbox: ClientSideCheckbox,
     CodeBlock: CodeBlock,
+    DropdownItem: DropdownItem,
     File: File,
     FileDrop: FileDrop,
     FileDropDemo: FileDropDemo,

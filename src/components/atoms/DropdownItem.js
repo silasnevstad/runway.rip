@@ -8,6 +8,8 @@ import { COLOR_VARIANTS, getBorderColorClass, getTextColorClass, mergeClasses, r
 const BORDER_CLASSES = {
     top: "border-t",
     bottom: "border-b",
+    none: "border-none",
+    full: "border",
 };
 
 export default function DropdownItem({
@@ -52,14 +54,14 @@ export default function DropdownItem({
     const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.soft;
 
     const outerContainerClass = mergeClasses(
-        "w-96 py-4 transition-all duration-300", // Increased duration for a slower transition.
+        "w-full h-full py-4 transition-all duration-300", // Increased duration for a slower transition.
         hoverBg && colorSet.hoverBg,
         border && `${BORDER_CLASSES[borderStyle]} ${open ? getBorderColorClass(activeColor) : getBorderColorClass(color)}`,
         className
     );
 
     const innerContainerClass = mergeClasses(
-        "relative flex justify-between items-center w-full max-w-prose cursor-pointer"
+        "relative flex justify-between items-center w-full h-full max-w-prose cursor-pointer"
     );
 
     const buttonClass = mergeClasses(

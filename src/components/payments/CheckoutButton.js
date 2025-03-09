@@ -6,6 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Button from "@/components/atoms/Button";
 import { useUser } from "@/contexts/UserContext";
 import appConfig from "@/config";
+import { mergeClasses } from "@/utils/styling";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -15,6 +16,7 @@ export default function CheckoutButton({
     priceId,
     customerId: overrideCustomerId,
     customerEmail: overrideCustomerEmail,
+    className = "",
     ...props
 }) {
     const { user } = useUser();
@@ -51,7 +53,7 @@ export default function CheckoutButton({
     };
 
     return (
-        <Button onClick={handleCheckout} className="font-bold text-md" {...props}>
+        <Button onClick={handleCheckout} className={mergeClasses("font-bold text-md", className)} {...props}>
             {children}
         </Button>
     );
