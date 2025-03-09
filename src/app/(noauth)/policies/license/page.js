@@ -141,7 +141,7 @@ export default function LicenseAgreement() {
                 {/* 8. Amendments & Updates */}
                 <section className="mt-6">
                     <h2 className="text-md font-semibold text-gray-600 dark:text-gray-500">
-                        8. Entire Agreement
+                        8. Amendments and Automatic Updates
                     </h2>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
                         Licensor reserves the right to update or modify this Agreement at any time. Any such modifications
