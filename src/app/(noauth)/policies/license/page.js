@@ -145,7 +145,7 @@ export default function LicenseAgreement() {
                     </h2>
                     <p className="mt-2 text-[17px] text-gray-900 dark:text-gray-400">
                         Licensor reserves the right to update or modify this Agreement at any time. Any such modifications
-                        will be posted on the official Website (https://runway.rip) and will become effective [30] days after
+                        will be posted on the official Website (https://runway.rip) and will become effective 30 days after
                         notice is provided via the Website and/or to your registered email address. Continued use of the
                         Product after such changes constitutes your acceptance of the updated terms.
                     </p>
