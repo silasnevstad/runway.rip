@@ -1,2 +1,1 @@
-# Runway - A Next.js Boilerplate<br><sup>Take off your project in minutes with Runway</sup>
-
+Checkout out [runway.rip](https://runway.rip) for more examples and documentation.
