@@ -36,7 +36,7 @@ export async function callFunction(functionName, args = {}) {
     return supabase.rpc(functionName, args);
 }
 
-// addLead adds a new lead to the leads table (for waiting list)
+// addLead adds a new lead to the waitlist table (for waiting list)
 export async function addWaitlist(email) {
-    return supabase.from('leads').insert({email});
+    return supabase.from('waitlist').insert({email});
 }
