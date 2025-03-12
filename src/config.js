@@ -86,7 +86,7 @@ export const landingConfig = {
             // color: "primary"
         },
         textPosition: "center",
-        description: "A complete Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
+        description: "A Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
 
         buttonText: "Get Started",
         buttonHref: "#pricing",
