@@ -3,40 +3,56 @@ import { useState } from 'react';
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
 import { addWaitlist } from "@/libs/supabase/db";
+import {mergeClasses} from "@/utils/styling";
 
 export default function WaitlistForm({
-    color = 'primary',
-    variant = 'soft',
+    color = "primary",
+    variant = "soft",
+    className = "",
 }) {
     const [email, setEmail] = useState('');
-    const [feedback, setFeedback] = useState('');
+    const [buttonText, setButtonText] = useState('Join the waitlist');
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit(event) {
         event.preventDefault();
         setLoading(true);
-        setFeedback('');
+        setButtonText('Joining...');
         try {
             const { data, error } = await addWaitlist(email);
             console.log(error, error?.code);
             if (error && error.code === '23505') {
-                setFeedback('You are already on the waitlist!');
+                setButtonText('Already on waitlist!');
+                setTimeout(() => {
+                    setButtonText('Join the waitlist');
+                }, 3000);
                 return;
             } else if (error) {
-                setFeedback(`Error: ${error.message}`);
+                // temporary error message
+                setButtonText(`${error.message}`);
+                setTimeout(() => {
+                    setButtonText('Join the waitlist');
+                }, 3000);
                 return;
             }
-            setFeedback('Thanks for joining our waitlist!');
+            setButtonText('Thanks for joining!');
+            setTimeout(() => {
+                setButtonText('Join the waitlist');
+            }, 3000);
             setEmail('');
         } catch (err) {
-            setFeedback(`Error: ${err.message}`);
+            setButtonText(`Error: ${err.message}`);
         } finally {
             setLoading(false);
         }
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form
+            id="waitlist-form"
+            onSubmit={handleSubmit}
+            className={mergeClasses("flex flex-col gap-4", className)}
+        >
             <Input
                 type="email"
                 placeholder="Enter your email"
@@ -52,9 +68,8 @@ export default function WaitlistForm({
                 variant={variant}
                 loading={loading}
             >
-                {loading ? 'Submitting...' : 'Join Waitlist'}
+                {buttonText}
             </Button>
-            {feedback && <p>{feedback}</p>}
         </form>
     );
 }

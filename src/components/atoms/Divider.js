@@ -1,26 +1,23 @@
-import { COLOR_VARIANTS, mergeClasses, WIDTH_SIZES, HEIGHT_SIZES } from "@/utils/styling";
+import {COLOR_VARIANTS, mergeClasses, WIDTH_SIZES, HEIGHT_SIZES, getBgColorClass} from "@/utils/styling";
 
 const Divider = ({
-    color = 'gray',
-    variant = 'solid',
-    text = '',
+    color = "gray",
+    text = "",
     opacity = 30,
     margin = 10, // in px
     width = 0.5,
     vertical = false,
     noWrap = true,
-    className = '',
+    className = "",
     ...props
 }) => {
-    const colorSet = COLOR_VARIANTS[color][variant] || COLOR_VARIANTS.gray.solid;
-
     const baseStyle = vertical
         ? `${WIDTH_SIZES[width]} h-full`
         : `w-full ${HEIGHT_SIZES[width]}`;
 
     const dividerClass = mergeClasses(
         baseStyle,
-        colorSet.bg,
+        getBgColorClass(color),
         className
     );
 

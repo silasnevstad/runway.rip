@@ -32,20 +32,20 @@ export default function FeaturesCarousel({
             className="flex flex-col items-center w-full"
         >
             <div
-                className="flex flex-col items-center max-w-prose px-4"
+                className="flex flex-col items-center max-w-4xl px-4"
             >
                 {title && (
-                    <p className={`text-md font-extrabold  text-center mb-2 ${getTextColorClass(titleColor)}`}>
+                    <p className={`text-md lg:text-lg font-extrabold  text-center mb-2 ${getTextColorClass(titleColor)}`}>
                         {title}
                     </p>
                 )}
                 {subtitle && (
-                    <p className="max-w-3xl text-4xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
+                    <p className="max-w-4xl text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
                         {subtitle}
                     </p>
                 )}
                 {description && (
-                    <p className="max-w-4xl text-base font-normal text-gray-800 dark:text-gray-400 text-center mb-8">
+                    <p className="max-w-prose text-md lg:text-lg font-normal text-gray-800 dark:text-gray-400 text-center mb-8">
                         {description}
                     </p>
                 )}

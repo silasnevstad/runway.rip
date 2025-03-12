@@ -3,7 +3,8 @@ import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 
 import Button from "@/components/atoms/Button";
 import { DeparturesCard } from "@/components/molecules/CustomCards";
-import { landingConfig } from "@/config";
+import appConfig, { landingConfig } from "@/config";
+import WaitlistForm from "@/components/molecules/WaitlistForm";
 
 export default function CTA({
     title = landingConfig.cta.title,
@@ -29,17 +30,21 @@ export default function CTA({
 
             {/*<DeparturesCard />*/}
 
-            <Button
-                href={buttonHref}
-                color="yellow"
-                variant="soft"
-                size="lg"
-                scale
-                className="mt-6 px-8 font-semibold"
-            >
-                <RocketLaunchIcon className="w-5 h-5" />
-                {buttonText}
-            </Button>
+            {appConfig.waitlist.enabled ? (
+                <WaitlistForm className="mt-6" />
+            ) : (
+                <Button
+                    href={buttonHref}
+                    color="yellow"
+                    variant="soft"
+                    size="lg"
+                    scale
+                    className="mt-6 px-8 font-semibold"
+                >
+                    <RocketLaunchIcon className="w-5 h-5" />
+                    {buttonText}
+                </Button>
+            )}
         </section>
     );
 }

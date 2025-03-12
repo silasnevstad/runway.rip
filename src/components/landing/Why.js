@@ -70,7 +70,7 @@ export default function Why() {
                 id="why"
             >
                 {/*<IoBriefcaseOutline className="absolute -top-16 -right-16 text-gray-200 dark:text-orange-500/20 text-[300px] opacity-10" />*/}
-                <p className="text-4xl font-black text-gray-800 dark:text-gray-100 text-center mb-15 max-w-[30ch]">
+                <p className="text-4xl lg:text-5xl font-black text-gray-800 dark:text-gray-100 text-center mb-15 max-w-[30ch]">
                     Save endless hours of headaches and get right to business
                 </p>
 

@@ -71,8 +71,8 @@ export function getFadedTextColorClass(color) {
 
 export function getBorderColorClass(color) {
     const colorClasses = {
-        gray: "border-gray-500",
-        bg: "border-bg-500",
+        gray: "border-gray-300 dark:border-gray-600",
+        bg: "border-bg-200 dark:border-bg-700",
         primary: "border-primary-500",
         red: "border-red-500",
         green: "border-green-500",
@@ -87,8 +87,8 @@ export function getBorderColorClass(color) {
 
 export function getBgColorClass(color) {
     const colorClasses = {
-        gray: "bg-gray-500",
-        bg: "bg-bg-500",
+        gray: "bg-gray-200 dark:bg-bg-700",
+        bg: "bg-bg-100 dark:bg-bg-800",
         primary: "bg-primary-500",
         red: "bg-red-500",
         green: "bg-green-500",
@@ -211,7 +211,7 @@ export const COLOR_VARIANTS = {
     primary: {
         soft: {
             bg: "bg-primary-400/55 dark:bg-primary-600/35",
-            text: "text-primary-900 dark:text-white",
+            text: "text-primary-900 dark:text-primary-100",
             border: "border-primary-500 dark:border-primary-700",
             hoverBg: "hover:bg-primary-100/55 dark:hover:bg-primary-700/40",
             hoverText: "hover:text-primary-800 dark:hover:text-primary-300",
@@ -225,7 +225,7 @@ export const COLOR_VARIANTS = {
         },
         solid: {
             bg: "bg-primary-600 dark:bg-primary-600",
-            text: "text-primary-50 dark:text-white",
+            text: "text-primary-50 dark:text-primary-50",
             border: "border-primary-200 dark:border-primary-800",
             hoverBg: "hover:bg-primary-700 dark:hover:bg-primary-800",
             hoverText: "hover:text-primary-800 dark:hover:text-primary-300",

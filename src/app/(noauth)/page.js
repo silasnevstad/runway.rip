@@ -28,7 +28,7 @@ export default function LandingPage() {
 
                 <Hero />
 
-                <SectionWrapper show={landingConfig.features.show} className="-mt-30 pb-30">
+                <SectionWrapper show={landingConfig.features.show} className="-mt-14 pb-30">
                     {landingConfig.features.type === "grid" ? <FeaturesGrid /> : <FeaturesCarousel />}
                 </SectionWrapper>
 
@@ -77,7 +77,10 @@ export default function LandingPage() {
                     />
                 </SectionWrapper>
 
-                <SectionWrapper show={landingConfig.pricing.show && appConfig.payment.enabled} className="pb-10 pt-30">
+                <SectionWrapper
+                    show={landingConfig.pricing.show && appConfig.payment.enabled && !appConfig.waitlist.enabled}
+                    className="pb-10 pt-30"
+                >
                     <Pricing />
                 </SectionWrapper>
 

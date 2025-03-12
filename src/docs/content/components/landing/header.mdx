@@ -121,13 +121,13 @@ Since `Header` uses [`TextLink`](/docs/components/text-link) and [`Button`](/doc
 | ctaButton    | object  | `null`                          | Call-to-action button. An object with `label`, `href`, and optional `props`.                                                                                |
 | background   | string  | `"bg-bg-100 dark:bg-bg-800"`    | Background color (use [tailwind.config](/docs/features/config#color-theme)).                                                                                |
 | bottomBorder | boolean | `false`                         | If true, a bottom border will be displayed.                                                                                                                 |
-| sticky       | boolean | `false`                         | If true, the header will be sticky.                                                                                                                         |
+| fixed       | boolean | `false`                         | If true, the header will be fixed.                                                                                                                         |
 | account      | boolean | `true`                          | If true, the account button will be displayed.                                                                                                              |
 | className    | string  | `""`                            | Additional [Tailwind](https://tailwindcss.com) utility classes.                                                                                             |
 | ...props     | object  | -                               | Any other valid HTML attributes for the <code>&lt;header&gt;</code> element.                                                                                |
 
 <Info>
-    The `sticky` prop is disabled by default, so the header will scroll with the page. To make it sticky, set the `sticky` prop to `true`.
+    The `fixed` prop is disabled by default, so the header will scroll with the page. To make it fixed, set the `fixed` prop to `true`.
 </Info>
 
 <Caution>

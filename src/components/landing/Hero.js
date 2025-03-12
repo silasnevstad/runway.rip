@@ -3,15 +3,15 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 import { GiftIcon } from "@heroicons/react/24/outline";
 
 import Button from "@/components/atoms/Button";
 import TextHighlight from "@/components/atoms/TextHighlight";
-import MadeWith from "@/components/atoms/MadeWith";
 import AvatarsTestimonial from "@/components/organisms/AvatarsTestimonial";
-import { getTextColorClass, mergeClasses } from "@/utils/styling";
-import {landingConfig, pricingConfig} from "@/config";
+import { mergeClasses } from "@/utils/styling";
+import appConfig, { landingConfig, pricingConfig } from "@/config";
+import BackgroundGlow from "@/components/atoms/BackgroundGlow";
+import WaitlistForm from "@/components/molecules/WaitlistForm";
 
 const layoutDirection = {
     left: "flex-row",
@@ -35,16 +35,18 @@ export default function Hero({
     },
     description = landingConfig.hero.description,
     buttonText = landingConfig.hero.buttonText,
+    buttonHref = landingConfig.hero.buttonHref,
     buttonSubText = landingConfig.hero.buttonSubText,
     showTrustedBy = landingConfig.hero.trustedBy.show,
     trustedBy = landingConfig.hero.trustedBy,
     textPosition = landingConfig.hero.textPosition, // 'left' | 'center' | 'right'
     imageSrc = landingConfig.hero.image.src,
     imageAlt = landingConfig.hero.image.alt,
-    backgroundGlowColor = "",
-    glowOpacity = 0.5,
-    glowSize = "30%",
-    glowBlur = 100,
+    backgroundGlowColor = landingConfig.hero.backgroundGlowColor,
+    backgroundGlowPosition = landingConfig.hero.backgroundGlowPosition,
+    backgroundGlowOpacity = landingConfig.hero.backgroundGlowOpacity,
+    backgroundGlowSize = landingConfig.hero.backgroundGlowSize,
+    backgroundGlowBlur = landingConfig.hero.backgroundGlowBlur,
     className = "",
 }) {
     const router = useRouter();
@@ -59,23 +61,22 @@ export default function Hero({
     const alignmentClasses = alignment[textPosition] || alignment.center;
 
     return (
-        <section className={containerClasses}>
+        <section id="hero" className={containerClasses}>
             {backgroundGlowColor && (
-                <div
-                    className={`absolute inset-0 z-10 pointer-events-none ${getTextColorClass(backgroundGlowColor)}`}
-                    style={{
-                        backgroundImage: `radial-gradient(circle, currentColor 0%, transparent ${glowSize})`,
-                        filter: `blur(${glowBlur}px)`,
-                        opacity: glowOpacity,
-                    }}
+                <BackgroundGlow
+                    color={backgroundGlowColor}
+                    opacity={backgroundGlowOpacity}
+                    size={backgroundGlowSize}
+                    blur={backgroundGlowBlur}
+                    position={backgroundGlowPosition}
                 />
             )}
 
             <div className="w-full z-10 -mt-30">
                 <div className={`flex gap-10 items-center ${directionClasses}`}>
                     {/* Text Content */}
-                    <div className={`w-full flex flex-col gap-4 max-w-3xl ${alignmentClasses}`}>
-                        <MadeWith />
+                    <div className={`w-full flex flex-col gap-4 max-w-4xl ${alignmentClasses}`}>
+                        {/*<MadeWith />*/}
 
                         <TextHighlight
                             className={`mt-6 ${alignmentClasses}`}
@@ -86,27 +87,35 @@ export default function Hero({
                             toGradient={textHighlight.toGradient}
                         />
 
-                        <p className="text-lg font-semibold max-w-[45ch]">
+                        <p className="text-lg lg:text-xl mt-2 font-semibold max-w-[45ch]">
                             {description}
                         </p>
 
+
                         <div className={`flex flex-col gap-3 mt-14 ${alignmentClasses}`}>
-                            <Button
-                                className="px-12"
-                                onClick={() => router.push("#pricing")}
-                            >
-                                <RocketLaunchIcon className="w-5 h-5" />
-                                {buttonText}
-                            </Button>
-                            {buttonSubText && (
-                                <p className="text-sm opacity-60 font-semibold">{buttonSubText}</p>
-                            )}
-                            {pricingConfig.promo.show && (
-                                <p className="flex items-center text-sm font-semibold">
-                                    <GiftIcon className="w-5 h-5 mr-1 text-green-500" />
-                                    <span className="text-green-500 mr-1">{pricingConfig.promo.price}$</span>
-                                    {pricingConfig.promo.text}
-                                </p>
+                            {appConfig.waitlist.enabled ? (
+                                <WaitlistForm />
+                            ) : (
+                                <>
+                                    {buttonText && (
+                                        <Button
+                                            className="px-12"
+                                            href={buttonHref}
+                                        >
+                                            {buttonText}
+                                        </Button>
+                                    )}
+                                    {buttonSubText && (
+                                        <p className="text-sm opacity-60 font-semibold">{buttonSubText}</p>
+                                    )}
+                                    {pricingConfig.promo.show && (
+                                        <p className="flex items-center text-sm font-semibold">
+                                            <GiftIcon className="w-5 h-5 mr-1 text-green-500" />
+                                            <span className="text-green-500 mr-1">{pricingConfig.promo.price}$</span>
+                                            {pricingConfig.promo.text}
+                                        </p>
+                                    )}
+                                </>
                             )}
                         </div>
 

@@ -43,8 +43,6 @@ const appConfig = {
     // Waitlist / Pre-Launch Mode:
     waitlist: {
         enabled: true,
-        allowedRoutes: ['/waitlist', '/docs'],
-        redirect: '/waitlist'
     },
 
     payment: {
@@ -54,70 +52,10 @@ const appConfig = {
     },
 };
 
-export const pricingConfig = {
-    promo: {
-        show: true,
-        price: 50,
-        text: "off for first 1000 users (12 left)",
-        code: "LAUNCH",
-    },
-    plans: [
-        {  // Starter Plan
-            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
-            intervals: [
-                {
-                    label: "",
-                    oldPrice: 99,
-                    price: 49,
-                    priceId: "price_1QzuhUGjMg6waABSeUThW8Mw"  // COPY YOUR PRICE ID IN HERE
-                }
-            ],
-            title: "Starter",
-            description: "",
-            subText: "Pay once, use forever.",
-            isPopular: false,
-            features: [
-                "NextJS boilerplate",
-                "Component library",
-                "Database",
-                "Payments",
-                "Auth",
-                "Email Service",
-                "Lifetime updates",
-            ]
-        },
-        { // Pro Plan
-            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
-            intervals: [
-                {
-                    label: "",
-                    oldPrice: 149,
-                    price: 99,
-                    priceId: "price_1QzuhyGjMg6waABScXMOVTDF" // COPY YOUR PRICE ID IN HERE
-                }
-            ],
-            title: "All-in",
-            description: "",
-            subText: "Pay once, use forever.",
-            isPopular: true,
-            features: [
-                "NextJS boilerplate",
-                "Component library",
-                "Database",
-                "Payments",
-                "Auth",
-                "Email Service",
-                "SEO tools",
-                "Lifetime updates",
-            ]
-        }
-    ]
-};
-
 export const landingConfig = {
     header: {
-        sticky: false,
-        background: "bg-bg-0 dark:bg-bg-900",
+        fixed: false,
+        background: "bg-transparent dark:bg-transparent",
         showLogo: true,
         showAppName: true,
         navLinks: [
@@ -127,8 +65,14 @@ export const landingConfig = {
         ],
         // Uncomment to enable
         // ctaButton: {
-        //     label: 'Get Started',
-        //     href: '/get-started',
+        //     label: 'Join Waitlist',
+        //     href: '#waitlist-form',
+        //     props: {
+        //         variant: "soft",
+        //         border: true,
+        //         borderRadius: "full",
+        //         size: "sm"
+        //     }
         // },
     },
 
@@ -142,13 +86,17 @@ export const landingConfig = {
             // color: "primary"
         },
         textPosition: "center",
+        description: "A complete Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
+
+        buttonText: "Get Started",
+        buttonHref: "#pricing",
+        buttonSubText: "",
+
         image: {
             // src: "/images/hero.svg",
             // alt: "Hero Image"
         },
-        description: "A complete Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
-        buttonText: "Get Started",
-        buttonHref: "#pricing",
+
         trustedBy: {
             show: false,
             text: "Trusted by 200+ people",
@@ -158,7 +106,13 @@ export const landingConfig = {
                 { src: "/avatar3.png", alt: "Avatar 3"},
                 { src: "/avatar1.png", alt: "Avatar 1"},
             ],
-        }
+        },
+
+        backgroundGlowColor: "primary",
+        backgroundGlowPosition: "top",
+        backgroundGlowOpacity: 0.3,
+        backgroundGlowSize: "60%",
+        backgroundGlowBlur: 0,
     },
 
     features: {
@@ -235,7 +189,7 @@ export const landingConfig = {
         title: "Get Runway, launch, and go!",
         subtitle: "Stop waiting and start building your project today.",
         buttonText: "Launch",
-        buttonHref: "#pricing",
+        buttonHref: "#hero",
     },
 
     footer: {
@@ -246,7 +200,7 @@ export const landingConfig = {
         showCopyright: true,
         showMadeWith: true,
         showThemeSwitcher: true,
-        showSocials: false,
+        showSocials: true,
         showBorder: true,
         rounded: true,
         navLinks: [
@@ -260,6 +214,66 @@ export const landingConfig = {
             { title: "License", href: "/policies/license" },
         ],
     }
+};
+
+export const pricingConfig = {
+    promo: {
+        show: true,
+        price: 50,
+        text: "off for first 1000 users (12 left)",
+        code: "LAUNCH",
+    },
+    plans: [
+        {  // Starter Plan
+            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
+            intervals: [
+                {
+                    label: "",
+                    oldPrice: 99,
+                    price: 49,
+                    priceId: "price_1QzuhUGjMg6waABSeUThW8Mw"  // COPY YOUR PRICE ID IN HERE
+                }
+            ],
+            title: "Starter",
+            description: "",
+            subText: "Pay once, use forever.",
+            isPopular: false,
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "Lifetime updates",
+            ]
+        },
+        { // Pro Plan
+            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
+            intervals: [
+                {
+                    label: "",
+                    oldPrice: 149,
+                    price: 99,
+                    priceId: "price_1QzuhyGjMg6waABScXMOVTDF" // COPY YOUR PRICE ID IN HERE
+                }
+            ],
+            title: "All-in",
+            description: "",
+            subText: "Pay once, use forever.",
+            isPopular: true,
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "SEO tools",
+                "Lifetime updates",
+            ]
+        }
+    ]
 };
 
 export const featuresConfig = [

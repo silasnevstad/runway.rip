@@ -21,25 +21,6 @@ export async function middleware(request) {
         return NextResponse.redirect(url);
     }
 
-    // ------------------------------------------------------------------
-    // WAITLIST MODE:
-    // If waitlist mode is enabled (appConfig.waitlist.enabled === true) and we're running
-    // in production (process.env.NODE_ENV === 'production'), we redirect all requests to the
-    // waitlist page unless the requested route is allowed (per appConfig.waitlist.allowedRoutes).
-    // ------------------------------------------------------------------
-    const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production';
-    if (appConfig.waitlist.enabled && isProduction) {
-        const isAllowed = appConfig.waitlist.allowedRoutes.some((allowedPath) =>
-            pathname.startsWith(allowedPath)
-        );
-
-        if (!isAllowed) {
-            const url = request.nextUrl.clone();
-            url.pathname = appConfig.waitlist.redirect;
-            return NextResponse.redirect(url);
-        }
-    }
-
     return supabaseResponse;
 }
 

@@ -17,7 +17,7 @@ export default function Header({
     navLinks = landingConfig.header.navLinks,  // { title, href, onClick, className }
     ctaButton = landingConfig.header.ctaButton,  // { label, href, className, props }
     background = landingConfig.header.background,
-    sticky = landingConfig.header.sticky,
+    fixed = landingConfig.header.fixed,
     bottomBorder = false,
     account = true,
     accountCardProps = {},
@@ -36,7 +36,7 @@ export default function Header({
         `flex justify-center p-4 w-full min-h-14 top-0 z-20`,
         background,
         bottomBorder && "border-b border-bg-200 dark:border-bg-700",
-        sticky && "sticky",
+        fixed ? "fixed" : "absolute",
         className
     );
 
