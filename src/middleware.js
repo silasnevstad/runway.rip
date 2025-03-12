@@ -1,23 +1,26 @@
 import { NextResponse } from 'next/server';
 import { updateSession } from '@/utils/supabase/middleware';
+import { arcjetHandleRequest } from "@/libs/arcjet/arcjet";
 import appConfig from '@/config';
 
 export async function middleware(request) {
-    const { user, supabaseResponse } = await updateSession(request);
+    // Run Arcjet protection if enabled.
+    if (appConfig.arcjet.enabled) {
+        const arcjetResponse = await arcjetHandleRequest(request);
+        if (arcjetResponse) return arcjetResponse;
+    }
 
+    // Update session via Supabase
+    const { user, supabaseResponse } = await updateSession(request);
     const { pathname } = request.nextUrl;
 
-    // ------------------------------------------------------------------
-    // PROTECTED ROUTES:
-    // For routes defined in appConfig.protectedRoutes, we ensure that an authenticated user exists.
-    // If the user is not logged in, redirect them to the login page.
-    // ------------------------------------------------------------------
+    // Check for authentication on protected routes (from appConfig.protectedRoutes)
     const isProtectedRoute = appConfig.auth.protectedRoutes.some((protectedPath) =>
         pathname.startsWith(protectedPath)
     );
     if (isProtectedRoute && !user) {
         const url = request.nextUrl.clone();
-        url.pathname = '/login';
+        url.pathname = '/login';  // Redirect to /login if not authenticated
         return NextResponse.redirect(url);
     }
 

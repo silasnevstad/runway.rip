@@ -46,7 +46,7 @@ export function renderIcon({ icon, iconSrc, alt = 'icon', onClick, extraClasses 
 
 export function getTextColorClass(color) {
     const colorClasses = {
-        gray: "text-gray-800 dark:text-gray-200",
+        gray: "text-gray-800 dark:text-gray-100",
         bg: "text-bg-800 dark:text-bg-200",
         primary: "text-primary-500",
         red: "text-red-500",

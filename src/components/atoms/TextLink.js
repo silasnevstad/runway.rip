@@ -5,6 +5,7 @@ import { mergeClasses, renderIcon, getHoverClasses, getTextColorClass } from "@/
 const TextLink = ({
     children,
     href,
+    onClick,
     color = "gray",
     icon = null,
     scale = false,
@@ -43,6 +44,27 @@ const TextLink = ({
         `absolute w-full left-0 bottom-0`,
         underlineClassName
     );
+
+    if (onClick) {
+        return (
+            <button
+                onClick={onClick}
+                className={linkClasses}
+                {...props}
+            >
+                {icon && renderIcon(icon, null, mergeClasses(iconClasses))}
+                <span className="relative">
+                    {children}
+                    {underline && (
+                        <span
+                            className={underlineClasses}
+                            style={{ height: `${underlineHeight}px`, marginBottom: `${underlineOffset}px` }}
+                        />
+                    )}
+                </span>
+            </button>
+        );
+    }
 
     return (
         <Link href={href} className={linkClasses} {...props}>

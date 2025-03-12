@@ -11,9 +11,9 @@ import { getTextColorClass } from "@/utils/styling";
 import { landingConfig, featuresConfig } from "@/config";
 
 export default function FeaturesCarousel({
-    title = "Features",
-    subtitle = landingConfig.features.title,
-    description = landingConfig.features.subtitle,
+    title = landingConfig.features.title,
+    subtitle = landingConfig.features.subtitle,
+    description = landingConfig.features.description,
     features = featuresConfig,
     autoPlay = true,
     interval = 5000,
@@ -22,7 +22,7 @@ export default function FeaturesCarousel({
     cardBorder = true,
     cardColor = "bg",
     cardVariant = "soft",
-    highlightLastFeature = true
+    highlightLastAttribute = landingConfig.features.highlightLastAttribute,
 }) {
     const [selectedFeature, setSelectedFeature] = useState(0);
 
@@ -93,7 +93,7 @@ export default function FeaturesCarousel({
                             cardVariant={cardVariant}
                             cardBorderRadius={cardBorderRadius}
                             cardBorder={cardBorder}
-                            highlightLastFeature={highlightLastFeature}
+                            highlightLastAttribute={highlightLastAttribute}
                         />
                     ))}
                 </Carousel>
@@ -110,7 +110,7 @@ function FeatureCard({
     cardVariant,
     cardBorderRadius,
     cardBorder,
-    highlightLastFeature,
+    highlightLastAttribute,
     onClick,
 }) {
     return (
@@ -136,45 +136,20 @@ function FeatureCard({
                 <p className="opacity-70 max-w-prose mb-3">{feature.description}</p>
             )}
 
-            {feature.features && (
+            {feature.attributes && (
                 <ul className="mt-2 space-y-2">
-                    {feature.features.map((f, i) => (
+                    {feature.attributes.map((f, i) => (
                         <li key={i} className="flex items-center gap-2">
                             <FaCheck className="text-green-500" />
                             <p className={
                                 `flex-1 text-[15px] 
-                                ${highlightLastFeature && i === feature.features.length - 1 && "text-green-500 font-semibold"}`
+                                ${highlightLastAttribute && i === feature.attributes.length - 1 && "text-green-500 font-semibold"}`
                             }>
                                 {f}
                             </p>
                         </li>
                     ))}
                 </ul>
-            )}
-
-            {feature.imageSrc && (
-                <div
-                    className="absolute bottom-3 right-3 flex items-center gap-2 mt-2 text-sm"
-                    onClick={() => window.open(feature.imageHref, "_blank")}
-                >
-                    <p className="text-gray-600">with</p>
-                    <Image
-                        src={feature.imageSrc}
-                        alt={feature.imageAlt}
-                        width={30}
-                        height={30}
-                        className={`rounded-lg ${feature.imageClassName}`}
-                    />
-                    <p className="text-gray-600 underline">{feature.imageAlt}</p>
-                </div>
-            )}
-            {feature.docs && (
-                <div className="absolute bottom-3 right-3 flex items-center gap-2 mt-2">
-                    <p className="text-gray-600 font-semibold">Check out</p>
-                    <TextLink href="/docs" variant="underline" className="font-semibold" color="primary">
-                        the docs
-                    </TextLink>
-                </div>
             )}
         </Card>
     );

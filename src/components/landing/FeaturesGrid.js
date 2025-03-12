@@ -8,16 +8,16 @@ import { featuresConfig, landingConfig } from "@/config";
 import { getTextColorClass, mergeClasses } from "@/utils/styling";
 
 export default function FeaturesGrid({
-    title = "Features",
-    subtitle = landingConfig.features.title,
-    description = landingConfig.features.subtitle,
+    title = landingConfig.features.title,
+    subtitle = landingConfig.features.subtitle,
+    description = landingConfig.features.description,
     features = featuresConfig,
     titleColor = landingConfig.features.titleColor,
     cardBorderRadius = "lg",
     cardBorder = true,
     cardColor = "bg",
     cardVariant = "soft",
-    highlightLastFeature = true,
+    highlightLastAttribute = landingConfig.features.highlightLastAttribute,
     gridClassName = "",
 }) {
     return (
@@ -62,14 +62,14 @@ export default function FeaturesGrid({
                         {feature.description && (
                             <p className="max-w-prose mb-3 text-left text-[15px] opacity-80">{feature.description}</p>
                         )}
-                        {feature.features && (
+                        {feature.attributes && (
                             <ul className="mt-2 space-y-2">
-                                {feature.features.map((f, i) => (
+                                {feature.attributes.map((f, i) => (
                                     <li key={i} className="flex items-center gap-2">
                                         <FaCheck className="text-green-500" />
                                         <p className={
                                             `flex-1 text-[15px] 
-                                            ${highlightLastFeature && i === feature.features.length - 1 && "text-green-500"}`
+                                            ${highlightLastAttribute && i === feature.attributes.length - 1 && "text-green-500"}`
                                         }>
                                             {f}
                                         </p>

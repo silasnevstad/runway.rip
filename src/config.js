@@ -1,3 +1,4 @@
+
 import { FaMagnifyingGlassChart, FaRegCreditCard, FaUserShield } from "react-icons/fa6";
 import { LuDatabase, LuLayoutDashboard, LuMail } from "react-icons/lu";
 import { Cog8ToothIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
@@ -6,8 +7,7 @@ import {openEmailSupport} from "@/utils/email";
 
 const appConfig = {
     // General
-    appName: 'Runway',
-    appDescription: 'Everything you need to launch your ideas.',
+    appName: 'Runway',      appDescription: 'Everything you need to launch your ideas.',
     domain: 'runway.rip',
     legal: {
         policies: {
@@ -43,13 +43,22 @@ const appConfig = {
 
     // Waitlist / Pre-Launch Mode:
     waitlist: {
-        enabled: true,
+        enabled: false,
     },
 
+    // Payments
     payment: {
         enabled: true,
         requiredCustomerId: true,
         afterCheckoutPath: '/account',
+    },
+
+    // Security (bot detection, rate limiting, attack protection, etc.)
+    arcjet: {
+        enabled: true, // toggle security integration
+        globalProtection: true, // If true, every route will be protected.
+        protectedRoutes: ['/dashboard', '/account', '/api/secure'], // Optionally, list routes to protect
+        mode: 'LIVE', // 'LIVE' to block request, 'DRY_RUN' to just log
     },
 };
 
@@ -57,9 +66,11 @@ export const landingConfig = {
     header: {
         fixed: false,
         background: "bg-transparent dark:bg-transparent",
+        showLogo: true,
+        showAppName: true,
         navLinks: [
             { title: "Features", href: "#features" },
-            // { title: "Pricing", href: "#pricing" },
+            { title: "Pricing", href: "#pricing" },
             { title: "FAQ", href: "#faq" },
         ],
         // Uncomment to enable
@@ -85,7 +96,7 @@ export const landingConfig = {
             // color: "primary"
         },
         textPosition: "center",
-        description: "A Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 
         buttonText: "Get Started",
         buttonHref: "#pricing",
@@ -111,63 +122,60 @@ export const landingConfig = {
     features: {
         show: true,
         type: "carousel", // "carousel" or "grid"
-        title: "Tired of starting from scratch?",
-        subtitle: "Tired of having to set up auth, payments, databases, components, SEO,... everytime you start a new project. Runway has everything you need to launch your ideas.",
+        title: "Features",
+        subtitle: "Lorem ipsum dolor sit amet",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         titleColor: "primary",
+        highlightLastAttribute: true,
         // scroll down to see the featuresConfig
     },
 
-    withWithouts: {
-        show: false,
-        title: "Tired of spending hours configuring and maintaining?",
-        withoutTitle: "Without Runway",
-        withTitle: "With Runway",
-    },
-
-    why: {
-        show: true,
-        title: "Save endless hours of headaches and get right to business",
-    },
-
-    howItWorks: {
-        show: true,
-        title: "Launch in minutes.",
-        subtitle: "",
-        description: "",
-    },
-
     what: {
-        show: true,
         position: "left",
-        // title: "What is Runway?",
+        title: "What is Runway?",
         subtitle: "By a developer, for developers.",
-        description: ``,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut 
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        aliquip ex ea commodo consequat.`,
+
         // imageSrc: "/images/rocket-boy.svg",
         // imageAlt: "Rocket Launch",
     },
 
     who: {
-        show: false,
+        show: true,
         position: "right",
         title: "Who's this for?",
         subtitle: "For developers, designers, and entrepreneurs.",
-        description: "Anyone who wants to build...",
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut 
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        aliquip ex ea commodo consequat.`,
         // include imageSrc, imageAlt if you want to show an image
     },
 
     how: {
-        show: false,
+        show: true,
         position: "left",
         title: "How this works?",
         subtitle: "Get started in seconds.",
-        description: "It works by...",
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut 
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        aliquip ex ea commodo consequat.`,
         // include imageSrc, imageAlt if you want to show an image
+    },
+
+    withWithouts: {
+        show: true,
+        title: "Lorem ipsum dolor sit amet",
+        withoutTitle: "Without Your Service",
+        withTitle: "With Your Service",
+        // scroll down to see the withWithoutsConfig
     },
 
     pricing: {
         show: true,
         title: "Pricing",
-        subtitle: "Save hours of headaches and get right to business!",
+        subtitle: "Lorem ipsum dolor sit amet",
         // Scroll down to see the pricingConfig
     },
 
@@ -180,10 +188,10 @@ export const landingConfig = {
 
     cta: {
         show: true,
-        title: "Get Runway, launch, and go!",
-        subtitle: "Stop waiting and start building your project today.",
-        buttonText: "Launch",
-        buttonHref: "#hero",
+        title: "Ready to get started?",
+        subtitle: "Stop waiting and start...",
+        buttonText: "Get Started",
+        buttonHref: "#pricing",
     },
 
     footer: {
@@ -192,14 +200,16 @@ export const landingConfig = {
         showAppName: true,
         showAppDescription: true,
         showCopyright: true,
-        showMadeWith: true,
+        showMadeWith: false,
         showThemeSwitcher: true,
         showSocials: true,
         showBorder: true,
         rounded: true,
         navLinks: [
             { title: "Pricing", href: "#pricing" },
-            { title: "Documentation", href: "/docs" },
+            { title: "Features", href: "#features" },
+            { title: "FAQ", href: "#faq" },
+            { title: "Support", onClick: () => openEmailSupport() },
         ],
         legalLinks: [
             { title: "Privacy Policy", href: "/policies/privacy" },
@@ -271,55 +281,34 @@ export const pricingConfig = {
 
 export const featuresConfig = [
     {
-        title: "Auth",
-        description: "Implement robust user authentication and authorization using Supabase.",
-        features: ["Magic links & Social auth", "Email/password login", "Login/Signup pages", "Protected routes", "3+ hours saved"],
+        title: "Feature 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        attributes: ["Feature 1", "Feature 2", "Feature 3"],
         icon: FaUserShield,
-        imageSrc: "/logos/supabase.png",
-        imageAlt: "Supabase",
-        imageHref: "https://supabase.com"
     },
     {
-        title: "Payments",
-        description: "Securely accept payments and manage subscriptions with Stripe integration.",
-        features: ["One time payments", "Subscriptions", "Webhook handling (to update user's account)", "Invoices", "3+ hours saved"],
+        title: "Feature 2",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        attributes: ["Feature 1", "Feature 2", "Feature 3"],
         icon: FaRegCreditCard,
-        imageSrc: "/logos/stripe.png",
-        imageAlt: "Stripe",
-        imageHref: "https://stripe.com"
     },
     {
-        title: "Database",
-        features: ["SQL database", "Real-time data sync", "User database", "3+ hours saved"],
-        description: "Harness Supabase’s PostgreSQL DB for real-time data sync.",
+        title: "Feature 3",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        attributes: ["Feature 1", "Feature 2", "Feature 3"],
         icon: LuDatabase,
-        imageSrc: "/logos/supabase.png",
-        imageAlt: "Supabase",
-        imageHref: "https://supabase.com"
     },
     {
-        title: "Email",
-        features: ["Email verification", "Transactional emails", "Newsletters", "3+ hours saved"],
-        description: "Integrate seamless email communication with Resend.",
+        title: "Feature 4",
+        attributes: ["Feature 1", "Feature 2", "Feature 3"],
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         icon: LuMail,
-        imageSrc: "/logos/resend.png",
-        imageClassName: "rounded-lg bg-black",
-        imageAlt: "Resend",
-        imageHref: "https://resend.com"
     },
     {
-        title: "SEO",
-        features: ["Meta tags", "Sitemaps", "Structured data", "3+ hours saved"],
-        description: "Boost your visibility with built-in SEO tools, auto meta tags, etc.",
-        icon: FaMagnifyingGlassChart,
-        docs: true
-    },
-    {
-        title: "Components",
-        features: ["Pre-built components", "Customizable UI", "Responsive design", "10+ hours saved"],
-        description: "Use our library of pre-built, customizable components.",
+        title: "Feature 5",
+        attributes: ["Feature 1", "Feature 2", "Feature 3"],
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         icon: LuLayoutDashboard,
-        docs: true
     }
 ];
 

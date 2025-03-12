@@ -12,8 +12,8 @@ import { mergeClasses } from "@/utils/styling";
 import appConfig, {landingConfig} from "@/config";
 
 export default function Header({
-    showLogo = true,
-    showAppName = true,
+    showLogo = landingConfig.header.showLogo,
+    showAppName = landingConfig.header.showAppName,
     navLinks = landingConfig.header.navLinks,  // { title, href, onClick, className }
     ctaButton = landingConfig.header.ctaButton,  // { label, href, className, props }
     background = landingConfig.header.background,
