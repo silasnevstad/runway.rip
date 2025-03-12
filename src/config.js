@@ -120,8 +120,9 @@ export const landingConfig = {
         show: true,
         type: "carousel", // "carousel" or "grid"
         title: "Tired of starting from scratch?",
-        subtitle: "Tired of having to set up auth, payments, databases, components, SEO,... the list goes on. Runway has everything you need to launch your ideas.",
+        subtitle: "Tired of having to set up auth, payments, databases, components, SEO,... everytime you start a new project. Runway has everything you need to launch your ideas.",
         titleColor: "primary",
+        // scroll down to see the featuresConfig
     },
 
     withWithouts: {
