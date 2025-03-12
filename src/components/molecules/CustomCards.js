@@ -136,7 +136,7 @@ export const DeparturesCard = ({
     }
 
     const outerContainerStyles = mergeClasses(
-        "relative flex flex-col px-4 py-6 min-w-40 rounded-lg font-mono",
+        "relative flex flex-col p-4 min-w-40 rounded-lg font-mono",
         "bg-bg-100 dark:bg-bg-900 border-2 border-bg-100 dark:border-bg-800 shadow-lg dark:shadow-2xl",
         className
     )

@@ -28,10 +28,10 @@ export default function CTA({
                 </p>
             )}
 
-            {/*<DeparturesCard />*/}
+            <DeparturesCard />
 
             {appConfig.waitlist.enabled ? (
-                <WaitlistForm className="mt-6" />
+                <WaitlistForm className="mt-10" color="yellow" />
             ) : (
                 <Button
                     href={buttonHref}

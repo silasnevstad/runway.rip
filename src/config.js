@@ -60,13 +60,13 @@ export const landingConfig = {
         showAppName: true,
         navLinks: [
             { title: "Features", href: "#features" },
-            { title: "Pricing", href: "#pricing" },
+            // { title: "Pricing", href: "#pricing" },
             { title: "FAQ", href: "#faq" },
         ],
         // Uncomment to enable
         // ctaButton: {
-        //     label: 'Join Waitlist',
-        //     href: '#waitlist-form',
+        //     label: 'Sign Up',
+        //     href: '/signup',
         //     props: {
         //         variant: "soft",
         //         border: true,
