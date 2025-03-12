@@ -2,6 +2,7 @@ import { FaMagnifyingGlassChart, FaRegCreditCard, FaUserShield } from "react-ico
 import { LuDatabase, LuLayoutDashboard, LuMail } from "react-icons/lu";
 import { Cog8ToothIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
 import { LuGithub } from "react-icons/lu";
+import {openEmailSupport} from "@/utils/email";
 
 const appConfig = {
     // General
@@ -80,7 +81,7 @@ export const landingConfig = {
         textHighlight: {
             text: "Code less, launch faster.",
             highlight: "launch faster.", // If you want no highlight, set to ""
-            // Either use the gradients or the color.
+            // Either use the gradients or the highlight color.
             fromGradient: "primary",
             toGradient: "purple",
             // color: "primary"
@@ -206,7 +207,6 @@ export const landingConfig = {
         navLinks: [
             { title: "Pricing", href: "#pricing" },
             { title: "Documentation", href: "/docs" },
-            { title: "Support", href: "#" },
         ],
         legalLinks: [
             { title: "Privacy Policy", href: "/policies/privacy" },

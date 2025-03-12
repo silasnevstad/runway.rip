@@ -56,22 +56,22 @@ export default function HowItWorks({
 
 function Step({ number, Icon, title, description, duration, tags }) {
     return (
-        <div className="flex flex-row gap-4 items-center group">
-            <div className="relative p-3 rounded-2xl group-hover:bg-primary-500/90 z-10">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-semibold text-gray-500/10 dark:text-gray-500/5 group-hover:hidden z-0">
-                    {number}
-                </div>
-                <Icon className="w-9 h-9 text-primary-500 dark:group-hover:text-gray-200 group-hover:text-gray-50 z-20" />
+        <div className="flex flex-row gap-4 items-center p-5">
+            <div className="relative p-3 rounded-2xl z-10">
+                {/*<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-semibold text-gray-500/10 dark:text-gray-500/5 group-hover:hidden z-0">*/}
+                {/*    {number}*/}
+                {/*</div>*/}
+                <Icon className="w-9 h-9 text-primary-500 z-20" />
             </div>
             <div className="flex flex-col gap-1 items-start">
-                <p className="text-xl font-semibold opacity-90">
+                <div className="flex items-center text-2xl font-semibold opacity-90">
                     {title}
                     {duration && (
-                        <span className="text-sm font-bold text-orange-500 ml-2">
+                        <Badge className="text-sm font-bold text-orange-500 dark:text-orange-500 ml-2" color="orange" borderRadius="xl">
                             {duration}
-                        </span>
+                        </Badge>
                     )}
-                </p>
+                </div>
                 <div className="flex gap-1 items-start">
                     {description && <p className="text-md opacity-50 font-normal text-center">{description}</p>}
                     {tags && (

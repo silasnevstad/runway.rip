@@ -67,9 +67,9 @@ const Footer = ({
                                     key={idx}
                                     href={link.href}
                                     className="text-sm max-sm:text-center"
-                                    {...link.props}
                                     underline
                                     underlineClassName="hover:opacity-50 opacity-50"
+                                    {...link.props}
                                 >
                                     {link.title}
                                 </TextLink>
