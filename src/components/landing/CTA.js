@@ -1,5 +1,4 @@
 import React from "react";
-import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 
 import Button from "@/components/atoms/Button";
 import { DeparturesCard } from "@/components/molecules/CustomCards";
@@ -28,10 +27,10 @@ export default function CTA({
                 </p>
             )}
 
-            <DeparturesCard />
+            {/*<DeparturesCard />*/}
 
             {appConfig.waitlist.enabled ? (
-                <WaitlistForm className="mt-10" color="yellow" />
+                <WaitlistForm className="mt-10" />
             ) : (
                 <Button
                     href={buttonHref}
@@ -41,7 +40,6 @@ export default function CTA({
                     scale
                     className="mt-6 px-8 font-semibold"
                 >
-                    <RocketLaunchIcon className="w-5 h-5" />
                     {buttonText}
                 </Button>
             )}

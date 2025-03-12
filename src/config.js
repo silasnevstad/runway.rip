@@ -57,8 +57,6 @@ export const landingConfig = {
     header: {
         fixed: false,
         background: "bg-transparent dark:bg-transparent",
-        showLogo: true,
-        showAppName: true,
         navLinks: [
             { title: "Features", href: "#features" },
             // { title: "Pricing", href: "#pricing" },
@@ -101,12 +99,6 @@ export const landingConfig = {
         trustedBy: {
             show: false,
             text: "Trusted by 200+ people",
-            avatars: [
-                { src: "/avatar1.png", alt: "Avatar 1"},
-                { src: "/avatar2.png", alt: "Avatar 2"},
-                { src: "/avatar3.png", alt: "Avatar 3"},
-                { src: "/avatar1.png", alt: "Avatar 1"},
-            ],
         },
 
         backgroundGlowColor: "primary",
@@ -145,13 +137,13 @@ export const landingConfig = {
     },
 
     what: {
-        show: false,
+        show: true,
         position: "left",
-        title: "What is Runway?",
-        subtitle: "A complete Next.js boilerplate",
-        description: "Runway is a...",
-        imageSrc: "/images/rocket-boy.svg",
-        imageAlt: "Rocket Launch",
+        // title: "What is Runway?",
+        subtitle: "By a developer, for developers.",
+        description: ``,
+        // imageSrc: "/images/rocket-boy.svg",
+        // imageAlt: "Rocket Launch",
     },
 
     who: {

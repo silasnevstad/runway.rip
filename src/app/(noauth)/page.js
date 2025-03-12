@@ -24,7 +24,15 @@ export default function LandingPage() {
         <>
             {getSchemaTags({})}
             <main className="flex items-center flex-col w-full">
-                <Header />
+                <Header
+                    showLogo={true}
+                    showAppName={true}
+                    navLinks={landingConfig.header.navLinks}
+                    ctaButton={landingConfig.header.ctaButton}
+                    background={landingConfig.header.background}
+                    fixed={landingConfig.header.fixed}
+                    bottomBorder={false}
+                />
 
                 <Hero />
 

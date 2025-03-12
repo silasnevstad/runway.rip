@@ -38,7 +38,7 @@ export default function Hero({
     buttonHref = landingConfig.hero.buttonHref,
     buttonSubText = landingConfig.hero.buttonSubText,
     showTrustedBy = landingConfig.hero.trustedBy.show,
-    trustedBy = landingConfig.hero.trustedBy,
+    trustedByText =  landingConfig.hero.trustedBy.text,
     textPosition = landingConfig.hero.textPosition, // 'left' | 'center' | 'right'
     imageSrc = landingConfig.hero.image.src,
     imageAlt = landingConfig.hero.image.alt,
@@ -122,8 +122,7 @@ export default function Hero({
                         {showTrustedBy && (
                             <div className="mt-10">
                                 <AvatarsTestimonial
-                                    text={trustedBy.text}
-                                    avatars={trustedBy.avatars}
+                                    text={trustedByText}
                                 />
                             </div>
                         )}
