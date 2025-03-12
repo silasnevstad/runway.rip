@@ -18,7 +18,7 @@ export default function WithWithout({
             className="flex flex-col items-center w-full"
         >
             {title && (
-                <p className="max-w-4xl text-4xl font-black text-gray-800 dark:text-gray-100 text-center mb-15">
+                <p className="max-w-4xl text-4xl font-black text-gray-800 dark:text-gray-100 text-center mb-15 px-4">
                     {title}
                 </p>
             )}

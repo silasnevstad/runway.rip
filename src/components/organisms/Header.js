@@ -9,7 +9,7 @@ import TextLink from "@/components/atoms/TextLink";
 import Button from "@/components/atoms/Button";
 import AccountCard from "@/components/auth/AccountCard";
 import { mergeClasses } from "@/utils/styling";
-import appConfig, {landingConfig} from "@/config";
+import appConfig, { landingConfig } from "@/config";
 
 export default function Header({
     showLogo = landingConfig.header.showLogo,
@@ -19,7 +19,7 @@ export default function Header({
     background = landingConfig.header.background,
     fixed = landingConfig.header.fixed,
     bottomBorder = false,
-    account = true,
+    auth = landingConfig.header.auth,
     accountCardProps = {},
     className = "",
     ...props
@@ -36,7 +36,7 @@ export default function Header({
         `flex justify-center p-4 w-full min-h-14 top-0 z-20`,
         background,
         bottomBorder && "border-b border-bg-200 dark:border-bg-700",
-        fixed ? "fixed" : "absolute",
+        fixed ? "fixed" : "",
         className
     );
 
@@ -80,7 +80,7 @@ export default function Header({
                             {ctaButton.label}
                         </Button>
                     )}
-                    {account && (
+                    {auth && (
                         <AccountCard {...accountCardProps} />
                     )}
                 </div>
@@ -102,13 +102,13 @@ export default function Header({
                 )}
             </div>
 
-            {/* Mobile Nav Dropdown (only if more than two links) */}
-            {showCollapsibleMenu && isDropdownOpen && (
+            {/* Mobile Nav Dropdown (always rendered for smooth animation) */}
+            {showCollapsibleMenu && (
                 <div className={
                     `absolute top-16 left-0 w-full 
                     ${background} bg-opacity-100 shadow-md z-10 
-                    overflow-hidden 
-                    transition-[max-height,opacity,transform] duration-300 ease-in-out 
+                    overflow-hidden backdrop-blur-3xl
+                    transition-all duration-200 ease-in-out 
                     ${isDropdownOpen ? "max-h-screen opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"}
                     `
                 }>
@@ -121,8 +121,10 @@ export default function Header({
                                     navItem.onClick?.();
                                     toggleDropdown();
                                 }}
+                                className={navItem.className}
+                                {...navItem.props}
                             >
-                                {navItem.label}
+                                {navItem.title}
                             </TextLink>
                         ))}
                         {ctaButton && (

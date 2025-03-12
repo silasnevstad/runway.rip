@@ -32,6 +32,7 @@ const appConfig = {
         ],
         afterLoginPath: '/account',
         afterSignupPath: '/confirm-email',  // This is only need if
+        afterSignoutPath: '/',
     },
 
 
@@ -73,6 +74,7 @@ export const landingConfig = {
             { title: "Pricing", href: "#pricing" },
             { title: "FAQ", href: "#faq" },
         ],
+        auth: true,  // shows AccountCard or sign up button
         // Uncomment to enable
         // ctaButton: {
         //     label: 'Sign Up',
@@ -99,7 +101,7 @@ export const landingConfig = {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 
         buttonText: "Get Started",
-        buttonHref: "#pricing",
+        buttonHref: "#pricing", // or perhaps /signup
         buttonSubText: "",
 
         image: {
@@ -112,7 +114,7 @@ export const landingConfig = {
             text: "Trusted by 200+ people",
         },
 
-        backgroundGlowColor: "primary",
+        backgroundGlowColor: "",
         backgroundGlowPosition: "top",
         backgroundGlowOpacity: 0.3,
         backgroundGlowSize: "60%",

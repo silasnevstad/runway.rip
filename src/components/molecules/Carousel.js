@@ -253,12 +253,12 @@ function MultiCarousel({
     }, [children]);
 
     // translateX
-    const translateX = -(activeIndex * itemWidth) - (activeIndex * margin * 2) - (itemWidth / 2);
+    const translateX = -(activeIndex * itemWidth) - (activeIndex * margin) - (itemWidth / 2);
 
     const slides = Children.map(children, (child, i) => {
         const isCenter = i === activeIndex;
         let style = {
-            margin: `0 ${margin}px`,
+            margin: i === 0 ? `0 ${margin}px 0 0` : `0 ${margin}px 0 0`,
         }
         if (fadeCenter && !isCenter) {
             style.opacity = sideOpacity;
@@ -267,7 +267,6 @@ function MultiCarousel({
             style.transform = `scale(${scaleCenter})`;
             style.transition = "transform 0.3s ease";
         }
-
 
         return (
             <div
@@ -284,7 +283,7 @@ function MultiCarousel({
         <div className="relative w-full">
             <div
                 ref={trackRef}
-                className={`flex transition-transform duration-300 ease-in-out ${!infinite && 'translate-x-1/2'}`}
+                className={`flex transition-transform duration-300 ease-in-out translate-x-1/2`}
                 style={{ transform: `translateX(${translateX}px)` }}
             >
                 {/* if infinite is true, duplicate the slides */}

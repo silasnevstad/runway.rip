@@ -23,15 +23,15 @@ export async function passwordSignup(prevState, formData) {
         email,
         password,
         options: {
-            emailRedirectTo: process.env.WEBSITE_URL + appConfig.afterSignupPath,
+            emailRedirectTo: process.env.WEBSITE_URL + appConfig.auth.afterSignupPath,
         }
     });
     if (error) {
         return { errors: { email: error.message } };
     }
 
-    revalidatePath(appConfig.afterSignupPath, "layout");
-    redirect(appConfig.afterSignupPath);
+    revalidatePath(appConfig.auth.afterSignupPath, "layout");
+    redirect(appConfig.auth.afterSignupPath);
 }
 
 export async function passwordSignin(prevState, formData) {
@@ -50,8 +50,8 @@ export async function passwordSignin(prevState, formData) {
         return { errors: { email: error.message } };
     }
 
-    revalidatePath(appConfig.afterLoginPath, "layout");
-    redirect(appConfig.afterLoginPath);
+    revalidatePath(appConfig.auth.afterLoginPath, "layout");
+    redirect(appConfig.auth.afterLoginPath);
 }
 
 export async function passwordlessSignin(prevState, formData) {
@@ -66,7 +66,7 @@ export async function passwordlessSignin(prevState, formData) {
     const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-            emailRedirectTo: process.env.WEBSITE_URL + appConfig.afterLoginPath,
+            emailRedirectTo: process.env.WEBSITE_URL + appConfig.auth.afterLoginPath,
         },
     });
     if (error) {
@@ -102,4 +102,6 @@ export async function signout() {
     if (error) {
         return { errors: { signout: error.message } };
     }
+    revalidatePath(appConfig.auth.afterSignoutPath, "layout");
+    redirect(appConfig.auth.afterSignoutPath);
 }

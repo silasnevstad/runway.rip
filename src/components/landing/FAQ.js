@@ -15,7 +15,7 @@ export default function FAQ({
             className="flex flex-col items-center w-full"
         >
             <div
-                className="flex sm:flex-row flex-col justify-between gap-10 mb-10"
+                className="flex sm:flex-row flex-col justify-between gap-10 mb-10 max-sm:px-6"
             >
                 <div className="flex flex-col w-full gap-2">
                     {title && <h3 className="text-3xl lg:text-4xl font-semibold text-left max-w-[20ch]">{title}</h3>}

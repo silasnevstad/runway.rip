@@ -9,6 +9,8 @@ import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
 import CTA from "@/components/landing/CTA";
 import appConfig, { landingConfig } from "@/config";
+import Header from "@/components/organisms/Header";
+import Footer from "@/components/organisms/Footer";
 
 // Customize a section with padding and background color
 const SectionWrapper = ({ show = true, className = "", children }) => {
@@ -19,19 +21,13 @@ const SectionWrapper = ({ show = true, className = "", children }) => {
 export default function LandingPage() {
     return (
         <div className="flex items-center flex-col w-full">
+            <Header />
+
             <Hero />
 
             <SectionWrapper show={landingConfig.features.show} className="-mt-14 pb-30">
                 {landingConfig.features.type === "grid" ? <FeaturesGrid /> : <FeaturesCarousel />}
             </SectionWrapper>
-
-            {/*<SectionWrapper show={landingConfig.why.show} className="pt-30 pb-28 sm:pb-32 bg-bg-50 dark:bg-bg-800">*/}
-            {/*    <Why />*/}
-            {/*</SectionWrapper>*/}
-
-            {/*<SectionWrapper show={landingConfig.why.show} className="pb-40 bg-bg-50 dark:bg-bg-800">*/}
-            {/*    <HowItWorks />*/}
-            {/*</SectionWrapper>*/}
 
             <SectionWrapper show={landingConfig.what.show} className="py-10 pt-20 bg-bg-50 dark:bg-bg-800">
                 <ImageSection
@@ -84,6 +80,8 @@ export default function LandingPage() {
             <SectionWrapper show={landingConfig.cta.show} className="pt-30 pb-28 sm:pb-32">
                 <CTA />
             </SectionWrapper>
+
+            <Footer />
         </div>
     );
 }

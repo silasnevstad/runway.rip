@@ -31,16 +31,16 @@ const SimpleFooter = ({
         `flex items-center justify-center py-10 w-full z-50`,
         background,
         border && `border-t border-gray-200 dark:border-gray-900`,
-        rounded && `rounded-tr-3xl`,
+        rounded && `rounded-t-3xl`,
         className
     );
 
     return (
         <footer className={footerClasses} {...props}>
             <div className="flex flex-col w-7xl max-7xl">
-                <div className="flex flex-row justify-between items-start">
-                    <div className="flex flex-col gap-3">
-                        <div className="flex flex-row gap-2 text-center items-end">
+                <div className="flex max-sm:flex-col flex-row justify-between sm:items-start">
+                    <div className="flex flex-col max-sm:items-center gap-3">
+                        <div className="flex max-sm:flex-col max-sm:items-center flex-row gap-2 text-center items-end">
                             {(showLogo || showAppName) && (
                                 <div className="flex items-center">
                                     {showLogo && <img src="/logo.png" alt={appName} className="h-6 mr-2" />}
@@ -69,7 +69,7 @@ const SimpleFooter = ({
                         </div>
                     </div>
 
-                    <div className="flex flex-col justify-end items-end gap-4 mt-2">
+                    <div className="flex flex-col sm:justify-end items-center sm:items-end gap-4 mt-8 sm:mt-2">
                         {showSocials && (
                             <div className="flex flex-row gap-3 opacity-80">
                                 {socialMedia.instagram && <TextLink href={socialMedia.instagram} scale><FaInstagram className="text-2xl" /></TextLink>}

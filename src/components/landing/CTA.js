@@ -14,10 +14,10 @@ export default function CTA({
     return (
         <section
             id="cta"
-            className="flex flex-col items-center w-full"
+            className="flex flex-col items-center w-full max-sm:px-4"
         >
             {title && (
-                <h1 className="text-5xl font-black text-start mb-4 text-gray-800 dark:text-gray-100">
+                <h1 className="max-w-prose text-5xl font-black text-center mb-4 text-gray-800 dark:text-gray-100">
                     {title}
                 </h1>
             )}

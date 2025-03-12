@@ -45,7 +45,9 @@ export default function AccountCard({
         });
     }, [user]);
 
-    if (!user) return null;
+    if (!user) {
+        return <Button href="/signup" variant="soft" border borderRadius="full" size="sm">Sign Up</Button>;
+    }
     const avatarSrc = user?.profile?.image || user?.user_metadata?.avatar_url;
     const displayName = user?.profile?.name || user?.user_metadata?.full_name || user?.email;
 

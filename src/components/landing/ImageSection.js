@@ -20,7 +20,7 @@ export default function ImageSection({
 }) {
     return (
         <section
-            className={mergeClasses('w-full sm:w-5/6 lg:w-5/6 max-w-7xl px-4 py-10', className)}
+            className={mergeClasses('w-full sm:w-5/6 lg:w-5/6 max-w-7xl px-6 sm:px-4 py-10', className)}
             {...props}
         >
             <div

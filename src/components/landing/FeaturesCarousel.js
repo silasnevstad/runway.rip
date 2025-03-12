@@ -51,7 +51,7 @@ export default function FeaturesCarousel({
                 )}
             </div>
 
-            <div className="grid grid-cols-3 sm:grid-cols-6 max-w-2xl md:max-2xl xl:max-w-3xl w-full gap-y-6 gap-x-0 mx-auto px-4 py-6 mb-4">
+            <div className="flex flex-wrap items-center justify-center flex-row gap-10 mt-2 mb-10 mx-10">
                 {features.map((feat, index) => {
                     const isActive = selectedFeature === index;
                     return (
@@ -119,7 +119,7 @@ function FeatureCard({
             className={
                 `relative flex flex-col items-start text-start transition-all
                 ${isActive ? "shadow-xl dark:shadow-2xl" : "shadow-md"}
-                w-[440px] sm:w-[440px] cursor-pointer
+                w-[300px] sm:w-[440px] cursor-pointer
                 bg-bg-0 dark:bg-bg-900 border-bg-200 dark:border-gray-800/50
             `}
             color={cardColor}
