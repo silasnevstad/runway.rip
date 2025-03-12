@@ -1,1 +1,1 @@
-Checkout out [runway.rip](https://runway.rip) for more examples and documentation.
+Checkout out [runway.rip/docs](https://runway.rip) for the documentation.
