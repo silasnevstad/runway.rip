@@ -46,16 +46,16 @@ export function renderIcon({ icon, iconSrc, alt = 'icon', onClick, extraClasses 
 
 export function getTextColorClass(color) {
     const colorClasses = {
-        gray: "text-gray-800 dark:text-gray-100",
+        gray: "text-gray-900 dark:text-gray-100",
         bg: "text-bg-800 dark:text-bg-200",
-        primary: "text-primary-500",
-        red: "text-red-500",
-        green: "text-green-500",
-        blue: "text-blue-500",
-        yellow: "text-yellow-500",
-        orange: "text-orange-500",
-        purple: "text-purple-500",
-        pink: "text-pink-500",
+        primary: "text-primary-600 dark:text-primary-400",
+        red: "text-red-600 dark:text-red-400",
+        green: "text-green-600 dark:text-green-400",
+        blue: "text-blue-600 dark:text-blue-400",
+        yellow: "text-yellow-600 dark:text-yellow-400",
+        orange: "text-orange-600 dark:text-orange-400",
+        purple: "text-purple-600 dark:text-purple-400",
+        pink: "text-pink-600 dark:text-pink-400",
     };
     return colorClasses[color] || "";
 }

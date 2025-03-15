@@ -4,10 +4,12 @@ import { LuDatabase, LuLayoutDashboard, LuMail } from "react-icons/lu";
 import { Cog8ToothIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
 import { LuGithub } from "react-icons/lu";
 import {openEmailSupport} from "@/utils/email";
+import {CgMore, CgMoreO} from "react-icons/cg";
 
 const appConfig = {
     // General
-    appName: 'Runway',      appDescription: 'Everything you need to launch your ideas.',
+    appName: 'Runway',
+    appDescription: 'Everything you need to launch your ideas.',
     domain: 'runway.rip',
     legal: {
         policies: {
@@ -18,15 +20,15 @@ const appConfig = {
     },
     socialMedia: {
         twitter: 'https://twitter.com/runway',
-        instagram: 'https://instagram.com/runway',
-        github: 'https://github.com/runway-app',
-        linkedin: ''
+        // instagram: 'https://instagram.com/runway',
+        // github: 'https://github.com/runway-app',
+        // linkedin: ''
     },
 
     // Auth
     auth: {
-        enabled: true,
-        profiles: true, // using a profiles table?
+        enabled: false,
+        profiles: false, // using a profiles table?
         methods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
         protectedRoutes: [
             '/dashboard',
@@ -53,8 +55,8 @@ const appConfig = {
     // Payments
     payment: {
         enabled: true,
-        requiredCustomerId: true,
-        afterCheckoutPath: '/account',
+        requiredCustomerId: false,
+        afterCheckoutPath: '/',
     },
 
     // Security (bot detection, rate limiting, attack protection, etc.)
@@ -77,7 +79,7 @@ export const landingConfig = {
             { title: "Pricing", href: "#pricing" },
             { title: "FAQ", href: "#faq" },
         ],
-        auth: true,  // shows AccountCard or sign up button
+        auth: false,  // shows AccountCard or sign up button
         // Uncomment to enable
         // ctaButton: {
         //     label: 'Sign Up',
@@ -93,15 +95,15 @@ export const landingConfig = {
 
     hero: {
         textHighlight: {
-            text: "Lorem ipsum dolor sit amet.",
-            highlight: "sit amet.", // If you want no highlight, set to ""
+            text: "Code less, launch faster.",
+            highlight: "launch faster.", // If you want no highlight, set to ""
             // Either use the gradients or the highlight color.
             fromGradient: "primary",
             toGradient: "purple",
             // color: "primary"
         },
         textPosition: "center",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        description: "A Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
 
         buttonText: "Get Started",
         buttonHref: "#pricing", // or perhaps /signup
@@ -117,7 +119,7 @@ export const landingConfig = {
             text: "Trusted by 200+ people",
         },
 
-        backgroundGlowColor: "",
+        backgroundGlowColor: "primary",
         backgroundGlowPosition: "top",
         backgroundGlowOpacity: 0.3,
         backgroundGlowSize: "60%",
@@ -128,28 +130,37 @@ export const landingConfig = {
         show: true,
         type: "carousel", // "carousel" or "grid"
         title: "Features",
-        subtitle: "Lorem ipsum dolor sit amet",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        subtitle: "Tired of starting from scratch?",
+        description: "Tired of having to set up auth, payments, databases, components, SEO,... everytime you start a new project. Runway has everything you need to launch your ideas.",
         titleColor: "primary",
         highlightLastAttribute: true,
         // scroll down to see the featuresConfig
     },
 
-    what: {
-        position: "left",
-        title: "What is Runway?",
-        subtitle: "By a developer, for developers.",
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut 
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-        aliquip ex ea commodo consequat.`,
+    why: {
+        show: true,
+        title: "Save endless hours of headaches and get right to business",
+    },
 
+    howItWorks: {
+        show: true,
+        title: "Launch in minutes.",
+        subtitle: "",
+        description: "",
+    },
+
+    what: {
+        show: true,
+        position: "center",
+        title: "A message from the creator",
+        subtitle: "By a developer, for developers.",
         // imageSrc: "/images/rocket-boy.svg",
         // imageAlt: "Rocket Launch",
     },
 
     who: {
-        show: true,
-        position: "right",
+        show: false,
+        position: "center",
         title: "Who's this for?",
         subtitle: "For developers, designers, and entrepreneurs.",
         description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut 
@@ -159,7 +170,7 @@ export const landingConfig = {
     },
 
     how: {
-        show: true,
+        show: false,
         position: "left",
         title: "How this works?",
         subtitle: "Get started in seconds.",
@@ -170,7 +181,7 @@ export const landingConfig = {
     },
 
     withWithouts: {
-        show: true,
+        show: false,
         title: "Lorem ipsum dolor sit amet",
         withoutTitle: "Without Your Service",
         withTitle: "With Your Service",
@@ -180,22 +191,22 @@ export const landingConfig = {
     pricing: {
         show: true,
         title: "Pricing",
-        subtitle: "Lorem ipsum dolor sit amet",
+        subtitle: "Pay once, use forever.",
         // Scroll down to see the pricingConfig
     },
 
     faq: {
         show: true,
         title: "Frequently Asked Questions",
-        subtitle: "",
+        subtitle: "Have more questions?",
         // Scroll down to see the FAQs
     },
 
     cta: {
         show: true,
-        title: "Ready to get started?",
-        subtitle: "Stop waiting and start...",
-        buttonText: "Get Started",
+        title: "Get Runway, launch, and go!",
+        subtitle: "Stop waiting and start building your project today.",
+        buttonText: "Launch",
         buttonHref: "#pricing",
     },
 
@@ -211,6 +222,7 @@ export const landingConfig = {
         showBorder: true,
         rounded: true,
         navLinks: [
+            { title: "Documentation", href: "/docs" },
             { title: "Pricing", href: "#pricing" },
             { title: "Features", href: "#features" },
             { title: "FAQ", href: "#faq" },
@@ -224,97 +236,125 @@ export const landingConfig = {
     }
 };
 
-// export const pricingConfig = {
-//     promo: {
-//         show: true,
-//         price: 50,
-//         text: "off for first 1000 users (12 left)",
-//         code: "LAUNCH",
-//     },
-//     plans: [
-//         {  // Starter Plan
-//             mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
-//             intervals: [
-//                 {
-//                     label: "",
-//                     oldPrice: 99,
-//                     price: 49,
-//                     priceId: "price_1QzuhUGjMg6waABSeUThW8Mw"  // COPY YOUR PRICE ID IN HERE
-//                 }
-//             ],
-//             title: "Starter",
-//             description: "",
-//             subText: "Pay once, use forever.",
-//             isPopular: false,
-//             features: [
-//                 "NextJS boilerplate",
-//                 "Component library",
-//                 "Database",
-//                 "Payments",
-//                 "Auth",
-//                 "Email Service",
-//                 "Lifetime updates",
-//             ]
-//         },
-//         { // Pro Plan
-//             mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
-//             intervals: [
-//                 {
-//                     label: "",
-//                     oldPrice: 149,
-//                     price: 99,
-//                     priceId: "price_1QzuhyGjMg6waABScXMOVTDF" // COPY YOUR PRICE ID IN HERE
-//                 }
-//             ],
-//             title: "All-in",
-//             description: "",
-//             subText: "Pay once, use forever.",
-//             isPopular: true,
-//             features: [
-//                 "NextJS boilerplate",
-//                 "Component library",
-//                 "Database",
-//                 "Payments",
-//                 "Auth",
-//                 "Email Service",
-//                 "SEO tools",
-//                 "Lifetime updates",
-//             ]
-//         }
-//     ]
-// };
+export const pricingConfig = {
+    promo: {
+        show: true,
+        price: 50,
+        text: "off for first 1000 users (12 left)",
+        code: "LAUNCH",
+    },
+    plans: [
+        {  // Starter Plan
+            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
+            intervals: [
+                {
+                    label: "",
+                    oldPrice: 149,
+                    price: 99,
+                    priceId: "price_1QzuhUGjMg6waABSeUThW8Mw"  // COPY YOUR PRICE ID IN HERE
+                }
+            ],
+            title: "Starter",
+            description: "",
+            subText: "Pay once, use forever.",
+            isPopular: false,
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "Lifetime updates",
+            ]
+        },
+        { // Pro Plan
+            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
+            intervals: [
+                {
+                    label: "",
+                    oldPrice: 249,
+                    price: 199,
+                    priceId: "price_1QzuhyGjMg6waABScXMOVTDF" // COPY YOUR PRICE ID IN HERE
+                }
+            ],
+            title: "All-in",
+            description: "",
+            subText: "Pay once, use forever.",
+            isPopular: true,
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "SEO tools",
+                "Lifetime updates",
+            ]
+        }
+    ]
+};
 
 export const featuresConfig = [
     {
-        title: "Feature 1",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        attributes: ["Feature 1", "Feature 2", "Feature 3"],
+        title: "Auth",
+        description: "Implement robust user authentication and authorization using Supabase.",
+        attributes: ["Magic links & Social auth", "Email/password login", "Login/Signup pages", "Protected routes", "3+ hours saved"],
         icon: FaUserShield,
+        imageSrc: "/logos/supabase.png",
+        imageAlt: "Supabase",
+        imageHref: "https://supabase.com"
     },
     {
-        title: "Feature 2",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        attributes: ["Feature 1", "Feature 2", "Feature 3"],
+        title: "Payments",
+        description: "Securely accept payments and manage subscriptions with Stripe integration.",
+        attributes: ["One time payments", "Subscriptions", "Usage Based", "Webhook handling", "3+ hours saved"],
         icon: FaRegCreditCard,
+        imageSrc: "/logos/stripe.png",
+        imageAlt: "Stripe",
+        imageHref: "https://stripe.com"
     },
     {
-        title: "Feature 3",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        attributes: ["Feature 1", "Feature 2", "Feature 3"],
+        title: "Database",
+        attributes: ["SQL database", "Real-time data sync", "User database", "3+ hours saved"],
+        description: "Harness Supabase’s PostgreSQL DB for real-time data sync.",
         icon: LuDatabase,
+        imageSrc: "/logos/supabase.png",
+        imageAlt: "Supabase",
+        imageHref: "https://supabase.com"
     },
     {
-        title: "Feature 4",
-        attributes: ["Feature 1", "Feature 2", "Feature 3"],
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        title: "Email",
+        attributes: ["Email verification", "Transactional emails", "Newsletters", "2+ hours saved"],
+        description: "Integrate seamless email communication with Resend or Mailgun.",
         icon: LuMail,
+        imageSrc: "/logos/resend.png",
+        imageClassName: "rounded-lg bg-black",
+        imageAlt: "Resend",
+        imageHref: "https://resend.com"
     },
     {
-        title: "Feature 5",
-        attributes: ["Feature 1", "Feature 2", "Feature 3"],
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        title: "SEO",
+        attributes: ["Meta tags", "Sitemaps", "Structured data", "3+ hours saved"],
+        description: "Boost your visibility with built-in SEO tools, auto meta tags, etc.",
+        icon: FaMagnifyingGlassChart,
+        docs: true
+    },
+    {
+        title: "Components",
+        attributes: ["Component library", "Pre-built Landing Page", "Responsive design", "10+ hours saved"],
+        description: "Use our library of customizable components. Easily have a landing page.",
         icon: LuLayoutDashboard,
-    }
+        docs: true
+    },
+    {
+        title: "More",
+        attributes: ["Analytics", "Security", "Landing Page", "5+ hours saved"],
+        description: "Get more done with our all-in-one solution.",
+        icon: CgMoreO,
+        docs: true
+    },
 ];
 
 export const withWithoutsConfig = {
@@ -367,104 +407,18 @@ export const landingSteps = [
 
 export const faqConfig = [
     {
-        title: "What is the refund policy?",
-        content: "We offer a 30-day money back guarantee if you are not satisfied with our product."
+        title: "What do I get?",
+        content: "You get a fully functional Next.js boilerplate with everything you need to launch your ideas. It includes authentication (password, magic link, and oauth), payments (one-time, subscriptions, and usage based), database, email service, and more.",
     },
     {
-        title: "How do I cancel my subscription?",
-        content: "You can cancel your subscription by logging into your account and clicking the cancel button."
+        title: "How often is Runway updated?",
+        content: "I use Runway for all my own projects, so I will be updating it regularly. You will get lifetime updates for free.",
     },
     {
-        title: "Can I upgrade my plan?",
-        content: "Yes, you can upgrade your plan at any time by logging into your account and selecting the upgrade option."
+        title: "Can I get a refund?",
+        content: "Once you've purchased Runway, it will be yours forever, so no refunds are available. However, if you have any issues, please reach out to me and I'll do my best to help you.",
     },
-    {
-        title: "Do you offer a free trial?",
-        content: "Yes, we offer a 14-day free trial for all new customers."
-    }
 ];
-
-// NOT NEEDED (JUST FOR EXAMPLE)
-// Example of subscription pricing config
-export const pricingConfig = {
-    promo: {
-        show: true,
-        price: 50,
-        text: "off for first 1000 users (12 left)",
-        code: "LAUCNH20",
-    },
-    plans: [
-        {  // Starter Plan
-            mode: "subscription", // Recurring
-            intervals: [
-                {
-                    name: "monthly",
-                    label: "Monthly",
-                    oldPrice: 29,
-                    price: 19,
-                    discountLabel: "Save 40%",
-                    priceId: "price_1R1o2HGjMg6waABSFbKVt0yY"
-                },
-                {
-                    name: "yearly",
-                    label: "Yearly",
-                    oldPrice: 199,
-                    price: 99,
-                    discountLabel: "Save 50%",
-                    priceId: "price_1QzufqGjMg6waABSiJOX02ad"
-                }
-            ],
-            title: "Starter",
-            description: "",
-            subText: "Pay monthly or yearly.",
-            isPopular: false,
-            features: [
-                "NextJS boilerplate",
-                "Component library",
-                "Database",
-                "Payments",
-                "Auth",
-                "Email Service",
-                "Lifetime updates",
-            ],
-        },
-        { // Pro Plan
-            mode: "subscription", // "payment" (One-time purchase) or "subscription" (Recurring)
-            intervals: [
-                {
-                    name: "monthly",
-                    label: "Monthly",
-                    oldPrice: 49,
-                    price: 29,
-                    discountLabel: "Save 40%",
-                    priceId: "price_1QzufNGjMg6waABSI2F3rZY0"
-                },
-                {
-                    name: "yearly",
-                    label: "Yearly",
-                    oldPrice: 399,
-                    price: 299,
-                    discountLabel: "Save 50%",
-                    priceId: "price_1R1o2xGjMg6waABSOuBztFXC"
-                }
-            ],
-            title: "All-in",
-            description: "",
-            subText: "Pay once, use forever.",
-            isPopular: true,
-            features: [
-                "NextJS boilerplate",
-                "Component library",
-                "Database",
-                "Payments",
-                "Auth",
-                "Email Service",
-                "SEO tools",
-                "Lifetime updates",
-            ]
-        }
-    ]
-};
 
 // LEAVE UNTOUCHED, UNLESS YOU WANT TO ADD MORE
 export const availableOAuthProviders = [

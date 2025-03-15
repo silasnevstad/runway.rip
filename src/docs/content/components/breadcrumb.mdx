@@ -1,0 +1,178 @@
+---
+title: "Breadcrumb"
+description: "Navigational breadcrumbs that auto-detect and highlight your current path."
+onThisPage:
+  - title: "Overview"
+    href: "#breadcrumb-overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="breadcrumb-overview" />
+
+<br/>
+
+<div className="flex flex-col justify-center items-center">
+    <Breadcrumb
+        sections={[
+            {
+                href: "/docs",
+                title: "Docs",
+                items: [
+                    {
+                        href: "/docs/components",
+                        title: "Components",
+                        items: [
+                            { href: "/docs/components/breadcrumb", title: "Breadcrumb" },
+                        ]
+                    }
+                ]
+            }
+        ]}
+    />
+</div>
+
+<br/>
+
+<div>
+    The `Breadcrumb` component lets users see their current location in your website’s navigational hierarchy. By default,
+    it parses the current path and highlights the matching crumb. You can also customize the `sections` prop to define
+    your own breadcrumb structure.
+</div>
+
+<Info>
+    The `Breadcrumb` component's crumbs are clickable to let the user jump back to any part of the hierarchy.
+</Info>
+
+<br/>
+<br/>
+<Divider />
+<div id="usage" />
+
+## Usage
+
+```js
+import Breadcrumb from '@/components/atoms/Breadcrumb';
+
+<Breadcrumb />
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
+<div id="props" />
+
+## Props
+
+| **Prop**          | **Type** | **Default** | **Description**                                                                                           |
+|-------------------|----------|-------------|-----------------------------------------------------------------------------------------------------------|
+| sections          | array    | `[]`        | Breadcrumb route definitions, e.g. `{ href, title, items?: nested }`.                                     |
+| delimiter         | Icon     | `<Icon />`  | Separator between crumbs.                                                                                 |
+| isInteractiveLast | boolean  | `false`     | Makes the final crumb clickable if `true`.                                                                |
+| className         | string   | `""`        | Extra [Tailwind](https://tailwindcss.com) classes. These override internal defaults using `mergeClasses`. |
+| ...props          | object   | `-`         | Additional props (e.g. `style`, `onMouseEnter`) passed down to the main `<nav>` element.                  |
+
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Default Breadcrumb
+Just drop it in and it will automatically parse the current path.
+
+<PreviewCode
+    preview={
+        <Breadcrumb />
+    }
+>
+    ```js
+    <Breadcrumb />
+    ```
+</PreviewCode>
+
+<br />
+
+### Provide Sections
+Create an array of objects with `href` and `title` properties. Breadcrumb will automatically parse the current path
+and highlight the matching crumb.
+
+<PreviewCode
+    preview={
+        <Breadcrumb
+            sections={[
+                {
+                    href: "/docs",
+                    title: "Docs",
+                    items: [
+                        {
+                            href: "/docs/components",
+                            title: "Components",
+                            items: [
+                                { href: "/docs/components/breadcrumb", title: "Breadcrumb" },
+                            ]
+                        }
+                    ]
+                }
+            ]}
+        />
+    }
+>
+    ```js
+    <Breadcrumb
+        sections={[
+            {
+                href: "/docs",
+                title: "Docs",
+                items: [{
+                    href: "/docs/components",
+                    title: "Components",
+                    items: [{
+                        href: "/docs/components/breadcrumb",
+                        title: "Breadcrumb"
+                    }]
+                }]
+            }
+        ]}
+    />
+    ```
+</PreviewCode>
+
+<Tip>
+    Make sure each item has a `title` and `href` property.
+</Tip>
+
+<br />
+
+### Custom Delimiter
+
+Swap in any delimiter you want (like a slash `/` or text `>`).
+
+<PreviewCode
+    preview={
+        <Breadcrumb
+            sections={[]}
+            delimiter="/"
+        />
+    }
+>
+    ```js
+    <Breadcrumb
+        sections={[]}
+        delimiter="/"
+    />
+    ```
+</PreviewCode>
+
+<br />
+<br />
+<br />

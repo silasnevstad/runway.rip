@@ -1,0 +1,166 @@
+---
+title: "Badge"
+description: "A badge component offering color, size, and variant options."
+onThisPage:
+  - title: "Overview"
+    href: "#badge-overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="badge-overview" />
+
+<br/>
+
+<div className="flex max-sm:flex-col flex-wrap gap-3 justify-center items-center mb-4">
+    <Badge>Default Badge</Badge>
+    <Badge color="red">Soft Red</Badge>
+    <Badge variant="solid" color="blue">Solid Blue</Badge>
+    <Badge color="green" border>Green Border</Badge>
+</div>
+
+<br/>
+
+<div>
+    The `Badge` component is a simple yet versatile element for labeling, categorizing, or drawing attention to items in your interface. It comes with flexible `size` options, `color` themes, and allows you to tweak the `borderRadius` for shaping.
+</div>
+
+<Info>
+    The `Badge` component is great for displaying information that is not critical but still important.
+</Info>
+
+<br/>
+<br/>
+<Divider />
+<div id="usage" />
+
+## Usage
+
+```js
+import Badge from '@/components/atoms/Badge';
+
+<Badge color="primary" variant="soft">
+    Hello Badge
+</Badge>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
+<div id="props" />
+
+## Props
+
+| **Prop**     | **Type**                     | **Default** | **Description**                                                                                                       |
+|--------------|------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------|
+| children     | ReactNode                    | -           | Content displayed inside the badge                                                                                    |
+| color        | string                       | `"primary"` | Base color (from [tailwind.config](/docs/tutorial/config))                                                            |
+| variant      | "soft" \| "solid"            | `"soft"`    | Selects a muted (`soft`) or bold (`solid`) visual style                                                               |
+| borderRadius | string                       | `"full"`    | The tailwind-friendly [rounding for corners](https://tailwindcss.com/docs/border-radius) (e.g. `"md"`, `"full"`, etc) |
+| size         | "xs" \| "sm" \| "md" \| "lg" | `"md"`      | Determines overall size of the badge                                                                                  |
+| border       | boolean                      | `false`     | Adds a border in a complementary color                                                                                |
+| scale        | boolean                      | `false`     | If true, gently scales up on hover.                                                                                   |
+| lift         | boolean                      | `false`     | If true, lifts on hover.                                                                                              |
+| active       | boolean                      | `true`      | If true, the button has an active press-down scale effect.                                                            |
+| onClick      | function                     | -           | If provided, the badge is clickable; includes a small press-scale animation                                           |
+| className    | string                       | `""`        | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed)                                 |
+| ...props     | object                       | -           | Any other props you’d like to pass to the root `<div>`                                                                |
+
+
+<br/>
+<br/>
+<br/>
+<Divider />
+<div id="examples" />
+
+## Examples
+
+### Basic Badges
+A swift example with minimal configuration. Just drop in some content!
+
+<PreviewCode preview={
+    <div className="flex gap-3">
+        <Badge>Default</Badge>
+        <Badge color="orange" variant="solid">Solid Orange</Badge>
+        <Badge color="red" border>Soft Red</Badge>
+    </div>
+}>
+    ```js
+    <div className="flex gap-3">
+        <Badge>Default</Badge>
+        <Badge color="orange" variant="solid">Solid Orange</Badge>
+        <Badge color="red" border>Soft Red</Badge>
+    </div>
+    ```
+</PreviewCode>
+
+<br/>
+
+### Different Shapes (borderRadius)
+Use `borderRadius` to shape corners—like `"none"`, `"md"`, `"full"` (circle-like).
+
+<PreviewCode preview={
+    <div className="flex gap-3">
+        <Badge borderRadius="none">None</Badge>
+        <Badge borderRadius="lg">Rounded</Badge>
+        <Badge borderRadius="full" variant="solid">Full</Badge>
+    </div>
+}>
+    ```js
+    <div className="flex gap-3">
+        <Badge borderRadius="none">None</Badge>
+        <Badge borderRadius="lg">Rounded</Badge>
+        <Badge borderRadius="full">Full</Badge>
+    </div>
+    ```
+</PreviewCode>
+
+<Info>
+    Tailwind’s [“rounded”](https://tailwindcss.com/docs/border-radius) classes come in a bunch of variations. Pass them in as you like—maybe <code>borderRadius="xl"</code> for super smooth corners!
+</Info>
+
+<br/>
+
+### Adding Hover and Custom Classes
+Spice it up your own [Tailwind](https://tailwindcss.com) classes and a subtle hover animation. Great for clickable or important badges.
+
+<PreviewCode preview={
+    <div className="flex gap-3">
+        <Badge lift>
+            Lift on Hover
+        </Badge>
+        <Badge scale>
+            Scale on Hover
+        </Badge>
+        <Badge className={"bg-blue-500 dark:bg-blue-500 text-bg-0  dark:text-bg-900"}>Custom</Badge>
+    </div>
+}>
+    ```js
+    <div className="flex gap-3">
+        <Badge lift>
+            Lift on Hover
+        </Badge>
+        <Badge scale>
+            Scale on Hover
+        </Badge>
+        <Badge className={
+            "bg-blue-500 dark:bg-blue-500 text-bg-0  dark:text-bg-900"
+        }>
+            Custom
+        </Badge>
+    </div>
+    ```
+</PreviewCode>
+
+<Tip>
+    If you need your own styles, just add them via <code>className</code>.
+</Tip>
+
+<br/>
+<br/>
+<br/>

@@ -1,0 +1,78 @@
+---
+title: "Hero"
+description: "A component to welcome users and introduce your site"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+related:
+  - title: "Button"
+    href: "/docs/components/button"
+  - title: "TextHighlight"
+    href: "/docs/components/text-highlight"
+  - title: "AvatarsTestimonial"
+    href: "/docs/components/organisms/testimonials/avatars"
+---
+
+<div id="overview" />
+
+<div className="flex flex-col w-full items-center justify-center gap-8">
+</div>
+
+The `Hero` component is a hero section that can include an **image**, **title** ([`TextHightlight`](/docs/components/text-highlight)),
+**description**, **call-to-action button**, **promo section**, and **trusted by section**.
+
+You can customize the **text position**, **background glow**, and **image**.
+
+<Callout>
+    It uses the [`TextHighlight`](/docs/components/text-highlight), [`Button`](/docs/components/button),
+    and [`AvatarsTestimonial`](/docs/components/organisms/testimonials/avatars) components.
+</Callout>
+
+<br />
+<br />
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```js
+import Hero from '@/components/landing/Hero';
+
+<Hero />
+```
+
+<br />
+<br />
+<br />
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Name           | Type    | Default                                                                    | Description                                                                                      |
+|----------------|---------|----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| textHighlight  | object  | `{ text: "", highlight: "", color: "", fromGradient: "", toGradient: "" }` | The text to highlight (see [`TextHighlight`](/docs/components/text-highlight) for more details). |
+| description    | string  | `""`                                                                       | The description text.                                                                            |
+| buttonText     | string  | `""`                                                                       | The text for the call-to-action button.                                                          |
+| buttonSubText  | string  | `""`                                                                       | The subtext for the call-to-action button.                                                       |
+| showTrustedBy  | boolean | `false`                                                                    | Whether to show the trusted by section.                                                          |
+| trustedBy      | object  | `{ text: "", avatars: [] }`                                                | The trusted by section.                                                                          |
+| textPosition   | string  | `"left"`                                                                   | The position of the text.                                                                        |
+| imageSrc       | string  | `""`                                                                       | The source of the image.                                                                         |
+| imageAlt       | string  | `""`                                                                       | The alt text for the image.                                                                      |
+| backgroundGlow | string  | `""`                                                                       | The color of the background glow, see [tailwind.config](/docs/features/config#tailwind-config). |
+| glowOpacity    | number  | `0.5`                                                                      | The opacity of the background glow.                                                              |
+| glowSize       | string  | `"30%"`                                                                    | The size of the background glow.                                                                 |
+| glowBlur       | number  | `100`                                                                      | The blur of the background glow.                                                                 |
+| className      | string  | `""`                                                                       | Additional [Tailwind](https://tailwindcss.com) utility classes.                                  |
+| ...props       | object  | -                                                                          | Any other valid HTML attributes for the <code>&lt;header&gt;</code> element.                     |
+
+<Info>
+    The `Hero` component uses the [`TextLink`](/docs/components/text-link) and [`Button`](/docs/components/button) components.
+</Info>

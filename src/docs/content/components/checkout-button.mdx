@@ -1,0 +1,92 @@
+---
+title: "CheckoutButton"
+description: "A button component for checkout with Stripe"
+onThisPage:
+  - title: "Overview"
+    href: "#button-overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+related:
+  - title: "Payments"
+    href: "/docs/features/payments"
+  - title: "PricingPlans"
+    href: "/docs/components/pricing-plans"
+  - title: "Button"
+    href: "/docs/components/button"
+---
+
+<div id="button-overview" />
+
+<br/>
+
+<div className="flex items-center justify-center">
+    <div className="flex items-center flex-col gap-4 mb-8 w-52">
+        <CheckoutButton mode={"one-time"} priceId={"priceId_asd"} color="green" variant="soft" disabled>Monthly</CheckoutButton>
+    </div>
+</div>
+
+<br/>
+
+The `CheckoutButton` component is a button that initiates a checkout session with Stripe.
+It's built on top of the [`Button`](/docs/components/button) component so you can customize it with all the same props.
+
+<Callout>
+    It calls the `/api/checkout_sessions` API route to create a [Stripe](https://stripe.com) checkout session.
+</Callout>
+
+<Caution>
+    Requires [payments](/docs/features/payments) to be configured.
+</Caution>
+
+<br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```jsx
+import CheckoutButton from "@/components/payments/CheckoutButton";
+import { pricingConfig } from "@/config";
+
+<CheckoutButton
+  mode="payment"
+  priceId={pricingConfig.plans[0].intervals[0].priceId}
+>
+    Buy Now
+</CheckoutButton>
+
+<CheckoutButton
+    mode="subscription"
+    priceId={pricingConfig.plans[0].intervals[0].priceId}
+>
+    Subscribe Now
+</CheckoutButton>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Name     | Type   | Default | Description                                                                      |
+|----------|--------|---------|----------------------------------------------------------------------------------|
+| mode     | string | `""`    | The mode of the checkout session, either `payment` or `subscription`.            |
+| priceId  | string | `""`    | The [Stripe](https://stripe.com) price ID.                                       |
+| ...props | object | `""`    | All other props are passed to the [`Button`](/docs/components/button) component. |
+
+<Tip>
+    Since `CheckoutButton` is built on top of the [`Button`](/docs/components/button) component, you can pass any prop that it accepts to customize the button
+    (i.e. `size`, `color`, `loading`, etc.).
+</Tip>
+
+
+
+

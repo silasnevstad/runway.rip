@@ -37,7 +37,7 @@ export default function Header({
         `flex justify-center p-4 w-full min-h-14 top-0 z-20`,
         background,
         bottomBorder && "border-b border-bg-200 dark:border-bg-700",
-        fixed ? "fixed" : "",
+        fixed ? "fixed" : "absolute",
         className
     );
 

@@ -1,0 +1,203 @@
+---
+title: "Footer"
+description: "A customizable footer component for any website"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "TextLink"
+    href: "/docs/components/text-link"
+  - title: "Config"
+    href: "/docs/features/config"
+---
+
+<div id="overview" />
+
+<br/>
+
+<div className="flex flex-col w-full items-center justify-center gap-8">
+    <Footer showSocials={false} />
+</div>
+
+<br />
+
+The `Footer` component is a customizable footer that can include a **logo**, **app name**, **description**, **social media buttons**,
+(all pulled from [config.js](/docs/features/config)), as well as **navigation** and **legal links**.
+
+<Callout>
+    It uses [`TextLink`](/docs/components/text-link) components for its links so you can pass any prop to it.
+</Callout>
+
+<br/>
+
+As the `Footer` is not a component that changes often or at all, I **recommend** just going into the file and
+updating the links (`defaultLegalLinks` and `defaultNavLinks`) directly. If you prefer to keep it dynamic, you can still
+pass them in as props.
+
+<br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+The component automatically pulls the **logo** and **app name** from [config.js](/docs/features/config) if they are defined, so you can simply
+import the component and use it like this:
+
+```js
+import Footer from '@/components/organisms/Header';
+
+<Footer/>
+```
+
+<br/>
+
+Since `Footer` uses the `TextLink` component for links, you can pass any prop to it. For example:
+```js
+<Footer
+    navLinks={[
+        {
+            title: "Documentation",
+            href: "/docs",
+            props: {
+                underline: true,
+                fade: true 
+            }
+        }
+    ]}
+/>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Name               | Type    | Default                                     | Description                                                                                   |
+|--------------------|---------|---------------------------------------------|-----------------------------------------------------------------------------------------------|
+| showLogo           | boolean | `true`                                      | If true, the logo will be displayed.                                                          |
+| showAppName        | boolean | `true`                                      | If true, the app name will be displayed.                                                      |
+| showAppDescription | boolean | `true`                                      | If true, the app description will be displayed.                                               |
+| showCopyright      | boolean | `true`                                      | If true, the copyright text will be displayed.                                                |
+| showMadeWith       | boolean | `true`                                      | If true, the `MadeWith` text will be displayed.                                               |
+| showThemeSwitcher  | boolean | `true`                                      | If true, the `ThemeSwitcher` will be displayed.                                               |
+| showSocials        | boolean | `true`                                      | If true, the social media buttons will be displayed.                                          |
+| navLinks           | array   | `[]`                                        | Array of navigation links. Each link is an object with `title`, `href`, and optional `props`. |
+| legalLinks         | array   | `[]`                                        | Array of legal links. Each link is an object with `title`, `href`, and optional `props`.      |
+| copyrightText      | string  | `"Copyright © 2025 - All Rights Reserved."` | Copyright text.                                                                               |
+| background         | string  | `"bg-bg-0 dark:bg-bg-900"`                  | Background color (use [tailwind.config](/docs/features/config#color-theme)).                  |
+| border             | boolean | `false`                                     | If true, a border will be displayed.                                                          |
+| rounded            | boolean | `true`                                      | If true, the footer will have rounded top corners (can change side).                          |
+| className          | string  | `""`                                        | Additional [Tailwind](https://tailwindcss.com) utility classes.                               |
+| ...props           | object  | -                                           | Any other valid HTML attributes for the <code>&lt;footer&gt;</code> element.                  |
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Default Footer
+<PreviewCode preview={
+    <Footer />
+}>
+```js
+<Footer />
+```
+</PreviewCode>
+
+<br />
+
+### Custom Footer
+<PreviewCode preview={
+    <Footer
+        showAppDescription={false}
+        showSocials={false}
+    />
+}>
+```js
+<Footer
+    showAppDescription={false}
+    showSocials={false}
+/>
+```
+</PreviewCode>
+
+<br />
+
+### Custom Footer with Links
+<PreviewCode preview={
+    <Footer
+        navLinks={[
+            { title: 'Documentation', href: '/docs' },
+            { title: 'GitHub', href: '/github' },
+            { title: 'Twitter', href: '/twitter' },
+        ]}
+        legalLinks={[
+            { title: 'Privacy Policy', href: '/privacy' },
+            { title: 'Terms of Service', href: '/terms' },
+        ]}
+    />
+}>
+```js
+<Footer
+    navLinks={[
+        { title: 'Documentation', href: '/docs' },
+        { title: 'GitHub', href: '/github' },
+        { title: 'Twitter', href: '/twitter' },
+    ]}
+    legalLinks={[
+        { title: 'Privacy Policy', href: '/privacy' },
+        { title: 'Terms of Service', href: '/terms' },
+    ]}
+/>
+```
+</PreviewCode>
+
+<br />
+
+### Custom Footer with No Links Only Socials
+<PreviewCode preview={
+    <Footer
+        navLinks={[]}
+        legalLinks={[]}
+    />
+}>
+```js
+<Footer
+    navLinks={[]}
+    legalLinks={[]}
+/>
+```
+</PreviewCode>
+
+<br />
+
+### Custom Footer with Border
+<PreviewCode preview={
+    <Footer
+        border={true}
+        rounded={true}
+    />
+}>
+```js
+<Footer
+    border={true}
+    rounded={true}
+/>
+```
+</PreviewCode>

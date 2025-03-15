@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaInfinity, FaArrowDown } from "react-icons/fa6";
 import { StandoutCard } from "@/components/molecules/CustomCards";
 import { landingConfig } from "@/config";
@@ -7,9 +7,9 @@ import { getBgColorClass } from "@/utils/styling";
 
 
 const TimeSpentCard = ({ hours, text, infinite = false }) => (
-    <div className="flex items-end text-xl font-semibold">
+    <div className="flex items-end text-lg font-semibold">
         <div className="flex items-center gap-1">
-            <span className="text-gray-700 dark:text-gray-200 text-xl">+</span>
+            <span className="text-gray-700 dark:text-gray-200 text-lg mr-1">+</span>
             <span className="text-red-400 font-semibold text-3xl -ml-1">{infinite ? <FaInfinity /> : hours}</span>
         </div>
         <span className="ml-2">{text}</span>
@@ -58,8 +58,6 @@ function Runway({ vertical = false, dashSize = 40, gapSize = 28, color = "primar
 }
 
 export default function Why() {
-    const { why } = landingConfig;
-
     return (
         <section
             id="why"
@@ -86,10 +84,10 @@ export default function Why() {
                     <TimeSpentCard hours="2" text="hrs reading docs" />
                     <TimeSpentCard hours="4" text="hrs chasing bugs" />
                     <TimeSpentCard infinite text="hrs maintaining code" />
-                    <div className="flex items-end text-xl font-semibold mt-4">
+                    <div className="flex flex-wrap items-end text-xl font-semibold mt-4">
                         <div className="flex items-center gap-1">
-                            <span className="text-gray-700 dark:text-gray-200 text-xl">=</span>
-                            <span className="text-red-400 font-semibold text-4xl">24+ hours</span>
+                            <span className="text-gray-700 dark:text-gray-200 text-lg">=</span>
+                            <span className="text-red-400 font-semibold text-3xl">24+ hours</span>
                         </div>
                         <span className="ml-2">of <span className="underline">busy work</span></span>
                     </div>

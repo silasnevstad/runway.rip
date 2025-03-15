@@ -1,0 +1,320 @@
+---
+title: "TextArea"
+description: "A flexible multi-line text input with auto-grow, label, helper/error messages, and slot support."
+onThisPage:
+  - title: "Overview"
+    href: "#textarea"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "Input"
+    href: "/docs/components/input"
+---
+
+<div id="textarea" />
+
+<br/>
+
+<div className="flex w-full flex-col gap-4">
+    <TextArea
+        id="description"
+        label="Example"
+        placeholder="You can type here..."
+        autoGrow
+        minRows={3}
+        maxRows={5}
+    />
+</div>
+
+<br/>
+
+The `TextArea` component is a multi-line text input field that can auto-grow, display a label above itself, show helper/error messages, and optionally include custom buttons or other elements within dedicated slots.
+
+<Callout>
+    You can also add custom buttons or other elements in the top-left, top-right, bottom-left, and bottom-right corners of the textarea.
+</Callout>
+
+<br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```js
+import TextArea from "@/components/atoms/TextArea";
+import { useState } from "react";
+
+export default function Example() {
+    const [value, setValue] = useState("");
+
+    return (
+        <TextArea
+            id="feedback"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder="Write your thoughts here..."
+        />
+    );
+}
+```
+
+<br />
+<br />
+<br/>
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Prop            | Type      | Default     | Description                                                                                                            |
+|-----------------|-----------|-------------|------------------------------------------------------------------------------------------------------------------------|
+| id              | string    | -           | An identifier for the `<textarea>`.                                                                                    |
+| label           | string    | `""`        | Label text displayed above the textarea (when `showLabel` is `true`).                                                  |
+| helperText      | string    | `""`        | Shows a helper message below the text area if no error is set.                                                         |
+| error           | string    | `""`        | When present, displays an error message in a red color (overrides `helperText`).                                       |
+| padding         | number    | `8`         | Numeric padding for container (in px).                                                                                 |
+| borderRadius    | string    | `"md"`      | [Tailwind](https://tailwindcss.com) border-radius class (e.g. `"none"`, `"sm"`, `"md"`, `"lg"`, `"full"`, etc.).       |
+| focus           | boolean   | `true`      | If `true`, a focus ring/border is applied based on the `activeColor`.                                                  |
+| activeColor     | string    | `"primary"` | [Tailwind](https://tailwindcss.com) color key used for the focus ring and border (`focus-within:border-*`).            |
+| autoGrow        | boolean   | `true`      | Automatically adjusts height to fit content, respecting `minRows` and `maxRows`.                                       |
+| minRows         | number    | `2`         | Minimum number of rows the textarea can display.                                                                       |
+| maxRows         | number    | `8`         | Maximum number of rows the textarea can grow to before scrolling appears.                                              |
+| topRightSlot    | ReactNode | -           | Custom content (e.g. buttons, icons) in the top-right corner of the textarea.                                          |
+| bottomRightSlot | ReactNode | -           | Custom content (e.g. buttons, icons) in the bottom-right corner of the textarea.                                       |
+| bottomLeftSlot  | ReactNode | -           | Custom content (e.g. buttons, icons) in the bottom-left corner of the textarea.                                        |
+| value           | string    | -           | Controlled value of the textarea. If set, the component operates in controlled mode; otherwise it uses internal state. |
+| onChange        | function  | -           | Callback fired on change, receiving the `event`.                                                                       |
+| className       | string    | `""`        | Additional [Tailwind](https://tailwindcss.com) classes for the container.                                              |
+| ...props        | object    | -           | Any other valid <code>&lt;textarea&gt;</code> attributes (e.g. `placeholder`, `disabled`, etc.).                       |
+
+<Info>
+    `TextArea` supports all standard HTML <code>&lt;textarea&gt;</code> attributes.
+    You can pass them through via props (e.g. <code>placeholder</code>, <code>required</code>, <code>disabled</code>, etc.).
+</Info>
+
+<br />
+<br />
+<br/>
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Basic Usage
+
+<PreviewCode
+    preview={
+        <TextArea
+            id="description"
+            label="Description"
+            placeholder="Enter your description here..."
+            showLabel
+            autoGrow
+            minRows={3}
+            maxRows={5}
+        />
+    }
+>
+    ```js
+    <TextArea
+        id="description"
+        label="Description"
+        placeholder="Enter your description here..."
+        showLabel
+        autoGrow
+        minRows={3}
+        maxRows={5}
+    />
+    ```
+</PreviewCode>
+
+<Tip>
+    If you don't want the focus ring, set `focus={false}`.
+</Tip>
+
+<br />
+
+### Slots for Extra Buttons or Info
+
+<PreviewCode
+    preview={
+        <TextAreaDemo />
+    }
+>
+```js
+"use client";
+import { useState } from "react";
+import TextArea from "@/components/atoms/TextArea";
+
+export function Example() {
+    const [value, setValue] = useState("");
+    const [numWords, setNumWords] = useState(0);
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
+        setNumWords(e.target.value.split(" ").filter(Boolean).length);
+    }
+
+    const handleClear = () => {
+        setValue("");
+        setNumWords(0);
+    }
+
+    return (
+        <div className="flex w-full">
+            <TextArea
+                id="notes"
+                label="Notes"
+                placeholder="Leave notes..."
+                value={value}
+                onChange={handleChange}
+                bottomRightSlot={
+                    <button onClick={handleClear}>
+                        Clear
+                    </button>
+                }
+                bottomLeftSlot={
+                    <span>
+                        {numWords} words
+                    </span>
+                }
+            />
+        </div>
+    );
+}
+```
+</PreviewCode>
+
+<Tip>
+    You can use the `topLeftSlot`, `topRightSlot`, `bottomLeftSlot`, or `bottomRightSlot` to place custom buttons (like "Clear", "Undo", "Save Draft") or badges, icons, counters, etc.
+</Tip>
+
+<br />
+
+
+### Custom Sizing & Border Radius
+
+<PreviewCode
+    preview={
+        <div className="flex w-full flex-col gap-4">
+            <TextArea
+                id="smallTextArea"
+                label="Small"
+                placeholder="Small text"
+                borderRadius="sm"
+                className="text-sm"
+            />
+            <TextArea
+                id="largeTextArea"
+                label="Large"
+                placeholder="Large text"
+                borderRadius="xl"
+                className="text-lg"
+            />
+        </div>
+    }
+>
+    ```js
+    <TextArea
+        id="smallTextArea"
+        label="Small"
+        placeholder="Small text"
+        borderRadius="sm"
+        className="text-sm"
+    />
+
+    <TextArea
+        id="largeTextArea"
+        label="Large"
+        placeholder="Large text"
+        borderRadius="xl"
+        className="text-lg"
+    />
+    ```
+</PreviewCode>
+
+<br />
+
+### Helper & Error Messages
+
+<PreviewCode
+    preview={
+        <div className="flex flex-col w-full gap-4">
+            <TextArea
+                id="feedback"
+                label="Feedback"
+                placeholder="Share your thoughts..."
+                helperText="Your feedback is important to us."
+            />
+            <TextArea
+                id="errorCase"
+                label="Error Example"
+                placeholder="Something wrong?"
+                error="This field is required."
+            />
+        </div>
+    }
+>
+    ```js
+    <TextArea
+        id="feedback"
+        label="Feedback"
+        placeholder="Share your thoughts..."
+        helperText="Your feedback is important to us."
+    />
+
+    <TextArea
+        id="errorCase"
+        label="Error Example"
+        placeholder="Something wrong?"
+        error="This field is required."
+    />
+    ```
+</PreviewCode>
+
+<br />
+
+### Auto-Grow with Row Limits
+
+<PreviewCode
+    preview={
+        <TextArea
+            id="autoGrowExample"
+            label="Auto Grow"
+            placeholder="Type and watch me grow..."
+            minRows={2}
+            maxRows={8}
+            autoGrow
+        />
+    }
+>
+    ```js
+    <TextArea
+        id="autoGrowExample"
+        label="Auto Grow"
+        placeholder="Type and watch me grow..."
+        minRows={2}
+        maxRows={8}
+        autoGrow
+    />
+    ```
+</PreviewCode>
+
+<Tip>
+    Tailor `minRows` and `maxRows` to manage how the textarea expands.
+</Tip>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

@@ -205,6 +205,13 @@ export const DeparturesCard = ({
                     <p className="text-sm font-semibold">{getTimeMinutesLater(12)}</p>
                 </div>
                 <p className="text-sm font-semibold text-yellow-500">Components</p>
+                <p className="text-sm font-semibold">~2 min</p>
+
+                <div className="flex flex-row items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <p className="text-sm font-semibold">{getTimeMinutesLater(14)}</p>
+                </div>
+                <p className="text-sm font-semibold text-yellow-500">Security</p>
                 <p className="text-sm font-semibold">~1 min</p>
             </div>
         </div>

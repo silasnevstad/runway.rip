@@ -1,0 +1,149 @@
+---
+title: "Authentication"
+description: "Setting up user auth, including password-based, magic link, and social logins."
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "OAuth"
+    href: "#oauth"
+related:
+  - title: "Supabase Setup"
+    href: "/docs/tutorials/supabase"
+  - title: "Config"
+    href: "/docs/features/config"
+  - title: "PasswordAuthForm"
+    href: "/docs/components/auth/password-auth-form"
+  - title: "PasswordlessAuthForm"
+    href: "/docs/components/auth/passwordless-auth-form"
+  - title: "OAuthButtons"
+    href: "/docs/components/auth/oauth-buttons"
+---
+
+<div id="overview" />
+
+1. Set up your [Supabase](/docs/tutorials/supabase).
+
+2. Simply plug the auth methods you want into [`appConfig`](/docs/features/config#auth) and the `/signup` and `/login` pages will
+automatically adjust to your choices.
+
+    ```config.js
+    const appConfig = {
+        auth: {
+            methods: ['magiclink', 'google'],
+        }
+    };
+    ```
+
+    <Callout>
+        The available auth methods are: `['password', 'magiclink', 'google', 'github', 'apple']`.
+    </Callout>
+
+3. To protect certain routes, add them to `protectedRoutes` to require authentication:
+
+    ```config.js
+    const appConfig = {
+        auth: {
+            protectedRoutes: [
+                '/dashboard',
+                '/account'
+            ]
+       }
+    };
+    ```
+
+<br />
+
+Easy as that! You're all set up with a secure and ready-to-use authentication system.
+
+<Tip>
+    If you want to customize the authentication forms, you can use the [`PasswordAuthForm`](/docs/components/auth/password-auth-form), [`PasswordlessAuthForm`](/docs/components/auth/passwordless-auth-form), and [`OAuthButtons`](/docs/components/auth/oauth-buttons) components.
+</Tip>
+
+
+<br />
+<br />
+<Divider />
+<div id="oauth" />
+## OAuth
+
+<TutorialGuide options={[
+    { name: 'Google', value: 'google', image: '/logos/google.png', },
+    { name: 'Github', value: 'github', image: '/logos/github.png' },
+    { name: 'Apple', value: 'apple', image: '/logos/apple.png' },
+]}>
+    <div id="google">
+        ### Google
+
+        1. Go to [Google Cloud Console](https://console.cloud.google.com/apis/credentials) and create a new project.
+
+        2. Go to [OAuth Branding](https://console.cloud.google.com/auth/branding) and add your logo and other details.
+
+        3. Under **Authorized domains**, add your Supabase project's domain, which has the form `<PROJECT_ID>.supabase.co`.
+
+        4. Configure the following non-sensitive scopes:
+
+        - `.../auth/userinfo.email`
+        - `...auth/userinfo.profile`
+        - `openid`
+
+        5. Go to [API Credentials](https://console.cloud.google.com/apis/credentials).
+
+        6. Click `Create credentials` and choose `OAuth Client ID`.
+
+        7. Choose `Web application` as the application type.
+
+        8. Under Authorized JavaScript origins, add your site URL and `http://localhost:300`.
+
+        9. Under Authorized redirect URLs, enter the callback URL from the [Supabase dashboard](https://supabase.com/dashboard/project/_/auth/providers)
+        (expand the Google Auth Provider section to display it).
+
+        10. When you finish configuring your credentials, you will be shown your client ID and secret.
+        Add these to the Google Auth Provider section of the Supabase Dashboard.
+
+        And you're done!
+    </div>
+
+    <div id="github">
+        ### GitHub
+
+        1. Open the [OAuth apps](https://github.com/settings/developers) page.
+
+        2. Click `Register a new application`. If you've created an app before, click `New OAuth App` here.
+
+        3. Fill in the form with the following details:
+
+        - **Application name**: Your app's name.
+        - **Homepage URL**: Your app's website URL.
+        - **Authorization callback URL**: The callback URL from the [Supabase dashboard](https://supabase.com/dashboard/project/_/auth/providers)
+        (expand the GitHub Auth Provider section to display it).
+
+        4. Click `Register application`.
+
+        5. Copy your new OAuth credentials:
+
+        - **Client ID**: Copy and save your Client ID.
+        - **Client secret**: Click `Generate a new client secret` and copy and save it.
+
+        6. Enter your GitHub credentials into your Supabase project:
+
+        - Go to your [Supabase Project Dashboard](https://supabase.com/dashboard/project/_/auth/providers).
+        - Click on **GitHub** from the accordion list to expand and turn GitHub **Enabled** to ON.
+        - Enter your GitHub **Client ID** and **Client Secret** saved in the previous step.
+        - Click **Save**.
+
+        And you're done!
+    </div>
+
+    <div id="apple">
+        ### Apple
+
+        Setting up Apple OAuth is a bit more involved, so follow Supabase's [guide](https://supabase.com/docs/guides/auth/social-login/auth-apple?queryGroups=environment&environment=client#configuration-web) for detailed instructions.
+    </div>
+</TutorialGuide>
+
+<Caution>
+    Going to production?
+    Make sure to update your [Site URL](https://supabase.com/dashboard/project/_/auth/url-configuration) to your production URL.
+    Then add `https://yourdomain.com/**` and `http://localhost:3000/**` to [Redirect URLs].
+</Caution>
+

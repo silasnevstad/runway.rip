@@ -1,0 +1,150 @@
+---
+title: "TextLink"
+description: "A text link component that can be used to navigate to other pages."
+onThisPage:
+  - title: "Overview"
+    href: "#text-link"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="text-link" />
+
+<br/>
+
+<div className="flex flex-col items-center gap-0">
+    <TextLink href="/docs/components/text-link">
+        Default
+    </TextLink>
+    <TextLink href="/docs/components/text-link" underline>
+        Underline
+    </TextLink>
+    <TextLink href="/docs/components/text-link" scale color="green">
+        Grow
+    </TextLink>
+    <TextLink href="/docs/components/text-link" lift color="orange">
+        Lift
+    </TextLink>
+    <TextLink href="/docs/components/text-link" fade>
+        Fade
+    </TextLink>
+</div>
+
+<br />
+
+The `TextLink` component is built on top of the [Link](https://nextjs.org/docs/app/api-reference/components/link) component from Next.js.
+It comes with additional features such as hover effects, icon support, and more.
+
+<Callout>
+    If you don't need any of the additional features, you can use Next.js's built-in [`Link`](https://nextjs.org/docs/app/api-reference/components/link) component.
+</Callout>
+
+<br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```js
+import TextLink from "@/components/atoms/TextLink";
+
+<TextLink href="/docs/components/text-link">
+    Go to TextLink
+</TextLink>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="props" />
+
+## Props
+
+The `TextLink` component accepts the following props:
+
+| Name               | Type      | Default | Description                                                                     |
+|--------------------|-----------|---------|---------------------------------------------------------------------------------|
+| children           | ReactNode | -       | The content of the link.                                                        |
+| href               | string    | -       | The URL to navigate to when the link is clicked.                                |
+| color              | string    | `gray`  | The color of the link (see [tailwind.config](/docs/features/config#color-theme)).          |
+| icon               | Icon      | -       | An optional icon to display before the text.                                    |
+| scale              | boolean   | `false` | If `true`, the link will grow on hover.                                         |
+| lift               | boolean   | `false` | If `true`, the link will lift on hover.                                         |
+| fade               | boolean   | `false` | If `true`, the link will fade on hover.                                         |
+| underline          | boolean   | `false` | If `true`, the link will be underlined on hover.                                |
+| active             | boolean   | `true`  | If `true`, the link will be underlined when active.                             |
+| underlineClassName | string    | `""`    | Additional classes for the underline.                                           |
+| underlineHeight    | number    | `1`     | Height of the underline (in px).                                                |
+| underlineOffset    | number    | `10`    | Offset of the underline (in px).                                                |
+| className          | string    | `""`    | Additional [Tailwind](https://tailwindcss.com) classes for the container.       |
+| ...props           | object    | -       | Any other valid <code>&lt;a&gt;</code> attributes (e.g. `target`, `rel`, etc.). |
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Basic Text Link
+You can use different hover effects (`scale`, `lift`, `fade`, `underline`), colors (`color`), and active states (`active`) to customize the link.
+
+<PreviewCode preview={
+    <div className="flex flex-col items-center gap-4">
+        <TextLink href="/docs/components/text-link" active={false}>
+            Go to TextLink
+        </TextLink>
+        <TextLink href="/docs" scale color="blue">
+            Go to Docs
+        </TextLink>
+        <TextLink href="/docs" scale lift color="green">
+            Go to Docs
+        </TextLink>
+        <TextLink href="/docs" underline color="orange">
+            Go to Docs
+        </TextLink>
+    </div>
+}>
+```js
+<TextLink href="/docs/components/text-link" active={false}>
+    Go to TextLink
+</TextLink>
+<TextLink href="/docs" scale color="blue">
+    Go to Docs
+</TextLink>
+<TextLink href="/docs" scale lift color="green">
+    Go to Docs
+</TextLink>
+<TextLink href="/docs" underline color="orange">
+    Go to Docs
+</TextLink>
+```
+</PreviewCode>
+
+<br />
+
+### Text Link with Icon
+<PreviewCode preview={
+    <TextLinkIconDemo />
+}>
+```js
+<TextLink
+    href="/docs/components"
+    icon={<LinkIcon className="w-5 h-5" />}
+    color="red"
+>
+    Link
+</TextLink>
+```
+</PreviewCode>
+

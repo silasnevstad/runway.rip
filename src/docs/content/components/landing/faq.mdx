@@ -1,0 +1,62 @@
+---
+title: "FAQ"
+description: "A FAQ component to showcase frequently asked questions"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "Accordion"
+    href: "/docs/components/accordion"
+  - title: "Config"
+    href: "/docs/features/config"
+---
+
+<div id="overview" />
+
+<br/>
+
+<div className="flex flex-col w-full items-center justify-center gap-8">
+    <FAQ />
+</div>
+
+<br />
+
+The `FAQ` component is a great way to showcase frequently asked questions. It uses the [`Accordion`](/docs/components/accordion) and [`DropdownItem`](/docs/components/DropdownItem) components to create a visually appealing and interactive experience.
+
+<Callout>
+    FAQs are pulled from the [config.js](/docs/features/config#landing-page) file by default.
+</Callout>
+
+<br />
+<br />
+<Divider />
+<div id="usage" />
+
+## Usage
+
+```js
+import FAQ from '@/components/landing/FAQ';
+
+<FAQ />
+```
+
+<br />
+<br />
+<br />
+<Divider />
+<div id="props" />
+
+## Props
+
+| Name     | Type   | Default                                 | Description                    |
+|----------|--------|-----------------------------------------|--------------------------------|
+| title    | string | `"Frequently Asked Questions"`          | The title of the component.    |
+| subtitle | string | `"Have a question? We have an answer."` | The subtitle of the component. |
+
+And that's it for props! The actual FAQs are pulled from the [config.js](/docs/features/config) file.

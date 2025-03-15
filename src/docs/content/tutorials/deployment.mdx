@@ -1,0 +1,71 @@
+---
+title: "Deployment"
+description: "Deploy your app to production"
+related:
+  - title: "Config"
+    href: "/docs/features/config"
+  - title: "Auth"
+    href: "/docs/features/auth"
+  - title: "Payments"
+    href: "/docs/features/payments"
+onThisPage:
+  - title: "Deploying"
+    href: "#deploying"
+  - title: "Checklists"
+    href: "#checklists"
+---
+
+<div id="deploying" />
+
+### 1. Choose a Hosting Provider
+
+You can deploy your app to any hosting provider that supports Next.js. Some popular options include:
+- [AWS](https://aws.amazon.com/)
+- [Vercel](https://vercel.com/)
+- [Fly.io](https://fly.io)
+- [Railway](https://railway.com)
+- [Render](https://render.com/)
+- [DigitalOcean](https://www.digitalocean.com/solutions/nextjs-hosting)
+- [GitHub Pages](https://pages.github.com/)
+- [Google Cloud](https://cloud.google.com/run)
+
+### 2. Configure Your Hosting Provider
+Each hosting provider has its own configuration process. Here are some general steps:
+
+- Create a new project on your hosting provider.
+- Connect your Git repository to the project.
+- Configure environment variables in your hosting provider's dashboard. Make sure to include all the variables from your `.env.local` file that you use.
+
+<Caution>
+    Do not forgot to configure your environment variables in your hosting provider's dashboard, `.env.local` is not used in production.
+</Caution>
+
+<div id="checklists" />
+### 3. Deployment Checklist
+Before deploying your app, make sure to check the following:
+
+- **Using auth?** Follow the [Auth](/docs/features/auth) tutorial and configured your auth provider.
+- **Using payments?** Follow the [Payments](/docs/features/payments) tutorial and configured your payment provider.
+- **Need Policies?** Use the [Policies](/docs/features/policies) guide to create your policies.
+
+
+### 4. Deploy Your App
+Launch your app and make sure everything is working as expected!
+
+<br />
+<br />
+<br />
+
+<div className="flex items-center gap-4">
+    <LuPartyPopper className="w-15 h-15 text-yellow-500" />
+    <p className="text-2xl font-bold">Congrats, you're live!</p>
+</div>
+
+
+
+
+
+
+
+
+

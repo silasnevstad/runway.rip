@@ -1,0 +1,506 @@
+---
+title: "Config.js"
+description: "The core configuration file for your app"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "App Config"
+    href: "#appconfig"
+  - title: "Auth"
+    href: "#auth"
+  - title: "Payments"
+    href: "#payments"
+  - title: "Landing"
+    href: "#landing-page"
+  - title: "Color Theme"
+    href: "#color-theme"
+---
+
+<div id="overview" />
+
+The `config.js` file is the heart of your application. It handles everything from your app's name, to which auth methods
+to use, to your payment configuration, and even the content of your landing page.
+
+### Content
+
+- [AppConfig](#appconfig)
+- [Payments](#payments)
+- [Landing Page](#landing-page)
+- [Color Theme](#color-theme)
+
+
+<Callout>
+    Most of these are optional, so just fill in what you need.
+</Callout>
+
+<br/>
+<br/>
+<Divider />
+<div id="appconfig" />
+
+## AppConfig
+
+The `AppConfig` object is the core of your application. I've split it up into a couple sections:
+
+- [General](#general)
+- [Auth](#auth)
+- [Emails](#emails)
+- [Waitlist Mode](#waitlist)
+- [Customer Tracking](#customer-tracking)
+
+<div className="my-10"/>
+
+<div id="general" />
+### General
+
+<div className="my-5"/>
+
+```config.js
+const appConfig = {
+    // General
+    appName: 'Runway',
+    appDescription: 'Everything you need to launch your ideas.',
+    domain: 'runway.rip',
+    legal: {
+        policies: {
+            privacy: '/policies/privacy',
+            terms: '/policies/terms',
+            license: '/policies/license'
+        }
+    },
+    socialMedia: {
+        twitter: 'https://twitter.com/runway',
+        instagram: 'https://instagram.com/runway',
+        github: 'https://github.com/runway-app',
+        linkedin: ''
+    }
+};
+```
+
+| Key               | Description                                                                                           |
+|-------------------|-------------------------------------------------------------------------------------------------------|
+| `appName`         | The name of your app.                                                                                 |
+| `appDescription`  | A short description of your app.                                                                      |
+| `domain`          | The domain of your app.                                                                                |
+| `legal`           | An object containing the legal policies of your app.                                                  |
+| `socialMedia`     | An object containing the social media links of your app.                                              |
+
+<div className="my-5"/>
+
+Here all you need to change is the `appName`, `appDescription`, and `domain`. The rest is optional (legal policies already
+point to the right place).
+
+<Info>
+    This info used in various places... `appName` in header, `domain` for SEO, `appDescription` for footer, SEO, etc
+</Info>
+
+<br />
+<div id="auth" />
+### Auth
+
+<div className="my-5"/>
+
+```config.js
+const appConfig = {
+    // Auth
+    auth: {
+        methods: ['password', 'google', 'github'],
+        protectedRoutes: [
+            '/dashboard',
+            '/account',
+        ],
+        afterLoginPath: '/account',
+        afterSignupPath: '/confirm-email',
+    },
+};
+```
+
+| Key                    | Description                                                                                           |
+|------------------------|-------------------------------------------------------------------------------------------------------|
+| `auth.methods`         | A list of authentication methods to enable (`password`, `magiclink`, `google`, `apple`, or `github`). |
+| `auth.protectedRoutes` | An array of routes that require authentication.                                                       |
+| `auth.afterLoginPath`  | The path to redirect to after a successful login.                                                     |
+| `auth.afterSignupPath` | The path to redirect to after a successful signup.                                                    |
+
+<div className="my-5"/>
+
+Simply **add the auth methods** you want to use to the `authMethods` array (any combination works).
+
+Then **remember to add the routes you want to protect** to the `protectedRoutes` array (the middleware will take care of the rest).
+
+<br />
+<div id="emails" />
+
+### Emails
+
+<div className="my-5"/>
+
+```config.js
+const appConfig = {
+    // Email
+    emails: {
+        support: "Runway Support <support@mail.runway.rip>",
+        noReply: "Runway <noreply@mail.runway.rip>"
+    }
+};
+```
+
+| Key              | Description                            |
+|------------------|----------------------------------------|
+| `emails.support` | The email address for support.         |
+| `emails.noReply` | The email address for no-reply emails. |
+
+<div className="my-5"/>
+
+Pretty self-explanatory. Just change the emails to your own.
+
+<br />
+<div id="waitlist" />
+### Waitlist Mode
+
+<div className="my-5"/>
+
+```config.js
+const appConfig = {
+    // Waitlist / Pre-Launch Mode:
+    waitlist: {
+        enabled: true,
+        allowedRoutes: ['/waitlist', '/docs'],
+        redirect: '/waitlist'
+    }
+};
+```
+
+| Key                      | Description                                                                       |
+|--------------------------|-----------------------------------------------------------------------------------|
+| `waitlist.enabled`       | If true, the app will be in waitlist mode.                                        |
+| `waitlist.allowedRoutes` | An array of routes that are allowed to be accessed without being on the waitlist. |
+| `waitlist.redirect`      | The path to redirect to if the user is not on the waitlist.                       |
+
+<div className="my-5"/>
+
+If you want to enable the waitlist mode, set `waitlist.enabled` to `true`. This will redirect all routes not specified in
+`waitlist.allowedRoutes` to `waitlist.redirect`.
+
+<Tip>
+    This is useful for when you are still building your app and want to collect emails before launch.
+</Tip>
+
+<br />
+<div id="customer-tracking" />
+### Customer Tracking
+
+<div className="my-5"/>
+
+```config.js
+const appConfig = {
+    // Customer Tracking
+    payment: {
+        requiredCustomerId: true,
+        afterCheckoutPath: '/account',
+    },
+};
+```
+
+| Key                  | Description                                                               |
+|----------------------|---------------------------------------------------------------------------|
+| `payment.requiredCustomerId` | If true, the app will require a customer ID to create a checkout session. |
+| `payment.afterCheckoutPath`  | The path to redirect to after a successful checkout.                      |
+
+<div className="my-5"/>
+
+`requiredCustomerId` will essentially ensure that you **track your customers** (automatically happens if you set up subscriptions).
+
+**You only need to change this to `false` if your app is a one-time payment with no auth.**
+
+<Caution>
+    Setting up [Supabase Auth](/docs/features/auth) is required to track your customers.
+</Caution>
+
+<br />
+<br />
+<Divider />
+<div id="payments" />
+
+## Payments
+
+The `pricingConfig` object is used to configure your payments. It is used by the [`Pricing`](/docs/components/landing/pricing) component
+and the [`CheckoutButton`](/docs/components/checkout-button) component.
+
+**[Set up your Payments here.](/docs/features/payments)**
+
+
+Example of a one-time payment plan:
+
+```config.js
+export const pricingConfig = {
+    plans: [
+        {
+            // "payment" (One-time purchase) or "subscription" (Recurring)
+            mode: "payment",
+            intervals: [
+                {
+                    label: "",
+                    oldPrice: 99,
+                    price: 49,
+                    // COPY YOUR PRICE ID IN HERE
+                    priceId: "price_XXX"
+                }
+            ],
+            // Customize presentation
+            title: "Starter",
+            description: "",
+            subText: "Pay once, use forever.",
+            isPopular: false,
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "Lifetime updates",
+            ],
+        },
+    ]
+};
+```
+
+| Key           | Description                                                                                                            |
+|---------------|------------------------------------------------------------------------------------------------------------------------|
+| `mode`        | The mode of the plan (`payment` or `subscription`).                                                                    |
+| `intervals`   | An array of intervals for the plan, providing [Stripe](https://stripe.com) price IDs (only one for one-time payments). |
+| `title`       | The title of the plan.                                                                                                 |
+| `description` | A short description of the plan.                                                                                       |
+| `subText`     | A subtext for the plan.                                                                                                |
+| `isPopular`   | If true, the plan will be highlighted as popular.                                                                      |
+| `features`    | An array of features included in the plan.                                                                             |
+
+<div className="my-5"/>
+
+The `plans` array is where you define your plans. You can have as many as you want. Each plan has a `mode` (either `payment` or `subscription`) and an `intervals` array (just one for one-time payments).
+The `intervals` array is where you define the `price` and the `priceId` (created in [Stripe](https://stripe.com)).
+
+The `title`, `description`, `subText`, `isPopular`, and `features` are used to customize the presentation of the plan. And
+`isPopular` is used to highlight a plan.
+
+<br />
+
+Here's an example of a subscription plan:
+
+```config.js
+export const pricingConfig = {
+        plans: [
+        {  // Starter Plan
+            mode: "subscription", // Recurring
+            intervals: [
+                {
+                    name: "monthly",
+                    label: "Monthly",
+                    oldPrice: 29,
+                    price: 19,
+                    discountLabel: "Save 40%",
+                    priceId: "price_monthly_xxx"
+                },
+                {
+                    name: "yearly",
+                    label: "Yearly",
+                    oldPrice: 199,
+                    price: 99,
+                    discountLabel: "Save 50%",
+                    priceId: "price_yearly_xxx"
+                }
+            ],
+            title: "Starter",
+            description: "",
+            subText: "Pay monthly or yearly.",
+            isPopular: false,
+            features: [
+                "NextJS boilerplate",
+                "Component library",
+                "Database",
+                "Payments",
+                "Auth",
+                "Email Service",
+                "Lifetime updates",
+            ],
+        },
+    ]
+};
+```
+
+<Tip>
+    Use `isPopular`, `oldPrice`, and `discountLabel` to highlight and promote your plans.
+</Tip>
+
+<br />
+
+Also inside the `pricingConfig` is a `promo` object, I recommend you use this to promote your product:
+
+```config.js
+export const pricingConfig = {
+    promo: {
+        show: true,
+        price: 50,
+        text: "off for first 1000 users (12 left)",
+        code: "LAUNCH",
+    },
+};
+```
+
+<Info>
+    `code` is automatically applied to the checkout session.
+</Info>
+
+<br />
+<br />
+<Divider />
+<div id="landing-page" />
+## Landing Page
+
+The `landingConfig` object is used to configure and customize your landing page. It is used by the [`Hero`](/docs/components/landing/hero),
+[`Features`](/docs/components/landing/features), [`Pricing`](/docs/components/landing/pricing), [`Faqs`](/docs/components/landing/faqs), etc.
+
+It's quite lengthy, so I'll let you explore it yourself. But here's a quick overview:
+
+```config.js
+export const landingConfig = {
+    header: {
+        fixed: false,
+        background: "bg-bg-0 dark:bg-bg-900",
+        showLogo: true,
+        showAppName: true,
+        navLinks: [
+            { title: "Features", href: "#features" },
+            { title: "Pricing", href: "#pricing" },
+            { title: "FAQ", href: "#faq" },
+        ],
+        ctaButton: {
+            label: 'Get Started',
+            href: '/get-started',
+        },
+    },
+    hero: {
+        textHighlight: {
+            text: "Code less, launch faster.",
+            highlight: "launch faster.",
+            fromGradient: "primary",
+            toGradient: "purple",
+        },
+        textPosition: "center",
+        image: {
+            src: "/images/hero.svg",
+            alt: "Hero Image"
+        },
+        description: "A complete Next.js boilerplate with everything you need, so you can focus on innovating rather than configuring.",
+        buttonText: "Get Started",
+    },
+    features: {
+        show: true,
+        type: "carousel", // "carousel" or "grid"
+    },
+    faq: {
+        show: true,
+    },
+    ...
+};
+```
+
+| Key            | Description                                                     |
+|----------------|-----------------------------------------------------------------|
+| `header`       | An object containing the header configuration.                  |
+| `hero`         | An object containing the hero section configuration.            |
+| `features`     | An object containing the features section configuration.        |
+| `withWithouts` | An object containing the with & withouts section configuration. |
+| `what`         | An object containing the what section configuration.            |
+| `who`          | An object containing the who section configuration.             |
+| `how`          | An object containing the how section configuration.             |
+| `faq`          | An object containing the FAQ section configuration.             |
+
+<div className="my-5"/>
+
+Walk through the `landingConfig` and customize it to your liking.
+
+<br />
+<div id="features" />
+### Features
+
+Add your own features to the `featuresConfig` object.
+
+```config.js
+export const featuresConfig = [
+    {
+        title: "Auth",
+        description: "Implement robust user auth...",
+        features: ["Magic links & Social auth",...],
+        icon: FaUserShield,
+    },
+    ...
+];
+```
+
+<br />
+<div id="faqs" />
+### FAQs
+
+The `faqsConfig` object is used to configure the FAQs section.
+
+```config.js
+export const faqConfig = [
+    {
+        title: "What is the refund policy?",
+        content: "We offer..."
+    },
+    ...
+];
+```
+
+<br />
+<div id="with-withouts" />
+### With & Withouts
+
+The `withWithoutConfig` object is used to configure the [WithWithouts](/docs/components/landing/with-withouts) section.
+
+```config.js
+export const withWithoutConfig = {
+    with: [
+        "Everything",
+        ...
+    ],
+    without: [
+        "Nothing",
+        ...
+    ],
+};
+```
+
+<br />
+<br />
+<Divider />
+<div id="color-theme" />
+## Color Theme
+
+To change the colors of your app, go into `globals.css`, scroll down and change the `--color-` variables.
+
+I recommend you change `primary` and `bg`, the rest use normal Tailwind colors (`red`, `blue`, `green`, etc).
+
+```css
+@theme {
+  --color-primary-0: #fdfdfd;
+  --color-primary-50: #f0f1ff;
+  ...
+}
+```
+
+<Info>
+    [Tailwind](https://tailwindcss.com) uses tones of colors, so you can use any of them, i.e. `text-primary-100`, `bg-primary-600`, etc.
+</Info>
+
+
+
+
+
+
+
+
+

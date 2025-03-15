@@ -1,0 +1,271 @@
+---
+title: "Checkbox"
+description: "A customizable checkbox component with label options"
+onThisPage:
+  - title: "Checkbox"
+    href: "#checkbox"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="checkbox" />
+
+<br/>
+
+<div className="flex w-full items-center justify-center">
+    <Checkbox
+        lift
+        checked
+    />
+    <Checkbox
+        color="green"
+        border
+        checked
+    />
+    <Checkbox
+        color="yellow"
+        borderRadius="full"
+        checked
+    />
+    <Checkbox
+        color="purple"
+        borderRadius="full"
+    />
+    <Checkbox
+        color="red"
+        checked
+    />
+    <Checkbox
+        checked
+        color="green"
+        disabled
+    />
+    <Checkbox
+        color="purple"
+        circle
+        checked
+    />
+    <Checkbox
+        color="primary"
+        checked
+    />
+</div>
+
+<br />
+
+The `Checkbox` component provides a customizable checkbox input with various styling options and labeling capabilities.
+
+<Tip>
+    Use the `borderRadius="full"` prop to create a circular checkbox.
+</Tip>
+
+<br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```js
+import Checkbox from '@/components/atoms/checkbox';
+
+const [hasAgreed, setHasAgreed] = useState(false);
+
+<Checkbox
+    id="terms"
+    name="terms"
+    label="I agree to the terms and conditions"
+    checked={isChecked}
+    onChange={(e) => setHasAgreed(e.target.checked)}
+/>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Prop          | Type                 | Default     | Description                                                                 |
+|---------------|----------------------|-------------|-----------------------------------------------------------------------------|
+| name          | string               | -           | The name of the checkbox.                                                   |
+| label         | string               | -           | The label for the checkbox.                                                 |
+| labelPosition | "left" \| "right"    | `"right"`   | The position of the label relative to the checkbox.                         |
+| helperText    | string               | -           | Additional helper text for the checkbox.                                    |
+| size          | "sm" \| "md" \| "lg" | `"md"`      | The size of the checkbox.                                                   |
+| color         | string               | `"primary"` | The base color (from [tailwind.config](/docs/features/config#color-theme)). |
+| variant       | "solid" \| "soft"    | `"solid"`   | The variant of the checkbox.                                                |
+| borderRadius  | string               | `"md"`      | The border radius of the checkbox.                                          |
+| borderColor   | string               | `"gray"`    | The border color of the checkbox.                                           |
+| border        | boolean              | `false`     | If true, adds a border.                                                     |
+| scale         | boolean              | `false`     | If true, gently scales up on hover.                                         |
+| lift          | boolean              | `false`     | If true, lifts on hover.                                                    |
+| active        | boolean              | `true`      | If true, the checkbox has an active press-down scale effect.                |
+| disabled      | boolean              | `false`     | Whether the checkbox is disabled.                                           |
+| checked       | boolean              | `false`     | If true, the checkbox is checked.                                           |
+| onChange      | function             | -           | The change handler for the checkbox.                                        |
+| className     | string               | `""`        | Additional [Tailwind](https://tailwindcss.com) utility classes.             |
+| ...props      | object               | -           | Any other valid HTML attributes for the checkbox.                           |
+
+<Info>
+    Use the `labelPosition` prop to control the layout of your checkbox and label.
+</Info>
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Basic Checkbox
+<PreviewCode preview={
+    <Checkbox
+        id="terms"
+        name="terms"
+        label="I agree to the terms and conditions"
+        checked
+    />
+}>
+```js
+<Checkbox
+    id="terms"
+    name="terms"
+    label="I agree to the terms and conditions"
+    checked
+/>
+```
+</PreviewCode>
+
+<br/>
+
+### Checkbox with Left Label
+<PreviewCode preview={
+    <Checkbox
+        id="newsletter"
+        name="newsletter"
+        label="Subscribe to newsletter"
+        labelPosition="left"
+    />
+}>
+```js
+<Checkbox
+  id="newsletter"
+  name="newsletter"
+  label="Subscribe to newsletter"
+  labelPosition="left"
+  checked={isSubscribed}
+  onChange={(e) => setIsSubscribed(e.target.checked)}
+/>
+```
+</PreviewCode>
+
+<br/>
+
+### Circular Checkbox with Custom Color
+<PreviewCode preview={
+    <Checkbox
+        color="purple"
+        id="darkMode"
+        name="darkMode"
+        label="Enable dark mode"
+        borderRadius="full"
+        checked
+    />
+}>
+```js
+<Checkbox
+    color="purple"
+    id="darkMode"
+    name="darkMode"
+    label="Enable dark mode"
+    borderRadius="full"
+    checked={isDarkMode}
+    onChange={(e) => setIsDarkMode(e.target.checked)}
+/>
+```
+</PreviewCode>
+
+<br/>
+
+### Checkbox with Helper Text
+<PreviewCode preview={
+    <Checkbox
+        id="rememberMe"
+        name="rememberMe"
+        label="Remember me"
+        helperText="Keep me logged in"
+    />
+}>
+```js
+<Checkbox
+  id="rememberMe"
+  name="rememberMe"
+  label="Remember me"
+  checked={isRemembered}
+  onChange={(e) => setIsRemembered(e.target.checked)}
+/>
+```
+</PreviewCode>
+
+<br/>
+
+### Hover Effect Checkbox
+<PreviewCode preview={
+    <Checkbox
+        id="hover"
+        name="hover"
+        label="Hover me"
+        lift
+    />
+}>
+```js
+<Checkbox
+  id="hover"
+  name="hover"
+  label="Hover me"
+  lift
+  scale
+/>
+```
+</PreviewCode>
+
+<br/>
+
+### Disabled Checkbox
+<PreviewCode preview={
+    <Checkbox
+        id="disabled"
+        name="disabled"
+        label="This checkbox is disabled"
+        disabled
+    />
+}>
+```js
+<Checkbox
+  id="disabled"
+  name="disabled"
+  label="This checkbox is disabled"
+  disabled
+/>
+```
+</PreviewCode>
+
+<br />
+
+<Tip>
+    You can customize the appearance of the Checkbox component by passing additional classes or props.
+</Tip>
+
+<br />
+<br />

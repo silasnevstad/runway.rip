@@ -1,0 +1,243 @@
+---
+title: "Database"
+description: "Set up your database tables for profiles, waitlist and more"
+onThisPage:
+  - title: "Profiles Table"
+    href: "#profiles"
+  - title: "Waitlist Table"
+    href: "#waitlist-table"
+related:
+  - title: "Supabase Setup"
+    href: "/docs/tutorials/supabase"
+  - title: "Authentication"
+    href: "/docs/features/auth"
+  - title: "Subscriptions"
+    href: "/docs/tutorials/subscriptions"
+sites:
+  - title: "Supabase"
+    href: "https://supabase.com"
+---
+
+
+<Callout>
+    If you haven't yet, check out the [Supabase Setup](/docs/tutorials/supabase) guide to get your project set up.
+</Callout>
+
+<div id="profiles" />
+
+## Profiles Table
+
+The **profiles** table stores additional information about your authenticated users.
+This is particularly useful for handling subscriptions and other user-specific metadata.
+
+1. Go to your [Supabase dashboard](https://supabase.com/dashboard/project/cpnazmlhikivzgcemgzp) and navigate to the SQL editor.
+
+2. Run the following query, to create the `profiles` table with the necessary columns and [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security) policies:
+
+    ```SQL Editor
+    CREATE TABLE IF NOT EXISTS public.profiles (
+      id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+      name TEXT,
+      email TEXT UNIQUE NOT NULL,
+      image TEXT,
+      customer_id TEXT,
+      price_id TEXT,
+      subscription_id TEXT,
+      subscription_status TEXT,
+      has_access BOOLEAN DEFAULT false,
+      created_at TIMESTAMPTZ DEFAULT timezone('utc', now()),
+      updated_at TIMESTAMPTZ DEFAULT timezone('utc', now())
+    );
+
+    -- Function to update the updated_at timestamp
+    CREATE OR REPLACE FUNCTION public.set_updated_at()
+    RETURNS TRIGGER AS $$
+    BEGIN
+      NEW.updated_at = timezone('utc', now());
+      RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql;
+
+    -- Trigger to update updated_at before any update on profiles
+    CREATE TRIGGER trg_set_updated_at
+    BEFORE UPDATE ON public.profiles
+    FOR EACH ROW
+    EXECUTE FUNCTION public.set_updated_at();
+
+    -- Enable Row Level Security on profiles.
+    ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+
+    -- Policies to ensure users only access their own profiles.
+    CREATE POLICY p_read_own_profile ON public.profiles
+    FOR SELECT
+    USING (id = auth.uid());
+
+    CREATE POLICY p_update_own_profile ON public.profiles
+    FOR UPDATE
+    USING (id = auth.uid());
+
+    CREATE POLICY p_insert_own_profile ON public.profiles
+    FOR INSERT
+    WITH CHECK (id = auth.uid());
+
+    CREATE POLICY p_delete_own_profile ON public.profiles
+    FOR DELETE
+    USING (id = auth.uid());
+    ```
+
+3. If your app uses **payments**, run this query to create a new [Stripe](https://stripe.com) customer on sign-ups (**skip if not using payments**):
+    ```SQL Editor
+    CREATE OR REPLACE FUNCTION public.stripe_create_customer(email TEXT)
+    RETURNS TEXT AS $$
+    DECLARE
+      response record;
+      parsed_body JSON;
+    BEGIN
+      SELECT * INTO response
+      FROM http_post(
+        'https://runway.rip/api/create-stripe-customer'::text,
+        json_build_object('email', email)::text,
+        'application/json'::text
+      );
+
+      IF response.status::int <> 200 THEN
+        RAISE NOTICE 'Failed to create Stripe customer for email %: %', email, response.content;
+        RETURN NULL;
+      END IF;
+
+      parsed_body := response.content::json;
+
+      RETURN parsed_body->>'customer_id';
+    END;
+    $$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, auth, pg_temp;
+
+    -- Function to handle new user signup: inserts a new profile from auth.users data.
+    CREATE OR REPLACE FUNCTION public.handle_new_user()
+    RETURNS TRIGGER AS $$
+    DECLARE
+      stripe_customer_id TEXT;
+    BEGIN
+      PERFORM set_config('supabase.auth.uid', NEW.id::text, true);
+
+      -- Create a new Stripe customer.
+      stripe_customer_id := public.stripe_create_customer(NEW.email);
+
+      -- Insert a new profile record into public.profiles.
+      INSERT INTO public.profiles (
+        id,
+        customer_id,
+        email,
+        name,
+        image,
+        created_at,
+        updated_at
+      )
+      VALUES (
+        NEW.id,
+        stripe_customer_id,
+        NEW.email,
+        COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name'),
+        NEW.raw_user_meta_data->>'avatar_url',
+        timezone('utc', now()),
+        timezone('utc', now())
+      );
+
+      RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, auth, pg_temp;
+
+    -- Trigger to call the new user handler after a new user signs up in auth.users.
+    CREATE TRIGGER handle_new_user
+    AFTER INSERT ON auth.users
+    FOR EACH ROW
+    EXECUTE FUNCTION public.handle_new_user();
+    ```
+
+    <Info>
+        This function triggers everytime a new user signs up and will create a new Stripe customer (using `/api/create-stripe-customer`) and add the `customer_id` to the `profiles` table.
+    </Info>
+
+4. If you **aren't** using **payments**, run this query:
+
+    ```SQL Editor
+    -- Function to handle new user signup: inserts a new profile from auth.users data.
+    CREATE OR REPLACE FUNCTION public.handle_new_user()
+    RETURNS TRIGGER AS $$
+    BEGIN
+    -- Insert a new profile record into public.profiles
+    INSERT INTO public.profiles (
+        id,
+        email,
+        name,
+        image,
+        created_at,
+        updated_at
+    )
+    VALUES (
+        NEW.id,
+        NEW.email,
+        COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name'),
+        NEW.raw_user_meta_data->>'avatar_url',
+        timezone('utc', now()),
+        timezone('utc', now())
+    );
+
+    RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+    -- Trigger to call the new user handler after a new user signs up in auth.users.
+    CREATE TRIGGER handle_new_user
+    AFTER INSERT ON auth.users
+    FOR EACH ROW
+    EXECUTE FUNCTION public.handle_new_user();
+    ```
+
+<Info>
+    - We created a `profiles` table with columns for `id`, `name`, `email`, `image`, `customer_id`, `price_id`, `subscription_id`, `subscription_status`, `has_access`, `created_at`, and `updated_at`.
+    - We create a function to update the `updated_at` timestamp.
+    - We create a trigger to automatically update the `updated_at` timestamp on any changes.
+    - We create a function to automatically add a profile when a new user signs up (if using payments, it also creates a [Stripe](https://stripe.com) customer and adds the `customer_id`).
+    - We create a trigger to invoke the above function after a new user is inserted.
+    - We enable [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) on the `profiles` table.
+    - We create [policies](https://www.postgresql.org/docs/current/sql-createpolicy.html) to ensure that users can only access their own profiles.
+</Info>
+
+<br />
+<br />
+<div id="waitlist-table" />
+<Divider />
+
+## Waitlist Table (Optional)
+
+The **waitlist** table is designed to capture email addresses for your waitlist or mailing list. This table is intentionally open for insertions—even from unauthenticated users.
+
+1. Run this query in the [SQL editor](https://supabase.com/dashboard/):
+
+```SQL Editor
+-- Create the waitlist table for email subscriptions
+CREATE TABLE public.waitlist (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  email text UNIQUE NOT NULL,
+  name text,
+  created_at TIMESTAMPTZ DEFAULT timezone('utc', now())
+);
+
+-- Enable Row Level Security for the waitlist table
+ALTER TABLE public.waitlist ENABLE ROW LEVEL SECURITY;
+
+-- Policy to allow public insertion (no authentication needed)
+CREATE POLICY waitlist_insert_policy ON public.waitlist
+FOR INSERT
+WITH CHECK (true);
+```
+
+<Info>
+    - Creates a `waitlist` table with columns for `id`, `email`, `full_name`, and `created_at`.
+    - Enables [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security) on the `waitlist` table.
+    - Creates a [policy](https://www.postgresql.org/docs/current/sql-createpolicy.html) to allow public insertions into the `waitlist` table.
+</Info>
+
+<Tip>
+    Enabling RLS and setting up precise policies is crucial for protecting your users’ data.
+</Tip>

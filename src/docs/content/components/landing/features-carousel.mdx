@@ -1,0 +1,64 @@
+---
+title: "FeaturesCarousel"
+description: "A carousel to showcase features"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+related:
+  - title: "FeaturesGrid"
+    href: "/docs/landing/features-grid"
+  - title: "Card"
+    href: "/docs/components/card"
+---
+
+<div id="overview" />
+
+<div className="max-md:hidden flex flex-col w-full items-center justify-center gap-8">
+    <FeaturesCarousel />
+</div>
+
+<br />
+
+The `FeaturesCarousel` component is a great way to showcase features in a carousel format. It uses the [`Card`](/docs/components/card)
+and [`Carousel`](/docs/components/carousel) components to create a visually appealing and interactive experience. Features
+are pulled from the [config.js](/docs/features/config) file by default.
+
+<br />
+<br />
+<Divider />
+<div id="usage" />
+
+## Usage
+
+```js
+import FeaturesCarousel from '@/components/landing/FeaturesCarousel';
+
+<FeaturesCarousel />
+```
+
+<br />
+<br />
+<br />
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Name                 | Type    | Default          | Description                                                                                                                                                                                                                                 |
+|----------------------|---------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| title                | string  | `""`             | The title of the component.                                                                                                                                                                                                                 |
+| subtitle             | string  | `""`             | The subtitle of the component.                                                                                                                                                                                                              |
+| description          | string  | `""`             | The description of the component.                                                                                                                                                                                                           |
+| features             | array   | `featuresConfig` | The list of features to display, each feature is an object with `title`, `description`, `icon`, `imageSrc`, `imageAlt`, and `imageHref` properties. By default its pulled from config, see [docs](/docs/features/config#landing-page) for more details. |
+| autoPlay             | boolean | `true`           | If true, the carousel will autoplay.                                                                                                                                                                                                        |
+| interval             | number  | `5000`           | The interval between slides in milliseconds.                                                                                                                                                                                                |
+| cardColor            | string  | `"bg"`           | The base color (uses [tailwind.config](/docs/features/config#color-theme)).                                                                                                                                                                             |
+| cardVariant          | string  | `"soft"`         | The variant of the component.                                                                                                                                                                                                               |
+| cardBorderRadius     | string  | `"lg"`           | The border radius of the card (using [Tailwind](https://tailwindcss.com) border radius classes).                                                                                                                                            |
+| cardBorder           | boolean | `false`          | If true, a border will be displayed on the cards.                                                                                                                                                                                           |
+| highlightLastFeature | boolean | `false`          | If true, the last feature will be highlighted.                                                                                                                                                                                              |

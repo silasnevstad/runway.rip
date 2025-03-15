@@ -1,0 +1,183 @@
+---
+title: "Modal"
+description: "A modal component for creating dialogs, popovers, and other overlays."
+onThisPage:
+  - title: "Modal"
+    href: "#modal"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+---
+
+<div id="modal" />
+
+<br/>
+
+<div className="flex flex-col justify-center items-center gap-10">
+    <ModalDemo>
+        <div className="flex flex-col bg-bg-200 dark:bg-gray-800 rounded-lg p-4">
+            <h2 className="text-xl font-bold">Text in a modal.</h2>
+            <p className="text-sm">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+        </div>
+    </ModalDemo>
+</div>
+
+<br/>
+
+The `Modal` component renders its `children` in a modal overlay. It supports various props to customize its behavior, such as `fade`, `blur`, and `closeOnOutsideClick`.
+
+<Tip>
+    You have to manage the `isOpen` state and the `onClose` function yourself.
+</Tip>
+
+<br/>
+<br/>
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+The `Modal` component requires the `isOpen` and `onClose` props to control its visibility. We can use it like this:
+
+```js
+import Modal from "@/components/atoms/Modal";
+import { useState } from "react";
+import Button from "@/components/atoms/Button";
+
+export default function Example() {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    return (
+        <div>
+            <Button onClick={handleOpen}>Open Modal</Button>
+
+            <Modal
+                isOpen={open}
+                onClose={handleClose}
+            />
+                <div>
+                    Modal content goes here.
+                </div>
+            </Modal>
+        </div>
+    );
+}
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Prop                | Type      | Default | Description                                                                                     |
+|---------------------|-----------|---------|-------------------------------------------------------------------------------------------------|
+| children            | ReactNode | -       | The content to display inside the modal.                                                        |
+| isOpen              | boolean   | -       | Whether the modal is open or closed.                                                            |
+| onClose             | function  | -       | Function to call when the modal is closed.                                                      |
+| fade                | boolean   | `true`  | Whether to fade the modal in and out.                                                           |
+| blur                | boolean   | `true`  | Whether to blur the background when the modal is open.                                          |
+| closeOnOutsideClick | boolean   | `true`  | Whether to close the modal when clicking outside of it.                                         |
+| showCloseButton     | boolean   | `true`  | Whether to show the close button in the top right corner of the modal.                          |
+| className           | string    | `""`    | Additional [Tailwind](https://tailwindcss.com) classes for the modal overlay (not the content). |
+| ...props            | object    | -       | Any other valid <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.).              |
+
+<br/>
+<br/>
+<br/>
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Basic Modal
+By default, the modal will both `blur` and `fade` the background.
+
+<PreviewCode preview={
+    <ModalDemo>
+        <div className="flex flex-col bg-bg-200 dark:bg-gray-800 rounded-lg p-4">
+            <h2 className="text-xl font-bold">Blurred Modal</h2>
+            <p className="text-sm">This modal has a blurred background.</p>
+        </div>
+    </ModalDemo>
+}>
+    ```js
+    <Button onClick={handleOpen}>Open Modal</Button>
+
+    <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+    >
+        <div>
+            <h2>Blurred Modal</h2>
+            <p>This modal has a blurred background.</p>
+        </div>
+    </Modal>
+    ```
+</PreviewCode>
+
+<br />
+
+### Blurred Modal
+<PreviewCode preview={
+    <ModalDemo blur={true} fade={false}>
+        <div className="flex flex-col bg-bg-200 dark:bg-gray-800 rounded-lg p-4">
+            <h2 className="text-xl font-bold">Blurred Modal</h2>
+            <p className="text-sm">This modal has a blurred background.</p>
+        </div>
+    </ModalDemo>
+}>
+    ```js
+    <Button onClick={handleOpen}>Open Modal</Button>
+
+    <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        blur={true}
+        fade={false}
+    >
+        <div>
+            <h2>Blurred Modal</h2>
+            <p>This modal has a blurred background.</p>
+        </div>
+    </Modal>
+    ```
+</PreviewCode>
+
+<br />
+
+### Fade Modal
+<PreviewCode preview={
+    <ModalDemo fade={true} blur={false}>
+        <div className="flex flex-col bg-bg-200 dark:bg-gray-800 rounded-lg p-4">
+            <h2 className="text-xl font-bold">Fade Modal</h2>
+            <p className="text-sm">This modal has a fade effect.</p>
+        </div>
+    </ModalDemo>
+}>
+    ```js
+    <Button onClick={handleOpen}>Open Modal</Button>
+
+    <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        fade={true}
+        blur={false}
+    >
+        <div>
+            <h2>Fade Modal</h2>
+            <p>This modal has a fade effect.</p>
+        </div>
+    </Modal>
+    ```
+</PreviewCode>

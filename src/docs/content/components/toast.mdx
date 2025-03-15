@@ -1,0 +1,155 @@
+---
+title: "Toast"
+description: "A component to display toast notifications"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "ToastProvider"
+    href: "/docs/components/toast-provider"
+---
+
+<div id="overview" />
+
+<br/>
+
+<div className="flex flex-col w-full items-center justify-center gap-8">
+    <Toast>
+        This is a toast notification.
+    </Toast>
+    <Toast severity="success" closable={false}>
+        This is a success toast notification.
+    </Toast>
+    <Toast severity="error" border lift>
+        This is an error toast notification.
+    </Toast>
+    <Toast severity="warning" scale variant="solid">
+        This is a warning toast notification.
+    </Toast>
+</div>
+
+<br />
+
+The `Toast` component is a component that displays toast notifications. It is used to display messages, alerts, and other notifications to the user.
+
+It has different `severity` levels such as `info`, `success`, `error`, and `warning`. It also has different styles such as `border`, `variant`, `scale`, etc.
+
+<Callout>
+    [`ToastProvider`](/docs/components/toast-provider) helps to manage the state of the toast notifications. It is used to display the toast notifications in a consistent manner.
+</Callout>
+
+<br />
+<br />
+<Divider />
+
+<div id="usage" />
+
+## Usage
+
+```js
+import Toast from '@/components/atoms/Toast';
+
+<Toast>
+    This is a toast notification.
+</Toast>
+```
+
+<br />
+<br />
+<br />
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Name        | Type                                        | Default   | Description                                                                                                                           |
+|-------------|---------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------|
+| children    | node                                        | -         | The content of the toast.                                                                                                             |
+| variant     | "soft" \| "solid"                           | `"soft"`  | The variant of the toast.                                                                                                             |
+| severity    | "info" \| "success" \| "warning" \| "error" | `"info"`  | The severity of the toast.                                                                                                            |
+| border      | boolean                                     | `false`   | If true, the toast will have a border.                                                                                                |
+| hoverBg     | boolean                                     | `true`    | If true, the toast will have a hover background.                                                                                      |
+| active      | boolean                                     | `true`    | If true, the toast will have an active state.                                                                                         |
+| scale       | boolean                                     | `false`   | If true, the toast will have a scale effect.                                                                                          |
+| lift        | boolean                                     | `false`   | If true, the toast will have a lift effect.                                                                                           |
+| autoDismiss | number                                      | -         | The time in milliseconds before the toast will be automatically dismissed. If not set, the toast will not be automatically dismissed. |
+| closable    | boolean                                     | `true`    | If true, the toast will have a close button.                                                                                          |
+| onClose     | function                                    | -         | The function to be called when the toast is closed.                                                                                   |
+| onClick     | function                                    | -         | The function to be called when the toast is clicked.                                                                                  |
+| slideFrom   | "left" \| "right"                           | `"right"` | The direction from which the toast will slide in.                                                                                     |
+| className   | string                                      | `""`      | Any additional [Tailwind](https://tailwindcss.com) classes to apply to the toast.                                                     |
+| ...props    | object                                      | -         | Any other valid <code>&lt;div&gt;</code> attributes.                                                                                  |
+
+<Tip>
+    The `autoDismiss` prop is used to automatically dismiss the toast after a certain amount of time. If not set, the toast will not be automatically dismissed.
+</Tip>
+
+<br />
+<br />
+<br />
+<Divider />
+
+<div id="examples" />
+
+## Examples
+
+### Default Toast
+<PreviewCode preview={
+    <Toast>
+        This is a toast notification.
+    </Toast>
+}>
+```js
+<Toast>
+    This is a toast notification.
+</Toast>
+```
+</PreviewCode>
+
+<br />
+
+### Success Toast
+<PreviewCode preview={
+    <Toast severity="success">
+        This is a success toast notification.
+    </Toast>
+}>
+```js
+<Toast severity="success">
+    This is a success toast notification.
+</Toast>
+```
+</PreviewCode>
+
+<br />
+
+### Custom Toast
+<PreviewCode preview={
+    <Toast
+        severity="error"
+        variant="solid"
+        border
+        lift
+    >
+        This is an error toast notification.
+    </Toast>
+}>
+```js
+<Toast
+    severity="error"
+    variant="solid"
+    border
+    lift
+>
+    This is an error toast notification.
+</Toast>
+```
+</PreviewCode>
+

@@ -1,0 +1,62 @@
+---
+title: "FeaturesGrid"
+description: "A grid layout to showcase features"
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+related:
+  - title: "FeaturesCarousel"
+    href: "/docs/landing/features-carousel"
+  - title: "Card"
+    href: "/docs/components/card"
+---
+
+<div id="overview" />
+
+<br />
+
+<div className="max-md:hidden flex flex-col w-full items-center justify-center gap-8">
+    <FeaturesGrid gridClassName="lg:grid-cols-2" />
+</div>
+
+<br />
+
+The `FeaturesGrid` component is a grid layout to showcase features.
+
+<br />
+<br />
+<Divider />
+<div id="usage" />
+
+## Usage
+
+```js
+import FeaturesGrid from '@/components/landing/FeaturesGrid';
+
+<FeaturesGrid />
+```
+
+<br />
+<br />
+<br />
+<Divider />
+
+<div id="props" />
+
+## Props
+
+| Name                 | Type    | Default          | Description                                                                                                                                                                                                                                |
+|----------------------|---------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| title                | string  | `""`             | The title of the component.                                                                                                                                                                                                                |
+| subtitle             | string  | `""`             | The subtitle of the component.                                                                                                                                                                                                             |
+| description          | string  | `""`             | The description of the component.                                                                                                                                                                                                          |
+| features             | array   | `featuresConfig` | The list of features to display, each feature is an object with `title`, `description`, `icon`, `imageSrc`, `imageAlt`, and `imageHref` properties. By default its pulled from config, see [docs](/docs/features/config) for more details. |
+| cardColor            | string  | `"bg"`           | The base color (uses [tailwind.config](/docs/features/config#color-theme)).                                                                                                                                                                |
+| cardVariant          | string  | `"soft"`         | The variant of the component.                                                                                                                                                                                                              |
+| cardBorderRadius     | string  | `"lg"`           | The border radius of the card (using [Tailwind](https://tailwindcss.com) border radius classes).                                                                                                                                           |
+| cardBorder           | boolean | `false`          | If true, a border will be displayed on the cards.                                                                                                                                                                                          |
+| highlightLastFeature | boolean | `false`          | If true, the last feature will be highlighted.                                                                                                                                                                                             |

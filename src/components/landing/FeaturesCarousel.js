@@ -25,6 +25,11 @@ export default function FeaturesCarousel({
     highlightLastAttribute = landingConfig.features.highlightLastAttribute,
 }) {
     const [selectedFeature, setSelectedFeature] = useState(0);
+    const currentTime = new Date();
+    const hours = currentTime.getHours();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const hours12 = `${hours % 12 || 12}`.padStart(2, '0');
+    const minutes = currentTime.getMinutes();
 
     return (
         <section
@@ -34,11 +39,14 @@ export default function FeaturesCarousel({
             <div
                 className="flex flex-col items-center max-w-4xl px-4"
             >
-                {title && (
-                    <p className={`text-md lg:text-lg font-extrabold  text-center mb-2 ${getTextColorClass(titleColor)}`}>
-                        {title}
-                    </p>
-                )}
+                <p className="text-lg font-mono text-orange-500 opacity-90 font-normal mb-2">
+                    const launchTime = {hours12}:{minutes + 6} {ampm}
+                </p>
+                {/*{title && (*/}
+                {/*    <p className={`text-md lg:text-lg font-extrabold  text-center mb-2 ${getTextColorClass(titleColor)}`}>*/}
+                {/*        {title}*/}
+                {/*    </p>*/}
+                {/*)}*/}
                 {subtitle && (
                     <p className="max-w-4xl text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-4">
                         {subtitle}
@@ -150,6 +158,56 @@ function FeatureCard({
                         </li>
                     ))}
                 </ul>
+            )}
+
+            {feature.imageSrc && feature.title !== "Email" && (
+                <div
+                    className="absolute bottom-3 right-3 flex items-center gap-2 mt-2 text-sm"
+                    onClick={() => window.open(feature.imageHref, "_blank")}
+                >
+                    <p className="text-gray-600">with</p>
+                    <Image
+                        src={feature.imageSrc}
+                        alt={feature.imageAlt}
+                        width={30}
+                        height={30}
+                        className={`rounded-lg ${feature.imageClassName}`}
+                    />
+                    <p className="text-gray-600 underline">{feature.imageAlt}</p>
+                </div>
+            )}
+            {feature.title === "Email" && (
+                <div
+                    className="absolute bottom-3 right-3 flex items-center gap-2 mt-2 text-sm"
+                    onClick={() => window.open(feature.imageHref, "_blank")}
+                >
+                    <p className="text-gray-600">with</p>
+                    <Image
+                        src={"/logos/resend.png"}
+                        alt={"resend"}
+                        width={30}
+                        height={30}
+                        className={`rounded-lg bg-black`}
+                    />
+                    <p className="text-gray-600 underline">Resend</p>
+                    <p className="text-gray-600">/</p>
+                    <Image
+                        src={"/logos/mailgun.png"}
+                        alt={"resend"}
+                        width={30}
+                        height={30}
+                        className={`rounded-lg `}
+                    />
+                    <p className="text-gray-600 underline">Mailgun</p>
+                </div>
+            )}
+            {feature.docs && (
+                <div className="absolute bottom-3 right-3 flex items-center gap-2 mt-2">
+                    <p className="text-gray-600 font-semibold">Check out</p>
+                    <TextLink href="/docs" variant="underline" className="font-semibold" color="primary">
+                        the docs
+                    </TextLink>
+                </div>
             )}
         </Card>
     );

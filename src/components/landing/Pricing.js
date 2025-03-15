@@ -14,7 +14,6 @@ export default async function Pricing({
     if (appConfig.payment.requiredCustomerId) {
         const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
-        console.log("user", user);
         if (user) {
             customerId = user?.stripe_customer_id;
         }
@@ -23,7 +22,6 @@ export default async function Pricing({
             return null;
         }
     }
-    console.log("customerId", customerId);
 
     return (
         <section

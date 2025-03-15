@@ -1,0 +1,60 @@
+---
+title: "One-Time Payments Tutorial"
+description: "Setting up one-time payments using Stripe."
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+related:
+  - title: "Stripe Setup"
+    href: "/docs/features/payments"
+  - title: "Pricing"
+    href: "/docs/landing/pricing"
+  - title: "CheckoutButton"
+    href: "/docs/components/checkout-button"
+sites:
+  - title: "Stripe"
+    href: "https://stripe.com"
+---
+
+<div id="overview" />
+
+1. Set up [Stripe](/docs/features/payments) in your app.
+
+2. If you don't care about storing the user's status/access, set [`appConfig.payment.requiredCustomerId`](/docs/features/config#customer-tracking) to `false`
+(e.g. if not using auth and purely using [Stripe](https://stripe.com/dashboard/) to manage your customers).
+
+    <Caution>
+        If you **do want** to store the user's status/access, make sure you have set up [**Auth**](/docs/tutorials/authentication) and [**profiles table**](/docs/features/db#profiles) (ensure you have the `handle_new_user` function to create Stripe customers on sign up).
+    </Caution>
+
+3. By default, the landing page will now show a [`Pricing`](/docs/landing/pricing) component. Place or modify this however you like:
+
+     ```js
+     import Pricing from "@/components/landing/Pricing";
+     <Pricing />
+     ```
+
+    Or simply use the [`CheckoutButton`](/docs/components/checkout-button) component to create a checkout button for your product.
+
+     ```js
+     import CheckoutButton from "@/components/payments/CheckoutButton";
+     <CheckoutButton
+       mode="subscription"
+       priceId="price_1N..."
+     >
+         Subscribe Now
+     </CheckoutButton>
+     ```
+
+4. (Optionally) Our webhook api/webhooks/stripe listens to Stripe and automatically handles events.
+
+5. Add your own logic to `webhookHandlers.js` like sending abandoned checkout emails, thank you emails, etc.
+
+<br />
+
+And you're done!
+
+<Tip>
+    Remember to test everything in Test mode before going to Live mode. You can use the test card number 4242 4242 4242 4242 for a successful payment.
+</Tip>
+

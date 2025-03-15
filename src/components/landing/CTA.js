@@ -27,7 +27,7 @@ export default function CTA({
                 </p>
             )}
 
-            {/*<DeparturesCard />*/}
+            <DeparturesCard />
 
             {appConfig.waitlist.enabled ? (
                 <WaitlistForm className="mt-10" />

@@ -1,0 +1,189 @@
+---
+title: "Avatar List"
+description: "A list component that displays multiple avatars in a row or column, with optional overlap and max visibility."
+onThisPage:
+  - title: "Overview"
+    href: "#avatar-list-overview"
+  - title: "Usage"
+    href: "#usage"
+  - title: "Props"
+    href: "#props"
+  - title: "Examples"
+    href: "#examples"
+related:
+  - title: "Avatar"
+    href: "/docs/components/avatar"
+---
+
+<div id="avatar-list-overview" />
+
+<br/>
+
+<AvatarList
+    avatars={[
+        { src: "/avatar1.png", alt: "User 1" },
+        { letter: "B" },
+        { src: "/avatar2.png", alt: "User 2" }
+    ]}
+    maxVisible={3}
+    className="mb-4 justify-center"
+/>
+
+<br/>
+
+<div>
+    The `AvatarList` component groups together multiple avatars. You can show them in a row or column, stack them with overlap,
+    and even limit how many are displayed (e.g., "+3 more").
+</div>
+
+<Callout>
+    Each item is powered by the [Avatar](/docs/components/avatar) component, so you can customize it with any of its props.
+</Callout>
+
+<br/>
+<br/>
+<Divider />
+<div id="usage" />
+
+## Usage
+
+```js
+import AvatarList from '@/components/molecules/AvatarList';
+
+<AvatarList
+    avatars={[
+        { src: "/avatar1.png", alt: "User 1" },
+        { letter: "B" },
+        { src: "/avatar2.png", alt: "User 2" }
+    ]}
+/>
+```
+
+<br/>
+<br/>
+<br/>
+<Divider />
+<div id="props" />
+
+## Props
+
+| **Prop**          | **Type**                   | **Default**    | **Description**                                                                         |
+|-------------------|----------------------------|----------------|-----------------------------------------------------------------------------------------|
+| avatars           | array                      | `[]`           | Each object can contain `src`/`alt` or `letter`.                                        |
+| direction         | "horizontal" \| "vertical" | `"horizontal"` | Chooses layout direction.                                                               |
+| overlap           | boolean                    | `true`         | If true, applies negative margins (like Slack or GitHub) so the avatars stack.          |
+| maxVisible        | number                     | `5`            | Max avatars displayed before the last is replaced with `+X more`.                       |
+| sharedAvatarProps | object                     | `{}`           | Common props for every `Avatar` (e.g. `size="sm"`).                                     |
+| className         | string                     | `""`           | Additional [Tailwind](https://tailwindcss.com) classes (overrides defaults if needed)   |
+| ...props          | object                     | -              | Any other valid HTML <code>&lt;div&gt;</code> attributes (e.g. `role`, `aria-*`, etc.). |
+
+<Tip>
+    Use `sharedAvatarProps` to set common props for all avatars.
+</Tip>
+
+<br/>
+<br/>
+<br/>
+<Divider />
+<div id="examples" />
+
+## Examples
+
+### Horizontal List with Overflow
+Set `maxVisible` to limit how many avatars are shown. The rest will be replaced with a "+X more" indicator.
+
+<PreviewCode preview={
+    <AvatarList
+        avatars={[
+            { src: "/avatar1.png", alt: "User A" },
+            { letter: "B" },
+            { src: "/avatar2.png", alt: "User C" },
+            { src: "/avatar3.png", alt: "User D" },
+            { letter: "X" },
+            { letter: "Z" }
+        ]}
+        maxVisible={4}
+    />
+}>
+    ```js
+    <AvatarList
+        avatars={[
+            { src: "/avatar2.png", alt: "User A" },
+            { letter: "B" },
+            { src: "/avatar1.png", alt: "User C" },
+            { src: "/avatar3.png", alt: "User D" },
+            { letter: "X" },
+            { letter: "Z" }
+        ]}
+        maxVisible={4}
+    />
+    ```
+</PreviewCode>
+
+<br />
+
+### Vertical Stacking
+Set `direction="vertical"` to stack avatars in a column. You can also adjust the avatar's size with `sharedAvatarProps`.
+
+<PreviewCode preview={
+    <AvatarList
+        direction="vertical"
+        avatars={[
+            { letter: "A" },
+            { src: "/avatar2.png", alt: "User B" },
+            { letter: "C" }
+        ]}
+        sharedAvatarProps={{ size: "sm" }}
+    />
+}>
+    ```js
+    <AvatarList
+        direction="vertical"
+        avatars={[
+            { letter: "A" },
+            { src: "/avatar2.png", alt: "User B" },
+            { letter: "C" }
+        ]}
+        sharedAvatarProps={{ size: "sm" }}
+    />
+    ```
+</PreviewCode>
+
+<br />
+
+### No Overlap & Large Avatars
+
+<PreviewCode preview={
+    <AvatarList
+        overlap={false}
+        avatars={[
+            { src: "/avatar1.png", alt: "Hero 1" },
+            { src: "/avatar2.png", alt: "Hero 2" },
+            { letter: "X" },
+            { src: "/hero4.png", alt: "Hero 4" },
+        ]}
+        sharedAvatarProps={{ size: "lg" }}
+    />
+}>
+    ```js
+    <AvatarList
+        overlap={false}
+        avatars={[
+            { src: "/avatar1.png", alt: "Hero 1" },
+            { src: "/avatar2.png", alt: "Hero 2" },
+            { letter: "X" },
+            { src: "/avatar3.png", alt: "Hero 4" },
+        ]}
+        sharedAvatarProps={{ size: "lg" }}
+    />
+    ```
+</PreviewCode>
+
+<Tip>
+    Combine `AvatarList` with `ringColor` or `status` props if you need
+    to highlight or indicate user presence for each avatar.
+</Tip>
+
+<br />
+<br />
+<br />
