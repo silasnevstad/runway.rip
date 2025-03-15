@@ -85,7 +85,9 @@ export async function signinWithOAuth(provider) {
     const supabase = await createClient();
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider,
-        options: { redirectTo: process.env.WEBSITE_URL + "/auth/callback" },
+        options: {
+            emailRedirectTo: process.env.WEBSITE_URL + appConfig.auth.afterLoginPath,
+        },
     });
     if (error) {
         return { errors: { provider: error.message } };
@@ -104,6 +106,6 @@ export async function signout() {
         return { errors: { signout: error.message } };
     }
 
-    revalidatePath(appConfig.auth.afterSignoutPath);
-    redirect(appConfig.auth.afterSignoutPath);
+    revalidatePath(appConfig.auth.afterLogoutPath);
+    redirect(appConfig.auth.afterLogoutPath);
 }

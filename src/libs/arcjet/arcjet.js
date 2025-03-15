@@ -11,7 +11,7 @@ const aj = arcjet({
         // Bot detection rule – allow common search engines only
         detectBot({
             mode: appConfig.arcjet.mode,
-            allow: ['CATEGORY:SEARCH_ENGINE'],
+            allow: ['CATEGORY:SEARCH_ENGINE', 'STRIPE_WEBHOOK'],
         }),
         // Rate limiting rule (adjust parameters as needed)
         tokenBucket({

@@ -26,7 +26,7 @@ const appConfig = {
     // Auth
     auth: {
         enabled: true,
-        profiles: true,
+        profiles: true, // using a profiles table?
         methods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
         protectedRoutes: [
             '/dashboard',
@@ -36,7 +36,6 @@ const appConfig = {
         afterLoginPath: '/account',
         afterLogoutPath: '/',
         afterSignupPath: '/confirm-email',  // This is only need if
-        afterSignoutPath: '/',
     },
 
 
@@ -51,9 +50,10 @@ const appConfig = {
         enabled: false,
     },
 
-    // Payments (one-time, subscriptions, usage based)
+    // Payments
     payment: {
         enabled: true,
+        type: 'one-time', // 'one-time', 'subscription', 'usage'
         requiredCustomerId: true,
         afterCheckoutPath: '/account',
     },

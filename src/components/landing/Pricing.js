@@ -14,17 +14,17 @@ export default async function Pricing({
     if (appConfig.payment.requiredCustomerId) {
         const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
+        console.log("user", user);
         if (user) {
-            const { profile } = await supabase
-                .from("profiles")
-                .select("*")
-                .eq("id", user?.id)
-                .single();
-            if (profile) {
-                customerId = profile.customer_id;
-            }
+            customerId = user?.stripe_customer_id;
+        }
+        if (!customerId) {
+            console.log("🚧 Pricing with payments.requiredCustomerId require a Stripe customer ID.");
+            return null;
         }
     }
+    console.log("customerId", customerId);
+
     return (
         <section
             id="pricing"

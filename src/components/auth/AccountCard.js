@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import { FaRegCreditCard, FaRegCircleUser, FaRightFromBracket } from "react-icons/fa6";
 
 import Avatar from "@/components/atoms/Avatar";
 import Button from "@/components/atoms/Button";
-import { openBillingPortalSession } from "@/libs/stripe/portal";
 import { BORDER_RADIUS, getTextSize, mergeClasses } from "@/utils/styling";
-import appConfig from "@/config";
-import { signout } from "@/app/actions/auth";
 import AccountDropdown from "@/components/auth/AccountDropdown";
 
 export default function AccountCard({
     user,
-    profile,
     size = "sm",
     borderRadius = "lg",
     padding = 8,
@@ -28,8 +23,8 @@ export default function AccountCard({
     if (!user) {
         return <Button href="/signup" variant="soft" border borderRadius="full" size="sm">Sign Up</Button>;
     }
-    const avatarSrc = profile?.image || user?.user_metadata?.avatar_url;
-    const displayName = profile?.name || user?.user_metadata?.full_name || user?.email;
+    const avatarSrc = user?.user_metadata?.avatar_url;
+    const displayName = user?.user_metadata?.full_name || user?.email;
 
     const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.lg;
 
@@ -63,7 +58,7 @@ export default function AccountCard({
             </div>
             {dropdownOpen && (
                 <AccountDropdown
-                    profile={profile}
+                    user={user}
                     isOpen={dropdownOpen}
                     onClose={() => setDropdownOpen(false)}
                 />

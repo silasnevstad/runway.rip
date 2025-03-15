@@ -9,6 +9,6 @@ export async function POST(request) {
     if (user) {
         await supabase.auth.signOut();
     }
-    revalidatePath(appConfig.auth.afterLogoutPath, 'layout');
+    revalidatePath(appConfig.auth.afterLogoutPath);
     return NextResponse.redirect(new URL(appConfig.auth.afterLogoutPath, request.url), { status: 302 });
 }

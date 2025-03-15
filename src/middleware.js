@@ -10,12 +10,12 @@ export async function middleware(request) {
         if (arcjetResponse) return arcjetResponse;
     }
 
-    // If auth is disabled globally, skip session refresh or route protection.
+    // If auth is disabled, skip session refresh or route protection.
     if (!appConfig.auth.enabled) {
         return NextResponse.next();
     }
 
-    // Otherwise, refresh the user's session (SSR-based)
+    // Otherwise, refresh the user's session
     const { user, supabaseResponse } = await updateSession(request);
     const { pathname } = request.nextUrl;
 
@@ -37,12 +37,11 @@ export const config = {
     matcher: [
         /*
          * Match all request paths except:
-         *   - /api/* (API routes)
          *   - _next/static & _next/image (Next.js internals)
          *   - favicon.ico
          *   - manifest.json
          *   - any files ending with .svg, .png, .jpg, .jpeg, .gif, .webp
          */
-        '/((?!api|_next/static|_next/image|favicon.ico|manifest\\.json|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+        '/((?!_next/static|_next/image|favicon.ico|manifest\\.json|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
 };

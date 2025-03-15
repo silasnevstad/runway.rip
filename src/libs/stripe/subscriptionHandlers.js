@@ -1,15 +1,14 @@
-import { supabase } from "@/libs/supabase/config";
+import { supabaseAdmin } from "@/libs/supabase/config";
 
 /**
  * Update subscription details in the profiles table.
  * @param {Object} subscription - Stripe subscription object.
- * @param {string} status - Subscription status.
  */
-async function updateSubscription(subscription, status) {
-    const { id, items, customer } = subscription;
+async function updateSubscription(subscription) {
+    const { id, items, customer, status } = subscription;
     const priceId = items.data[0]?.price?.id;
     const hasAccess = status === "active" || status === "trialing";
-    const { error } = await supabase
+    const { error } = await supabaseAdmin
         .from("profiles")
         .update({
             subscription_id: id,
@@ -27,16 +26,16 @@ async function updateSubscription(subscription, status) {
 }
 
 export async function handleSubscriptionCreated(subscription) {
-    await updateSubscription(subscription, subscription.status);
+    await updateSubscription(subscription);
 }
 
 export async function handleSubscriptionUpdated(subscription) {
-    await updateSubscription(subscription, subscription.status);
+    await updateSubscription(subscription);
 }
 
 export async function handleSubscriptionDeleted(subscription) {
     const { customer } = subscription;
-    const { error } = await supabase
+    const { error } = await supabaseAdmin
         .from("profiles")
         .update({
             subscription_id: null,

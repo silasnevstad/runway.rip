@@ -9,17 +9,24 @@ import appConfig from "@/config";
 
 
 export default function AccountDropdown({
-    profile,
+    user,
     isOpen = false,
     className = "",
 }) {
+    if (appConfig.payment.enabled) {
+        const customerId = user?.stripe_customer_id;
+        if (!customerId) {
+            console.log("🚧 AccountDropdown with payments.enabled require a Stripe customer ID.");
+            return null;
+        }
+    }
+
     const handleLogout = async () => {
         await signout();
     };
 
     const handleBillingPortal = async () => {
-        console.log("🚧 Billing portal is not enabled.", profile.customer_id);
-        await openBillingPortalSession({ customerId: profile.customer_id });
+        await openBillingPortalSession({ customerId: user?.stripe_customer_id });
     }
 
     const dropdownClasses = mergeClasses(
