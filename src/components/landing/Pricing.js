@@ -14,18 +14,16 @@ export default async function Pricing({
     if (appConfig.payment.requiredCustomerId) {
         const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
-        if (!user) {
-            return null;
+        if (user) {
+            const { profile } = await supabase
+                .from("profiles")
+                .select("*")
+                .eq("id", user?.id)
+                .single();
+            if (profile) {
+                customerId = profile.customer_id;
+            }
         }
-        const { profile } = await supabase
-            .from("profiles")
-            .select("*")
-            .eq("id", user?.id)
-            .single();
-        if (!profile) {
-            return null;
-        }
-        customerId = profile.customer_id;
     }
     return (
         <section

@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Button from "@/components/atoms/Button";
 import appConfig from "@/config";
 import { mergeClasses } from "@/utils/styling";
+import {redirect} from "next/navigation";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -22,6 +23,7 @@ export default function CheckoutButton({
         }
         if (appConfig.payment.requiredCustomerId && !customerId) {
             console.error("🚧 Customer ID is required for checkout.");
+            redirect("/signup");
             return;
         }
         try {
