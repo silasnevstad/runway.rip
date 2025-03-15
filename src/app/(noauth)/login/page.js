@@ -2,6 +2,7 @@ import AuthForm from "@/components/auth/AuthForm";
 import TextLink from "@/components/atoms/TextLink";
 import { getSEOTags } from "@/libs/seo";
 import appConfig from "@/config";
+import AuthPage from "@/templates/AuthPage";
 
 export const metadata = getSEOTags({
     title: `Login | ${appConfig.appName}`,
@@ -10,22 +11,6 @@ export const metadata = getSEOTags({
 
 export default function LoginPage() {
     return (
-        <div className="flex flex-col items-center w-full -mt-20 gap-2">
-            <div className="flex flex-col items-center gap-2">
-                <h1 className="max-[430px]:text-2xl text-3xl font-semibold">Welcome back!</h1>
-                <p className="text-lg text-gray-500">Sign in to your account</p>
-            </div>
-            <div className="flex flex-col items-center justify-center w-full max-w-md p-4">
-                <div className="flex flex-col items-center justify-center w-full max-w-md p-4 rounded-lg gap-2">
-                    <AuthForm mode="sign-in"/>
-                </div>
-            </div>
-            <div className="sm:absolute top-8 right-8 flex flex-col items-center sm:items-end opacity-90 hover:opacity-100">
-                <p className="opacity-60 text-sm">New around here?</p>
-                <TextLink href="/signup" className="text-primary-500 hover:opacity-100">
-                    Create an account
-                </TextLink>
-            </div>
-        </div>
+        <AuthPage mode="sign-in" />
     );
 }

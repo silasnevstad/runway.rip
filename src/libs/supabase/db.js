@@ -1,39 +1,34 @@
+'use server';
+
 import { supabase } from "@/libs/supabase/config";
+import { createClient } from '@/utils/supabase/server';
+import appConfig from '@/config';
 
-export async function fetchData(table, columns = "*", filters = {}) {
-    let query = supabase.from(table).select(columns);
-    Object.entries(filters).forEach(([key, value]) => {
-        query = query.eq(key, value);
-    });
-    return query;
-}
+// fetchProfile is optional
+export async function fetchProfile() {
+    if (!appConfig.auth.profiles) return null;
 
-export async function insertData(table, values) {
-    return supabase.from(table).insert(values);
-}
+    const supabaseClient = createClient();
+    // Always re-validate the user on the server:
+    const {
+        data: { user },
+    } = await supabaseClient.auth.getUser();
+    if (!user) {
+        return null;
+    }
 
-export async function updateData(table, values, filters = {}) {
-    let query = supabase.from(table).update(values);
-    Object.entries(filters).forEach(([key, value]) => {
-        query = query.eq(key, value);
-    });
-    return query;
-}
+    // If user is logged in, get their profile row
+    const { data, error } = await supabaseClient
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
 
-export async function upsertData(table, values) {
-    return supabase.from(table).upsert(values).select();
-}
+    if (error) {
+        return null; // Or handle error
+    }
 
-export async function deleteData(table, filters = {}) {
-    let query = supabase.from(table).delete();
-    Object.entries(filters).forEach(([key, value]) => {
-        query = query.eq(key, value);
-    });
-    return query;
-}
-
-export async function callFunction(functionName, args = {}) {
-    return supabase.rpc(functionName, args);
+    return data;
 }
 
 // addLead adds a new lead to the waitlist table (for waiting list)

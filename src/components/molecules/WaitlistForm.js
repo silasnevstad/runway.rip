@@ -20,7 +20,6 @@ export default function WaitlistForm({
         setButtonText('Joining...');
         try {
             const { data, error } = await addWaitlist(email);
-            console.log(error, error?.code);
             if (error && error.code === '23505') {
                 setButtonText('Already on waitlist!');
                 setTimeout(() => {

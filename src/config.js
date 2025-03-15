@@ -25,12 +25,16 @@ const appConfig = {
 
     // Auth
     auth: {
+        enabled: true,
+        profiles: true,
         methods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
         protectedRoutes: [
             '/dashboard',
             '/account',
         ],
+        unauthenticatedRedirect: '/login',
         afterLoginPath: '/account',
+        afterLogoutPath: '/',
         afterSignupPath: '/confirm-email',  // This is only need if
         afterSignoutPath: '/',
     },
@@ -47,7 +51,7 @@ const appConfig = {
         enabled: false,
     },
 
-    // Payments
+    // Payments (one-time, subscriptions, usage based)
     payment: {
         enabled: true,
         requiredCustomerId: true,
@@ -90,8 +94,8 @@ export const landingConfig = {
 
     hero: {
         textHighlight: {
-            text: "Code less, launch faster.",
-            highlight: "launch faster.", // If you want no highlight, set to ""
+            text: "Lorem ipsum dolor sit amet.",
+            highlight: "sit amet.", // If you want no highlight, set to ""
             // Either use the gradients or the highlight color.
             fromGradient: "primary",
             toGradient: "purple",
@@ -221,65 +225,65 @@ export const landingConfig = {
     }
 };
 
-export const pricingConfig = {
-    promo: {
-        show: true,
-        price: 50,
-        text: "off for first 1000 users (12 left)",
-        code: "LAUNCH",
-    },
-    plans: [
-        {  // Starter Plan
-            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
-            intervals: [
-                {
-                    label: "",
-                    oldPrice: 99,
-                    price: 49,
-                    priceId: "price_1QzuhUGjMg6waABSeUThW8Mw"  // COPY YOUR PRICE ID IN HERE
-                }
-            ],
-            title: "Starter",
-            description: "",
-            subText: "Pay once, use forever.",
-            isPopular: false,
-            features: [
-                "NextJS boilerplate",
-                "Component library",
-                "Database",
-                "Payments",
-                "Auth",
-                "Email Service",
-                "Lifetime updates",
-            ]
-        },
-        { // Pro Plan
-            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
-            intervals: [
-                {
-                    label: "",
-                    oldPrice: 149,
-                    price: 99,
-                    priceId: "price_1QzuhyGjMg6waABScXMOVTDF" // COPY YOUR PRICE ID IN HERE
-                }
-            ],
-            title: "All-in",
-            description: "",
-            subText: "Pay once, use forever.",
-            isPopular: true,
-            features: [
-                "NextJS boilerplate",
-                "Component library",
-                "Database",
-                "Payments",
-                "Auth",
-                "Email Service",
-                "SEO tools",
-                "Lifetime updates",
-            ]
-        }
-    ]
-};
+// export const pricingConfig = {
+//     promo: {
+//         show: true,
+//         price: 50,
+//         text: "off for first 1000 users (12 left)",
+//         code: "LAUNCH",
+//     },
+//     plans: [
+//         {  // Starter Plan
+//             mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
+//             intervals: [
+//                 {
+//                     label: "",
+//                     oldPrice: 99,
+//                     price: 49,
+//                     priceId: "price_1QzuhUGjMg6waABSeUThW8Mw"  // COPY YOUR PRICE ID IN HERE
+//                 }
+//             ],
+//             title: "Starter",
+//             description: "",
+//             subText: "Pay once, use forever.",
+//             isPopular: false,
+//             features: [
+//                 "NextJS boilerplate",
+//                 "Component library",
+//                 "Database",
+//                 "Payments",
+//                 "Auth",
+//                 "Email Service",
+//                 "Lifetime updates",
+//             ]
+//         },
+//         { // Pro Plan
+//             mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
+//             intervals: [
+//                 {
+//                     label: "",
+//                     oldPrice: 149,
+//                     price: 99,
+//                     priceId: "price_1QzuhyGjMg6waABScXMOVTDF" // COPY YOUR PRICE ID IN HERE
+//                 }
+//             ],
+//             title: "All-in",
+//             description: "",
+//             subText: "Pay once, use forever.",
+//             isPopular: true,
+//             features: [
+//                 "NextJS boilerplate",
+//                 "Component library",
+//                 "Database",
+//                 "Payments",
+//                 "Auth",
+//                 "Email Service",
+//                 "SEO tools",
+//                 "Lifetime updates",
+//             ]
+//         }
+//     ]
+// };
 
 export const featuresConfig = [
     {
@@ -383,12 +387,12 @@ export const faqConfig = [
 
 // NOT NEEDED (JUST FOR EXAMPLE)
 // Example of subscription pricing config
-export const pricingSubcriptionConfig = {
+export const pricingConfig = {
     promo: {
         show: true,
         price: 50,
         text: "off for first 1000 users (12 left)",
-        code: "LAUNCH",
+        code: "LAUCNH20",
     },
     plans: [
         {  // Starter Plan
@@ -400,7 +404,7 @@ export const pricingSubcriptionConfig = {
                     oldPrice: 29,
                     price: 19,
                     discountLabel: "Save 40%",
-                    priceId: "price_monthly_xxx"
+                    priceId: "price_1R1o2HGjMg6waABSFbKVt0yY"
                 },
                 {
                     name: "yearly",
@@ -408,7 +412,7 @@ export const pricingSubcriptionConfig = {
                     oldPrice: 199,
                     price: 99,
                     discountLabel: "Save 50%",
-                    priceId: "price_yearly_xxx"
+                    priceId: "price_1QzufqGjMg6waABSiJOX02ad"
                 }
             ],
             title: "Starter",
@@ -434,7 +438,7 @@ export const pricingSubcriptionConfig = {
                     oldPrice: 49,
                     price: 29,
                     discountLabel: "Save 40%",
-                    priceId: "price_monthly_xxx"
+                    priceId: "price_1QzufNGjMg6waABSI2F3rZY0"
                 },
                 {
                     name: "yearly",
@@ -442,7 +446,7 @@ export const pricingSubcriptionConfig = {
                     oldPrice: 399,
                     price: 299,
                     discountLabel: "Save 50%",
-                    priceId: "price_yearly_xxx"
+                    priceId: "price_1R1o2xGjMg6waABSOuBztFXC"
                 }
             ],
             title: "All-in",

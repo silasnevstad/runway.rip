@@ -1,19 +1,18 @@
-"use client";
-
-import React, {useEffect, useState} from "react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { FaRegCreditCard, FaRegCircleUser, FaRightFromBracket } from "react-icons/fa6";
 
 import Avatar from "@/components/atoms/Avatar";
 import Button from "@/components/atoms/Button";
-import { useUser } from "@/contexts/UserContext";
-import { createBillingPortalSession } from "@/libs/stripe/portal";
-import { signout } from "@/app/actions/auth";
+import { openBillingPortalSession } from "@/libs/stripe/portal";
 import { BORDER_RADIUS, getTextSize, mergeClasses } from "@/utils/styling";
-
+import appConfig from "@/config";
+import { signout } from "@/app/actions/auth";
+import AccountDropdown from "@/components/auth/AccountDropdown";
 
 export default function AccountCard({
+    user,
+    profile,
     size = "sm",
     borderRadius = "lg",
     padding = 8,
@@ -25,46 +24,22 @@ export default function AccountCard({
     ...props
 }) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [billingPortalUrl, setBillingPortalUrl] = useState(null);
-    const { user } = useUser();
-    const router = useRouter();
-
-    useEffect(() => {
-        const createBillingPortalUrl = async () => {
-            if (user?.profile?.customer_id) {
-                return await createBillingPortalSession({
-                    customerId: user.profile.customer_id,
-                    returnUrl: window.location.href
-                });
-            } else {
-                return null;
-            }
-        }
-        createBillingPortalUrl().then((url) => {
-            setBillingPortalUrl(url);
-        });
-    }, [user]);
 
     if (!user) {
         return <Button href="/signup" variant="soft" border borderRadius="full" size="sm">Sign Up</Button>;
     }
-    const avatarSrc = user?.profile?.image || user?.user_metadata?.avatar_url;
-    const displayName = user?.profile?.name || user?.user_metadata?.full_name || user?.email;
+    const avatarSrc = profile?.image || user?.user_metadata?.avatar_url;
+    const displayName = profile?.name || user?.user_metadata?.full_name || user?.email;
 
     const borderRadiusClass = BORDER_RADIUS[borderRadius] || BORDER_RADIUS.lg;
 
     const cardClasses = mergeClasses(
         "flex items-center gap-2 px-2",
         borderRadiusClass,
-        bg && "bg-bg-50 dark:bg-gray-900 border border-transparent",
+        bg && "bg-bg-50 dark:bg-gray-900 border border-gray-200 border-gray-900",
         bg && dropdownOpen && "border border-bg-200 dark:border-gray-800/50",
         className,
     );
-
-    const handleLogout = async () => {
-        await signout();
-        router.refresh();
-    };
 
     return (
         <div className="relative">
@@ -87,39 +62,11 @@ export default function AccountCard({
                 />
             </div>
             {dropdownOpen && (
-                <div className="absolute right-0 mt-2 flex gap-0.5 flex-col w-full min-w-48 bg-bg-50 dark:bg-gray-900  rounded-lg shadow-lg z-10">
-                    <Button
-                        href="/account"
-                        variant="soft"
-                        color="gray"
-                        size="md"
-                        className="text-left justify-start py-1.5 m-1 mb-0 text-sm bg-bg-50 dark:bg-gray-900"
-                        icon={FaRegCircleUser}
-                    >
-                        Account
-                    </Button>
-                    {billingPortalUrl && (
-                        <Button
-                            href={billingPortalUrl}
-                            variant="soft"
-                            color="gray"
-                            size="md"
-                            className="text-left justify-start py-1.5 m-1 mb-0 text-sm bg-bg-50 dark:bg-gray-900"
-                            icon={FaRegCreditCard}
-                        >
-                            Billing
-                        </Button>
-                    )}
-                    <Button
-                        onClick={handleLogout}
-                        variant="soft"
-                        color="gray"
-                        className="text-left justify-start py-1.5 m-1 mt-0 text-sm bg-bg-50 dark:bg-gray-900"
-                        icon={FaRightFromBracket}
-                    >
-                        Logout
-                    </Button>
-                </div>
+                <AccountDropdown
+                    profile={profile}
+                    isOpen={dropdownOpen}
+                    onClose={() => setDropdownOpen(false)}
+                />
             )}
         </div>
     );

@@ -9,6 +9,7 @@ export default function PricingCard({
     plan,
     interval,
     allFeatures,
+    customerId,
 }) {
     const { title, description, subText, features, isPopular, mode } = plan;
 
@@ -37,7 +38,11 @@ export default function PricingCard({
             <PlanFeatures planFeatures={features} allFeatures={allFeatures} />
 
             <div className="flex flex-col gap-2 mt-auto">
-                <CheckoutButton mode={mode} priceId={interval.priceId}>
+                <CheckoutButton
+                    mode={mode}
+                    priceId={interval.priceId}
+                    customerId={customerId}
+                >
                     <RocketLaunchIcon className="w-5 h-5" />
                     {mode === "subscription" ? "Subscribe" : "Buy Now"}
                 </CheckoutButton>

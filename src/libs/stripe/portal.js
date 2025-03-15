@@ -1,4 +1,5 @@
 import stripe from "./stripe";
+import {redirect} from "next/navigation";
 
 export async function createBillingPortalSession({ customerId, returnUrl, flowData }) {
     const session = await stripe.billingPortal.sessions.create({
@@ -9,13 +10,12 @@ export async function createBillingPortalSession({ customerId, returnUrl, flowDa
     return session.url;
 }
 
-export const createBillingPortalUrl = async (user) => {
-    if (user?.profile?.customer_id) {
-        return await createBillingPortalSession({
-            customerId: user.profile.customer_id,
-            returnUrl: window.location.href
-        });
-    } else {
-        return null;
+export async function openBillingPortalSession({ customerId }) {
+    const session = await stripe.billingPortal.sessions.create({
+        customer: customerId,
+        return_url: window.location.href,
+    });
+    if (session.url) {
+        window.location.href = session.url;
     }
 }

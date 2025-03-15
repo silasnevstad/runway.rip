@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
+import { arcjetHandleRequest } from '@/libs/arcjet/arcjet';
 import { updateSession } from '@/utils/supabase/middleware';
-import { arcjetHandleRequest } from "@/libs/arcjet/arcjet";
 import appConfig from '@/config';
 
 export async function middleware(request) {
@@ -10,7 +10,12 @@ export async function middleware(request) {
         if (arcjetResponse) return arcjetResponse;
     }
 
-    // Update session via Supabase
+    // If auth is disabled globally, skip session refresh or route protection.
+    if (!appConfig.auth.enabled) {
+        return NextResponse.next();
+    }
+
+    // Otherwise, refresh the user's session (SSR-based)
     const { user, supabaseResponse } = await updateSession(request);
     const { pathname } = request.nextUrl;
 
@@ -20,13 +25,14 @@ export async function middleware(request) {
     );
     if (isProtectedRoute && !user) {
         const url = request.nextUrl.clone();
-        url.pathname = '/login';  // Redirect to /login if not authenticated
+        url.pathname = appConfig.auth.unauthenticatedRedirect;
         return NextResponse.redirect(url);
     }
 
     return supabaseResponse;
 }
 
+// Restrict which routes run the middleware
 export const config = {
     matcher: [
         /*

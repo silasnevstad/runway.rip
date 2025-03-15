@@ -1,40 +1,50 @@
-"use client";
+'use client';
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { createClient } from "@/utils/supabase/client";
-import { useRouter } from "next/navigation";
+import { createContext, useContext, useEffect, useState } from 'react';
+import { getBrowserClient } from '@/utils/supabase/client';
+import { useAuth } from './AuthContext';
 
-const UserContext = createContext({ user: null });
+const UserProfileContext = createContext(null);
 
-export default function ClientUserProvider({ initialUser, children }) {
-    const [user, setUser] = useState(initialUser);
-    const supabase = createClient();
-    const router = useRouter();
+export function UserProvider({ children }) {
+    const { user, isLoading: authLoading } = useAuth();
+    const [profile, setProfile] = useState(null);
+    const [loadingProfile, setLoadingProfile] = useState(false);
+    const supabase = getBrowserClient();
 
     useEffect(() => {
-        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-            if (session?.user) {
-                router.refresh();
-            } else {
-                setUser(null);
-            }
-        });
-        return () => {
-            authListener.subscription.unsubscribe();
-        };
-    }, [supabase, router]);
+        if (!authLoading && user) {
+            // fetch the user's profile row, if appConfig.auth.profiles is true
+            setLoadingProfile(true);
+            supabase
+                .from('profiles')
+                .select('*')
+                .eq('id', user.id)
+                .single()
+                .then(({ data, error }) => {
+                    setLoadingProfile(false);
+                    if (error) {
+                        console.error('Error loading profile:', error);
+                        setProfile(null);
+                    } else {
+                        setProfile(data);
+                    }
+                });
+        } else {
+            // user is null or not loaded yet
+            setProfile(null);
+        }
+    }, [user, authLoading, supabase]);
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserProfileContext.Provider value={{ profile, loadingProfile }}>
             {children}
-        </UserContext.Provider>
+        </UserProfileContext.Provider>
     );
 }
 
-export const useUser = () => {
-    const context = useContext(UserContext);
-    if (context === undefined) {
-        throw new Error("useUser must be used within a UserProvider");
-    }
-    return context;
-};
+export function useUser() {
+    const ctx = useContext(UserProfileContext);
+    if (!ctx) throw new Error('useUserProfile must be used inside UserProfileProvider');
+    return ctx;
+}

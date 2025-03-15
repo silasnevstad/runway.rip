@@ -1,10 +1,7 @@
-"use client";
-
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
 import Button from "@/components/atoms/Button";
-import { useUser } from "@/contexts/UserContext";
 import appConfig from "@/config";
 import { mergeClasses } from "@/utils/styling";
 
@@ -14,20 +11,17 @@ export default function CheckoutButton({
     children,
     mode,
     priceId,
-    customerId: overrideCustomerId,
-    customerEmail: overrideCustomerEmail,
+    customerId,
     className = "",
     ...props
 }) {
-    const { user } = useUser();
-
-    // Automatically use user context if no overrides are provided.
-    const customerId = overrideCustomerId ?? user?.profile?.customer_id;
-    const customerEmail = overrideCustomerEmail ?? user?.email;
-
     const handleCheckout = async () => {
         if (!appConfig.payment.enabled) {
             console.error("🚧 Payments (appConfig.payment) are not enabled.");
+            return;
+        }
+        if (appConfig.payment.requiredCustomerId && !customerId) {
+            console.error("🚧 Customer ID is required for checkout.");
             return;
         }
         try {
@@ -36,7 +30,8 @@ export default function CheckoutButton({
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    data: { mode, priceId, customerId, customerEmail },
+
+                    data: { mode, priceId, customerId },
                 }),
             });
             if (!response.ok) {

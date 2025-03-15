@@ -13,13 +13,14 @@ export async function POST(req) {
             );
         }
 
-        // Optionally include customer details
-        const { customerId, customerEmail } = data;
+        // Optionally include customer id
+        const { customerId } = data;
 
         // If mode is subscription or customer integration is used, customerId is required
-        if ((mode === "subscription" || appConfig.payment.requiredCustomerId) && !customerId) {
+        if ((mode === "subscription" || appConfig.payment.requiredCustomerId) && !customerId)  {
+            console.error("🚧 Missing required customer information for checkout session!");
             return NextResponse.json(
-                { error: "Missing required customer ID for subscription." },
+                { error: "Missing required customer information for subscription." },
                 { status: 400 }
             );
         }
@@ -29,7 +30,6 @@ export async function POST(req) {
             mode,
             priceId,
             customerId: customerId || null,
-            customerEmail: customerEmail || null,
             successUrl: `${origin}${appConfig.payment.afterCheckoutPath}`,
             cancelUrl: `${origin}/`,
         });

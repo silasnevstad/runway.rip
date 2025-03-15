@@ -2,12 +2,11 @@ import Header from "@/components/organisms/Header";
 import Footer from "@/components/organisms/Footer";
 import SimpleFooter from "@/components/organisms/SimpleFooter";
 
-
-export default function BaseLayout({
-    header = true,
+export default async function BaseLayout({
+    header = false,
     leftNav,
     children,
-    footer = true,
+    footer = false,
 })  {
     return (
         <div className="flex flex-col min-h-screen bg-bg-0 dark:bg-bg-900">

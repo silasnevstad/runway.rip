@@ -1,6 +1,7 @@
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
+import appConfig from "@/config";
 
 export async function POST(request) {
     const supabase = await createClient();
@@ -8,6 +9,6 @@ export async function POST(request) {
     if (user) {
         await supabase.auth.signOut();
     }
-    revalidatePath('/', 'layout');
-    return NextResponse.redirect(new URL('/login', request.url), { status: 302 });
+    revalidatePath(appConfig.auth.afterLogoutPath, 'layout');
+    return NextResponse.redirect(new URL(appConfig.auth.afterLogoutPath, request.url), { status: 302 });
 }

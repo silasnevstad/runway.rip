@@ -1,16 +1,32 @@
-"use client";
-
 import React from "react";
 import { GiftIcon } from "@heroicons/react/24/outline";
 
 import PricingPlans from "@/components/payments/PricingPlans";
-import { landingConfig, pricingConfig } from "@/config";
+import appConfig, { landingConfig, pricingConfig } from "@/config";
+import {createClient} from "@/utils/supabase/server";
 
 
-export default function Pricing({
+export default async function Pricing({
     title = landingConfig.pricing.title,
     subtitle = landingConfig.pricing.subtitle,
 }) {
+    let customerId;
+    if (appConfig.payment.requiredCustomerId) {
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+            return null;
+        }
+        const { profile } = await supabase
+            .from("profiles")
+            .select("*")
+            .eq("id", user?.id)
+            .single();
+        if (!profile) {
+            return null;
+        }
+        customerId = profile.customer_id;
+    }
     return (
         <section
             id="pricing"
@@ -31,7 +47,7 @@ export default function Pricing({
                     </p>
                 )}
                 <div className="flex flex-col items-center max-sm:gap-0 mt-8">
-                    <PricingPlans />
+                    <PricingPlans customerId={customerId} />
                 </div>
             </div>
         </section>

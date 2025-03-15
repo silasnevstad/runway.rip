@@ -5,7 +5,7 @@ import appConfig from '@/config';
 export async function GET(request) {
     const { searchParams, origin } = new URL(request.url);
     const code = searchParams.get('code');
-    const next = searchParams.get('next') ?? appConfig.afterLoginPath;
+    const next = searchParams.get('next') ?? appConfig.auth.afterLoginPath;
 
     if (code) {
         const supabase = await createClient();

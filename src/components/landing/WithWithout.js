@@ -15,14 +15,14 @@ export default function WithWithout({
     return (
         <section
             id="with-without"
-            className="flex flex-col items-center w-full"
+            className="flex flex-col items-center w-full sm:w-5/6 lg:w-5/6 max-w-7xl px-6 sm:px-4"
         >
             {title && (
                 <p className="max-w-4xl text-4xl font-black text-gray-800 dark:text-gray-100 text-center mb-15 px-4">
                     {title}
                 </p>
             )}
-            <div className="flex flex-col lg:flex-row gap-10 w-full max-w-6xl max-xl:w-4/6 max-lg:w-4/6 max-sm:w-5/6">
+            <div className="flex flex-col lg:flex-row gap-10 w-full max-w-6xl">
                 <Card
                     className="flex-1 pb-4"
                     padding={30}

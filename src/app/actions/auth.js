@@ -24,13 +24,13 @@ export async function passwordSignup(prevState, formData) {
         password,
         options: {
             emailRedirectTo: process.env.WEBSITE_URL + appConfig.auth.afterSignupPath,
-        }
+        },
     });
     if (error) {
         return { errors: { email: error.message } };
     }
 
-    revalidatePath(appConfig.auth.afterSignupPath, "layout");
+    revalidatePath(appConfig.auth.afterSignupPath);
     redirect(appConfig.auth.afterSignupPath);
 }
 
@@ -43,14 +43,14 @@ export async function passwordSignin(prevState, formData) {
         return { errors: validatedFields.error.flatten().fieldErrors };
     }
 
-    const { email, password } = validatedFields.data;
     const supabase = await createClient();
+    const { email, password } = validatedFields.data;
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
         return { errors: { email: error.message } };
     }
 
-    revalidatePath(appConfig.auth.afterLoginPath, "layout");
+    revalidatePath(appConfig.auth.afterLoginPath);
     redirect(appConfig.auth.afterLoginPath);
 }
 
@@ -61,8 +61,9 @@ export async function passwordlessSignin(prevState, formData) {
     if (!validatedFields.success) {
         return { errors: validatedFields.error.flatten().fieldErrors };
     }
-    const { email } = validatedFields.data;
+
     const supabase = await createClient();
+    const { email } = validatedFields.data;
     const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
@@ -102,6 +103,7 @@ export async function signout() {
     if (error) {
         return { errors: { signout: error.message } };
     }
-    revalidatePath(appConfig.auth.afterSignoutPath, "layout");
+
+    revalidatePath(appConfig.auth.afterSignoutPath);
     redirect(appConfig.auth.afterSignoutPath);
 }

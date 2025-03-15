@@ -20,6 +20,8 @@ export default function Header({
     fixed = landingConfig.header.fixed,
     bottomBorder = false,
     auth = landingConfig.header.auth,
+    user,
+    profile,
     accountCardProps = {},
     className = "",
     ...props
@@ -81,7 +83,7 @@ export default function Header({
                         </Button>
                     )}
                     {auth && (
-                        <AccountCard {...accountCardProps} />
+                        <AccountCard user={user} profile={profile} {...accountCardProps} />
                     )}
                 </div>
 

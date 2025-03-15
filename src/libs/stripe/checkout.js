@@ -15,7 +15,6 @@ export async function createCheckoutSession({
     mode,
     priceId,
     customerId,
-    customerEmail,
     successUrl,
     cancelUrl,
     metadata = {},
@@ -36,11 +35,11 @@ export async function createCheckoutSession({
         };
 
         // If a customer ID exists (for authenticated users), attach it.
-        // Otherwise, use the email (for guest checkouts).
         if (customerId) {
             sessionParams.customer = customerId;
-        } else if (customerEmail) {
-            sessionParams.customer_email = customerEmail;
+            sessionParams.customer_update = {
+                address: 'auto'
+            };
         }
 
         // Optionally add discounts here, e.g.:

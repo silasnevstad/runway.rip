@@ -1,4 +1,4 @@
-import { updateData } from "@/libs/supabase/db";
+import { supabase } from "@/libs/supabase/config";
 
 /**
  * Update subscription details in the profiles table.
@@ -9,16 +9,16 @@ async function updateSubscription(subscription, status) {
     const { id, items, customer } = subscription;
     const priceId = items.data[0]?.price?.id;
     const hasAccess = status === "active" || status === "trialing";
-    const { error } = await updateData(
-        "profiles",
-        {
+    const { error } = await supabase
+        .from("profiles")
+        .update({
             subscription_id: id,
             price_id: priceId,
             subscription_status: status,
             has_access: hasAccess,
-        },
-        { customer_id: customer }
-    );
+        })
+        .eq("customer_id", customer);
+
     if (error) {
         console.error(`Error updating subscription (${status}):`, error);
     } else {
@@ -36,16 +36,16 @@ export async function handleSubscriptionUpdated(subscription) {
 
 export async function handleSubscriptionDeleted(subscription) {
     const { customer } = subscription;
-    const { error } = await updateData(
-        "profiles",
-        {
+    const { error } = await supabase
+        .from("profiles")
+        .update({
             subscription_id: null,
             price_id: null,
             subscription_status: "deleted",
             has_access: false,
-        },
-        { customer_id: customer }
-    );
+        })
+        .eq("customer_id", customer);
+
     if (error) {
         console.error("Error updating subscription deletion:", error);
     } else {

@@ -41,7 +41,7 @@ const PasswordAuthForm = ({ mode = 'sign-in' }) => {
         <form className="flex flex-col w-full gap-5" action={action}>
             <AuthInput label="Email" name="email" type="email" />
             <AuthInput label="Password" name="password" type="password" secure />
-            {mode === 'signup' && (
+            {mode === 'sign-up' && (
                 <AuthInput label="Confirm Password" name="confirmPassword" type="password" secure />
             )}
             <LoadingButton mode={mode} pending={pending} />

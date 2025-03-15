@@ -1,6 +1,11 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse } from 'next/server';
 
+/**
+ * Refreshes the user's session by calling supabase.auth.getUser().
+ * This revalidates tokens with Supabase.
+ * We then produce a NextResponse with updated cookies (if the token changed).
+ */
 export async function updateSession(request) {
     let supabaseResponse = NextResponse.next({ request });
 
@@ -23,12 +28,10 @@ export async function updateSession(request) {
         }
     );
 
-    // Refresh the user's session (this call revalidates and updates the auth token).
-    // IMPORTANT: Do not remove or change this call as it ensures that the session remains valid.
     const {
         data: { user },
+        // error,
     } = await supabase.auth.getUser();
-
-    // Return the user plus the base NextResponse with updated cookies.
+    
     return { user, supabaseResponse };
 }

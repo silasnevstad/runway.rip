@@ -1,13 +1,11 @@
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "next-themes";
 
-import UserProvider from "@/contexts/UserProvider";
-import { ToastProvider } from "@/contexts/ToastProvider";
 import { getSEOTags } from "@/libs/seo";
 import { FathomAnalytics } from "@/libs/fathom/fathom";
 import appConfig from "@/config";
 import "./globals.css";
 import TopLoader from "@/components/atoms/TopLoader";
+import AppProviders from "@/contexts/AppProviders";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,14 +24,10 @@ export default function RootLayout({ children }) {
             </head>
             <body className={inter.className}>
                 <FathomAnalytics />
-                <TopLoader/>
-                <ThemeProvider enableSystem={true} defaultTheme={'system'} attribute="class">
-                    <UserProvider>
-                        <ToastProvider>
-                            {children}
-                        </ToastProvider>
-                    </UserProvider>
-                </ThemeProvider>
+                <TopLoader />
+                <AppProviders>
+                    {children}
+                </AppProviders>
             </body>
         </html>
     );

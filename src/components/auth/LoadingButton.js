@@ -11,6 +11,8 @@ export default function LoadingButton({ mode = 'sign-in', pending }) {
                 return 'Sign Up';
             case 'magiclink':
                 return 'Send Magic Link';
+            case 'sign-in':
+                return 'Sign In';
             default:
                 return 'Sign In';
         }
@@ -22,6 +24,8 @@ export default function LoadingButton({ mode = 'sign-in', pending }) {
                 return 'Signing Up...';
             case 'magiclink':
                 return 'Sending Magic Link...';
+            case 'sign-in':
+                return 'Signing In...';
             default:
                 return 'Signing In...';
         }

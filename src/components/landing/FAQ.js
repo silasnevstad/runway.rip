@@ -12,7 +12,7 @@ export default function FAQ({
     return (
         <section
             id="faq"
-            className="flex flex-col items-center w-full"
+            className="flex flex-col items-center w-full sm:w-5/6 lg:w-5/6 max-w-7xl px-6 sm:px-4"
         >
             <div
                 className="flex sm:flex-row flex-col justify-between gap-10 mb-10 max-sm:px-6"

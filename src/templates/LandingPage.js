@@ -1,9 +1,7 @@
 import Hero from "@/components/landing/Hero";
 import FeaturesCarousel from "@/components/landing/FeaturesCarousel";
 import FeaturesGrid from "@/components/landing/FeaturesGrid";
-import Why from "@/components/landing/Why";
 import WithWithout from "@/components/landing/WithWithout";
-import HowItWorks from "@/components/landing/HowItWorks";
 import ImageSection from "@/components/landing/ImageSection";
 import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
@@ -12,7 +10,6 @@ import appConfig, { landingConfig } from "@/config";
 import Header from "@/components/organisms/Header";
 import Footer from "@/components/organisms/Footer";
 
-// Customize a section with padding and background color
 const SectionWrapper = ({ show = true, className = "", children }) => {
     if (!show) return null;
     return <div className={`flex flex-col items-center w-full z-10 ${className}`}>{children}</div>;
@@ -25,7 +22,7 @@ export default function LandingPage() {
 
             <Hero />
 
-            <SectionWrapper show={landingConfig.features.show} className="-mt-14 pb-30">
+            <SectionWrapper show={landingConfig.features.show} className="-mt-32 pb-30">
                 {landingConfig.features.type === "grid" ? <FeaturesGrid /> : <FeaturesCarousel />}
             </SectionWrapper>
 

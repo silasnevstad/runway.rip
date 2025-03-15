@@ -8,7 +8,7 @@ export const metadata = getSEOTags({
 
 export default function Account() {
     return (
-        <div className="flex w-full h-full items-center justify-center">
+        <div className="flex w-full h-full items-center justify-center pt-10">
         </div>
     )
 }
