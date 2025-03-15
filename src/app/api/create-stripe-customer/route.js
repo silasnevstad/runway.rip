@@ -1,22 +1,25 @@
 import { NextResponse } from 'next/server';
+
 import stripe from '@/libs/stripe/stripe';
 
 export async function POST(req) {
     try {
-        const { email } = await req.json();
-
-        // Ensure the email is provided
+        const { email, id } = await req.json();
         if (!email) {
             return NextResponse.json(
                 { status: '400', error: 'Email is required' },
                 { status: 400 }
             );
         }
+        if (!id) {
+            return NextResponse.json(
+                { status: '400', error: 'ID is required' },
+                { status: 400 }
+            );
+        }
 
-        // Create a new Stripe customer with provided email
-        const customer = await stripe.customers.create({ email });
+        const customer = await stripe.customers.create({ email, ...{ metadata: { id } } });
 
-        // Return customer ID
         return NextResponse.json(
             { status: '200', customer_id: customer.id },
             { status: 200 }

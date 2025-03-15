@@ -1,4 +1,5 @@
 import React from "react";
+
 import Badge from "@/components/atoms/Badge";
 import PlanFeatures from "@/components/payments/PlanFeatures";
 import PlanPrice from "@/components/payments/PlanPrice";

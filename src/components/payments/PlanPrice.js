@@ -17,8 +17,8 @@ export default function PlanPrice({ interval }) {
 
             {discountLabel && (
                 <span className="inline-block bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">
-          {discountLabel}
-        </span>
+                    {discountLabel}
+                </span>
             )}
         </div>
     );

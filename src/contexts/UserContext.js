@@ -1,8 +1,10 @@
-'use client';
+// UNUSED, BUT HERE FOR REFERENCE IF YOU DECIDE TO USE IT
+"use client";
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { getBrowserClient } from '@/utils/supabase/client';
-import { useAuth } from './AuthContext';
+import { createContext, useContext, useEffect, useState } from "react";
+
+import { getBrowserClient } from "@/utils/supabase/client";
+import { useAuth } from "@/contexts/AuthContext"
 
 const UserProfileContext = createContext(null);
 

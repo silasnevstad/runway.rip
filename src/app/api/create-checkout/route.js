@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { createCheckoutSession } from "@/libs/stripe/checkout";
 import appConfig from "@/config";
 
@@ -16,7 +17,7 @@ export async function POST(req) {
         // Optionally include customer id
         const { customerId } = data;
 
-        // If mode is subscription or customer integration is used, customerId is required
+        // If mode is subscription or stripe customer id is used, customerId is required
         if ((mode === "subscription" || appConfig.payment.requiredCustomerId) && !customerId)  {
             console.error("🚧 Missing required customer information for checkout session!");
             return NextResponse.json(

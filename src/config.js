@@ -53,7 +53,6 @@ const appConfig = {
     // Payments
     payment: {
         enabled: true,
-        type: 'one-time', // 'one-time', 'subscription', 'usage'
         requiredCustomerId: true,
         afterCheckoutPath: '/account',
     },

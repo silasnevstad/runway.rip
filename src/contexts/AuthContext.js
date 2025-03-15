@@ -1,3 +1,4 @@
+// UNUSED, BUT HERE FOR REFERENCE IF YOU DECIDE TO USE IT
 "use client";
 
 import { createContext, useContext, useEffect, useState } from 'react';

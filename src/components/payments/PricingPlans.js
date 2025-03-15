@@ -1,21 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+
+import Switcher from "@/components/atoms/Switcher";
 import PricingCard from "@/components/payments/PricingCard";
 import { pricingConfig } from "@/config";
-import Switcher from "@/components/atoms/Switcher";
 
 export default function PricingPlans({ customerId }) {
     const { plans } = pricingConfig;
 
-    // Let the user toggle monthly vs. yearly (default monthly)
-    // If a plan doesn't have "monthly", it uses the first one in intervals.
     const [activeInterval, setActiveInterval] = useState("monthly");
-
-    // Combine all features from all plans
     const allFeatures = Array.from(new Set(plans.flatMap((p) => p.features)));
-
-    // Check if we have multiple intervals (like monthly/yearly) across any plan
     const hasIntervalToggle = plans.some((p) => p.intervals?.length > 1);
 
     const handleToggle = (name) => {

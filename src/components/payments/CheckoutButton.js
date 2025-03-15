@@ -1,10 +1,10 @@
 import React from "react";
+import { redirect } from "next/navigation";
 import { loadStripe } from "@stripe/stripe-js";
 
 import Button from "@/components/atoms/Button";
-import appConfig from "@/config";
 import { mergeClasses } from "@/utils/styling";
-import {redirect} from "next/navigation";
+import appConfig from "@/config";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -21,7 +21,7 @@ export default function CheckoutButton({
             console.error("🚧 Payments (appConfig.payment) are not enabled.");
             return;
         }
-        if (appConfig.payment.requiredCustomerId && !customerId) {
+        if ((mode === "subscription" || appConfig.payment.requiredCustomerId) && !customerId) {
             console.error("🚧 Customer ID is required for checkout.");
             redirect("/signup");
             return;
@@ -50,7 +50,11 @@ export default function CheckoutButton({
     };
 
     return (
-        <Button onClick={handleCheckout} className={mergeClasses("font-bold text-md", className)} {...props}>
+        <Button
+            onClick={handleCheckout}
+            className={mergeClasses("font-bold text-md", className)}
+            {...props}
+        >
             {children}
         </Button>
     );

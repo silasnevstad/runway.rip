@@ -5,8 +5,7 @@ import {pricingConfig} from "@/config";
  * Create a Stripe Checkout Session.
  * @param {Object} mode - Checkout mode (payment or subscription).
  * @param {string} priceId - Price ID.
- * @param {string} [customerId] - Customer ID (optional).
- * @param {string} [customerEmail] - Customer email (optional).
+ * @param {string} [customerId] - Customer ID (optional, required with subscriptions).
  * @param {string} successUrl - URL to redirect to on successful payment.
  * @param {string} cancelUrl - URL to redirect to on canceled payment.
  * @param {Object} [metadata] - Metadata (optional).
@@ -42,8 +41,10 @@ export async function createCheckoutSession({
             };
         }
 
-        // Optionally add discounts here, e.g.:
-        sessionParams.discounts = [{ coupon: pricingConfig.promo.code }];
+        // Add discounts
+        if (pricingConfig.promo) {
+            sessionParams.discounts = [{ coupon: pricingConfig.promo.code }];
+        }
 
         const session = await stripe.checkout.sessions.create(sessionParams);
         return session;
