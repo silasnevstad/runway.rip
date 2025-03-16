@@ -1,0 +1,53 @@
+---
+title: "Security"
+description: "Bot protection, rate limiting, attack protection, and more."
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Usage"
+    href: "#usage"
+related:
+  - title: "Config"
+    href: "/docs/features/config"
+sites:
+  - title: "Arcjet"
+    href: "https://arcjet.com"
+---
+
+<div id="overview" />
+
+Runway uses [Arcjet](https://arcjet.com) to provide a secure environment for your application, protecting from **bots**, **rate limiting**, **attacks**, and more.
+
+<div className="my-5" />
+
+To get started, get a `ARCJET_KEY` from [Arcjet's dashboard](https://app.arcjet.com/) and add it to your `.env.local` file:
+
+```.env.local
+ARCJET_KEY=your_arcjet_key
+```
+
+<div className="my-5" />
+
+Then, update the `appConfig` in `config.js` to your liking:
+
+```config.js
+const appConfig = {
+    // Security
+    arcjet: {
+        enabled: true,
+        globalProtection: true, // If true, every route will be protected.
+        protectedRoutes: ['/dashboard', '/account', '/api/secure'], // Optionally, list routes to protect
+        mode: 'LIVE', // 'LIVE' to block request, 'DRY_RUN' to just log
+    },
+};
+```
+
+<div className="my-5" />
+
+<Info>
+    The `globalProtection` option will protect all routes by default. If you want to protect only specific routes, set it to `false` and use the `protectedRoutes` option.
+</Info>
+<div className="my-5" />
+<Tip>
+    The `mode` option can be set to `LIVE` to block requests or `DRY_RUN` to just log them. This is useful for testing.
+</Tip>

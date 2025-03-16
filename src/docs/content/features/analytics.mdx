@@ -38,11 +38,38 @@ There are a couple options for tracking analytics in your app:
 
 For most of these, it's as easy as setting up an account and pasting the tracking script into the root `/layout.js` file.
 
-For [Fathom](https://usefathom.com/) use [this guide](https://vercel.com/guides/deploying-nextjs-using-fathom-analytics-with-vercel).
+For [Fathom](https://usefathom.com/) use get your `FATHOM_ID` and paste it into the `.env.local`:
 
-<Callout>
-    I would recommend trying out [**Fathom's**](https://usefathom.com/) 30 day free trial first. Then fallback to
-    [**Google Analytics**](https://analytics.google.com/) or [**Umami**](https://umami.is/) if you don't like it.
-</Callout>
+```.env.local
+NEXT_PUBLIC_FATHOM_ID=your-fathom-id
+```
+
+Then, in your `/layout.js` file, add the following code:
+
+```layout.js
+import { getSEOTags } from "@/libs/seo";
+import { FathomAnalytics } from "@/libs/fathom/fathom";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = getSEOTags({
+    title: appConfig.appName,
+    description: appConfig.appDescription,
+    canonicalUrlRelative: "/",
+});
+
+export default function RootLayout({ children }) {
+    return (
+        <html lang="en" suppressHydrationWarning>
+            <body className={inter.className}>
+                <FathomAnalytics />
+                <AppProviders>
+                    {children}
+                </AppProviders>
+            </body>
+        </html>
+    );
+}
+```
 
 <br />

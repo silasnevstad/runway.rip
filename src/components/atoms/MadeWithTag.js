@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import {mergeClasses} from "@/utils/styling";
+import Image from "next/image";
 
 const Stripe = (style) => {
     switch (style) {

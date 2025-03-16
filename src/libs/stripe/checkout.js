@@ -1,14 +1,9 @@
 import stripe from "@/libs/stripe/stripe";
-import {pricingConfig} from "@/config";
+import appConfig, { pricingConfig } from "@/config";
 
 /**
  * Create a Stripe Checkout Session.
- * @param {Object} mode - Checkout mode (payment or subscription).
- * @param {string} priceId - Price ID.
- * @param {string} [customerId] - Customer ID (optional, required with subscriptions).
- * @param {string} successUrl - URL to redirect to on successful payment.
- * @param {string} cancelUrl - URL to redirect to on canceled payment.
- * @param {Object} [metadata] - Metadata (optional).
+ * @param {Object} params - Options including mode, priceId, customerId, successUrl, cancelUrl, metadata.
  */
 export async function createCheckoutSession({
     mode,
@@ -19,6 +14,7 @@ export async function createCheckoutSession({
     metadata = {},
 }) {
     try {
+        // Base session parameters
         const sessionParams = {
             mode,
             line_items: [
@@ -33,17 +29,22 @@ export async function createCheckoutSession({
             metadata,
         };
 
-        // If a customer ID exists (for authenticated users), attach it.
+        // Attach customer if available (for subscription/usage and optionally one-time auth)
         if (customerId) {
             sessionParams.customer = customerId;
-            sessionParams.customer_update = {
-                address: 'auto'
+            sessionParams.customer_update = { address: 'auto' };
+        }
+
+        // Apply free trial if enabled and if it's a subscription (or usage-based)
+        if ((mode === "subscription" || mode === "usage") && appConfig.payment.freeTrial.enabled) {
+            sessionParams.subscription_data = {
+                trial_period_days: appConfig.payment.freeTrial.trialPeriodDays,
             };
         }
 
-        // Add discounts
-        if (pricingConfig.promo) {
-            sessionParams.discounts = [{ coupon: pricingConfig.promo.code }];
+        // Optionally add discounts (promo) from pricingConfig if defined.
+        if (pricingConfig.promo && pricingConfig.promo.show) {
+            sessionParams.discounts = [{ coupon: appConfig.payment.promo.code }];
         }
 
         const session = await stripe.checkout.sessions.create(sessionParams);

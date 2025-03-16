@@ -9,7 +9,6 @@ import ClientSideCheckbox from "@/docs/_components/ClientSideCheckbox";
 import TutorialGuide from "@/docs/_components/TutorialGuide";
 import InlineHighlight from "@/docs/_components/InlineHighlight";
 import {
-    ExclamationCircleIcon,
     ExclamationTriangleIcon,
     QuestionMarkCircleIcon,
     WrenchIcon,
@@ -20,7 +19,7 @@ import {
     PlusCircleIcon,
     PaperAirplaneIcon
 } from "@heroicons/react/24/outline";
-import { SparklesIcon, LightBulbIcon, InformationCircleIcon } from "@heroicons/react/24/solid";
+import { SparklesIcon, LightBulbIcon, InformationCircleIcon, ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import { LuPartyPopper } from "react-icons/lu";
 
 import TextLink from "@/components/atoms/TextLink";
@@ -147,12 +146,14 @@ export const mdxComponents = {
     Caution: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-orange-500/20 rounded-lg border-l-4 rounded-l-none border-orange-500 p-2 my-4">
             <ExclamationTriangleIcon className="w-6 h-6 min-w-6  text-orange-500 inline-block mt-2" />
-            {children}
+            <div className="flex flex-col">
+                {children}
+            </div>
         </div>
     ),
     Warning: ({children}) => (
         <div className="flex items-start gap-2 text-[15px] bg-red-500/20 rounded-lg border-l-4 rounded-l-none border-red-500 p-2 my-4">
-            <ExclamationCircleIcon className="w-8 h-8 text-red-500 inline-block mt-0.5" />
+            <ExclamationCircleIcon className="w-6 h-6 min-w-6  text-red-500 inline-block mt-2" />
             {children}
         </div>
     ),

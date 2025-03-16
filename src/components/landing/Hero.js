@@ -111,7 +111,7 @@ export default function Hero({
                                     {pricingConfig.promo.show && (
                                         <p className="flex items-center text-sm font-semibold">
                                             <GiftIcon className="w-5 h-5 mr-1 text-green-500" />
-                                            <span className="text-green-500 mr-1">{pricingConfig.promo.price}$</span>
+                                            <span className="text-green-500 mr-1">{appConfig.payment.promo.price}$</span>
                                             {pricingConfig.promo.text}
                                         </p>
                                     )}

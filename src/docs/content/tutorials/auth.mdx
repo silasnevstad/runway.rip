@@ -17,14 +17,18 @@ related:
     href: "/docs/components/auth/passwordless-auth-form"
   - title: "OAuthButtons"
     href: "/docs/components/auth/oauth-buttons"
+sites:
+  - title: "Supabase"
+    href: "https://supabase.com"
 ---
+
+<Callout>
+    If you haven't yet, check out the [Supabase Setup](/docs/tutorials/supabase) tutorial to set up your project.
+</Callout>
 
 <div id="overview" />
 
-1. Set up your [Supabase](/docs/tutorials/supabase).
-
-2. Simply plug the auth methods you want into [`appConfig`](/docs/features/config#auth) and the `/signup` and `/login` pages will
-automatically adjust to your choices.
+1. Simply plug the auth methods you want into [`config.js`](/docs/features/config) and the auth components will automatically adjust.
 
     ```config.js
     const appConfig = {
@@ -34,11 +38,13 @@ automatically adjust to your choices.
     };
     ```
 
-    <Callout>
+    <Info>
         The available auth methods are: `['password', 'magiclink', 'google', 'github', 'apple']`.
-    </Callout>
+    </Info>
 
-3. To protect certain routes, add them to `protectedRoutes` to require authentication:
+    <div className="my-5" />
+
+2. To protect certain routes, add them to `protectedRoutes` to require authentication:
 
     ```config.js
     const appConfig = {
@@ -51,14 +57,35 @@ automatically adjust to your choices.
     };
     ```
 
-<br />
+    <div className="my-5" />
 
-Easy as that! You're all set up with a secure and ready-to-use authentication system.
+3. To get the current user in your pages, you can use the `createClient` function from `@/utils/supabase/server`.
 
-<Tip>
-    If you want to customize the authentication forms, you can use the [`PasswordAuthForm`](/docs/components/auth/password-auth-form), [`PasswordlessAuthForm`](/docs/components/auth/passwordless-auth-form), and [`OAuthButtons`](/docs/components/auth/oauth-buttons) components.
-</Tip>
+    ```js:
 
+    ```page.js
+    import { createClient } from "@/utils/supabase/server";
+    import appConfig from "@/config";
+
+    export default async function Page({ children }) {
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+
+        return (
+            <div>
+                {children}
+            </div>
+        );
+    }
+    ```
+
+    <Tip>
+        You can also wrap your app in a `UserProvider` to get the current user in any component.
+    </Tip>
+
+    <div className="my-5" />
+
+4. (Optional) Create a [profiles table](/docs/tutorial/database#profiles-table) to store user data and link it to the auth user.
 
 <br />
 <br />
@@ -143,7 +170,7 @@ Easy as that! You're all set up with a secure and ready-to-use authentication sy
 
 <Caution>
     Going to production?
-    Make sure to update your [Site URL](https://supabase.com/dashboard/project/_/auth/url-configuration) to your production URL.
+    Make sure to update your [Supabase's Site URL](https://supabase.com/dashboard/project/_/auth/url-configuration) to your production URL.
     Then add `https://yourdomain.com/**` and `http://localhost:3000/**` to [Redirect URLs].
 </Caution>
 

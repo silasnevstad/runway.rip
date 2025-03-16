@@ -58,9 +58,9 @@ The `AppConfig` object is the core of your application. I've split it up into a 
 ```config.js
 const appConfig = {
     // General
-    appName: 'Runway',
-    appDescription: 'Everything you need to launch your ideas.',
-    domain: 'runway.rip',
+    appName: 'Your App Name',
+    appDescription: 'Your app description',
+    domain: 'yourdomain.com',
     legal: {
         policies: {
             privacy: '/policies/privacy',
@@ -69,21 +69,21 @@ const appConfig = {
         }
     },
     socialMedia: {
-        twitter: 'https://twitter.com/runway',
-        instagram: 'https://instagram.com/runway',
-        github: 'https://github.com/runway-app',
-        linkedin: ''
-    }
+        twitter: 'https://twitter.com/yourapp',
+        // instagram: 'https://instagram.com/yourapp',
+        // github: 'https://github.com/yourapp',
+        // linkedin: ''
+    },
 };
 ```
 
-| Key               | Description                                                                                           |
-|-------------------|-------------------------------------------------------------------------------------------------------|
-| `appName`         | The name of your app.                                                                                 |
-| `appDescription`  | A short description of your app.                                                                      |
-| `domain`          | The domain of your app.                                                                                |
-| `legal`           | An object containing the legal policies of your app.                                                  |
-| `socialMedia`     | An object containing the social media links of your app.                                              |
+| Key              | Description                                              |
+|------------------|----------------------------------------------------------|
+| `appName`        | The name of your app.                                    |
+| `appDescription` | A short description of your app.                         |
+| `domain`         | The domain of your app.                                  |
+| `legal`          | An object containing the legal policies of your app.     |
+| `socialMedia`    | An object containing the social media links of your app. |
 
 <div className="my-5"/>
 
@@ -104,23 +104,29 @@ point to the right place).
 const appConfig = {
     // Auth
     auth: {
-        methods: ['password', 'google', 'github'],
+        enabled: false,
+        methods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
         protectedRoutes: [
             '/dashboard',
             '/account',
         ],
+        unauthenticatedRedirect: '/login',
         afterLoginPath: '/account',
+        afterLogoutPath: '/',
         afterSignupPath: '/confirm-email',
     },
 };
 ```
 
-| Key                    | Description                                                                                           |
-|------------------------|-------------------------------------------------------------------------------------------------------|
-| `auth.methods`         | A list of authentication methods to enable (`password`, `magiclink`, `google`, `apple`, or `github`). |
-| `auth.protectedRoutes` | An array of routes that require authentication.                                                       |
-| `auth.afterLoginPath`  | The path to redirect to after a successful login.                                                     |
-| `auth.afterSignupPath` | The path to redirect to after a successful signup.                                                    |
+| Key                            | Description                                                                                           |
+|--------------------------------|-------------------------------------------------------------------------------------------------------|
+| `auth.enabled`                 | If true, the app will use Supabase Auth.                                                              |
+| `auth.methods`                 | A list of authentication methods to enable (`password`, `magiclink`, `google`, `apple`, or `github`). |
+| `auth.protectedRoutes`         | An array of routes that require authentication.                                                       |
+| `auth.unauthenticatedRedirect` | The path to redirect to if the user is not authenticated.                                             |
+| `auth.afterLoginPath`          | The path to redirect to after a successful login.                                                     |
+| `auth.afterLogoutPath`         | The path to redirect to after a successful logout.                                                    |
+| `auth.afterSignupPath`         | The path to redirect to after a successful signup.                                                    |
 
 <div className="my-5"/>
 
@@ -139,8 +145,8 @@ Then **remember to add the routes you want to protect** to the `protectedRoutes`
 const appConfig = {
     // Email
     emails: {
-        support: "Runway Support <support@mail.runway.rip>",
-        noReply: "Runway <noreply@mail.runway.rip>"
+        support: "Your App Support <support@mail.yourdomain.com>",
+        noReply: "Your App <noreply@mail.yourdomain.com>"
     }
 };
 ```
@@ -164,52 +170,72 @@ Pretty self-explanatory. Just change the emails to your own.
 const appConfig = {
     // Waitlist / Pre-Launch Mode:
     waitlist: {
-        enabled: true,
-        allowedRoutes: ['/waitlist', '/docs'],
-        redirect: '/waitlist'
-    }
+        enabled: false,
+    },
 };
 ```
 
-| Key                      | Description                                                                       |
-|--------------------------|-----------------------------------------------------------------------------------|
-| `waitlist.enabled`       | If true, the app will be in waitlist mode.                                        |
-| `waitlist.allowedRoutes` | An array of routes that are allowed to be accessed without being on the waitlist. |
-| `waitlist.redirect`      | The path to redirect to if the user is not on the waitlist.                       |
+| Key                | Description                                                    |
+|--------------------|----------------------------------------------------------------|
+| `waitlist.enabled` | If true, the app will be in waitlist mode (for `LandingPage`). |
 
 <div className="my-5"/>
 
-If you want to enable the waitlist mode, set `waitlist.enabled` to `true`. This will redirect all routes not specified in
-`waitlist.allowedRoutes` to `waitlist.redirect`.
+If you want to enable the waitlist mode, set `waitlist.enabled` to `true`. This will set up the app to collect emails
+and prevent the `Pricing` and `CheckoutButton` components from showing.
 
-<Tip>
-    This is useful for when you are still building your app and want to collect emails before launch.
-</Tip>
+<Caution>
+    You will need to setup [Supabase](/docs/tutorials/supabase) and the [waitlist table](/docs/tutorials/database#waitlist-table) to collect emails.
+</Caution>
 
 <br />
 <div id="customer-tracking" />
-### Customer Tracking
+### Payment Configuration
 
 <div className="my-5"/>
 
 ```config.js
 const appConfig = {
-    // Customer Tracking
+    // Payments
     payment: {
-        requiredCustomerId: true,
-        afterCheckoutPath: '/account',
+        enabled: true,
+        auth: false,
+        afterCheckoutPath: '/',
+        // Promo code for discount
+        promo: {
+            enabled: true,
+            price: 50,
+            code: "LAUNCH",
+        },
+        // Free trial configuration for subscription (and usage-based) plans:
+        freeTrial: {
+            enabled: true,
+            trialPeriodDays: 7, // Number of days for free trial
+            trialWillEndNotificationDays: 3, // Notify the user 3 days before trial end
+        },
+        // Webhook handling configuration for additional events:
+        webhookHandling: {
+            handleTrialWillEnd: true, // Handle customer.subscription.trial_will_end event
+            handleInvoicePaid: true, // Handle invoice.paid event (e.g. send thank-you emails)
+            handleInvoicePaymentFailed: true, // Handle invoice.payment_failed (e.g. send alert email or cancel access)
+        },
     },
 };
 ```
 
-| Key                  | Description                                                               |
-|----------------------|---------------------------------------------------------------------------|
-| `payment.requiredCustomerId` | If true, the app will require a customer ID to create a checkout session. |
-| `payment.afterCheckoutPath`  | The path to redirect to after a successful checkout.                      |
+| Key                               | Description                                                                       |
+|-----------------------------------|-----------------------------------------------------------------------------------|
+| `payment.enabled`                 | If true, the app will use Supabase Payments.                                      |
+| `payment.auth`                    | If true, the app will use Supabase Auth for payments (i.e. required customer ID). |
+| `payment.afterCheckoutPath`       | The path to redirect to after a successful checkout.                              |
+| `payment.promo`                   | An object containing the promo code for discounts.                                |
+| `payment.freeTrial`               | An object containing the free trial configuration for subscription plans.         |
+| `payment.updateOneTimeAuthAccess` | If true, the app will update the auth access for one-time payments.               |
+| `payment.webhookHandling`         | An object containing the webhook handling configuration for additional events.    |
 
 <div className="my-5"/>
 
-`requiredCustomerId` will essentially ensure that you **track your customers** (automatically happens if you set up subscriptions).
+`payment.auth` will essentially ensure that you **track your customers** (automatically happens if you set up subscriptions/usage).
 
 **You only need to change this to `false` if your app is a one-time payment with no auth.**
 
@@ -225,7 +251,7 @@ const appConfig = {
 ## Payments
 
 The `pricingConfig` object is used to configure your payments. It is used by the [`Pricing`](/docs/components/landing/pricing) component
-and the [`CheckoutButton`](/docs/components/checkout-button) component.
+and the [`CheckoutButton`](/docs/components/payments/checkout-button) component.
 
 **[Set up your Payments here.](/docs/features/payments)**
 
@@ -236,8 +262,7 @@ Example of a one-time payment plan:
 export const pricingConfig = {
     plans: [
         {
-            // "payment" (One-time purchase) or "subscription" (Recurring)
-            mode: "payment",
+            mode: "payment", // "payment" (One-time purchase) or "subscription" (Recurring)
             intervals: [
                 {
                     label: "",
@@ -247,7 +272,6 @@ export const pricingConfig = {
                     priceId: "price_XXX"
                 }
             ],
-            // Customize presentation
             title: "Starter",
             description: "",
             subText: "Pay once, use forever.",
@@ -262,37 +286,8 @@ export const pricingConfig = {
                 "Lifetime updates",
             ],
         },
-    ]
-};
-```
-
-| Key           | Description                                                                                                            |
-|---------------|------------------------------------------------------------------------------------------------------------------------|
-| `mode`        | The mode of the plan (`payment` or `subscription`).                                                                    |
-| `intervals`   | An array of intervals for the plan, providing [Stripe](https://stripe.com) price IDs (only one for one-time payments). |
-| `title`       | The title of the plan.                                                                                                 |
-| `description` | A short description of the plan.                                                                                       |
-| `subText`     | A subtext for the plan.                                                                                                |
-| `isPopular`   | If true, the plan will be highlighted as popular.                                                                      |
-| `features`    | An array of features included in the plan.                                                                             |
-
-<div className="my-5"/>
-
-The `plans` array is where you define your plans. You can have as many as you want. Each plan has a `mode` (either `payment` or `subscription`) and an `intervals` array (just one for one-time payments).
-The `intervals` array is where you define the `price` and the `priceId` (created in [Stripe](https://stripe.com)).
-
-The `title`, `description`, `subText`, `isPopular`, and `features` are used to customize the presentation of the plan. And
-`isPopular` is used to highlight a plan.
-
-<br />
-
-Here's an example of a subscription plan:
-
-```config.js
-export const pricingConfig = {
-        plans: [
-        {  // Starter Plan
-            mode: "subscription", // Recurring
+        {
+            mode: "subcription",
             intervals: [
                 {
                     name: "monthly",
@@ -311,23 +306,35 @@ export const pricingConfig = {
                     priceId: "price_yearly_xxx"
                 }
             ],
-            title: "Starter",
-            description: "",
-            subText: "Pay monthly or yearly.",
-            isPopular: false,
-            features: [
-                "NextJS boilerplate",
-                "Component library",
-                "Database",
-                "Payments",
-                "Auth",
-                "Email Service",
-                "Lifetime updates",
-            ],
-        },
+            // ...
+        }
     ]
 };
 ```
+
+| Key           | Description                                                                                                            |
+|---------------|------------------------------------------------------------------------------------------------------------------------|
+| `mode`        | The mode of the plan (`payment` or `subscription`).                                                                    |
+| `intervals`   | An array of intervals for the plan, providing [Stripe](https://stripe.com) price IDs (only one for one-time payments). |
+| `title`       | The title of the plan.                                                                                                 |
+| `description` | A short description of the plan.                                                                                       |
+| `subText`     | A subtext for the plan.                                                                                                |
+| `isPopular`   | If true, the plan will be highlighted as popular.                                                                      |
+| `features`    | An array of features included in the plan.                                                                             |
+
+<Info>
+    Usage-based billing needs a subscription plan, so you can use the `subscription` mode for that.
+</Info>
+
+<div className="my-5"/>
+
+The `plans` array is where you define your plans. You can have as many as you want.
+Each plan has a `mode` (either `payment` or `subscription`) and an `intervals` array (just one for one-time payments).
+
+The `intervals` array is where you define the `price` and the `priceId` (created in [Stripe](https://stripe.com)).
+
+The `title`, `description`, `subText`, `isPopular`, and `features` are used to customize the presentation of the plan. And
+`isPopular` is used to highlight a plan.
 
 <Tip>
     Use `isPopular`, `oldPrice`, and `discountLabel` to highlight and promote your plans.
@@ -335,15 +342,24 @@ export const pricingConfig = {
 
 <br />
 
-Also inside the `pricingConfig` is a `promo` object, I recommend you use this to promote your product:
+I also recommend setting up the `promo` objects to promote your app.
 
 ```config.js
+const appConfig = {
+    // Payments
+    payment: {
+        promo: {
+            enabled: true,
+            price: 50,
+            code: "LAUNCH",
+        },
+    },
+};
+
 export const pricingConfig = {
     promo: {
         show: true,
-        price: 50,
         text: "off for first 1000 users (12 left)",
-        code: "LAUNCH",
     },
 };
 ```
@@ -411,11 +427,14 @@ export const landingConfig = {
 | `header`       | An object containing the header configuration.                  |
 | `hero`         | An object containing the hero section configuration.            |
 | `features`     | An object containing the features section configuration.        |
-| `withWithouts` | An object containing the with & withouts section configuration. |
 | `what`         | An object containing the what section configuration.            |
 | `who`          | An object containing the who section configuration.             |
 | `how`          | An object containing the how section configuration.             |
+| `withWithouts` | An object containing the with & withouts section configuration. |
+| `pricing`      | An object containing the pricing section configuration.         |
 | `faq`          | An object containing the FAQ section configuration.             |
+| `cta`          | An object containing the CTA section configuration.             |
+| `footer`       | An object containing the footer configuration.                  |
 
 <div className="my-5"/>
 
@@ -432,7 +451,7 @@ export const featuresConfig = [
     {
         title: "Auth",
         description: "Implement robust user auth...",
-        features: ["Magic links & Social auth",...],
+        attributes: ["Magic links & Social auth",...],
         icon: FaUserShield,
     },
     ...

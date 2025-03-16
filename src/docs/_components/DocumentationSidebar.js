@@ -53,6 +53,8 @@ const NavItem = ({ item, pathname, level }) => {
                     }
                     initialOpen={pathname.startsWith(item.href)}
                     className="w-full py-0"
+                    headerClassName="w-full py-0"
+                    contentClassName="pb-0"
                     border={false}
                 >
                     <div className="flex flex-col w-full h-full">

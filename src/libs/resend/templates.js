@@ -6,7 +6,6 @@ export const EmailTemplate = ({ message }) => (
     </div>
 );
 
-
 export const WelcomeEmailTemplate = ({ firstName }) => (
     <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px', color: '#333' }}>
         <h1>Welcome, {firstName}!</h1>
@@ -21,37 +20,24 @@ export const ThankYouEmailTemplate = () => (
     </div>
 );
 
-export const OrderConfirmationTemplate = ({ orderId, customerName, items }) => (
+export const TrialEndEmailTemplate = ({ daysLeft }) => (
     <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px', color: '#333' }}>
-        <h1>Order Confirmation</h1>
-        <p>Hi {customerName},</p>
-        <p>Your order <strong>{orderId}</strong> has been successfully placed.</p>
-        {items && items.length > 0 && (
-            <>
-                <h2>Order Items:</h2>
-                <ul>
-                    {items.map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))}
-                </ul>
-            </>
-        )}
-        <p>We appreciate your business!</p>
+        <h1>Trial Ending Soon</h1>
+        <p>Your trial ends in {daysLeft} days. Don't miss out!</p>
     </div>
 );
 
-export const PasswordResetTemplate = ({ resetLink, userEmail }) => (
+export const InvoicePaidEmailTemplate = () => (
     <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px', color: '#333' }}>
-        <h1>Password Reset Request</h1>
-        <p>Hello,</p>
-        <p>We received a request to reset the password for <strong>{userEmail}</strong>.</p>
-        <p>
-            Please click the link below to reset your password:
-            <br />
-            <a href={resetLink} style={{ color: '#1a73e8' }}>
-                Reset Password
-            </a>
-        </p>
-        <p>If you did not request a password reset, please ignore this email.</p>
+        <h1>Invoice Paid</h1>
+        <p>Your invoice has been successfully paid. Thank you!</p>
     </div>
 );
+
+export const InvoiceFailedEmailTemplate = () => (
+    <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px', color: '#333' }}>
+        <h1>Invoice Payment Failed</h1>
+        <p>There was an issue with your invoice payment. Please check your details.</p>
+    </div>
+);
+

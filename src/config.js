@@ -1,4 +1,3 @@
-
 import { FaMagnifyingGlassChart, FaRegCreditCard, FaUserShield } from "react-icons/fa6";
 import { LuDatabase, LuLayoutDashboard, LuMail } from "react-icons/lu";
 import { Cog8ToothIcon, RocketLaunchIcon } from "@heroicons/react/24/outline";
@@ -28,7 +27,6 @@ const appConfig = {
     // Auth
     auth: {
         enabled: false,
-        profiles: false, // using a profiles table?
         methods: ['password', 'google', 'github'],  // options: password, magiclink, google, apple, github
         protectedRoutes: [
             '/dashboard',
@@ -55,8 +53,26 @@ const appConfig = {
     // Payments
     payment: {
         enabled: true,
-        requiredCustomerId: false,
+        auth: false,
         afterCheckoutPath: '/',
+        // Promo code for discount
+        promo: {
+            enabled: true,
+            price: 50,
+            code: "LAUNCH",
+        },
+        // Free trial configuration for subscription (and usage-based) plans:
+        freeTrial: {
+            enabled: true,
+            trialPeriodDays: 7, // Number of days for free trial
+            trialWillEndNotificationDays: 3, // Notify the user 3 days before trial end
+        },
+        // Webhook handling configuration for additional events:
+        webhookHandling: {
+            handleTrialWillEnd: true, // Handle customer.subscription.trial_will_end event
+            handleInvoicePaid: true, // Handle invoice.paid event (e.g. send thank-you emails)
+            handleInvoicePaymentFailed: true, // Handle invoice.payment_failed (e.g. send alert email or cancel access)
+        },
     },
 
     // Security (bot detection, rate limiting, attack protection, etc.)
@@ -239,9 +255,7 @@ export const landingConfig = {
 export const pricingConfig = {
     promo: {
         show: true,
-        price: 50,
         text: "off for first 1000 users (12 left)",
-        code: "LAUNCH",
     },
     plans: [
         {  // Starter Plan

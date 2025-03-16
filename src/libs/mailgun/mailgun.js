@@ -24,7 +24,7 @@ const mg = mailgun.client({
  * @param html - HTML body
  * @param tags - Tags for the email
  * @param attachments - Attachments for the email
- * @returns {Promise<MessagesSendResult>} - Result of the email sending
+ * @returns {MessagesSendResult} - Result of the email sending
  */
 export async function sendMailgunEmail({ to, from, subject, text, html, tags, attachments }) {
     const data = {
@@ -37,6 +37,63 @@ export async function sendMailgunEmail({ to, from, subject, text, html, tags, at
         'o:tag': tags,
         // Attachments: expects an array of files in the format { data: Buffer, filename: string }
         attachment: attachments,
+    };
+
+    return await mg.messages.create(process.env.NEXT_PUBLIC_MAILGUN_DOMAIN, data);
+}
+
+export async function sendWelcomeEmail({ to, firstName }) {
+    const data = {
+        from: appConfig.emails.noReply,
+        to: Array.isArray(to) ? to.join(',') : to,
+        subject: `Welcome to ${appConfig.appName}!`,
+        template: "WelcomeEmailTemplate",
+        'h:X-Mailgun-Variables': JSON.stringify({ firstName }),
+    };
+
+    return await mg.messages.create(process.env.NEXT_PUBLIC_MAILGUN_DOMAIN, data);
+}
+
+export async function sendThankYouEmail({ to }) {
+    const data = {
+        from: appConfig.emails.noReply,
+        to: Array.isArray(to) ? to.join(',') : to,
+        subject: 'Thank you for your order!',
+        template: "ThankYouEmailTemplate",
+    };
+
+    return await mg.messages.create(process.env.NEXT_PUBLIC_MAILGUN_DOMAIN, data);
+}
+
+export async function sendTrialEndEmail({ to, daysLeft }) {
+    const data = {
+        from: appConfig.emails.noReply,
+        to: Array.isArray(to) ? to.join(',') : to,
+        subject: 'Trial Ending Soon',
+        template: "TrialEndEmailTemplate",
+        'h:X-Mailgun-Variables': JSON.stringify({ daysLeft }),
+    };
+
+    return await mg.messages.create(process.env.NEXT_PUBLIC_MAILGUN_DOMAIN, data);
+}
+
+export async function sendInvoicePaidEmail({ to }) {
+    const data = {
+        from: appConfig.emails.noReply,
+        to: Array.isArray(to) ? to.join(',') : to,
+        subject: 'Invoice Paid',
+        template: "InvoicePaidEmailTemplate",
+    };
+
+    return await mg.messages.create(process.env.NEXT_PUBLIC_MAILGUN_DOMAIN, data);
+}
+
+export async function sendInvoiceFailedEmail({ to }) {
+    const data = {
+        from: appConfig.emails.noReply,
+        to: Array.isArray(to) ? to.join(',') : to,
+        subject: 'Invoice Payment Failed',
+        template: "InvoiceFailedEmailTemplate",
     };
 
     return await mg.messages.create(process.env.NEXT_PUBLIC_MAILGUN_DOMAIN, data);

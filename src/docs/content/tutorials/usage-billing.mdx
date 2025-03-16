@@ -1,0 +1,110 @@
+---
+title: "Subscription Payments Tutorial"
+description: "Setting up subcription payments using Stripe."
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Steps"
+    href: "#steps"
+related:
+  - title: "Stripe Setup"
+    href: "/docs/features/payments"
+  - title: "Pricing"
+    href: "/docs/landing/pricing"
+  - title: "CheckoutButton"
+    href: "/docs/components/payments/checkout-button"
+  - title: "AccountCard"
+    href: "/docs/components/auth/account-card"
+sites:
+  - title: "Stripe"
+    href: "https://stripe.com"
+---
+
+<div id="overview" />
+<Callout>
+    Usage billing require that you have [Auth](/docs/features/auth) enabled.
+</Callout>
+
+Usage billing (metered billing) lets you charge customers based on the actual usage of your service. In Runway, usage billing is implemented as a special type of subscription.
+
+Users first subscribe to a product, and then you report usage events to Stripe. Stripe will then calculate the amount to charge based on the reported usage.
+
+<br />
+
+## Steps
+
+1. Set up [Stripe](/docs/tutorials/stripe) for your project.
+
+    <div className="my-5"/>
+
+2. In your [Stripe Dashboard](https://dashboard.stripe.com/test/meters), create a meter that tracks usage events.
+
+    <div className="my-5"/>
+
+3. Create a recurring [Product](https://dashboard.stripe.com/products) with a metered price.
+    - Select **Recurring** for the product type
+    - Under **Billing period** select **More pricing options**.
+    - Under **Choose your pricing model**, selected **Usage-based** and **Per package**
+    - Set the **Price per unit** to the amount you want to charge per unit.
+    - Under **Meter** select the meter you created in step 1.
+
+    <div className="my-5"/>
+
+4. **Configuration:**
+    Update your [`config.js`](/docs/features/config) and [`pricingConfig`](/docs/features/config#payments) to reflect your product.
+
+    <div className="my-5"/>
+
+5. **Checkout:**
+    - By default, the `LandingPage` and `/pricing` route will use the `Pricing` component display your pricing config and let users checkout.
+    - If you want manual control, you can use the `/components/payments/` components to create your own checkout flow. For example:
+    ```js
+    import CheckoutButton from "@/components/payments/CheckoutButton";
+
+    <CheckoutButton
+        mode="payment"
+        priceId="price_1N..."
+    >
+        Subscribe Now
+    </CheckoutButton>
+    ```
+
+    <div className="my-5"/>
+
+6. **Usage Reporting:**
+    Use the `addUsage` helper to report usage events.
+
+    ```
+    import { addUsage } from "@/libs/stripe/usage";
+    await addUsage({ customerId: "cus_XXX", eventName: "alpaca_ai_tokens", quantity: 10 });
+    ```
+
+    <div className="my-5"/>
+
+7. Our webhook `api/webhooks/stripe` listens to the [Stripe](https://stripe.com) events we've selected and automatically handles updating the user's access in the database.
+
+    <Info>
+        We've created a `customerId` for each user and use `has_access`, `price_id`, etc. in the [**profiles table**](/docs/tutorials/database#profiles-table) to track the user's subscription status.
+    </Info>
+
+    <div className="my-5"/>
+
+8. (Optional) Add your own logic to `webhookHandlers.js` or `subscriptionHandlers.js`, like sending abandoned checkout emails, etc.
+
+    <div className="my-5"/>
+
+9. Use the `libs/stripe/portal.js` or [`AccountCard`](/docs/components/auth/account-card) component to let users manage their subscription.
+
+    ```js
+    import AccountCard from "@/components/auth/AccountCard";
+
+    <AccountCard user={user} />
+    ```
+
+<br />
+
+<Tip>
+    Remember to test everything in Test mode before going to Live mode. You can use the test card number 4242 4242 4242 4242 for a successful payment.
+
+    Refer to [Stripe's usage billing docs](https://stripe.com/docs/billing/subscriptions/usage-based) for more details.
+</Tip>

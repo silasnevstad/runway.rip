@@ -4,28 +4,29 @@ description: "Secure and ready-to-use auth system that handles password-based, m
 onThisPage:
   - title: "Overview"
     href: "#overview"
-  - title: "Config"
-    href: "config"
+  - title: "Architecture"
+    href: "#architecture"
+  - title: "Auth Methods"
+    href: "#auth-methods"
+  - title: "Protected Pages"
+    href: "#protected-pages"
+  - title: "Payment Integration (optional)"
+    href: "#optional-payment-integration"
 related:
   - title: "Supabase Setup"
     href: "/docs/tutorials/supabase"
   - title: "Config"
     href: "/docs/features/config"
-  - title: "AccountCard"
-    href: "/docs/components/auth/account-card"
-  - title: "PasswordAuthForm"
-    href: "/docs/components/auth/password-auth-form"
-  - title: "PasswordlessAuthForm"
-    href: "/docs/components/auth/passwordless-auth-form"
-  - title: "OAuthButtons"
-    href: "/docs/components/auth/oauth-buttons"
+  - title: "AuthForm"
+    href: "/docs/components/auth/auth-form"
+sites:
+  - title: "Supabase"
+    href: "https://supabase.com"
 ---
 
 <div id="overview" />
 
-<br/>
-
-Let's walk through the authentication system! Follow [Supabase Setup](/docs/tutorials/supabase) first to get your project set up.
+Runway uses [Supabase](/docs/tutorials/supabase) for authentication. It supports password-based, magic link, and social logins out of the box.
 
 Simply plug the auth methods you want into [`appConfig`](/docs/features/config) and the `/signup` and `/login` pages will
 automatically adjust to your choices.
@@ -39,36 +40,76 @@ const appConfig = {
 };
 ```
 
-<br />
-
-You can also add the `protectedRoutes` key to specify which routes require authentication:
-
-```config.js
-const appConfig = {
-    // Auth
-    protectedRoutes: [
-        '/dashboard',
-        '/account'
-    ]
-};
-```
+<Tip>
+    You can add as many auth methods as you want. The only requirement is that you need to have at least one method.
+</Tip>
 
 <br />
 <br />
+<div id="architecture" />
 
-## Config
+## Architecture
 
-<div id="password-based-auth" />
+Runway employs two distinct auth clients:
 
-| Key               | Description                                                                                           |
-|-------------------|-------------------------------------------------------------------------------------------------------|
-| `authMethods`     | A list of authentication methods to enable (`password`, `magiclink`, `google`, `apple`, or `github`). |
-| `protectedRoutes` | An array of routes that require authentication.                                                       |
-| `afterLoginPath`  | The path to redirect to after a successful login.                                                     |
-| `afterSignupPath` | The path to redirect to after a successful signup.                                                    |
+- **Server Client**: Manages secure operations and supports server-side rendering.
+- **Browser Client**: Utilizes a singleton pattern to handle client-side authentication.
 
-<Info>
-    The `afterLoginPath` and `afterSignupPath` keys are used to redirect users after they log in or sign up (no need to change them).
-</Info>
+<Callout>
+    The middleware in `middleware.js` and `utils/supabase/middleware.js` is the engine behind the scenes—automatically
+    storing and refreshing auth tokens for a seamless experience.
+</Callout>
 
-That's it! You're all set up with a secure and ready-to-use authentication system.
+Unauthenticated users are automatically redirected when trying to access protected routes, as defined in your appConfig.
+
+<br />
+<br />
+<div id="auth-methods" />
+
+## Auth Methods
+
+Runway supports multiple authentication strategies, easily enabled through `config.js`:
+
+- [**Password Authentication:**](/docs/tutorials/auth)
+    Users can sign up using a password. If enabled, a confirmation step is required—ensure you update your Supabase email
+    template with a confirmation link handled by `/auth/confirm/route.ts`.
+
+- [**Magic Link:**](/docs/tutorials/auth)
+    Users receive a login link via email. As with password auth, the confirmation is processed by `/auth/confirm/route.ts` after updating your email template.
+
+- [**OAuth:**](/docs/tutorials/auth#oauth)
+    Social logins can be activated by integrating third-party providers in Supabase. Each provider requires its own manual setup.
+
+<Caution>
+    Requires minimal configuration in [Supabase](https://supabase.com/), i.e. third party providers, email templates, etc.
+</Caution>
+
+Both the `/login` and `/signup` pages use the [`AuthForm`](/docs/components/auth/auth-form) component to render the selected methods. These pages employ
+[Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) to handle the signup logic securely on the server.
+
+<br />
+<br />
+<div id="protected-pages" />
+
+## Protected Pages
+
+Runway supports protected pages (only for authenticated users) and public pages (accessible to everyone).
+Access control is streamlined via our `middleware.js`.
+
+Unauthenticated users trying to access protected pages are automatically
+redirected based on the settings in `appConfig.auth.protectedPages` and `appConfig.auth.unauthenticatedRedirect`.
+
+<Tip>
+    Server Components can read cookies, making it effortless to retrieve the current auth status and user data in a secure manner.
+</Tip>
+
+
+<br />
+<br />
+<div id="optional-payment-integration" />
+
+## Payment Integration (Optional)
+
+For apps that include payments, Runway can create a Stripe customer ID during user signup. This ID is stored in the
+`auth.users` table or the [`public.profiles`](/docs/tutorials/database#stripe-integration) table (or both), which simplifies
+tracking payment methods and subscription details.

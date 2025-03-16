@@ -12,15 +12,15 @@ related:
     href: "/docs/features/auth"
   - title: "Payments"
     href: "/docs/features/payments"
-  - title: "Deployment"
-    href: "/docs/tutorials/deployment"
 onThisPage:
   - title: "Overview"
     href: "#overview"
-  - title: "Setting Up Your Landing Page"
-    href: "#setting-up-your-landing-page"
   - title: "Customizing Your Copy"
     href: "#customizing-your-copy"
+  - title: "Your Landing Page"
+    href: "#setting-up-your-landing-page"
+  - title: "Color Theme"
+    href: "#color-theme"
   - title: "Next Steps"
     href: "#next-steps"
 ---
@@ -34,12 +34,14 @@ That means you only need to focus on updating your config to change the app’s 
 
 <br />
 
+<div id="customizing-your-copy" />
+
 1. Open **`src/config.js`** and update the common settings to reflect your app’s details. At a minimum, update:
 
     - **App Information:**
     Modify `appName`, `appDescription`, and `domain` to match your app.
 
-    ```js
+    ```config.js
     const appConfig = {
         // General
         appName: 'Your App Name',
@@ -59,61 +61,35 @@ That means you only need to focus on updating your config to change the app’s 
 
     <br />
 
-2. Decide whether you want to enable [authentication](/docs/features/auth) and [payments](/docs/features/payments):
-
-    ```js
-    const appConfig = {
-        // Auth
-        auth: {
-            // add any of ['password', 'magiclink', 'google', 'github', 'apple']
-            methods: [],
-            protectedRoutes: ['/dashboard', '/account'],
-            afterLoginPath: '/account',
-            afterSignupPath: '/confirm-email'
-        },
-
-        // Payment
-        payment: {
-            // Set to false if you don't need payments now.
-            enabled: true,
-            requiredCustomerId: true,
-            afterCheckoutPath: '/account'
-        }
-    };
-    ```
-
-    Add the auth methods you want to use (`['password', 'magiclink', 'google', 'github', 'apple']`).
-
-    <Info>
-        - The `afterLoginPath` and `afterSignupPath` keys are used to redirect users after they log in or sign up (no need to change them).
-        - The `protectedRoutes` key is used to protect routes that require authentication.
-    </Info>
+2. Decide what you want to enable and set up [authentication](/docs/features/auth), [payments](/docs/features/payments),
+   [database](/docs/features/database), [emails](/docs/features/emails),...
 
     <div className="my-4" />
 
     <Callout>
         If you’re not ready for full auth/payments, you might use waitlist mode to start collecting leads.
 
-        ```js
-        waitlist: {
-            enabled: true,
-            allowedRoutes: ['/waitlist', '/docs'],
-            redirect: '/waitlist'
-        },
+        ```config.js
+        const appConfig = {
+            waitlist: {
+                enabled: false,
+            },
+        };
         ```
 
-        You need to setup [Supbase](/docs/tutorials/supabase) and [waitlist table](/docs/features/db#waitlist-table) to use this feature.
+        You need to setup [Supbase](/docs/tutorials/supabase) and [waitlist table](/docs/tutorials/database#waitlist-table) to use this feature.
     </Callout>
 
     <br />
 
+    <div id="setting-up-your-landing-page" />
 3. Customize the landing page, `(noauth)/page.js`. Your landing page is powered by the `landingConfig` object in [`config.js`](/docs/features/config#landing-page).
 
     This object controls every section of your landing page without you needing to touch any component code.
 
     <Tip>
-        Feel free to start from scratch my just deleting `/src/app/(noauth)/page.js`.
-        You can use the Runway's components to build your own page.
+        Feel free to start from scratch my just deleting `LandingPage` in `/src/app/(noauth)/page.js`.
+        You can use the Runway's `/components` to build your own page.
     </Tip>
 
     For example:
@@ -165,9 +141,21 @@ That means you only need to focus on updating your config to change the app’s 
         Play around with different layouts and content to find what works best for you.
     </Callout>
 
+    <div className="my-6" />
+    <div id="color-theme" />
+4. Customize the [color theme](/docs/features/config#color-theme) to match your brand.
+
 
 <br />
 
-Run `npm run dev` and visit [`http://localhost:3000`](http://localhost:3000) to see your live landing page.
+Run `npm run dev` and visit [`http://localhost:3000`](http://localhost:3000) to see your live app.
 
-Once you're happy, it's time to deploy your app. Check out the [Deployment](/docs/tutorials/deployment) guide for more details.
+<br />
+<div id="next-steps" />
+
+## Next Steps
+
+- [Set up Supabase](/docs/tutorials/supabase)
+- [Create your first page](/docs/tutorials/creating-pages)
+- [Add authentication](/docs/tutorials/auth)
+- [Set up payments](/docs/tutorials/payments)

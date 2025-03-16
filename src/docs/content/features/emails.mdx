@@ -189,6 +189,69 @@ Choose between [Resend](https://resend.com) or [Mailgun](https://www.mailgun.com
             ```
 
             <br />
+
+            To created the templates that the sendThankYouEmail, sendInvoiceFailedEmail, etc. use run these command in the terminal.
+            Choose the templates you need.
+
+            <Callout>
+                Runway can send these emails after webhooks are triggered.
+            </Callout>
+
+            To create the welcome email template:
+            ```bash
+            curl -X POST -s --user "api:${API_KEY}" \
+            "https://api.mailgun.net/v3/${DOMAIN}/templates" \
+            --form-string template='<div style="font-family: Arial, sans-serif; padding: 20px; color: #333;"><h1>Welcome, {{firstName}}!</h1><p>Thank you for joining our platform. We’re thrilled to have you with us.</p></div>' \
+            -F name='WelcomeEmailTemplate' \
+            -F description='Welcome email template with first name placeholder'
+            ```
+
+            <br />
+
+            To create the thank you email template:
+            ```bash
+            curl -X POST -s --user "api:${API_KEY}" \
+            "https://api.mailgun.net/v3/${DOMAIN}/templates" \
+            --form-string template='<div style="font-family: Arial, sans-serif; padding: 20px; color: #333;"><h1>Thank you for your purchase!</h1><p>We appreciate your business.</p></div>' \
+            -F name='ThankYouEmailTemplate' \
+            -F description='Thank you email template'
+            ```
+
+            <br />
+
+            To create the trial end template:
+            ```bash
+            curl -X POST -s --user "api:${API_KEY}" \
+            "https://api.mailgun.net/v3/${DOMAIN}/templates" \
+            --form-string template='<div style="font-family: Arial, sans-serif; padding: 20px; color: #333;"><h1>Trial Ending Soon</h1><p>Your trial ends in {{daysLeft}} days. Don'"'"'t miss out!</p></div>' \
+            -F name='TrialEndEmailTemplate' \
+            -F description='Trial end email template with days left placeholder'
+            ```
+
+            <br />
+
+            To create the invoice paid template:
+            ```bash
+            curl -X POST -s --user "api:${API_KEY}" \
+            "https://api.mailgun.net/v3/${DOMAIN}/templates" \
+            --form-string template='<div style="font-family: Arial, sans-serif; padding: 20px; color: #333;"><h1>Invoice Paid</h1><p>Your invoice has been successfully paid. Thank you!</p></div>' \
+            -F name='InvoicePaidEmailTemplate' \
+            -F description='Invoice paid email template'
+            ```
+
+            <br />
+
+            To create the invoice failed template:
+            ```bash
+            curl -X POST -s --user "api:${API_KEY}" \
+            "https://api.mailgun.net/v3/${DOMAIN}/templates" \
+            --form-string template='<div style="font-family: Arial, sans-serif; padding: 20px; color: #333;"><h1>Invoice Payment Failed</h1><p>There was an issue with your invoice payment. Please check your details.</p></div>' \
+            -F name='InvoiceFailedEmailTemplate' \
+            -F description='Invoice failed email template'
+            ```
+
+
+            <br />
             <br />
 
             <div id="receiving-emails" />

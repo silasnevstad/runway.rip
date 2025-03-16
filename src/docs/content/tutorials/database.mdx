@@ -1,0 +1,258 @@
+---
+title: "Database Setup"
+description: "Step-by-step guide to setting up your user profiles table and optional Stripe integration for payments."
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Profiles Table Setup"
+    href: "#profiles-table"
+  - title: "Optional: Stripe Integration"
+    href: "#stripe-integration"
+  - title: "Waitlist Table Setup"
+    href: "#waitlist-table"
+related:
+  - title: "Supabase Setup"
+    href: "/docs/tutorials/supabase"
+  - title: "Database Features"
+    href: "/docs/features/database"
+sites:
+  - title: "Supabase"
+    href: "https://supabase.com"
+---
+
+<Callout>
+    If you haven't yet, check out the [Supabase Setup](/docs/tutorials/supabase) guide to get your project set up.
+</Callout>
+
+<div id="overview" />
+
+<br />
+
+<div id="profiles-table" />
+
+## Profiles Table Setup
+
+1. First, create your **profiles** table along with the necessary function and trigger for automatic profile creation upon user signup.
+
+    ```sql
+    -- Create the profiles table
+    CREATE TABLE IF NOT EXISTS public.profiles (
+        id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+        name TEXT,
+        email TEXT UNIQUE NOT NULL,
+        image TEXT,
+        created_at TIMESTAMPTZ DEFAULT timezone('utc', now()),
+        updated_at TIMESTAMPTZ DEFAULT timezone('utc', now())
+    );
+
+    -- Function to update the updated_at timestamp
+    CREATE OR REPLACE FUNCTION public.set_updated_at()
+    RETURNS TRIGGER AS $$
+    BEGIN
+        NEW.updated_at = timezone('utc', now());
+        RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql;
+
+    -- Trigger to update updated_at before any update on profiles
+    CREATE TRIGGER trg_set_updated_at
+    BEFORE UPDATE ON public.profiles
+    FOR EACH ROW
+    EXECUTE FUNCTION public.set_updated_at();
+
+    -- Enable Row Level Security on the profiles table
+    ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+
+    -- Policies to ensure users only access their own profiles
+    CREATE POLICY p_read_own_profile ON public.profiles
+    FOR SELECT
+    USING (id = auth.uid());
+
+    CREATE POLICY p_update_own_profile ON public.profiles
+    FOR UPDATE
+    USING (id = auth.uid());
+
+    CREATE POLICY p_insert_own_profile ON public.profiles
+    FOR INSERT
+    WITH CHECK (id = auth.uid());
+
+    CREATE POLICY p_delete_own_profile ON public.profiles
+    FOR DELETE
+    USING (id = auth.uid());
+
+    -- Function to handle new user signup without Stripe integration
+    CREATE OR REPLACE FUNCTION public.handle_new_user()
+    RETURNS TRIGGER AS $$
+    BEGIN
+        INSERT INTO public.profiles (
+            id,
+            email,
+            name,
+            image,
+            created_at,
+            updated_at
+        )
+        VALUES (
+            NEW.id,
+            NEW.email,
+            COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name'),
+            NEW.raw_user_meta_data->>'avatar_url',
+            timezone('utc', now()),
+            timezone('utc', now())
+        );
+        RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+    -- Trigger to call the new user handler after a new user is inserted
+    CREATE TRIGGER handle_new_user
+    AFTER INSERT ON auth.users
+    FOR EACH ROW
+    EXECUTE FUNCTION public.handle_new_user();
+    ```
+
+<Tip>
+    This basic setup automatically creates a corresponding profile for every new user, ensuring your database stays in sync with your auth system.
+
+    You could add whatever fields you want to the `profiles` table.
+</Tip>
+
+<br />
+<br />
+<div id="stripe-integration" />
+
+## Stripe Integration (optional)
+
+If you plan to accept [payments](/docs/features/payments), you can update your user signup process to automatically create a Stripe customer (uses `api/create-stripe-customer` endpoint).
+This update modifies the function so that it generates a Stripe customer ID and stores it in both the `auth.users` and `public.profiles` tables.
+
+<Callout>
+    This enhanced setup ties your user profiles directly to Stripe, enabling smooth management of subscriptions and payments.
+</Callout>
+
+1. Before updating the function, add the `stripe_customer_id` column to your `auth.users` table:
+
+    ```sql
+    ALTER TABLE auth.users ADD COLUMN stripe_customer_id TEXT;
+    ```
+
+    <div className="my-4" />
+
+2. Next, create the `stripe_create_customer` function in your database. This function will handle the Stripe customer creation process:
+
+    ```SQL Editor
+    CREATE OR REPLACE FUNCTION public.stripe_create_customer(email TEXT, id TEXT)
+    RETURNS TEXT AS $$
+    DECLARE
+        response record;
+        parsed_body JSON;
+    BEGIN
+        SELECT * INTO response
+        FROM http_post(
+            'https://YOURDOMAIN.COM/api/create-stripe-customer'::text,
+            json_build_object('email', email, 'id', id)::text,
+            'application/json'::text
+        );
+
+        IF response.status::int <> 200 THEN
+            RAISE NOTICE 'Failed to create Stripe customer for email %: %', email, response.content;
+            RETURN NULL;
+        END IF;
+
+        parsed_body := response.content::json;
+
+        RETURN parsed_body->>'customer_id';
+    END;
+    $$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, auth, pg_temp;
+    ```
+
+    <Caution>
+        Replace `YOURDOMAIN.COM` with your actual domain. We can't use `localhost` here so the only way you can test this is to deploy your app to a live server.
+    </Caution>
+
+    <div className="my-4" />
+
+3. Now, update your signup function with the following SQL:
+
+    ```sql
+    -- Replace the existing function with one that integrates Stripe
+    CREATE OR REPLACE FUNCTION public.handle_new_user()
+    RETURNS TRIGGER AS $$
+    DECLARE
+        stripe_customer_id TEXT;
+    BEGIN
+        PERFORM set_config('supabase.auth.uid', NEW.id::text, true);
+
+        -- Create a new Stripe customer by calling your external API
+        stripe_customer_id := (
+            SELECT public.stripe_create_customer(NEW.email, NEW.id::text)
+        );
+
+        -- Insert a new profile record into the profiles table with the Stripe customer ID
+        INSERT INTO public.profiles (
+            id,
+            customer_id,
+            email,
+            name,
+            image,
+            created_at,
+            updated_at
+        )
+        VALUES (
+            NEW.id,
+            stripe_customer_id,
+            NEW.email,
+            COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name'),
+            NEW.raw_user_meta_data->>'avatar_url',
+            timezone('utc', now()),
+            timezone('utc', now())
+        );
+
+        -- Update auth.users with the new Stripe customer ID
+        UPDATE auth.users
+        SET stripe_customer_id = stripe_customer_id
+        WHERE id = NEW.id;
+
+        RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, auth, pg_temp;
+
+    -- Trigger remains unchanged
+    CREATE OR REPLACE TRIGGER handle_new_user
+    AFTER INSERT ON auth.users
+    FOR EACH ROW
+    EXECUTE FUNCTION public.handle_new_user();
+    ```
+
+<br />
+<br />
+<div id="waitlist-table" />
+
+## Waitlist Table Setup (optional)
+
+If you want to collect emails for a **waitlist** or **newsletter**, you can create a simple waitlist table.
+
+1. Create the waitlist table:
+
+    ```sql
+    -- Create the waitlist table for email subscriptions
+    DROP TABLE IF EXISTS public.waitlist;
+    CREATE TABLE public.waitlist (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    email text UNIQUE NOT NULL,
+    name text,
+    created_at TIMESTAMPTZ DEFAULT timezone('utc', now())
+    );
+
+    -- Enable Row Level Security for the waitlist table
+    ALTER TABLE public.waitlist ENABLE ROW LEVEL SECURITY;
+
+    -- Policy to allow public insertion (no authentication needed)
+    CREATE POLICY waitlist_insert_policy ON public.waitlist
+    FOR INSERT
+    WITH CHECK (true);
+    ```
+
+<Tip>
+    Use [`appConfig.waitlist`](/docs/features/config#waitlist) to enable the waitlist mode.
+</Tip>

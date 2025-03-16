@@ -1,0 +1,76 @@
+---
+title: "Database"
+description: "Flexible database integration to manage user profiles and more."
+onThisPage:
+  - title: "Overview"
+    href: "#overview"
+  - title: "Profiles Table"
+    href: "#profiles-table"
+  - title: "Optional Tables"
+    href: "#optional-tables"
+  - title: "Stripe Integration"
+    href: "#stripe-integration"
+related:
+  - title: "Supabase Setup"
+    href: "/docs/tutorials/supabase"
+  - title: "Database Setup"
+    href: "/docs/tutorials/database"
+  - title: "Config"
+    href: "/docs/features/config"
+sites:
+  - title: "Supabase"
+    href: "https://supabase.com"
+---
+
+<div id="overview" />
+<Tip>
+    Follow the [Database tutorial](/docs/tutorials/database) to set up your database and tables.
+</Tip>
+
+Runway uses [Supabase](https://supabase.com/) to power its database layer. Whether you need to manage profiles,
+build waitlists, collect feedback, host posts, etc., our database setup is designed to be flexible and secure.
+
+<br />
+<Divider />
+<div id="profiles-table" />
+
+## Profiles Table
+
+The **profiles** table is at the heart of user data management. It stores essential fields such as:
+
+- **User Identification:** Linked to the `auth.users` table.
+- **Contact Information:** Including email, name, and profile image.
+- **Payment Integration:** Optional fields like `has_access`, `customer_id`, `subscription_id`, and `subscription_status` streamline payment management if you're using Stripe.
+
+<Callout>
+    If you’re integrating payments, the `customer_id` field connects each user to their Stripe record, simplifying subscription and billing processes.
+</Callout>
+
+<br />
+<br />
+<Divider />
+<div id="optional-tables" />
+
+## Optional Tables
+
+Beyond profiles, you can extend your database with additional tables to suit your application’s needs:
+
+- [**Waitlist Table:**](/docs/tutorials/database#waitlist-table) Collect emails for pre-launch waitlists or newsletters.
+- **Feedback Table:** Capture user feedback and reviews.
+- **Posts Table:** Manage user-generated content or blog posts.
+
+<br />
+<br />
+<Divider />
+<div id="stripe-integration" />
+
+## Stripe Integration
+
+For apps with payment functionality, Runway can automatically create a Stripe customer ID during user signup. This ID is stored in the **profiles** table or directly in `auth.users`, which helps in:
+
+- Managing payment methods and subscriptions.
+- Tracking usage for billing purposes.
+
+<Caution>
+    Make sure you have followed [this tutorial](/docs/tutorials/database#customer-id) so that the customer ID is created and stored correctly.
+</Caution>

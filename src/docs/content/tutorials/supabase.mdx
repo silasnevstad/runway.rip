@@ -4,6 +4,8 @@ description: "Setting up Supabase for authentication and database access."
 onThisPage:
   - title: "Overview"
     href: "#overview"
+  - title: "Emails"
+    href: "#emails"
 ---
 
 <div id="overview" />
@@ -34,16 +36,21 @@ update the appropriate templates:
     >
     ```
 
-    <Info>
-        Our `/auth/confirm` route will handle the confirmation and redirect the user to the appropriate page.
-    </Info>
-
-5. If using [Resend](/docs/features/emails#resend), you can also update the [SMTP Settings](https://supabase.com/dashboard/project/cpnazmlhikivzgcemgzp/auth/smtp) to use Resend's SMTP service.
-You can find your SMTP in the [Settings](https://resend.com/settings/smtp) of your Resend project.
-
     <Tip>
-        This will allow you to send magic links and other emails from your domain.
+        Customize these email templates to match your brand.
     </Tip>
 
-6. Going to production? Update your [Site URL](https://supabase.com/dashboard/project/_/auth/url-configuration) to your production URL.
+5. Going to production? Update your [Site URL](https://supabase.com/dashboard/project/_/auth/url-configuration) to your production URL.
 Then add `https://yourdomain.com/**` and `http://localhost:3000/**` to [Redirect URLs].
+
+<br />
+<div id="emails" />
+## Emails
+
+To send [Auth](/docs/features/auth) emails from your domain, you need to set up your [email provider](/docs/features/emails)
+and update the [SMTP Settings](https://supabase.com/dashboard/project/_/auth/smtp).
+
+<Callout>
+    This will allow you to send magic links and other emails from your domain.
+</Callout>
+

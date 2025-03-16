@@ -36,9 +36,10 @@ Static pages are accessible to everyone. Simply create a folder (e.g. `about`) w
 
 ```/app/(noauth)/about/page.js
 import { getSEOTags } from "@/libs/seo";
+import appConfig from "@/config";
 
 export const metadata = getSEOTags({
-    title: "About | App Name",
+    title: `About | ${appConfig.appName}`,
     description: "This is the about page.",
     canonicalUrlRelative: "/about",
 });

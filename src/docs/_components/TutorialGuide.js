@@ -19,7 +19,11 @@ const TutorialGuide = ({ options, children }) => {
                 selected={selectedOption}
                 onChange={setSelectedOption}
                 hover={true}
-                shape="rounded-xl"
+                size="md"
+                borderRadius="lg"
+                variant="soft"
+                color="bg"
+                animate={true}
             />
             {selectedChild}
         </div>

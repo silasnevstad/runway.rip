@@ -1,16 +1,18 @@
 ---
 title: "One-Time Payments Tutorial"
-description: "Setting up one-time payments using Stripe."
+description: "Learn how to set up one-time payments using Stripe."
 onThisPage:
   - title: "Overview"
     href: "#overview"
+  - title: "Steps"
+    href: "#steps"
 related:
   - title: "Stripe Setup"
-    href: "/docs/features/payments"
+    href: "/docs/tutorials/stripe"
   - title: "Pricing"
     href: "/docs/landing/pricing"
   - title: "CheckoutButton"
-    href: "/docs/components/checkout-button"
+    href: "/docs/components/payments/checkout-button"
 sites:
   - title: "Stripe"
     href: "https://stripe.com"
@@ -18,37 +20,47 @@ sites:
 
 <div id="overview" />
 
-1. Set up [Stripe](/docs/features/payments) in your app.
+One-Time Payments allow you to charge a single fee for access to your product.
 
-2. If you don't care about storing the user's status/access, set [`appConfig.payment.requiredCustomerId`](/docs/features/config#customer-tracking) to `false`
-(e.g. if not using auth and purely using [Stripe](https://stripe.com/dashboard/) to manage your customers).
+To keep track of customers, you will most likely either:
+1) want to use purely webhooks and [Stripe](https://dashboard.stripe.com/) to manage your users
+2) or use the [Auth](/docs/features/auth) feature with a [profiles table](/docs/tutorials/database#profiles-table) to manage user access.
 
-    <Caution>
-        If you **do want** to store the user's status/access, make sure you have set up [**Auth**](/docs/tutorials/authentication) and [**profiles table**](/docs/features/db#profiles) (ensure you have the `handle_new_user` function to create Stripe customers on sign up).
-    </Caution>
+<Info>
+    If going with the first option, set `appConfig.payment.auth` to `false` so that it does not require a `customerId` on checkout.
+</Info>
+<Callout>
+    If you haven't already, set up [Stripe](/docs/tutorials/stripe) for your project.
+</Callout>
 
-3. By default, the landing page will now show a [`Pricing`](/docs/landing/pricing) component. Place or modify this however you like:
+<br />
+<br />
+<div id="steps" />
+## Steps
 
-     ```js
-     import Pricing from "@/components/landing/Pricing";
-     <Pricing />
-     ```
+1. **Stripe Setup:**
+    Set up [Stripe](/docs/tutorials/stripe) for your project (create a **One-time Product/s**).
 
-    Or simply use the [`CheckoutButton`](/docs/components/checkout-button) component to create a checkout button for your product.
+2. **Configuration:**
+    Update your [`config.js`](/docs/features/config) and [`pricingConfig`](/docs/features/config#payments) to reflect your one-time product. **`priceId`** is required
+    the rest are mostly optional.
 
-     ```js
-     import CheckoutButton from "@/components/payments/CheckoutButton";
-     <CheckoutButton
-       mode="subscription"
-       priceId="price_1N..."
-     >
-         Subscribe Now
-     </CheckoutButton>
-     ```
+3. **Checkout:**
+    - By default, the `LandingPage` and `/pricing` route will use the `Pricing` component display your pricing config and let users checkout.
+    - If you want manual control, you can use the `/components/payments/` components to create your own checkout flow. For example:
+        ```js
+        import CheckoutButton from "@/components/payments/CheckoutButton";
 
-4. (Optionally) Our webhook api/webhooks/stripe listens to Stripe and automatically handles events.
+        <CheckoutButton
+            mode="payment"
+            priceId="price_1N..."
+        >
+            Subscribe Now
+        </CheckoutButton>
+        ```
 
-5. Add your own logic to `webhookHandlers.js` like sending abandoned checkout emails, thank you emails, etc.
+4. **Webhook (optional):**
+    Tweak how your app handles webhooks by modifying the `/libs/stripe/webhookHandlers.js` file (i.e. send emails, update access if using [Auth](/docs/features/auth), etc.).
 
 <br />
 

@@ -11,14 +11,14 @@ export default async function Pricing({
     subtitle = landingConfig.pricing.subtitle,
 }) {
     let customerId;
-    if (appConfig.payment.requiredCustomerId) {
+    if (appConfig.payment.auth) {
         const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
         if (user) {
             customerId = user?.stripe_customer_id;
         }
         if (!customerId) {
-            console.log("🚧 Pricing with payments.requiredCustomerId require a Stripe customer ID.");
+            console.log("🚧 Pricing with payments.auth require a Stripe customer ID.");
             return null;
         }
     }
@@ -38,7 +38,7 @@ export default async function Pricing({
                 {pricingConfig.promo.show && (
                     <p className="flex items-center font-semibold mt-2 opacity-90">
                         <GiftIcon className="w-5 h-5 mr-1 text-green-500" />
-                        <span className="text-green-500 mr-1">{pricingConfig.promo.price}$</span>
+                        <span className="text-green-500 mr-1">{appConfig.payment.promo.price}$</span>
                         {pricingConfig.promo.text}
                     </p>
                 )}
